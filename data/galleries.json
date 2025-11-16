@@ -1,0 +1,112 @@
+{
+  "OTEL1": {
+    "title": "Kral Dairesi",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "120 m2",
+    "rooms": "1 Yatak Odası + 1 Salon",
+    "desc": "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz.",
+    "images": [
+      "assets/ks1.webp", "assets/ks2.webp", "assets/ks3.webp", "assets/ks4.webp", "assets/ks5.webp", "assets/ks6.webp", "assets/ks7.webp", "assets/ks8.webp", "assets/ks9.webp", "assets/ks10.webp", "assets/ks11.webp", "assets/ks12.webp", "assets/ks13.webp", "assets/ks14.webp", "assets/ks15.webp", "assets/ks16.webp"
+    ]
+  },
+  "OTEL2": {
+    "title": "Suit Oda (1+1)",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "75 m2",
+    "rooms": "1+1",
+    "desc": "Geniş balkonlu, oturma alanlı ve deniz manzaralı suit oda.",
+    "images": [
+      "assets/b1_plus1.webp", "assets/b1_plus2.webp", "assets/b1_plus3.webp", "assets/b1_plus4.webp", "assets/b1_plus5.webp", "assets/b1_plus6.webp", "assets/b1_plus7.webp", "assets/b1_plus8.webp", "assets/b1_plus9.webp", "assets/b1_plus10.webp"
+    ]
+  },
+  "OTEL3": {
+    "title": "Aile Odası (2+1)",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "60 m2",
+    "rooms": "2 Yatak Odası (Ara Kapılı)",
+    "desc": "Çocuklar için ayrı yatak odası bulunan konforlu aile odası.",
+    "images": [
+      "assets/b2_plus1.webp", "assets/b2_plus2.webp", "assets/b2_plus3.webp", "assets/b2_plus4.webp", "assets/b2_plus5.webp", "assets/b2_plus6.webp", "assets/b2_plus7.webp", "assets/b2_plus8.webp", "assets/b2_plus9.webp"
+    ]
+  },
+  "OTEL4": {
+    "title": "Superior Oda",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "35 m2",
+    "rooms": "1 Yatak Odası",
+    "desc": "Balkonlu ve deniz manzaralı standart oda.",
+    "images": [
+      "assets/fs1.webp", "assets/fs2.webp", "assets/fs3.webp", "assets/fs4.webp", "assets/fs5.webp", "assets/fs6.webp", "assets/fs7.webp", "assets/fs8.webp", "assets/fs9.webp", "assets/fs10.webp"
+    ]
+  },
+  "OTEL5": {
+    "title": "Ekonomik Oda",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "32 m2",
+    "rooms": "1 Yatak Odası",
+    "desc": "Kara manzaralı, ekonomik ve konforlu standart oda.",
+    "images": [
+      "assets/em1.webp", "assets/em2.webp", "assets/em3.webp", "assets/em4.webp", "assets/em5.webp", "assets/em6.webp"
+    ]
+  },
+  "OTEL6": {
+    "title": "Standart Oda",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "30 m2",
+    "rooms": "1 Yatak Odası",
+    "desc": "Modern tasarımlı standart oda.",
+    "images": [
+      "assets/st1.webp", "assets/st2.webp", "assets/st3.webp", "assets/st4.webp", "assets/st5.webp", "assets/st6.webp", "assets/st7.webp"
+    ]
+  },
+  "OTEL7": {
+    "title": "Deluxe Oda",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "40 m2",
+    "rooms": "1 Yatak Odası",
+    "desc": "Daha geniş oturma alanına sahip Deluxe oda.",
+    "images": [
+      "assets/sf1.webp", "assets/sf2.webp", "assets/sf3.webp", "assets/sf4.webp", "assets/sf5.webp", "assets/sf6.webp", "assets/sf7.webp"
+    ]
+  },
+  "OTEL8": {
+    "title": "Junior Suit",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "45 m2",
+    "rooms": "1+1 (Açık Plan)",
+    "desc": "Oturma alanı ve yatak odasının birleştiği geniş Junior Süit.",
+    "images": [
+      "assets/shr1.webp", "assets/shr2.webp", "assets/shr3.webp", "assets/shr4.webp", "assets/shr5.webp", "assets/shr6.webp", "assets/shr7.webp", "assets/shr8.webp"
+    ]
+  },
+  "OTEL9": {
+    "title": "Superior Twin Oda (Ayrı Yataklı)",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "38 m2",
+    "rooms": "1 Yatak Odası (2 Ayrı Yatak)",
+    "desc": "İki adet tek kişilik yatak bulunan Superior oda.",
+    "images": [
+      "assets/stf1.webp", "assets/stf2.webp", "assets/stf3.webp", "assets/stf4.webp", "assets/stf5.webp", "assets/stf6.webp", "assets/stf7.webp", "assets/stf8.webp"
+    ]
+  },
+  "OTEL10": {
+    "title": "Standart Twin Oda (Ayrı Yataklı)",
+    "price": "Gecelik Fiyat Sorunuz",
+    "location": "WlakAbouTravel",
+    "area": "30 m2",
+    "rooms": "1 Yatak Odası (2 Ayrı Yatak)",
+    "desc": "İki adet tek kişilik yatak bulunan standart oda.",
+    "images": [
+      "assets/stw1.webp", "assets/stw2.webp", "assets/stw3.webp", "assets/stw4.webp", "assets/stw5.webp", "assets/stw6.webp", "assets/stw7.webp"
+    ]
+  },
+}
