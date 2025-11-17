@@ -8,109 +8,13 @@
 <link rel="preload" as="image" href="assets/walkabot_logo.webp">
 <link rel="preload" as="image" href="assets/background.webp">
 <link rel="preload" as="image" href="assets/for_hero.webp">
-<link rel="preload" as="fetch" href="data/galleries.json?v=1.1" crossorigin>
-<link rel="preload" as="fetch" href="en.json" crossorigin>
-<link rel="preload" as="fetch" href="ar.json" crossorigin>
-<link rel="preload" as="fetch" href="zh.json" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="preload" href="https://cdnjs.cloudflare..."><link rel="stylesheet" href="style.css?v=1.6" />
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40NZ+7T9A9aJc0M5k3s3iE0JqV0/FpW08bS/d1fR9jJz58zW77n/i6Jz7eI0JqV0/FpW08bS/d1fR9jJz58zW77n/i6Jz7eI0Z+N0G7+K5I9z0F6g==" crossorigin="anonymous" referrerpolicy="no-referrer" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="style.css?v=1.6" /> 
 </head>
 
 <body>
-    
-    <header id="main-header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="#hero" onclick="event.preventDefault(); showPage('hero');">
-                    <img src="assets/walkabot_logo.webp" alt="WalkAbotTravel Logo" class="brand-logo" />
-                    <span class="brand-name" data-key="brand_golden_palace">WalkAbotTravel</span>
-                    <span class="brand-tagline" data-key="brand_realstate">Turizm & Seyahat Acentesi</span>
-                </a>
-            </div>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#hero" onclick="event.preventDefault(); showPage('hero');" data-key="nav_home">Anasayfa</a></li>
-                    <li><a href="#page-about" onclick="event.preventDefault(); showPage('page-about');" data-key="nav_about">Kurumsal</a></li>
-                    <li><a href="#page-services" onclick="event.preventDefault(); showPage('page-services');" data-key="nav_services">Hizmetler</a></li>
-                    
-                    <li><a href="#page-projects" onclick="event.preventDefault(); showPage('page-projects');" data-key="nav_projects">Projeler</a></li> 
-                    <li><a href="#page-contact" onclick="event.preventDefault(); showPage('page-contact');" data-key="nav_contact">İletişim</a></li>
-                </ul>
-            </nav>
-            
-            <div class="language-selector">
-                <select id="language-switch" onchange="switchLanguage(this.value)">
-                    <option value="tr">TR</option>
-                    <option value="en">EN</option>
-                    <option value="ar">AR</option>
-                    <option value="zh">ZH</option>
-                </select>
-            </div>
-            <button class="menu-toggle" aria-label="Menü Aç/Kapat"><i class="fas fa-bars"></i></button>
-        </div>
-    </header>
-
-    <main>
-        <section id="hero" class="page-section active">
-            <div class="hero" style="background-image:url('assets/for_hero.webp')">
-                <div class="hero-content-overlay">
-                    <p class="hero-since" data-key="hero_since">1997'den Beri</p>
-                    <h1 class="hero-title" data-key="hero_title">WalkAbotTravel</h1>
-                    <p class="hero-subtitle" data-key="hero_subtitle">Hayalinizdeki Tatil Bir Tık Uzağınızda</p>
-                    <div class="modal-buttons">
-                        <a 
-                            href="#page-services" 
-                            onclick="event.preventDefault(); showPage('page-services');" 
-                            class="btn btn-hero btn-hero-link" 
-                            data-key="btn_discover">
-                            Hizmetlerimizi Keşfet
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div id="page-content-container">
-            </div>
-
-    </main>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col navigation">
-                <h3 data-key="footer_h3_2">Hızlı Erişim</h3>
-                <ul>
-                    <li><a href="#hero" onclick="event.preventDefault(); showPage('hero');" data-key="nav_home">Anasayfa</a></li>
-                    <li><a href="#page-about" onclick="event.preventDefault(); showPage('page-about');" data-key="nav_about">Kurumsal</a></li>
-                    <li><a href="#page-services" onclick="event.preventDefault(); showPage('page-services');" data-key="nav_services">Hizmetler</a></li>
-                    <li><a href="#page-projects" onclick="event.preventDefault(); showPage('page-projects');" data-key="nav_projects">Projeler</a></li>
-                    <li><a href="#page-contact" onclick="event.preventDefault(); showPage('page-contact');" data-key="nav_contact">İletişim</a></li>
-                </ul>
-            </div>
-            
-            </div>
-        
-        <div class="footer-bottom" data-key="footer_copyright">
-            © 2025 WalkAbouTravel Turizm. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.
-        </div>
-    </footer>
-
-    <div id="lightbox" class="availability-modal" style="cursor: pointer; padding: 20px; display: none; align-items: center; justify-content: center;">
-      <button id="lightbox-prev" class="lightbox-nav-btn" onclick="event.stopPropagation(); showPrevImage();">‹</button>
-      <img id="lightbox-img" src="" alt="Genişletilmiş Görüntü">
-      <button id="lightbox-next" class="lightbox-nav-btn" onclick="event.stopPropagation(); showNextImage();">›</button>
-    </div>
-
-    <div id="house-detail" class="house-detail">
-      <button onclick="closeHouseDetail()">← Geri</button>
-      <div id="house-detail-content"></div>
-    </div>
-    
-    <script src="app.js?v=1.6" defer></script>
-    
     </body>
 </html>
