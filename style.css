@@ -790,11 +790,6 @@ footer::before {
   h1 { font-size: 40px; }
   h2 { font-size: 32px; }
   header { padding: 16px 20px; }
-  .brand img, .footer-logo-container img { height: 35px; }
-  section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
   .new-layout-container {
     padding: 0 20px;
   }
@@ -910,55 +905,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--gold-light);
 }
 
-
-.house-info {
-  max-width: 900px;
-  margin: 40px auto;
-  background: #111;
-  padding: 30px;
-  border-radius: 10px;
-  border: 1px solid var(--border-dark);
-  text-align: left;
-}
-.house-info p {
-  font-size: 18px;
-  color: var(--text);
-  margin-bottom: 15px;
-  line-height: 1.7;
-  font-family: 'Inter', sans-serif;
-}
-.house-info p strong {
-  color: var(--gold-light);
-  min-width: 120px;
-  display: inline-block;
-  font-weight: 600;
-}
-
-.detail-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  margin-top: 30px;
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.detail-gallery img {
-  width: 100%;
-  height: 140px;
-  border-radius: 10px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  background: #222;
-  cursor: pointer;
-  border: 3px solid var(--gold-light);
-  box-sizing: border-box;
-}
-.detail-gallery img:hover {
-  transform: scale(1.05);
-}
-
-
 #lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
@@ -984,6 +930,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
+#page-otel h2 {
+    /* Bu stil, sadece #page-otel h2 seçicisi kalacak şekilde temizlenmiştir. */
+}
+
 #page-otel .house-gallery {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -996,140 +946,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
+#page-otel .house-card {
+    /* Bu stil, sadece #page-otel .house-card seçicisi kalacak şekilde temizlenmiştir. */
+}
+
+#page-otel .house-card img {
+    /* Bu stil, sadece #page-otel .house-card img seçicisi kalacak şekilde temizlenmiştir. */
+}
+
+#page-otel .house-card h3 {
+    /* Bu stil, sadece #page-otel .house-card h3 seçicisi kalacak şekilde temizlenmiştir. */
+}
+
+#page-otel .house-card:hover {
+    /* Bu stil, sadece #page-otel .house-card:hover seçicisi kalacak şekilde temizlenmiştir. */
+}
 
 
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: none !important;
-}
-
-.restoration-card {
-    width: 100%;
-    max-width: 500px;
-    justify-self: center;
-    padding: 15px;
-}
-.restoration-card h3 {
-    margin-bottom: 20px;
-    font-size: 20px;
-}
-.img-comparison-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-.img-wrapper {
-    position: relative;
-    width: 50%;
-    border: 2px solid var(--border-dark);
-    border-radius: 8px;
-    overflow: hidden;
-}
-.img-wrapper img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-.img-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--gold-light);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: 'Inter', sans-serif;
-    z-index: 5;
-}
-
-.image-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-.image-modal-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-.image-modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    gap: 10px;
-    transform: scale(0.8);
-    transition: transform 0.3s ease-in-out;
-}
-.image-modal-overlay.show .image-modal-content {
-    transform: scale(1);
-}
-.image-modal-image-wrapper {
-    position: relative;
-    background-color: var(--section-bg);
-    border: 2px solid var(--gold-dark);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.image-modal-image-wrapper img {
-    max-width: 100%;
-    max-height: 80vh;
-    height: auto;
-    object-fit: contain;
-    display: block;
-}
-.image-modal-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--gold-light);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Inter', sans-serif;
-    z-index: 5;
-}
-.image-modal-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--gold-light);
-    color: #111;
-    border: none;
-    border-radius: 8%;
-    width: auto;
-    height: auto;
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease;
-    z-index: 1001;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    font-family: 'Inter', sans-serif;
-}
-.image-modal-close-btn:hover {
-    background-color: var(--gold-dark);
 }
 
 @media (max-width: 768px) {
@@ -1139,9 +975,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
   #page-otel .hero {
     background-image: url('assets/otel_hero-mobil.webp') !important;
-  }
-  #page-insaat .hero {
-    background-image: url('assets/insaat_hero-mobil.webp') !important;
   }
   
   /* YENİ EKLENTİ (1. Düzeltme): Alt Sayfa Boşluğu */
@@ -1155,23 +988,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       left: 20px;
       z-index: 1001; /* Header'dan (1000) daha yüksek */
   }
-
-  /* YENİ: Restorasyon galerisi resimlerinin boyutunu mobil için ayarla */
-  #page-pruva-otel .detail-gallery img {
-      height: 180px !important; /* Yüksekliği küçült */
-  }
-  
-  /* YENİ: Restorasyon öncesi/sonrası modalındaki resimleri mobil için düzenle */
-  .image-modal-content {
-      flex-direction: column; /* Mobil'de alt alta diz */
-      gap: 5px !important;
-  }
-  .image-modal-image-wrapper img {
-      max-height: 40vh !important; /* Ekranın yarısından fazlasını kaplamasın */
-  }
   
   /* YENİ: Otel/Satılık kartlarının mobil görünüm yüksekliğini küçült */
-  #page-satilik_kiralik .house-card img,
   #page-otel .house-card img {
       height: 200px !important; /* 260px'ten 200px'e düşür */
   }
@@ -1225,50 +1043,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* 'İleri' butonu sağda */
 #lightbox-next {
   right: 20px;
-}
-/* === RESTORASYON SAYFASI YENİ STİLLERİ === */
-
-/* Yeni "Önce" / "Sonra" ara başlıkları için stil */
-.restoration-subtitle {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    color: var(--gold-light) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-    border-bottom: 1px solid var(--border-dark);
-    padding-bottom: 10px;
-    margin-top: 60px; /* Galeriler arasına boşluk koyar */
-    margin-bottom: 30px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-}
-
-/* Restorasyon sayfasındaki .detail-gallery için varsayılanı eziyoruz
-  (Daha büyük resimler ve ızgara için)
-*/
-#page-restorasyon .detail-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    padding: 0 40px;
-}
-
-/* Restorasyon sayfasındaki resimlerin daha büyük görünmesini sağlıyoruz */
-#page-restorasyon .detail-gallery img {
-    height: 260px; /* Mülk galerisiyle aynı boyuta getirdik */
-    border: 2px solid var(--gold-dark);
-}
-
-#page-restorasyon .detail-gallery img:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--gold-shadow-intense);
 }
 /* === OTEL İLETİŞİM BÖLÜMÜ STİLLERİ === */
 .otel-contact-info-container {
@@ -1445,64 +1219,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: translate(-50%, -45%);
   }
 }
+/* === HERO VIDEO BACKGROUND SONU === */
 
-/* === FİNAL DÜZELTME (V4): KEŞFET MENÜSÜ === */
-
-/* Ana menü kutusu (yatay, aşağıda) */
-.cta-group .dropdown {
-  display: none;
-  position: absolute;
-  background-color: rgba(20, 20, 20, 0.95);
-  width: max-content; /* Genişlik içeriğe göre */
-  max-width: 90vw;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-  z-index: 1;
-  border-radius: 5px;
-  overflow: hidden;
-  top: 100%; 
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 15px; /* Butondan aşağıya çekme */
-  padding: 5px; /* İç boşluk */
-}
-/* Menü açıldığında (yatay diz) */
-.cta-group.open .dropdown {
-  display: flex;
-  flex-direction: row;
-  gap: 5px; /* Butonlar arası boşluk */
-}
-/* İçerideki linkler (buton görünümü) */
-.cta-group .dropdown a {
-  color: #fff;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s;
-  border-radius: 5px;
-  white-space: nowrap; /* Yazılar kırılmasın */
-}
-/* Linklerin hover (üzerine gelme) stili */
-.cta-group .dropdown a:hover {
-  background-color: #ffcc66; 
-  color: #111;
-}
-/* === DÜZELTME SONU === */
-
-.hero-video::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-    background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.25) 0%,   /* üst kısmı daha açık */
-    rgba(0, 0, 0, 0.4) 100%   /* alt kısmı hafif koyu */
-  );
-
-  z-index: 2;
-}
 
 /* Altın parıltı katmanı */
 .hero-video::before {
@@ -1572,24 +1290,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 /* === DÜZELTME SONU === */
 
-/* === FİNAL DÜZELTME (V6): RESTORASYON KARTI BAŞLIĞINI GÖSTER === */
-#page-restorasyon .house-card h3 { /* Sadece restorasyon sayfasını hedefledik */
-    /* Bu kurallar, yazının alt kısım bandı gibi görünmesini sağlar */
-    display: block !important;
-    height: auto !important;
-    background: var(--gold-dark) !important; /* Altın rengi arka planı ekliyoruz */
-    color: #111 !important; /* Yazı rengini koyu yapıyoruz */
-    font-family: 'Inter', sans-serif !important;
-    font-size: 17px !important;
-    font-weight: 700 !important; /* Daha kalın yaptık */
-    text-align: center !important; /* Metni ortaladık */
-    padding: 15px !important;
-    margin: 0 !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-}
 /* === YENİ EKLEME: 3 SANİYELİK DÖNGÜSEL METİN STİLLERİ === */
 
 /* 1. Metin Özellikleri (Fade Efekti ve Boyutları) */
@@ -1627,8 +1327,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 60px; 
 }
 /* === DÜZELTME SONU === */
-/* 2. KIRMIZI DAİRE İÇİNDEKİ FAZLADAN PRUVA OTEL KARTINI GİZLE */
-/* Bu kural, sadece o detay sayfasındaki (pruva-otel) o kartı gizler. */
-#page-pruva-otel .pruva-hero-redundant {
-    display: none !important;
-}
