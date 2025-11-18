@@ -1,17 +1,27 @@
 :root {
-  --bg: #0a0a0a;
-  --text: #f5f5f5;
-  --text-muted: #a1a1aa;
+  /* TEMEL RENKLER (AÇIK MAVİ TEMA İÇİN YENİ) */
+  --bg: #f5f5f5;       /* Açık Arka Plan (Hafif Beyaz/Gri) */
+  --text: #1f2937;     /* Koyu Metin (Lacivert/Siyah) */
+  --text-muted: #6b7280; /* İkincil Metin (Orta Gri) */
   
-  --gold-light: #ffcc66; 
-  --gold-dark: #f59e0b;  
+  /* VURGU RENKLERİ (TÜRKİZM/DENİZ MAVİSİ) */
+  --blue-primary: #0077b6;   /* Ana Vurgu Mavisi (Canlı Deniz Mavisi) */
+  --blue-light: #48cae4;     /* Açık Mavi (Güneşli Gökyüzü/Su Yansıması) */
+  --gold-dark: #f59e0b;      /* Kum/Güneş rengi (ikinci vurgu olarak korundu) */
   
-  --gold-gradient: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-  --gold-shadow: 0 0 15px rgba(255, 204, 102, 0.4), 0 0 5px rgba(255, 204, 102, 0.2);
-  --gold-shadow-intense: 0 0 25px rgba(255, 204, 102, 0.7), 0 0 10px rgba(255, 204, 102, 0.4);
+  --gold-light: var(--blue-light); /* Altın yerine açık mavi kullan */
   
-  --border-dark: #2d2d2d;
-  --section-bg: #111;
+  /* Gradienler ve Gölgeler Maviye Çevriliyor */
+  --main-gradient: linear-gradient(90deg, var(--blue-primary), var(--blue-light), var(--blue-primary));
+  --main-shadow: 0 0 15px rgba(72, 202, 228, 0.6), 0 0 5px rgba(72, 202, 228, 0.3);
+  --main-shadow-intense: 0 0 25px rgba(72, 202, 228, 0.9), 0 0 10px rgba(72, 202, 228, 0.5);
+
+  --gold-gradient: var(--main-gradient); /* Eski altın gradyanını maviye yönlendir */
+  --gold-shadow: var(--main-shadow);
+  --gold-shadow-intense: var(--main-shadow-intense);
+  
+  --border-dark: #e5e7eb; /* Açık Tema Sınır Rengi */
+  --section-bg: #ffffff; /* Sayfa içi bölümler için beyaz */
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -43,7 +53,8 @@ body::before {
     width: 100%;
     min-height: 100%; 
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
+    /* Açık temada bu karartma katmanına gerek yok veya çok açık olmalı */
+    background-color: rgba(0, 0, 0, 0.05); 
     z-index: -1; 
 }
 
@@ -51,7 +62,8 @@ h1, h2, h3, h4,
 .brand-title, .footer-title {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  background: var(--gold-gradient);
+  /* Altın yerine Mavi Gradien kullanılıyor */
+  background: var(--main-gradient); 
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -83,6 +95,7 @@ p {
   font-size: 17px;
 }
 
+/* Header stili artık buradan kontrol ediliyor */
 header {
   display: flex;
   justify-content: space-between;
@@ -92,16 +105,66 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
+  /* Açık tema için yarı saydam beyaz gradyan */
+  background: linear-gradient(to bottom, rgba(245, 245, 245, 0.95) 0%, rgba(245, 245, 245, 0.7) 100%);
   backdrop-filter: blur(8px); 
   z-index: 1000;
   opacity: 0;
   transform: scale(0.95);
   animation: zoomFadeIn 1s var(--easing) forwards 0.2s;
   box-sizing: border-box; 
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark); /* Açık border */
   transition: background 0.3s ease-out; 
 }
+/* index.html'deki eklenen stillerin bir kısmı buraya taşındı */
+header.scrolled {
+    /* Kaydırıldığında beyaz/açık gri zemin */
+    background-color: rgba(255, 255, 255, 0.98);
+}
+.header-top-row {
+  /* Üst barı koyu mermer/koyu mavi yapın */
+  background-color: #1f2937; /* Koyu Lacivert/Siyah */
+  color: #f5f5f5; /* Metin rengi açık */
+  padding: 8px 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.header-top-row a {
+  color: #f5f5f5; /* Üst bar linklerini açık yap */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.header-top-row a:hover {
+  color: var(--blue-light); /* Hover rengi açık mavi olsun */
+}
+.header-top-row .top-bar-left a {
+  margin-right: 20px;
+}
+.header-top-row i {
+  color: var(--blue-light); /* İkon rengi açık mavi olsun */
+}
+.header-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 30px;
+  height: 80px;
+}
+/* index.html'deki Playfair Display kaldırma stilleri */
+.hero-content-overlay h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 900; 
+  margin: 0;
+}
+
 
 .brand {
   display: flex;
@@ -109,12 +172,6 @@ header {
   gap: 12px;
 }
 
-/* YORUM: Logo resmi artık HTML'de yok, sadece metin kalıyor */
-/* .brand img {
-  height: 45px;
-  width: auto;
-  border-radius: 4px; 
-} */
 .brand-text-container {
   display: flex;
   flex-direction: column;
@@ -131,7 +188,8 @@ header {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 13px;
-  color: var(--text-muted);
+  /* Koyu tema yerine açık temada daha koyu olacak */
+  color: var(--text-muted); 
   line-height: 1;
   margin-top: 4px;
   letter-spacing: 0.5px;
@@ -143,7 +201,8 @@ header {
   gap: 30px;
 }
 .navbar a {
-  color: var(--text);
+  /* Açık tema için koyu metin */
+  color: var(--text); 
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -159,13 +218,15 @@ header {
   left: 0;
   width: 100%;
   height: 2px;
-  background: var(--gold-gradient);
+  /* Altın Gradien yerine Mavi Gradien */
+  background: var(--main-gradient);
   background-size: 200% 100%;
   transform: translateX(-101%);
   transition: transform 0.6s var(--easing);
 }
 .navbar a:hover {
-  color: var(--gold-light);
+  /* Açık mavi hover rengi */
+  color: var(--blue-light);
 }
 .navbar a:hover::after {
   transform: translateX(0%);
@@ -181,7 +242,9 @@ header {
 .lang-btn {
   padding: 6px 10px;
   background: transparent;
+  /* Açık temada metin koyu */
   color: var(--text);
+  /* Açık temada border açık */
   border: 1px solid var(--border-dark);
   border-radius: 6px;
   cursor: pointer;
@@ -191,21 +254,24 @@ header {
   font-family: 'Inter', sans-serif; 
 }
 .lang-btn.active {
-  background: var(--gold-light);
-  color: var(--bg);
-  border-color: var(--gold-light);
-  box-shadow: var(--gold-shadow);
+  /* Aktif butonu Mavi Yap */
+  background: var(--blue-primary);
+  color: #fff; /* Metin rengi beyaz olsun */
+  border-color: var(--blue-primary);
+  box-shadow: var(--main-shadow);
 }
 .lang-btn:not(.active):hover {
-  border-color: var(--gold-light);
-  color: var(--gold-light);
+  /* Hover rengi açık mavi border */
+  border-color: var(--blue-primary);
+  color: var(--blue-primary);
 }
 
 .menu-toggle {
   display: none;
   font-size: 24px;
   cursor: pointer;
-  color: var(--gold-light);
+  /* Açık mavi menü ikonu */
+  color: var(--blue-primary);
   z-index: 1001;
   
   background: none;
@@ -222,10 +288,11 @@ header {
     height: 100%;
     flex-direction: column;
     justify-content: center;
+    /* Açık temada menü arka planı beyaz */
     background: var(--section-bg);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
     z-index: 999;
     border-left: 1px solid var(--border-dark);
   }
@@ -234,12 +301,11 @@ header {
   .navbar a::after { left: 50%; transform: translateX(-50%) scaleX(0); transition: transform 0.3s var(--easing); height: 2px; width: 50%; }
   .navbar a:hover::after { transform: translateX(-50%) scaleX(1); animation: none; }
   .language-selector { flex-direction: column; margin-top: 20px; margin-left: 0; }
-  /* .brand img { height: 35px; } */
   .brand-title { font-size: 20px; }
   .brand-tagline { font-size: 12px; }
 }
 
-/* === VİDEO ARKAPLAN STİLLERİ (TEKRAR SADELEŞTİRİLDİ) === */
+/* === VİDEO ARKAPLAN STİLLERİ === */
 #hero {
   position: relative;
   width: 100%;
@@ -249,8 +315,8 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0; /* Index.html'deki style'dan gelen padding sıfırlandı */
-  background-color: #000; /* Fallback */
+  padding: 0; 
+  background-color: #000; /* Fallback siyah kalsın */
   z-index: 1; 
   opacity: 1;
   transition: opacity 0.3s ease-out;
@@ -264,15 +330,16 @@ header {
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: 0; /* İçeriğin altında kalması için çok düşük z-index */
+  z-index: 0; 
   transform: translate(-50%, -50%);
   object-fit: cover;
-  opacity: 0.75; 
+  /* Karartma %75'ten %60'a düşürüldü, daha parlak görünüm için */
+  opacity: 0.6; 
 }
 
 .hero-content {
   position: relative;
-  z-index: 5; /* Metin ve butonların üstte kalması için yüksek z-index */
+  z-index: 5; 
   color: white; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   padding: 20px;
@@ -284,7 +351,8 @@ header {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.55);
+  /* Karartma katmanı azaltıldı */
+  background: rgba(0,0,0,0.45); 
   z-index: 1;
 }
 .hero::before {
@@ -295,7 +363,8 @@ header {
   width: 150%;
   height: 150%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255, 204, 102, 0.15) 0%, rgba(255, 204, 102, 0) 60%);
+  /* Işıklandırma Altın yerine Mavi */
+  background: radial-gradient(circle, rgba(72, 202, 228, 0.4) 0%, rgba(72, 202, 228, 0) 60%);
   z-index: 2;
   opacity: 0.8;
   filter: blur(20px);
@@ -307,7 +376,6 @@ header {
 }
 
 .hero > div {
-  /* Bu blok hero-content'i kapsayan div'di, artık hero-content direkt kullanılıyor */
   position: relative;
   z-index: 3; 
   opacity: 0;
@@ -338,7 +406,8 @@ header {
 
 #otel-reservation-container {
   display: none;
-  background: rgba(0, 0, 0, 0.6);
+  /* Açık temada arka planı hafiflet */
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
   padding: 60px 20px;
   animation: fadeIn 0.8s ease forwards;
@@ -346,7 +415,8 @@ header {
 #otel-reservation-container.show { display: block; }
 
 #otel-reservation-container h2 {
-  color: var(--gold-light);
+  /* Altın yerine Mavi */
+  color: var(--blue-primary);
   margin-bottom: 30px;
   font-family: 'Playfair Display', serif;
   text-align: center;
@@ -368,17 +438,21 @@ header {
 .availability-modal.show { display: flex; }
 
 .modal-content {
-  background: #111;
-  border: 2px solid var(--gold-light);
+  /* Açık temada modal arka planı beyaz/açık gri */
+  background: var(--section-bg);
+  /* Altın yerine Mavi border */
+  border: 2px solid var(--blue-light);
+  /* Altın yerine Mavi gölge */
+  box-shadow: 0 0 25px rgba(72, 202, 228, 0.4);
   border-radius: 14px;
-  box-shadow: 0 0 25px rgba(255,204,102,0.4);
   text-align: center;
   padding: 40px 30px;
   max-width: 420px;
   animation: scaleIn 0.4s var(--easing);
 }
 .modal-content h3 {
-  color: var(--gold-light);
+  /* Altın yerine Mavi */
+  color: var(--blue-primary);
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -415,7 +489,8 @@ section#contact {
   flex: 1;
   max-width: 600px;
   margin: 0 auto;
-  background: rgba(0,0,0,0.5);
+  /* Açık temada arka planı hafiflet */
+  background: rgba(255, 255, 255, 0.7);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -428,6 +503,7 @@ section#contact {
 .vision-list li {
   list-style: none;
   text-align: left;
+  /* Açık temada metin koyu */
   color: var(--text);
   font-weight: 600;
   margin-bottom: 10px;
@@ -435,7 +511,8 @@ section#contact {
 }
 .vision-list li i {
   margin-right: 10px;
-  color: var(--gold-light);
+  /* Altın yerine Mavi */
+  color: var(--blue-primary);
 }
 @media (max-width: 1024px) {
   #about {
@@ -463,7 +540,8 @@ section#contact {
 .contact-form {
   flex: 1 1 400px;
   text-align: left;
-  background: #1a1a1a;
+  /* Koyu arka plan yerine açık gri */
+  background: var(--section-bg);
   padding: 30px;
   border-radius: 14px;
   border: 1px solid var(--border-dark);
@@ -482,17 +560,19 @@ section#contact {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
-  border: 1px solid #333;
-  background: var(--bg);
+  /* Açık temada border ve arka plan */
+  border: 1px solid #ccc;
+  background: #fcfcfc;
   color: var(--text);
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
   transition: border-color 0.3s;
 }
 .contact-form input:focus, .contact-form textarea:focus {
-  border-color: var(--gold-light);
+  /* Altın yerine Mavi focus rengi */
+  border-color: var(--blue-primary);
   outline: none;
-  box-shadow: var(--gold-shadow);
+  box-shadow: var(--main-shadow);
 }
 .contact-form button {
   width: 100%;
@@ -503,7 +583,8 @@ section#contact {
   flex: 1 1 300px;
   text-align: left;
   padding-top: 20px;
-  background: rgba(0,0,0,0.5);
+  /* Açık temada arka planı hafiflet */
+  background: rgba(255, 255, 255, 0.7);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -515,7 +596,8 @@ section#contact {
 }
 .info-item i {
   font-size: 24px;
-  color: var(--gold-dark);
+  /* Altın yerine Mavi */
+  color: var(--blue-primary);
   margin-right: 15px;
   width: 30px;
   text-align: center;
@@ -532,21 +614,125 @@ section#contact {
   font-family: 'Playfair Display', serif;
 }
 
-footer {
-  text-align: center;
-  padding: 60px 30px 40px 30px;
-  border-top: none;
-  color: var(--text-muted);
-  font-size: 15px;
+/* === FOOTER STİLLERİ (index.html'den taşındı ve güncellendi) === */
+.site-footer {
+  /* Koyu Mavi Arka Plan (Turizm için zengin ton) */
+  background-color: #0d4b68; 
+  color: #e0f2f7; /* Metin rengi çok açık mavi */
+  padding: 60px 30px 20px 30px;
+  border-top: 1px solid #333; /* Açık temada daha koyu sınır */
   opacity: 0;
   transform: scale(0.95);
   animation: zoomFadeIn 1.2s var(--easing) forwards 1.6s;
   position: relative;
   overflow: hidden;
-  background-color: transparent;
   background-image: none;
   z-index: 10;
 }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto 40px auto;
+}
+.footer-column h3 {
+  font-family: 'Inter', sans-serif; 
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  /* Altın yerine Mavi border */
+  border-bottom: 1px solid var(--blue-light);
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+.footer-column.logo-column h3 {
+  border-bottom: none;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 12px;
+}
+.footer-links a {
+  color: #e0f2f7; /* Link metinleri çok açık mavi */
+  text-decoration: none;
+  transition: color 0.3s, padding-left 0.3s;
+  display: inline-block;
+}
+.footer-links a:hover {
+  /* Altın yerine Açık Mavi */
+  color: var(--blue-light);
+  padding-left: 5px;
+}
+.footer-column.logo-column {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.footer-column.logo-column .social-icons {
+  margin-top: 20px;
+}
+.footer-links.contact-info li {
+  display: flex;
+  align-items: flex-start;
+}
+.footer-links.contact-info i {
+  /* Altın yerine Mavi */
+  color: var(--blue-light);
+  margin-right: 12px;
+  margin-top: 5px;
+  width: 15px;
+}
+.footer-links.contact-info span,
+.footer-links.contact-info a {
+  flex: 1;
+  padding-left: 0; 
+  color: #e0f2f7; /* Footer link rengi korundu */
+}
+.footer-links.contact-info a:hover {
+  /* Altın yerine Açık Mavi */
+  color: var(--blue-light);
+  padding-left: 0;
+}
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  background-color: transparent;
+}
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .footer-column.logo-column {
+    grid-column: 1 / -1;
+    order: -1;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Footer Mobil */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-column {
+    margin-bottom: 20px;
+  }
+  .footer-column.logo-column {
+    margin-bottom: 30px;
+  }
+  .site-footer {
+    padding: 40px 15px 20px 15px;
+  }
+}
+/* === FOOTER STİLLERİ SONU === */
+
 
 footer::before {
   content: '';
@@ -555,7 +741,8 @@ footer::before {
   left: 0;
   width: 200%;
   height: 2px;
-  background: var(--gold-gradient);
+  /* Altın yerine Mavi Gradien */
+  background: var(--main-gradient);
   background-size: 50% 100%;
   animation: flowLine 5s linear infinite;
 }
@@ -570,7 +757,8 @@ footer::before {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  background: rgba(0,0,0,0.5);
+  /* Açık temada footer içeriği */
+  background: rgba(255, 255, 255, 0.2);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -601,31 +789,35 @@ footer::before {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
-  color: var(--text-muted);
+  /* Açık temada footer'a uygun renk */
+  color: #e0f2f7;
   line-height: 1;
   margin-top: 4px;
   letter-spacing: 0.5px;
 }
 
 .social-icons a {
-  color: var(--text-muted);
+  /* Footer rengine uygun metin rengi */
+  color: #e0f2f7;
   font-size: 20px;
   margin: 0 10px;
   transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
 }
 .social-icons a:hover {
-  color: var(--gold-light);
+  /* Altın yerine Mavi */
+  color: var(--blue-light);
   transform: scale(1.2);
-  text-shadow: 0 0 10px var(--gold-light);
+  text-shadow: 0 0 10px var(--blue-light);
 }
 
 .footer-bottom {
   margin-top: 40px;
-  border-top: 1px solid var(--border-dark);
+  border-top: 1px solid #333;
   padding-top: 30px;
   font-size: 13px;
   font-family: 'Inter', sans-serif;
-  background: rgba(0,0,0,0.5);
+  /* Açık temada footer'a uygun arka plan */
+  background: rgba(0,0,0,0.1);
   padding: 20px;
   border-radius: 10px;
   display: inline-block;
@@ -652,6 +844,7 @@ footer::before {
   }
 }
 
+/* RTL Desteği (Arapça) */
 html[dir="rtl"] {
   font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
 }
@@ -703,10 +896,11 @@ html[dir="rtl"] .info-item i {
 .title-gold-line {
     width: 100px;
     height: 2px !important;
-    background: var(--gold-dark);
+    /* Altın yerine Mavi */
+    background: var(--blue-primary);
     margin: 0 auto 40px auto;
     border-radius: 2px;
-    box-shadow: var(--gold-shadow);
+    box-shadow: var(--main-shadow);
 }
 
 .date-picker-group {
@@ -723,22 +917,25 @@ html[dir="rtl"] .info-item i {
 }
 .date-picker-group label {
     font-weight: 600;
-    color: var(--gold-light);
+    /* Altın yerine Mavi */
+    color: var(--blue-primary);
     margin-bottom: 8px;
     font-family: 'Inter', sans-serif;
 }
 .date-picker-group input[type="date"] {
     width: 100%;
     padding: 12px;
-    background: var(--bg);
-    border: 1px solid var(--border-dark);
+    /* Açık temada input stilleri */
+    background: #fff;
+    border: 1px solid #ccc;
     color: var(--text);
     border-radius: 8px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1) brightness(0.8) sepia(1) hue-rotate(-20deg) saturate(5); 
+    /* İkon rengi (Koyu temadan açık temaya çevirmek için filtre kaldırıldı) */
+    filter: none; 
     cursor: pointer;
 }
 .modal-buttons {
@@ -747,21 +944,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: center;
 }
 .modal-buttons .btn-secondary {
+    /* Açık temada sekonder buton stilleri */
     background: var(--bg);
-    color: var(--gold-light);
-    border-color: var(--gold-dark);
+    color: var(--blue-primary);
+    border-color: var(--blue-primary);
 }
 .modal-buttons .btn-secondary:hover {
-    background: #333;
-    color: var(--gold-light);
+    background: #ccc;
+    color: var(--blue-primary);
 }
 
 #lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  border: 4px solid var(--gold-light);
-  box-shadow: var(--gold-shadow-intense);
+  /* Altın yerine Mavi border */
+  border: 4px solid var(--blue-light);
+  box-shadow: var(--main-shadow-intense);
   border-radius: 10px;
   box-sizing: border-box; 
   cursor: default;
@@ -770,7 +969,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #page-otel {
-    background-color: #111111 !important;
+    /* Açık temada daha az koyu arka plan */
+    background-color: #fcfcfc !important;
     padding-bottom: 100px !important;
 }
 
@@ -778,11 +978,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
-}
-
-
-#page-otel h2 {
-    /* Bu stil, sadece #page-otel h2 seçicisi kalacak şekilde temizlenmiştir. */
 }
 
 #page-otel .house-gallery {
@@ -796,23 +991,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: auto !important;
     padding: 0 40px;
 }
-
-#page-otel .house-card {
-    /* Bu stil, sadece #page-otel .house-card seçicisi kalacak şekilde temizlenmiştir. */
-}
-
-#page-otel .house-card img {
-    /* Bu stil, sadece #page-otel .house-card img seçicisi kalacak şekilde temizlenmiştir. */
-}
-
-#page-otel .house-card h3 {
-    /* Bu stil, sadece #page-otel .house-card h3 seçicisi kalacak şekilde temizlenmiştir. */
-}
-
-#page-otel .house-card:hover {
-    /* Bu stil, sadece #page-otel .house-card:hover seçicisi kalacak şekilde temizlenmiştir. */
-}
-
 
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
@@ -866,8 +1044,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
-  color: var(--gold-light);
-  border: 1px solid var(--gold-dark);
+  /* Altın yerine Mavi */
+  color: var(--blue-light);
+  border: 1px solid var(--blue-primary);
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -875,23 +1054,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 2001; /* Lightbox'ın üzerinde olmalı */
-  line-height: 40px; /* Dikey hizalama için */
+  z-index: 2001; 
+  line-height: 40px;
   padding: 0;
-  display: block; /* Başlangıçta görünür yap */
+  display: block; 
 }
 
 .lightbox-nav-btn:hover {
-  background: rgba(255, 204, 102, 0.2);
-  border-color: var(--gold-light);
+  /* Altın yerine Mavi */
+  background: rgba(72, 202, 228, 0.2);
+  border-color: var(--blue-light);
 }
 
-/* 'Geri' butonu solda */
 #lightbox-prev {
   left: 20px;
 }
 
-/* 'İleri' butonu sağda */
 #lightbox-next {
   right: 20px;
 }
@@ -907,30 +1085,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 36px;
   text-align: center;
   margin-bottom: 30px;
-  color: #ffcc66;
+  /* Altın yerine Mavi */
+  color: var(--blue-primary);
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   text-fill-color: initial;
 }
 .otel-contact-info-container .contact-info {
-  background: rgba(0, 0, 0, 0.3);
+  /* Açık temada arka planı hafiflet */
+  background: rgba(255, 255, 255, 0.7);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
 }
 /* === YENİ EKLEME: "Daha Fazla Yükle" Butonu Stili === */
-/* id'si "load-more-btn" ile başlayan tüm butonlara uygula */
 [id^="load-more-btn"] {
   background: transparent;
-  color: var(--gold-light);
-  border: 1px solid var(--gold-dark);
+  /* Altın yerine Mavi */
+  color: var(--blue-primary);
+  border: 1px solid var(--blue-primary);
   box-shadow: none;
 }
 [id^="load-more-btn"]:hover {
-  background: var(--gold-dark);
-  color: #111;
-  box-shadow: var(--gold-shadow);
+  /* Altın yerine Mavi */
+  background: var(--blue-primary);
+  color: #fff;
+  box-shadow: var(--main-shadow);
   transform: translateY(-2px) scale(1.02);
 }
 
@@ -948,75 +1129,76 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* === FİNAL DÜZELTME (V3): TÜM BUTONLAR + KÜÇÜK YAZI + YAVAŞ ZOOM === */
 
-/* 1. Düzeltme: 3 Sarı Buton (Telefon, Eposta, Yol Tarifi)
-*/
+/* 1. Düzeltme: 3 Mavi Buton (Telefon, Eposta, Yol Tarifi) */
 .header-top-row a.btn-top-info {
     display: inline-flex;
     align-items: center;
-    padding: 3px 6px; /* Buton içi boşluğu azalttık */
+    padding: 3px 6px; 
     margin-right: 10px;
-    background-color: var(--gold-dark);
-    color: #111;
+    /* Altın yerine Mavi */
+    background-color: var(--blue-primary);
+    color: #fff; /* Metin rengi beyaz */
     border: none;
     border-radius: 6px;
-    font-size: 8px; /* Yazı tipini 14px'ten 13px'e küçülttük */
+    font-size: 8px; 
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: var(--gold-shadow);
+    box-shadow: var(--main-shadow);
 }
 .header-top-row a.btn-top-info:hover {
-    background-color: var(--gold-light);
-    color: #111;
+    /* Altın yerine Açık Mavi */
+    background-color: var(--blue-light);
+    color: var(--text); /* Koyu metin */
     transform: translateY(-2px);
 }
 .header-top-row a.btn-top-info i {
-    margin-right: 6px; /* İkon boşluğunu azalttık */
-    color: #111;
-    font-size: 12px; /* İkonu da küçülttük */
+    margin-right: 6px; 
+    color: #fff; /* İkon rengi beyaz */
+    font-size: 12px; 
 }
 
-/* 2. Düzeltme: Geri Butonu (Header'ın altına ittirme)
-*/
+/* 2. Düzeltme: Geri Butonu (Header'ın altına ittirme) */
 .btn-page-back {
   position: absolute;
-  top: 160px; /* YENİ DEĞER: 140px idi */
+  top: 160px; 
   left: 40px;
-  z-index: 1001; /* YENİ DEĞER: 100 idi (Header'ın (1000) önüne çıktı) */
+  z-index: 1001; 
   font-family: 'Inter', sans-serif;
   padding: 10px 20px;
-  background: var(--gold-dark);
-  color: #111;
+  /* Altın yerine Mavi */
+  background: var(--blue-primary);
+  color: #fff;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s var(--easing);
-  border: 1px solid var(--gold-light);
+  border: 1px solid var(--blue-light);
   font-size: 16px;
   text-decoration: none;
   display: inline-block;
 }
 .btn-page-back:hover {
-  background: var(--gold-light);
+  /* Altın yerine Açık Mavi */
+  background: var(--blue-light);
   color: #000;
   transform: scale(1.05);
 }
 
 
-/* 3. Düzeltme: Yavaş Zoom Efekti (Slider iptali)
-*/
+/* 3. Düzeltme: Yavaş Zoom Efekti */
 .hero-slider .slide {
   animation: slowZoom 25s infinite alternate ease-in-out;
   transform: scale(1.05); 
-  opacity: 1 !important; /* Her zaman görünür ol */
+  opacity: 1 !important; 
 }
 
 @keyframes slowZoom {
   from {
-    transform: scale(1.05); /* Başlangıç (hafif zoomlu) */
+    transform: scale(1.05); 
   }
   to {
-    transform: scale(1); /* Bitiş (normal boyut) */
+    transform: scale(1); 
   }
 }
 /* === FİNAL DÜZELTME SONU === */
@@ -1035,12 +1217,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 🔹 tam ortalar */
+  transform: translate(-50%, -50%); 
   text-align: center;
   z-index: 4;
   width: 100%;
-  max-width: 900px; /* metin genişliği dengesi */
-  padding: 0 20px;  /* kenarlardan taşmayı önler */
+  max-width: 900px; 
+  padding: 0 20px;  
 }
 
 
@@ -1052,6 +1234,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  /* Video parlaklığı ayarı */
   filter: brightness(0.6);
 }
 
@@ -1073,7 +1256,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* === HERO VIDEO BACKGROUND SONU === */
 
 
-/* Altın parıltı katmanı */
+/* Altın parıltı katmanı (Maviye çevrildi) */
 .hero-video::before {
   content: "";
   position: absolute;
@@ -1084,4 +1267,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    rgba(255, 204, 10
+    /* Maviye çevrildi */
+    rgba(72, 202, 228, 0.4) 0%, 
+    rgba(72, 202, 228, 0) 60%
+  );
+  z-index: 3;
+  opacity: 0.8;
+  filter: blur(20px);
+}
