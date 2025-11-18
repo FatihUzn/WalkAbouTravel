@@ -190,9 +190,10 @@ header {
 }
 .lang-btn {
   padding: 6px 10px;
-  background: transparent;
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff;
   color: var(--text);
-  border: 1px solid var(--border-dark);
+  border: 1px solid var(--gold-dark);
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
@@ -207,8 +208,10 @@ header {
   box-shadow: var(--gold-shadow);
 }
 .lang-btn:not(.active):hover {
-  border-color: var(--gold-light);
-  color: var(--gold-light);
+  /* DEĞİŞİKLİK YAPILDI */
+  background: var(--section-bg); 
+  border-color: var(--gold-dark); 
+  color: var(--gold-dark);
 }
 
 .menu-toggle {
@@ -521,7 +524,8 @@ section#projects {
 .availability-modal.show { display: flex; }
 
 .modal-content {
-  background: #fff; /* Modal arka planı beyaz */
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff; /* Modal arka planı beyaz */
   border: 2px solid var(--gold-dark);
   border-radius: 14px;
   box-shadow: 0 0 25px rgba(0, 196, 255, 0.4); /* Gölge rengi mavi */
@@ -557,7 +561,19 @@ section#contact {
   background-image: none;
 }
 
-.project-card, .latest-card, .service-card, .restoration-card {
+.project-card, .latest-card, .restoration-card {
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid var(--border-dark);
+  overflow: hidden;
+  transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing), border-color 0.4s var(--easing);
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.service-card {
+  /* DEĞİŞİKLİK YAPILDI */
   background: var(--section-bg);
   border-radius: 14px;
   border: 1px solid var(--border-dark);
@@ -621,7 +637,8 @@ section.visible {
   margin: 0 auto;
 }
 .service-card {
-  background: #fff; /* Açık tema arka planı */
+  /* DEĞİŞİKLİK YAPILDI */
+  background: var(--section-bg); 
   padding: 30px;
   text-align: center;
 }
@@ -654,10 +671,12 @@ section.visible {
   flex: 1;
   max-width: 600px;
   margin: 0 auto;
-  background: var(--section-bg); /* Açık tema arka planı */
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff; /* Açık tema arka planı */
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 #about h2 {
   text-align: left;
@@ -702,7 +721,8 @@ section.visible {
 .contact-form {
   flex: 1 1 400px;
   text-align: left;
-  background: var(--section-bg); /* Açık tema arka planı */
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff; /* Açık tema arka planı */
   padding: 30px;
   border-radius: 14px;
   border: 1px solid var(--border-dark);
@@ -742,10 +762,12 @@ section.visible {
   flex: 1 1 300px;
   text-align: left;
   padding-top: 20px;
+  /* DEĞİŞİKLİK YAPILDI */
   background: var(--section-bg); /* Açık tema arka planı */
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 .info-item {
   display: flex;
@@ -809,7 +831,8 @@ footer::before {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  background: transparent; /* Arka plan şeffaf */
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff; /* Arka plan beyaz */
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -847,7 +870,8 @@ footer::before {
 }
 
 .social-icons a {
-  color: var(--text-muted);
+  /* DEĞİŞİKLİK YAPILDI */
+  color: var(--text);
   font-size: 20px;
   margin: 0 10px;
   transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
@@ -864,6 +888,7 @@ footer::before {
   padding-top: 30px;
   font-size: 13px;
   font-family: 'Inter', sans-serif;
+  /* DEĞİŞİKLİK YAPILDI */
   background: transparent; /* Arka plan şeffaf */
   padding: 20px;
   border-radius: 10px;
@@ -1012,7 +1037,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .house-card {
   width: 350px;
   height: 280px;
-  background: #fff; /* Açık tema arka planı */
+  /* DEĞİŞİKLİK YAPILDI */
+  background: #ffffff; /* Açık tema arka planı */
   border: 2px solid var(--border-dark);
   border-radius: 12px;
   overflow: hidden;
@@ -1146,6 +1172,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #page-otel {
+    /* DEĞİŞİKLİK YAPILDI */
     background-color: var(--bg) !important;
     padding-bottom: 100px !important;
 }
@@ -1214,7 +1241,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-otel .house-card {
     width: 100%;
     height: auto;
-    background: #fff; /* Saf beyaz */
+    /* DEĞİŞİKLİK YAPILDI */
+    background: #ffffff; /* Saf beyaz */
     border: 1px solid var(--border-dark);
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1881,5 +1909,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Bu kural, sadece o detay sayfasındaki (pruva-otel) o kartı gizler. */
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
-}
 }
