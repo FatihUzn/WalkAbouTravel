@@ -1,23 +1,20 @@
 :root {
-  /* TEMEL RENKLER (Yeni: Açık Tema) */
-  --bg: #ffffff;                     /* Ana Arka Plan (Beyaz) */
-  --text: #2c3e50;                   /* Ana Metin Rengi (Koyu Gri/Mavi) */
-  --text-muted: #5a6a7a;              /* İkincil Metin Rengi (Gri) */
+  --bg: #0a0a0a;
+  --text: #f5f5f5;
+  --text-muted: #a1a1aa;
   
-  /* ANA VURGU RENGİ (Yeni: Mavi - Altın yerine) */
-  --gold-light: #50a5f1;           /* AÇIK MAVİ (Yeni ana renk) */ 
-  --gold-dark: #007bff;            /* KOYU MAVİ (Yeni ana renk) */  
+  --gold-light: #ffcc66; 
+  --gold-dark: #f59e0b;  
   
-  /* GÖLGE VE GRADYAN (Yeni: Mavi) */
   --gold-gradient: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-  --gold-shadow: 0 0 15px rgba(0, 123, 255, 0.4), 0 0 5px rgba(0, 123, 255, 0.2);
-  --gold-shadow-intense: 0 0 25px rgba(0, 123, 255, 0.7), 0 0 10px rgba(0, 123, 255, 0.4);
+  --gold-shadow: 0 0 15px rgba(255, 204, 102, 0.4), 0 0 5px rgba(255, 204, 102, 0.2);
+  --gold-shadow-intense: 0 0 25px rgba(255, 204, 102, 0.7), 0 0 10px rgba(255, 204, 102, 0.4);
   
-  /* BÖLÜM VE KENARLIK (Yeni: Açık) */
-  --border-dark: #e0e6ed;             /* Açık Gri Kenarlık */
-  --section-bg: #f4f8ff;              /* Çok Açık Mavi Bölüm Arka Planı */
+  --border-dark: #2d2d2d;
+  --section-bg: #111;
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -28,26 +25,37 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Montserrat', 'Inter', Roboto, Arial, sans-serif;
-  background: var(--bg); /* :root'tan gelen yeni beyaz rengi alacak */
-  color: var(--text); /* :root'tan gelen yeni koyu metin rengini alacak */
+  font-family: 'Inter', Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
-
-  /* Koyu arka plan resimleri kaldırıldı */
+  
+  background-image: url('assets/background.webp'); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #0a0a0a; 
   
   position: relative;
   z-index: 1; 
 }
-/*
+
 body::before {
-    ...
+    content: '';
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: -1; 
 }
-*/
 
 h1, h2, h3, h4,
 .brand-title, .footer-title {
-  font-family: 'Montserrat', serif; /* Ana başlıkları da Montserrat yap */
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   background: var(--gold-gradient);
   background-size: 200% auto;
@@ -237,7 +245,7 @@ header {
 
 .hero {
   min-height: 100vh;
-  background: url('assets/tur-istanbul-tarihi-01.webp') no-repeat; 
+  background: url('assets/for_hero.webp') no-repeat; 
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center center; 
@@ -257,7 +265,7 @@ header {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  /* background: rgba(0,0,0,0.55); // Kaldırıldı */
+  background: rgba(0,0,0,0.55);
   z-index: 1;
 }
 .hero::before {
@@ -268,7 +276,7 @@ header {
   width: 150%;
   height: 150%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(0, 123, 255, 0.15) 0%, rgba(0, 123, 255, 0) 60%); /* YENİ MAVİ PARILTI */
+  background: radial-gradient(circle, rgba(255, 204, 102, 0.15) 0%, rgba(255, 204, 102, 0) 60%);
   z-index: 2;
   opacity: 0.8;
   filter: blur(20px);
@@ -545,7 +553,7 @@ section#contact {
   background-image: none;
 }
 
-.project-card, .latest-card, .service-card, .restoration-card {
+.project-card, .latest-card, .service-card {
   background: var(--section-bg);
   border-radius: 14px;
   border: 1px solid var(--border-dark);
@@ -560,7 +568,7 @@ section.visible {
   transform: translateY(0);
 }
 
-.project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover {
+.project-card:hover, .latest-card:hover, .service-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), var(--gold-shadow-intense);
   border-color: var(--gold-dark);
@@ -988,201 +996,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--gold-light);
 }
 
-.house-gallery {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-.house-card {
-  width: 350px;
-  height: 280px;
-  background: #111;
-  border: 2px solid var(--gold-dark);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.house-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.house-card h3 {
-  background: #000;
-  color: #ffcc66;
-  font-family: 'Playfair Display', serif;
-  height: 20%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  margin: 0;
-  padding: 0 10px;
-  text-align: center;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  -webkit-text-fill-color: initial;
-  text-fill-color: initial;
-}
-.house-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(255,204,102,0.25);
-}
 
-.house-detail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px);
-  z-index: 2000;
-  display: none;
-  overflow-y: auto;
-  padding: 30px;
-  animation: fadeIn 0.3s ease;
-  box-sizing: border-box;
-}
-.house-detail button {
-  font-family: 'Inter', sans-serif;
-  padding: 10px 20px;
-  background: var(--gold-dark);
-  color: #111;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.4s var(--easing);
-  border: 1px solid var(--gold-light);
-  font-size: 16px;
-}
-.house-detail button:hover {
-  background: var(--gold-light);
-  color: #000;
-  transform: scale(1.05);
-}
-#house-detail-content h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-.house-info {
-  max-width: 900px;
-  margin: 40px auto;
-  background: #111;
-  padding: 30px;
-  border-radius: 10px;
-  border: 1px solid var(--border-dark);
-  text-align: left;
-}
-.house-info p {
-  font-size: 18px;
-  color: var(--text);
-  margin-bottom: 15px;
-  line-height: 1.7;
-  font-family: 'Inter', sans-serif;
-}
-.house-info p strong {
-  color: var(--gold-light);
-  min-width: 120px;
-  display: inline-block;
-  font-weight: 600;
-}
-
-.detail-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  margin-top: 30px;
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.detail-gallery img {
-  width: 100%;
-  height: 140px;
-  border-radius: 10px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  background: #222;
-  cursor: pointer;
-  border: 3px solid var(--gold-light);
-  box-sizing: border-box;
-}
-.detail-gallery img:hover {
-  transform: scale(1.05);
-}
-
-
-#lightbox-img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-  border: 4px solid var(--gold-light);
-  box-shadow: var(--gold-shadow-intense);
-  border-radius: 10px;
-  box-sizing: border-box; 
-  cursor: default;
-  touch-action: none;
-  user-select: none;
-}
-
-#page-otel {
-    background-color: #111111 !important;
-    padding-bottom: 100px !important;
-}
-
-.new-layout-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-#page-satilik_kiralik h2 {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    color: var(--gold-light) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-    border-bottom: 2px solid var(--gold-dark);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}
-
-#page-otel h2 {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    color: var(--gold-light) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-    border-bottom: 2px solid var(--gold-dark);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-    text-align: center !important;
-}
-
-
-#page-satilik_kiralik .house-gallery,
+/* Sadece otel galerisi için stilleri korundu */
 #page-otel .house-gallery {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1195,7 +1010,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-#page-satilik_kiralik .house-card,
 #page-otel .house-card {
     width: 100%;
     height: auto;
@@ -1206,7 +1020,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: auto !important;
 }
 
-#page-satilik_kiralik .house-card img,
 #page-otel .house-card img {
     height: 260px;
     width: 100%;
@@ -1215,7 +1028,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 260px !important;
 }
 
-#page-satilik_kiralik .house-card h3,
 #page-otel .house-card h3 {
     display: block !important;
     height: auto !important;
@@ -1233,144 +1045,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-fill-color: initial !important;
 }
 
-#page-satilik_kiralik .house-card:hover,
 #page-otel .house-card:hover {
-    transform: translateY(-5px) scale(1.02); /* <-- BÜYÜME EFEKTİ EKLENDİ */
+    transform: translateY(-5px) scale(1.02); 
     box-shadow: var(--gold-shadow-intense);
 }
+
 
 #lightbox {
     background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: none !important;
-}
-
-.restoration-card {
-    width: 100%;
-    max-width: 500px;
-    justify-self: center;
-    padding: 15px;
-}
-.restoration-card h3 {
-    margin-bottom: 20px;
-    font-size: 20px;
-}
-.img-comparison-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-.img-wrapper {
-    position: relative;
-    width: 50%;
-    border: 2px solid var(--border-dark);
-    border-radius: 8px;
-    overflow: hidden;
-}
-.img-wrapper img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-.img-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--gold-light);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: 'Inter', sans-serif;
-    z-index: 5;
-}
-
-.image-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-.image-modal-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-.image-modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    gap: 10px;
-    transform: scale(0.8);
-    transition: transform 0.3s ease-in-out;
-}
-.image-modal-overlay.show .image-modal-content {
-    transform: scale(1);
-}
-.image-modal-image-wrapper {
-    position: relative;
-    background-color: var(--section-bg);
-    border: 2px solid var(--gold-dark);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.image-modal-image-wrapper img {
-    max-width: 100%;
-    max-height: 80vh;
-    height: auto;
-    object-fit: contain;
-    display: block;
-}
-.image-modal-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--gold-light);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Inter', sans-serif;
-    z-index: 5;
-}
-.image-modal-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--gold-light);
-    color: #111;
-    border: none;
-    border-radius: 8%;
-    width: auto;
-    height: auto;
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease;
-    z-index: 1001;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    font-family: 'Inter', sans-serif;
-}
-.image-modal-close-btn:hover {
-    background-color: var(--gold-dark);
 }
 
 @media (max-width: 768px) {
@@ -1381,11 +1064,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   #page-otel .hero {
     background-image: url('assets/otel_hero-mobil.webp') !important;
   }
-  #page-insaat .hero {
-    background-image: url('assets/insaat_hero-mobil.webp') !impor
-tant;
-  }
-
+  /* #page-insaat .hero (KALDIRILDI) */
 }
 /* JS'den taşınan yeni CSS animasyonu */
 .card-fade-in {
@@ -1402,7 +1081,7 @@ tant;
 }
 
 
-/* === YENİ EKLENEN BUTON STİLLERİ === */
+/* === YENİ EKLENEN BUTON STİLLERİ (LightBox) === */
 .lightbox-nav-btn {
   position: absolute;
   top: 50%;
@@ -1417,10 +1096,10 @@ tant;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 2001; /* Lightbox'ın üzerinde olmalı */
-  line-height: 40px; /* Dikey hizalama için */
+  z-index: 2001; 
+  line-height: 40px; 
   padding: 0;
-  display: block; /* Başlangıçta görünür yap */
+  display: block;
 }
 
 .lightbox-nav-btn:hover {
@@ -1437,50 +1116,7 @@ tant;
 #lightbox-next {
   right: 20px;
 }
-/* === RESTORASYON SAYFASI YENİ STİLLERİ === */
 
-/* Yeni "Önce" / "Sonra" ara başlıkları için stil */
-.restoration-subtitle {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    color: var(--gold-light) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-    border-bottom: 1px solid var(--border-dark);
-    padding-bottom: 10px;
-    margin-top: 60px; /* Galeriler arasına boşluk koyar */
-    margin-bottom: 30px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-}
-
-/* Restorasyon sayfasındaki .detail-gallery için varsayılanı eziyoruz
-  (Daha büyük resimler ve ızgara için)
-*/
-#page-restorasyon .detail-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    padding: 0 40px;
-}
-
-/* Restorasyon sayfasındaki resimlerin daha büyük görünmesini sağlıyoruz */
-#page-restorasyon .detail-gallery img {
-    height: 260px; /* Mülk galerisiyle aynı boyuta getirdik */
-    border: 2px solid var(--gold-dark);
-}
-
-#page-restorasyon .detail-gallery img:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--gold-shadow-intense);
-}
 /* === OTEL İLETİŞİM BÖLÜMÜ STİLLERİ === */
 .otel-contact-info-container {
   padding: 80px 40px;
@@ -1505,8 +1141,7 @@ tant;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
 }
-/* === YENİ EKLEME: "Daha Fazla Yükle" Butonu Stili === */
-/* id'si "load-more-btn" ile başlayan tüm butonlara uygula */
+/* === "Daha Fazla Yükle" Butonu Stili === */
 [id^="load-more-btn"] {
   background: transparent;
   color: var(--gold-light);
@@ -1532,20 +1167,17 @@ tant;
   margin-bottom: 40px;
 }
 
-/* === FİNAL DÜZELTME (V3): TÜM BUTONLAR + KÜÇÜK YAZI + YAVAŞ ZOOM === */
-
-/* 1. Düzeltme: 3 Sarı Buton (Telefon, Eposta, Yol Tarifi)
-*/
+/* 1. Düzeltme: 3 Sarı Buton (Telefon, Eposta, Yol Tarifi) */
 .header-top-row a.btn-top-info {
     display: inline-flex;
     align-items: center;
-    padding: 3px 6px; /* Buton içi boşluğu azalttık */
+    padding: 3px 6px; 
     margin-right: 10px;
     background-color: var(--gold-dark);
     color: #111;
     border: none;
     border-radius: 6px;
-    font-size: 8px; /* Yazı tipini 14px'ten 13px'e küçülttük */
+    font-size: 8px; 
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -1557,18 +1189,17 @@ tant;
     transform: translateY(-2px);
 }
 .header-top-row a.btn-top-info i {
-    margin-right: 6px; /* İkon boşluğunu azalttık */
+    margin-right: 6px; 
     color: #111;
-    font-size: 12px; /* İkonu da küçülttük */
+    font-size: 12px; 
 }
 
-/* 2. Düzeltme: Geri Butonu (Header'ın altına ittirme)
-*/
+/* 2. Düzeltme: Geri Butonu (Header'ın altına ittirme) */
 .btn-page-back {
   position: absolute;
-  top: 160px; /* YENİ DEĞER: 140px idi */
+  top: 160px; 
   left: 40px;
-  z-index: 1001; /* YENİ DEĞER: 100 idi (Header'ın (1000) önüne çıktı) */
+  z-index: 1001; 
   font-family: 'Inter', sans-serif;
   padding: 10px 20px;
   background: var(--gold-dark);
@@ -1589,23 +1220,21 @@ tant;
 }
 
 
-/* 3. Düzeltme: Yavaş Zoom Efekti (Slider iptali)
-*/
+/* 3. Düzeltme: Yavaş Zoom Efekti (Slider iptali) */
 .hero-slider .slide {
   animation: slowZoom 25s infinite alternate ease-in-out;
   transform: scale(1.05); 
-  opacity: 1 !important; /* Her zaman görünür ol */
+  opacity: 1 !important; 
 }
 
 @keyframes slowZoom {
   from {
-    transform: scale(1.05); /* Başlangıç (hafif zoomlu) */
+    transform: scale(1.05); 
   }
   to {
-    transform: scale(1); /* Bitiş (normal boyut) */
+    transform: scale(1); 
   }
 }
-/* === FİNAL DÜZELTME SONU === */
 /* === HERO VIDEO BACKGROUND === */
 .hero-video {
   position: relative;
@@ -1621,12 +1250,12 @@ tant;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 🔹 tam ortalar */
+  transform: translate(-50%, -50%); 
   text-align: center;
   z-index: 4;
   width: 100%;
-  max-width: 900px; /* metin genişliği dengesi */
-  padding: 0 20px;  /* kenarlardan taşmayı önler */
+  max-width: 900px; 
+  padding: 0 20px;  
 }
 
 
@@ -1667,7 +1296,7 @@ tant;
   display: none;
   position: absolute;
   background-color: rgba(20, 20, 20, 0.95);
-  width: max-content; /* Genişlik içeriğe göre */
+  width: max-content; 
   max-width: 90vw;
   box-shadow: 0 8px 16px rgba(0,0,0,0.5);
   z-index: 1;
@@ -1676,14 +1305,14 @@ tant;
   top: 100%; 
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 15px; /* Butondan aşağıya çekme */
-  padding: 5px; /* İç boşluk */
+  margin-top: 15px; 
+  padding: 5px; 
 }
 /* Menü açıldığında (yatay diz) */
 .cta-group.open .dropdown {
   display: flex;
   flex-direction: row;
-  gap: 5px; /* Butonlar arası boşluk */
+  gap: 5px; 
 }
 /* İçerideki linkler (buton görünümü) */
 .cta-group .dropdown a {
@@ -1693,7 +1322,7 @@ tant;
   display: block;
   transition: background-color 0.3s;
   border-radius: 5px;
-  white-space: nowrap; /* Yazılar kırılmasın */
+  white-space: nowrap; 
 }
 /* Linklerin hover (üzerine gelme) stili */
 .cta-group .dropdown a:hover {
@@ -1711,8 +1340,8 @@ tant;
   height: 100%;
     background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.25) 0%,   /* üst kısmı daha açık */
-    rgba(0, 0, 0, 0.4) 100%   /* alt kısmı hafif koyu */
+    rgba(0, 0, 0, 0.25) 0%,   
+    rgba(0, 0, 0, 0.4) 100%   
   );
 
   z-index: 2;
@@ -1743,26 +1372,26 @@ tant;
 /* Hero içeriği overlay’in üstünde kalsın */
 .hero-video .hero-content-overlay {
   position: relative;
-  z-index: 4; /* yazılar üstte */
+  z-index: 4; 
 }
-/* === FİNAL DÜZELTME (V5): YENİ HERO LİNKLERİ === */
+/* === YENİ HERO LİNKLERİ === */
 
 /* "Keşfet" butonundan gelen linklerin yeni kapsayıcısı */
 .hero-links-container {
   display: flex;
-  flex-wrap: wrap; /* Mobil'de alt alta inebilsin */
+  flex-wrap: wrap; 
   justify-content: center;
-  gap: 15px; /* Butonlar arası boşluk */
-  margin-top: 30px; /* Üstteki yazıya olan mesafe */
+  gap: 15px; 
+  margin-top: 30px; 
 }
 
 /* Yeni hero link butonlarının stili */
 .btn-hero-link {
   display: inline-block;
   padding: 10px 20px;
-  background: transparent; /* Şeffaf arka plan */
-  color: var(--gold-light); /* Altın rengi yazı */
-  border: 2px solid var(--gold-dark); /* Altın rengi çerçeve */
+  background: transparent; 
+  color: var(--gold-light); 
+  border: 2px solid var(--gold-dark); 
   border-radius: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
@@ -1778,29 +1407,10 @@ tant;
 
 /* Üzerine gelince (hover) efekti */
 .btn-hero-link:hover {
-  background: var(--gold-dark); /* Arka plan altın rengi ol */
-  color: #111; /* Yazı koyu ol */
+  background: var(--gold-dark); 
+  color: #111; 
   border-color: var(--gold-dark);
-  box-shadow: var(--gold-shadow); /* Gölge ekle */
+  box-shadow: var(--gold-shadow); 
   transform: translateY(-3px) scale(1.05);
-}
-/* === DÜZELTME SONU === */
-
-/* === FİNAL DÜZELTME (V6): RESTORASYON KARTI BAŞLIĞINI GÖSTER === */
-#page-restorasyon .house-card h3 {
-    display: block !important;
-    height: auto !important;
-    background: transparent !important;
-    color: #f5f5f5 !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 17px !important;
-    font-weight: 600 !important;
-    text-align: left !important;
-    padding: 15px !important;
-    margin: 0 !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
 }
 /* === DÜZELTME SONU === */
