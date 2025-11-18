@@ -11,17 +11,67 @@ function throttle(func, limit) {
   }
 }
 
+// Global Durum Değişkenleri
 const translations = {}; 
 let allGalleriesData = null; 
 const pageCache = {}; 
+let currentLanguage = 'tr'; 
 
-// === Galeri sayfalandırma için (Sadece Otel galerisi için korundu) ===
+// === Galeri ve Lightbox için ===
 let globalPropertyImages = [];
 let globalImageIndex = 0;
-const IMAGES_PER_LOAD = 8; 
-// === Galeri sayfalandırma sonu ===
 
-// === HTML İçerik Yükleyici (loadHtmlContent) ===
+// === Veri Yükleme (Diller ve Galeri) ===
+async function loadAllData() {
+    try {
+        // Dil dosyalarını yükle (Örnekte sadece tr.json kullanılıyor varsayılmıştır)
+        const trResponse = await fetch('tr.json');
+        translations['tr'] = await trResponse.json();
+        
+        // Galeri verilerini yükle
+        // Not: data/galleries.json varsayılmıştır. Eğer dosya kök dizindeyse yolu 'galleries.json' olarak değiştirin.
+        const galleryResponse = await fetch('data/galleries.json?v=1.1'); 
+        allGalleriesData = await galleryResponse.json();
+
+        // Veriler yüklendikten sonra başlangıç ayarlarını yap
+        const initialLang = localStorage.getItem('language') || 'tr';
+        setLanguage(initialLang); // Başlangıç dilini ayarla
+
+        const initialPage = location.hash.replace('#', '') || 'hero';
+        showPage(initialPage); // Başlangıç sayfasını göster
+
+    } catch (error) {
+        console.error('Veriler yüklenirken hata oluştu:', error);
+    }
+}
+
+// === Dil Fonksiyonları ===
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    const selectedTranslations = translations[lang] || translations['tr'];
+    
+    document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (selectedTranslations[key]) {
+            element.textContent = selectedTranslations[key];
+        }
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Dil değişimi Otel galerisindeki metinleri de etkilemeli (daha çok başlıklar için)
+    if (document.getElementById('page-otel').classList.contains('active')) {
+        renderOtelGallery();
+    }
+}
+
+// === HTML İçerik Yükleyici (Dinamik yüklenen sayfalar için) ===
 async function loadHtmlContent(pageId) {
     let url;
     if (pageId === 'services') {
@@ -29,11 +79,12 @@ async function loadHtmlContent(pageId) {
     } else if (pageId === 'tours') {
         url = 'tours.html';
     } else {
-        return; // Sadece bu sayfalar harici yüklenir
+        return; 
     }
 
     if (pageCache[pageId]) {
         document.getElementById(`page-${pageId}`).innerHTML = pageCache[pageId];
+        setLanguage(currentLanguage); // Yüklenen içeriğe dil ayarını uygula
         return;
     }
 
@@ -43,236 +94,159 @@ async function loadHtmlContent(pageId) {
         const html = await response.text();
         pageCache[pageId] = html;
         document.getElementById(`page-${pageId}`).innerHTML = html;
+        setLanguage(currentLanguage); // Yüklenen içeriğe dil ayarını uygula
     } catch (error) {
-        console.error(`HTML içeriği yüklenirken hata oluştu: ${error}`);
+        console.error(`HTML içeriği yüklenemedi: ${error}`);
     }
 }
 
-// === setLanguage Fonksiyonu (DİLLERİ YÜKLER) ===
-async function setLanguage(lang) {
-    if (!translations[lang]) {
-        try {
-            const response = await fetch(`${lang}.json?v=1.6`);
-            if (!response.ok) throw new Error(`Dil dosyası yüklenemedi: ${lang}`);
-            translations[lang] = await response.json();
-        } catch (error) {
-            console.error(error);
-            return;
-        }
-    }
-    
-    document.documentElement.lang = lang;
-    localStorage.setItem('language', lang);
-    updateTexts(lang);
-}
 
-// === updateTexts Fonksiyonu (SAYFA İÇERİKLERİNİ GÜNCELLEME) ===
-function updateTexts(lang) {
-    const elements = document.querySelectorAll('[data-key]');
-    elements.forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[lang] && translations[lang][key]) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                el.placeholder = translations[lang][key];
-            } else if (el.tagName === 'TITLE') {
-                 document.title = translations[lang][key];
-            } else {
-                el.innerHTML = translations[lang][key];
-            }
-        }
-    });
+// === DÜZELTME 3: OTEL GALERİSİNİ DİNAMİK YÜKLEME FONKSİYONU ===
+function renderOtelGallery() {
+    const container = document.getElementById('otel-gallery-container');
 
-    // Galeriler yüklüyse metinlerini güncelle
-    if (allGalleriesData) {
-        renderGalleries();
-    }
-}
-
-// === Galerileri Yükle ve Render Et (loadGalleries) ===
-async function loadGalleries() {
-    if (allGalleriesData) {
-        renderGalleries();
-        return;
-    }
-    try {
-        const response = await fetch('data/galleries.json?v=1.1');
-        if (!response.ok) throw new Error('Galeriler yüklenemedi.');
-        allGalleriesData = await response.json();
-        renderGalleries();
-    } catch (error) {
-        console.error('Galeri verileri yüklenirken hata oluştu:', error);
-    }
-}
-
-// === Galerileri HTML'e Yazdır (renderGalleries) ===
-function renderGalleries() {
-    if (!allGalleriesData) return;
-
-    const currentLang = document.documentElement.lang;
-    const t = translations[currentLang] || {};
-
-    // OTEL Galerisi
-    const otelGallery = document.getElementById('otel-gallery-content');
-    if (otelGallery) {
-        otelGallery.innerHTML = `
-            <h2 data-key="page_otel_gallery_h1">${t.page_otel_gallery_h1 || 'Otel Galeri'}</h2>
-            <p data-key="page_gallery_p">${t.page_gallery_p || 'Detaylar için tıklayın.'}</p>
-            <div class="gallery-grid" id="otel-room-gallery">
-                ${Object.keys(allGalleriesData).filter(key => key.startsWith('OTEL')).map(key => generatePropertyCard(key, allGalleriesData[key], 'OTEL')).join('')}
-            </div>
-            <div id="otel-gallery-detail" style="display: none;"></div>
-        `;
-    }
-
-    // Ticari/Konut (İnşaat) Galerisi - Satılık
-    const forSaleGallery = document.getElementById('insaat-gallery-for-sale');
-    if (forSaleGallery) {
-        forSaleGallery.innerHTML = '';
-        Object.keys(allGalleriesData).filter(key => key.startsWith('PROP_S')).forEach(key => {
-            forSaleGallery.innerHTML += generatePropertyCard(key, allGalleriesData[key], 'INSAAT_SALE');
-        });
-    }
-
-    // Ticari/Konut (İnşaat) Galerisi - Kiralık
-    const forRentGallery = document.getElementById('insaat-gallery-for-rent');
-    if (forRentGallery) {
-        forRentGallery.innerHTML = '';
-        Object.keys(allGalleriesData).filter(key => key.startsWith('PROP_K')).forEach(key => {
-            forRentGallery.innerHTML += generatePropertyCard(key, allGalleriesData[key], 'INSAAT_RENT');
-        });
-    }
-
-    updateTexts(currentLang); // Yeni yüklenen HTML içeriğindeki metinleri de güncelle
-}
-
-// === Galeri Kartı Oluşturma (generatePropertyCard) ===
-function generatePropertyCard(key, data, type) {
-    const isOtel = type === 'OTEL';
-    
-    // Otel kartları lightbox'ı açmalı, İnşaat kartları sadece bilgi göstermeli
-    const clickHandler = isOtel ? `onclick="openLightbox('${key}')"` : '';
-    const linkClass = isOtel ? 'property-card otel-card' : 'property-card insaat-card';
-    const imagePath = data.images && data.images.length > 0 ? data.images[0] : 'assets/placeholder.webp';
-
-    // İnşaat kartları için gösterilecek ek metinsel detaylar
-    let detailsHtml = '';
-    if (!isOtel) {
-        detailsHtml = `
-            <p class="prop-detail"><i class="fas fa-map-marker-alt"></i> ${data.location}</p>
-            <p class="prop-detail"><i class="fas fa-ruler-combined"></i> ${data.area}</p>
-            <p class="prop-detail"><i class="fas fa-door-open"></i> ${data.rooms}</p>
-        `;
-    }
-
-    return `
-        <div class="${linkClass}" data-key="${key}" ${clickHandler}>
-            <img loading="lazy" src="${imagePath}" alt="${data.title}" onerror="this.src='assets/placeholder.webp'">
-            <div class="card-content">
-                <h4 class="card-title">${data.title}</h4>
-                <p class="card-price">${data.price}</p>
-                ${detailsHtml}
-            </div>
-            <span class="card-tag ${isOtel ? 'tag-otel' : 'tag-insaat'}">${isOtel ? 'İncele' : 'Detay'}</span>
-        </div>
-    `;
-}
-
-// === Sayfa Yönlendirme (showPage) ===
-async function showPage(pageId) {
-    const pages = ['hero', 'about', 'services', 'tours', 'otel', 'insaat', 'contact'];
-    
-    // Geçersiz hash'leri ana sayfaya yönlendir
-    if (!pages.some(p => p === pageId)) {
-        pageId = 'hero';
-        location.hash = ''; // URL'yi temizle
-    }
-
-    // HTML içeriklerini yükle
-    await loadHtmlContent(pageId);
-    
-    // Galerileri yükle
-    if (pageId === 'otel' || pageId === 'insaat') {
-        await loadGalleries();
-    }
-    
-    pages.forEach(id => {
-        const page = document.getElementById(`page-${id}`);
-        if (page) {
-            if (id === pageId) {
-                page.classList.add('active');
-            } else {
-                page.classList.remove('active');
-            }
-        }
-    });
-
-    // Sayfayı üste kaydır
-    if (pageId !== 'hero') {
-        window.scrollTo(0, 0);
-    }
-}
-
-// === openLightbox (Artık sadece otel odası detayları için) ===
-function openLightbox(key) {
-    const galleryData = allGalleriesData[key];
-    if (!galleryData || !galleryData.images || galleryData.images.length === 0) {
-        console.error('Galeri verisi bulunamadı:', key);
+    if (!container || !allGalleriesData) {
         return;
     }
 
-    globalPropertyImages = galleryData.images;
-    globalImageIndex = 0;
+    container.innerHTML = ''; // Eski kartları temizle
+    
+    // Sadece OTEL ile başlayan anahtarları filtrele
+    const otelKeys = Object.keys(allGalleriesData).filter(key => key.startsWith('OTEL'));
 
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+    otelKeys.forEach(key => {
+        const room = allGalleriesData[key];
+        
+        // galleries.json'daki title'ı kullanıyoruz
+        const roomTitle = room.title; 
+        
+        // İlk görseli kart görseli olarak kullan
+        const mainImage = room.images && room.images.length > 0 ? room.images[0] : 'https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı';
 
-    if (lightbox && lightboxImg) {
-        lightboxImg.src = globalPropertyImages[globalImageIndex];
-        lightbox.style.display = 'flex';
-        updateLightboxNav();
+        const card = document.createElement('div');
+        card.className = 'house-card';
+        
+        // DÜZELTME 2: openHouseDetail yerine openLightbox kullan
+        card.setAttribute('onclick', `openLightbox('${key}')`); 
+
+        card.innerHTML = `
+            <img src="${mainImage}" alt="${roomTitle}" loading="lazy" onerror="this.src='https://placehold.co/350x280/111/f59e0b?text=Görsel+Bulunamadı'">
+            <h3>${roomTitle}</h3>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+
+// === Sayfa Yöneticisi ===
+function showPage(pageId) {
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    
+    const targetPage = document.getElementById(`page-${pageId}`);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        targetPage.style.display = 'block';
+
+        // Gerekli HTML içeriğini yükle
+        loadHtmlContent(pageId); 
+
+        // DÜZELTME 3: Otel sayfası yüklendiğinde galeriyi dinamik olarak oluştur
+        if (pageId === 'otel') {
+            renderOtelGallery(); 
+        }
+
+        // Başlıkta hash'i güncelle
+        location.hash = pageId === 'hero' ? '' : pageId;
     }
 }
 
-// === Lightbox Navigasyon ve Swipes ===
-function updateLightboxNav() {
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-    if (lightboxPrev) lightboxPrev.style.display = globalImageIndex > 0 ? 'block' : 'none';
-    if (lightboxNext) lightboxNext.style.display = globalPropertyImages.length > 1 && globalImageIndex < globalPropertyImages.length - 1 ? 'block' : 'none';
+
+// === Lightbox Fonksiyonları ===
+function openLightbox(propertyId) {
+    if (!allGalleriesData || !allGalleriesData[propertyId]) {
+        console.error('Galeri verisi bulunamadı:', propertyId);
+        return;
+    }
+
+    const item = allGalleriesData[propertyId];
+    globalPropertyImages = item.images;
+    globalImageIndex = 0; 
+
+    // Lightbox detaylarını set et
+    document.getElementById('lightbox-title').textContent = item.title;
+    document.getElementById('lightbox-location').textContent = item.location;
+    document.getElementById('lightbox-area').textContent = item.area;
+    document.getElementById('lightbox-rooms').textContent = item.rooms;
+    document.getElementById('lightbox-desc').textContent = item.desc;
+
+    // Lightbox'ı göster
+    showCurrentImage(); 
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+function showCurrentImage() {
+    const imgElement = document.getElementById('lightbox-img');
+    const imageCount = globalPropertyImages.length;
+    
+    if (imageCount > 0) {
+        imgElement.src = globalPropertyImages[globalImageIndex];
+        // Navigasyon butonlarını göster/gizle
+        document.getElementById('lightbox-prev').style.display = imageCount > 1 ? 'block' : 'none';
+        document.getElementById('lightbox-next').style.display = imageCount > 1 ? 'block' : 'none';
+    } else {
+        imgElement.src = 'https://placehold.co/600x400?text=Görsel+Yok';
+        document.getElementById('lightbox-prev').style.display = 'none';
+        document.getElementById('lightbox-next').style.display = 'none';
+    }
 }
 
 function showNextImage() {
-    if (globalImageIndex < globalPropertyImages.length - 1) {
-        globalImageIndex++;
-        document.getElementById('lightbox-img').src = globalPropertyImages[globalImageIndex];
-        updateLightboxNav();
+    if (globalPropertyImages.length > 0) {
+        globalImageIndex = (globalImageIndex + 1) % globalPropertyImages.length;
+        showCurrentImage();
     }
 }
 
 function showPrevImage() {
-    if (globalImageIndex > 0) {
-        globalImageIndex--;
-        document.getElementById('lightbox-img').src = globalPropertyImages[globalImageIndex];
-        updateLightboxNav();
+    if (globalPropertyImages.length > 0) {
+        globalImageIndex = (globalImageIndex - 1 + globalPropertyImages.length) % globalPropertyImages.length;
+        showCurrentImage();
     }
 }
 
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.style.display = 'none';
-        globalPropertyImages = [];
-        globalImageIndex = 0;
-    }
-}
+// === Başlatma (init) ===
+function init() {
+    // Tüm verileri (diller, galeriler) yükle ve siteyi başlat
+    loadAllData();
 
-// === Dinleyici Başlatma ===
-function initListeners() {
-    // Dil değiştirme butonları
-    document.querySelector('.language-selector').addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            setLanguage(e.target.getAttribute('data-lang'));
-        }
+    // Dil butonları
+    document.querySelectorAll('.lang-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            setLanguage(button.dataset.lang);
+        });
+    });
+
+    // Navigasyon (linkleri dinle)
+    document.querySelectorAll('.nav-links a, .btn-page-back, .logo-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#page-')) {
+                e.preventDefault();
+                const pageId = href.replace('#page-', '');
+                showPage(pageId);
+            } else if (href === '#') {
+                e.preventDefault();
+                showPage('hero');
+            }
+        });
     });
 
     // Hash değişimi
@@ -298,25 +272,7 @@ function initListeners() {
             closeLightbox();
         }
     });
-
-    // Form gönderme (örnek)
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            document.getElementById('form-message').textContent = 'Mesajınız başarıyla gönderildi!';
-            contactForm.reset();
-        });
-    }
-
-    // Başlangıç dilini ayarla
-    const initialLang = localStorage.getItem('language') || 'tr';
-    setLanguage(initialLang);
-
-    // Başlangıç sayfasını göster
-    const initialPage = location.hash.replace('#', '') || 'hero';
-    showPage(initialPage);
 }
 
-// Sayfa yüklendiğinde başlat
-document.addEventListener('DOMContentLoaded', initListeners);
+// DOM Yüklendiğinde init fonksiyonunu çağır
+document.addEventListener('DOMContentLoaded', init);
