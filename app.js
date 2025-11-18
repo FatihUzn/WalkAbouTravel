@@ -16,7 +16,6 @@ let allGalleriesData = null;
 const pageCache = {}; 
 
 // === YENİ EKLEMELER: Galeri sayfalandırma için ===
-// Bu kısım otel/turlar için kullanılabilir, o yüzden tutuluyor.
 let globalPropertyImages = [];
 let globalImageIndex = 0;
 const IMAGES_PER_LOAD = 8; // Her seferinde 8 resim yükle
@@ -69,9 +68,10 @@ async function openHouseDetail(letter) {
 
   // Bu bölüm sadece OTEL için güncellendi
   if (letter.startsWith('OTEL')) {
-      priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
+      // Fiyat kısmı için yer tutucu link bırakıldı
+      priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> <a href="#" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
   } else {
-      // Normal mülk fiyatı (bu kısım turlar için kullanılabilir)
+      // Bu kısım otel dışı tur paketleri için kullanılabilir
       priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> ${priceText}</p>`;
   }
   
@@ -100,7 +100,8 @@ async function openHouseDetail(letter) {
   // İlk resim grubunu yükle
   loadMorePropertyImages();
   
-  detail.style.display = "block";
+  const detailElement = document.getElementById("house-detail");
+  if(detailElement) detailElement.style.display = "block";
   document.body.style.overflow = "hidden"; 
 }
 
@@ -393,9 +394,10 @@ document.body.addEventListener('click', (e) => {
             mailBtn.style.marginTop = "15px";
 
             mailBtn.addEventListener("click", () => {
-                const subject = encodeURIComponent("Rezervasyon Talebi - Golden Palace Otel");
+                // E-posta adresini genel info adresinizle değiştirdik
+                const subject = encodeURIComponent("Rezervasyon Talebi - WalkABouTravel");
                 const body = encodeURIComponent(`Merhaba,%0A%0A${checkin} - ${checkout} tarihleri arasında rezervasyon yapmak istiyorum.%0A%0Aİyi günler.`);
-                window.location.href = `mailto:info@goldenpalace.com?subject=${subject}&body=${body}`;
+                window.location.href = `mailto:info@WalkABouTravel.com?subject=${subject}&body=${body}`;
             });
 
             message.parentElement.appendChild(mailBtn);
@@ -414,26 +416,20 @@ document.body.addEventListener('click', (e) => {
 
 
 const projects = {
+  // Sadece otel kart başlıkları kaldı. Görseller rastgele atanacak.
   otel: [
-    { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.webp" },
-    { name: "Deniz Manzaralı Suit", price: " gecelik ₺8.500", img: "assets/otel2.webp" },
-    { name: "Standart Oda", price: " gecelik ₺4.200", img: "assets/otel3.webp" },
-    { name: "Aile Odası", price: " gecelik ₺6.800", img: "assets/otel4.webp" },
-    { name: "Ekonomik Oda", price: " gecelik ₺3.500", img: "assets/otel5.webp" }
+    { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000" },
+    { name: "Deniz Manzaralı Suit", price: " gecelik ₺8.500" },
+    { name: "Standart Oda", price: " gecelik ₺4.200" },
+    { name: "Aile Odası", price: " gecelik ₺6.800" },
+    { name: "Ekonomik Oda", price: " gecelik ₺3.500" }
   ]
   // insaat, restorasyon ve satilik_kiralik kategorileri kaldırıldı
 };
 
 function preloadProjectImages() {
-    const allImageUrls = [
-        ...projects.otel.map(p => p.img)
-    ]; 
-    allImageUrls.forEach(url => {
-        if (url.startsWith('http')) return; 
-        const img = new Image();
-        img.src = url; 
-    });
-    console.log("Otel görselleri arka planda yükleniyor.");
+    // Görsel yolu kalmadığı için bu fonksiyonun içi boşaltıldı.
+    console.log("Otel görselleri artık yüklenmiyor (Görsel yolları kaldırıldı).");
 }
 
 function loadCategory(category, checkin = null, checkout = null) {
@@ -456,7 +452,7 @@ function loadCategory(category, checkin = null, checkout = null) {
   
   const titles = {
         'otel': langData.page_otel_h1 || 'Otelimiz',
-        'default_projects': langData.projects_title_featured || 'Öne Çıkan Hizmetlerimiz' // Başlık güncellendi
+        'default_projects': langData.projects_title_featured || 'Öne Çıkan Hizmetlerimiz'
   };
   
   if (titleEl) {
@@ -482,23 +478,32 @@ function loadCategory(category, checkin = null, checkout = null) {
     }
 
     if (!itemsToDisplay) {
-        // Otel dışındaki varsayılan projeler kaldırıldı. Buraya boş bir mesaj ya da yeni turizm içeriği eklenebilir.
         grid.innerHTML = `<p>${langData.no_projects || 'Şu anda yüklenecek otel bilgisi bulunmuyor.'}</p>`;
         if (titleEl) titleEl.textContent = titles['default_projects'];
         grid.style.opacity = "1";
         return;
     }
 
+    // Yeni Rastgele Görsel Atama Mantığı
+    const randomImages = [
+        "antalya.webp", "fethiye.webp", "istanbul.webp", "mardin.webp", 
+        "tur-kapadokya-balon-01.webp", "tur-pamukkale-traverten-01.webp" 
+    ];
+    let imageIndex = 0;
+
     itemsToDisplay.forEach(project => {
       const card = document.createElement("div");
-      // Sınıf sadece "project-card" (otel kartı) olarak kaldı
       card.className = "project-card"; 
       card.style.opacity = '0';
       card.style.transform = 'scale(0.9)';
       
-      const imgSrc = project.img.startsWith('http') ? project.img : `${project.img}`; 
+      // Rastgele görsel seçimi (assets klasörünüzdeki yeni turizm görsellerinden)
+      const imgSrc = `assets/${randomImages[imageIndex % randomImages.length]}`; 
+      imageIndex++;
+      
       const priceHTML = project.price ? `<p class="project-price">${project.price}</p>` : '';
       
+      // img etiketine artık project.img kullanılmıyor, rastgele atanan imgSrc kullanılıyor.
       card.innerHTML = `<img src="${imgSrc}" alt="${project.name}" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=${project.name}'"><h3>${project.name}</h3>${priceHTML}`;
       grid.appendChild(card);
     });
@@ -742,7 +747,3 @@ if (lightboxImgScale) {
       }
     });
 }
-
-// Restorasyon modal/galeri kodu tamamen kaldırıldı.
-
-// Restorasyon modalını kapatma fonksiyonu kaldırıldı.
