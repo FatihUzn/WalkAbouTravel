@@ -17,12 +17,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
 <link rel="stylesheet" href="style.css?v=1.6">
 
 <style>
-  /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
+  /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER (Korunması Gerekenler) === */
   header {
     display: block; 
     padding: 0;
@@ -98,7 +98,7 @@
   }
 
   /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ (Değişmedi) === */
+  /* === YENİ GENİŞ FOOTER STİLLERİ (Korunması Gerekenler) === */
   /* ========================================= */
   .site-footer {
     background-color: #0c0c0c; 
@@ -178,7 +178,7 @@
     background-color: transparent;
   }
 
-  /* === MOBİL UYUMLULUK GÜNCELLEMELERİ === */
+  /* === MOBİL UYUMLULUK GÜNCELLEMELERİ (Korunması Gerekenler) === */
   @media (max-width: 992px) {
     .footer-grid {
       grid-template-columns: 1fr 1fr 1fr;
@@ -253,12 +253,12 @@
       </button>
     
       <nav class="navbar" id="navbar">
-        <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-        <a data-page="page-about" class="nav-link" data-key="nav_about">Neden Biz?</a>
-        <a data-page="page-services" class="nav-link" data-key="nav_services">Destinasyonlar</a>
-        <a data-page="page-blog" class="nav-link" data-key="nav_blog">Blog</a>
-        <a data-page="page-guide" class="nav-link" data-key="nav_guide">Gezi Rehberi</a>
-        <a data-page="page-contact" class="nav-link" data-key="nav_contact">Rezervasyon</a>
+        <a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
+        <a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Neden Biz?</a>
+        <a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Destinasyonlar</a>
+        <a href="#blog" data-page="page-blog" class="nav-link" data-key="nav_blog">Blog</a>
+        <a href="#guide" data-page="page-guide" class="nav-link" data-key="nav_guide">Gezi Rehberi</a>
+        <a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">Rezervasyon</a>
         <div class="language-selector mobile-only" style="display: none;">
             <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
@@ -296,60 +296,64 @@
 <main id="page-container">
     </main>
 
+<div id="lightbox">
+    <span id="lightbox-close" onclick="document.getElementById('lightbox').style.display='none'" aria-label="Kapat">×</span>
+    <button id="lightbox-prev" class="lightbox-nav-btn" onclick="showPrevImage()" aria-label="Önceki Resim">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <img id="lightbox-img" src="" alt="Büyük Resim">
+    <button id="lightbox-next" class="lightbox-nav-btn" onclick="showNextImage()" aria-label="Sonraki Resim">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
+
 <section id="blog" class="page-section"> 
     <div class="container">
       <h2 data-key="section_blog_title">Seyahat Blogu & İlham Veren Yazılar</h2> 
       
-      <div class="guide-list-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
-
-        <a href="blog-butce.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/blog-butce.webp" alt="Bütçe Seyahat İpuçları" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Bütçeyle Dünya Turu: 10 İpuçları</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Seyahat masraflarınızı düşürmenin denenmiş ve kanıtlanmış yolları.</p>
+      <div class="card-container">
+        <a href="blog-butce.html" class="guide-card">
+          <img src="assets/blog-butce.webp" alt="Bütçe Seyahat İpuçları">
+          <div class="guide-card-content">
+            <h3>Bütçeyle Dünya Turu: 10 İpuçları</h3>
+            <p>Seyahat masraflarınızı düşürmenin denenmiş ve kanıtlanmış yolları.</p>
           </div>
         </a>
-
-        <a href="blog-foto.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/blog-foto.webp" alt="Seyahat Fotoğrafçılığı" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Profesyoneller Gibi Çekim Yapın</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Gezginler için en iyi hafif kamera ve ekipman tavsiyeleri.</p>
+        <a href="blog-foto.html" class="guide-card">
+          <img src="assets/blog-foto.webp" alt="Seyahat Fotoğrafçılığı">
+          <div class="guide-card-content">
+            <h3>Profesyoneller Gibi Çekim Yapın</h3>
+            <p>Gezginler için en iyi hafif kamera ve ekipman tavsiyeleri.</p>
           </div>
         </a>
-
-        <a href="blog-surdurulebilir.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/blog-surdurulebilir.webp" alt="Sürdürülebilir Seyahat" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Sürdürülebilir Seyahat Rehberi</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Çevreye duyarlı gezginler için 5 kolay adım ve yerel kalma rehberi.</p>
+        <a href="blog-surdurulebilir.html" class="guide-card">
+          <img src="assets/blog-surdurulebilir.webp" alt="Sürdürülebilir Seyahat">
+          <div class="guide-card-content">
+            <h3>Sürdürülebilir Seyahat Rehberi</h3>
+            <p>Çevreye duyarlı gezginler için 5 kolay adım ve yerel kalma rehberi.</p>
           </div>
         </a>
-
-        <a href="blog-solo.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/blog-solo.webp" alt="Solo Gezi" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Tek Başına Seyahatin Gücü</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Güvenlik ipuçları, avantajları ve en iyi solo destinasyonlar.</p>
+        <a href="blog-solo.html" class="guide-card">
+          <img src="assets/blog-solo.webp" alt="Solo Gezi">
+          <div class="guide-card-content">
+            <h3>Tek Başına Seyahatin Gücü</h3>
+            <p>Güvenlik ipuçları, avantajları ve en iyi solo destinasyonlar.</p>
           </div>
         </a>
-
-        <a href="blog-gecikme.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/blog-gecikme.webp" alt="Uçuş Gecikmeleri" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Uçuş Gecikmeleriyle Başa Çıkma</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Stres yönetimi, haklarınız ve bekleme süresini verimli kullanma.</p>
+        <a href="blog-gecikme.html" class="guide-card">
+          <img src="assets/blog-gecikme.webp" alt="Uçuş Gecikmeleri">
+          <div class="guide-card-content">
+            <h3>Uçuş Gecikmeleriyle Başa Çıkma</h3>
+            <p>Stres yönetimi, haklarınız ve bekleme süresini verimli kullanma.</p>
           </div>
         </a>
-        
-        <a href="chicago-fener-rehberi.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/chicago-fener-hero.webp" alt="Chicago Fener Kulesi" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Michigan Gölü'nün Tarihi Gözcüsü</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Chicago Crib Lighthouse: Hikayesi ve en iyi seyir noktaları.</p>
+        <a href="chicago-fener-rehberi.html" class="guide-card">
+          <img src="assets/chicago-fener-hero.webp" alt="Chicago Fener Kulesi">
+          <div class="guide-card-content">
+            <h3>Michigan Gölü'nün Tarihi Gözcüsü</h3>
+            <p>Chicago Crib Lighthouse: Hikayesi ve en iyi seyir noktaları.</p>
           </div>
         </a>
-
       </div>
       </div>
 </section>
@@ -358,59 +362,61 @@
     <div class="container">
       <h2 data-key="section_guide_title">Türkiye: Keşfedilmeyi Bekleyen Rotalar ve Kılavuzlar</h2>
       
-      <div class="guide-list-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
-
-        <a href="kapadokya-rehberi.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/kapadokya-hero.webp" alt="Kapadokya Balonları" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Kapadokya: Büyülü Balon Macerası</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">3 Günlük Rota Planı, Mağara Otelleri ve Balon Turları İpuçları.</p>
+      <div class="card-container">
+        <a href="kapadokya-rehberi.html" class="guide-card">
+          <img src="assets/kapadokya-hero.webp" alt="Kapadokya Balonları">
+          <div class="guide-card-content">
+            <h3>Kapadokya: Büyülü Balon Macerası</h3>
+            <p>3 Günlük Rota Planı, Mağara Otelleri ve Balon Turları İpuçları.</p>
           </div>
         </a>
-
-        <a href="antalya-rehberi.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/antalya-hero.webp" alt="Antalya Kaleiçi" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Antalya: Akdeniz'in İncisi</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Kaleiçi, Antik Kentler ve En Lüks Otellerde Tatil Rehberi.</p>
+        <a href="antalya-rehberi.html" class="guide-card">
+          <img src="assets/antalya-hero.webp" alt="Antalya Kaleiçi">
+          <div class="guide-card-content">
+            <h3>Antalya: Akdeniz'in İncisi</h3>
+            <p>Kaleiçi, Antik Kentler ve En Lüks Otellerde Tatil Rehberi.</p>
           </div>
         </a>
-
-        <a href="mardin-rehberi.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/mardin-hero.webp" alt="Mardin Taş Evleri" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Mardin: Mezopotamya'nın Gizemi</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Taşın Şehri, Manastırlar ve Otantik Lezzetler Turu.</p>
+        <a href="mardin-rehberi.html" class="guide-card">
+          <img src="assets/mardin-hero.webp" alt="Mardin Taş Evleri">
+          <div class="guide-card-content">
+            <h3>Mardin: Mezopotamya'nın Gizemi</h3>
+            <p>Taşın Şehri, Manastırlar ve Otantik Lezzetler Turu.</p>
           </div>
         </a>
-
-        <a href="pamukkale-rehberi.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/pamukkale-hero.webp" alt="Pamukkale Travertenler" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Pamukkale: Beyaz Cennet</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Travertenler, Antik Havuz ve Hierapolis Gezisi.</p>
+        <a href="pamukkale-rehberi.html" class="guide-card">
+          <img src="assets/pamukkale-hero.webp" alt="Pamukkale Travertenler">
+          <div class="guide-card-content">
+            <h3>Pamukkale: Beyaz Cennet</h3>
+            <p>Travertenler, Antik Havuz ve Hierapolis Gezisi.</p>
           </div>
         </a>
-
-        <a href="karadeniz-yaylaları.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/karadeniz-hero.webp" alt="Karadeniz Yaylası" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Doğu Karadeniz: Zümrüt Yaylalar</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Uzungöl, Ayder ve Sümela Manastırı Rotaları.</p>
+        <a href="karadeniz-yaylaları.html" class="guide-card">
+          <img src="assets/karadeniz-hero.webp" alt="Karadeniz Yaylası">
+          <div class="guide-card-content">
+            <h3>Doğu Karadeniz: Zümrüt Yaylalar</h3>
+            <p>Uzungöl, Ayder ve Sümela Manastırı Rotaları.</p>
           </div>
         </a>
-        
-        <a href="efes-rehberi.html" class="guide-card" style="text-decoration: none; display: block; background-color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s;">
-          <img src="assets/efes-hero.webp" alt="Efes Celsus Kütüphanesi" style="width: 100%; height: 200px; object-fit: cover;">
-          <div style="padding: 20px;">
-            <h3 style="color: #ffcc66; font-size: 1.25rem; margin-top: 0;">Efes: Roma İhtişamı</h3>
-            <p style="color: #ccc; font-size: 0.9rem;">Celsus Kütüphanesi, Antik Tiyatro ve Meryem Ana Evi.</p>
+        <a href="efes-rehberi.html" class="guide-card">
+          <img src="assets/efes-hero.webp" alt="Efes Celsus Kütüphanesi">
+          <div class="guide-card-content">
+            <h3>Efes: Roma İhtişamı</h3>
+            <p>Celsus Kütüphanesi, Antik Tiyatro ve Meryem Ana Evi.</p>
           </div>
         </a>
-
       </div>
       </div>
 </section>
+
+<section id="page-contact" class="page-section" style="display: none;">
+    </section>
+
+<section id="page-about" class="page-section" style="display: none;">
+    </section>
+
+<section id="page-services" class="page-section" style="display: none;">
+    </section>
 
 
 <footer class="site-footer">
@@ -422,7 +428,9 @@
                 <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
                 <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Neden Biz?</a></li>
                 <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Destinasyonlar</a></li>
-                <li><a href="#blog" data-page="page-blog" class="nav-link" data-key="nav_blog">Blog</a></li> <li><a href="#guide" data-page="page-guide" class="nav-link" data-key="nav_guide">Gezi Rehberi</a></li> <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">Rezervasyon</a></li>
+                <li><a href="#blog" data-page="page-blog" class="nav-link" data-key="nav_blog">Blog</a></li> 
+                <li><a href="#guide" data-page="page-guide" class="nav-link" data-key="nav_guide">Gezi Rehberi</a></li> 
+                <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">Rezervasyon</a></li>
             </ul>
         </div>
 
@@ -455,9 +463,9 @@
         <div class="footer-column">
             <h3 data-key="footer_col_4_title">Öne Çıkan Destinasyonlar</h3>
             <ul class="footer-links">
-                <li><a href="#page-otel" data-page="page-otel" data-key="drop_hotel">Uzak Doğu</a></li>
-                <li><a href="#page-restorasyon" data-page="page-restorasyon" data-key="drop_restoration">Avrupa Başkentleri</a></li>
-                <li><a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-key="drop_rental">Ege ve Akdeniz</a></li>
+                <li><a href="#page-services" data-page="page-services">Uzak Doğu</a></li>
+                <li><a href="#page-services" data-page="page-services">Avrupa Başkentleri</a></li>
+                <li><a href="#page-services" data-page="page-services">Ege ve Akdeniz</a></li>
             </ul>
         </div>
 
@@ -485,41 +493,11 @@
         © 2025 WalkAboutTravel. Tüm hakları saklıdır. | Hayallerinize Giden Yol.
     </div>
 </footer>
-<div id="lightbox" class="availability-modal" style="cursor: pointer; padding: 20px; display: none; align-items: center; justify-content: center;">
-  
-  <button id="lightbox-prev" class="lightbox-nav-btn" onclick="event.stopPropagation(); showPrevImage();">‹</button>
-
-  <img id="lightbox-img" src="" alt="Genişletilmiş Görüntü">
-
-  <button id="lightbox-next" class="lightbox-nav-btn" onclick="event.stopPropagation(); showNextImage();">›</button>
-
-</div>
-
-
-<div id="house-detail" class="house-detail">
-  <button onclick="closeHouseDetail()">← Geri</button>
-  <div id="house-detail-content"></div>
-</div>
-
-
-<div id="restorationImageModal" class="image-modal-overlay">
-  <button class="image-modal-close-btn" data-key="btn_close_modal_x">✖</button>
-  <div class="image-modal-content">
-    <div class="image-modal-image-wrapper">
-      <span class="image-modal-label" id="modalBeforeLabel" data-key="label_before">ÖNCE</span>
-      <img id="modalBeforeImage" src="" alt="Önceki Hali">
-    </div>
-    <div class="image-modal-image-wrapper">
-      <span class="image-modal-label" id="modalAfterLabel" data-key="label_after">SONRA</span>
-      <img id="modalAfterImage" src="" alt="Sonraki Hali">
-    </div>
-  </div>
-</div>
 
 <script src="app.js?v=1.6" defer></script>
 
 <script>
-    // Dinamik Metin Döngüsü - Turizm Temasına Uyarlandı
+    // Dinamik Metin Döngüsü - Turizm Temasına Uyarlandı (Kullanılan ID korunmuştur)
     const data = [
         {
             title: "Özel Rota Planlama",
@@ -568,8 +546,7 @@
 
     // HTML öğesi yüklü ise döngüyü başlat
     if(textElement) {
-        // İlk yüklemede, dinamik metin döngüsü yerine statik bir metin gösterilir.
-        // changeTextWithFade(); // İlk çağrıyı kaldırarak dinamik metin döngüsünü 5 saniye sonra başlat.
+        // Dinamik metin döngüsü 5 saniye sonra başlar.
         setInterval(changeTextWithFade, intervalTime);
     }
 </script>
