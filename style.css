@@ -53,7 +53,7 @@ body::before {
     width: 100%;
     min-height: 100%; 
     height: 100%;
-    /* Açık temada bu karartma katmanına gerek yok veya çok açık olmalı */
+    /* Karartma katmanı şeffaflaştırıldı */
     background-color: rgba(0, 0, 0, 0.05); 
     z-index: -1; 
 }
@@ -305,7 +305,7 @@ header.scrolled {
   .brand-tagline { font-size: 12px; }
 }
 
-/* === VİDEO ARKAPLAN STİLLERİ === */
+/* === VİDEO ARKAPLAN STİLLERİ (KARARTMA KALDIRILDI) === */
 #hero {
   position: relative;
   width: 100%;
@@ -333,15 +333,16 @@ header.scrolled {
   z-index: 0; 
   transform: translate(-50%, -50%);
   object-fit: cover;
-  /* Karartma %75'ten %60'a düşürüldü, daha parlak görünüm için */
-  opacity: 0.6; 
+  /* KARARTMA KALDIRILDI: Maksimum opaklık (parlaklık) */
+  opacity: 1.0; 
 }
 
 .hero-content {
   position: relative;
   z-index: 5; 
   color: white; 
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  /* Başlıklar için daha belirgin gölge */
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
   padding: 20px;
   max-width: 900px;
 }
@@ -351,8 +352,8 @@ header.scrolled {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  /* Karartma katmanı azaltıldı */
-  background: rgba(0,0,0,0.45); 
+  /* KARARTMA KALDIRILDI: Şeffaf yapıldı */
+  background: transparent; 
   z-index: 1;
 }
 .hero::before {
@@ -363,10 +364,10 @@ header.scrolled {
   width: 150%;
   height: 150%;
   transform: translate(-50%, -50%);
-  /* Işıklandırma Altın yerine Mavi */
+  /* Işıklandırma Opaklığı Sıfırlandı (Görünmez yapıldı) */
   background: radial-gradient(circle, rgba(72, 202, 228, 0.4) 0%, rgba(72, 202, 228, 0) 60%);
   z-index: 2;
-  opacity: 0.8;
+  opacity: 0.0; /* Karartma kaldırıldığı için parlama da kapatıldı */
   filter: blur(20px);
   animation: pulseLight 8s ease-in-out infinite;
 }
@@ -1234,8 +1235,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  /* Video parlaklığı ayarı */
-  filter: brightness(0.6);
+  /* KARARTMA KALDIRILDI */
+  filter: none;
 }
 
 .hero-video .hero-content-overlay {
@@ -1256,7 +1257,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* === HERO VIDEO BACKGROUND SONU === */
 
 
-/* Altın parıltı katmanı (Maviye çevrildi) */
+/* Altın parıltı katmanı (Maviye çevrildi ve şeffaflaştırıldı) */
 .hero-video::before {
   content: "";
   position: absolute;
@@ -1267,11 +1268,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    /* Maviye çevrildi */
     rgba(72, 202, 228, 0.4) 0%, 
     rgba(72, 202, 228, 0) 60%
   );
   z-index: 3;
-  opacity: 0.8;
+  /* Işıklandırma Opaklığı Sıfırlandı */
+  opacity: 0.0;
   filter: blur(20px);
 }
