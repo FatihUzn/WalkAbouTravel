@@ -30,13 +30,7 @@ body {
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
-  
-  background-image: url('assets/background.webp'); 
-  background-size: cover; 
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: #0a0a0a; 
-  
+   
   position: relative;
   z-index: 1; 
 }
@@ -244,8 +238,7 @@ header {
 }
 
 .hero {
-  min-height: 100vh;
-  background: url('assets/for_hero.webp') no-repeat; 
+  min-height: 100vh; 
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center center; 
@@ -1325,5 +1318,41 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
 .hero-links-container.action-buttons {
     margin-top: 60px; 
+}
+/* Video Arkaplanı Stilleri */
+#hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videoyu kapsayıcısına sığdır */
+    z-index: -1; /* İçeriğin arkasına al */
+}
+
+/* Hero içeriğinin okunabilirliğini artırmak için */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Videonun önüne getir */
+    color: white; /* Metin rengini belirle */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Metne gölge ekle */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Tüm ekranı kaplamasını sağlar */
+}
+
+/* Hero section'ının da relative olması önemli */
+#hero {
+    position: relative;
+    overflow: hidden; /* Video taşmalarını engelle */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Video yüklendiğinde beyaz flash olmaması için bir fallback color */
+    background-color: #000; 
 }
 /* === DÜZELTME SONU === */
