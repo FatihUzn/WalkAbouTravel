@@ -21,7 +21,7 @@ let globalImageIndex = 0;
 const IMAGES_PER_LOAD = 8; // Her seferinde 8 resim yükle
 // === YENİ EKLEMELER SONU ===
 
-// === YENİ EKLEMELER: Restorasyon galerisi için - ARTIK BLOG GALERİSİ ===
+// === YENİ EKLEMELER: Blog (Eski Restorasyon) Galerisi için ===
 const RESTORATION_IMAGES_PER_LOAD = 4; // Blog'da 4'er 4'er yükle
 const restorationBeforePaths = [
   "assets/restorasyon-1-befor.webp",
@@ -526,22 +526,33 @@ function loadCategory(category, checkin = null, checkout = null) {
   const currentLang = localStorage.getItem('lang') || 'tr';
   const langData = translations[currentLang] || {}; 
   
+  // === BAŞLIKLARI ZORLA GÜNCELLEME BAŞLANGICI ===
   const titles = {
         'otel': langData.page_otel_h1 || 'Kendi Turlarımız',
-        'insaat': langData.page_insaat_h1 || 'İnşaat Projeleri', // Bu key kaldırılmayacak, fallback tutuluyor
+        'insaat': langData.page_insaat_h1 || 'İnşaat Projeleri', 
         'restorasyon': langData.page_restorasyon_h1 || 'Blog Yazıları',
         'satilik_kiralik': langData.page_satilik_h2 || 'Türkiye\'de Gezilecek Yerler',
         'default_projects': langData.projects_title_featured || 'Öne Çıkan Gezi Rotalarımız'
   };
   
   if (titleEl) {
+      // Dil dosyası yoksa veya eski anahtar varsa bile bizim yeni metnimizi gösterecek
+      const categoryMap = {
+          'otel': 'Kendi Turlarımız',
+          'restorasyon': 'Blog Yazıları',
+          'satilik_kiralik': 'Türkiye\'de Gezilecek Yerler',
+      };
+      
+      const newTitle = categoryMap[category] || titles[category] || titles['default_projects'];
+
       if(category === 'otel' && checkin && checkout) {
           const dateTitle = (langData.no_rooms || 'Müsait Turlar').replace('Bu tarihlerde müsait oda bulunamadı.', '').trim();
-          titleEl.textContent = `${titles['otel']} ${dateTitle} (${checkin} - ${checkout})`;
+          titleEl.textContent = `${newTitle} ${dateTitle} (${checkin} - ${checkout})`;
       } else {
-          titleEl.textContent = titles[category] || titles['default_projects'];
+          titleEl.textContent = newTitle;
       }
   }
+  // === BAŞLIKLARI ZORLA GÜNCELLEME SONUŞU ===
 
   setTimeout(() => {
     grid.innerHTML = "";
@@ -594,8 +605,6 @@ function loadCategory(category, checkin = null, checkout = null) {
     grid.style.opacity = "1";
   }, 300);
 }
-
-// ... Diğer fonksiyonlar (handleScrollEffects kaldırılmıştı)
 
 function setupProjectReservation() {
     document.body.addEventListener('click', (e) => {
@@ -729,7 +738,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupMobileMenu();
     setupProjectReservation(); 
     
-    // === ROTATING TEXT BAŞLANGICI (index.html'den taşındı) ===
+    // === ROTATING TEXT BAŞLANGICI ===
     const data = [
         {
             title: "Tarihi Turlar",
