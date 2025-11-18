@@ -1150,45 +1150,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-#page-satilik_kiralik h2 {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    color: var(--gold-light) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-    border-bottom: 2px solid var(--gold-dark);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}
+/* #page-satilik_kiralik h2 { kaldırıldı } */
 
-#page-otel h2 {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    color: var(--gold-light) !important;
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-    text-fill-color: initial !important;
-    border-bottom: 2px solid var(--gold-dark);
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-    text-align: center !important;
-}
+/* #page-otel h2 { kaldırıldı } */
 
 
 #page-satilik_kiralik .house-gallery,
@@ -1204,7 +1168,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-#page-satilik_kiralik .house-card,
+/* #page-satilik_kiralik .house-card { kaldırıldı } */
 #page-otel .house-card {
     width: 100%;
     height: auto;
@@ -1476,7 +1440,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #lightbox-next {
   right: 20px;
 }
-/* === RESTORASYON SAYFASI YENİ STİLLERİ === */
+/* === BLOG (ESKİ RESTORASYON) SAYFASI YENİ STİLLERİ === */
 
 /* Yeni "Önce" / "Sonra" ara başlıkları için stil */
 .restoration-subtitle {
@@ -1822,9 +1786,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 /* === DÜZELTME SONU === */
 
-/* === FİNAL DÜZELTME (V6): RESTORASYON KARTI BAŞLIĞINI GÖSTER === */
-#page-restorasyon .house-card h3 { /* Sadece restorasyon sayfasını hedefledik */
-    /* Bu kurallar, yazının alt kısım bandı gibi görünmesini sağlar */
+/* === FİNAL DÜZELTME (V6): BLOG KARTI BAŞLIĞINI GÖSTER === */
+/* Eski restorasyon kartı başlığı stilini, yeni blog kartları için koruyoruz */
+#page-restorasyon .house-card h3 { 
     display: block !important;
     height: auto !important;
     background: var(--gold-dark) !important; /* Altın rengi arka planı ekliyoruz */
@@ -1840,39 +1804,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-text-fill-color: initial !important;
     text-fill-color: initial !important;
 }
-/* === YENİ EKLEME: 3 SANİYELİK DÖNGÜSEL METİN STİLLERİ === */
+/* === YENİ EKLEME: DÖNGÜSEL METİN STİLLERİ DÜZELTME === */
 
-/* 1. Metin Özellikleri (Fade Efekti ve Boyutları) */
+/* Yüksekliği sınırlandıran ve renk çakışması yaratan kodları temizleyip optimize edilmiş bir sürüm ekledik. */
 #changing-text {
-    /* Eski p etiketinin font ve margin değerlerini buraya taşıdık */
-    font-size: 2rem; /* Yaklaşık 20px */
+    font-size: 2rem; 
     margin: 10px 0 30px 0;
     
-    /* BURAYI DÜZELTİYORUZ */
-    color: var(--text) !important; /* Yazı rengi (Beyaz/açık) */
-    -webkit-text-fill-color: var(--text) !important; /* Zorla beyaz yap */
+    color: var(--text) !important; 
+    -webkit-text-fill-color: var(--text) !important; 
     background: none !important;
     -webkit-background-clip: initial !important;
     
-    /* YENİ: Okunurluğu Artırmak İçin Hafif Gölge Ekleme */
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.5);
 
-    /* Fade efekti için CSS geçişleri */
     transition: opacity 0.5s ease-in-out;
     opacity: 1; 
     
-    /* ÖNEMLİ: Metin değişimi sırasında sayfanın titremesini engeller. */
+    /* Titremeyi engellemek için min-height değeri ayarlanıyor (Eski koddan daha sade) */
     min-height: 100px; 
-    text-align: center; /* Ortalamayı unutmuşuz, ekledik */
+    text-align: center; 
 }
 
-/* Metin içindeki kalın (strong) başlık için de rengi zorla beyaz yapalım */
 #changing-text strong {
     color: var(--text) !important;
 }
 
-/* 2. Butonları Aşağı İtme (Üst Üste Gelme Engeli) */
-/* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
 .hero-links-container.action-buttons {
     margin-top: 60px; 
 }
@@ -1882,3 +1839,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
 }
+/* Satılık/Kiralık (Yeni: Gezilecek Yerler) için özel başlık stili kaldırıldı. */
+/* Otel (Yeni: Kendi Turlarımız) için özel başlık stili kaldırıldı. */
+/* Satılık/Kiralık (Yeni: Gezilecek Yerler) için özel kart stili kaldırıldı. */
+/* Otel (Yeni: Kendi Turlarımız) için özel kart stili korundu. */
