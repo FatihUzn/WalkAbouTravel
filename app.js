@@ -380,7 +380,7 @@ document.body.addEventListener('click', (e) => {
     }
 });
 
-
+// app.js dosyasından:
 document.addEventListener('DOMContentLoaded', async () => {
     window.scrollTo(0, 0); 
     
@@ -414,31 +414,52 @@ document.addEventListener('DOMContentLoaded', async () => {
         await setLanguage('tr'); 
     }
     
-    // --- preloadProjectImages çağrısı KALDIRILDI ---
+    setTimeout(preloadProjectImages, 1000); 
     setupMobileMenu();
-    // --- setupProjectReservation çağrısı KALDIRILDI ---
+    setupProjectReservation(); 
 
-    // === KEŞFET BUTONU (CTA) İÇİN ===
-    // HTML'de 'discover-cta' ID'si KALDIRILDIĞI için bu kod bloğu KALDIRILDI.
-    // Nav linkleri ve Hero linkleri tüm işlevi görüyor.
+    // === BU ALAN KALDIRILDI: Artık mevcut index.html'de olmayan CTA menü kodunu siliyoruz. ===
+    /*
+    const cta = document.getElementById("discover-cta");
+    if (cta) {
+        const button = cta.querySelector(".btn");
+        const dropdown = cta.querySelector(".dropdown");
 
-   // === Nav linkleri ve Hero linkleri artık hash'i değiştiriyor ===
+        button.addEventListener("click", e => {
+            e.preventDefault();
+            e.stopPropagation();
+            cta.classList.toggle("open");
+        });
+
+        document.addEventListener("click", e => {
+            if (cta && !cta.contains(e.target)) cta.classList.remove("open");
+        });
+
+        dropdown.querySelectorAll("a[data-page]").forEach(link => {
+            link.addEventListener("click", e => {
+                e.preventDefault();
+                e.stopPropagation();
+                const pageId = link.getAttribute("data-page");
+                location.hash = pageId;
+                cta.classList.remove("open");
+            });
+        });
+    } else {
+        console.warn("CTA Grubu 'discover-cta' bulunamadı! Bu artık normaldir.");
+    }
+    */
+    // === KALDIRILAN ALAN SONU ===
+
+
+   // === Nav linkleri ve YENİ HERO LİNKLERİ artık hash'i değiştiriyor (ÖNCEKİ ÇÖZÜM BU) ===
     document.querySelectorAll('.nav-link[data-page], .btn-hero-link[data-page]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const pageId = link.getAttribute('data-page');
-            
-            // Eğer link zaten bir section ID'sine sahipse (blog, guide), showPage kendisi scroll edecek.
-            if (pageId === 'blog' || pageId === 'guide') {
-                showPage(pageId);
-            } else {
-                 // Diğer sayfalarda (about, services, contact) showPage'i çağır
-                location.hash = pageId; 
-            }
+            location.hash = pageId; 
         });
     });  
-  
-    // === 'Geri' tuşu artık hash'i değiştiriyor ===
+  // === 'Geri' tuşu artık hash'i değiştiriyor ===
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-page-back')) {
             e.preventDefault();
@@ -455,7 +476,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const initialPage = location.hash.replace('#', '') || 'hero';
     showPage(initialPage);
-}); 
+}); // ✅ Düzeltilmiş kapanış
 
 
 let currentImages = [];

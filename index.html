@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title data-key="title">WalkAboutTravel — Unutulmaz Seyahatler</title>
+<title data-key="title">Golden Palace — Real Estate & Architecture</title>
 <link rel="icon" type="image/png" href="assets/golden_palace_logo.webp">
 <link rel="preload" as="image" href="assets/golden_palace_logo.webp">
 <link rel="preload" as="image" href="assets/background.webp">
@@ -16,540 +16,127 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
 
-<link rel="stylesheet" href="style.css?v=1.6">
-
-<style>
-  /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER (Korunması Gerekenler) === */
-  header {
-    display: block; 
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
-    transition: background-color 0.3s;
-  }
-  header.scrolled {
-      background-color: rgba(10, 10, 10, 0.9);
-  }
-  .header-top-row {
-    background-color: #1a1a1a;
-    color: #ccc;
-    padding: 8px 30px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .header-top-row a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .header-top-row a:hover {
-    color: #ffcc66;
-  }
-  .header-top-row .top-bar-left a {
-    margin-right: 20px;
-  }
-  .header-top-row i {
-    margin-right: 8px;
-    color: #ffcc66;
-  }
-  .header-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 10px 30px;
-    height: 80px;
-  }
-
-  .hero-content-overlay .hero-since {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-  }
-  .hero-content-overlay h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin: 0;
-  }
-  .hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
-  }
-  
-  /* Keşfet Butonu stilleri - BURASI TEMİZLENDİ - */
-  .cta-group {
-    position: relative;
-    display: inline-block;
-  }
-
-  /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ (Korunması Gerekenler) === */
-  /* ========================================= */
-  .site-footer {
-    background-color: #0c0c0c; 
-    color: #a0a0a0;
-    padding: 60px 30px 20px 30px;
-    border-top: 1px solid #333;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto 40px auto;
-  }
-  .footer-column h3 {
-    font-family: 'Playfair Display', serif;
-    color: #ffffff;
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ffcc66;
-    padding-bottom: 10px;
-    font-weight: 700;
-  }
-  .footer-column.logo-column h3 {
-    border-bottom: none;
-  }
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-links li {
-    margin-bottom: 12px;
-  }
-  .footer-links a {
-    color: #a0a0a0;
-    text-decoration: none;
-    transition: color 0.3s, padding-left 0.3s;
-    display: inline-block;
-  }
-  .footer-links a:hover {
-    color: #ffcc66;
-    padding-left: 5px;
-  }
-  .footer-column.logo-column {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .footer-column.logo-column .social-icons {
-    margin-top: 20px;
-  }
-  .footer-links.contact-info li {
-    display: flex;
-    align-items: flex-start;
-  }
-  .footer-links.contact-info i {
-    color: #ffcc66;
-    margin-right: 12px;
-    margin-top: 5px;
-    width: 15px;
-  }
-  .footer-links.contact-info span,
-  .footer-links.contact-info a {
-    flex: 1;
-    padding-left: 0; 
-  }
-  .footer-links.contact-info a:hover {
-    color: #ffcc66;
-    padding-left: 0;
-  }
-  .footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    background-color: transparent;
-  }
-
-  /* === MOBİL UYUMLULUK GÜNCELLEMELERİ (Korunması Gerekenler) === */
-  @media (max-width: 992px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    .footer-column.logo-column {
-      grid-column: 1 / -1;
-      order: -1;
-      margin-bottom: 30px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    /* Header mobil ayarı */
-    .header-top-row {
-      padding: 10px 15px;
-      font-size: 0.75rem;
-    }
-    .header-top-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .header-bottom-row {
-      padding: 10px 15px;
-      height: 70px;
-    }
-    .hero-content-overlay h1 {
-      font-size: 3rem; /* Mobil'de başlık */
-    }
-
-    /* Footer Mobil */
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
-    .footer-column {
-      margin-bottom: 20px;
-    }
-    .footer-column.logo-column {
-      margin-bottom: 30px;
-    }
-    .site-footer {
-      padding: 40px 15px 20px 15px;
-    }
-  }
-</style>
-
+<link rel="stylesheet" href="style.css?v=1.4">
 </head>
 <body>
 
-<header id="main-header">
-  <div class="header-top-row">
-    <div class="top-bar-left">
-      <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="mailto:info@walkabouttravel.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@walkabouttravel.com</a>
-      </div>
-    <div class="top-bar-right">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Bizi Bulun</a>
-    </div>
-  </div>
-
-  <div class="header-bottom-row">
-    <div class="brand">
-      <img src="assets/golden_palace_logo.webp" alt="WalkAboutTravel Logo"> <div class="brand-text-container">
-          <span class="brand-title" data-key="brand_golden_palace">WalkAboutTravel</span>
-          <span class="brand-tagline" data-key="brand_realstate">Unutulmaz Seyahatler</span>
-      </div>
-    </div>
-  
-    <div style="display: flex; align-items: center;">
-      <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
-          <i class="fas fa-bars"></i>
-      </button>
-    
-      <nav class="navbar" id="navbar">
-        <a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-        <a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Neden Biz?</a>
-        <a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Destinasyonlar</a>
-        <a href="#blog" data-page="page-blog" class="nav-link" data-key="nav_blog">Blog</a>
-        <a href="#guide" data-page="page-guide" class="nav-link" data-key="nav_guide">Gezi Rehberi</a>
-        <a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">Rezervasyon</a>
-        <div class="language-selector mobile-only" style="display: none;">
-            <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-      </nav>
-    
-      <div class="language-selector desktop-only" style="margin-left: 20px;">
-          <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-    </div>
-  </div>
-</header>
-<section class="hero-video page-section active" id="hero">
-  <video autoplay muted loop playsinline class="hero-video-bg">
-    <source src="assets/hero_background.mp4" type="video/mp4">
-    Tarayıcınız video etiketini desteklemiyor.
-  </video>
-
-  <div class="hero-content-overlay">
-    <p class="hero-since" data-key="hero_since">1997'DEN BERİ HAYALLERİNİZİ GERÇEKLEŞTİRİYORUZ</p>
-    <h1 data-key="hero_title">UNUTULMAZ SEYAHATLER SİZİ BEKLİYOR</h1>
-    
-    <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;">Dünyayı Keşfetme Vakti: Macera Hemen Başlıyor!</h2>
-    
-    <div class="hero-links-container action-buttons">
-      <a href="#blog" data-page="page-blog" data-key="btn_hero_blog" class="btn btn-hero-link">Blog Yazıları</a>
-      <a href="#guide" data-page="page-guide" data-key="btn_hero_guide" class="btn btn-hero-link">Gezi Rehberleri</a>
-      <a href="#page-contact" data-page="page-contact" data-key="btn_hero_contact" class="btn btn-hero-link">Rezervasyon Yap</a>
-    </div>
-</section>
-
-<main id="page-container">
-    </main>
-
-<div id="lightbox">
-    <span id="lightbox-close" onclick="document.getElementById('lightbox').style.display='none'" aria-label="Kapat">×</span>
-    <button id="lightbox-prev" class="lightbox-nav-btn" onclick="showPrevImage()" aria-label="Önceki Resim">
-        <i class="fas fa-chevron-left"></i>
-    </button>
-    <img id="lightbox-img" src="" alt="Büyük Resim">
-    <button id="lightbox-next" class="lightbox-nav-btn" onclick="showNextImage()" aria-label="Sonraki Resim">
-        <i class="fas fa-chevron-right"></i>
-    </button>
-</div>
-
-<section id="blog" class="page-section"> 
-    <div class="container">
-      <h2 data-key="section_blog_title">Seyahat Blogu & İlham Veren Yazılar</h2> 
-      
-      <div class="card-container">
-        <a href="blog-butce.html" class="guide-card">
-          <img src="assets/blog-butce.webp" alt="Bütçe Seyahat İpuçları">
-          <div class="guide-card-content">
-            <h3>Bütçeyle Dünya Turu: 10 İpuçları</h3>
-            <p>Seyahat masraflarınızı düşürmenin denenmiş ve kanıtlanmış yolları.</p>
-          </div>
-        </a>
-        <a href="blog-foto.html" class="guide-card">
-          <img src="assets/blog-foto.webp" alt="Seyahat Fotoğrafçılığı">
-          <div class="guide-card-content">
-            <h3>Profesyoneller Gibi Çekim Yapın</h3>
-            <p>Gezginler için en iyi hafif kamera ve ekipman tavsiyeleri.</p>
-          </div>
-        </a>
-        <a href="blog-surdurulebilir.html" class="guide-card">
-          <img src="assets/blog-surdurulebilir.webp" alt="Sürdürülebilir Seyahat">
-          <div class="guide-card-content">
-            <h3>Sürdürülebilir Seyahat Rehberi</h3>
-            <p>Çevreye duyarlı gezginler için 5 kolay adım ve yerel kalma rehberi.</p>
-          </div>
-        </a>
-        <a href="blog-solo.html" class="guide-card">
-          <img src="assets/blog-solo.webp" alt="Solo Gezi">
-          <div class="guide-card-content">
-            <h3>Tek Başına Seyahatin Gücü</h3>
-            <p>Güvenlik ipuçları, avantajları ve en iyi solo destinasyonlar.</p>
-          </div>
-        </a>
-        <a href="blog-gecikme.html" class="guide-card">
-          <img src="assets/blog-gecikme.webp" alt="Uçuş Gecikmeleri">
-          <div class="guide-card-content">
-            <h3>Uçuş Gecikmeleriyle Başa Çıkma</h3>
-            <p>Stres yönetimi, haklarınız ve bekleme süresini verimli kullanma.</p>
-          </div>
-        </a>
-        <a href="chicago-fener-rehberi.html" class="guide-card">
-          <img src="assets/chicago-fener-hero.webp" alt="Chicago Fener Kulesi">
-          <div class="guide-card-content">
-            <h3>Michigan Gölü'nün Tarihi Gözcüsü</h3>
-            <p>Chicago Crib Lighthouse: Hikayesi ve en iyi seyir noktaları.</p>
-          </div>
-        </a>
-      </div>
-      </div>
-</section>
-
-<section id="guide" class="page-section"> 
-    <div class="container">
-      <h2 data-key="section_guide_title">Türkiye: Keşfedilmeyi Bekleyen Rotalar ve Kılavuzlar</h2>
-      
-      <div class="card-container">
-        <a href="kapadokya-rehberi.html" class="guide-card">
-          <img src="assets/kapadokya-hero.webp" alt="Kapadokya Balonları">
-          <div class="guide-card-content">
-            <h3>Kapadokya: Büyülü Balon Macerası</h3>
-            <p>3 Günlük Rota Planı, Mağara Otelleri ve Balon Turları İpuçları.</p>
-          </div>
-        </a>
-        <a href="antalya-rehberi.html" class="guide-card">
-          <img src="assets/antalya-hero.webp" alt="Antalya Kaleiçi">
-          <div class="guide-card-content">
-            <h3>Antalya: Akdeniz'in İncisi</h3>
-            <p>Kaleiçi, Antik Kentler ve En Lüks Otellerde Tatil Rehberi.</p>
-          </div>
-        </a>
-        <a href="mardin-rehberi.html" class="guide-card">
-          <img src="assets/mardin-hero.webp" alt="Mardin Taş Evleri">
-          <div class="guide-card-content">
-            <h3>Mardin: Mezopotamya'nın Gizemi</h3>
-            <p>Taşın Şehri, Manastırlar ve Otantik Lezzetler Turu.</p>
-          </div>
-        </a>
-        <a href="pamukkale-rehberi.html" class="guide-card">
-          <img src="assets/pamukkale-hero.webp" alt="Pamukkale Travertenler">
-          <div class="guide-card-content">
-            <h3>Pamukkale: Beyaz Cennet</h3>
-            <p>Travertenler, Antik Havuz ve Hierapolis Gezisi.</p>
-          </div>
-        </a>
-        <a href="karadeniz-yaylaları.html" class="guide-card">
-          <img src="assets/karadeniz-hero.webp" alt="Karadeniz Yaylası">
-          <div class="guide-card-content">
-            <h3>Doğu Karadeniz: Zümrüt Yaylalar</h3>
-            <p>Uzungöl, Ayder ve Sümela Manastırı Rotaları.</p>
-          </div>
-        </a>
-        <a href="efes-rehberi.html" class="guide-card">
-          <img src="assets/efes-hero.webp" alt="Efes Celsus Kütüphanesi">
-          <div class="guide-card-content">
-            <h3>Efes: Roma İhtişamı</h3>
-            <p>Celsus Kütüphanesi, Antik Tiyatro ve Meryem Ana Evi.</p>
-          </div>
-        </a>
-      </div>
-      </div>
-</section>
-
-<section id="page-contact" class="page-section" style="display: none;">
-    </section>
-
-<section id="page-about" class="page-section" style="display: none;">
-    </section>
-
-<section id="page-services" class="page-section" style="display: none;">
-    </section>
-
-
-<footer class="site-footer">
-    <div class="footer-grid">
-
-        <div class="footer-column">
-            <h3 data-key="footer_col_1_title">Hızlı Menü</h3>
-            <ul class="footer-links">
-                <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
-                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Neden Biz?</a></li>
-                <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Destinasyonlar</a></li>
-                <li><a href="#blog" data-page="page-blog" class="nav-link" data-key="nav_blog">Blog</a></li> 
-                <li><a href="#guide" data-page="page-guide" class="nav-link" data-key="nav_guide">Gezi Rehberi</a></li> 
-                <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">Rezervasyon</a></li>
-            </ul>
+    <header>
+        <div class="header-top-row">
+            <a href="tel:+905324567890" class="btn-top-info" data-key="header_tel"><i class="fas fa-phone"></i> +90 532 456 7890</a>
+            <a href="mailto:info@goldenpalace.com" class="btn-top-info" data-key="header_mail"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
+            <a href="https://maps.app.goo.gl/abcdefg" target="_blank" class="btn-top-info" data-key="header_direction"><i class="fas fa-map-marker-alt"></i> Yol Tarifi</a>
         </div>
-
-        <div class="footer-column">
-            <h3 data-key="footer_col_2_title">Özel Turlarımız</h3>
-            <ul class="footer-links">
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_1">Kültür Turları</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_2">Balayı Paketleri</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">Macera Turları</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_4">Kurumsal Geziler</a></li>
-            </ul>
+        <div class="brand">
+            <img src="assets/golden_palace_logo.webp" alt="Golden Palace Logo">
+            <div class="brand-text-container">
+                <span class="brand-title">GOLDEN PALACE</span>
+                <span class="brand-tagline" data-key="brand_tagline">Real Estate & Architecture</span>
+            </div>
         </div>
+        
+        <nav class="navbar" id="navbar">
+            <a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
+            <a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
+            <a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
+            <a href="#page-projects" data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
+            <a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
+            
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="tr">TR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ar">AR</button>
+                <button class="lang-btn" data-lang="zh">ZH</button>
+            </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </header>
 
-        <div class="footer-column logo-column">
-            <div class="footer-logo-container">
-                <img src="assets/golden_palace_logo.webp" alt="WalkAboutTravel Logo">
-                <div class="footer-text-container">
-                    <span class="footer-title" data-key="brand_golden_palace">WalkAboutTravel</span>
-                    <span class="brand-tagline" data-key="brand_realstate">Unutulmaz Seyahatler</span>
+    <main id="page-container">
+
+        <section class="page-section active hero hero-video" id="hero">
+            
+            <video autoplay muted loop playsinline class="hero-video-bg">
+                <source src="assets/hero_video_bg.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-content-overlay">
+                <span class="hero-since" data-key="hero_since">1985'ten Beri Güven</span>
+                <h1 data-key="hero_title">Emlak ve Mimari'de Güvenilir Ortağınız</h1>
+                
+                <p id="changing-text"></p>
+
+                <div class="hero-links-container action-buttons">
+                    
+                    <a href="#page-otel" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
+                    
+                    <a href="#page-restorasyon" data-page="page-restorasyon" data-category="restorasyon" data-key="drop_restoration" class="btn btn-hero-link">Restorasyon Projeleri</a>
+                    
+                    <a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Ticari Ve Konut</a>
                 </div>
             </div>
+            
+        </section>
+
+        </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo-container">
+                <img src="assets/golden_palace_logo.webp" alt="Golden Palace Logo">
+                <div class="footer-text-container">
+                    <span class="footer-title">GOLDEN PALACE</span>
+                    <span class="footer-tagline" data-key="brand_tagline">Real Estate & Architecture</span>
+                </div>
+            </div>
+            
+            <ul class="navbar">
+                <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
+                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
+                <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
+                <li><a href="#page-projects" data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a></li>
+                <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
+            </ul>
+
             <div class="social-icons">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                <a href="mailto:info@walkabouttravel.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/goldenpalace" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/goldenpalace" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/goldenpalace" target="_blank"><i class="fab fa-facebook-f"></i></a>
             </div>
         </div>
+        <p class="footer-bottom">&copy; <span id="currentYear"></span> <span data-key="footer_rights">Golden Palace. Tüm hakları saklıdır.</span></p>
+    </footer>
 
-        <div class="footer-column">
-            <h3 data-key="footer_col_4_title">Öne Çıkan Destinasyonlar</h3>
-            <ul class="footer-links">
-                <li><a href="#page-services" data-page="page-services">Uzak Doğu</a></li>
-                <li><a href="#page-services" data-page="page-services">Avrupa Başkentleri</a></li>
-                <li><a href="#page-services" data-page="page-services">Ege ve Akdeniz</a></li>
-            </ul>
+
+    <div id="lightbox" class="availability-modal">
+        <div class="modal-content">
+            <img id="lightbox-img" src="" alt="Galeri Detay Görüntüsü">
+            <button id="lightbox-close" class="image-modal-close-btn" data-key="modal_close_btn">X</button>
+            <button id="lightbox-prev" class="lightbox-nav-btn"><i class="fas fa-chevron-left"></i></button>
+            <button id="lightbox-next" class="lightbox-nav-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
-
-        <div class="footer-column">
-            <h3 data-key="footer_col_5_title">Bize Ulaşın</h3>
-            <ul class="footer-links contact-info">
-                <li>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span data-key="contact_info_address_p">Turizm Cd. No: 42/A, WalkAbout Plaza Kat: 12, İstanbul/Türkiye</span>
-                </li>
-                <li>
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+902125551923" data-key="contact_info_phone_p">+90 (212) 555 1923</a>
-                </li>
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:info@walkabouttravel.com" data-key="contact_info_email_p">info@walkabouttravel.com</a>
-                </li>
-            </ul>
-        </div>
-
     </div>
     
-    <div class="footer-bottom" data-key="footer_copyright">
-        © 2025 WalkAboutTravel. Tüm hakları saklıdır. | Hayallerinize Giden Yol.
+    <div id="restorationImageModal" class="image-modal-overlay">
+        <div class="image-modal-content">
+            <div class="image-modal-image-wrapper">
+                <img id="modalBeforeImage" src="" alt="Önceki Durum">
+                <span class="image-modal-label" data-key="restoration_before_label">ÖNCE</span>
+            </div>
+            <div class="image-modal-image-wrapper">
+                <img id="modalAfterImage" src="" alt="Sonraki Durum">
+                <span class="image-modal-label" data-key="restoration_after_label">SONRA</span>
+            </div>
+            <button class="image-modal-close-btn" data-key="modal_close_btn" onclick="closeImageModal()">Kapat</button>
+        </div>
     </div>
-</footer>
 
-<script src="app.js?v=1.6" defer></script>
 
-<script>
-    // Dinamik Metin Döngüsü - Turizm Temasına Uyarlandı (Kullanılan ID korunmuştur)
-    const data = [
-        {
-            title: "Özel Rota Planlama",
-            description: "Hayalinizdeki geziyi, bütçenize ve ilgi alanlarınıza özel olarak baştan sona planlıyoruz."
-        },
-        {
-            title: "Lüks Konaklama",
-            description: "Dünyanın en seçkin ve konforlu otellerinde ayrıcalıklı konaklama fırsatları sunuyoruz."
-        },
-        {
-            title: "Vize ve Seyahat Sigortası",
-            description: "Tüm bürokratik süreçlerinizi hızlı ve güvenilir bir şekilde yönetiyor, eksiksiz bir seyahat sağlıyoruz."
-        },
-        {
-            title: "7/24 Rehber Desteği",
-            description: "Geziniz boyunca anlık destek ve profesyonel rehberlik hizmeti sunuyoruz."
-        }
-    ];
-
-    let index = 0; 
-    const textElement = document.getElementById('changing-text'); 
-    const intervalTime = 5000; // 5 saniye
-
-    function changeTextWithFade() {
-        // 1. Fade Out: Opaklığı sıfıra düşür
-        if(textElement) {
-            textElement.style.opacity = '0'; 
-        }
-
-        // 2. Metni 0.5 saniye sonra değiştir
-        setTimeout(() => {
-            if(textElement) {
-                const currentData = data[index];
-                
-                // Metin içeriğini Kalın Başlık ve Açıklama olarak HTML'e yaz
-                textElement.innerHTML = `<strong>${currentData.title}</strong><br>${currentData.description}`;
-                
-                // 3. Fade In: Opaklığı tekrar 1 yap
-                textElement.style.opacity = '1'; 
-                
-                // 4. İndeksi bir sonraki öğeye ilerlet (Döngü)
-                index = (index + 1) % data.length;
-            }
-        }, 500); // CSS transition süresi ile uyumlu (0.5 saniye)
-    }
-
-    // HTML öğesi yüklü ise döngüyü başlat
-    if(textElement) {
-        // Dinamik metin döngüsü 5 saniye sonra başlar.
-        setInterval(changeTextWithFade, intervalTime);
-    }
-</script>
-
+    <script src="app.js?v=1.4"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
