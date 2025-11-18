@@ -14,7 +14,6 @@
 
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   
   <link rel="stylesheet" href="style.css">
 
@@ -56,27 +55,6 @@
   </header>
 
 
-<div id="category-modal" class="category-modal">
-  <div class="category-modal-content">
-    <h3 data-key="modal_category_title">Kategori Seçin</h3>
-    <div class="category-grid">
-      <a href="#" class="category-button" data-page="projects" data-category="otel">
-        <i class="fas fa-hotel"></i>
-        <span data-key="modal_category_otel">Otel</span>
-      </a>
-      <a href="#" class="category-button" data-page="tours"> 
-        <i class="fas fa-map-signs"></i>
-        <span data-key="modal_category_tur">Tur</span>
-      </a>
-      <a href="#" class="category-button" data-page="projects" data-category="satilik_kiralik">
-        <i class="fas fa-home"></i>
-        <span data-key="modal_category_villa">Otel & Rezervasyon</span> 
-      </a>
-    </div>
-    <button id="category-modal-close" class="btn btn-secondary" data-key="btn_cancel">İptal</button>
-  </div>
-</div>
-
   <main id="page-container">
 
     <section class="hero page-section active" id="hero">
@@ -90,224 +68,12 @@
         <p data-key="hero_subtitle">Unutulmaz seyahat deneyimleri</p>
 
         <div class="cta-group" id="discover-cta">
-          
-          <a class="btn btn-hero" href="#projects" data-key="btn_discover">Keşfet</a>
-          
-          <div class="dropdown">
-            <a href="#" data-page="projects" data-category="otel" data-key="drop_hotel">Otelimiz</a>
-            <a href="#" data-page="projects" data-category="insaat" data-key="drop_construction">Yurtiçi Turlar</a>
-            <a href="#" data-page="projects" data-category="Kültür Turu / Tarihi Rotalar" data-key="drop_restoration">Kültür Turu / Tarihi Rotalar</a>
-            <a href="#" data-page="projects" data-category="satilik_kiralik" data-key="drop_rental">Otel & Rezervasyon</a>
-          </div>
+          <a class="btn btn-hero" href="#contact" data-key="btn_discover">Bize Ulaşın</a>
         </div>
       </div>
 
     </section>
-
-    
-    <section id="explore-why-us" class="page-section">
-      <h2>Keşfet & Neden Biz?</h2>
-      <div class="explore-why-grid">
-        
-        <div class="ew-card">
-          <i class="fa-solid fa-map-signs"></i>
-          <h3>Keşfetmeye Başla</h3>
-          <p>Türkiye’nin en özel destinasyonlarında seni bekleyen rotaları keşfet.</p>
-          <div class="explore-grid-mini">
-            <img src="assets/antalya.jpg" alt="Antalya">
-            <img src="assets/pam1.jpg" alt="Pamukkale">
-            <img src="assetsS/mardin.jpg" alt="Mardin">
-            <img src="assets/fethiye.jpg" alt="Fethiye">
-          </div>
-          <a href="#tours" class="btn">Tüm Turları Gör</a>
-        </div>
-        
-        <div class="ew-card">
-          <i class="fa-solid fa-earth-europe"></i>
-          <h3>Kişiye Özel Tur Planları</h3>
-          <p>Her seyahat, müşterimizin zevkine ve beklentilerine göre özenle tasarlanır.</p>
-          
-          <i class="fa-solid fa-hotel" style="margin-top: 25px;"></i>
-          <h3>Lüks Konaklama Partnerleri</h3>
-          <p>Seçkin oteller ve resort zincirleriyle özel anlaşmalar.</p>
-        </div>
-        
-        <div class="ew-card">
-          <i class="fa-solid fa-headset"></i>
-          <h3>7/24 Rehberlik ve Destek</h3>
-          <p>Yolculuğunuzun her aşamasında profesyonel ekibimiz yanınızda.</p>
-          
-          <i class="fa-solid fa-tags" style="margin-top: 25px;"></i>
-          <h3>En İyi Fiyat Garantisi</h3>
-          <p>Kaliteden ödün vermeden en uygun fiyat seçenekleri.</p>
-        </div>
-      </div>
-    </section>
-
-    
-    <section class="parallax-section" style="height: 300px; margin-top: 60px;">
-      <div class="overlay">
-        <h2>Her Yolculuk, Yeni Bir Hikaye</h2>
-      </div>
-    </section>
-
-    
-    <section id="destinations" class="page-section" aria-labelledby="destinations-title">
-      <h2 id="destinations-title">Popüler Rotalar</h2>
-
-      <div class="destination-grid">
-        <a class="destination-card" href="#capadocia" aria-label="Kapadokya tur detayları">
-          <img src="assets/cap1.jpg" alt="Kapadokya - balonlarla gün doğumu" loading="lazy" width="640" height="420">
-          <h3>Kapadokya</h3>
-          <p>Peri bacaları ve balon turlarıyla büyülü bir deneyim.</p>
-        </a>
-
-        <a class="destination-card" href="#pamukkale" aria-label="Pamukkale tur detayları">
-          <img src="assets/pam1.jpg" alt="Pamukkale travertenleri beyaz teraslar" loading="lazy" width="640" height="420">
-          <h3>Pamukkale</h3>
-          <p>Bembeyaz travertenler ve Hierapolis antik kenti.</p>
-        </a>
-
-        <a class="destination-card" href="#antalya" aria-label="Antalya tatil paketleri">
-          <img src="assets/antalya.jpg" alt="Antalya turkuaz deniz ve kıyı" loading="lazy" width="640" height="420">
-          <h3>Antalya</h3>
-          <p>Akdeniz’in maviliğinde deniz, kum, güneş.</p>
-        </a>
-
-        <a class="destination-card" href="#mardin" aria-label="Mardin kültür turu">
-          <img src="assets/mardin.jpg" alt="Mardin taş evler ve tarihi doku" loading="lazy" width="640" height="420">
-          <h3>Mardin</h3>
-          <p>Taş sokaklar, kadim kültür ve lezzet rotaları.</p>
-        </a>
-
-        <a class="destination-card" href="#fethiye" aria-label="Fethiye doğa ve macera">
-          <img src="assets/fethiye.jpg" alt="Fethiye Ölüdeniz ve dağlar" loading="lazy" width="640" height="420">
-          <h3>Fethiye</h3>
-          <p>Likya Yolu, tekne turları ve yamaç paraşütü.</p>
-        </a>
-
-        <a class="destination-card" href="#istanbul" aria-label="İstanbul şehir turu">
-          <img src="assets/istanbul.jpg" alt="İstanbul Boğazı ve şehir silüeti" loading="lazy" width="640" height="420">
-          <h3>İstanbul</h3>
-          <p>Tarih, kültür ve modern yaşamın buluştuğu şehir.</p>
-        </a>
-      </div>
-      <div class="map-info">
-        <h3>Ofisimiz</h3>
-        <p>Antalya Merkez, Atatürk Caddesi No:123</p>
-        <p>📞 +90 555 555 55 55</p>
-        <p>📧 info@walkabouttravel.com</p>
-      </div>
-
-      <div class="see-more">
-        <a href="#contact" class="btn">Tüm Turları Gör</a>
-      </div>
-
-      <h3 style="margin-top: 60px; text-align: center; color: #0077b6;">Çalıştığımız Markalar</h3>
-      <div class="partner-logos" style="text-align: center; margin-top: 30px;">
-        <img src="assets/pegasus.png" alt="Pegasus">
-        <img src="assets/turkish.png" alt="THY">
-        <img src="assets/tripadvisor.png" alt="Tripadvisor">
-      </div>
-      
-      </section>
-
-    <section class="intro-short">
-      <p>
-        WalkAboutTravel, Türkiye'nin en özel destinasyonlarında kişiye özel seyahat deneyimleri sunar.
-        Amacımız: Her yolculuğu unutulmaz bir hikyeye dönüştürmek.
-      </p>
-    </section>
-
-    <section class="slogan">
-      <h2>Her Yolculuk, Yeni Bir Hikaye</h2>
-      <p>WalkAboutTravel ile sadece seyahat etmeyin, keşfedin.</p>
-    </section>
-
-    <section id="projects" class="page-section">
-
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide project-card" data-category="otel">
-            <img src="assets/cap1.jpg" alt="Otelimiz">
-            <h3>Otelimiz</h3>
-          </div>
-
-          <div class="swiper-slide project-card" data-category="insaat">
-            
-            <img src="assets/insaat_hero.jpg" alt="Yurtiçi Turlar">
-            <h3>Yurtiçi Turlar</h3>
-          </div>
-
-          <div class="swiper-slide project-card" data-category="tur">
-            <img src="assets/cap1.jpg" alt="Kültür Turu / Tarihi Rotalar">
-            <h3>Kültür Turu / Tarihi Rotalar</h3>
-          </div>
-
-          <div class="swiper-slide project-card" data-category="satilik_kiralik">
-            
-            <img src="assets/satilik_kiralik_hero.jpg" alt="Otel & Rezervasyon">
-            <h3>Otel & Rezervasyon</h3>
-          </div>
-        </div>
-
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-
-
-      <div class="project-reservation-form" id="project-reservation-form" style="display: none;">
-        <div class="date-picker-group">
-          <div>
-            <label for="project-check-in" data-key="modal_checkin">Giriş Tarihi</label>
-            <input type="date" id="project-check-in">
-          </div>
-          <div>
-            <label for="project-check-out" data-key="modal_checkout">Çıkış Tarihi</label>
-            <input type="date" id="project-check-out">
-          </div>
-        </div>
-        <div class="modal-buttons">
-          <button class="btn" id="project-search" data-key="btn_search">Müsaitlik Ara</button>
-        </div>
-      </div>
-      <h2 data-key="projects_title_featured" id="projects-title">Öne Çıkan Projelerimiz</h2>
-      <div class="project-grid" id="project-grid">
-        <div class="project-card">
-          <img src="assets/for_hotel.jpg" alt="Otel Projesi" loading="lazy">
-          <h3 data-key="project_h3_residence">Otel</h3>
-        </div>
-        <div class="project-card">
-          <img src="assets/for_tour.jpg" alt="Tur Projesi" loading="lazy">
-          <h3 data-key="project_h3_commercial">Tur</h3>
-        </div>
-        <div class="project-card">
-          <img src="assets/for_villa.jpg" alt="Villa Projesi" loading="lazy">
-          <h3 data-key="project_h3_multipurpose">Villa</h3>
-        </div>
-      </div>
-
-      <div id="latest-projects" style="margin-top: 100px;">
-        <h2 data-key="projects_title_latest">En Son Tamamlanan Projelerimiz</h2>
-        <div class="latest-grid">
-          <div class="latest-card">
-            <img src="assets/for_proje1.jpg" alt="Modern Residence" loading="lazy">
-            <h3 data-key="latest_h3_1">Modern Residence</h3>
-          </div>
-          <div class="latest-card">
-            <img src="assets/for_proje2.jpg" alt="Commercial Hub" loading="lazy">
-            <h3 data-key="latest_h3_2">Commercial Hub</h3>
-          </div>
-          <div class="latest-card">
-            <img src="assets/for_proje3.jpg" alt="Multipurpose Complex" loading="lazy">
-            <h3 data-key="latest_h3_3">Multipurpose Complex</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    </main>
+  </main>
   
   <footer>
     <div class="footer-content">
@@ -338,8 +104,6 @@
       </p>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
   <script src="app.js" defer></script>
 
