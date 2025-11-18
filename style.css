@@ -22,68 +22,7 @@
 html {
   scroll-behavior: smooth;
 }
-/* ========================================= */
-/* === HERO VİDEO ARKA PLAN STİLLERİ === */
-/* ========================================= */
 
-#hero {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Tam ekran yüksekliği */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000; /* Video yüklenemezse siyah arkaplan */
-    z-index: 1; /* Diğer sayfaların altında kalmasını sağlar */
-    padding: 0; /* Padding'i sıfırlayın */
-}
-
-#hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 1; /* İçerik (hero-content) 5, navbar 1000'dir. Bu en altta kalmalı. */
-    transform: translate(-50%, -50%); /* Videoyu tam ortalar */
-    object-fit: cover; /* Önemli: Videonun ekranı kaplamasını sağlar */
-    opacity: 0.75; /* İsteğe bağlı: Metin okunurluğu için videoyu hafif karartır */
-}
-
-.hero-content {
-    position: relative;
-    z-index: 5; /* Metin ve butonların videonun üstünde kalmasını sağlar */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    max-width: 900px;
-}
-
-/* ========================================= */
-/* === DİĞER HERO BİLEŞENLERİ STİLLERİ (Gözden Geçirildi) === */
-/* ========================================= */
-
-/* Bu stil bloğu index.html'in içindeki <style> etiketinden geliyordu, temizlik için buraya taşıdım: */
-.hero-content-overlay .hero-since {
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-.hero-content-overlay h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 4.5rem;
-    font-weight: 900; 
-    margin: 0;
-}
-.hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
-}
 body {
   margin: 0;
   font-family: 'Inter', Roboto, Arial, sans-serif;
@@ -169,11 +108,13 @@ header {
   align-items: center;
   gap: 12px;
 }
-.brand img {
+
+/* YORUM: Logo resmi artık HTML'de yok, sadece metin kalıyor */
+/* .brand img {
   height: 45px;
   width: auto;
   border-radius: 4px; 
-}
+} */
 .brand-text-container {
   display: flex;
   flex-direction: column;
@@ -293,28 +234,52 @@ header {
   .navbar a::after { left: 50%; transform: translateX(-50%) scaleX(0); transition: transform 0.3s var(--easing); height: 2px; width: 50%; }
   .navbar a:hover::after { transform: translateX(-50%) scaleX(1); animation: none; }
   .language-selector { flex-direction: column; margin-top: 20px; margin-left: 0; }
-  .brand img { height: 35px; }
+  /* .brand img { height: 35px; } */
   .brand-title { font-size: 20px; }
   .brand-tagline { font-size: 12px; }
 }
 
-.hero {
+/* === VİDEO ARKAPLAN STİLLERİ (TEKRAR SADELEŞTİRİLDİ) === */
+#hero {
+  position: relative;
+  width: 100%;
   min-height: 100vh; 
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-position: center center; 
-  background-color: #000; 
-  
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
-  position: relative;
-  overflow: hidden;
+  padding: 0; /* Index.html'deki style'dan gelen padding sıfırlandı */
+  background-color: #000; /* Fallback */
+  z-index: 1; 
   opacity: 1;
   transition: opacity 0.3s ease-out;
 }
+
+#hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0; /* İçeriğin altında kalması için çok düşük z-index */
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.75; 
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5; /* Metin ve butonların üstte kalması için yüksek z-index */
+  color: white; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  max-width: 900px;
+}
+/* === VİDEO ARKAPLAN STİLLERİ SONU === */
+
 .hero::after {
   content: "";
   position: absolute;
@@ -342,189 +307,21 @@ header {
 }
 
 .hero > div {
+  /* Bu blok hero-content'i kapsayan div'di, artık hero-content direkt kullanılıyor */
   position: relative;
   z-index: 3; 
   opacity: 0;
   transform: scale(0.9);
   animation: zoomFadeIn 1.4s var(--easing) forwards 0.5s;
 }
-.hero h1 {
-  font-weight: 900;
-  letter-spacing: 1px;
-  font-size: 48px;
-}
 
-.hero-since {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--gold-light); 
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 10px;
-  background: none;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  -webkit-text-fill-color: initial;
-  text-fill-color: initial;
-}
-
-.hero p {
-  font-family: 'Inter', sans-serif;
-  color: #d1d5db;
-  margin-bottom: 40px;
-  font-size: 20px;
-}
-
-.btn {
-  font-family: 'Inter', sans-serif;
-  display: inline-block;
-  padding: 14px 30px;
-  background: var(--gold-dark);
-  color: #111;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.4s var(--easing);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4), var(--gold-shadow);
-  text-decoration: none;
-  border: 1px solid var(--gold-light);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-.btn:hover {
-  background: var(--gold-light);
-  color: #000;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3), var(--gold-shadow-intense);
-  transform: translateY(-3px) scale(1.05); 
-}
-.btn-hero {
-  animation: pulseGold 2s var(--easing) infinite;
-}
-
-@keyframes pulseGold {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.95; 
-  }
-  50% { 
-    transform: scale(1.05); 
-    opacity: 1; 
-  }
-}
-
-
-.project-reservation-form {
-    margin-bottom: 60px; 
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(5px);
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid var(--border-dark);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.project-reservation-form .date-picker-group {
-    margin: 0;
-    justify-content: center;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-.project-reservation-form .date-picker-group div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-}
-.project-reservation-form .date-picker-group label {
-    font-weight: 600;
-    color: var(--gold-light);
-    margin-bottom: 8px;
-    font-family: 'Inter', sans-serif;
-}
-.project-reservation-form .date-picker-group input[type="date"] {
-    width: 100%;
-    padding: 12px;
-    background: var(--bg);
-    border: 1px solid var(--border-dark);
-    color: var(--text);
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-}
-.project-reservation-form .modal-buttons {
-    margin-top: 20px;
-    justify-content: center;
-    display: flex;
-    gap: 15px;
-}
-@media (max-width: 500px) {
-    .project-reservation-form .date-picker-group {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    .project-reservation-form .date-picker-group div {
-        width: 100%;
-    }
-     .project-reservation-form .modal-buttons .btn {
-        width: 100%;
-    }
-}
-
-
-.cta-group { position: relative; display: inline-block; margin-top: 20px; }
-.dropdown {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 240px;
-  background: var(--section-bg);
-  border: 1px solid var(--gold-dark);
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: var(--gold-shadow);
-  z-index: 1001;
-}
-.dropdown a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 20px;
-  border-radius: 6px;
-  text-align: center;
-  cursor: pointer;
-}
-.dropdown a:hover { background: #000; color: var(--gold-light); }
-.cta-group.open .dropdown { display: flex; }
-
-
-section {
-  padding: 100px 40px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s var(--easing);
-  background-color: transparent; 
-  position: relative; 
-  z-index: 10; 
-  background-image: none;
-}
-section#projects {
-    padding-top: 60px;
-}
-
+/* YENİ EKLENEN KURAL: Tüm alt sayfalar için tam ekran yüksekliğini zorla */
 .page-section {
+    min-height: 100vh !important;
     display: none;
     animation: pageFadeIn 0.6s var(--easing);
 }
+
 .page-section.active {
     display: block;
 }
@@ -1287,133 +1084,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    rgba(255, 204, 102, 0.12) 0%,
-    rgba(255, 204, 102, 0.02) 60%,
-    transparent 100%
-  );
-  z-index: 3;
-  filter: blur(30px);
-  animation: goldPulse 8s ease-in-out infinite;
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-/* Hero içeriği overlay’in üstünde kalsın */
-.hero-video .hero-content-overlay {
-  position: relative;
-  z-index: 4; /* yazılar üstte */
-}
-/* === FİNAL DÜZELTME (V5): YENİ HERO LİNKLERİ === */
-
-/* "Keşfet" butonundan gelen linklerin yeni kapsayıcısı */
-.hero-links-container {
-  display: flex;
-  flex-wrap: wrap; /* Mobil'de alt alta inebilsin */
-  justify-content: center;
-  gap: 15px; /* Butonlar arası boşluk */
-  margin-top: 30px; /* Üstteki yazıya olan mesafe */
-}
-
-/* Yeni hero link butonlarının stili */
-.btn-hero-link {
-  display: inline-block;
-  padding: 10px 20px;
-  background: transparent; /* Şeffaf arka plan */
-  color: var(--gold-light); /* Altın rengi yazı */
-  border: 2px solid var(--gold-dark); /* Altın rengi çerçeve */
-  border-radius: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-  transition: all 0.4s var(--easing);
-  
-  /* Ana "btn" sınıfından gelen gölgeyi ve animasyonu sıfırlayalım */
-  box-shadow: none;
-  animation: none;
-}
-
-/* Üzerine gelince (hover) efekti */
-.btn-hero-link:hover {
-  background: var(--gold-dark); /* Arka plan altın rengi ol */
-  color: #111; /* Yazı koyu ol */
-  border-color: var(--gold-dark);
-  box-shadow: var(--gold-shadow); /* Gölge ekle */
-  transform: translateY(-3px) scale(1.05);
-}
-/* === DÜZELTME SONU === */
-
-/* === YENİ EKLEME: 3 SANİYELİK DÖNGÜSEL METİN STİLLERİ === */
-
-/* 1. Metin Özellikleri (Fade Efekti ve Boyutları) */
-#changing-text {
-    /* Eski p etiketinin font ve margin değerlerini buraya taşıdık */
-    font-size: 2rem; /* Yaklaşık 20px */
-    margin: 10px 0 30px 0;
-    
-    /* BURAYI DÜZELTİYORUZ */
-    color: var(--text) !important; /* Yazı rengi (Beyaz/açık) */
-    -webkit-text-fill-color: var(--text) !important; /* Zorla beyaz yap */
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    
-    /* YENİ: Okunurluğu Artırmak İçin Hafif Gölge Ekleme */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.5);
-
-    /* Fade efekti için CSS geçişleri */
-    transition: opacity 0.5s ease-in-out;
-    opacity: 1; 
-    
-    /* ÖNEMLİ: Metin değişimi sırasında sayfanın titremesini engeller. */
-    min-height: 100px; 
-    text-align: center; /* Ortalamayı unutmuşuz, ekledik */
-}
-
-/* Metin içindeki kalın (strong) başlık için de rengi zorla beyaz yapalım */
-#changing-text strong {
-    color: var(--text) !important;
-}
-
-/* 2. Butonları Aşağı İtme (Üst Üste Gelme Engeli) */
-/* .action-buttons sınıfını kullanarak mevcut 30px'lik margin-top değerini 60px'e yükseltiyoruz. */
-.hero-links-container.action-buttons {
-    margin-top: 60px; 
-}
-/* Video Arkaplanı Stilleri */
-#hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Videoyu kapsayıcısına sığdır */
-    z-index: -1; /* İçeriğin arkasına al */
-}
-
-/* Hero içeriğinin okunabilirliğini artırmak için */
-.hero-content {
-    position: relative;
-    z-index: 1; /* Videonun önüne getir */
-    color: white; /* Metin rengini belirle */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Metne gölge ekle */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Tüm ekranı kaplamasını sağlar */
-}
-
-/* Hero section'ının da relative olması önemli */
-#hero {
-    position: relative;
-    overflow: hidden; /* Video taşmalarını engelle */
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Video yüklendiğinde beyaz flash olmaması için bir fallback color */
-    background-color: #000; 
-}
-/* === DÜZELTME SONU === */
+    rgba(255, 204, 10
