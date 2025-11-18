@@ -132,4 +132,260 @@ h1, h2, h3, h4,
     box-shadow: 0 20px 40px rgba(0,0,0,0.6), var(--main-shadow);
 }
 
-/* ... (Geri kalan stiller) ... */
+/* ========================================= */
+/* === KAPSAYICI DÜZEN VE YAPISAL STİLLER === */
+/* ========================================= */
+main {
+    padding: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-section {
+    padding: 100px 30px;
+    background-color: var(--bg);
+    display: none; /* Varsayılan olarak gizli */
+}
+.page-section.active {
+    display: block; /* Aktif sayfayı göster */
+}
+
+/* === BAŞLIK VE GİRİŞ PARAGRAFI STİLLERİ === */
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 30px;
+}
+.page-section p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* === GRİD YAPILARI (Services, Tours, Otel) === */
+.service-grid, .project-grid, .latest-grid, .house-gallery {
+    display: grid;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.latest-grid, .house-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+/* ========================================= */
+/* === HİZMET KARTLARI (SERVICE CARD) STİLLERİ === */
+/* ========================================= */
+.service-card {
+    background-color: var(--section-bg);
+    border: 1px solid var(--border-dark);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing);
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--main-dark);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+.service-card i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+.service-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+.service-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* ========================================= */
+/* === TUR VE OTEL KARTLARI (PROJECT/HOUSE CARD) STİLLERİ === */
+/* ========================================= */
+.project-card, .house-card {
+    background-color: var(--section-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing);
+    cursor: pointer;
+    border: 1px solid var(--border-dark);
+}
+.project-card:hover, .house-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--main-light);
+}
+.project-card img, .house-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s var(--easing);
+}
+.house-card img {
+    height: 280px; 
+}
+.project-card:hover img, .house-card:hover img {
+    transform: scale(1.05);
+}
+.project-card h3, .house-card h3 {
+    padding: 15px 20px 20px 20px;
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text);
+}
+.house-card .card-content {
+    padding: 15px 20px;
+}
+.house-card .card-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+.house-card .card-info i {
+    margin-right: 5px;
+    color: var(--main-dark);
+}
+
+/* ========================================= */
+/* === LİGHTBOX STİLLERİ (4. Adım için gerekli) === */
+/* ========================================= */
+.availability-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: default;
+}
+
+#lightbox-img {
+    max-width: 60vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-right: 30px; /* Detaylar için boşluk */
+}
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--text);
+    border: none;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2010;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#lightbox-prev { left: 20px; }
+#lightbox-next { right: 20px; }
+
+.lightbox-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-details-container {
+    max-width: 300px;
+    color: var(--text);
+    background-color: var(--section-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--main-shadow-intense);
+}
+
+#lightbox-title {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+}
+
+.lightbox-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.lightbox-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.lightbox-info-grid i {
+    color: var(--main-light);
+    margin-right: 10px;
+}
+
+.btn-mail-reserve {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--main-dark);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-mail-reserve:hover {
+    background-color: var(--main-light);
+}
+
+/* === MOBİL UYUMLULUK (Responsive) === */
+@media (max-width: 1024px) {
+    #lightbox-img {
+        max-width: 90vw;
+        max-height: 50vh; 
+        margin: 0 0 20px 0;
+    }
+    .availability-modal {
+        flex-direction: column;
+    }
+    .lightbox-details-container {
+        max-width: 90vw;
+        margin-top: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .page-section {
+        padding: 60px 15px;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    .project-grid, .latest-grid, .house-gallery {
+        grid-template-columns: 1fr;
+    }
+}/* ... (Geri kalan stiller) ... */
