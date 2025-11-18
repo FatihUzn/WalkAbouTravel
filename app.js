@@ -336,7 +336,7 @@ async function setLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
-// === showPage fonksiyonu MOBİL GERİ TUŞU için güncellendi ===
+// === showPage fonksiyonu (Kayma Düzeltmesi uygulandı) ===
 async function showPage(pageId) {
     
     // URL hash'i boşsa veya # ise 'hero' sayfasını varsay
@@ -413,16 +413,21 @@ async function showPage(pageId) {
 
         newPage.classList.remove('visible');
         
+        // === KAYMA SORUNU DÜZELTMESİ: Kart gecikme döngüsü kaldırıldı ===
         setTimeout(() => {
             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card, .restoration-card');
+            
+            // Tüm kartlardan eski animasyon gecikmelerini temizle
             cards.forEach(card => {
-                card.classList.remove('card-fade-in');
                 card.style.animationDelay = '';
             });
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 100}ms`;
-                card.classList.add('card-fade-in');
+            
+            // Tüm kartlara yeni, basitleştirilmiş animasyon sınıfını ekle (Gecikmesiz toplu yükleme)
+            cards.forEach((card) => {
+                card.classList.remove('card-fade-in'); 
+                card.classList.add('card-fade-in'); 
             });
+            
             newPage.classList.add('visible');
         }, 50);
         

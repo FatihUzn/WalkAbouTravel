@@ -1150,10 +1150,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-/* #page-satilik_kiralik h2 { kaldırıldı } */
-
-/* #page-otel h2 { kaldırıldı } */
-
 
 #page-satilik_kiralik .house-gallery,
 #page-otel .house-gallery {
@@ -1168,7 +1164,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-/* #page-satilik_kiralik .house-card { kaldırıldı } */
 #page-otel .house-card {
     width: 100%;
     height: auto;
@@ -1370,12 +1365,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       z-index: 1001; /* Header'dan (1000) daha yüksek */
   }
 
-  /* YENİ: Restorasyon galerisi resimlerinin boyutunu mobil için ayarla */
+  /* YENİ: Blog galerisi resimlerinin boyutunu mobil için ayarla */
   #page-pruva-otel .detail-gallery img {
       height: 180px !important; /* Yüksekliği küçült */
   }
   
-  /* YENİ: Restorasyon öncesi/sonrası modalındaki resimleri mobil için düzenle */
+  /* YENİ: Blog öncesi/sonrası modalındaki resimleri mobil için düzenle */
   .image-modal-content {
       flex-direction: column; /* Mobil'de alt alta diz */
       gap: 5px !important;
@@ -1384,25 +1379,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       max-height: 40vh !important; /* Ekranın yarısından fazlasını kaplamasın */
   }
   
-  /* YENİ: Otel/Satılık kartlarının mobil görünüm yüksekliğini küçült */
+  /* YENİ: Tur kartlarının mobil görünüm yüksekliğini küçült */
   #page-satilik_kiralik .house-card img,
   #page-otel .house-card img {
       height: 200px !important; /* 260px'ten 200px'e düşür */
   }
 }
-/* JS'den taşınan yeni CSS animasyonu */
+
+/* === KAYMA SORUNU DÜZELTMESİ: Kart animasyonu basitleştirildi === */
 .card-fade-in {
     opacity: 0;
-    transform: scale(0.9);
-    animation: cardFadeInAnimation 0.8s var(--easing) forwards;
+    /* Daha az göze çarpan başlangıç pozisyonu: Sadece 10px aşağıdan başla */
+    transform: translateY(10px); 
+    /* Animasyon süresini kısaltarak daha hızlı stabilize olmasını sağla */
+    animation: cardFadeInAnimation 0.6s var(--easing) forwards; 
 }
 
 @keyframes cardFadeInAnimation {
   to {
     opacity: 1;
-    transform: scale(1);
+    /* Hedef pozisyon */
+    transform: translateY(0); 
   }
 }
+/* === KAYMA SORUNU DÜZELTMESİ SONU === */
 
 
 /* === YENİ EKLENEN BUTON STİLLERİ === */
@@ -1464,8 +1464,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-left: 40px;
 }
 
-/* Restorasyon sayfasındaki .detail-gallery için varsayılanı eziyoruz
-  (Daha büyük resimler ve ızgara için)
+/* Blog sayfasındaki .detail-gallery için varsayılanı eziyoruz
 */
 #page-restorasyon .detail-gallery {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1474,7 +1473,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0 40px;
 }
 
-/* Restorasyon sayfasındaki resimlerin daha büyük görünmesini sağlıyoruz */
+/* Blog sayfasındaki resimlerin daha büyük görünmesini sağlıyoruz */
 #page-restorasyon .detail-gallery img {
     height: 260px; /* Mülk galerisiyle aynı boyuta getirdik */
     border: 2px solid var(--gold-dark);
@@ -1806,7 +1805,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 /* === YENİ EKLEME: DÖNGÜSEL METİN STİLLERİ DÜZELTME === */
 
-/* Yüksekliği sınırlandıran ve renk çakışması yaratan kodları temizleyip optimize edilmiş bir sürüm ekledik. */
 #changing-text {
     font-size: 2rem; 
     margin: 10px 0 30px 0;
@@ -1821,7 +1819,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: opacity 0.5s ease-in-out;
     opacity: 1; 
     
-    /* Titremeyi engellemek için min-height değeri ayarlanıyor (Eski koddan daha sade) */
     min-height: 100px; 
     text-align: center; 
 }
@@ -1835,11 +1832,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 /* === DÜZELTME SONU === */
 /* 2. KIRMIZI DAİRE İÇİNDEKİ FAZLADAN PRUVA OTEL KARTINI GİZLE */
-/* Bu kural, sadece o detay sayfasındaki (pruva-otel) o kartı gizler. */
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
 }
-/* Satılık/Kiralık (Yeni: Gezilecek Yerler) için özel başlık stili kaldırıldı. */
-/* Otel (Yeni: Kendi Turlarımız) için özel başlık stili kaldırıldı. */
-/* Satılık/Kiralık (Yeni: Gezilecek Yerler) için özel kart stili kaldırıldı. */
-/* Otel (Yeni: Kendi Turlarımız) için özel kart stili korundu. */
