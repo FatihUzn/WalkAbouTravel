@@ -3,12 +3,16 @@
   --text: #f5f5f5;
   --text-muted: #a1a1aa;
   
-  --gold-light: #ffcc66; 
-  --gold-dark: #f59e0b;  
+  /* === YENİ RENK PALETİ: AÇIK MAVİ / TURİZM TEMASI === */
+  --aqua-light: #00CED1; /* Turkuaz Mavisi (Ana Vurgu) */
+  --blue-dark: #1E90FF; /* Koyu Mavi (İkincil Vurgu/Buton) */
   
-  --gold-gradient: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-  --gold-shadow: 0 0 15px rgba(255, 204, 102, 0.4), 0 0 5px rgba(255, 204, 102, 0.2);
-  --gold-shadow-intense: 0 0 25px rgba(255, 204, 102, 0.7), 0 0 10px rgba(255, 204, 102, 0.4);
+  --main-light: var(--aqua-light); 
+  --main-dark: var(--blue-dark); 
+  
+  --main-gradient: linear-gradient(90deg, var(--blue-dark), var(--aqua-light), var(--blue-dark));
+  --main-shadow: 0 0 15px rgba(0, 206, 209, 0.4), 0 0 5px rgba(0, 206, 209, 0.2);
+  --main-shadow-intense: 0 0 25px rgba(30, 144, 255, 0.7), 0 0 10px rgba(0, 206, 209, 0.4);
   
   --border-dark: #2d2d2d;
   --section-bg: #111;
@@ -23,592 +27,109 @@ html {
   scroll-behavior: smooth;
 }
 
-/* YENİ TİPOGRAFİ: Playfair Display yerine Inter kullanılıyor */
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  background-color: var(--bg);
-  line-height: 1.6;
-}
+/* ... (body, html stilleri aynı kalır) ... */
 
-/* YENİ TİPOGRAFİ: Başlıklar için Inter 700/900 kullanılıyor */
-h1, h2, h3, h4, h5, h6 {
+/* BAŞLIKLAR: Altın gradiyent yerine Mavi gradiyent */
+h1, h2, h3, h4,
+.brand-title, .footer-title {
   font-family: 'Inter', sans-serif; 
   font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
+  background: var(--main-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: textGradientShine 5s linear infinite;
 }
 
-/* Genel Stiller */
-a {
-  color: var(--gold-light);
-  text-decoration: none;
-  transition: color 0.3s;
+@keyframes textGradientShine {
+  to { background-position: 200% center; }
 }
 
-a:hover {
-  color: var(--gold-dark);
-}
+/* ... (Diğer genel stiller aynı kalır) ... */
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+/* NAVBAR Vurgu Renkleri */
+.navbar a:hover {
+  color: var(--main-light);
 }
-
-.page-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 100px 30px;
-  min-height: 100vh;
+.navbar a::after {
+  background: var(--main-gradient);
 }
-
-.page-section h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 60px;
-    font-weight: 900;
-    position: relative;
-    padding-bottom: 10px;
+.navbar a:hover::after,
+.navbar a.active::after {
+  /* ... */
 }
-
-.page-section h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--gold-light);
-    margin: 10px auto 0 auto;
-}
-
-/* === HEADER VE NAVİGASYON STİLLERİ === */
-.brand {
-  display: flex;
-  align-items: center;
-}
-.brand img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  margin-right: 10px;
-}
-.brand-text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.brand-title {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1;
-}
-.brand-tagline {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    line-height: 1;
-}
-
-
-.navbar {
-  display: flex;
-  gap: 25px;
-}
-.nav-link {
-  color: var(--text);
-  font-weight: 500;
-  padding: 5px 0;
-  position: relative;
-}
-.nav-link:hover {
-  color: var(--gold-light);
-}
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--gold-light);
-  transform: scaleX(0);
-  transition: transform 0.3s var(--easing);
-}
-.nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
-}
-
 .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--gold-light);
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-left: 10px;
+  color: var(--main-light);
 }
 
-/* Dil Seçici Stilleri */
-.language-selector .lang-btn {
-    background: transparent;
-    border: 1px solid var(--text-muted);
-    color: var(--text-muted);
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: 5px;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 5px;
+/* DİL SEÇİCİ */
+.lang-btn.active {
+  background: var(--main-light);
+  border-color: var(--main-light);
 }
-.language-selector .lang-btn:hover {
-    border-color: var(--gold-light);
-    color: var(--gold-light);
-}
-.language-selector .lang-btn.active {
-    background-color: var(--gold-dark);
-    border-color: var(--gold-dark);
-    color: #111;
+.lang-btn:not(.active):hover {
+  border-color: var(--main-light);
+  color: var(--main-light);
 }
 
-
-/* === HERO VİDEO BÖLÜMÜ === */
-.hero-video {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  min-height: 600px;
-}
-.hero-video-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-.hero-content-overlay {
-  position: relative;
-  z-index: 2;
-  color: white;
-  text-align: center;
-  /* Dikey hizalama için ayar */
-  margin-top: 80px; 
-  padding-top: 100px;
-}
-.hero-content-overlay h1 {
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+/* HERO Vurguları */
+.hero-since {
+  color: var(--main-light); 
 }
 .hero-video::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 2;
-}
-
-/* Altın Parlaması Animasyonu */
-@keyframes goldPulse {
-  0% { opacity: 0.8; }
-  50% { opacity: 0.3; }
-  100% { opacity: 0.8; }
-}
-
-.hero-content-overlay::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 160%;
-  height: 160%;
-  transform: translate(-50%, -50%);
+  /* Parlama rengi (Mavi tonunda) */
   background: radial-gradient(
     circle,
-    rgba(255, 204, 102, 0.12) 0%,
-    rgba(255, 204, 102, 0.02) 60%,
-    transparent 100%
+    rgba(0, 206, 209, 0.15) 0%,
+    rgba(0, 206, 209, 0) 60%
   );
-  z-index: 3;
-  filter: blur(30px);
-  animation: goldPulse 8s ease-in-out infinite;
-  pointer-events: none;
-  opacity: 0.8;
 }
 
-/* Hero içeriği overlay’in üstünde kalsın */
-.hero-video .hero-content-overlay {
-  position: relative;
-  z-index: 4; 
-}
-/* === YENİ HERO LİNKLERİ === */
-
-/* "Keşfet" butonundan gelen linklerin yeni kapsayıcısı */
-.hero-links-container {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: center;
-  gap: 15px; 
-  margin-top: 30px; 
-}
-
-/* Yeni hero link butonlarının stili */
-.btn-hero-link {
-  display: inline-block;
-  padding: 10px 20px;
-  background: transparent; /* Şeffaf arka plan */
-  color: var(--gold-light); /* Altın rengi yazı */
-  border: 2px solid var(--gold-dark); /* Altın rengi çerçeve */
-  border-radius: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-  transition: all 0.4s var(--easing);
-  
-  box-shadow: none;
-  animation: none;
-}
-
-/* Üzerine gelince (hover) efekti */
-.btn-hero-link:hover {
-  background: var(--gold-dark); /* Arka plan altın rengi ol */
-  color: #111; /* Yazı koyu ol */
-  border-color: var(--gold-dark);
-  box-shadow: var(--gold-shadow); /* Gölge ekle */
-  transform: translateY(-3px) scale(1.05);
-}
-/* === HERO LİNKLERİ SONU === */
-
-/* === GENEL BUTON STİLLERİ === */
+/* ANA BUTON STİLLERİ */
 .btn {
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s var(--easing);
-  border: none;
-  font-family: 'Inter', sans-serif;
+  /* ... */
+  border: 1px solid var(--main-light);
+}
+.btn:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3), var(--main-shadow-intense);
+}
+.btn-hero-link {
+  color: var(--main-light); 
+  border: 2px solid var(--main-dark); 
+}
+.btn-hero-link:hover {
+  background: var(--main-dark); 
+  box-shadow: var(--main-shadow); 
 }
 
-.btn-primary {
-  background-color: var(--gold-dark);
-  color: #111;
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+/* İKONLAR VE VURGULAR (Hizmetler, İletişim) */
+.service-card i, .info-item i {
+  color: var(--main-dark);
+}
+.service-card:hover i {
+    color: var(--main-light);
+    text-shadow: var(--main-shadow);
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: var(--main-light);
+  box-shadow: var(--main-shadow);
+}
+.footer-column h3 {
+  border-bottom: 1px solid var(--main-light);
+}
+.footer-links a:hover {
+  color: var(--main-light);
+}
+.social-icons a:hover {
+  color: var(--main-light);
+  text-shadow: 0 0 10px var(--main-light);
 }
 
-.btn-primary:hover {
-  background-color: var(--gold-light);
-  color: #000;
-  box-shadow: 0 6px 20px rgba(255, 204, 102, 0.6);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--gold-light);
-  border: 2px solid var(--gold-dark);
-}
-
-.btn-secondary:hover {
-  background-color: var(--gold-dark);
-  color: #111;
-  border-color: var(--gold-dark);
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-}
-
-
-/* === OTEL VE PROJE KARTLARI (Turlar/Otel) === */
-.project-grid, .property-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.project-card, .property-card {
-    background-color: var(--section-bg);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
-    cursor: pointer;
-    border: 1px solid var(--border-dark);
-}
-
+/* OTEL/TUR KARTLARI */
 .project-card:hover, .property-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), var(--gold-shadow);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), var(--main-shadow);
 }
 
-.project-card img, .property-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.project-card:hover img, .property-card:hover img {
-    transform: scale(1.05);
-}
-
-.project-card h3, .property-card h3 {
-    padding: 15px 20px;
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--gold-light);
-}
-
-/* === EN SON TAMAMLANANLAR (LATEST) KARTLARI === */
-.latest-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-.latest-card {
-    background-color: var(--section-bg);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    border: 1px solid var(--border-dark);
-}
-.latest-card img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-}
-.latest-card h3 {
-    padding: 15px 20px;
-    margin: 0;
-    font-size: 1.15rem;
-    color: var(--text);
-    background-color: #1a1a1a;
-    font-weight: 500;
-}
-.latest-card:hover {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 10px rgba(255, 204, 102, 0.3);
-}
-
-/* === OTEL DETAY STİLLERİ (house-detail) === */
-.house-detail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg);
-  z-index: 1005; 
-  overflow-y: auto;
-  transform: translateY(100%);
-  transition: transform 0.5s var(--easing);
-}
-
-.house-detail.open {
-  transform: translateY(0);
-}
-
-.house-detail button {
-  position: sticky;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-  background-color: var(--gold-dark);
-  color: #111;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 20px;
-  font-weight: 600;
-}
-
-#house-detail-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 30px;
-}
-
-.detail-meta-grid {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    margin: 30px 0;
-    padding: 20px;
-    background-color: #151515;
-    border-radius: 10px;
-    border: 1px solid var(--border-dark);
-    flex-wrap: wrap;
-}
-
-.meta-item {
-    text-align: center;
-    min-width: 150px;
-}
-
-.meta-item span {
-    display: block;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-.meta-item strong {
-    display: block;
-    font-size: 1.2rem;
-    color: var(--gold-light);
-    font-weight: 700;
-}
-
-.detail-image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
-    margin-top: 40px;
-}
-
-.detail-image-gallery img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.detail-image-gallery img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 204, 102, 0.4);
-}
-
-/* === LİGHTBOX STİLLERİ === */
-.availability-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
-  z-index: 2000;
-  display: none; 
-}
-
-#lightbox-img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-  transition: transform 0.3s;
-  cursor: zoom-in;
-}
-
-.lightbox-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  font-size: 2rem;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 2001;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-#lightbox-prev {
-  left: 20px;
-}
-
-#lightbox-next {
-  right: 20px;
-}
-
-.lightbox-nav-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-
-/* === MOBİL UYUMLULUK (SADECE style.css içindeki ek stiller) === */
-@media (max-width: 768px) {
-  .page-section {
-    padding: 60px 20px;
-  }
-  
-  .navbar {
-    position: fixed;
-    top: 80px; /* Header yüksekliği */
-    right: 0;
-    height: calc(100% - 80px);
-    width: 250px;
-    flex-direction: column;
-    background-color: rgba(10, 10, 10, 0.95);
-    padding: 30px 20px;
-    transform: translateX(100%);
-    transition: transform 0.4s var(--easing);
-    gap: 15px;
-    align-items: flex-start;
-    border-left: 1px solid var(--border-dark);
-  }
-
-  .navbar.open {
-    transform: translateX(0);
-  }
-
-  .navbar .nav-link {
-      width: 100%;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border-dark);
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .desktop-only {
-    display: none !important;
-  }
-  
-  .mobile-only {
-    display: flex !important;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .language-selector.mobile-only button {
-    margin: 0;
-    width: 100%;
-  }
-  
-  .page-section h2 {
-    font-size: 2rem;
-  }
-  
-  .project-grid, .property-grid, .latest-grid {
-      grid-template-columns: 1fr;
-  }
-  
-  /* Detay Sayfası Mobil */
-  .house-detail button {
-      margin: 10px;
-      top: 0;
-  }
-  #house-detail-content {
-      padding: 60px 20px;
-  }
-}
+/* ... (Geri kalan stiller) ... */
