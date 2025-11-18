@@ -1910,3 +1910,83 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
 }
+/* === BLOG DÖNÜŞÜMÜ İÇİN YENİ CSS KURALLARI === */
+
+/* 1. Blog Bölümü ID'sini Güncelleme (eski #projects) */
+section#blog {
+    padding-top: 60px;
+}
+
+/* 2. Tek Bir Blog Izgarası Oluşturma */
+.blog-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    justify-content: center;
+    gap: 30px !important; /* Kartlar arası boşluk */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* 3. Blog Kartı Temel Stili */
+.project-card, .latest-card {
+    width: 100% !important;
+    max-width: none !important; /* Genişlik kısıtlamasını kaldır */
+    height: auto !important;
+    background: #ffffff;
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+}
+
+/* 4. Blog Kartı Resim Stili */
+.project-card img, .latest-card img {
+    height: 240px !important; /* Daha ideal önizleme yüksekliği */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+/* 5. Blog Kartı Başlık Stili */
+.project-card h3, .latest-card h3 {
+    color: var(--text) !important; 
+    font-family: 'Inter', sans-serif !important;
+    font-size: 20px !important; /* Başlığı daha okunaklı yap */
+    font-weight: 700 !important;
+    margin: 15px 15px 10px 15px !important; 
+    text-align: left !important;
+    
+    /* Gradient ayarlarını sıfırlıyoruz */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    text-fill-color: initial !important;
+    animation: none !important;
+}
+
+/* 6. Blog Kartı Kısa Özet Stili */
+.project-card p, .latest-card p {
+    color: var(--text-muted) !important; 
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin: 0 15px 15px 15px !important;
+    text-align: left !important;
+    min-height: 70px; /* Metin farklı uzunlukta olsa bile kart yüksekliğini sabit tutmaya yardımcı olur */
+}
+
+/* 7. Mobil Uyumluluk Düzeltmeleri */
+@media (max-width: 768px) {
+    .blog-grid {
+        padding: 0 20px !important;
+        gap: 20px !important;
+    }
+    .project-card img, .latest-card img {
+        height: 180px !important; /* Mobil için resmi küçült */
+    }
+    .project-card p, .latest-card p {
+        min-height: 50px; /* Mobil için min-height ayarı */
+        font-size: 14px !important;
+    }
+}
