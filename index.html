@@ -13,15 +13,12 @@
 <link rel="preload" as="fetch" href="ar.json" crossorigin>
 <link rel="preload" as="fetch" href="zh.json" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
-<link rel="stylesheet" href="style.css?v=1.6">
-
-<style>
+<link rel="stylesheet" href="style.css?v=1.7"> <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
   header {
     display: block; 
@@ -80,10 +77,12 @@
       letter-spacing: 2px;
       margin-bottom: 10px;
   }
+  
+  /* Playfair Display kaldırıldı, Inter 900 kullanılıyor */
   .hero-content-overlay h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 4.5rem;
-    font-weight: 900;
+    font-weight: 900; 
     margin: 0;
   }
   .hero-content-overlay p {
@@ -91,14 +90,14 @@
     margin: 10px 0 30px 0;
   }
   
-  /* Keşfet Butonu stilleri - BURASI TEMİZLENDİ - */
+  /* Keşfet Butonu stilleri - TEMİZLENDİ - */
   .cta-group {
     position: relative;
     display: inline-block;
   }
 
   /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ (Değişmedi) === */
+  /* === FOOTER STİLLERİ === */
   /* ========================================= */
   .site-footer {
     background-color: #0c0c0c; 
@@ -114,7 +113,8 @@
     margin: 0 auto 40px auto;
   }
   .footer-column h3 {
-    font-family: 'Playfair Display', serif;
+    /* Playfair Display kaldırıldı, Inter 700 kullanılıyor */
+    font-family: 'Inter', sans-serif; 
     color: #ffffff;
     font-size: 1.25rem;
     margin-bottom: 20px;
@@ -205,8 +205,9 @@
       padding: 10px 15px;
       height: 70px;
     }
+    /* Playfair Display kaldırıldı, Inter 900 kullanılıyor */
     .hero-content-overlay h1 {
-      font-size: 3rem; /* Mobil'de başlık */
+      font-size: 3rem; 
     }
 
     /* Footer Mobil */
@@ -254,9 +255,10 @@
     
       <nav class="navbar" id="navbar">
         <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-        <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
+        <a data-page="page-tours" class="nav-link" data-key="nav_tours">Turlar</a>
         <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
-        <a data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
+        <a data-page="page-otel" class="nav-link" data-key="nav_hotel">Otelimiz</a>
+        <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
         <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
         <div class="language-selector mobile-only" style="display: none;">
             <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
@@ -300,11 +302,12 @@
             <h3 data-key="footer_col_1_title">Menü Link</h3>
             <ul class="footer-links">
                 <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
-                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
+                <li><a href="#page-tours" data-page="page-tours" class="nav-link" data-key="nav_tours">Turlar</a></li>
                 <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
-                <li><a href="#page-projects" data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a></li>
+                <li><a href="#page-otel" data-page="page-otel" class="nav-link" data-key="nav_hotel">Otelimiz</a></li>
+                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
                 <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
-            </ul>
+                </ul>
         </div>
 
         <div class="footer-column">
@@ -337,8 +340,9 @@ ce"></i></a>
         <div class="footer-column">
             <h3 data-key="footer_col_4_title">Projeler</h3>
             <ul class="footer-links">
-                <li><a href="#page-otel" data-page="page-otel" data-key="drop_hotel">Turizm De Biz</a></li>
-            </ul>
+                <li><a href="#page-tours" data-page="page-tours" data-key="nav_tours">Turlar</a></li>
+                <li><a href="#page-otel" data-page="page-otel" data-key="nav_hotel">Otelimiz</a></li>
+                </ul>
         </div>
 
         <div class="footer-column">
@@ -376,7 +380,7 @@ ce"></i></a>
 </div>
 
 
-<script src="app.js?v=1.6" defer></script>
+<script src="app.js?v=1.7" defer></script>
 
 </body>
 </html>
