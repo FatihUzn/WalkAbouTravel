@@ -7,7 +7,6 @@
 <link rel="icon" type="image/png" href="assets/walkabot_logo.webp">
 <link rel="preload" as="image" href="assets/walkabot_logo.webp">
 <link rel="preload" as="image" href="assets/background.webp">
-<link rel="preload" as="image" href="assets/for_hero.webp">
 <link rel="preload" as="fetch" href="data/galleries.json?v=1.1" crossorigin>
 <link rel="preload" as="fetch" href="en.json" crossorigin>
 <link rel="preload" as="fetch" href="ar.json" crossorigin>
@@ -15,337 +14,189 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
-
-<link rel="stylesheet" href="style.css?v=1.7"> <style>
-  /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
-  header {
-    display: block; 
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
-    transition: background-color 0.3s;
-  }
-  header.scrolled {
-      background-color: rgba(10, 10, 10, 0.9);
-  }
-  .header-top-row {
-    background-color: #1a1a1a;
-    color: #ccc;
-    padding: 8px 30px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .header-top-row a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .header-top-row a:hover {
-    color: #ffcc66;
-  }
-  .header-top-row .top-bar-left a {
-    margin-right: 20px;
-  }
-  .header-top-row i {
-    margin-right: 8px;
-    color: #ffcc66;
-  }
-  .header-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 10px 30px;
-    height: 80px;
-  }
-
-  .hero-content-overlay .hero-since {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-  }
-  
-  /* Playfair Display kaldırıldı, Inter 900 kullanılıyor */
-  .hero-content-overlay h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 4.5rem;
-    font-weight: 900; 
-    margin: 0;
-  }
-  .hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
-  }
-  
-  /* Keşfet Butonu stilleri - TEMİZLENDİ - */
-  .cta-group {
-    position: relative;
-    display: inline-block;
-  }
-
-  /* ========================================= */
-  /* === FOOTER STİLLERİ === */
-  /* ========================================= */
-  .site-footer {
-    background-color: #0c0c0c; 
-    color: #a0a0a0;
-    padding: 60px 30px 20px 30px;
-    border-top: 1px solid #333;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto 40px auto;
-  }
-  .footer-column h3 {
-    /* Playfair Display kaldırıldı, Inter 700 kullanılıyor */
-    font-family: 'Inter', sans-serif; 
-    color: #ffffff;
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ffcc66;
-    padding-bottom: 10px;
-    font-weight: 700;
-  }
-  .footer-column.logo-column h3 {
-    border-bottom: none;
-  }
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-links li {
-    margin-bottom: 12px;
-  }
-  .footer-links a {
-    color: #a0a0a0;
-    text-decoration: none;
-    transition: color 0.3s, padding-left 0.3s;
-    display: inline-block;
-  }
-  .footer-links a:hover {
-    color: #ffcc66;
-    padding-left: 5px;
-  }
-  .footer-column.logo-column {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .footer-column.logo-column .social-icons {
-    margin-top: 20px;
-  }
-  .footer-links.contact-info li {
-    display: flex;
-    align-items: flex-start;
-  }
-  .footer-links.contact-info i {
-    color: #ffcc66;
-    margin-right: 12px;
-    margin-top: 5px;
-    width: 15px;
-  }
-  .footer-links.contact-info span,
-  .footer-links.contact-info a {
-    flex: 1;
-    padding-left: 0; 
-  }
-  .footer-links.contact-info a:hover {
-    color: #ffcc66;
-    padding-left: 0;
-  }
-  .footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    background-color: transparent;
-  }
-
-  /* === MOBİL UYUMLULUK GÜNCELLEMELERİ === */
-  @media (max-width: 992px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    .footer-column.logo-column {
-      grid-column: 1 / -1;
-      order: -1;
-      margin-bottom: 30px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    /* Header mobil ayarı */
-    .header-top-row {
-      padding: 10px 15px;
-      font-size: 0.75rem;
-    }
-    .header-top-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .header-bottom-row {
-      padding: 10px 15px;
-      height: 70px;
-    }
-    /* Playfair Display kaldırıldı, Inter 900 kullanılıyor */
-    .hero-content-overlay h1 {
-      font-size: 3rem; 
-    }
-
-    /* Footer Mobil */
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
-    .footer-column {
-      margin-bottom: 20px;
-    }
-    .footer-column.logo-column {
-      margin-bottom: 30px;
-    }
-    .site-footer {
-      padding: 40px 15px 20px 15px;
-    }
-  }
-</style>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+<link rel="stylesheet" href="style.css?v=1.6">
 
 </head>
 <body>
 
-<header id="main-header">
-  <div class="header-top-row">
-    <div class="top-bar-left">
-      <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="mailto:info@goldenpalace.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
-      </div>
-    <div class="top-bar-right">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
+<header class="header">
+    <div class="logo">
+        <img src="assets/walkabot_logo.webp" alt="WalkABotTravel Logo" class="brand-logo" loading="lazy">
+        <h1 data-key="hero_title" class="brand-title">WalkABotTravel</h1>
+        <p data-key="brand_realstate" class="brand-tagline">Hayalinizdeki Tatil</p>
     </div>
-  </div>
+    
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü Aç/Kapa">
+        <i class="fas fa-bars"></i>
+    </button>
 
-  <div class="header-bottom-row">
-    <div class="brand">
-      <img src="assets/walkabot_logo.webp" alt="WalkABotTravel Logo"> <div class="brand-text-container">
-          <span class="brand-title" data-key="brand_golden_palace">WalkABotTravel</span>
-          <span class="brand-tagline" data-key="brand_realstate">Hayalinizdeki Tatil Bir Tık Uzağınızda</span>
-      </div>
-    </div>
-  
-    <div style="display: flex; align-items: center;">
-      <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
-          <i class="fas fa-bars"></i>
-      </button>
-    
-      <nav class="navbar" id="navbar">
-        <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-        <a data-page="page-tours" class="nav-link" data-key="nav_tours">Turlar</a>
-        <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
-        <a data-page="page-otel" class="nav-link" data-key="nav_hotel">Otelimiz</a>
-        <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
-        <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
-        <div class="language-selector mobile-only" style="display: none;">
-            <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-      </nav>
-    
-      <div class="language-selector desktop-only" style="margin-left: 20px;">
-          <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-    </div>
-  </div>
+    <nav class="navbar" id="navbar">
+        <a href="#page-hero" class="nav-link" data-key="nav_home">Anasayfa</a>
+        <a href="#page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
+        <a href="#page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
+        <a href="#page-tours" class="nav-link" data-key="nav_projects">Turlarımız</a>
+        <div class="dropdown">
+            <a href="#page-otel" class="nav-link dropbtn" data-key="drop_hotel">Otel Galeri</a>
+        </div>
+        <div class="dropdown">
+            <a href="#page-insaat" class="nav-link dropbtn" data-key="drop_rental">Ticari/Konut</a>
+        </div>
+        <a href="#page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
+        <div class="language-selector">
+            <button data-lang="tr">TR</button>
+            <button data-lang="en">EN</button>
+            <button data-lang="ar">AR</button>
+            <button data-lang="zh">ZH</button>
+        </div>
+    </nav>
 </header>
-<section class="hero-video page-section active" id="hero">
-  <video autoplay muted loop playsinline class="hero-video-bg">
-    <source src="assets/hero_background.mp4" type="video/mp4">
-    Tarayıcınız video etiketini desteklemiyor.
-  </video>
 
-  <div class="hero-content-overlay">
-    <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
-    <h1 data-key="hero_title">WalkABotTravel</h1>
-    <p data-key="hero_subtitle">Hayalinizdeki Tatil Bir Tık Uzağınızda</p>
+<main>
     
-    <div class="hero-links-container">
-      <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-    </div>
-</section>
+    <section id="page-hero" class="page-section hero-video active">
+        <div class="hero-content-overlay">
+            <div class="hero-content">
+                <p class="hero-since" data-key="hero_since">1997'den Beri</p>
+                <h2 data-key="hero_title_full">WalkABotTravel</h2>
+                <h3 data-key="hero_subtitle">Yeni Dünya Turları ve Yatırım Fırsatları</h3>
+                
+                <div class="hero-links-container">
+                    <a href="#page-tours" class="btn-hero-link" data-key="btn_explore_tours">Turları Keşfet</a>
+                    <a href="#page-otel" class="btn-hero-link" data-key="btn_otel_galeri">Otel Galeri</a>
+                </div>
 
-<main id="page-container">
+            </div>
+        </div>
+        
+        <div class="hero-gold-pulse-container"></div> 
+        
+        <video autoplay muted loop playsinline class="hero-video-bg">
+            <source src="assets/hero_background.mp4" type="video/mp4"> 
+            Tarayıcınız video etiketini desteklemiyor.
+        </video>
+
+    </section>
+
+    <section id="page-about" class="page-section">
+        <div>
+            <h2 data-key="about_main_title">Kurumsal</h2>
+            
+            <h3 data-key="about_sub_title_1">Tarihçe</h3>
+            <p data-key="about_p1">1997 yılında temelleri atılan **WalkABotTravel**, turizm sektöründe güven, kalite ve istikrarın adresi olarak faaliyet göstermektedir. Kurulduğumuz günden bu yana, yalnızca tur satışı değil, değer üreten ve uzun vadeli keyif sağlayan seyahat çözümleri sunmayı hedefledik.</p>
+            <p data-key="about_p2">Yıllar içinde edindiğimiz tecrübe ve sektörel bilgi birikimiyle; yerel ve uluslararası tur organizasyonları, otel yatırımları, özel VIP turlar ve kurumsal gezi danışmanlığı alanlarında güçlü bir portföy oluşturduk. Hedefimiz, her misafirimizin hayalindeki tatili gerçeğe dönüştürmektir.</p>
+        </div>
+    </section>
+
+    <section id="page-services" class="page-section">
+        </section>
+
+    <section id="page-tours" class="page-section">
+        </section>
+    
+    <section id="page-otel" class="page-section otel-section">
+      <div id="otel-gallery-content">
+        </div>
+    </section>
+    
+    <section id="page-insaat" class="page-section">
+      <div>
+        <h2 data-key="page_insaat_h1">Ticari ve Konut Yatırımları</h2>
+        <p data-key="page_insaat_p">Gayrimenkul portföyümüzdeki seçkin ticari ve konut projelerini inceleyin. Değerli yatırım fırsatları.</p>
+        
+        <h3 data-key="page_satilik_h2">Satılık Mülklerimiz</h3>
+        <div class="gallery-grid" id="insaat-gallery-for-sale">
+          </div>
+
+        <h3 data-key="page_kiralik_h2" style="margin-top: 50px;">Kiralık Mülklerimiz</h3>
+        <div class="gallery-grid" id="insaat-gallery-for-rent">
+          </div>
+        
+      </div>
+    </section>
+    
+    <section id="page-contact" class="page-section contact-section">
+        <div>
+            <h2 data-key="contact_main_title">Bizimle İletişime Geçin</h2>
+            <div class="contact-grid">
+                
+                <div class="contact-form-container">
+                    <h3 data-key="contact_form_title">Hemen Tatilinizi Planlayın</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="contact-name" name="name" placeholder="Adınız Soyadınız" required data-key="contact_form_name_placeholder">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" name="email" placeholder="E-posta Adresiniz" required data-key="contact_form_email_placeholder">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="contact-phone" name="phone" placeholder="Telefon Numaranız" data-key="contact_form_phone_placeholder">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contact-message" name="message" rows="5" placeholder="Mesajınız (Hangi turla ilgileniyorsunuz?)" required data-key="contact_form_message_placeholder"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit" data-key="contact_form_btn_submit">Gönder</button>
+                        <p id="form-message" class="form-message"></p>
+                    </form>
+                </div>
+
+                <div class="contact-info-container">
+                    <h3 data-key="contact_info_title">İletişim Bilgileri</h3>
+                    <p data-key="contact_info_p1">Tatil planlarınız, özel tur talepleriniz veya yatırım danışmanlığı için bize dilediğiniz zaman ulaşabilirsiniz. Size en kısa sürede dönüş yapacağız.</p>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-key="contact_info_address_p">Mimar Sinan Cd. No: 42/A, WalkABot Tower Kat: 12, İstanbul/Türkiye</span></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+902125551923" data-key="contact_info_phone_p">+90 (212) 555 1923</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@walkabottravel.com" data-key="contact_info_email_p">info@walkabottravel.com</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
 </main>
 
-
-<footer class="site-footer">
+<footer class="footer">
     <div class="footer-grid">
-
-        <div class="footer-column">
-            <h3 data-key="footer_col_1_title">Menü Link</h3>
-            <ul class="footer-links">
-                <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
-                <li><a href="#page-tours" data-page="page-tours" class="nav-link" data-key="nav_tours">Turlar</a></li>
-                <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
-                <li><a href="#page-otel" data-page="page-otel" class="nav-link" data-key="nav_hotel">Otelimiz</a></li>
-                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
-                <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
-                </ul>
+        
+        <div class="footer-col footer-logo-col">
+            <img src="assets/walkabot_logo.webp" alt="WalkABotTravel Logo" class="brand-logo" loading="lazy">
+            <h4 data-key="brand_golden_palace">WalkABotTravel</h4>
+            <p data-key="footer_p">Hayalinizdeki rotalar, tek bir adreste. Güvenli, konforlu ve unutulmaz tatil deneyimleri sunuyoruz.</p>
         </div>
 
-        <div class="footer-column">
-            <h3 data-key="footer_col_2_title">Hizmetlerimiz</h3>
+        <div class="footer-col">
+            <h3 data-key="footer_col_2_title">Navigasyon</h3>
             <ul class="footer-links">
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_1">Mimari Tasarım</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_2">İç Mekan Tasarımı</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">Restorasyon ve Koruma</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_4">Proje Yönetimi</a></li>
+                <li><a href="#page-hero" data-key="nav_home">Anasayfa</a></li>
+                <li><a href="#page-about" data-key="nav_about">Kurumsal</a></li>
+                <li><a href="#page-services" data-key="nav_services">Hizmetler</a></li>
+                <li><a href="#page-tours" data-key="nav_projects">Turlarımız</a></li>
+                <li><a href="#page-contact" data-key="nav_contact">İletişim</a></li>
             </ul>
         </div>
-
-        <div class="footer-column logo-column">
-            <div class="footer-logo-container">
-                <img src="assets/walkabot_logo.webp" alt="WalkABotTravel Logo">
-                <div class="footer-text-container">
-                    <span class="footer-title" data-key="brand_golden_palace">WalkABotTravel</span>
-                    <span class="brand-tagline" data-key="brand_realstate">Hayalinizdeki Tatil Bir Tık Uzağınızda</span>
-                </div>
-            </div>
-            <div class="social-icons">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behandu
-ce"></i></a>
-                <a href="mailto:info@walkabottravel.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-
-        <div class="footer-column">
-            <h3 data-key="footer_col_4_title">Projeler</h3>
+        
+        <div class="footer-col">
+            <h3 data-key="footer_col_3_title">Turizm</h3>
             <ul class="footer-links">
-                <li><a href="#page-tours" data-page="page-tours" data-key="nav_tours">Turlar</a></li>
-                <li><a href="#page-otel" data-page="page-otel" data-key="nav_hotel">Otelimiz</a></li>
-                </ul>
+                <li><a href="#page-tours" data-key="tour_istanbul_title">İstanbul Turları</a></li>
+                <li><a href="#page-tours" data-key="tour_ege_title">Ege Turları</a></li>
+                <li><a href="#page-tours" data-key="tour_cappadocia_title">Kapadokya Turları</a></li>
+                <li><a href="#page-otel" data-key="drop_hotel">Otel Galeri</a></li>
+            </ul>
         </div>
-
-        <div class="footer-column">
+        
+        <div class="footer-col">
+            <h3 data-key="footer_col_4_title">Yatırım</h3>
+            <ul class="footer-links">
+                <li><a href="#page-insaat" data-key="page_satilik_h2">Satılık Mülkler</a></li>
+                <li><a href="#page-insaat" data-key="page_kiralik_h2">Kiralık Mülkler</a></li>
+                <li><a href="#page-contact" data-key="contact_info_title">Emlak Danışmanlığı</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col">
             <h3 data-key="footer_col_5_title">Bize Ulaşın</h3>
             <ul class="footer-links contact-info">
                 <li>
@@ -380,7 +231,26 @@ ce"></i></a>
 </div>
 
 
-<script src="app.js?v=1.7" defer></script>
+<div id="house-detail" class="house-detail">
+  <button onclick="closeHouseDetail()">← Geri</button>
+  <div id="house-detail-content"></div>
+</div>
+
+<script src="app.js?v=1.6" defer></script>
+
+<div id="restorationImageModal" class="image-modal-overlay">
+  <button class="image-modal-close-btn" data-key="btn_close_modal_x">✖</button>
+  <div class="image-modal-content">
+    <div class="image-modal-image-wrapper">
+      <span class="image-modal-label" data-key="restoration_before">Restorasyon Öncesi</span>
+      <img id="modalBeforeImage" src="" alt="Restorasyon Öncesi">
+    </div>
+    <div class="image-modal-image-wrapper">
+      <span class="image-modal-label" data-key="restoration_after">Restorasyon Sonrası</span>
+      <img id="modalAfterImage" src="" alt="Restorasyon Sonrası">
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

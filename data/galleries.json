@@ -2,111 +2,156 @@
   "OTEL1": {
     "title": "Kral Dairesi",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
+    "location": "WalkABotTravel Otel",
     "area": "120 m2",
     "rooms": "1 Yatak Odası + 1 Salon",
     "desc": "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz.",
     "images": [
-      "assets/ks1.webp", "assets/ks2.webp", "assets/ks3.webp", "assets/ks4.webp", "assets/ks5.webp", "assets/ks6.webp", "assets/ks7.webp", "assets/ks8.webp", "assets/ks9.webp", "assets/ks10.webp", "assets/ks11.webp", "assets/ks12.webp", "assets/ks13.webp", "assets/ks14.webp", "assets/ks15.webp", "assets/ks16.webp"
+      "assets/hotel_royal_suite_1.webp",
+      "assets/hotel_royal_suite_2.webp",
+      "assets/hotel_pool_view.webp",
+      "assets/hotel_jacuzzi.webp",
+      "assets/hotel_balcony.webp",
+      "assets/hotel_view.webp"
     ]
   },
   "OTEL2": {
     "title": "Suit Oda (1+1)",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
+    "location": "WalkABotTravel Otel",
     "area": "75 m2",
     "rooms": "1+1",
     "desc": "Geniş balkonlu, oturma alanlı ve deniz manzaralı suit oda.",
     "images": [
-      "assets/b1_plus1.webp", "assets/b1_plus2.webp", "assets/b1_plus3.webp", "assets/b1_plus4.webp", "assets/b1_plus5.webp", "assets/b1_plus6.webp", "assets/b1_plus7.webp", "assets/b1_plus8.webp", "assets/b1_plus9.webp", "assets/b1_plus10.webp"
+      "assets/hotel_suite_1.webp",
+      "assets/hotel_suite_2.webp",
+      "assets/hotel_suite_balcony.webp",
+      "assets/hotel_suite_view.webp"
     ]
   },
   "OTEL3": {
     "title": "Aile Odası (2+1)",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
+    "location": "WalkABotTravel Otel",
     "area": "60 m2",
-    "rooms": "2 Yatak Odası (Ara Kapılı)",
-    "desc": "Çocuklar için ayrı yatak odası bulunan konforlu aile odası.",
+    "rooms": "2+1",
+    "desc": "Aileler için ideal, iki ayrı yatak odası ve ortak oturma alanı.",
     "images": [
-      "assets/b2_plus1.webp", "assets/b2_plus2.webp", "assets/b2_plus3.webp", "assets/b2_plus4.webp", "assets/b2_plus5.webp", "assets/b2_plus6.webp", "assets/b2_plus7.webp", "assets/b2_plus8.webp", "assets/b2_plus9.webp"
+      "assets/hotel_family_1.webp",
+      "assets/hotel_family_2.webp",
+      "assets/hotel_family_bath.webp"
     ]
   },
   "OTEL4": {
-    "title": "Superior Oda",
+    "title": "Deluxe Çift Kişilik Oda (Deniz Manzaralı)",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "35 m2",
-    "rooms": "1 Yatak Odası",
-    "desc": "Balkonlu ve deniz manzaralı standart oda.",
+    "location": "WalkABotTravel Otel",
+    "area": "40 m2",
+    "rooms": "1 Yatak Odası (Çift Kişilik)",
+    "desc": "Lüks banyolu ve muhteşem deniz manzaralı standart oda.",
     "images": [
-      "assets/fs1.webp", "assets/fs2.webp", "assets/fs3.webp", "assets/fs4.webp", "assets/fs5.webp", "assets/fs6.webp", "assets/fs7.webp", "assets/fs8.webp", "assets/fs9.webp", "assets/fs10.webp"
+      "assets/hotel_deluxe_sea_1.webp",
+      "assets/hotel_deluxe_sea_2.webp",
+      "assets/hotel_deluxe_sea_view.webp"
     ]
   },
   "OTEL5": {
-    "title": "Ekonomik Oda",
+    "title": "Superior Tek Kişilik Oda",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "32 m2",
-    "rooms": "1 Yatak Odası",
-    "desc": "Kara manzaralı, ekonomik ve konforlu standart oda.",
+    "location": "WalkABotTravel Otel",
+    "area": "30 m2",
+    "rooms": "1 Yatak Odası (Tek Kişilik)",
+    "desc": "Tek seyahat edenler için konforlu ve şık bir deneyim.",
     "images": [
-      "assets/em1.webp", "assets/em2.webp", "assets/em3.webp", "assets/em4.webp", "assets/em5.webp", "assets/em6.webp"
+      "assets/hotel_single_1.webp",
+      "assets/hotel_single_2.webp"
     ]
   },
   "OTEL6": {
-    "title": "Standart Oda",
+    "title": "Business Süit",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "30 m2",
-    "rooms": "1 Yatak Odası",
-    "desc": "Modern tasarımlı standart oda.",
+    "location": "WalkABotTravel Otel",
+    "area": "80 m2",
+    "rooms": "1+1 (Çalışma Alanlı)",
+    "desc": "İş seyahatleriniz için özel çalışma masası ve toplantı alanı bulunan süit.",
     "images": [
-      "assets/st1.webp", "assets/st2.webp", "assets/st3.webp", "assets/st4.webp", "assets/st5.webp", "assets/st6.webp", "assets/st7.webp"
+      "assets/hotel_business_1.webp",
+      "assets/hotel_business_desk.webp",
+      "assets/hotel_business_view.webp"
     ]
   },
   "OTEL7": {
-    "title": "Deluxe Oda",
+    "title": "Teraslı Executive Oda",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "40 m2",
+    "location": "WalkABotTravel Otel",
+    "area": "50 m2",
     "rooms": "1 Yatak Odası",
-    "desc": "Daha geniş oturma alanına sahip Deluxe oda.",
+    "desc": "Özel geniş terası bulunan, deniz manzaralı Executive oda.",
     "images": [
-      "assets/sf1.webp", "assets/sf2.webp", "assets/sf3.webp", "assets/sf4.webp", "assets/sf5.webp", "assets/sf6.webp", "assets/sf7.webp"
+      "assets/hotel_terrace_1.webp",
+      "assets/hotel_terrace_view.webp",
+      "assets/hotel_terrace_relax.webp"
     ]
   },
   "OTEL8": {
-    "title": "Junior Suit",
+    "title": "Jakuzili Oda",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
+    "location": "WalkABotTravel Otel",
     "area": "45 m2",
-    "rooms": "1+1 (Açık Plan)",
-    "desc": "Oturma alanı ve yatak odasının birleştiği geniş Junior Süit.",
+    "rooms": "1 Yatak Odası",
+    "desc": "Özel Jakuzili banyo ve lüks tasarım.",
     "images": [
-      "assets/shr1.webp", "assets/shr2.webp", "assets/shr3.webp", "assets/shr4.webp", "assets/shr5.webp", "assets/shr6.webp", "assets/shr7.webp", "assets/shr8.webp"
+      "assets/hotel_jacuzzi_room_1.webp",
+      "assets/hotel_jacuzzi_room_2.webp"
     ]
   },
   "OTEL9": {
-    "title": "Superior Twin Oda (Ayrı Yataklı)",
+    "title": "Engelli Misafir Odası (Geniş)",
     "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
+    "location": "WalkABotTravel Otel",
     "area": "38 m2",
-    "rooms": "1 Yatak Odası (2 Ayrı Yatak)",
-    "desc": "İki adet tek kişilik yatak bulunan Superior oda.",
+    "rooms": "1 Yatak Odası",
+    "desc": "Tüm standartlara uygun geniş ve erişilebilir oda.",
     "images": [
-      "assets/stf1.webp", "assets/stf2.webp", "assets/stf3.webp", "assets/stf4.webp", "assets/stf5.webp", "assets/stf6.webp", "assets/stf7.webp", "assets/stf8.webp"
+      "assets/hotel_accessible_1.webp",
+      "assets/hotel_accessible_bath.webp"
     ]
   },
-  "OTEL10": {
-    "title": "Standart Twin Oda (Ayrı Yataklı)",
-    "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "30 m2",
-    "rooms": "1 Yatak Odası (2 Ayrı Yatak)",
-    "desc": "İki adet tek kişilik yatak bulunan standart oda.",
-    "images": [
-      "assets/stw1.webp", "assets/stw2.webp", "assets/stw3.webp", "assets/stw4.webp", "assets/stw5.webp", "assets/stw6.webp", "assets/stw7.webp"
-    ]
+  
+  "PROP_S1": { 
+      "title": "NURİPAŞA BİNA -SATILIK-",
+      "price": "450,000 $",
+      "location": "Nuri Paşa, İstanbul",
+      "area": "57 m2",
+      "rooms": "Her Katta 1 Daire (Toplam 6 Kat)",
+      "desc": "3 yıllık bina, 2 yıl kiracılı, yüksek yatırım getirisi.",
+      "images": ["assets/satilik_1.webp"]
+  },
+  "PROP_S2": { 
+      "title": "BÜYÜKYALI 3.5+1 -SATILIK/KİRALIK-",
+      "price": "890,000 $",
+      "location": "Zeytinburnu, İstanbul",
+      "area": "150 m2",
+      "rooms": "3.5 + 1",
+      "desc": "Deniz manzaralı lüks site içinde. Hem satılık hem kiralık opsiyonu.",
+      "images": ["assets/satilik_2.webp"]
+  },
+  "PROP_K1": {
+      "title": "THE İSTANBUL RESIDENCE 2+1 -KİRALIK-",
+      "price": "35,000 TL/Ay",
+      "location": "Zeytinburnu, İstanbul",
+      "area": "120 m2",
+      "rooms": "2 + 1",
+      "desc": "Şehrin merkezinde, metroya yürüme mesafesinde.",
+      "images": ["assets/kiralik_1.webp"]
+  },
+  "PROP_K2": {
+      "title": "THE İSTANBUL RESIDENCE 1+1 -KİRALIK-",
+      "price": "28,000 TL/Ay",
+      "location": "Zeytinburnu, İstanbul",
+      "area": "85 m2",
+      "rooms": "1 + 1",
+      "desc": "Full eşyalı, concierge hizmetli lüks daire.",
+      "images": ["assets/kiralik_2.webp"]
   }
 }
