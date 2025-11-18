@@ -22,7 +22,68 @@
 html {
   scroll-behavior: smooth;
 }
+/* ========================================= */
+/* === HERO VİDEO ARKA PLAN STİLLERİ === */
+/* ========================================= */
 
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Tam ekran yüksekliği */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; /* Video yüklenemezse siyah arkaplan */
+    z-index: 1; /* Diğer sayfaların altında kalmasını sağlar */
+    padding: 0; /* Padding'i sıfırlayın */
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1; /* İçerik (hero-content) 5, navbar 1000'dir. Bu en altta kalmalı. */
+    transform: translate(-50%, -50%); /* Videoyu tam ortalar */
+    object-fit: cover; /* Önemli: Videonun ekranı kaplamasını sağlar */
+    opacity: 0.75; /* İsteğe bağlı: Metin okunurluğu için videoyu hafif karartır */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5; /* Metin ve butonların videonun üstünde kalmasını sağlar */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    max-width: 900px;
+}
+
+/* ========================================= */
+/* === DİĞER HERO BİLEŞENLERİ STİLLERİ (Gözden Geçirildi) === */
+/* ========================================= */
+
+/* Bu stil bloğu index.html'in içindeki <style> etiketinden geliyordu, temizlik için buraya taşıdım: */
+.hero-content-overlay .hero-since {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero-content-overlay h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900; 
+    margin: 0;
+}
+.hero-content-overlay p {
+    font-size: 1.25rem;
+    margin: 10px 0 30px 0;
+}
 body {
   margin: 0;
   font-family: 'Inter', Roboto, Arial, sans-serif;
