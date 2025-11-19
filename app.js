@@ -362,18 +362,25 @@ async function showPage(pageId) {
                 if (pageId === 'page-insaat') fileName = 'insaat';
                 
                 // === DEĞİŞİKLİK 1: Restorasyon (Blog) rotası Güncellendi ===
-                if (pageId === 'page-restorasyon') fileName = "blog"; 
+                if (pageId === 'page-blog') fileName = "blog"; 
                 
-                // === DEĞİŞİKLİK 2: Ticari ve Konut (Tur Rehberi) rotası Güncellendi ===
-                if (pageId === 'page-satilik_kiralik') fileName = "antalya-rehberi"; 
+                // === YENİ ROTA EKLEMESİ: Tur Rehberleri Listesi Sayfası ===
+                if (pageId === 'page-tur-rehberleri') fileName = "tur-rehberleri"; 
                 
-                // === YENİ EKLEME (GEREKLİ OLABİLECEK DİĞER REHBERLER) ===
+                // === YÖNLENDİRME GÜNCELLEMESİ: Eski Ticari/Konut rotası, listeyi yükleyecek. ===
+                if (pageId === 'page-satilik_kiralik') fileName = "tur-rehberleri"; 
+                
+                // === ALT SAYFALAR ===
+                if (pageId === 'antalya-rehberi') fileName = "antalya-rehberi"; 
                 if (pageId === 'karadeniz-rehberi') fileName = "karadeniz-rehberi";
                 if (pageId === 'mardin-rehberi') fileName = "mardin-rehberi";
                 if (pageId === 'pamukkale-rehberi') fileName = "pamukkale-rehberi";
                 if (pageId === 'efes-rehberi') fileName = "efes-rehberi";
-                // === YENİ EKLEME SONU ===
                 
+                // Eski Restorasyon sayfasının ID'si kullanılıyordu, şimdi güncelleyelim.
+                if (pageId === 'page-restorasyon') fileName = "restorasyon"; 
+                
+                // Pruva Otel detay sayfası rotası
                 if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
                 
 
