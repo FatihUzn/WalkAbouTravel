@@ -21,8 +21,8 @@ let globalImageIndex = 0;
 const IMAGES_PER_LOAD = 8; // Her seferinde 8 resim yükle
 // === YENİ EKLEMELER SONU ===
 
-// === YENİ EKLEMELER: Blog (Eski Restorasyon) Galerisi için ===
-const RESTORATION_IMAGES_PER_LOAD = 4; // Blog'da 4'er 4'er yükle
+// === YENİ EKLEMELER: Restorasyon galerisi için ===
+const RESTORATION_IMAGES_PER_LOAD = 4; // Restorasyonda 4'er 4'er yükle
 const restorationBeforePaths = [
   "assets/restorasyon-1-befor.webp",
   "assets/restorasyon-2-before.webp",
@@ -100,10 +100,10 @@ async function openHouseDetail(letter) {
 
   if (letter.startsWith('OTEL')) {
       // Otel fiyatı özel link içeriyor
-      priceHTML = `<p><strong>${langData.js_fiyat || 'Detay'}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
+      priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
   } else {
       // Normal mülk fiyatı
-      priceHTML = `<p><strong>${langData.js_fiyat || 'Detay'}:</strong> ${priceText}</p>`;
+      priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> ${priceText}</p>`;
   }
   
 // === DEĞİŞİKLİK BAŞLANGICI: Global değişkenleri ayarla ===
@@ -118,8 +118,8 @@ async function openHouseDetail(letter) {
     
     <div class="house-info">
       <p><strong>${langData.js_konum || 'Konum'}:</strong> ${langData[locationKey] || h.location}</p>
-      <p><strong>${langData.js_alan || 'Gezi Türü'}:</strong> ${langData[areaKey] || h.area}</p>
-      <p><strong>${langData.js_oda_sayisi || 'Süre'}:</strong> ${langData[roomsKey] || h.rooms}</p>
+      <p><strong>${langData.js_alan || 'Alan'}:</strong> ${langData[areaKey] || h.area}</p>
+      <p><strong>${langData.js_oda_sayisi || 'Oda Sayısı'}:</strong> ${langData[roomsKey] || h.rooms}</p>
       ${priceHTML}
       <p>${langData[descKey] || h.desc}</p>
     </div>
@@ -147,7 +147,7 @@ function closeHouseDetail() {
   document.body.style.overflow = "auto"; 
 }
 
-// === YENİ FONKSİYON 1: Gezi/Tur Galerisi ===
+// === YENİ FONKSİYON 1: Mülk Galerisi (Satılık/Otel) ===
 function loadMorePropertyImages() {
   const galleryContainer = document.getElementById('detail-gallery-container');
   const loaderContainer = document.getElementById('gallery-loader-container');
@@ -193,7 +193,7 @@ function loadMorePropertyImages() {
 // === FONKSİYON 1 SONU ===
 
 
-// === YENİ FONKSİYON 2: Blog (Eski Restorasyon) Galerisi Kurulumu ===
+// === YENİ FONKSİYON 2: Restorasyon Galerisi Kurulumu ===
 function setupRestorationGalleries() {
   // İndeksleri sıfırla
   globalRestorationBeforeIndex = 0;
@@ -217,10 +217,10 @@ function setupRestorationGalleries() {
 // === FONKSİYON 2 SONU ===
 
 
-// === YENİ FONKSİYON 3: Blog Resim Yükleyici ===
+// === YENİ FONKSİYON 3: Restorasyon Resim Yükleyici ===
 function loadMoreRestorationImages(galleryType) {
   let galleryContainer, loaderContainer, imagesArray, currentIndex;
-  let altText = "Blog - ";
+  let altText = "Restorasyon - ";
   let placeholderText = "";
 
   // Hangi galeri (Önce/Sonra) için işlem yapacağımızı belirle
@@ -336,7 +336,7 @@ async function setLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
-// === showPage fonksiyonu (Kayma Düzeltmesi uygulandı) ===
+// === showPage fonksiyonu MOBİL GERİ TUŞU için güncellendi ===
 async function showPage(pageId) {
     
     // URL hash'i boşsa veya # ise 'hero' sayfasını varsay
@@ -413,21 +413,16 @@ async function showPage(pageId) {
 
         newPage.classList.remove('visible');
         
-        // === KAYMA SORUNU DÜZELTMESİ: Kart gecikme döngüsü kaldırıldı ===
         setTimeout(() => {
             const cards = newPage.querySelectorAll('.project-card, .latest-card, .service-card, .house-card, .restoration-card');
-            
-            // Tüm kartlardan eski animasyon gecikmelerini temizle
             cards.forEach(card => {
+                card.classList.remove('card-fade-in');
                 card.style.animationDelay = '';
             });
-            
-            // Tüm kartlara yeni, basitleştirilmiş animasyon sınıfını ekle (Gecikmesiz toplu yükleme)
-            cards.forEach((card) => {
-                card.classList.remove('card-fade-in'); 
-                card.classList.add('card-fade-in'); 
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 100}ms`;
+                card.classList.add('card-fade-in');
             });
-            
             newPage.classList.add('visible');
         }, 50);
         
@@ -475,38 +470,38 @@ function setupCardAnimations() {
     // Bu fonksiyon artık showPage içinde çağrılıyor
 }
 
-// === YENİ KONSEPTE UYGUN PROJECTS VERİSİ ===
 const projects = {
-  // Yeni: Kendi Turlarımız
-  otel: [ 
-    { name: "İstanbul Tarihi Yarımada Turu", price: " ₺2.500", img: "assets/istanbul-tour.webp" },
-    { name: "Kapadokya Balon Turu Paketi", price: " ₺7.800", img: "assets/kapadokya-tour.webp" },
-    { name: "Ege'nin Mavi Kıyıları Rotası", price: " ₺5.100", img: "assets/ege-tour.webp" },
-    { name: "Karadeniz Yayla Gezisi", price: " ₺3.900", img: "assets/karadeniz-tour.webp" },
-    { name: "Anadolu'nun Gizemli Yolları", price: " ₺6.200", img: "assets/anadolu-tour.webp" }
+  otel: [
+    { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.webp" },
+    { name: "Deniz Manzaralı Suit", price: " gecelik ₺8.500", img: "assets/otel2.webp" },
+    { name: "Standart Oda", price: " gecelik ₺4.200", img: "assets/otel3.webp" },
+    { name: "Aile Odası", price: " gecelik ₺6.800", img: "assets/otel4.webp" },
+    { name: "Ekonomik Oda", price: " gecelik ₺3.500", img: "assets/otel5.webp" }
   ],
-  // insaat kaldırıldı (kullanılmadığı için tutmaya gerek yok)
-  // Yeni: Blog
-  restorasyon: [ 
-    { name: "Türkiye'nin En İyi 10 Kahvesi", img: "assets/blog1.webp" },
-    { name: "Kışın Gezilecek 5 Termal Bölge", img: "assets/blog2.webp" },
-    { name: "Yerel Lezzetler: Antep Mutfağı", img: "assets/blog3.webp" },
-    { name: "Bütçe Dostu 7 Günlük Seyahat Planı", img: "assets/blog4.webp" },
-    { name: "Adrenalin Severler İçin Yamaç Paraşütü", img: "assets/blog5.webp" }
+  insaat: [
+    { name: "Modern Gökdelen", img: "assets/insaat1.webp" },
+    { name: "Alışveriş Merkezi", img: "assets/insaat2.webp" },
+    { name: "Lüks Konut Sitesi", img: "assets/insaat3.webp" },
+    { name: "Ofis Kuleleri", img: "assets/insaat4.webp" },
+    { name: "Endüstriyel Tesis", img: "assets/insaat5.webp" }
   ],
-  // Yeni: Türkiye'de Gezilecek Yerler
-  satilik_kiralik: [ 
-    { name: "Sultanahmet Meydanı, İstanbul", price: "Tarihi", img: "assets/sultanahmet.webp" },
-    { name: "Pamukkale Travertenleri, Denizli", price: "Doğa Harikası", img: "assets/pamukkale.webp" },
-    { name: "Efes Antik Kenti, İzmir", price: "Arkeolojik", img: "assets/efes.webp" },
-    { name: "Uzungöl, Trabzon", price: "Yayla Turizmi", img: "assets/uzungol.webp" },
-    { name: "Peri Bacaları, Kapadokya", price: "Jeolojik Oluşum", img: "assets/kapadokya.webp" }
+  restorasyon: [
+    { name: "Tarihi Yalı Restorasyonu", img: "assets/restorasyon1.webp" },
+    { name: "Eski Kilise Canlandırma", img: "assets/restorasyon2.webp" },
+    { name: "Kervansaray Yenileme", img: "assets/restorasyon3.webp" },
+    { name: "Tarihi Saat Kulesi", img: "assets/restorasyon4.webp" },
+    { name: "Şehir Surları", img: "assets/restorasyon5.webp" }
+  ],
+  satilik_kiralik: [
+    { name: "Satılık Lüks Villa", price: "₺45.000.000", img: "https://placehold.co/320x220/f59e0b/0a0a0a?text=Satılık+Ev" },
+    { name: "Kiralık Rezidans", price: "aylık ₺80.000", img: "https://placehold.co/320x220/f59e0b/0a0a0a?text=Kiralık+Ev" }
   ]
 };
 
 function preloadProjectImages() {
     const allImageUrls = [
         ...projects.otel.map(p => p.img),
+        ...projects.insaat.map(p => p.img),
         ...projects.restorasyon.map(p => p.img),
         ...projects.satilik_kiralik.map(p => p.img)
     ]; 
@@ -515,11 +510,13 @@ function preloadProjectImages() {
         const img = new Image();
         img.src = url; 
     });
-    console.log("Proje görselleri (Yeni Konsept) arka planda yükleniyor.");
+    console.log("Proje görselleri arka planda yükleniyor.");
 }
 
 function loadCategory(category, checkin = null, checkout = null) {
-  // satilik_kiralik artık Gezilecek Yerler ama mantık aynı
+  if (category === 'satilik_kiralik') {
+      return; 
+  }
   const grid = document.getElementById("project-grid"); 
   if (!grid) {
       console.error("Proje grid'i bulunamadı (ID: project-grid)");
@@ -531,62 +528,49 @@ function loadCategory(category, checkin = null, checkout = null) {
   const currentLang = localStorage.getItem('lang') || 'tr';
   const langData = translations[currentLang] || {}; 
   
-  // === BAŞLIKLARI ZORLA GÜNCELLEME BAŞLANGICI ===
   const titles = {
-        'otel': langData.page_otel_h1 || 'Kendi Turlarımız',
-        'insaat': langData.page_insaat_h1 || 'İnşaat Projeleri', 
-        'restorasyon': langData.page_restorasyon_h1 || 'Blog Yazıları',
-        'satilik_kiralik': langData.page_satilik_h2 || 'Türkiye\'de Gezilecek Yerler',
-        'default_projects': langData.projects_title_featured || 'Öne Çıkan Gezi Rotalarımız'
+        'otel': langData.page_otel_h1 || 'Otelimiz',
+        'insaat': langData.page_insaat_h1 || 'İnşaat Projeleri',
+        'restorasyon': langData.page_restorasyon_h1 || 'Restorasyon Projeleri',
+        'satilik_kiralik': langData.page_satilik_h2 || 'Satılık/Kiralık Evler',
+        'default_projects': langData.projects_title_featured || 'Öne Çıkan Projelerimiz'
   };
   
   if (titleEl) {
-      // Dil dosyası yoksa veya eski anahtar varsa bile bizim yeni metnimizi gösterecek
-      const categoryMap = {
-          'otel': 'Kendi Turlarımız',
-          'restorasyon': 'Blog Yazıları',
-          'satilik_kiralik': 'Türkiye\'de Gezilecek Yerler',
-      };
-      
-      const newTitle = categoryMap[category] || titles[category] || titles['default_projects'];
-
       if(category === 'otel' && checkin && checkout) {
-          const dateTitle = (langData.no_rooms || 'Müsait Turlar').replace('Bu tarihlerde müsait oda bulunamadı.', '').trim();
-          titleEl.textContent = `${newTitle} ${dateTitle} (${checkin} - ${checkout})`;
+          const dateTitle = (langData.no_rooms || 'Müsait Odalar').replace('Bu tarihlerde müsait oda bulunamadı.', '').trim();
+          titleEl.textContent = `${titles['otel']} ${dateTitle} (${checkin} - ${checkout})`;
       } else {
-          titleEl.textContent = newTitle;
+          titleEl.textContent = titles[category] || titles['default_projects'];
       }
   }
-  // === BAŞLIKLARI ZORLA GÜNCELLEME SONUŞU ===
 
   setTimeout(() => {
     grid.innerHTML = "";
     let itemsToDisplay = projects[category];
     
-    // Otel (Turlar) için müsaitlik kontrolü mantığı korunuyor
     if(category === 'otel' && checkin) {
         itemsToDisplay = projects.otel.filter(() => Math.random() > 0.3); 
         if (itemsToDisplay.length === 0) {
-            grid.innerHTML = `<p data-key="no_rooms">${langData.no_rooms || 'Bu tarihlerde müsait tur bulunamadı.'}</p>`;
+            grid.innerHTML = `<p data-key="no_rooms">${langData.no_rooms || 'Bu tarihlerde müsait oda bulunamadı.'}</p>`;
             grid.style.opacity = "1";
             return;
         }
     }
 
     if (!itemsToDisplay) {
-        // Eski fallback konut/ticari yerine turizm/gezi fallbackleri
         grid.innerHTML = `
             <div class="project-card">
-              <img src="assets/for_konut.webp" alt="Tarihi Gezi" loading="lazy">
-              <h3 data-key="project_h3_residence">${langData.project_h3_residence || 'Tarihi Geziler'}</h3>
+              <img src="assets/for_konut.webp" alt="Konut Projesi" loading="lazy">
+              <h3 data-key="project_h3_residence">${langData.project_h3_residence || 'Konut Projeleri'}</h3>
             </div>
             <div class="project-card">
-              <img src="assets/for_ticari.webp" alt="Doğa Turu" loading="lazy">
-              <h3 data-key="project_h3_commercial">${langData.project_h3_commercial || 'Doğa Turları'}</h3>
+              <img src="assets/for_ticari.webp" alt="Ticari Proje" loading="lazy">
+              <h3 data-key="project_h3_commercial">${langData.project_h3_commercial || 'Ticari Projeler'}</h3>
             </div>
             <div class="project-card">
-              <img src="assets/for_cok_amacli.webp" alt="Kültür Turu" loading="lazy">
-              <h3 data-key="project_h3_multipurpose">${langData.project_h3_multipurpose || 'Kültür ve Sanat Rotaları'}</h3>
+              <img src="assets/for_cok_amacli.webp" alt="Cok Amacli Proje" loading="lazy">
+              <h3 data-key="project_h3_multipurpose">${langData.project_h3_multipurpose || 'Çok Amaçlı Alanlar'}</h3>
             </div>`;
         if (titleEl) titleEl.textContent = titles['default_projects'];
         grid.style.opacity = "1";
@@ -600,7 +584,6 @@ function loadCategory(category, checkin = null, checkout = null) {
       card.style.transform = 'scale(0.9)';
       
       const imgSrc = project.img.startsWith('http') ? project.img : `${project.img}`; 
-      // Fiyat/Detay bilgisi gösterimi korunuyor
       const priceHTML = project.price ? `<p class="project-price">${project.price}</p>` : '';
       
       card.innerHTML = `<img src="${imgSrc}" alt="${project.name}" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=${project.name}'"><h3>${project.name}</h3>${priceHTML}`;
@@ -611,6 +594,10 @@ function loadCategory(category, checkin = null, checkout = null) {
   }, 300);
 }
 
+// === BU FONKSİYON KALDIRILDI ===
+// function handleScrollEffects() { ... }
+// === KALDIRMA SONU ===
+
 function setupProjectReservation() {
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'project-search') {
@@ -620,11 +607,11 @@ function setupProjectReservation() {
             const langData = translations[currentLang] || {};
             
             if (!checkin || !checkout) {
-                alert(langData.alert_dates || 'Lütfen başlangıç ve bitiş tarihlerini seçin.');
+                alert(langData.alert_dates || 'Lütfen giriş ve çıkış tarihlerini seçin.');
                 return;
             }
             if (new Date(checkin) >= new Date(checkout)) {
-                alert(langData.alert_invalid_date || 'Bitiş tarihi, başlangıç tarihinden sonra olmalıdır.');
+                alert(langData.alert_invalid_date || 'Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
                 return;
             }
             loadCategory('otel', checkin, checkout);
@@ -668,7 +655,7 @@ document.body.addEventListener('click', (e) => {
         const checkout = document.getElementById("otel-checkout").value;
 
         if (!checkin || !checkout) {
-            message.innerHTML = langData.modal_avail_alert_select || '⚠️ Lütfen tur başlangıç ve bitiş tarihlerini seçin.';
+            message.innerHTML = langData.modal_avail_alert_select || '⚠️ Lütfen giriş ve çıkış tarihlerini seçin.';
             modal.classList.add("show");
             return;
         }
@@ -678,7 +665,7 @@ document.body.addEventListener('click', (e) => {
 
         const random = Math.random();
         if (random > 0.5) {
-            message.innerHTML = langData.modal_avail_success || '✅ Müsait turlar bulundu!';
+            message.innerHTML = langData.modal_avail_success || '✅ Müsait odalar bulundu!';
             
             const mailBtn = document.createElement("button");
             mailBtn.textContent = langData.btn_mail_reserve || 'E-posta ile Rezervasyon Yap';
@@ -686,14 +673,14 @@ document.body.addEventListener('click', (e) => {
             mailBtn.style.marginTop = "15px";
 
             mailBtn.addEventListener("click", () => {
-                const subject = encodeURIComponent("Tur Rezervasyon Talebi - Golden Palace Travel");
-                const body = encodeURIComponent(`Merhaba,%0A%0A${checkin} - ${checkout} tarihleri arasındaki tura rezervasyon yapmak istiyorum.%0A%0Aİyi günler.`);
+                const subject = encodeURIComponent("Rezervasyon Talebi - Golden Palace Otel");
+                const body = encodeURIComponent(`Merhaba,%0A%0A${checkin} - ${checkout} tarihleri arasında rezervasyon yapmak istiyorum.%0A%0Aİyi günler.`);
                 window.location.href = `mailto:info@goldenpalace.com?subject=${subject}&body=${body}`;
             });
 
             message.parentElement.appendChild(mailBtn);
         } else {
-            message.innerHTML = langData.modal_avail_fail || '❌ Maalesef bu tarihlerde müsait tur bulunamadı.';
+            message.innerHTML = langData.modal_avail_fail || '❌ Maalesef bu tarihlerde müsait oda bulunamadı.';
         }
 
         modal.classList.add("show");
@@ -742,63 +729,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     setTimeout(preloadProjectImages, 1000); 
     setupMobileMenu();
     setupProjectReservation(); 
-    
-    // === ROTATING TEXT BAŞLANGICI ===
-    const data = [
-        {
-            title: "Tarihi Turlar",
-            description: "İstanbul'un saklı kalmış güzelliklerini, uzman rehberler eşliğinde keşfedin."
-        },
-        {
-            title: "Kültürel Etkinlikler",
-            description: "Yöresel lezzetler, festivaller ve el sanatları atölyelerine katılın."
-        },
-        {
-            title: "Doğa Yürüyüşleri",
-            description: "Karadeniz'in yeşil yaylalarından Akdeniz'in masmavi kıyılarına uzanan unutulmaz rotalar."
-        },
-        {
-            title: "Seyahat İpuçları",
-            description: "Bölgesel ulaşım, konaklama ve bütçe planlama rehberleri."
-        }
-    ];
-
-    let index = 0; 
-    const textElement = document.getElementById('changing-text'); 
-    const intervalTime = 5000; // 5 saniye
-
-    function changeTextWithFade() {
-        // 1. Fade Out: Opaklığı sıfıra düşür
-        if(textElement) {
-            textElement.style.opacity = '0'; 
-        }
-
-        // 2. Metni 0.5 saniye sonra değiştir
-        setTimeout(() => {
-            if(textElement) {
-                const currentData = data[index];
-                
-                // Metin içeriğini Kalın Başlık ve Açıklama olarak HTML'e yaz
-                textElement.innerHTML = `<strong>${currentData.title}</strong><br>${currentData.description}`;
-                
-                // 3. Fade In: Opaklığı tekrar 1 yap
-                textElement.style.opacity = '1'; 
-                
-                // 4. İndeksi bir sonraki öğeye ilerlet (Döngü)
-                index = (index + 1) % data.length;
-            }
-        }, 500); // CSS transition süresi ile uyumlu (0.5 saniye)
-    }
-
-    // HTML öğesi yüklü ise döngüyü başlat
-    if(textElement) {
-        // İlk yükleme için hemen çağır
-        changeTextWithFade(); 
-        // Sonra aralıklarla tekrar et
-        setInterval(changeTextWithFade, intervalTime);
-    }
-    // === ROTATING TEXT SONU ===
-    
 
     // === KEŞFET BUTONU (CTA) İÇİN ===
     const cta = document.getElementById("discover-cta");
