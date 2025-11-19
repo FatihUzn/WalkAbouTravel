@@ -360,12 +360,22 @@ async function showPage(pageId) {
                 if (pageId === 'page-contact') fileName = 'contact';
                 if (pageId === 'page-otel') fileName = 'otel';
                 if (pageId === 'page-insaat') fileName = 'insaat';
-                if (pageId === 'page-restorasyon') fileName = "restorasyon";
-                if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
                 
-                // === YENİ EKLEME (3. İSTEK): Yeni galeri sayfası rotası ===
-                if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
+                // === DEĞİŞİKLİK 1: Restorasyon (Blog) rotası Güncellendi ===
+                if (pageId === 'page-restorasyon') fileName = "blog"; 
+                
+                // === DEĞİŞİKLİK 2: Ticari ve Konut (Tur Rehberi) rotası Güncellendi ===
+                if (pageId === 'page-satilik_kiralik') fileName = "antalya-rehberi"; 
+                
+                // === YENİ EKLEME (GEREKLİ OLABİLECEK DİĞER REHBERLER) ===
+                if (pageId === 'karadeniz-rehberi') fileName = "karadeniz-rehberi";
+                if (pageId === 'mardin-rehberi') fileName = "mardin-rehberi";
+                if (pageId === 'pamukkale-rehberi') fileName = "pamukkale-rehberi";
+                if (pageId === 'efes-rehberi') fileName = "efes-rehberi";
                 // === YENİ EKLEME SONU ===
+                
+                if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
+                
 
                 if (fileName === pageId) { 
                    /* 'hero' zaten index.html'de */
