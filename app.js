@@ -360,29 +360,12 @@ async function showPage(pageId) {
                 if (pageId === 'page-contact') fileName = 'contact';
                 if (pageId === 'page-otel') fileName = 'otel';
                 if (pageId === 'page-insaat') fileName = 'insaat';
+                if (pageId === 'page-restorasyon') fileName = "restorasyon";
+                if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
                 
-                // === DEĞİŞİKLİK 1: Restorasyon (Blog) rotası Güncellendi ===
-                if (pageId === 'page-blog') fileName = "blog"; 
-                
-                // === YENİ ROTA EKLEMESİ: Tur Rehberleri Listesi Sayfası ===
-                if (pageId === 'page-tur-rehberleri') fileName = "tur-rehberleri"; 
-                
-                // === YÖNLENDİRME GÜNCELLEMESİ: Eski Ticari/Konut rotası, listeyi yükleyecek. ===
-                if (pageId === 'page-satilik_kiralik') fileName = "tur-rehberleri"; 
-                
-                // === ALT SAYFALAR ===
-                if (pageId === 'antalya-rehberi') fileName = "antalya-rehberi"; 
-                if (pageId === 'karadeniz-rehberi') fileName = "karadeniz-rehberi";
-                if (pageId === 'mardin-rehberi') fileName = "mardin-rehberi";
-                if (pageId === 'pamukkale-rehberi') fileName = "pamukkale-rehberi";
-                if (pageId === 'efes-rehberi') fileName = "efes-rehberi";
-                
-                // Eski Restorasyon sayfasının ID'si kullanılıyordu, şimdi güncelleyelim.
-                if (pageId === 'page-restorasyon') fileName = "restorasyon"; 
-                
-                // Pruva Otel detay sayfası rotası
+                // === YENİ EKLEME (3. İSTEK): Yeni galeri sayfası rotası ===
                 if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
-                
+                // === YENİ EKLEME SONU ===
 
                 if (fileName === pageId) { 
                    /* 'hero' zaten index.html'de */
