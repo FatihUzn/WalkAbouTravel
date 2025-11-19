@@ -39,17 +39,6 @@ body {
   z-index: 1; 
 }
 
-body::before {
-    content: '';
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100%; 
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
-    z-index: -1; 
-}
 
 h1, h2, h3, h4,
 .brand-title, .footer-title {
@@ -96,8 +85,10 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
-  backdrop-filter: blur(8px); 
+  
+  /* YENİ VE DÜZ ARKA PLAN RENGİ */
+  background-color: var(--section-bg); 
+  
   z-index: 1000;
   opacity: 0;
   transform: scale(0.95);
@@ -106,7 +97,6 @@ header {
   border-bottom: 1px solid var(--border-dark);
   transition: background 0.3s ease-out; 
 }
-
 .brand {
   display: flex;
   align-items: center;
@@ -227,7 +217,7 @@ header {
     background: var(--section-bg);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 999;
     border-left: 1px solid var(--border-dark);
   }
@@ -259,27 +249,7 @@ header {
   opacity: 1;
   transition: opacity 0.3s ease-out;
 }
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150%;
-  height: 150%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255, 204, 102, 0.15) 0%, rgba(255, 204, 102, 0) 60%);
-  z-index: 2;
-  opacity: 0.8;
-  filter: blur(20px);
-  animation: pulseLight 8s ease-in-out infinite;
-}
+
 @keyframes pulseLight {
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
   50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
@@ -362,8 +332,6 @@ header {
 
 .project-reservation-form {
     margin-bottom: 60px; 
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(5px);
     padding: 25px;
     border-radius: 12px;
     border: 1px solid var(--border-dark);
@@ -485,8 +453,6 @@ section#projects {
 
 #otel-reservation-container {
   display: none;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
   padding: 60px 20px;
   animation: fadeIn 0.8s ease forwards;
 }
@@ -648,7 +614,7 @@ section.visible {
   flex: 1;
   max-width: 600px;
   margin: 0 auto;
-  background: rgba(0,0,0,0.5);
+  background: var(--section-bg);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -736,7 +702,7 @@ section.visible {
   flex: 1 1 300px;
   text-align: left;
   padding-top: 20px;
-  background: rgba(0,0,0,0.5);
+  background: var(--section-bg);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -803,7 +769,7 @@ footer::before {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  background: rgba(0,0,0,0.5);
+  background: var(--section-bg);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -1044,8 +1010,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9); /* ARKA PLANI KATI YAPILDI */
-  backdrop-filter: blur(5px);
+  background: rgba(244, 247, 252, 0.9);
   z-index: 2000;
   display: none;
   overflow-y: auto;
@@ -1735,44 +1700,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #111;
 }
 /* === DÜZELTME SONU === */
-
-.hero-video::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-    background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.25) 0%,   /* üst kısmı daha açık */
-    rgba(0, 0, 0, 0.4) 100%   /* alt kısmı hafif koyu */
-  );
-
-  z-index: 2;
-}
-
-/* Altın parıltı katmanı */
-.hero-video::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 160%;
-  height: 160%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 204, 102, 0.12) 0%,
-    rgba(255, 204, 102, 0.02) 60%,
-    transparent 100%
-  );
-  z-index: 3;
-  filter: blur(30px);
-  animation: goldPulse 8s ease-in-out infinite;
-  pointer-events: none;
-  opacity: 0.8;
-}
 
 /* Hero içeriği overlay’in üstünde kalsın */
 .hero-video .hero-content-overlay {
