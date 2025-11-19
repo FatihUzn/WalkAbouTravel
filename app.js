@@ -23,6 +23,7 @@ const IMAGES_PER_LOAD = 8; // Her seferinde 8 resim yükle
 
 // === YENİ EKLEMELER: Blog (Eski Restorasyon) Galerisi için ===
 const RESTORATION_IMAGES_PER_LOAD = 4; // Blog'da 4'er 4'er yükle
+// Blog içerikleri, eski restorasyon resim yollarını kullanmaya devam edecek (sadece metinler değişti)
 const restorationBeforePaths = [
   "assets/restorasyon-1-befor.webp",
   "assets/restorasyon-2-before.webp",
@@ -359,7 +360,7 @@ async function showPage(pageId) {
                 if (pageId === 'page-projects') fileName = 'projects';
                 if (pageId === 'page-contact') fileName = 'contact';
                 if (pageId === 'page-otel') fileName = 'otel';
-                if (pageId === 'page-insaat') fileName = 'insaat';
+                // if (pageId === 'page-insaat') fileName = 'insaat'; // Kaldırıldı
                 if (pageId === 'page-restorasyon') fileName = "restorasyon";
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
                 
@@ -475,7 +476,7 @@ function setupCardAnimations() {
     // Bu fonksiyon artık showPage içinde çağrılıyor
 }
 
-// === YENİ KONSEPTE UYGUN PROJECTS VERİSİ ===
+// === YENİ KONSEPTE UYGUN PROJECTS VERİSİ (Seyahat/Turizm) ===
 const projects = {
   // Yeni: Kendi Turlarımız
   otel: [ 
@@ -531,7 +532,7 @@ function loadCategory(category, checkin = null, checkout = null) {
   const currentLang = localStorage.getItem('lang') || 'tr';
   const langData = translations[currentLang] || {}; 
   
-  // === BAŞLIKLARI ZORLA GÜNCELLEME BAŞLANGICI ===
+  // === BAŞLIKLARI ZORLA GÜNCELLEME BAŞLANGICI (Yeni Metinler) ===
   const titles = {
         'otel': langData.page_otel_h1 || 'Kendi Turlarımız',
         'insaat': langData.page_insaat_h1 || 'İnşaat Projeleri', 
@@ -743,7 +744,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupMobileMenu();
     setupProjectReservation(); 
     
-    // === ROTATING TEXT BAŞLANGICI ===
+    // === ROTATING TEXT BAŞLANGICI (Yeni İçerik) ===
     const data = [
         {
             title: "Tarihi Turlar",
