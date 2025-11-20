@@ -136,7 +136,7 @@ async function openTourDetail(tourId) {
   // === DEĞİŞİKLİK SONU ===
   
   detail.style.display = "block";
-  document.body.style.overflow = "hidden"; 
+  document.body.classList.add("no-scroll"); // KAYMA HATASI İÇİN GÜNCELLENDİ
 }
 
 function closeTourDetail() {
@@ -144,7 +144,7 @@ function closeTourDetail() {
   if (detail) {
     detail.style.display = "none";
   }
-  document.body.style.overflow = "auto"; 
+  document.body.classList.remove("no-scroll"); // KAYMA HATASI İÇİN GÜNCELLENDİ
 }
 
 // === YENİ FONKSİYON 1: Tur Galerisi (Satılık/Otel) ===
@@ -655,7 +655,7 @@ document.body.addEventListener('click', (e) => {
         const checkout = document.getElementById("otel-checkout").value;
 
         if (!checkin || !checkout) {
-            message.innerHTML = langData.modal_avail_alert_select || '⚠️ Lütfen giriş ve çıkış tarihlerini seçin.';
+            message.innerHTML = langData.modal_avail_alert_select || ⚠️ Lütfen giriş ve çıkış tarihlerini seçin.';
             modal.classList.add("show");
             return;
         }
