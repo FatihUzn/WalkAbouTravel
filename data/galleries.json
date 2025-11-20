@@ -98,7 +98,28 @@
       "assets/fethiye-oludeniz-manzarasi-1.webp", "assets/fethiye-oludeniz-manzarasi-2.webp", "assets/fethiye-oludeniz-manzarasi-3.webp", "assets/fethiye-oludeniz-manzarasi-4.webp", "assets/fethiye-oludeniz-manzarasi-5.webp", "assets/fethiye-oludeniz-manzarasi-6.webp", "assets/fethiye-oludeniz-manzarasi-7.webp", "assets/fethiye-oludeniz-manzarasi-8.webp"
     ]
   },
-  
+  "TUR-D-JAPONYA": {
+    "title": "Japonya - Kış Turu & Tokyo",
+    "price": "8 Gün / 7 Gece, 4.000 $",
+    "location": "Tokyo, Kyoto",
+    "area": "Uzak Doğu",
+    "rooms": "Geleneksel Ryokan",
+    "desc": "Karlı manzaralar eşliğinde Japonya'nın kış güzellikleri, tapınaklar ve modern Tokyo gezisi.",
+    "images": [
+      "assets/mardin-tarihi-konak-dokusu-1.webp", "assets/mardin-tarihi-konak-dokusu-2.webp"
+    ]
+  },
+  "TUR-D-HINDISTAN": {
+    "title": "Hindistan - Mistik Kültür Turu",
+    "price": "7 Gün / 6 Gece, 1.800 $",
+    "location": "Yeni Delhi, Agra, Jaipur",
+    "area": "Güney Asya",
+    "rooms": "Saray Otelleri",
+    "desc": "Tac Mahal'in büyüleyici güzelliği, Baharat pazarları ve Hindistan'ın renkli kültürü.",
+    "images": [
+      "assets/pamukkale-traverten-dogal-1.webp", "assets/pamukkale-traverten-dogal-2.webp"
+    ]
+  },
   "OTEL1": {
     "title": "Kral Dairesi (Özel Konaklama)",
     "price": "Gecelik Fiyat Sorunuz",
@@ -110,6 +131,4 @@
       "assets/ks1.webp", "assets/ks2.webp", "assets/ks3.webp", "assets/ks4.webp", "assets/ks5.webp", "assets/ks6.webp", "assets/ks7.webp", "assets/ks8.webp", "assets/ks9.webp", "assets/ks10.webp", "assets/ks11.webp", "assets/ks12.webp", "assets/ks13.webp", "assets/ks14.webp", "assets/ks15.webp", "assets/ks16.webp"
     ]
   }
-  // Diğer OTEL ve INSAAT ID'leri bu şekilde kalsın, çünkü OTEL sayfasına hala ihtiyacımız var.
-  // Not: Diğer OTEL ve INSAAT ID'lerini (OTEL2-OTEL10 ve INSAAT1-INSAAT5) yer kazanmak için sildim, ancak uygulamanızda kalsınlar.
 }
