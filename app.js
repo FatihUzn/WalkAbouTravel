@@ -15,8 +15,8 @@ const translations = {};
 let allGalleriesData = null; 
 const pageCache = {}; 
 
-// === YENİ EKLEMELER: Galeri sayfalandırma için ===
-let globalPropertyImages = [];
+// === YENİ EKLEMELER: Tur/Galeri sayfalandırma için ===
+let globalTourImages = [];
 let globalImageIndex = 0;
 const IMAGES_PER_LOAD = 8; // Her seferinde 8 resim yükle
 // === YENİ EKLEMELER SONU ===
@@ -57,7 +57,7 @@ let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 // === YENİ EKLEMELER SONU ===
 
-async function openHouseDetail(letter) {
+async function openTourDetail(tourId) {
   
   if (!allGalleriesData) {
     try {
@@ -72,13 +72,14 @@ async function openHouseDetail(letter) {
     }
   }
 
-  const detail = document.getElementById("house-detail");
-  const content = document.getElementById("house-detail-content");
+  // Element isimleri HouseDetail yerine TourDetail olarak güncellendi
+  const detail = document.getElementById("tour-detail");
+  const content = document.getElementById("tour-detail-content");
   
   // Orijinal veriyi (fallback için) al
-  const h = allGalleriesData[letter]; 
+  const h = allGalleriesData[tourId]; 
   if (!h) {
-      console.error(`'${letter}' için ev detayı bulunamadı.`);
+      console.error(`'${tourId}' için tur detayı bulunamadı.`);
       return;
   }
   
@@ -87,39 +88,38 @@ async function openHouseDetail(letter) {
   const langData = translations[currentLang] || {}; 
 
   // Dil dosyalarından aranacak anahtarları oluştur
-  const titleKey = `prop_${letter}_title`;
-  const locationKey = `prop_${letter}_location`;
-  const areaKey = `prop_${letter}_area`;
-  const roomsKey = `prop_${letter}_rooms`;
-  const descKey = `prop_${letter}_desc`;
-  const priceKey = `prop_${letter}_price`;
+  const titleKey = `prop_${tourId}_title`;
+  const locationKey = `prop_${tourId}_location`; // Rota olarak kullanılacak
+  const areaKey = `prop_${tourId}_area`; // Bölge olarak kullanılacak
+  const roomsKey = `prop_${tourId}_rooms`; // Konaklama olarak kullanılacak
+  const descKey = `prop_${tourId}_desc`;
+  const priceKey = `prop_${tourId}_price`;
 
   // Fiyatı dil dosyasından al (bulamazsa galleries.json'dan al)
   const priceText = langData[priceKey] || h.price;
   let priceHTML = '';
 
-  if (letter.startsWith('OTEL')) {
+  if (tourId.startsWith('OTEL')) {
       // Otel fiyatı özel link içeriyor
       priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> <a href="https://bwizmirhotel.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); text-decoration: underline;">${priceText}</a></p>`;
   } else {
-      // Normal mülk fiyatı
+      // Normal tur/mülk fiyatı
       priceHTML = `<p><strong>${langData.js_fiyat || 'Fiyat'}:</strong> ${priceText}</p>`;
   }
   
 // === DEĞİŞİKLİK BAŞLANGICI: Global değişkenleri ayarla ===
-  globalPropertyImages = h.images || [];
+  globalTourImages = h.images || [];
   globalImageIndex = 0;
   // === DEĞİŞİKLİK SONU ===
 
-  // === DEĞİŞİKLİK BAŞLANGICI: HTML içeriğini güncelle ===
-  // Galeri kısmı (detail-gallery) artık boş geliyor ve JS ile doldurulacak.
+  // === DEĞİŞİKLİK BAŞLANGICI: HTML içeriğini güncelle (Başlıklar Turizm Temasına Uygun Güncellendi) ===
   content.innerHTML = `
     <h2>${langData[titleKey] || h.title}</h2>
     
     <div class="house-info">
-      <p><strong>${langData.js_konum || 'Konum'}:</strong> ${langData[locationKey] || h.location}</p>
-      <p><strong>${langData.js_alan || 'Alan'}:</strong> ${langData[areaKey] || h.area}</p>
-      <p><strong>${langData.js_oda_sayisi || 'Oda Sayısı'}:</strong> ${langData[roomsKey] || h.rooms}</p>
+      <p><strong>${langData.js_rota || 'Rota'}:</strong> ${langData[locationKey] || h.location}</p>
+      <p><strong>${langData.js_bolge || 'Bölge'}:</strong> ${langData[areaKey] || h.area}</p>
+      <p><strong>${langData.js_konaklama || 'Konaklama'}:</strong> ${langData[roomsKey] || h.rooms}</p>
       ${priceHTML}
       <p>${langData[descKey] || h.desc}</p>
     </div>
@@ -132,23 +132,23 @@ async function openHouseDetail(letter) {
   `;
   
   // İlk resim grubunu yükle
-  loadMorePropertyImages();
+  loadMoreTourImages();
   // === DEĞİŞİKLİK SONU ===
   
   detail.style.display = "block";
   document.body.style.overflow = "hidden"; 
 }
 
-function closeHouseDetail() {
-  const detail = document.getElementById("house-detail");
+function closeTourDetail() {
+  const detail = document.getElementById("tour-detail"); // Element ID'si güncellendi
   if (detail) {
     detail.style.display = "none";
   }
   document.body.style.overflow = "auto"; 
 }
 
-// === YENİ FONKSİYON 1: Mülk Galerisi (Satılık/Otel) ===
-function loadMorePropertyImages() {
+// === YENİ FONKSİYON 1: Tur Galerisi (Satılık/Otel) ===
+function loadMoreTourImages() {
   const galleryContainer = document.getElementById('detail-gallery-container');
   const loaderContainer = document.getElementById('gallery-loader-container');
 
@@ -157,8 +157,8 @@ function loadMorePropertyImages() {
     return;
   }
 
-  // Yüklenecek resim dilimini al
-  const imagesToLoad = globalPropertyImages.slice(globalImageIndex, globalImageIndex + IMAGES_PER_LOAD);
+  // Yüklenecek resim dilimini al (globalTourImages kullanılıyor)
+  const imagesToLoad = globalTourImages.slice(globalImageIndex, globalImageIndex + IMAGES_PER_LOAD);
 
   if (imagesToLoad.length === 0 && globalImageIndex === 0) {
      galleryContainer.innerHTML = "<p>Bu galeri için resim bulunamadı.</p>";
@@ -168,7 +168,7 @@ function loadMorePropertyImages() {
 
   // Resimler için HTML oluştur
   const imagesHTML = imagesToLoad.map(img => 
-    `<img loading="lazy" src="${img}" alt="Galeri Resmi" onerror="this.remove()">`
+    `<img loading="lazy" src="${img}" alt="Tur Resmi" onerror="this.remove()">`
   ).join("");
 
   // Resimleri galeriye ekle
@@ -181,13 +181,13 @@ function loadMorePropertyImages() {
   loaderContainer.innerHTML = '';
 
   // Hâlâ yüklenecek resim varsa, butonu tekrar ekle
-  if (globalImageIndex < globalPropertyImages.length) {
+  if (globalImageIndex < globalTourImages.length) {
     // Çeviri verisini al
     const currentLang = localStorage.getItem('lang') || 'tr';
     const langData = translations[currentLang] || {};
     const buttonText = langData.btn_load_more || 'Daha Fazla Göster';
     
-    loaderContainer.innerHTML = `<button class="btn" id="load-more-btn" onclick="loadMorePropertyImages()">${buttonText}</button>`;
+    loaderContainer.innerHTML = `<button class="btn" id="load-more-btn" onclick="loadMoreTourImages()">${buttonText}</button>`;
   }
 }
 // === FONKSİYON 1 SONU ===
