@@ -1,43 +1,55 @@
 <section id="page-restorasyon" class="page-section" style="padding-top: 160px;">
   <a href="#hero" class="btn-page-back" data-key="btn_back">← Geri</a>
   
-  <div class="new-layout-container">
+  <div class="blog-container">
 
-    <h2 data-key="restoration_hub_title">Seyahat Blogumuz</h2>
+    <h2 class="section-title" data-key="blog_title">Yolculuk Günlüğü</h2>
+    <p class="section-subtitle">
+        Seyahat hikayeleri, otel incelemeleri ve rota önerileri.
+    </p>
 
-    <div class="house-gallery">
-        
-        <div class="house-card" 
-             onclick="event.preventDefault(); showPage('page-pruva-otel');" 
-             style="cursor: pointer; position: relative;"> 
+    <div class="featured-blog">
+        <img src="assets/blog/pruva-otel.webp" 
+             class="featured-img" 
+             alt="Pruva Otel"
+             onerror="this.src='https://placehold.co/600x400/1a1a2e/FFF?text=Pruva+Otel'">
+             
+        <div class="featured-content">
+            <span class="blog-category">Otel İncelemesi</span>
+            <h3>Pruva Otel: Deniz Kenarında Lüks</h3>
+            <p>Şehrin gürültüsünden uzakta, sahil kenarında konforlu bir tatil
+               deneyimi sunan Pruva Otel'i detaylıca inceledik. Manzarası ve imkanları hakkında detaylar...</p>
             
-<img loading="lazy" 
-     src="assets/pruva_otel_yeni.webp" 
-     alt="Otel Deneyimi" 
-     onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Pruva+Otel'">
+            <a href="#" onclick="event.preventDefault(); showPage('page-pruva-otel');" class="btn btn-primary">
+                İncelemeyi Oku
+            </a>
+        </div>
+    </div>
 
-<img loading="lazy" 
-     src="assets/istanbul2.webp" 
-     alt="İstanbul Gün Batımı Restorasyon" 
-     onerror="this.src='https://placehold.co/350x224/111/f59e0b?text=Pruva+Otel'">
-            <h3 data-key="restoration_hub_card_1" 
-                style="
-                    display: block !important;
-                    background: var(--gold-dark) !important;
-                    color: #111 !important;
-                    font-weight: 700 !important;
-                    text-align: center !important;
-                    padding: 15px !important;
-                    margin: 0 !important;
-                    position: absolute; /* Alt kısma sabitler */
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                ">
-                Otel Deneyimi
-            </h3>
+    <div class="blog-grid">
+
+        <div class="blog-card">
+            <span class="blog-category">Rota Önerisi</span>
+            <h4>3 Günde Kaş & Kalkan</h4>
+            <p>Kısa sürede deniz, tarih ve yemek üçlüsü. En iyi konaklama önerileri.</p>
+            <a href="#" class="blog-readmore">Yazıyı Aç</a>
         </div>
-        
+
+        <div class="blog-card">
+            <span class="blog-category">Seyahat İpucu</span>
+            <h4>Uygun Fiyatlı Bilet Bulma</h4>
+            <p>Erken rezervasyon, alternatif havalimanları ve gizli ipuçları.</p>
+            <a href="#" class="blog-readmore">Yazıyı Aç</a>
         </div>
+
+        <div class="blog-card">
+            <span class="blog-category">Şehir Rehberi</span>
+            <h4>İstanbul: 24 Saatlik Plan</h4>
+            <p>Kısıtlı zamanı olanlar için hem kültürel hem gastronomik hızlı rota.</p>
+            <a href="#" class="blog-readmore">Yazıyı Aç</a>
+        </div>
+
+    </div>
+
   </div>
 </section>
