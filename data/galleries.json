@@ -65,8 +65,8 @@
       "assets/spain-1.webp", "assets/spain-2.webp", "assets/spain-3.webp", "assets/spain-4.webp", "assets/spain-5.webp", "assets/spain-6.webp", "assets/spain-7.webp", "assets/spain-8.webp", "assets/spain-9.webp", "assets/spain-10.webp", "assets/spain-11.webp", "assets/spain-12.webp", "assets/spain-13.webp", "assets/spain-14.webp", "assets/spain-15.webp"
     ]
   },
-  "TUR-D-RUSYA": {
-    "title": "Rusya - Moskova & St. Petersburg Sanat",
+  "TUR-D-RUSYA-KIS": {
+    "title": "Rusya (kış Masalı)",
     "price": "6 Gün / 5 Gece, 1.450 €",
     "location": "Moskova, St. Petersburg",
     "area": "Rusya Federasyonu",
@@ -96,39 +96,6 @@
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
     "images": [
       "assets/new-york-1.webp", "assets/new-york-2.webp", "assets/new-york-3.webp", "assets/new-york-4.webp", "assets/new-york-5.webp", "assets/new-york-6.webp", "assets/new-york-7.webp", "assets/new-york-8.webp", "assets/new-york-9.webp"
-    ]
-  },
-  "TUR-D-JAPONYA": {
-    "title": "Japonya - Kış Turu & Tokyo",
-    "price": "8 Gün / 7 Gece, 4.000 $",
-    "location": "Tokyo, Kyoto",
-    "area": "Uzak Doğu",
-    "rooms": "Geleneksel Ryokan",
-    "desc": "Karlı manzaralar eşliğinde Japonya'nın kış güzellikleri, tapınaklar ve modern Tokyo gezisi.",
-    "images": [
-      "assets/japonya-kis-turu-1.webp"
-    ]
-  },
-  "TUR-D-HINDISTAN": {
-    "title": "Hindistan - Mistik Kültür Turu",
-    "price": "7 Gün / 6 Gece, 1.800 $",
-    "location": "Yeni Delhi, Agra, Jaipur",
-    "area": "Güney Asya",
-    "rooms": "Saray Otelleri",
-    "desc": "Tac Mahal'in büyüleyici güzelliği, Baharat pazarları ve Hindistan'ın renkli kültürü.",
-    "images": [
-      "assets/hindistan-kultur-turu-1.webp"
-    ]
-  },
-  "OTEL1": {
-    "title": "Kral Dairesi (Özel Konaklama)",
-    "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "120 m2",
-    "rooms": "1 Yatak Odası + 1 Salon",
-    "desc": "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz.",
-    "images": [
-      "assets/ks1.webp", "assets/ks2.webp", "assets/ks3.webp", "assets/ks4.webp", "assets/ks5.webp", "assets/ks6.webp", "assets/ks7.webp", "assets/ks8.webp", "assets/ks9.webp", "assets/ks10.webp", "assets/ks11.webp", "assets/ks12.webp", "assets/ks13.webp", "assets/ks14.webp", "assets/ks15.webp", "assets/ks16.webp"
-    ]
+
   }
 }
