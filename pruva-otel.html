@@ -1,116 +1,38 @@
-<a href="#page-restorasyon" 
-   class="btn-page-back"
-   onclick="event.preventDefault(); showPage('page-restorasyon');">
-  ← Geri
-</a>
+<section id="page-pruva-otel" class="page-section">
+    
+    <a href="#hero" class="btn-page-back" data-key="btn_back">← Anasayfa</a>
 
-<div class="premium-blog-container">
+    <div class="blog-container">
+        
+        <div class="blog-header">
+            <h2>Golden Palace Journal</h2>
+            <p class="blog-subtitle">Mimari, Tasarım ve Yaşam Üzerine Seçkiler</p>
+            <div class="title-gold-line"></div>
+        </div>
 
-  <!-- BAŞLIK -->
-  <header class="premium-blog-header">
-    <h1 class="premium-blog-title">
-      Sessiz Bir Yolculuk: Akdeniz Kıyılarında Minimal Bir Kaçamak
-    </h1>
-    <p class="premium-blog-subtitle">
-      Gürültüden uzak, sade ve huzurlu bir yolculuğun notları.
-    </p>
+        <div id="admin-panel-container" style="display:none;">
+            <div class="admin-panel">
+                <h3>Yeni Yazı Ekle / Düzenle</h3>
+                <div class="admin-form-grid">
+                    <input type="text" id="blog-title" placeholder="Blog Başlığı Giriniz..." class="admin-input">
+                    <input type="text" id="blog-image" placeholder="Görsel URL (örn: assets/blog1.webp)" class="admin-input">
+                    <input type="date" id="blog-date" class="admin-input">
+                    <textarea id="blog-content" rows="4" placeholder="Yazı içeriği veya özet..." class="admin-textarea"></textarea>
+                </div>
+                <div class="admin-actions">
+                    <button onclick="publishBlogPost()" class="btn admin-btn-save">Yayınla</button>
+                    <button onclick="saveBlogDraft()" class="btn admin-btn-draft">Taslağı Kaydet</button>
+                    <button onclick="toggleAdminPanel()" class="btn admin-btn-cancel">Kapat</button>
+                </div>
+            </div>
+        </div>
 
-    <div class="premium-blog-meta">
-      <span>🗓 19 Kasım 2025</span>
-      <span>•</span>
-      <span>WalkAboutTravel Premium Blog</span>
-      <span>•</span>
-      <span>5 dk okuma</span>
+        <div id="blog-grid-display" class="blog-grid">
+            </div>
+
+        <div class="admin-trigger-area">
+            <button onclick="toggleAdminPanel()" class="admin-toggle-text">[ Editör Girişi ]</button>
+        </div>
+
     </div>
-  </header>
-
-  <!-- KAPAK -->
-  <figure class="premium-blog-hero">
-    <img src="assets/blog/akdeniz-premium.webp"
-         alt="Minimalist Akdeniz Kıyısı"
-         onerror="this.src='https://placehold.co/1300x650/FFFFFF/0b1120?text=WalkAboutTravel+Premium';">
-  </figure>
-
-  <!-- GİRİŞ PARAGRAFI -->
-  <article class="premium-blog-body">
-
-    <p class="lead">
-      Bazen yolculuğun en güzel yanı, planların eksik olduğu anlarda ortaya çıkan
-      sade keşiflerdir. Bu küçük Akdeniz kaçamağı, çok fazla beklenti olmadan
-      yola çıktığım ama büyük bir ferahlıkla döndüğüm bir yolculuktu.
-    </p>
-
-    <hr class="premium-divider">
-
-    <!-- 1. Bölüm -->
-    <section class="premium-section">
-      <h2>Gün 1 — Şehrin Gürültüsünden Uzaklaşmak</h2>
-      <p>
-        Sabah saatlerinde şehirden ayrılıp kısa süre içinde geniş ovalar, dar yollar
-        ve nihayet kıyıya yakın bölgeler görünmeye başladı. Durdum, derin bir nefes
-        aldım ve ilk kez gerçekten hafta sonunun başladığını hissettim.
-      </p>
-      <p>
-        Bu yolculuğun en değerli yanı, acele etme zorunluluğunun olmamasıydı.
-        Yavaşça ilerledim, istediğim yerde durdum ve her mola anı küçük bir meditasyon gibiydi.
-      </p>
-    </section>
-
-    <!-- FOTO BLOK -->
-    <figure class="premium-wide-photo">
-      <img src="assets/blog/minimal-koy.webp"
-           alt="Sessiz koy"
-           onerror="this.src='https://placehold.co/1200x500/EEEEEE/333333?text=Minimal+Koy';">
-      <figcaption>Yolculuğun ilk sürprizi: tamamen sessiz bir kıyı.</figcaption>
-    </figure>
-
-    <!-- 2. Bölüm -->
-    <section class="premium-section">
-      <h2>Gün 2 — Sadelikte Kaybolmak</h2>
-      <p>
-        Yolun ikinci günü, daha da minimal bir yaklaşım benimsedim: rota yok,
-        hedef yok, sadece kıyı boyunca ilerlemek. Ne zaman bir yol tabelası
-        ilgimi çekse, o tarafa döndüm.
-      </p>
-      <p>
-        Küçük bir sahil kasabasında, yerel bir fırından sıcak ekmek aldım
-        ve deniz kenarındaki bir taşın üzerine oturup kahvaltı yaptım.
-        Bu basit anın verdiği huzuru uzun süre unutmayacağım.
-      </p>
-    </section>
-
-    <hr class="premium-divider">
-
-    <!-- NOTLAR -->
-    <section class="premium-notes">
-      <h3>Seyahat Notları</h3>
-      <ul>
-        <li>Beklentileri azaltmak, yolculuğun kalitesini artırıyor.</li>
-        <li>Yavaşlamak, gittiğin yerde daha çok şey fark ettiriyor.</li>
-        <li>Telefonu kapatıp yalnızca çevreye odaklanmak, farkındalığı artırıyor.</li>
-      </ul>
-    </section>
-
-    <!-- 3. Bölüm -->
-    <section class="premium-section">
-      <h2>Gün 3 — Geri Dönüş ve Huzur</h2>
-      <p>
-        Dönüş yolunda güneş daha parlaktı ama hissettiğim şey çok daha sakindi.
-        Yol boyunca fark ettim ki; minimal yaklaşım, küçük bir kaçamağı bile
-        güçlü bir yenilenmeye dönüştürebiliyor.
-      </p>
-    </section>
-
-  </article>
-
-  <!-- ALT KISIM -->
-  <footer class="premium-footer">
-    <p class="premium-next-label">Bir sonraki yazı:</p>
-    <a href="#page-restorasyon"
-       onclick="event.preventDefault(); showPage('page-restorasyon');"
-       class="premium-next-link">
-      Şehirden Uzak 5 Farklı Kış Rotası →
-    </a>
-  </footer>
-
-</div>
+</section>
