@@ -2150,7 +2150,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .blog-grid {
         gap: 20px;
     }
-}
 /* === TRAVEL JOURNAL – TEKİL TURİZM BLOGU (page-pruva-otel) === */
 
 #page-pruva-otel {
@@ -2329,4 +2328,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   #page-pruva-otel .travel-journal-container {
     grid-template-columns: 1fr;
   }
+}
+
 }
