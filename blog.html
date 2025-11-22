@@ -73,30 +73,50 @@
 <script>
     // === BLOG YÖNETİM SİSTEMİ ===
 
-    // 1. Veriler (Varsayılan Yazılar)
+    // === BLOG YÖNETİM SİSTEMİ ===
+
+    // 1. Veriler (5 Kaliteli Örnek Yazı)
     let blogPosts = JSON.parse(localStorage.getItem('goldenBlogData')) || [
         {
             id: 1,
-            title: "Kapadokya'da Lüksün Yeni Tanımı: Mağara Oteller",
-            image: "assets/otel_hero-mobil.webp", // Varsayılan görsel
-            date: "2025-11-20",
-            content: "Tarihi dokuyu modern konforla birleştiren restorasyon projelerimiz, Kapadokya turizmine yeni bir soluk getiriyor. Taş işçiliğinin en nadide örnekleri..."
+            title: "Geleceğin Konut Anlayışı: Akıllı ve Yeşil Binalar",
+            image: "assets/insaat_hero-mobil.webp", 
+            date: "2025-11-22",
+            content: "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. WalkAbouTravel olarak yeni projelerimizde, karbon ayak izini minimize eden 'yaşayan duvarlar' ve kendi enerjisini üreten cephe sistemleri kullanıyoruz. Lüks, artık sadece estetik değil, sürdürülebilirliktir."
         },
         {
             id: 2,
-            title: "Sürdürülebilir Turizm ve Mimari",
-            image: "assets/insaat_hero-mobil.webp",
-            date: "2025-11-15",
-            content: "Geleceğin otelleri sadece konfor sunmakla kalmıyor, aynı zamanda doğaya saygı duyuyor. Yeşil enerji sertifikalı yeni projelerimizden detaylar."
+            title: "Ege'nin Kalbinde Bir Kaçış: Pruva Otel Deneyimi",
+            image: "assets/otel_hero-mobil.webp",
+            date: "2025-11-18",
+            content: "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim tasarladık. Pruva Otel, sadece bir konaklama tesisi değil; yerel gastronomi, kişiye özel spa hizmetleri ve eşsiz gün batımı manzarasıyla ruhunuzu dinlendirecek bir sığınak."
         },
         {
             id: 3,
-            title: "İstanbul Boğazı'nda Tarihi Yalı Restorasyonu",
+            title: "Tarihi Dokuyu Korumak: Galata Restorasyon Projesi",
             image: "assets/restorasyon1.webp", 
             date: "2025-11-10",
-            content: "Yüzyıllık ahşap yapıların aslına uygun olarak yenilenmesi sürecinde karşılaşılan zorluklar ve mühendislik çözümleri."
+            content: "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son projemizde, 19. yüzyıldan kalma bir yapıyı, orijinal dokusuna zarar vermeden modern ofis ihtiyaçlarına uygun hale getirdik. Eski ve yeninin bu dansı, mimarideki en hassas dengelerden biridir."
+        },
+        {
+            id: 4,
+            title: "2025 Gayrimenkul Yatırım Trendleri",
+            image: "assets/for_hero.webp", 
+            date: "2025-10-25",
+            content: "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor. Özellikle turizm odaklı rezidanslar ve esnek kullanımlı ticari alanlar, önümüzdeki 5 yılın parlayan yıldızları olacak. İşte uzman ekibimizin piyasa analizi..."
+        },
+        {
+            id: 5,
+            title: "Minimalizm ve Lüksün Buluşması: İç Mekan Tasarımı",
+            image: "assets/background.webp", 
+            date: "2025-10-05",
+            content: "Az aslında çoktur, ama doğru malzemeyle. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan koleksiyonumuzda, göz yormayan ama kalitesini ilk bakışta hissettiren bir çizgi yakaladık. Evinizde ferahlık yaratmanın 5 altın kuralını sizin için derledik."
         }
     ];
+
+    // 2. Yazıları Ekrana Bas (Render)
+    function renderBlogPosts() {
+        // ... (Kodun geri kalanı aynı kalacak)
 
     // 2. Yazıları Ekrana Bas (Render)
     function renderBlogPosts() {
@@ -210,3 +230,4 @@
 
 </body>
 </html>
+
