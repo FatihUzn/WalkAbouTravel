@@ -2151,3 +2151,182 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         gap: 20px;
     }
 }
+/* === TRAVEL JOURNAL – TEKİL TURİZM BLOGU (page-pruva-otel) === */
+
+#page-pruva-otel {
+  background-color: var(--bg);
+}
+
+#page-pruva-otel .travel-journal-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.2fr);
+  gap: 40px;
+}
+
+/* Üst başlık */
+#page-pruva-otel .travel-journal-header {
+  grid-column: 1 / -1;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#page-pruva-otel .travel-journal-kicker {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin: 0 0 8px 0;
+}
+
+#page-pruva-otel .travel-journal-title {
+  font-size: 32px;
+  margin: 0 0 12px 0;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
+  color: var(--text);
+}
+
+#page-pruva-otel .travel-journal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Kapak görseli */
+#page-pruva-otel .travel-journal-hero {
+  grid-column: 1 / -1;
+  margin: 24px 0 20px;
+}
+
+#page-pruva-otel .travel-journal-hero img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  max-height: 420px;
+}
+
+#page-pruva-otel .travel-journal-hero figcaption {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* Ana yazı gövdesi */
+#page-pruva-otel .travel-journal-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+#page-pruva-otel .travel-journal-section + .travel-journal-section {
+  margin-top: 26px;
+}
+
+#page-pruva-otel .travel-journal-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
+  color: var(--blue-dark);
+}
+
+#page-pruva-otel .travel-journal-section p {
+  margin: 0 0 10px 0;
+}
+
+/* Alıntı bloğu */
+#page-pruva-otel .travel-journal-quote {
+  margin: 30px 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--blue-light);
+  background: rgba(255,255,255,0.8);
+  border-radius: 8px;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* Sağ taraftaki ipucu kutuları */
+#page-pruva-otel .travel-journal-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#page-pruva-otel .travel-tips-card,
+#page-pruva-otel .travel-highlights-card {
+  background: var(--section-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-dark);
+  padding: 18px 18px 20px;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.07);
+}
+
+#page-pruva-otel .travel-tips-card h4,
+#page-pruva-otel .travel-highlights-card h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: var(--blue-dark);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
+}
+
+#page-pruva-otel .travel-tips-card ul,
+#page-pruva-otel .travel-highlights-card ol {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Alt kısım */
+#page-pruva-otel .travel-journal-footer {
+  grid-column: 1 / -1;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#page-pruva-otel .travel-journal-next-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+#page-pruva-otel .travel-journal-next-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue-light);
+  text-decoration: none;
+}
+
+#page-pruva-otel .travel-journal-next-link:hover {
+  text-decoration: underline;
+}
+
+/* Mobil uyum */
+@media (max-width: 900px) {
+  #page-pruva-otel .travel-journal-container {
+    grid-template-columns: 1fr;
+  }
+}
