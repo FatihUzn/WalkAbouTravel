@@ -1,133 +1,212 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - WalkAbout Travel</title>
-    
-    <link rel="stylesheet" href="style.css?v=1.8"> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal - WalkAbouTravel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        /* Blog Sayfası İçin Özel Düzenlemeler */
-        body {
-            background-color: #111; /* Arka plan rengi */
-            padding-top: 0; /* Header fixed olduğu için */
-        }
-        .blog-wrapper-standalone {
-            padding-top: 140px; /* Header altı boşluk */
-            padding-bottom: 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        /* Geri butonu düzenlemesi */
-        .btn-page-back-static {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #ffcc66;
-            text-decoration: none;
-            font-weight: bold;
-            border: 1px solid #ffcc66;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .btn-page-back-static:hover {
-            background: #ffcc66;
-            color: #000;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
 
-    <header id="main-header">
-        <div class="header-top-row">
-            <div class="top-bar-left">
-                <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-            </div>
-            <div class="top-bar-right">
-                <a href="index.html" class="btn btn-top-info"><i class="fas fa-home"></i> Anasayfaya Dön</a>
-            </div>
-        </div>
-      
-        <div class="header-bottom-row">
-            <div class="brand">
-                <img src="assets/golden_palace_logo.webp" alt="Logo" style="height:45px;"> 
-                <div class="brand-text-container">
-                    <span class="brand-title" style="color:#fff;">Golden Palace</span>
-                    <span class="brand-tagline" style="color:#aaa;">Real Estate & Architecture</span>
-                </div>
-            </div>
-        </div>
-    </header>
+<header id="main-header">
+  <div class="header-top-row">
+    <div class="top-bar-left">
+      <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
+      <a href="mailto:info@walkaboutravel.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@walkaboutravel.com</a>
+    </div>
+    <div class="top-bar-right">
+      <a href="index.html" class="btn btn-top-info"><i class="fas fa-home"></i> Anasayfaya Dön</a>
+    </div>
+  </div>
 
-    <main class="blog-wrapper-standalone">
+  <div class="header-bottom-row">
+    <div class="brand">
+      <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo">
+      <div class="brand-text-container">
+          <span class="brand-title">WalkAbouTravel</span>
+          <span class="brand-tagline">Tourism & Travel</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="blog-page-wrapper">
+    
+    <div class="blog-hero">
+        <h1>The Journal</h1>
+        <p>Seyahat dünyasından en son haberler, mimari incelemeler ve lüks yaşam üzerine notlar.</p>
+    </div>
+
+    <div id="featured-post-container">
+        </div>
+
+    <div id="blog-grid-display" class="blog-grid-display">
+        </div>
+
+    <div style="text-align: center; margin-top: 80px;">
+        <button onclick="toggleAdminPanel()" style="background:none; border:none; color:#333; font-size:12px; cursor:pointer;">Editör Girişi</button>
+    </div>
+
+    <div id="admin-panel-container" class="aesthetic-admin" style="display: none;">
+        <h3>Yeni Yazı Yayınla</h3>
+        <input type="text" id="blog-title" class="aesthetic-input" placeholder="Yazı Başlığı Giriniz...">
+        <input type="text" id="blog-image" class="aesthetic-input" placeholder="Görsel URL (örn: assets/resim.webp)">
+        <input type="date" id="blog-date" class="aesthetic-input">
+        <textarea id="blog-content" class="aesthetic-input" rows="6" placeholder="Yazı içeriği..."></textarea>
         
-        <a href="index.html" class="btn-page-back-static">← Anasayfa</a>
-
-        <div class="blog-container">
-            
-            <div class="blog-header" style="text-align:center; margin-bottom:50px;">
-                <span class="blog-badge" style="color:#ffcc66; letter-spacing:2px; font-size:0.9rem;">SEYAHAT GÜNLÜĞÜ</span>
-                <h2 style="font-family:'Playfair Display',serif; font-size:3rem; margin:10px 0; color:#fff;">WalkAbout Travel Blog</h2>
-                <p class="blog-subtitle" style="color:#bbb;">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
-                <div class="title-gold-line" style="width:100px; height:2px; background:#ffcc66; margin:20px auto;"></div>
-                
-                <div class="blog-categories" style="margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-                    <span class="cat-btn active" style="color:#ffcc66; cursor:pointer;">Tümü</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Rota Önerileri</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Vize Rehberi</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Otel İncelemeleri</span>
-                </div>
-            </div>
-
-            <div id="admin-panel-container" style="display:none; margin-bottom:40px; background:#222; padding:20px; border-radius:10px; border:1px solid #444;">
-                <div class="admin-header" style="display:flex; justify-content:space-between; color:#ffcc66;">
-                    <h3><i class="fas fa-compass"></i> Yeni Rota / Yazı Ekle</h3>
-                    <button onclick="document.getElementById('admin-panel-container').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer;">✖</button>
-                </div>
-                <br>
-                <p style="color:#888;">(Admin paneli fonksiyonları JavaScript ile eklenebilir)</p>
-            </div>
-
-            <div id="blog-grid-display" class="blog-grid">
-                <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
-                    <img src="assets/for_hero.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
-                    <div style="padding:20px;">
-                        <span style="color:#ffcc66; font-size:0.8rem;">22 KASIM 2025</span>
-                        <h3 style="color:#fff; margin:10px 0;">Kapadokya'da Balon Turu</h3>
-                        <p style="color:#aaa;">Peri bacalarının üzerinden gün doğumunu izlemek...</p>
-                    </div>
-                </article>
-                 <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
-                    <img src="assets/background.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
-                    <div style="padding:20px;">
-                        <span style="color:#ffcc66; font-size:0.8rem;">18 KASIM 2025</span>
-                        <h3 style="color:#fff; margin:10px 0;">İtalya'nın Saklı Köyleri</h3>
-                        <p style="color:#aaa;">Turistik rotaların dışına çıkıp gerçek İtalyan kültürünü keşfedin.</p>
-                    </div>
-                </article>
-            </div>
-
-            <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
-                <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
-                <p style="color:#ddd;">Bültenimize katıl.</p>
-            </div>
-
-            <div class="admin-trigger-area" style="text-align:center; margin-top:20px;">
-                <button onclick="document.getElementById('admin-panel-container').style.display='block'" style="background:none; border:1px solid #555; color:#888; padding:5px 15px; cursor:pointer;">
-                    <i class="fas fa-pen-nib"></i> Editör
-                </button>
-            </div>
-
+        <div style="display: flex; gap: 15px;">
+            <button onclick="publishBlogPost()" class="btn" style="background: var(--blue-dark); color:#fff; border:none;">YAYINLA</button>
+            <button onclick="saveBlogDraft()" class="btn" style="background: transparent; border: 1px solid #555; color:#ccc;">Taslağı Kaydet</button>
         </div>
-    </main>
+    </div>
 
-    <footer style="background:#0c0c0c; padding:40px; text-align:center; border-top:1px solid #333; color:#888;">
-        <p>© 2025 Golden Palace & WalkAbout Travel.</p>
-    </footer>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-bottom" style="text-align: center; border:none;">
+        © 2025 WalkAbouTravel. Tüm hakları saklıdır.
+    </div>
+</footer>
+
+<script>
+    // === BLOG YÖNETİM SİSTEMİ ===
+
+    // 1. Veriler (Varsayılan Yazılar)
+    let blogPosts = JSON.parse(localStorage.getItem('goldenBlogData')) || [
+        {
+            id: 1,
+            title: "Kapadokya'da Lüksün Yeni Tanımı: Mağara Oteller",
+            image: "assets/otel_hero-mobil.webp", // Varsayılan görsel
+            date: "2025-11-20",
+            content: "Tarihi dokuyu modern konforla birleştiren restorasyon projelerimiz, Kapadokya turizmine yeni bir soluk getiriyor. Taş işçiliğinin en nadide örnekleri..."
+        },
+        {
+            id: 2,
+            title: "Sürdürülebilir Turizm ve Mimari",
+            image: "assets/insaat_hero-mobil.webp",
+            date: "2025-11-15",
+            content: "Geleceğin otelleri sadece konfor sunmakla kalmıyor, aynı zamanda doğaya saygı duyuyor. Yeşil enerji sertifikalı yeni projelerimizden detaylar."
+        },
+        {
+            id: 3,
+            title: "İstanbul Boğazı'nda Tarihi Yalı Restorasyonu",
+            image: "assets/restorasyon1.webp", 
+            date: "2025-11-10",
+            content: "Yüzyıllık ahşap yapıların aslına uygun olarak yenilenmesi sürecinde karşılaşılan zorluklar ve mühendislik çözümleri."
+        }
+    ];
+
+    // 2. Yazıları Ekrana Bas (Render)
+    function renderBlogPosts() {
+        const gridDisplay = document.getElementById('blog-grid-display');
+        const featuredContainer = document.getElementById('featured-post-container');
+        
+        if(!gridDisplay) return;
+
+        // Tarihe göre sırala (En yeni en üstte)
+        blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // En yeni yazıyı "Featured" (Öne Çıkan) yap
+        const latestPost = blogPosts[0];
+        
+        // Featured HTML
+        if(featuredContainer) {
+            featuredContainer.innerHTML = `
+                <article class="featured-post">
+                    <div class="featured-img-container">
+                        <img src="${latestPost.image}" alt="${latestPost.title}" onerror="this.src='https://placehold.co/800x600/111/f59e0b?text=WalkAbouTravel'">
+                    </div>
+                    <div class="featured-content">
+                        <span class="post-meta"><i class="far fa-clock"></i> ${latestPost.date} | EDİTÖRÜN SEÇİMİ</span>
+                        <h2>${latestPost.title}</h2>
+                        <p>${latestPost.content.substring(0, 180)}...</p>
+                        <a href="#" class="read-more-link">Yazıyı Oku <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            `;
+        }
+
+        // Geri kalanları Grid'e bas (İlkini atla)
+        gridDisplay.innerHTML = ""; 
+        const otherPosts = blogPosts.slice(1);
+
+        otherPosts.forEach(post => {
+            const html = `
+                <article class="aesthetic-card">
+                    <div class="card-img-top">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/111/f59e0b?text=Blog'">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-date">${post.date}</span>
+                        <h3>${post.title}</h3>
+                        <p class="card-excerpt">${post.content.substring(0, 100)}...</p>
+                        <a href="#" class="read-more-link" style="color:var(--text-muted); font-size:0.9rem;">Devamını Oku</a>
+                         <button onclick="deletePost(${post.id})" style="margin-top:15px; background:none; border:none; color:#444; cursor:pointer; font-size:0.7rem; align-self:flex-end;">Sil</button>
+                    </div>
+                </article>
+            `;
+            gridDisplay.innerHTML += html;
+        });
+    }
+
+    // 3. Yeni Yazı Yayınla
+    function publishBlogPost() {
+        const title = document.getElementById('blog-title').value;
+        const img = document.getElementById('blog-image').value || 'assets/for_hero.webp';
+        const date = document.getElementById('blog-date').value || new Date().toISOString().split('T')[0];
+        const content = document.getElementById('blog-content').value;
+
+        if(title.trim() === "" || content.trim() === "") {
+            alert("Lütfen en azından bir başlık ve içerik giriniz.");
+            return;
+        }
+
+        const newPost = {
+            id: Date.now(),
+            title: title,
+            image: img,
+            date: date,
+            content: content
+        };
+
+        blogPosts.push(newPost);
+        localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts));
+        
+        // Formu temizle
+        document.getElementById('blog-title').value = "";
+        document.getElementById('blog-content').value = "";
+        
+        renderBlogPosts();
+        alert("Yazı başarıyla yayınlandı!");
+    }
+
+    // 4. Silme Fonksiyonu
+    function deletePost(id) {
+        if(confirm("Bu yazıyı silmek istediğinize emin misiniz?")) {
+            blogPosts = blogPosts.filter(p => p.id !== id);
+            localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts));
+            renderBlogPosts();
+        }
+    }
+
+    // 5. Admin Panel Göster/Gizle
+    function toggleAdminPanel() {
+        const panel = document.getElementById('admin-panel-container');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function saveBlogDraft() {
+        localStorage.setItem('draftTitle', document.getElementById('blog-title').value);
+        localStorage.setItem('draftContent', document.getElementById('blog-content').value);
+        alert("Taslak tarayıcı hafızasına kaydedildi.");
+    }
+
+    // Başlat
+    document.addEventListener('DOMContentLoaded', renderBlogPosts);
+
+</script>
 
 </body>
 </html>
