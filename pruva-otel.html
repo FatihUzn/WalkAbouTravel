@@ -1,19 +1,124 @@
 <section id="page-pruva-otel" class="page-section">
-  
-  <a href="#page-restorasyon" class="btn-page-back" data-key="btn_back">← Geri</a>
-  
-  <div>
-    
-    <h2 data-key="restoration_title">Proje Galerisi (Önce & Sonra)</h2>
-    
-    <h3 class="restoration-subtitle" data-key="restoration_before">Önceki Hali</h3>
-    <div class="restoration-gallery detail-gallery" id="restoration-gallery-before">
+  <!-- GERİ BUTONU -->
+  <a href="#page-restorasyon" 
+     class="btn-page-back" 
+     onclick="event.preventDefault(); showPage('page-restorasyon');">
+    ← Geri
+  </a>
+
+  <div class="travel-journal-container">
+
+    <!-- ÜST BAŞLIK / META -->
+    <header class="travel-journal-header">
+      <p class="travel-journal-kicker">YOLCULUK GÜNLÜĞÜ</p>
+      <h2 class="travel-journal-title">
+        Şehirden Kaçış: 3 Günlük Akdeniz Yolculuk Günlüğü
+      </h2>
+      <div class="travel-journal-meta">
+        <span>🗓 18 Kasım 2025</span>
+        <span>•</span>
+        <span>WalkAboutTravel Blog</span>
+        <span>•</span>
+        <span>Okuma süresi: 7 dk</span>
       </div>
-    <div id="restoration-loader-before" style="text-align: center; margin-top: 20px;"></div>
-     <h3 class="restoration-subtitle" data-key="restoration_after">Sonraki Hali</h3>
-    <div class="restoration-gallery detail-gallery" id="restoration-gallery-after">
+    </header>
+
+    <!-- KAPAK GÖRSELİ -->
+    <figure class="travel-journal-hero">
+      <img src="assets/blog/akdeniz-yolculuk.webp"
+           alt="Akdeniz yolculuğu manzara"
+           onerror="this.src='https://placehold.co/1200x600/1a1a2e/ffffff?text=WalkAboutTravel+Blog';">
+      <figcaption>Sabah erken saatlerde Akdeniz kıyısında ilk mola.</figcaption>
+    </figure>
+
+    <!-- ANA YAZI GÖVDESİ -->
+    <article class="travel-journal-body">
+
+      <section class="travel-journal-section">
+        <h3>1. Gün – Şehirden Çıkış ve İlk Durak</h3>
+        <p>
+          Haftalarca süren yoğun tempodan sonra, cuma sabahı erken saatte şehri
+          arkamızda bırakıp güneye doğru yola çıktık. Yolun ilk iki saatinde
+          telefonlar sustu, yerini uzun zamandır ertelediğimiz sohbetler aldı.
+        </p>
+        <p>
+          İlk molamızı, denizi uzaktan görebildiğimiz küçük bir kasabada verdik.
+          Benzin, kahve ve hafif bir kahvaltı sonrasında asıl yolculuğun yeni
+          başladığını hissettik. Burası, haftanın stresini geride bırakmak için
+          küçük ama güçlü bir başlangıçtı.
+        </p>
+      </section>
+
+      <section class="travel-journal-section">
+        <h3>2. Gün – Keşif Modu: Sahil Kasabaları ve Gizli Koylar</h3>
+        <p>
+          İkinci gün, “hiç plan yapmadan keşif” günümüzdü. Navigasyondan ana
+          yolu bırakıp sahil şeridine indiğimiz an, yolculuğun tonu tamamen
+          değişti. Bir koyda sadece 6 masa olan minik bir kafe bulduk; denize
+          karşı çay içip notlarımızı almaya başladık.
+        </p>
+        <p>
+          Yanımıza aldığımız küçük not defteri, gün boyunca iki soruya cevap
+          aradı: <strong>“Burası bize ne hissettiriyor?”</strong> ve
+          <strong>“Burayı özel yapan küçük detay ne?”</strong>.
+        </p>
+      </section>
+
+      <blockquote class="travel-journal-quote">
+        “Bir destinasyonu unutulmaz yapan, çoğu zaman planladığın aktiviteler
+        değil; yolda karşına çıkan küçük sürprizlerdir.”
+      </blockquote>
+
+      <section class="travel-journal-section">
+        <h3>3. Gün – Dönüş Yolu ve Kendine Dönüş</h3>
+        <p>
+          Üçüncü gün, dönüş yoluna istemeyerek de olsa girdik. Ancak bu kez
+          amaç sadece eve dönmek değildi; yolda öğrendiklerimizi toparlayıp
+          bir sonraki yolculuk için notlar çıkarmaktı.
+        </p>
+        <p>
+          Fark ettik ki, iyi bir kaçamak için her zaman çok uzaklara gitmek
+          gerekmiyor. Bazen şehirden 3–4 saat uzaklaşmak bile zihni tamamen
+          sıfırlamak için yeterli oluyor.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- YAN TARAF / İPUÇLARI BLOĞU -->
+    <aside class="travel-journal-aside">
+
+      <div class="travel-tips-card">
+        <h4>Pratik Yolculuk İpuçları</h4>
+        <ul>
+          <li>Yola çıkmadan önce <strong>maksimum 3 ana durak</strong> belirle, gerisini akışa bırak.</li>
+          <li>Her günün sonunda 5 dakikanı ayırıp
+              <strong>“bugünün en iyi anı”</strong> notunu al.</li>
+          <li>Yanına mutlaka <strong>küçük bir defter</strong> ve kalem al; sadece telefonla yetinme.</li>
+          <li>En az bir öğünü, turistik olmayan bir yerde yerlilerle aynı masada dene.</li>
+        </ul>
       </div>
-    <div id="restoration-loader-after" style="text-align: center; margin-top: 20px;"></div>
-    
+
+      <div class="travel-highlights-card">
+        <h4>Bu Yolculuktan Çıkan 3 Ders</h4>
+        <ol>
+          <li>Planların %100 dolu olması gerekmiyor; boşluk, yolculuğun nefes alanıdır.</li>
+          <li>Manzara kadar, <strong>yolda kurulan sohbetler</strong> de hatırada kalıyor.</li>
+          <li>Kısa kaçamaklar, büyük tatilleri beklemekten daha sürdürülebilir.</li>
+        </ol>
+      </div>
+
+    </aside>
+
+    <!-- ALT KISIM / SONRAKİ YAZI ÖNERİSİ -->
+    <footer class="travel-journal-footer">
+      <p class="travel-journal-next-label">Sonraki yazı önerisi</p>
+      <a href="#page-restorasyon" 
+         onclick="event.preventDefault(); showPage('page-restorasyon');"
+         class="travel-journal-next-link">
+        Hafta Sonu Kaçamağı İçin 5 Farklı Rota →
+      </a>
+    </footer>
+
   </div>
-</section>
+</section

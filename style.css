@@ -1,22 +1,17 @@
-/* TÜM KOD BURAYA YAPILDI */
 :root {
-  /* Arka Plan ve Metin Renkleri */
-  --bg: #f4f7fc; /* Açık Maviye Yakın Beyaz Arka Plan */
-  --text: #1a1a2e; /* Koyu Mavi/Siyah Metin */
-  --text-muted: #4e576f; /* Gri/Mavi Metin (Daha az vurgulu) */
+  --bg: #0a0a0a;
+  --text: #f5f5f5;
+  --text-muted: #a1a1aa;
   
-  /* Vurgu Renkleri: Açık Mavi Tonları */
-  --blue-light: #4c99ff; /* Açık Mavi (Vurgu) */
-  --blue-dark: #0066cc;  /* Koyu Mavi (Düğme/Gradient Başlangıcı) */
+  --gold-light: #ffcc66; 
+  --gold-dark: #f59e0b;  
   
-  /* Mavi Vurgu Efektleri */
-  --vibrant-gradient: linear-gradient(90deg, var(--blue-dark), var(--blue-light), var(--blue-dark));
-  --vibrant-shadow: 0 0 15px rgba(76, 153, 255, 0.4), 0 0 5px rgba(76, 153, 255, 0.2);
-  --vibrant-shadow-intense: 0 0 25px rgba(76, 153, 255, 0.7), 0 0 10px rgba(76, 153, 255, 0.4);
+  --gold-gradient: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  --gold-shadow: 0 0 15px rgba(255, 204, 102, 0.4), 0 0 5px rgba(255, 204, 102, 0.2);
+  --gold-shadow-intense: 0 0 25px rgba(255, 204, 102, 0.7), 0 0 10px rgba(255, 204, 102, 0.4);
   
-  /* Diğer Elemanlar */
-  --border-dark: #dbe4f0; /* Açık Sınır Çizgisi */
-  --section-bg: #ffffff; /* Bölüm Arka Planı (Beyaz) */
+  --border-dark: #2d2d2d;
+  --section-bg: #111;
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -36,19 +31,17 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   
-  /* Arka plan resim referansları kaldırıldı */
-  /* background-image: url('assets/background.webp'); */ 
-  /* background-size: cover; */ 
-  /* background-repeat: no-repeat; */
-  /* background-position: center center; */
-  background-color: var(--bg); 
+  background-image: url('assets/background.webp'); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #0a0a0a; 
   
   position: relative;
   z-index: 1; 
 }
 
-/* body::before karartma katmanı kaldırıldı */
-/* body::before {
+body::before {
     content: '';
     position: absolute; 
     top: 0;
@@ -58,14 +51,13 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4); 
     z-index: -1; 
-} */
+}
 
 h1, h2, h3, h4,
 .brand-title, .footer-title {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  /* Altın gradyanı, Mavi gradyanı ile değiştirildi */
-  background: var(--vibrant-gradient);
+  background: var(--gold-gradient);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -106,11 +98,8 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  /* Koyu gradyan ve bulanıklık kaldırıldı, düz beyaz eklendi */
-  /* background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%); */
-  /* backdrop-filter: blur(8px); */ 
-  background-color: var(--section-bg);
-  
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.0) 100%);
+  backdrop-filter: blur(8px); 
   z-index: 1000;
   opacity: 0;
   transform: scale(0.95);
@@ -174,15 +163,13 @@ header {
   left: 0;
   width: 100%;
   height: 2px;
-  /* Altın gradyanı, Mavi gradyanı ile değiştirildi */
-  background: var(--vibrant-gradient);
+  background: var(--gold-gradient);
   background-size: 200% 100%;
   transform: translateX(-101%);
   transition: transform 0.6s var(--easing);
 }
 .navbar a:hover {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
 }
 .navbar a:hover::after {
   transform: translateX(0%);
@@ -208,24 +195,21 @@ header {
   font-family: 'Inter', sans-serif; 
 }
 .lang-btn.active {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  background: var(--blue-light);
+  background: var(--gold-light);
   color: var(--bg);
-  border-color: var(--blue-light);
-  box-shadow: var(--vibrant-shadow);
+  border-color: var(--gold-light);
+  box-shadow: var(--gold-shadow);
 }
 .lang-btn:not(.active):hover {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  border-color: var(--blue-light);
-  color: var(--blue-light);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
 }
 
 .menu-toggle {
   display: none;
   font-size: 24px;
   cursor: pointer;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
   z-index: 1001;
   
   background: none;
@@ -245,8 +229,7 @@ header {
     background: var(--section-bg);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    /* Koyu gölge, hafif gölge ile değiştirildi */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
     z-index: 999;
     border-left: 1px solid var(--border-dark);
   }
@@ -262,12 +245,11 @@ header {
 
 .hero {
   min-height: 100vh;
-  /* Hero resmi için varsayılan arka plan renkleri değiştirildi */
   background: url('assets/for_hero.webp') no-repeat; 
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center center; 
-  background-color: var(--bg); 
+  background-color: #000; 
   
   display: flex;
   align-items: center;
@@ -279,17 +261,13 @@ header {
   opacity: 1;
   transition: opacity 0.3s ease-out;
 }
-
-/* hero::after karartma katmanı kaldırıldı */
 .hero::after {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  /* background: rgba(0,0,0,0.55); */ /* Kaldırıldı */
+  background: rgba(0,0,0,0.55);
   z-index: 1;
-  background: none; /* Temiz bir arka plan eklendi */
 }
-/* hero::before altın parıltı/bulanıklık kaldırıldı */
 .hero::before {
   content: '';
   position: absolute;
@@ -298,12 +276,11 @@ header {
   width: 150%;
   height: 150%;
   transform: translate(-50%, -50%);
-  /* background: radial-gradient(circle, rgba(255, 204, 102, 0.15) 0%, rgba(255, 204, 102, 0) 60%); */ /* Kaldırıldı */
+  background: radial-gradient(circle, rgba(255, 204, 102, 0.15) 0%, rgba(255, 204, 102, 0) 60%);
   z-index: 2;
-  opacity: 0; /* Opaklık sıfırlandı */
-  filter: none; /* Bulanıklık kaldırıldı */
-  animation: none; /* Animasyon kaldırıldı */
-  background: none; /* Temiz bir arka plan eklendi */
+  opacity: 0.8;
+  filter: blur(20px);
+  animation: pulseLight 8s ease-in-out infinite;
 }
 @keyframes pulseLight {
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
@@ -327,8 +304,7 @@ header {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 600;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light); 
+  color: var(--gold-light); 
   letter-spacing: 1px;
   text-transform: uppercase;
   display: block;
@@ -342,8 +318,7 @@ header {
 
 .hero p {
   font-family: 'Inter', sans-serif;
-  /* Koyu temadaki gri, açık temadaki koyu metin ile değiştirildi */
-  color: var(--text); 
+  color: #d1d5db;
   margin-bottom: 40px;
   font-size: 20px;
 }
@@ -352,32 +327,27 @@ header {
   font-family: 'Inter', sans-serif;
   display: inline-block;
   padding: 14px 30px;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  background: var(--blue-dark);
-  color: var(--text); /* Koyu Metin */
+  background: var(--gold-dark);
+  color: #111;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s var(--easing);
-  /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2), var(--vibrant-shadow);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4), var(--gold-shadow);
   text-decoration: none;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  border: 1px solid var(--blue-light);
+  border: 1px solid var(--gold-light);
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 .btn:hover {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  background: var(--blue-light);
-  color: var(--text);
-  /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1), var(--vibrant-shadow-intense);
+  background: var(--gold-light);
+  color: #000;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3), var(--gold-shadow-intense);
   transform: translateY(-3px) scale(1.05); 
 }
 .btn-hero {
-  animation: none; /* Animasyon kaldırıldı */
+  animation: pulseGold 2s var(--easing) infinite;
 }
 
 @keyframes pulseGold {
@@ -394,10 +364,8 @@ header {
 
 .project-reservation-form {
     margin-bottom: 60px; 
-    /* Koyu arka plan ve bulanıklık kaldırıldı */
-    /* background: rgba(0,0,0,0.3); */
-    /* backdrop-filter: blur(5px); */
-    background: var(--section-bg); /* Beyaz arka plan eklendi */
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
     padding: 25px;
     border-radius: 12px;
     border: 1px solid var(--border-dark);
@@ -420,8 +388,7 @@ header {
 }
 .project-reservation-form .date-picker-group label {
     font-weight: 600;
-    /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--blue-light);
+    color: var(--gold-light);
     margin-bottom: 8px;
     font-family: 'Inter', sans-serif;
 }
@@ -466,11 +433,10 @@ header {
   gap: 8px;
   min-width: 240px;
   background: var(--section-bg);
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  border: 1px solid var(--blue-dark);
+  border: 1px solid var(--gold-dark);
   border-radius: 10px;
   padding: 10px;
-  box-shadow: var(--vibrant-shadow);
+  box-shadow: var(--gold-shadow);
   z-index: 1001;
 }
 .dropdown a {
@@ -482,10 +448,7 @@ header {
   text-align: center;
   cursor: pointer;
 }
-.dropdown a:hover { 
-  background: var(--bg); /* Arka plan rengi, ana arka plan rengi ile değiştirildi */
-  color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-}
+.dropdown a:hover { background: #000; color: var(--gold-light); }
 .cta-group.open .dropdown { display: flex; }
 
 
@@ -524,18 +487,15 @@ section#projects {
 
 #otel-reservation-container {
   display: none;
-  /* Koyu arka plan ve bulanıklık kaldırıldı */
-  /* background: rgba(0, 0, 0, 0.6); */
-  /* backdrop-filter: blur(8px); */
-  background: var(--section-bg); /* Beyaz arka plan eklendi */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
   padding: 60px 20px;
   animation: fadeIn 0.8s ease forwards;
 }
 #otel-reservation-container.show { display: block; }
 
 #otel-reservation-container h2 {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
   margin-bottom: 30px;
   font-family: 'Playfair Display', serif;
   text-align: center;
@@ -547,9 +507,8 @@ section#projects {
   display: none;
   position: fixed;
   inset: 0;
-  /* Koyu arka plan ve bulanıklık kaldırıldı */
-  background: rgba(0,0,0,0.3); /* Hafif opak siyah bırakıldı (modal için) */
-  /* backdrop-filter: blur(6px); */
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
   z-index: 9999;
@@ -558,19 +517,17 @@ section#projects {
 .availability-modal.show { display: flex; }
 
 .modal-content {
-  background: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  border: 2px solid var(--blue-light);
+  background: #111;
+  border: 2px solid var(--gold-light);
   border-radius: 14px;
-  box-shadow: 0 0 25px rgba(76, 153, 255,0.4); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+  box-shadow: 0 0 25px rgba(255,204,102,0.4);
   text-align: center;
   padding: 40px 30px;
   max-width: 420px;
   animation: scaleIn 0.4s var(--easing);
 }
 .modal-content h3 {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -613,10 +570,8 @@ section.visible {
 
 .project-card:hover, .latest-card:hover, .service-card:hover, .restoration-card:hover {
   transform: translateY(-5px) scale(1.02);
-  /* Koyu gölge, hafif gölge ile değiştirildi. Altın gölgesi, Mavi gölgesi ile değiştirildi */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), var(--vibrant-shadow-intense);
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  border-color: var(--blue-dark);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), var(--gold-shadow-intense);
+  border-color: var(--gold-dark);
 }
 
 .project-grid {
@@ -662,21 +617,19 @@ section.visible {
   margin: 0 auto;
 }
 .service-card {
-  background: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
+  background: #1a1a1a;
   padding: 30px;
   text-align: center;
 }
 .service-card i {
   font-size: 40px;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-dark);
+  color: var(--gold-dark);
   margin-bottom: 20px;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 .service-card:hover i {
-    /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--blue-light);
-    text-shadow: var(--vibrant-shadow);
+    color: var(--gold-light);
+    text-shadow: var(--gold-shadow);
 }
 .service-card h3 {
   margin-top: 0;
@@ -697,8 +650,7 @@ section.visible {
   flex: 1;
   max-width: 600px;
   margin: 0 auto;
-  /* Yarı saydam koyu arka plan, düz beyaz ile değiştirildi */
-  background: var(--section-bg); 
+  background: rgba(0,0,0,0.5);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -718,8 +670,7 @@ section.visible {
 }
 .vision-list li i {
   margin-right: 10px;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
 }
 @media (max-width: 1024px) {
   #about {
@@ -747,7 +698,7 @@ section.visible {
 .contact-form {
   flex: 1 1 400px;
   text-align: left;
-  background: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
+  background: #1a1a1a;
   padding: 30px;
   border-radius: 14px;
   border: 1px solid var(--border-dark);
@@ -766,7 +717,7 @@ section.visible {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
-  border: 1px solid var(--border-dark); /* Koyu gri, açık sınır rengi ile değiştirildi */
+  border: 1px solid #333;
   background: var(--bg);
   color: var(--text);
   border-radius: 8px;
@@ -774,10 +725,9 @@ section.visible {
   transition: border-color 0.3s;
 }
 .contact-form input:focus, .contact-form textarea:focus {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  border-color: var(--blue-light);
+  border-color: var(--gold-light);
   outline: none;
-  box-shadow: var(--vibrant-shadow);
+  box-shadow: var(--gold-shadow);
 }
 .contact-form button {
   width: 100%;
@@ -788,8 +738,7 @@ section.visible {
   flex: 1 1 300px;
   text-align: left;
   padding-top: 20px;
-  /* Yarı saydam koyu arka plan, düz beyaz ile değiştirildi */
-  background: var(--section-bg);
+  background: rgba(0,0,0,0.5);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -801,8 +750,7 @@ section.visible {
 }
 .info-item i {
   font-size: 24px;
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-dark);
+  color: var(--gold-dark);
   margin-right: 15px;
   width: 30px;
   text-align: center;
@@ -842,8 +790,7 @@ footer::before {
   left: 0;
   width: 200%;
   height: 2px;
-  /* Altın gradyanı, Mavi gradyanı ile değiştirildi */
-  background: var(--vibrant-gradient);
+  background: var(--gold-gradient);
   background-size: 50% 100%;
   animation: flowLine 5s linear infinite;
 }
@@ -858,8 +805,7 @@ footer::before {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  /* Yarı saydam koyu arka plan, düz beyaz ile değiştirildi */
-  background: var(--section-bg);
+  background: rgba(0,0,0,0.5);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -903,11 +849,9 @@ footer::before {
   transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
 }
 .social-icons a:hover {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
   transform: scale(1.2);
-  /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
-  text-shadow: 0 0 10px var(--blue-light);
+  text-shadow: 0 0 10px var(--gold-light);
 }
 
 .footer-bottom {
@@ -916,8 +860,7 @@ footer::before {
   padding-top: 30px;
   font-size: 13px;
   font-family: 'Inter', sans-serif;
-  /* Yarı saydam koyu arka plan, düz beyaz ile değiştirildi */
-  background: var(--section-bg);
+  background: rgba(0,0,0,0.5);
   padding: 20px;
   border-radius: 10px;
   display: inline-block;
@@ -1000,10 +943,10 @@ html[dir="rtl"] .info-item i {
 .title-gold-line {
     width: 100px;
     height: 2px !important;
-    /* Altın rengi, Mavi rengi ile değiştirildi */
-    background: var(--blue-dark);
+    background: var(--gold-dark);
     margin: 0 auto 40px auto;
-    box-shadow: var(--vibrant-shadow);
+    border-radius: 2px;
+    box-shadow: var(--gold-shadow);
 }
 
 .date-picker-group {
@@ -1020,8 +963,7 @@ html[dir="rtl"] .info-item i {
 }
 .date-picker-group label {
     font-weight: 600;
-    /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--blue-light);
+    color: var(--gold-light);
     margin-bottom: 8px;
     font-family: 'Inter', sans-serif;
 }
@@ -1036,8 +978,7 @@ html[dir="rtl"] .info-item i {
     font-weight: 600;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
-    /* Altın rengi, Mavi rengi ile değiştirildi (filtre) */
-    filter: invert(1) brightness(0.8) sepia(1) hue-rotate(180deg) saturate(5); 
+    filter: invert(1) brightness(0.8) sepia(1) hue-rotate(-20deg) saturate(5); 
     cursor: pointer;
 }
 .modal-buttons {
@@ -1047,12 +988,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .modal-buttons .btn-secondary {
     background: var(--bg);
-    color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-    border-color: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    color: var(--gold-light);
+    border-color: var(--gold-dark);
 }
 .modal-buttons .btn-secondary:hover {
-    background: var(--border-dark); /* Koyu gri, açık gri ile değiştirildi */
-    color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+    background: #333;
+    color: var(--gold-light);
 }
 
 .house-gallery {
@@ -1065,8 +1006,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .house-card {
   width: 350px;
   height: 280px;
-  background: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
-  border: 2px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+  background: #111;
+  border: 2px solid var(--gold-dark);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1078,8 +1019,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   object-fit: cover;
 }
 .house-card h3 {
-  background: var(--text); /* Koyu arka plan, koyu metin ile değiştirildi */
-  color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+  background: #000;
+  color: #ffcc66;
   font-family: 'Playfair Display', serif;
   height: 20%;
   display: none;
@@ -1096,8 +1037,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .house-card:hover {
   transform: translateY(-5px);
-  /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
-  box-shadow: 0 0 25px rgba(76, 153, 255,0.25);
+  box-shadow: 0 0 25px rgba(255,204,102,0.25);
 }
 
 .house-detail {
@@ -1106,9 +1046,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Yarı saydam koyu arka plan, Yarı saydam beyaz ile değiştirildi */
-  background: rgba(244, 247, 252, 0.9); 
-  backdrop-filter: none; /* Bulanıklık kaldırıldı */
+  background: rgba(0, 0, 0, 0.9); /* ARKA PLANI KATI YAPILDI */
+  backdrop-filter: blur(5px);
   z-index: 2000;
   display: none;
   overflow-y: auto;
@@ -1119,18 +1058,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .house-detail button {
   font-family: 'Inter', sans-serif;
   padding: 10px 20px;
-  background: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
+  background: var(--gold-dark);
+  color: #111;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s var(--easing);
-  border: 1px solid var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+  border: 1px solid var(--gold-light);
   font-size: 16px;
 }
 .house-detail button:hover {
-  background: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
+  background: var(--gold-light);
+  color: #000;
   transform: scale(1.05);
 }
 #house-detail-content h2 {
@@ -1142,7 +1081,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .house-info {
   max-width: 900px;
   margin: 40px auto;
-  background: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
+  background: #111;
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -1156,8 +1095,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-family: 'Inter', sans-serif;
 }
 .house-info p strong {
-  /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--blue-light);
+  color: var(--gold-light);
   min-width: 120px;
   display: inline-block;
   font-weight: 600;
@@ -1178,9 +1116,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 10px;
   object-fit: cover;
   transition: transform 0.3s ease;
-  background: var(--border-dark); /* Koyu gri, açık gri ile değiştirildi */
+  background: #222;
   cursor: pointer;
-  border: 3px solid var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+  border: 3px solid var(--gold-light);
   box-sizing: border-box;
 }
 .detail-gallery img:hover {
@@ -1192,8 +1130,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  border: 4px solid var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  box-shadow: var(--vibrant-shadow-intense); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+  border: 4px solid var(--gold-light);
+  box-shadow: var(--gold-shadow-intense);
   border-radius: 10px;
   box-sizing: border-box; 
   cursor: default;
@@ -1202,7 +1140,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #page-otel {
-    background-color: var(--bg) !important; /* Siyah arka plan, beyaz ile değiştirildi */
+    background-color: #111111 !important;
     padding-bottom: 100px !important;
 }
 
@@ -1217,13 +1155,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 30px !important;
     font-weight: 700 !important;
     text-align: left !important;
-    color: var(--blue-light) !important; /* Altın rengi, Mavi rengi ile değiştirildi */
+    color: var(--gold-light) !important;
     background: none !important;
     -webkit-background-clip: initial !important;
     background-clip: initial !important;
     -webkit-text-fill-color: initial !important;
     text-fill-color: initial !important;
-    border-bottom: 2px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    border-bottom: 2px solid var(--gold-dark);
     padding-bottom: 10px;
     margin-bottom: 40px;
     padding-top: 0 !important;
@@ -1235,13 +1173,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 30px !important;
     font-weight: 700 !important;
     text-align: left !important;
-    color: var(--blue-light) !important; /* Altın rengi, Mavi rengi ile değiştirildi */
+    color: var(--gold-light) !important;
     background: none !important;
     -webkit-background-clip: initial !important;
     background-clip: initial !important;
     -webkit-text-fill-color: initial !important;
     text-fill-color: initial !important;
-    border-bottom: 2px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    border-bottom: 2px solid var(--gold-dark);
     padding-bottom: 10px;
     margin-bottom: 40px;
     max-width: 1400px;
@@ -1270,8 +1208,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-otel .house-card {
     width: 100%;
     height: auto;
-    background: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
-    border: 1px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    background: #1c1c1c;
+    border: 1px solid var(--gold-dark);
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: auto !important;
@@ -1291,7 +1229,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: block !important;
     height: auto !important;
     background: transparent !important;
-    color: var(--text) !important; /* Beyaz yazı, koyu metin ile değiştirildi */
+    color: #f5f5f5 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 17px !important;
     font-weight: 600 !important;
@@ -1307,11 +1245,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-satilik_kiralik .house-card:hover,
 #page-otel .house-card:hover {
     transform: translateY(-5px) scale(1.02); /* <-- BÜYÜME EFEKTİ EKLENDİ */
-    box-shadow: var(--vibrant-shadow-intense); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+    box-shadow: var(--gold-shadow-intense);
 }
 
 #lightbox {
-    background: rgba(0, 0, 0, 0.9) !important; /* Koyu arka plan korundu */
+    background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: none !important;
 }
 
@@ -1348,7 +1286,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: 10px;
     left: 10px;
     background: rgba(0, 0, 0, 0.7);
-    color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+    color: var(--gold-light);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 13px;
@@ -1391,7 +1329,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .image-modal-image-wrapper {
     position: relative;
     background-color: var(--section-bg);
-    border: 2px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    border: 2px solid var(--gold-dark);
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -1410,7 +1348,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: 10px;
     left: 10px;
     background: rgba(0, 0, 0, 0.7);
-    color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+    color: var(--gold-light);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 14px;
@@ -1422,8 +1360,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--text); /* Koyu metin */
+    background: var(--gold-light);
+    color: #111;
     border: none;
     border-radius: 8%;
     width: auto;
@@ -1441,7 +1379,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-family: 'Inter', sans-serif;
 }
 .image-modal-close-btn:hover {
-    background-color: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    background-color: var(--gold-dark);
 }
 
 @media (max-width: 768px) {
@@ -1509,8 +1447,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
-  color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  border: 1px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+  color: var(--gold-light);
+  border: 1px solid var(--gold-dark);
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -1525,8 +1463,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .lightbox-nav-btn:hover {
-  background: rgba(76, 153, 255, 0.2); /* Altın rengi, Mavi rengi ile değiştirildi */
-  border-color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+  background: rgba(255, 204, 102, 0.2);
+  border-color: var(--gold-light);
 }
 
 /* 'Geri' butonu solda */
@@ -1546,7 +1484,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 24px !important;
     font-weight: 700 !important;
     text-align: left !important;
-    color: var(--blue-light) !important; /* Altın rengi, Mavi rengi ile değiştirildi */
+    color: var(--gold-light) !important;
     background: none !important;
     -webkit-background-clip: initial !important;
     background-clip: initial !important;
@@ -1575,12 +1513,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Restorasyon sayfasındaki resimlerin daha büyük görünmesini sağlıyoruz */
 #page-restorasyon .detail-gallery img {
     height: 260px; /* Mülk galerisiyle aynı boyuta getirdik */
-    border: 2px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+    border: 2px solid var(--gold-dark);
 }
 
 #page-restorasyon .detail-gallery img:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--vibrant-shadow-intense); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+    box-shadow: var(--gold-shadow-intense);
 }
 /* === OTEL İLETİŞİM BÖLÜMÜ STİLLERİ === */
 .otel-contact-info-container {
@@ -1594,14 +1532,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 36px;
   text-align: center;
   margin-bottom: 30px;
-  color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+  color: #ffcc66;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   text-fill-color: initial;
 }
 .otel-contact-info-container .contact-info {
-  background: var(--section-bg); /* Yarı saydam koyu arka plan, düz beyaz ile değiştirildi */
+  background: rgba(0, 0, 0, 0.3);
   padding: 30px;
   border-radius: 10px;
   border: 1px solid var(--border-dark);
@@ -1610,14 +1548,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* id'si "load-more-btn" ile başlayan tüm butonlara uygula */
 [id^="load-more-btn"] {
   background: transparent;
-  color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  border: 1px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+  color: var(--gold-light);
+  border: 1px solid var(--gold-dark);
   box-shadow: none;
 }
 [id^="load-more-btn"]:hover {
-  background: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
-  box-shadow: var(--vibrant-shadow); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+  background: var(--gold-dark);
+  color: #111;
+  box-shadow: var(--gold-shadow);
   transform: translateY(-2px) scale(1.02);
 }
 
@@ -1629,7 +1567,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .hero-content-overlay p {
   font-size: clamp(16px, 2vw, 20px);
-  color: var(--text); /* Beyaz yazı, koyu metin ile değiştirildi */
+  color: #ddd;
   margin-bottom: 40px;
 }
 
@@ -1642,24 +1580,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
     padding: 3px 6px; /* Buton içi boşluğu azalttık */
     margin-right: 10px;
-    background-color: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--text); /* Koyu metin */
+    background-color: var(--gold-dark);
+    color: #111;
     border: none;
     border-radius: 6px;
     font-size: 8px; /* Yazı tipini 14px'ten 13px'e küçülttük */
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: var(--vibrant-shadow); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+    box-shadow: var(--gold-shadow);
 }
 .header-top-row a.btn-top-info:hover {
-    background-color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--text); /* Koyu metin */
+    background-color: var(--gold-light);
+    color: #111;
     transform: translateY(-2px);
 }
 .header-top-row a.btn-top-info i {
     margin-right: 6px; /* İkon boşluğunu azalttık */
-    color: var(--text); /* Koyu metin */
+    color: #111;
     font-size: 12px; /* İkonu da küçülttük */
 }
 
@@ -1672,20 +1610,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   z-index: 1001; /* YENİ DEĞER: 100 idi (Header'ın (1000) önüne çıktı) */
   font-family: 'Inter', sans-serif;
   padding: 10px 20px;
-  background: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
+  background: var(--gold-dark);
+  color: #111;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s var(--easing);
-  border: 1px solid var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
+  border: 1px solid var(--gold-light);
   font-size: 16px;
   text-decoration: none;
   display: inline-block;
 }
 .btn-page-back:hover {
-  background: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
+  background: var(--gold-light);
+  color: #000;
   transform: scale(1.05);
 }
 
@@ -1716,7 +1654,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: var(--text); /* Beyaz yazı, koyu metin ile değiştirildi */
+  color: #fff;
 }
 .hero-video .hero-content-overlay {
   position: absolute;
@@ -1739,13 +1677,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  filter: brightness(0.9); /* Karartma kaldırıldı */
+  filter: brightness(0.6);
 }
 
 .hero-video .hero-content-overlay {
   position: relative;
   z-index: 2;
-  text-shadow: 2px 2px 8px rgba(255,255,255,0.2); /* Koyu gölge, açık gölge ile değiştirildi */
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 /* Mobil uyum (video boyutlanması) */
@@ -1764,10 +1702,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .cta-group .dropdown {
   display: none;
   position: absolute;
-  background-color: var(--section-bg); /* Koyu gri, beyaz ile değiştirildi */
+  background-color: rgba(20, 20, 20, 0.95);
   width: max-content; /* Genişlik içeriğe göre */
   max-width: 90vw;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Koyu gölge, hafif gölge ile değiştirildi */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
   z-index: 1;
   border-radius: 5px;
   overflow: hidden;
@@ -1776,7 +1714,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translateX(-50%);
   margin-top: 15px; /* Butondan aşağıya çekme */
   padding: 5px; /* İç boşluk */
-  border: 1px solid var(--border-dark);
 }
 /* Menü açıldığında (yatay diz) */
 .cta-group.open .dropdown {
@@ -1786,7 +1723,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 /* İçerideki linkler (buton görünümü) */
 .cta-group .dropdown a {
-  color: var(--text); /* Beyaz yazı, koyu metin ile değiştirildi */
+  color: #fff;
   padding: 8px 12px;
   text-decoration: none;
   display: block;
@@ -1796,12 +1733,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 /* Linklerin hover (üzerine gelme) stili */
 .cta-group .dropdown a:hover {
-  background-color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
+  background-color: #ffcc66; 
+  color: #111;
 }
 /* === DÜZELTME SONU === */
 
-/* hero-video::after karartma katmanı kaldırıldı */
 .hero-video::after {
   content: "";
   position: absolute;
@@ -1809,16 +1745,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 0;
   width: 100%;
   height: 100%;
-    /* background: linear-gradient(
+    background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.25) 0%,  
-    rgba(0, 0, 0, 0.4) 100%   
-  ); */
-  background: none;
+    rgba(0, 0, 0, 0.25) 0%,   /* üst kısmı daha açık */
+    rgba(0, 0, 0, 0.4) 100%   /* alt kısmı hafif koyu */
+  );
+
   z-index: 2;
 }
 
-/* hero-video::before altın parıltı katmanı kaldırıldı */
+/* Altın parıltı katmanı */
 .hero-video::before {
   content: "";
   position: absolute;
@@ -1827,18 +1763,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 160%;
   height: 160%;
   transform: translate(-50%, -50%);
-  /* background: radial-gradient(
+  background: radial-gradient(
     circle,
     rgba(255, 204, 102, 0.12) 0%,
     rgba(255, 204, 102, 0.02) 60%,
     transparent 100%
-  ); */
-  background: none;
+  );
   z-index: 3;
-  filter: none;
-  animation: none;
+  filter: blur(30px);
+  animation: goldPulse 8s ease-in-out infinite;
   pointer-events: none;
-  opacity: 0;
+  opacity: 0.8;
 }
 
 /* Hero içeriği overlay’in üstünde kalsın */
@@ -1862,15 +1797,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: inline-block;
   padding: 10px 20px;
   background: transparent; /* Şeffaf arka plan */
-  color: var(--blue-light); /* Altın rengi, Mavi rengi ile değiştirildi */
-  border: 2px solid var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
+  color: var(--gold-light); /* Altın rengi yazı */
+  border: 2px solid var(--gold-dark); /* Altın rengi çerçeve */
   border-radius: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  /* Koyu metin üzerine açık rengi okunaklı kılmak için gölge eklendi */
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4); 
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
   transition: all 0.4s var(--easing);
   
   /* Ana "btn" sınıfından gelen gölgeyi ve animasyonu sıfırlayalım */
@@ -1880,10 +1814,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Üzerine gelince (hover) efekti */
 .btn-hero-link:hover {
-  background: var(--blue-dark); /* Altın rengi, Mavi rengi ile değiştirildi */
-  color: var(--text); /* Koyu metin */
-  border-color: var(--blue-dark);
-  box-shadow: var(--vibrant-shadow); /* Altın gölgesi, Mavi gölgesi ile değiştirildi */
+  background: var(--gold-dark); /* Arka plan altın rengi ol */
+  color: #111; /* Yazı koyu ol */
+  border-color: var(--gold-dark);
+  box-shadow: var(--gold-shadow); /* Gölge ekle */
   transform: translateY(-3px) scale(1.05);
 }
 /* === DÜZELTME SONU === */
@@ -1893,8 +1827,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     /* Bu kurallar, yazının alt kısım bandı gibi görünmesini sağlar */
     display: block !important;
     height: auto !important;
-    background: var(--blue-dark) !important; /* Altın rengi, Mavi rengi ile değiştirildi */
-    color: var(--text) !important; /* Koyu metin */
+    background: var(--gold-dark) !important; /* Altın rengi arka planı ekliyoruz */
+    color: #111 !important; /* Yazı rengini koyu yapıyoruz */
     font-family: 'Inter', sans-serif !important;
     font-size: 17px !important;
     font-weight: 700 !important; /* Daha kalın yaptık */
@@ -1921,7 +1855,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-background-clip: initial !important;
     
     /* YENİ: Okunurluğu Artırmak İçin Hafif Gölge Ekleme */
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.4), 0 0 2px rgba(255, 255, 255, 0.2); /* Koyu değil, beyaz gölge */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.5);
 
     /* Fade efekti için CSS geçişleri */
     transition: opacity 0.5s ease-in-out;
@@ -1932,7 +1866,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align: center; /* Ortalamayı unutmuşuz, ekledik */
 }
 
-/* Metin içindeki kalın (strong) başlık için de rengi zorla koyu yapalım */
+/* Metin içindeki kalın (strong) başlık için de rengi zorla beyaz yapalım */
 #changing-text strong {
     color: var(--text) !important;
 }
@@ -1948,206 +1882,203 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #page-pruva-otel .pruva-hero-redundant {
     display: none !important;
 }
-/* MEVCUT KODLARININ ALTINA EKLE */
 
-/* Mobil uyumluluk için gerekli ek */
-@media (max-width: 768px) {
-    .featured-blog {
-        flex-direction: column; /* Mobilde alt alta sırala */
-    }
-    
-    .featured-img {
-        width: 100%; /* Resim tüm genişliği kaplasın */
-        height: 250px; /* Yükseklik sabitlensin */
-        margin-bottom: 20px;
-    }
-}
-/* ========================================= */
-/* ===          BLOG BÖLÜMÜ (YENİ)       === */
-/* ========================================= */
+/* ========================================================= */
+/* === TRAVEL JOURNAL – TEKİL TURİZM BLOGU (page-pruva-otel) === */
+/* ========================================================= */
 
-/* Genel Kapsayıcı */
-.blog-container {
-    padding: 40px 0;
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Sitenin genel padding'ine uyum */
-    padding-left: 20px;
-    padding-right: 20px;
+/* ÖNEMLİ: Eğer projenizde --blue-light ve --blue-dark tanımlı değilse
+   buradaki tanımları kullanır. Akdeniz teması için mavidir. */
+:root {
+  --blue-light: #38bdf8; /* Açık Mavi (Sky Blue) */
+  --blue-dark: #0c4a6e;  /* Koyu Mavi (Deep Ocean) */
 }
 
-/* Bölüm Başlıkları */
-.section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    text-align: center;
-    margin-bottom: 10px;
-    color: var(--blue-light); /* Sitenin ana mavi rengi */
+#page-pruva-otel {
+  background-color: var(--bg);
+  /* Header çakışmasını önlemek için üst boşluk (Zaten genel kuralın var ama garanti olsun) */
+  padding-top: 140px; 
 }
 
-.section-subtitle {
-    text-align: center;
-    color: var(--text-muted);
-    margin-bottom: 50px;
-    font-size: 18px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+#page-pruva-otel .travel-journal-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.2fr);
+  gap: 40px;
 }
 
-/* --- Öne Çıkan (Büyük) Blog Kartı --- */
-.featured-blog {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-bottom: 60px;
-    background: var(--text); /* Sitenin koyu lacivert tonu (#1a1a2e) */
-    padding: 40px;
-    border-radius: 16px;
-    color: white;
-    border: 1px solid var(--blue-dark);
-    box-shadow: var(--vibrant-shadow);
-    position: relative;
-    overflow: hidden;
+/* Üst başlık */
+#page-pruva-otel .travel-journal-header {
+  grid-column: 1 / -1;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
-.featured-img {
-    width: 50%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
+#page-pruva-otel .travel-journal-kicker {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin: 0 0 8px 0;
 }
 
-.featured-content {
-    width: 50%;
+#page-pruva-otel .travel-journal-title {
+  font-size: 32px;
+  margin: 0 0 12px 0;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
+  color: var(--text);
+  line-height: 1.2;
 }
 
-.featured-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; /* 32px */
-    margin: 15px 0;
-    color: #ffffff;
-    background: none;
-    -webkit-text-fill-color: initial; /* Gradyanı iptal et, net beyaz olsun */
+#page-pruva-otel .travel-journal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
-.featured-content p {
-    color: #d1d5db; /* Açık gri metin */
-    margin-bottom: 25px;
-    font-size: 16px;
+/* Kapak görseli */
+#page-pruva-otel .travel-journal-hero {
+  grid-column: 1 / -1;
+  margin: 24px 0 20px;
 }
 
-/* Blog Kategori Etiketi */
-.blog-category {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--blue-light); /* Altın/Mavi vurgu */
-    font-weight: 700;
-    display: inline-block;
-    background: rgba(255,255,255,0.05);
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+#page-pruva-otel .travel-journal-hero img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  max-height: 420px;
+  border: 1px solid var(--border-dark);
 }
 
-/* Buton Uyumu */
-.featured-content .btn {
-    background: var(--blue-light);
-    color: var(--bg); /* Yazı rengi arka plan rengi olsun */
-    border: none;
-}
-.featured-content .btn:hover {
-    background: #fff;
-    color: var(--blue-dark);
+#page-pruva-otel .travel-journal-hero figcaption {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  text-align: center;
 }
 
-/* --- Alt Kısım Blog Izgarası (Grid) --- */
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+/* Ana yazı gövdesi */
+#page-pruva-otel .travel-journal-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-muted);
 }
 
-/* Küçük Blog Kartları */
-.blog-card {
-    background: var(--section-bg); /* Beyaz */
-    padding: 30px;
-    border-radius: 14px;
-    border: 1px solid var(--border-dark);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+#page-pruva-otel .travel-journal-section + .travel-journal-section {
+  margin-top: 26px;
 }
 
-.blog-card:hover {
-    transform: translateY(-7px);
-    box-shadow: var(--vibrant-shadow);
-    border-color: var(--blue-light);
+#page-pruva-otel .travel-journal-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
+  color: var(--blue-light); /* Başlıkları mavi yaptık */
 }
 
-.blog-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    margin: 15px 0 10px 0;
-    color: var(--text);
-    background: none;
-    -webkit-text-fill-color: initial;
+#page-pruva-otel .travel-journal-section p {
+  margin: 0 0 10px 0;
 }
 
-.blog-card p {
-    font-size: 15px;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    flex-grow: 1; /* Yazı kısa olsa da butonu aşağı it */
+/* Alıntı bloğu */
+#page-pruva-otel .travel-journal-quote {
+  margin: 30px 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--blue-light);
+  background: rgba(255,255,255,0.05); /* Arka planı koyu temaya uyarladık */
+  border-radius: 8px;
+  font-style: italic;
+  color: var(--text);
 }
 
-.blog-readmore {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--blue-dark);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.3s ease;
+/* Sağ taraftaki ipucu kutuları */
+#page-pruva-otel .travel-journal-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.blog-readmore:hover {
-    color: var(--blue-light);
-    gap: 8px; /* Hover'da ok biraz sağa kayar */
+#page-pruva-otel .travel-tips-card,
+#page-pruva-otel .travel-highlights-card {
+  background: var(--section-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-dark);
+  padding: 18px 18px 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
-.blog-readmore::after {
-    content: '→';
-    font-size: 16px;
+
+#page-pruva-otel .travel-tips-card h4,
+#page-pruva-otel .travel-highlights-card h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: var(--blue-light);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-fill-color: initial;
 }
 
-/* --- MOBİL UYUMLULUK (RESPONSIVE) --- */
-@media (max-width: 768px) {
-    .featured-blog {
-        flex-direction: column;
-        padding: 25px;
-        text-align: center;
-    }
-    
-    .featured-img {
-        width: 100%;
-        height: 200px;
-        margin-bottom: 20px;
-    }
+#page-pruva-otel .travel-tips-card ul,
+#page-pruva-otel .travel-highlights-card ol {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
 
-    .featured-content {
-        width: 100%;
-    }
+#page-pruva-otel .travel-tips-card li,
+#page-pruva-otel .travel-highlights-card li {
+  margin-bottom: 8px;
+}
 
-    .section-title {
-        font-size: 32px;
-    }
-    
-    .blog-grid {
-        gap: 20px;
-    }
+/* Alt kısım */
+#page-pruva-otel .travel-journal-footer {
+  grid-column: 1 / -1;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#page-pruva-otel .travel-journal-next-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+#page-pruva-otel .travel-journal-next-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue-light);
+  text-decoration: none;
+}
+
+#page-pruva-otel .travel-journal-next-link:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* Mobil uyum */
+@media (max-width: 900px) {
+  #page-pruva-otel .travel-journal-container {
+    grid-template-columns: 1fr;
+  }
 }
