@@ -227,7 +227,18 @@
     document.addEventListener('DOMContentLoaded', renderBlogPosts);
 
 </script>
-
+<div id="blog-modal" class="blog-modal-overlay">
+    <div class="blog-modal-content">
+        <button class="close-modal-btn" onclick="closeBlogModal()">×</button>
+        <div class="blog-modal-body">
+            <img id="modal-img" src="" alt="">
+            <span id="modal-date" class="modal-date"></span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-text" class="modal-text"></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
 
