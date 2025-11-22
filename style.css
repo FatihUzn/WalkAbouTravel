@@ -2150,163 +2150,122 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .blog-grid {
         gap: 20px;
     }
-/* === TRAVEL GUIDE (page-pruva-otel) === */
+/* === MINIMALIST PREMIUM TRAVEL BLOG – page-pruva-otel === */
 
-#page-pruva-otel .guide-container {
-  max-width: 1100px;
+#page-pruva-otel .premium-blog-container {
+  max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px 80px;
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  gap: 40px;
 }
 
-#page-pruva-otel .guide-header {
-  grid-column: 1 / -1;
-}
-
-#page-pruva-otel .guide-kicker {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--blue-light);
-}
-
-#page-pruva-otel .guide-title {
-  font-size: 30px;
-  margin: 6px 0 10px;
+/* Başlık */
+#page-pruva-otel .premium-blog-title {
+  font-size: 36px;
+  line-height: 1.3;
   color: var(--text);
+  margin-bottom: 10px;
+  font-family: "Playfair Display", serif;
 }
 
-#page-pruva-otel .guide-meta {
+#page-pruva-otel .premium-blog-subtitle {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+#page-pruva-otel .premium-blog-meta {
   display: flex;
   gap: 8px;
-  color: var(--text-muted);
   font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 10px;
 }
 
-/* Kapak foto */
-#page-pruva-otel .guide-hero img {
+/* Hero */
+#page-pruva-otel .premium-blog-hero img {
   width: 100%;
   border-radius: 16px;
+  margin: 24px 0;
+  max-height: 450px;
   object-fit: cover;
-  max-height: 420px;
 }
 
-#page-pruva-otel .guide-hero figcaption {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 6px;
+/* Paragraflar */
+#page-pruva-otel .premium-blog-body .lead {
+  font-size: 18px;
+  color: var(--text);
+  line-height: 1.7;
 }
 
-/* Rehber bölümleri */
-#page-pruva-otel .guide-section h3 {
-  font-size: 22px;
+#page-pruva-otel .premium-section h2 {
+  font-size: 26px;
+  margin: 30px 0 10px;
   color: var(--blue-dark);
-  margin: 20px 0 10px;
+  font-family: "Playfair Display", serif;
 }
 
-#page-pruva-otel .guide-section p {
+#page-pruva-otel .premium-section p {
+  font-size: 16px;
   color: var(--text-muted);
+  line-height: 1.8;
   margin-bottom: 10px;
 }
 
-#page-pruva-otel .guide-list,
-#page-pruva-otel .guide-ordered {
-  padding-left: 20px;
-  margin: 6px 0 16px;
-  color: var(--text-muted);
+/* Geniş fotoğraf */
+#page-pruva-otel .premium-wide-photo img {
+  width: 100%;
+  border-radius: 16px;
+  margin: 26px 0 10px;
 }
 
-/* Etiketler */
-#page-pruva-otel .guide-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-#page-pruva-otel .guide-tags span {
-  background: var(--section-bg);
-  border: 1px solid var(--border-dark);
-  padding: 4px 10px;
-  border-radius: 8px;
+#page-pruva-otel .premium-wide-photo figcaption {
   font-size: 13px;
-}
-
-/* Gün gün rota */
-#page-pruva-otel .guide-itinerary {
-  display: grid;
-  gap: 16px;
-}
-
-#page-pruva-otel .itinerary-day h4 {
-  font-size: 18px;
-  color: var(--blue-dark);
-}
-
-#page-pruva-otel .itinerary-day p {
-  font-size: 14px;
   color: var(--text-muted);
+  margin-top: 4px;
 }
 
-/* Sağ kısım */
-#page-pruva-otel .guide-aside {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-#page-pruva-otel .guide-tips-card,
-#page-pruva-otel .guide-info-card {
-  background: var(--section-bg);
-  border: 1px solid var(--border-dark);
-  padding: 20px;
-  border-radius: 12px;
-}
-
-#page-pruva-otel .guide-tips-card h4,
-#page-pruva-otel .guide-info-card h4 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: var(--blue-dark);
-}
-
-#page-pruva-otel .guide-tips-card ul,
-#page-pruva-otel .guide-info-card ul {
-  padding-left: 18px;
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-/* Footer */
-#page-pruva-otel .guide-footer {
-  grid-column: 1 / -1;
+/* Bölücü çizgi */
+#page-pruva-otel .premium-divider {
+  margin: 30px 0;
+  border: none;
   border-top: 1px solid var(--border-dark);
-  margin-top: 30px;
+}
+
+/* Notlar */
+#page-pruva-otel .premium-notes h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--blue-dark);
+}
+
+#page-pruva-otel .premium-notes ul {
+  padding-left: 20px;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+#page-pruva-otel .premium-footer {
+  margin-top: 40px;
+  border-top: 1px solid var(--border-dark);
   padding-top: 20px;
 }
 
-#page-pruva-otel .guide-next-label {
+#page-pruva-otel .premium-next-label {
   font-size: 13px;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
 }
 
-#page-pruva-otel .guide-next-link {
-  color: var(--blue-light);
-  font-size: 14px;
+#page-pruva-otel .premium-next-link {
+  font-size: 15px;
   font-weight: 600;
+  color: var(--blue-light);
+  text-decoration: none;
 }
 
-#page-pruva-otel .guide-next-link:hover {
+#page-pruva-otel .premium-next-link:hover {
   text-decoration: underline;
-}
-
-/* Mobil uyum */
-@media (max-width: 900px) {
-  #page-pruva-otel .guide-container {
-    grid-template-columns: 1fr;
-  }
 }
 
 }
