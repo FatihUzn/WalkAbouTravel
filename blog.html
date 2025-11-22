@@ -71,99 +71,117 @@
 </footer>
 
 <script>
-    // === BLOG YÖNETİM SİSTEMİ ===
-
-    // === BLOG YÖNETİM SİSTEMİ ===
-
-    // 1. Veriler (5 Kaliteli Örnek Yazı)
+    // === BLOG VERİLERİ (ÖZET VE TAM İÇERİK) ===
     let blogPosts = JSON.parse(localStorage.getItem('goldenBlogData')) || [
         {
             id: 1,
             title: "Geleceğin Konut Anlayışı: Akıllı ve Yeşil Binalar",
             image: "assets/insaat_hero-mobil.webp", 
             date: "2025-11-22",
-            content: "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. WalkAbouTravel olarak yeni projelerimizde, karbon ayak izini minimize eden 'yaşayan duvarlar' ve kendi enerjisini üreten cephe sistemleri kullanıyoruz. Lüks, artık sadece estetik değil, sürdürülebilirliktir."
+            summary: "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. Yeşil binalar ve akıllı ev sistemleri...",
+            fullContent: `
+                <p>Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk haline geldi. WalkAbouTravel İnşaat olarak, projelerimizde sadece betona değil, geleceğe yatırım yapıyoruz.</p>
+                <p><strong>Neden Yeşil Bina?</strong><br>Yeşil binalar, enerji tüketimini %30'a varan oranlarda azaltarak hem doğayı hem de bütçenizi korur. Kullandığımız güneş paneli entegreli cephe sistemleri ve yağmur suyu hasadı teknolojileri sayesinde, binalarımız kendi kendine yetebilen ekosistemlere dönüşüyor.</p>
+                <p><strong>Akıllı Ev Teknolojileri</strong><br>Yeni projelerimizde standart hale getirdiğimiz IoT (Nesnelerin İnterneti) sistemleri sayesinde, evinizdeki ısıtma, aydınlatma ve güvenlik sistemlerini dünyanın her yerinden kontrol edebilirsiniz. Konfor artık parmaklarınızın ucunda.</p>
+                <p>Gelecek, sürdürülebilirlikte saklı. Biz de bu geleceği bugünden inşa ediyoruz.</p>
+            `
         },
         {
             id: 2,
             title: "Ege'nin Kalbinde Bir Kaçış: Pruva Otel Deneyimi",
             image: "assets/otel_hero-mobil.webp",
             date: "2025-11-18",
-            content: "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim tasarladık. Pruva Otel, sadece bir konaklama tesisi değil; yerel gastronomi, kişiye özel spa hizmetleri ve eşsiz gün batımı manzarasıyla ruhunuzu dinlendirecek bir sığınak."
+            summary: "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim. Pruva Otel'in sunduğu ayrıcalıklar...",
+            fullContent: `
+                <p>Ege'nin turkuaz sularına nazır, zeytin ağaçlarının gölgesinde bir sabah uyanmayı hayal edin. Pruva Otel, size sadece bir konaklama değil, ruhunuzu dinlendirecek bir deneyim vaat ediyor.</p>
+                <p><strong>Gastronomi Yolculuğu</strong><br>Otelimizin mutfağı, "Tarladan Sofraya" konseptiyle hizmet veriyor. Kendi bahçemizde yetiştirdiğimiz organik sebzeler ve Ege'nin taze deniz ürünleri, ödüllü şeflerimizin ellerinde sanat eserine dönüşüyor.</p>
+                <p><strong>Spa & Wellness</strong><br>Şehrin stresini atmak için özel olarak tasarlanan spa merkezimizde, Bali'den gelen terapistlerimiz eşliğinde kendinizi şımartabilirsiniz. Gün batımına karşı yapılan yoga seanslarımız ise misafirlerimizin favorisi.</p>
+                <p>Bu yaz rotanızı Pruva'ya çevirin, zamanı durdurun.</p>
+            `
         },
         {
             id: 3,
             title: "Tarihi Dokuyu Korumak: Galata Restorasyon Projesi",
             image: "assets/restorasyon1.webp", 
             date: "2025-11-10",
-            content: "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son projemizde, 19. yüzyıldan kalma bir yapıyı, orijinal dokusuna zarar vermeden modern ofis ihtiyaçlarına uygun hale getirdik. Eski ve yeninin bu dansı, mimarideki en hassas dengelerden biridir."
+            summary: "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son restorasyon projemizin detayları...",
+            fullContent: `
+                <p>Restorasyon, sadece bir binayı yenilemek değil; hafızayı canlı tutmaktır. Galata bölgesindeki son projemizde, 19. yüzyıldan kalma metruk bir yapıyı, orijinal ruhuna sadık kalarak modern bir sanat merkezine dönüştürdük.</p>
+                <p><strong>Zorluklar ve Çözümler</strong><br>Yapının statik sorunlarını çözerken, tarihi tuğla dokusuna zarar vermemek için mikro-enjeksiyon yöntemleri kullandık. Ahşap doğramalar, dönemin tekniklerine uygun olarak el işçiliğiyle yeniden üretildi.</p>
+                <p>Proje tamamlandığında, bina sadece sağlamlaşmakla kalmadı, aynı zamanda bölgenin kültürel çekim merkezi haline geldi. Geçmişe saygı duyarak geleceği tasarlamak, WalkAbouTravel'ın temel felsefesidir.</p>
+            `
         },
         {
             id: 4,
             title: "2025 Gayrimenkul Yatırım Trendleri",
             image: "assets/for_hero.webp", 
             date: "2025-10-25",
-            content: "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor. Özellikle turizm odaklı rezidanslar ve esnek kullanımlı ticari alanlar, önümüzdeki 5 yılın parlayan yıldızları olacak. İşte uzman ekibimizin piyasa analizi..."
+            summary: "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor...",
+            fullContent: `
+                <p>Gayrimenkul dünyası büyük bir dönüşümden geçiyor. 2025 yılında yatırımcıların odağında "esneklik" ve "konum" var. Peki, paranızı en doğru nasıl değerlendirebilirsiniz?</p>
+                <p><strong>1. Turizm Odaklı Rezidanslar</strong><br>Kısa dönem kiralamaya (Airbnb vb.) uygun, otel konseptli rezidanslar, klasik daire kiralamalarına göre %40 daha fazla getiri sağlıyor. Şehir merkezindeki projelerimiz bu modele tam uyum sağlıyor.</p>
+                <p><strong>2. Mikro-Ofisler</strong><br>Hibrit çalışma modelinin kalıcı olmasıyla, dev plazalar yerini şehrin farklı noktalarına dağılmış butik ofislere bırakıyor. Küçük metrekareli ticari alanlar, yüksek doluluk oranlarıyla dikkat çekiyor.</p>
+                <p>Doğru lokasyonda, doğru proje ile kazanmak için uzman ekibimizle iletişime geçin.</p>
+            `
         },
         {
             id: 5,
             title: "Minimalizm ve Lüksün Buluşması: İç Mekan Tasarımı",
             image: "assets/background.webp", 
             date: "2025-10-05",
-            content: "Az aslında çoktur, ama doğru malzemeyle. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan koleksiyonumuzda, göz yormayan ama kalitesini ilk bakışta hissettiren bir çizgi yakaladık. Evinizde ferahlık yaratmanın 5 altın kuralını sizin için derledik."
+            summary: "Az aslında çoktur. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan trendleri...",
+            fullContent: `
+                <p>Lüks artık şatafat ve abartı demek değil. Yeni lüks; sadelik, kaliteli malzeme ve kusursuz işçilikte gizli. İç mekan tasarımlarımızda "Sessiz Lüks" (Quiet Luxury) akımını benimsiyoruz.</p>
+                <p><strong>Doğal Malzemelerin Gücü</strong><br>Sentetik malzemeler yerine doğal taş, masif ahşap ve keten kumaşlar kullanarak mekanlara sıcaklık katıyoruz. Işık tasarımı ise mekanın atmosferini belirleyen en önemli unsur; gizli LED aydınlatmalarla dramatik etkiler yaratıyoruz.</p>
+                <p>Eviniz, sizin sığınağınızdır. Karmaşadan uzak, dingin ve sofistike yaşam alanları tasarlamak için buradayız.</p>
+            `
         }
     ];
 
-    // 2. Yazıları Ekrana Bas (Render)
-    function renderBlogPosts() {
-        // ... (Kodun geri kalanı aynı kalacak)
-
-    // 2. Yazıları Ekrana Bas (Render)
+    // === EKRANA BASMA VE İŞLEVSELLİK ===
     function renderBlogPosts() {
         const gridDisplay = document.getElementById('blog-grid-display');
         const featuredContainer = document.getElementById('featured-post-container');
         
         if(!gridDisplay) return;
 
-        // Tarihe göre sırala (En yeni en üstte)
         blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // En yeni yazıyı "Featured" (Öne Çıkan) yap
+        // 1. Öne Çıkan Yazı (Featured)
         const latestPost = blogPosts[0];
-        
-        // Featured HTML
         if(featuredContainer) {
             featuredContainer.innerHTML = `
                 <article class="featured-post">
                     <div class="featured-img-container">
-                        <img src="${latestPost.image}" alt="${latestPost.title}" onerror="this.src='https://placehold.co/800x600/111/f59e0b?text=WalkAbouTravel'">
+                        <img src="${latestPost.image}" alt="${latestPost.title}">
                     </div>
                     <div class="featured-content">
                         <span class="post-meta"><i class="far fa-clock"></i> ${latestPost.date} | EDİTÖRÜN SEÇİMİ</span>
                         <h2>${latestPost.title}</h2>
-                        <p>${latestPost.content.substring(0, 180)}...</p>
-                        <a href="#" class="read-more-link">Yazıyı Oku <i class="fas fa-arrow-right"></i></a>
+                        <p>${latestPost.summary}</p>
+                        <button onclick="openBlogModal(${latestPost.id})" class="read-more-link" style="background:none; border:none; cursor:pointer; font-size:1rem; border-bottom:1px solid var(--blue-light);">
+                            Yazıyı Oku <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </article>
             `;
         }
 
-        // Geri kalanları Grid'e bas (İlkini atla)
+        // 2. Diğer Yazılar (Grid)
         gridDisplay.innerHTML = ""; 
         const otherPosts = blogPosts.slice(1);
 
         otherPosts.forEach(post => {
             const html = `
-                <article class="aesthetic-card">
+                <article class="aesthetic-card" onclick="openBlogModal(${post.id})">
                     <div class="card-img-top">
-                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/111/f59e0b?text=Blog'">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy">
                     </div>
                     <div class="card-body">
                         <span class="card-date">${post.date}</span>
                         <h3>${post.title}</h3>
-                        <p class="card-excerpt">${post.content.substring(0, 100)}...</p>
-                        <a href="#" class="read-more-link" style="color:var(--text-muted); font-size:0.9rem;">Devamını Oku</a>
-                         <button onclick="deletePost(${post.id})" style="margin-top:15px; background:none; border:none; color:#444; cursor:pointer; font-size:0.7rem; align-self:flex-end;">Sil</button>
+                        <p class="card-excerpt">${post.summary}</p>
+                        <span class="read-more-link" style="color:var(--text-muted); font-size:0.9rem; margin-top:auto;">Devamını Oku →</span>
                     </div>
                 </article>
             `;
@@ -171,61 +189,39 @@
         });
     }
 
-    // 3. Yeni Yazı Yayınla
-    function publishBlogPost() {
-        const title = document.getElementById('blog-title').value;
-        const img = document.getElementById('blog-image').value || 'assets/for_hero.webp';
-        const date = document.getElementById('blog-date').value || new Date().toISOString().split('T')[0];
-        const content = document.getElementById('blog-content').value;
+    // === MODAL AÇMA/KAPAMA FONKSİYONLARI ===
+    function openBlogModal(id) {
+        const post = blogPosts.find(p => p.id === id);
+        if (!post) return;
 
-        if(title.trim() === "" || content.trim() === "") {
-            alert("Lütfen en azından bir başlık ve içerik giriniz.");
-            return;
+        // Modal içeriğini doldur
+        document.getElementById('modal-img').src = post.image;
+        document.getElementById('modal-date').textContent = post.date;
+        document.getElementById('modal-title').textContent = post.title;
+        // Eğer fullContent varsa onu kullan, yoksa özeti kullan
+        document.getElementById('modal-text').innerHTML = post.fullContent || `<p>${post.summary}</p>`;
+
+        // Modalı göster
+        const modal = document.getElementById('blog-modal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+    }
+
+    function closeBlogModal() {
+        const modal = document.getElementById('blog-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Kaydırmayı geri aç
+    }
+
+    // Modal dışına tıklayınca kapatma
+    document.getElementById('blog-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeBlogModal();
         }
-
-        const newPost = {
-            id: Date.now(),
-            title: title,
-            image: img,
-            date: date,
-            content: content
-        };
-
-        blogPosts.push(newPost);
-        localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts));
-        
-        // Formu temizle
-        document.getElementById('blog-title').value = "";
-        document.getElementById('blog-content').value = "";
-        
-        renderBlogPosts();
-        alert("Yazı başarıyla yayınlandı!");
-    }
-
-    // 4. Silme Fonksiyonu
-    function deletePost(id) {
-        if(confirm("Bu yazıyı silmek istediğinize emin misiniz?")) {
-            blogPosts = blogPosts.filter(p => p.id !== id);
-            localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts));
-            renderBlogPosts();
-        }
-    }
-
-    // 5. Admin Panel Göster/Gizle
-    function toggleAdminPanel() {
-        const panel = document.getElementById('admin-panel-container');
-        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function saveBlogDraft() {
-        localStorage.setItem('draftTitle', document.getElementById('blog-title').value);
-        localStorage.setItem('draftContent', document.getElementById('blog-content').value);
-        alert("Taslak tarayıcı hafızasına kaydedildi.");
-    }
+    });
 
     // Başlat
     document.addEventListener('DOMContentLoaded', renderBlogPosts);
-
 </script>
 <div id="blog-modal" class="blog-modal-overlay">
     <div class="blog-modal-content">
@@ -240,5 +236,6 @@
 </div>
 </body>
 </html>
+
 
 
