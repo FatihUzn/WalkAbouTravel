@@ -2329,3 +2329,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .admin-toggle-text:hover { color: #888; }
 }
+/* === PREMIUM "Devamını Oku →" Butonu === */
+
+.premium-readmore {
+  display: inline-block;
+  padding: 10px 22px;
+  background: transparent;
+  border: 2px solid var(--blue-light);
+  color: var(--blue-light);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: 0.25s ease;
+  text-decoration: none;
+}
+
+.premium-readmore:hover {
+  background: var(--blue-light);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 110, 255, 0.25);
+}
+
+
