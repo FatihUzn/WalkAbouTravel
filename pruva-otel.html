@@ -1,28 +1,61 @@
 <section id="page-pruva-otel" class="page-section">
     
-    <a href="#hero" class="btn-page-back" data-key="btn_back">← Anasayfa</a>
+    <a href="#hero" class="btn-page-back">← Anasayfa</a>
 
     <div class="blog-container">
         
         <div class="blog-header">
-            <h2>Golden Palace Journal</h2>
-            <p class="blog-subtitle">Mimari, Tasarım ve Yaşam Üzerine Seçkiler</p>
+            <span class="blog-badge">SEYAHAT GÜNLÜĞÜ</span>
+            <h2>WalkAbout Travel Blog</h2>
+            <p class="blog-subtitle">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
             <div class="title-gold-line"></div>
+            
+            <div class="blog-categories">
+                <span class="active">Tümü</span>
+                <span>Rota Önerileri</span>
+                <span>Vize Rehberi</span>
+                <span>Otel İncelemeleri</span>
+                <span>Gastronomi</span>
+                <span>Kültür Turları</span>
+            </div>
         </div>
 
         <div id="admin-panel-container" style="display:none;">
             <div class="admin-panel">
-                <h3>Yeni Yazı Ekle / Düzenle</h3>
-                <div class="admin-form-grid">
-                    <input type="text" id="blog-title" placeholder="Blog Başlığı Giriniz..." class="admin-input">
-                    <input type="text" id="blog-image" placeholder="Görsel URL (örn: assets/blog1.webp)" class="admin-input">
-                    <input type="date" id="blog-date" class="admin-input">
-                    <textarea id="blog-content" rows="4" placeholder="Yazı içeriği veya özet..." class="admin-textarea"></textarea>
+                <div class="admin-header">
+                    <h3><i class="fas fa-compass"></i> Yeni Rota / Yazı Ekle</h3>
+                    <button onclick="toggleAdminPanel()" class="close-admin-btn">✖</button>
                 </div>
+                
+                <div class="admin-form-grid">
+                    <div class="input-group">
+                        <label>Başlık</label>
+                        <input type="text" id="blog-title" placeholder="Örn: İtalya'da Saklı Köyler..." class="admin-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Kapak Görseli</label>
+                        <input type="text" id="blog-image" placeholder="Görsel URL (assets/...)" class="admin-input">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Tarih</label>
+                        <input type="date" id="blog-date" class="admin-input">
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label>Seyahat Notları</label>
+                        <textarea id="blog-content" rows="5" placeholder="Gezginler için ipuçlarını buraya yaz..." class="admin-textarea"></textarea>
+                    </div>
+                </div>
+                
                 <div class="admin-actions">
-                    <button onclick="publishBlogPost()" class="btn admin-btn-save">Yayınla</button>
-                    <button onclick="saveBlogDraft()" class="btn admin-btn-draft">Taslağı Kaydet</button>
-                    <button onclick="toggleAdminPanel()" class="btn admin-btn-cancel">Kapat</button>
+                    <button onclick="publishBlogPost()" class="btn admin-btn-save">
+                        <i class="fas fa-paper-plane"></i> Yazıyı Paylaş
+                    </button>
+                    <button onclick="saveBlogDraft()" class="btn admin-btn-draft">
+                        <i class="fas fa-save"></i> Taslak Kaydet
+                    </button>
                 </div>
             </div>
         </div>
@@ -30,8 +63,21 @@
         <div id="blog-grid-display" class="blog-grid">
             </div>
 
+        <div class="newsletter-section">
+            <div class="newsletter-content">
+                <h3><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
+                <p>Erken rezervasyon fırsatları ve özel tur rehberleri için bültenimize katıl.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresin..." class="newsletter-input">
+                    <button class="btn newsletter-btn">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+
         <div class="admin-trigger-area">
-            <button onclick="toggleAdminPanel()" class="admin-toggle-text">[ Editör Girişi ]</button>
+            <button onclick="toggleAdminPanel()" class="admin-toggle-text">
+                <i class="fas fa-pen-nib"></i> İçerik Editörü
+            </button>
         </div>
 
     </div>
