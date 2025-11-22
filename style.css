@@ -2150,300 +2150,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .blog-grid {
         gap: 20px;
     }
-/* === MINIMALIST PREMIUM TRAVEL BLOG – page-pruva-otel === */
-
-#page-pruva-otel .premium-blog-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px 80px;
-}
-
-/* Başlık */
-#page-pruva-otel .premium-blog-title {
-  font-size: 36px;
-  line-height: 1.3;
-  color: var(--text);
-  margin-bottom: 10px;
-  font-family: "Playfair Display", serif;
-}
-
-#page-pruva-otel .premium-blog-subtitle {
-  font-size: 16px;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-#page-pruva-otel .premium-blog-meta {
-  display: flex;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 10px;
-}
-
-/* Hero */
-#page-pruva-otel .premium-blog-hero img {
-  width: 100%;
-  border-radius: 16px;
-  margin: 24px 0;
-  max-height: 450px;
-  object-fit: cover;
-}
-
-/* Paragraflar */
-#page-pruva-otel .premium-blog-body .lead {
-  font-size: 18px;
-  color: var(--text);
-  line-height: 1.7;
-}
-
-#page-pruva-otel .premium-section h2 {
-  font-size: 26px;
-  margin: 30px 0 10px;
-  color: var(--blue-dark);
-  font-family: "Playfair Display", serif;
-}
-
-#page-pruva-otel .premium-section p {
-  font-size: 16px;
-  color: var(--text-muted);
-  line-height: 1.8;
-  margin-bottom: 10px;
-}
-
-/* Geniş fotoğraf */
-#page-pruva-otel .premium-wide-photo img {
-  width: 100%;
-  border-radius: 16px;
-  margin: 26px 0 10px;
-}
-
-#page-pruva-otel .premium-wide-photo figcaption {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-/* Bölücü çizgi */
-#page-pruva-otel .premium-divider {
-  margin: 30px 0;
-  border: none;
-  border-top: 1px solid var(--border-dark);
-}
-
-/* Notlar */
-#page-pruva-otel .premium-notes h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: var(--blue-dark);
-}
-
-#page-pruva-otel .premium-notes ul {
-  padding-left: 20px;
-  font-size: 16px;
-  color: var(--text-muted);
-}
-
-#page-pruva-otel .premium-footer {
-  margin-top: 40px;
-  border-top: 1px solid var(--border-dark);
-  padding-top: 20px;
-}
-
-#page-pruva-otel .premium-next-label {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-#page-pruva-otel .premium-next-link {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--blue-light);
-  text-decoration: none;
-}
-
-#page-pruva-otel .premium-next-link:hover {
-  text-decoration: underline;
-}
-/* === PREMIUM BLOG STİLLERİ === */
-
-/* 1. HEADER ÇAKIŞMASI ÇÖZÜMÜ */
-#page-pruva-otel {
-    padding-top: 180px !important; /* Header ve ekstra boşluk */
-    min-height: 100vh;
-    background-color: #0c0c0c;
-    padding-bottom: 80px;
-}
-
-/* 2. Blog Konteyner ve Başlık */
-.blog-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 30px;
-}
-
-.blog-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.blog-header h2 {
-    font-size: 3rem;
-    color: var(--gold-light);
-    margin-bottom: 10px;
-}
-
-.blog-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: #888;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-/* 3. Blog Grid ve Kart Tasarımı */
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-}
-
-.blog-card {
-    background: #161616;
-    border: 1px solid #333;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--gold-light);
-    box-shadow: var(--gold-shadow);
-}
-
-.blog-card img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    border-bottom: 1px solid #333;
-}
-
-.blog-content {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-date-tag {
-    font-size: 0.85rem;
-    color: var(--gold-dark);
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.blog-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: #f5f5f5;
-    margin: 0 0 15px 0;
-    line-height: 1.3;
-    background: none;
-    -webkit-text-fill-color: #f5f5f5;
-}
-
-.blog-excerpt {
-    font-size: 0.95rem;
-    color: #aaa;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-
-.blog-read-more {
-    color: var(--gold-light);
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid transparent;
-    align-self: flex-start;
-    transition: 0.3s;
-}
-
-.blog-read-more:hover {
-    border-bottom-color: var(--gold-light);
-}
-
-/* 4. Admin Paneli Tasarımı */
-.admin-panel {
-    background: #1a1a1a;
-    border: 1px solid var(--gold-dark);
-    padding: 30px;
-    border-radius: 10px;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.admin-form-grid {
-    display: grid;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.admin-input, .admin-textarea {
-    background: #0a0a0a;
-    border: 1px solid #444;
-    color: #fff;
-    padding: 12px;
-    border-radius: 6px;
-    font-family: 'Inter', sans-serif;
-    width: 100%;
-}
-
-.admin-input:focus, .admin-textarea:focus {
-    border-color: var(--gold-light);
-    outline: none;
-}
-
-.admin-actions {
-    display: flex;
-    gap: 15px;
-}
-
-.admin-btn-save {
-    background: var(--gold-dark);
-    color: #000;
-    border: none;
-}
-
-.admin-btn-draft {
-    background: #333;
-    color: #ccc;
-    border: 1px solid #555;
-}
-
-.admin-toggle-text {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 0.8rem;
-    cursor: pointer;
-    margin-top: 60px;
-    width: 100%;
-    text-align: center;
-}
-.admin-toggle-text:hover { color: #666; }
-
-/* Mobil Uyum */
-@media (max-width: 768px) {
-    #page-pruva-otel { padding-top: 140px !important; }
-    .blog-header h2 { font-size: 2.2rem; }
-    .admin-actions { flex-direction: column; }
-}
 /* === WALKABOUT TRAVEL - PREMIUM BLOG STİLİ === */
 
 /* Genel Sayfa Arka Planı */
@@ -2622,4 +2328,148 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: none; border: none; color: #444; margin-top: 40px; cursor: pointer; font-size: 12px;
 }
 .admin-toggle-text:hover { color: #888; }
+}
+/* ========================================= */
+/* === BLOG SAYFASI ÖZEL STİLLERİ (YENİ) === */
+/* ========================================= */
+
+/* Blog Sayfası Ana Taşıyıcı */
+.blog-page-section {
+    padding-top: 180px; /* Header'ın altında kalmaması için */
+    padding-bottom: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    animation: pageFadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Blog Başlık Alanı */
+.blog-header-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.blog-header-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    /* Global h1 stilini eziyoruz: */
+    background: linear-gradient(90deg, #f59e0b, #ffcc66, #f59e0b);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textGradientShine 5s linear infinite;
+}
+.blog-header-title p {
+    color: #a1a1aa;
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Grid Yapısı (Kartları Yan Yana Dizer) */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+/* Blog Kartı */
+.blog-card {
+    background: #111;
+    border: 1px solid #2d2d2d;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+    text-decoration: none; /* Link çizgisi olmasın */
+    display: block; /* Linkin tüm kartı kaplaması için */
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    border-color: #f59e0b;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(255, 204, 102, 0.2);
+}
+
+/* Kart Resmi */
+.blog-image-wrapper {
+    height: 240px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.blog-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-image-wrapper img {
+    transform: scale(1.1); /* Resim zoom efekti */
+}
+
+/* Kart İçeriği */
+.blog-content {
+    padding: 25px;
+}
+
+.blog-date {
+    font-size: 0.85rem;
+    color: #ffcc66;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+}
+
+.blog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #f5f5f5;
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+    background: none; /* Global gradienti iptal et, düz beyaz kalsın */
+    -webkit-text-fill-color: #f5f5f5;
+}
+
+.blog-excerpt {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.read-more-btn {
+    display: inline-block;
+    color: #ffcc66;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    transition: padding-left 0.3s ease;
+}
+
+.blog-card:hover .read-more-btn {
+    padding-left: 10px;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr; /* Mobilde tek sütun */
+    }
+    .blog-page-section {
+        padding-top: 140px; /* Mobil header yüksekliği farklı */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .blog-header-title h1 {
+        font-size: 2.2rem;
+    }
 }
