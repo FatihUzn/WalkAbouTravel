@@ -13,6 +13,14 @@
   --border-dark: #2d2d2d;
   --section-bg: #111;
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* === YENİ EKLENEN TURİZM RENKLERİ (MAVİ TEMA) === */
+  --tourism-bg: #f0f9ff;       /* Çok açık buz mavisi arka plan */
+  --tourism-text: #334155;     /* Koyu gri/mavi metin rengi (okunaklı) */
+  --tourism-blue: #0ea5e9;     /* Canlı gökyüzü mavisi (vurgular için) */
+  --tourism-dark-blue: #0c4a6e;/* Derin okyanus mavisi (başlıklar için) */
+  --tourism-card-bg: #ffffff;  /* Kartlar için bembeyaz arka plan */
+  --tourism-border: #e2e8f0;   /* İnce açık gri kenarlıklar */
 }
 
 *, *::before, *::after {
@@ -1884,20 +1892,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* ========================================================= */
-/* === TRAVEL JOURNAL – TEKİL TURİZM BLOGU (page-pruva-otel) === */
+/* === TRAVEL JOURNAL – TURİZM BLOGU (AÇIK MAVİ TEMA) === */
 /* ========================================================= */
 
-/* ÖNEMLİ: Eğer projenizde --blue-light ve --blue-dark tanımlı değilse
-   buradaki tanımları kullanır. Akdeniz teması için mavidir. */
-:root {
-  --blue-light: #38bdf8; /* Açık Mavi (Sky Blue) */
-  --blue-dark: #0c4a6e;  /* Koyu Mavi (Deep Ocean) */
+#page-pruva-otel {
+  background-color: var(--tourism-bg); /* Siyah yerine buz mavisi */
+  padding-top: 140px; 
+  min-height: 100vh;
 }
 
-#page-pruva-otel {
-  background-color: var(--bg);
-  /* Header çakışmasını önlemek için üst boşluk (Zaten genel kuralın var ama garanti olsun) */
-  padding-top: 140px; 
+/* Geri Butonu Özelleştirmesi (Mavi Tema İçin) */
+#page-pruva-otel .btn-page-back {
+  background: var(--tourism-blue);
+  color: white;
+  border-color: var(--tourism-dark-blue);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+#page-pruva-otel .btn-page-back:hover {
+  background: var(--tourism-dark-blue);
+  color: white;
+  transform: translateY(-2px);
 }
 
 #page-pruva-otel .travel-journal-container {
@@ -1920,19 +1934,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--blue-light);
+  color: var(--tourism-blue);
   margin: 0 0 8px 0;
+  font-weight: 700;
 }
 
 #page-pruva-otel .travel-journal-title {
   font-size: 32px;
   margin: 0 0 12px 0;
+  
+  /* Gold gradient'i iptal et, düz okyanus rengi yap */
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   text-fill-color: initial;
-  color: var(--text);
+  
+  color: var(--tourism-dark-blue);
   line-height: 1.2;
 }
 
@@ -1941,7 +1959,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   flex-wrap: wrap;
   gap: 6px;
   font-size: 13px;
-  color: var(--text-muted);
+  color: #64748b; /* Gri metin */
 }
 
 /* Kapak görseli */
@@ -1955,21 +1973,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 16px;
   object-fit: cover;
   max-height: 420px;
-  border: 1px solid var(--border-dark);
+  border: none;
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15); /* Mavi gölge */
 }
 
 #page-pruva-otel .travel-journal-hero figcaption {
   font-size: 13px;
-  color: var(--text-muted);
+  color: #64748b;
   margin-top: 8px;
   text-align: center;
 }
 
 /* Ana yazı gövdesi */
 #page-pruva-otel .travel-journal-body {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.8;
-  color: var(--text-muted);
+  color: var(--tourism-text); /* Koyu gri okunaklı metin */
 }
 
 #page-pruva-otel .travel-journal-section + .travel-journal-section {
@@ -1977,29 +1996,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #page-pruva-otel .travel-journal-section h3 {
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 10px;
+  
+  /* Gold gradient iptali */
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   text-fill-color: initial;
-  color: var(--blue-light); /* Başlıkları mavi yaptık */
+  
+  color: var(--tourism-blue); /* Canlı mavi */
 }
 
 #page-pruva-otel .travel-journal-section p {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
+  color: var(--tourism-text);
 }
 
 /* Alıntı bloğu */
 #page-pruva-otel .travel-journal-quote {
   margin: 30px 0;
-  padding: 16px 20px;
-  border-left: 4px solid var(--blue-light);
-  background: rgba(255,255,255,0.05); /* Arka planı koyu temaya uyarladık */
+  padding: 24px 28px;
+  border-left: 5px solid var(--tourism-blue);
+  background: white;
   border-radius: 8px;
   font-style: italic;
-  color: var(--text);
+  color: var(--tourism-dark-blue);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-size: 18px;
 }
 
 /* Sağ taraftaki ipucu kutuları */
@@ -2011,36 +2036,45 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 #page-pruva-otel .travel-tips-card,
 #page-pruva-otel .travel-highlights-card {
-  background: var(--section-bg);
+  background: var(--tourism-card-bg); /* Beyaz arka plan */
   border-radius: 12px;
-  border: 1px solid var(--border-dark);
-  padding: 18px 18px 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border: 1px solid var(--tourism-border);
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.08); /* Hafif mavi gölge */
 }
 
 #page-pruva-otel .travel-tips-card h4,
 #page-pruva-otel .travel-highlights-card h4 {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   font-size: 18px;
-  color: var(--blue-light);
+  
+  /* Gold gradient iptali */
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   text-fill-color: initial;
+  
+  color: var(--tourism-blue);
+  border-bottom: 2px solid #e0f2fe;
+  padding-bottom: 8px;
 }
 
 #page-pruva-otel .travel-tips-card ul,
 #page-pruva-otel .travel-highlights-card ol {
   margin: 0;
   padding-left: 18px;
-  font-size: 14px;
-  color: var(--text-muted);
+  font-size: 15px;
+  color: var(--tourism-text);
 }
 
 #page-pruva-otel .travel-tips-card li,
 #page-pruva-otel .travel-highlights-card li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+#page-pruva-otel strong {
+    color: var(--tourism-dark-blue);
 }
 
 /* Alt kısım */
@@ -2048,7 +2082,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   grid-column: 1 / -1;
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid var(--border-dark);
+  border-top: 1px solid var(--tourism-border);
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -2060,20 +2094,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
+  color: #64748b;
   margin: 0;
 }
 
 #page-pruva-otel .travel-journal-next-link {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--blue-light);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--tourism-blue);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 #page-pruva-otel .travel-journal-next-link:hover {
   text-decoration: underline;
-  color: #fff;
+  color: var(--tourism-dark-blue);
 }
 
 /* Mobil uyum */
