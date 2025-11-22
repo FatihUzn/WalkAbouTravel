@@ -1,84 +1,78 @@
 <section id="page-pruva-otel" class="page-section">
-    
-    <a href="#hero" class="btn-page-back">← Anasayfa</a>
 
-    <div class="blog-container">
-        
-        <div class="blog-header">
-            <span class="blog-badge">SEYAHAT GÜNLÜĞÜ</span>
-            <h2>WalkAbout Travel Blog</h2>
-            <p class="blog-subtitle">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
-            <div class="title-gold-line"></div>
-            
-            <div class="blog-categories">
-                <span class="active">Tümü</span>
-                <span>Rota Önerileri</span>
-                <span>Vize Rehberi</span>
-                <span>Otel İncelemeleri</span>
-                <span>Gastronomi</span>
-                <span>Kültür Turları</span>
-            </div>
-        </div>
+  <!-- GERİ BUTONU -->
+  <a href="#page-restorasyon" 
+     class="btn-page-back"
+     onclick="event.preventDefault(); showPage('page-restorasyon');">
+    ← Geri
+  </a>
 
-        <div id="admin-panel-container" style="display:none;">
-            <div class="admin-panel">
-                <div class="admin-header">
-                    <h3><i class="fas fa-compass"></i> Yeni Rota / Yazı Ekle</h3>
-                    <button onclick="toggleAdminPanel()" class="close-admin-btn">✖</button>
-                </div>
-                
-                <div class="admin-form-grid">
-                    <div class="input-group">
-                        <label>Başlık</label>
-                        <input type="text" id="blog-title" placeholder="Örn: İtalya'da Saklı Köyler..." class="admin-input">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Kapak Görseli</label>
-                        <input type="text" id="blog-image" placeholder="Görsel URL (assets/...)" class="admin-input">
-                    </div>
+  <div class="premium-container">
 
-                    <div class="input-group">
-                        <label>Tarih</label>
-                        <input type="date" id="blog-date" class="admin-input">
-                    </div>
+    <!-- BAŞLIK ALANI -->
+    <header class="premium-header">
+      <h1 class="premium-title">Buraya Blog Başlığınızı Yazın</h1>
+      <p class="premium-subtitle">
+        Kısa açıklama veya slogan buraya.
+      </p>
+      <div class="premium-meta">
+        <span>🗓 Tarih</span>
+        <span>•</span>
+        <span>WalkAboutTravel</span>
+        <span>•</span>
+        <span>Okuma süresi</span>
+      </div>
+    </header>
 
-                    <div class="input-group full-width">
-                        <label>Seyahat Notları</label>
-                        <textarea id="blog-content" rows="5" placeholder="Gezginler için ipuçlarını buraya yaz..." class="admin-textarea"></textarea>
-                    </div>
-                </div>
-                
-                <div class="admin-actions">
-                    <button onclick="publishBlogPost()" class="btn admin-btn-save">
-                        <i class="fas fa-paper-plane"></i> Yazıyı Paylaş
-                    </button>
-                    <button onclick="saveBlogDraft()" class="btn admin-btn-draft">
-                        <i class="fas fa-save"></i> Taslak Kaydet
-                    </button>
-                </div>
-            </div>
-        </div>
+    <!-- KAPAK FOTOĞRAF -->
+    <figure class="premium-hero">
+      <img src="assets/blog/example.webp" 
+           alt="Blog kapak"
+           onerror="this.src='https://placehold.co/1300x650/FFFFFF/0b1120?text=Kapak+Goruntu';">
+      <figcaption>Fotoğraf açıklaması buraya.</figcaption>
+    </figure>
 
-        <div id="blog-grid-display" class="blog-grid">
-            </div>
+    <!-- İÇERİK -->
+    <article class="premium-body">
 
-        <div class="newsletter-section">
-            <div class="newsletter-content">
-                <h3><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
-                <p>Erken rezervasyon fırsatları ve özel tur rehberleri için bültenimize katıl.</p>
-                <div class="newsletter-form">
-                    <input type="email" placeholder="E-posta adresin..." class="newsletter-input">
-                    <button class="btn newsletter-btn">Abone Ol</button>
-                </div>
-            </div>
-        </div>
+      <section class="premium-block">
+        <h2>1. Başlık</h2>
+        <p>
+          Paragraf yazınızı buraya ekleyin. Apple tarzı: uzun cümleler, rahat okunan aralıklar.
+        </p>
+      </section>
 
-        <div class="admin-trigger-area">
-            <button onclick="toggleAdminPanel()" class="admin-toggle-text">
-                <i class="fas fa-pen-nib"></i> İçerik Editörü
-            </button>
-        </div>
+      <section class="premium-block">
+        <h2>2. Başlık</h2>
+        <p>
+          İkinci ana bölüm buraya. İçerik tamamen sana ait.
+        </p>
+      </section>
 
-    </div>
+      <!-- GENİŞ FOTOĞRAF -->
+      <figure class="premium-wide">
+        <img src="assets/blog/example2.webp" alt="">
+        <figcaption>Geniş fotoğraf açıklaması.</figcaption>
+      </figure>
+
+      <section class="premium-block">
+        <h2>3. Son Bölüm</h2>
+        <p>
+          Final paragrafını buraya ekleyebilirsin.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- ALTAKİ NAVİGASYON -->
+    <footer class="premium-footer">
+      <p class="premium-next-title">Bir sonraki yazı:</p>
+      <a class="premium-next" href="#page-restorasyon"
+         onclick="event.preventDefault(); showPage('page-restorasyon');">
+        → Sonraki Yazıya Git
+      </a>
+    </footer>
+
+  </div>
+
 </section>
