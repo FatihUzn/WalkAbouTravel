@@ -434,4 +434,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hero = document.getElementById('hero');
         if(hero) hero.style.display = "flex";
     }
+// ==========================================
+// 7. HEADER SCROLL EFEKTİ (EKLEME)
+// ==========================================
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+        header.style.padding = '5px 32px'; // Biraz küçült
+    } else {
+        header.classList.remove('scrolled');
+        header.style.padding = '16px 32px'; // Eski haline getir
+    }
 });
