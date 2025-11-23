@@ -1,315 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog - Golden Palace</title>
-    <link rel="icon" type="image/png" href="assets/golden_palace_logo.webp">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css?v=1.6">
-
-    <style>
-        /* Blog İçerik Alanı */
-        .blog-page-section {
-            padding-top: 180px; /* Header'ın altında kalmaması için boşluk */
-            padding-bottom: 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 40px;
-            padding-right: 40px;
-            animation: pageFadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* Başlık Alanı */
-        .blog-header-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .blog-header-title h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #f59e0b, #ffcc66, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .blog-header-title p {
-            color: #a1a1aa;
-            font-size: 1.1rem;
-        }
-
-        /* Blog Grid Yapısı */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        /* Blog Kart Tasarımı (Mevcut tasarıma uygun) */
-        .blog-card {
-            background: #111; /* Koyu zemin */
-            border: 1px solid #2d2d2d;
-            border-radius: 14px;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-            cursor: pointer;
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: #f59e0b; /* Hover'da altın çerçeve */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(255, 204, 102, 0.2);
-        }
-
-        .blog-image-wrapper {
-            height: 240px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .blog-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .blog-card:hover .blog-image-wrapper img {
-            transform: scale(1.1); /* Resim zoom efekti */
-        }
-
-        .blog-content {
-            padding: 25px;
-        }
-
-        .blog-date {
-            font-size: 0.85rem;
-            color: #ffcc66; /* Altın renk tarih */
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .blog-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #f5f5f5;
-            margin: 0 0 15px 0;
-            line-height: 1.3;
-        }
-
-        .blog-excerpt {
-            color: #a1a1aa;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .read-more-btn {
-            display: inline-block;
-            color: #ffcc66;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: padding-left 0.3s ease;
-        }
-
-        .blog-card:hover .read-more-btn {
-            padding-left: 10px; /* Okun üzerine gelince kayma efekti */
-        }
-
-        /* Mobil Uyumluluk */
-        @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            .blog-page-section {
-                padding-top: 140px;
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-            .blog-header-title h1 {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<header id="main-header">
-  <div class="header-top-row">
-    <div class="top-bar-left">
-      <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="mailto:info@goldenpalace.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
-    </div>
-    <div class="top-bar-right">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
-    </div>
-  </div>
-
-  <div class="header-bottom-row">
-    <div class="brand">
-      <img src="assets/golden_palace_logo.webp" alt="Golden Palace Logo"> 
-      <div class="brand-text-container">
-          <span class="brand-title">Golden Palace</span>
-          <span class="brand-tagline">Real Estate & Architecture</span>
-      </div>
-    </div>
-  
-    <div style="display: flex; align-items: center;">
-      <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
-          <i class="fas fa-bars"></i>
-      </button>
-    
-      <nav class="navbar" id="navbar">
-        <a href="index.html" class="nav-link">Anasayfa</a>
-        <a href="index.html#page-about" class="nav-link">Kurumsal</a>
-        <a href="index.html#page-services" class="nav-link">Hizmetler</a>
-        <a href="index.html#page-projects" class="nav-link">Projeler</a>
-        <a href="index.html#page-contact" class="nav-link">İletişim</a>
-      </nav>
-      
-      <div class="language-selector desktop-only" style="margin-left: 20px;">
-          <button class="lang-btn active">TR</button>
-          <button class="lang-btn">EN</button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="blog-page-section">
-    
-    <div class="blog-header-title">
-        <h1>Blog & Haberler</h1>
-        <p>Mimari trendler, proje detayları ve sektörden güncel haberler.</p>
-    </div>
-
-    <div id="blog-container" class="blog-grid">
-        
-        <article class="blog-card">
-            <div class="blog-image-wrapper">
-                <img src="assets/for_hero.webp" alt="Modern Mimari"> 
-            </div>
-            <div class="blog-content">
-                <span class="blog-date">22 KASIM 2025</span>
-                <h3 class="blog-title">Modern Mimaride Sürdürülebilirlik</h3>
-                <p class="blog-excerpt">Geleceğin yapıları sadece estetik değil, aynı zamanda doğayla dost olmak zorunda. Yeşil binalar hakkında bilmeniz gerekenler...</p>
-                <a href="#" class="read-more-btn">Devamını Oku &rarr;</a>
-            </div>
-        </article>
-
-        <article class="blog-card">
-            <div class="blog-image-wrapper">
-                <img src="assets/background.webp" alt="Restorasyon"> 
-            </div>
-            <div class="blog-content">
-                <span class="blog-date">18 KASIM 2025</span>
-                <h3 class="blog-title">Tarihi Yapılarda Restorasyon Süreçleri</h3>
-                <p class="blog-excerpt">Eski yapıları modern hayata kazandırırken dokuyu korumak neden hayati önem taşıyor? Uzman görüşleri...</p>
-                <a href="#" class="read-more-btn">Devamını Oku &rarr;</a>
-            </div>
-        </article>
-        
-        <article class="blog-card">
-            <div class="blog-image-wrapper">
-                <img src="assets/otel_hero-mobil.webp" alt="Otel Yatırımları"> 
-            </div>
-            <div class="blog-content">
-                <span class="blog-date">10 KASIM 2025</span>
-                <h3 class="blog-title">Turizm Sektöründe Doğru Yatırım</h3>
-                <p class="blog-excerpt">Otel projelerinde konum seçimi ve mimari tasarımın müşteri memnuniyetine etkisi üzerine bir inceleme.</p>
-                <a href="#" class="read-more-btn">Devamını Oku &rarr;</a>
-            </div>
-        </article>
-
-    </div>
-</section>
-
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div class="footer-column">
-            <h3>Hızlı Menü</h3>
-            <ul class="footer-links">
-                <li><a href="index.html">Anasayfa</a></li>
-                <li><a href="index.html#page-about">Kurumsal</a></li>
-                <li><a href="index.html#page-services">Hizmetler</a></li>
-                <li><a href="index.html#page-projects">Projeler</a></li>
-                <li><a href="index.html#page-contact">İletişim</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3>Hizmetlerimiz</h3>
-            <ul class="footer-links">
-                <li><a href="#">Mimari Tasarım</a></li>
-                <li><a href="#">İç Mekan Tasarımı</a></li>
-                <li><a href="#">Restorasyon</a></li>
-                <li><a href="#">Proje Yönetimi</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column logo-column">
-            <div class="footer-logo-container">
-                <img src="assets/golden_palace_logo.webp" alt="Logo">
-                <div class="footer-text-container">
-                    <span class="footer-title">Golden Palace</span>
-                    <span class="brand-tagline">Real Estate & Architecture</span>
-                </div>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-
-        <div class="footer-column">
-            <h3>Projeler</h3>
-            <ul class="footer-links">
-                <li><a href="#">Turizm De Biz</a></li>
-                <li><a href="#">Restorasyon</a></li>
-                <li><a href="#">Ticari Ve Konut</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3>Bize Ulaşın</h3>
-            <ul class="footer-links contact-info">
-                <li><i class="fas fa-map-marker-alt"></i> Mimar Sinan Cd. No: 42/A, İstanbul</li>
-                <li><i class="fas fa-phone"></i> +90 (212) 555 1923</li>
-                <li><i class="fas fa-envelope"></i> info@goldenpalace.com</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        © 2025 Golden Palace Mimarlık. Tüm hakları saklıdır.
-    </div>
-</footer>
-
-<script>
-    // Mobil menü açma/kapama
-    const menuToggle = document.getElementById('menu-toggle');
-    const navbar = document.getElementById('navbar');
-
-    if(menuToggle && navbar) {
-        menuToggle.addEventListener('click', () => {
-            navbar.classList.toggle('open');
-        });
-    }
-</script>
-
-</body>
-</html>
-=======
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -317,24 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - WalkAbout Travel</title>
     
-    <link rel="stylesheet" href="style.css?v=1.8"> 
+    <link rel="stylesheet" href="style.css?v=1.9"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Blog Sayfası İçin Özel Düzenlemeler */
+        /* --- SAYFA GENEL DÜZENİ --- */
         body {
-            background-color: #111; /* Arka plan rengi */
-            padding-top: 0; /* Header fixed olduğu için */
+            background-color: #111;
+            padding-top: 0;
+            color: #ddd;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
         }
         .blog-wrapper-standalone {
-            padding-top: 140px; /* Header altı boşluk */
+            padding-top: 140px;
             padding-bottom: 80px;
             max-width: 1400px;
             margin: 0 auto;
             padding-left: 20px;
             padding-right: 20px;
         }
-        /* Geri butonu düzenlemesi */
         .btn-page-back-static {
             display: inline-block;
             margin-bottom: 20px;
@@ -349,6 +39,158 @@
         .btn-page-back-static:hover {
             background: #ffcc66;
             color: #000;
+        }
+
+        /* --- BLOG GRID YAPISI --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .blog-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffcc66;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .blog-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        .blog-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-date {
+            font-size: 0.8rem;
+            color: #ffcc66;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+        .blog-summary {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .read-more {
+            margin-top: auto;
+            color: #ffcc66;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- DETAY MODAL (AÇILIR PENCERE) --- */
+        .blog-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none; /* Başlangıçta gizli */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .blog-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .blog-modal-content {
+            background: #151515;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 15px;
+            border: 1px solid #333;
+            position: relative;
+            overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu */
+            box-shadow: 0 0 50px rgba(255, 204, 102, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .close-modal-btn:hover {
+            background: #ffcc66;
+            color: #000;
+        }
+        .modal-hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .modal-body {
+            padding: 40px;
+        }
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #ffcc66;
+            margin-bottom: 10px;
+        }
+        .modal-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            display: block;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+        .modal-text {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        /* JSON içeriğinden gelen HTML tagleri için stiller */
+        .modal-text p { margin-bottom: 20px; }
+        .modal-text strong { color: #fff; }
+        
+        /* Mobil Uyum */
+        @media (max-width: 768px) {
+            .modal-hero-image { height: 250px; }
+            .modal-title { font-size: 1.8rem; }
+            .modal-body { padding: 20px; }
         }
     </style>
 </head>
@@ -386,52 +228,15 @@
                 <h2 style="font-family:'Playfair Display',serif; font-size:3rem; margin:10px 0; color:#fff;">WalkAbout Travel Blog</h2>
                 <p class="blog-subtitle" style="color:#bbb;">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
                 <div class="title-gold-line" style="width:100px; height:2px; background:#ffcc66; margin:20px auto;"></div>
-                
-                <div class="blog-categories" style="margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-                    <span class="cat-btn active" style="color:#ffcc66; cursor:pointer;">Tümü</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Rota Önerileri</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Vize Rehberi</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Otel İncelemeleri</span>
-                </div>
-            </div>
-
-            <div id="admin-panel-container" style="display:none; margin-bottom:40px; background:#222; padding:20px; border-radius:10px; border:1px solid #444;">
-                <div class="admin-header" style="display:flex; justify-content:space-between; color:#ffcc66;">
-                    <h3><i class="fas fa-compass"></i> Yeni Rota / Yazı Ekle</h3>
-                    <button onclick="document.getElementById('admin-panel-container').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer;">✖</button>
-                </div>
-                <br>
-                <p style="color:#888;">(Admin paneli fonksiyonları JavaScript ile eklenebilir)</p>
             </div>
 
             <div id="blog-grid-display" class="blog-grid">
-                <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
-                    <img src="assets/for_hero.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
-                    <div style="padding:20px;">
-                        <span style="color:#ffcc66; font-size:0.8rem;">22 KASIM 2025</span>
-                        <h3 style="color:#fff; margin:10px 0;">Kapadokya'da Balon Turu</h3>
-                        <p style="color:#aaa;">Peri bacalarının üzerinden gün doğumunu izlemek...</p>
-                    </div>
-                </article>
-                 <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
-                    <img src="assets/background.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
-                    <div style="padding:20px;">
-                        <span style="color:#ffcc66; font-size:0.8rem;">18 KASIM 2025</span>
-                        <h3 style="color:#fff; margin:10px 0;">İtalya'nın Saklı Köyleri</h3>
-                        <p style="color:#aaa;">Turistik rotaların dışına çıkıp gerçek İtalyan kültürünü keşfedin.</p>
-                    </div>
-                </article>
+                <p style="text-align:center; color:#666;">Yazılar yükleniyor...</p>
             </div>
 
             <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
                 <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
                 <p style="color:#ddd;">Bültenimize katıl.</p>
-            </div>
-
-            <div class="admin-trigger-area" style="text-align:center; margin-top:20px;">
-                <button onclick="document.getElementById('admin-panel-container').style.display='block'" style="background:none; border:1px solid #555; color:#888; padding:5px 15px; cursor:pointer;">
-                    <i class="fas fa-pen-nib"></i> Editör
-                </button>
             </div>
 
         </div>
@@ -441,6 +246,127 @@
         <p>© 2025 Golden Palace & WalkAbout Travel.</p>
     </footer>
 
+    <div id="blog-modal" class="blog-modal-overlay">
+        <div class="blog-modal-content">
+            <button class="close-modal-btn" onclick="closeModal()">×</button>
+            <img id="modal-img" src="" alt="Detay Görseli" class="modal-hero-image">
+            <div class="modal-body">
+                <h2 id="modal-title" class="modal-title"></h2>
+                <span id="modal-date" class="modal-date"></span>
+                <div id="modal-full-content" class="modal-text">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- ÖNEMLİ: VERİLER ARTIK HTML İÇİNDE, HARİCİ DOSYA YOK ---
+        const allBlogPosts = [
+            {
+                "id": 1,
+                "title": "Geleceğin Konut Anlayışı: Akıllı ve Yeşil Binalar",
+                "image": "assets/insaat_hero-mobil.webp",
+                "date": "2025-11-22",
+                "summary": "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. Yeşil binalar ve akıllı ev sistemleri...",
+                "fullContent": "<p>Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk haline geldi. WalkAbouTravel İnşaat olarak, projelerimizde sadece betona değil, geleceğe yatırım yapıyoruz.</p><p><strong>Neden Yeşil Bina?</strong><br>Yeşil binalar, enerji tüketimini %30'a varan oranlarda azaltarak hem doğayı hem de bütçenizi korur. Kullandığımız güneş paneli entegreli cephe sistemleri ve yağmur suyu hasadı teknolojileri sayesinde, binalarımız kendi kendine yetebilen ekosistemlere dönüşüyor.</p><p><strong>Akıllı Ev Teknolojileri</strong><br>Yeni projelerimizde standart hale getirdiğimiz IoT (Nesnelerin İnterneti) sistemleri sayesinde, evinizdeki ısıtma, aydınlatma ve güvenlik sistemlerini dünyanın her yerinden kontrol edebilirsiniz.</p>"
+            },
+            {
+                "id": 2,
+                "title": "Ege'nin Kalbinde Bir Kaçış: Pruva Otel Deneyimi",
+                "image": "assets/otel_hero-mobil.webp",
+                "date": "2025-11-18",
+                "summary": "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim. Pruva Otel'in sunduğu ayrıcalıklar...",
+                "fullContent": "<p>Ege'nin turkuaz sularına nazır, zeytin ağaçlarının gölgesinde bir sabah uyanmayı hayal edin. Pruva Otel, size sadece bir konaklama değil, ruhunuzu dinlendirecek bir deneyim vaat ediyor.</p><p><strong>Gastronomi Yolculuğu</strong><br>Otelimizin mutfağı, 'Tarladan Sofraya' konseptiyle hizmet veriyor. Kendi bahçemizde yetiştirdiğimiz organik sebzeler ve Ege'nin taze deniz ürünleri, ödüllü şeflerimizin ellerinde sanat eserine dönüşüyor.</p><p><strong>Spa & Wellness</strong><br>Şehrin stresini atmak için özel olarak tasarlanan spa merkezimizde, Bali'den gelen terapistlerimiz eşliğinde kendinizi şımartabilirsiniz.</p>"
+            },
+            {
+                "id": 3,
+                "title": "Tarihi Dokuyu Korumak: Galata Restorasyon Projesi",
+                "image": "assets/restorasyon1.webp",
+                "date": "2025-11-10",
+                "summary": "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son restorasyon projemizin detayları...",
+                "fullContent": "<p>Restorasyon, sadece bir binayı yenilemek değil; hafızayı canlı tutmaktır. Galata bölgesindeki son projemizde, 19. yüzyıldan kalma metruk bir yapıyı, orijinal ruhuna sadık kalarak modern bir sanat merkezine dönüştürdük.</p><p><strong>Zorluklar ve Çözümler</strong><br>Yapının statik sorunlarını çözerken, tarihi tuğla dokusuna zarar vermemek için mikro-enjeksiyon yöntemleri kullandık. Ahşap doğramalar, dönemin tekniklerine uygun olarak el işçiliğiyle yeniden üretildi.</p>"
+            },
+            {
+                "id": 4,
+                "title": "2025 Gayrimenkul Yatırım Trendleri",
+                "image": "assets/for_hero.webp",
+                "date": "2025-10-25",
+                "summary": "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor...",
+                "fullContent": "<p>Gayrimenkul dünyası büyük bir dönüşümden geçiyor. 2025 yılında yatırımcıların odağında 'esneklik' ve 'konum' var.</p><p><strong>1. Turizm Odaklı Rezidanslar</strong><br>Kısa dönem kiralamaya (Airbnb vb.) uygun, otel konseptli rezidanslar, klasik daire kiralamalarına göre %40 daha fazla getiri sağlıyor.</p><p><strong>2. Mikro-Ofisler</strong><br>Hibrit çalışma modelinin kalıcı olmasıyla, dev plazalar yerini şehrin farklı noktalarına dağılmış butik ofislere bırakıyor.</p>"
+            },
+            {
+                "id": 5,
+                "title": "Minimalizm ve Lüksün Buluşması: İç Mekan Tasarımı",
+                "image": "assets/background.webp",
+                "date": "2025-10-05",
+                "summary": "Az aslında çoktur. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan trendleri...",
+                "fullContent": "<p>Lüks artık şatafat ve abartı demek değil. Yeni lüks; sadelik, kaliteli malzeme ve kusursuz işçilikte gizli. İç mekan tasarımlarımızda 'Sessiz Lüks' (Quiet Luxury) akımını benimsiyoruz.</p><p><strong>Doğal Malzemelerin Gücü</strong><br>Sentetik malzemeler yerine doğal taş, masif ahşap ve keten kumaşlar kullanarak mekanlara sıcaklık katıyoruz.</p><p>Eviniz, sizin sığınağınızdır. Karmaşadan uzak, dingin ve sofistike yaşam alanları tasarlamak için buradayız.</p>"
+            }
+        ];
+
+        // 2. Blog Kartlarını Ekrana Basma
+        function renderBlogGrid(posts) {
+            const container = document.getElementById('blog-grid-display');
+            container.innerHTML = ""; // Temizle
+
+            if(posts.length === 0) {
+                container.innerHTML = "<p>Henüz blog yazısı eklenmemiş.</p>";
+                return;
+            }
+
+            // Tarihe göre sırala (Yeniden eskiye)
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            posts.forEach(post => {
+                const html = `
+                    <article class="blog-card" onclick="openModal(${post.id})">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='assets/background.webp'">
+                        <div class="blog-content">
+                            <span class="blog-date">${post.date}</span>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-summary">${post.summary}</p>
+                            <span class="read-more">Devamını Oku →</span>
+                        </div>
+                    </article>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // 3. Modalı Açma (Detay Gösterme)
+        function openModal(id) {
+            const post = allBlogPosts.find(p => p.id === id);
+            
+            if (post) {
+                document.getElementById('modal-title').innerText = post.title;
+                document.getElementById('modal-date').innerText = post.date;
+                document.getElementById('modal-img').src = post.image;
+                document.getElementById('modal-full-content').innerHTML = post.fullContent;
+
+                const modal = document.getElementById('blog-modal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        // 4. Modalı Kapatma
+        function closeModal() {
+            const modal = document.getElementById('blog-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        document.getElementById('blog-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Sayfa yüklendiğinde çalıştır
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBlogGrid(allBlogPosts);
+        });
+    </script>
+
 </body>
 </html>
->>>>>>> 654d189fe34e3e65511250a5e465eda55f33a1d4
