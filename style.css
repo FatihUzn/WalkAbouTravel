@@ -2435,6 +2435,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .blog-grid-display {
         grid-template-columns: 1fr;
     }
+}
 /* === BLOG MODAL STİLLERİ === */
 .blog-modal-overlay {
     position: fixed;
@@ -2645,6 +2646,7 @@ body {
     animation-duration: 0s !important;
 }
 }
+
 
 
 
