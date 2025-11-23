@@ -1,303 +1,49 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Journal - WalkAbouTravel</title>
-    <link rel="icon" type="image/png" href="assets/walkabou_travel_logo.webp">
+<section class="blog-page-section" id="page-blog">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <a href="#hero" class="btn-page-back" style="margin-bottom: 20px; display:inline-block;">← Geri Dön</a>
 
-    <style>
-        /* Blog sayfasına özel ek stiller (Style.css'i bozmamak için buraya ekledik) */
+    <div class="blog-header-title">
+        <h1>WalkAbout Travel Blog</h1>
+        <p>Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
+    </div>
+
+    <div id="blog-grid-display" class="blog-grid">
         
-        /* Buton Görünümlü Linkler için Reset */
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted, #888);
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0;
-            margin-top: auto;
-            display: inline-flex;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-        .read-more-btn:hover {
-            color: var(--blue-light, #4c99ff);
-        }
+        <article class="blog-card">
+            <div class="blog-image-wrapper">
+                <img src="assets/for_hero.webp" alt="Kapadokya" loading="lazy"> 
+            </div>
+            <div class="blog-content">
+                <span class="blog-date">22 KASIM 2025</span>
+                <h3 class="blog-title">Kapadokya'da Balon Turu</h3>
+                <p class="blog-excerpt">Peri bacalarının üzerinden gün doğumunu izlemek ve eşsiz coğrafyayı havadan keşfetmek...</p>
+                <a href="#" class="read-more-btn">Devamını Oku →</a>
+            </div>
+        </article>
 
-        /* Featured (Öne Çıkan) Yazı Butonu */
-        .featured-read-btn {
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid var(--blue-light, #4c99ff);
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 700;
-            padding-bottom: 5px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-        .featured-read-btn:hover {
-            color: var(--blue-light, #4c99ff);
-            border-color: transparent;
-            transform: translateX(5px);
-        }
+        <article class="blog-card">
+            <div class="blog-image-wrapper">
+                <img src="assets/background.webp" alt="İtalya" loading="lazy"> 
+            </div>
+            <div class="blog-content">
+                <span class="blog-date">18 KASIM 2025</span>
+                <h3 class="blog-title">İtalya'nın Saklı Köyleri</h3>
+                <p class="blog-excerpt">Turistik rotaların dışına çıkıp gerçek İtalyan kültürünü ve mutfağını keşfedin.</p>
+                <a href="#" class="read-more-btn">Devamını Oku →</a>
+            </div>
+        </article>
 
-        /* Mobil Menü İçin Basit Stil */
-        @media (max-width: 768px) {
-            .navbar { display: none; flex-direction: column; position: absolute; top: 100%; right: 0; background: #000; width: 100%; padding: 20px; }
-            .navbar.open { display: flex; }
-            .blog-hero h1 { font-size: 2.5rem; }
-        }
-    </style>
-</head>
-<body>
+        <article class="blog-card">
+            <div class="blog-image-wrapper">
+                <img src="assets/otel_hero-mobil.webp" alt="Otel Rehberi" loading="lazy"> 
+            </div>
+            <div class="blog-content">
+                <span class="blog-date">10 KASIM 2025</span>
+                <h3 class="blog-title">Lüks Konaklama Rehberi</h3>
+                <p class="blog-excerpt">Seyahatinizde konforu ön planda tutanlar için en iyi otel seçim kriterleri.</p>
+                <a href="#" class="read-more-btn">Devamını Oku →</a>
+            </div>
+        </article>
 
-<header id="main-header">
-  <div class="header-top-row">
-    <div class="top-bar-left">
-      <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="mailto:info@walkaboutravel.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@walkaboutravel.com</a>
     </div>
-    <div class="top-bar-right">
-      <a href="index.html" class="btn btn-top-info"><i class="fas fa-home"></i> Anasayfaya Dön</a>
-    </div>
-  </div>
-
-  <div class="header-bottom-row">
-    <div class="brand">
-      <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo">
-      <div class="brand-text-container">
-          <span class="brand-title">WalkAbouTravel</span>
-          <span class="brand-tagline">Tourism & Travel</span>
-      </div>
-    </div>
-  
-    <button id="blog-menu-toggle" class="menu-toggle" style="background:none; border:none; color:white; font-size:24px; cursor:pointer; display:none;">
-        <i class="fas fa-bars"></i>
-    </button>
-  </div>
-</header>
-
-<section class="blog-page-wrapper">
-    
-    <div class="blog-hero">
-        <h1>The Journal</h1>
-        <p>Seyahat dünyasından en son haberler, mimari incelemeler ve lüks yaşam üzerine notlar.</p>
-    </div>
-
-    <div id="featured-post-container">
-        <p style="text-align: center; color: #666;">Yazılar yükleniyor...</p>
-    </div>
-
-    <div id="blog-grid-display" class="blog-grid-display"></div>
-
-    <div style="text-align: center; margin-top: 80px; margin-bottom: 20px;">
-        <button onclick="toggleAdminPanel()" style="background:none; border:none; color:#444; font-size:12px; cursor:pointer; font-family:'Inter',sans-serif;">Editör Girişi</button>
-    </div>
-
-    <div id="admin-panel-container" class="aesthetic-admin" style="display: none;">
-        <h3>Yeni Yazı Yayınla (Local Storage)</h3>
-        <input type="text" id="blog-title" class="aesthetic-input" placeholder="Başlık...">
-        <input type="text" id="blog-image" class="aesthetic-input" placeholder="Görsel Yolu (örn: assets/resim.webp)">
-        <input type="date" id="blog-date" class="aesthetic-input">
-        <textarea id="blog-content" class="aesthetic-input" rows="6" placeholder="İçerik..."></textarea>
-        <button onclick="publishBlogPost()" class="btn" style="background: var(--blue-dark); color:#fff; border:none; margin-top:10px;">YAYINLA</button>
-    </div>
-
 </section>
-
-<footer class="site-footer">
-    <div class="footer-bottom" style="text-align: center; border:none; padding-top: 20px;">
-        © 2025 WalkAbouTravel Kurumsal Seyahat. Tüm hakları saklıdır.
-    </div>
-</footer>
-
-<div id="blog-modal" class="blog-modal-overlay">
-    <div class="blog-modal-content">
-        <button class="close-modal-btn" onclick="closeBlogModal()">×</button>
-        <div class="blog-modal-body">
-            <img id="modal-img" src="" alt="Blog Detay">
-            <span id="modal-date" class="modal-date"></span>
-            <h2 id="modal-title"></h2>
-            <div id="modal-text" class="modal-text"></div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // app.js'i buraya dahil ETMİYORUZ çünkü routing çakışması yaratıyor.
-    // Bu sayfa kendi bağımsız scripti ile çalışacak.
-
-    let blogPosts = [];
-
-    // 1. Verileri Çek
-    async function loadBlogData() {
-        try {
-            // JSON Dosyasını Çek
-            const response = await fetch('data/blog-posts.json');
-            if (response.ok) {
-                blogPosts = await response.json();
-            } else {
-                console.warn("JSON dosyası bulunamadı, local veriye bakılıyor.");
-            }
-
-            // Local Storage (Admin Panelinden Eklenenler) ile Birleştir
-            const localData = JSON.parse(localStorage.getItem('goldenBlogData')) || [];
-            if(localData.length > 0) {
-                blogPosts = blogPosts.concat(localData);
-            }
-
-            renderBlogPosts();
-
-        } catch (error) {
-            console.error("Veri hatası:", error);
-            document.getElementById('featured-post-container').innerHTML = 
-                `<p style='color:white; text-align:center;'>Veriler yüklenemedi. Lütfen "Live Server" veya GitHub üzerinden çalıştırın.</p>`;
-        }
-    }
-
-    // 2. Ekrana Bas (Render) - ÖNEMLİ: href="#" YOK!
-    function renderBlogPosts() {
-        const gridDisplay = document.getElementById('blog-grid-display');
-        const featuredContainer = document.getElementById('featured-post-container');
-        
-        if(!gridDisplay) return;
-
-        // Tarihe göre sırala
-        blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        if (blogPosts.length === 0) {
-            featuredContainer.innerHTML = "<p style='color:white; text-align:center;'>Henüz blog yazısı yok.</p>";
-            return;
-        }
-
-        // Öne Çıkan Yazı
-        const latestPost = blogPosts[0];
-        if(featuredContainer) {
-            // DİKKAT: Burada <a> etiketi yerine <button> kullanıyoruz.
-            featuredContainer.innerHTML = `
-                <article class="featured-post">
-                    <div class="featured-img-container">
-                        <img src="${latestPost.image}" alt="${latestPost.title}" onerror="this.src='https://placehold.co/800x600/111/f59e0b?text=WalkAbouTravel'">
-                    </div>
-                    <div class="featured-content">
-                        <span class="post-meta"><i class="far fa-clock"></i> ${latestPost.date} | EDİTÖRÜN SEÇİMİ</span>
-                        <h2>${latestPost.title}</h2>
-                        <p>${latestPost.summary}</p>
-                        
-                        <button onclick="openBlogModal(${latestPost.id})" class="featured-read-btn">
-                            Yazıyı Oku <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-            `;
-        }
-
-        // Diğer Yazılar (Grid)
-        gridDisplay.innerHTML = ""; 
-        const otherPosts = blogPosts.slice(1);
-
-        otherPosts.forEach(post => {
-            // DİKKAT: Kartın tamamı tıklanabilir ve href içermiyor.
-            const html = `
-                <article class="aesthetic-card" style="cursor:pointer;" onclick="openBlogModal(${post.id})">
-                    <div class="card-img-top">
-                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/111/f59e0b?text=Blog'">
-                    </div>
-                    <div class="card-body">
-                        <span class="card-date">${post.date}</span>
-                        <h3>${post.title}</h3>
-                        <p class="card-excerpt">${post.summary}</p>
-                        <span class="read-more-btn">Devamını Oku →</span>
-                    </div>
-                </article>
-            `;
-            gridDisplay.innerHTML += html;
-        });
-    }
-
-    // 3. Modal (Popup) İşlemleri
-    function openBlogModal(id) {
-        const post = blogPosts.find(p => p.id === id);
-        if (!post) return;
-
-        document.getElementById('modal-img').src = post.image;
-        document.getElementById('modal-date').textContent = post.date;
-        document.getElementById('modal-title').textContent = post.title;
-        document.getElementById('modal-text').innerHTML = post.fullContent || `<p>${post.summary}</p>`;
-
-        document.getElementById('blog-modal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeBlogModal() {
-        document.getElementById('blog-modal').classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    // Dışarı tıklayınca kapat
-    document.getElementById('blog-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeBlogModal();
-    });
-
-    // 4. Admin Panel İşlemleri
-    function toggleAdminPanel() {
-        const panel = document.getElementById('admin-panel-container');
-        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function publishBlogPost() {
-        const title = document.getElementById('blog-title').value;
-        const img = document.getElementById('blog-image').value || 'assets/for_hero.webp';
-        const date = document.getElementById('blog-date').value || new Date().toISOString().split('T')[0];
-        const content = document.getElementById('blog-content').value;
-
-        if(!title || !content) { alert("Başlık ve içerik gerekli!"); return; }
-
-        const newPost = {
-            id: Date.now(),
-            title: title,
-            image: img,
-            date: date,
-            summary: content.substring(0, 100) + "...",
-            fullContent: content
-        };
-
-        let localPosts = JSON.parse(localStorage.getItem('goldenBlogData')) || [];
-        localPosts.push(newPost);
-        localStorage.setItem('goldenBlogData', JSON.stringify(localPosts));
-
-        // Formu temizle ve yenile
-        document.getElementById('blog-title').value = "";
-        document.getElementById('blog-content').value = "";
-        alert("Yazı kaydedildi!");
-        loadBlogData();
-    }
-
-    // Başlat
-    document.addEventListener('DOMContentLoaded', loadBlogData);
-
-    // Mobil Menü (Basit)
-    const menuToggle = document.getElementById('blog-menu-toggle');
-    if(menuToggle) {
-        menuToggle.style.display = window.innerWidth <= 768 ? 'block' : 'none';
-        // Buraya mobil menü mantığı eklenebilir ama blog sayfası sade olduğu için şimdilik gerek yok.
-    }
-
-</script>
-
-</body>
-</html>
