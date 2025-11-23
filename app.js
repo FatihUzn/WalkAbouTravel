@@ -362,7 +362,8 @@ async function showPage(pageId) {
                 if (pageId === 'page-insaat') fileName = 'insaat';
                 if (pageId === 'page-restorasyon') fileName = "restorasyon";
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
-                
+                // === YENİ EKLENECEK SATIR ===
+                if (pageId === 'page-blog') fileName = "blog";
                 // === YENİ EKLEME (3. İSTEK): Yeni galeri sayfası rotası ===
                 if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
                 // === YENİ EKLEME SONU ===
@@ -996,4 +997,5 @@ document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('show')) {
         closeImageModal();
     }
+
 });
