@@ -9,20 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Blog Sayfası İçin Özel Düzenlemeler */
+        /* --- SAYFA GENEL DÜZENİ --- */
         body {
-            background-color: #111; /* Arka plan rengi */
-            padding-top: 0; /* Header fixed olduğu için */
+            background-color: #111;
+            padding-top: 0;
+            color: #ddd;
         }
         .blog-wrapper-standalone {
-            padding-top: 140px; /* Header altı boşluk */
+            padding-top: 140px;
             padding-bottom: 80px;
             max-width: 1400px;
             margin: 0 auto;
             padding-left: 20px;
             padding-right: 20px;
         }
-        /* Geri butonu düzenlemesi */
         .btn-page-back-static {
             display: inline-block;
             margin-bottom: 20px;
@@ -37,6 +37,158 @@
         .btn-page-back-static:hover {
             background: #ffcc66;
             color: #000;
+        }
+
+        /* --- BLOG GRID YAPISI --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .blog-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffcc66;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .blog-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        .blog-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-date {
+            font-size: 0.8rem;
+            color: #ffcc66;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+        .blog-summary {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .read-more {
+            margin-top: auto;
+            color: #ffcc66;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- DETAY MODAL (AÇILIR PENCERE) --- */
+        .blog-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none; /* Başlangıçta gizli */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .blog-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .blog-modal-content {
+            background: #151515;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 15px;
+            border: 1px solid #333;
+            position: relative;
+            overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu */
+            box-shadow: 0 0 50px rgba(255, 204, 102, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .close-modal-btn:hover {
+            background: #ffcc66;
+            color: #000;
+        }
+        .modal-hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .modal-body {
+            padding: 40px;
+        }
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #ffcc66;
+            margin-bottom: 10px;
+        }
+        .modal-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            display: block;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+        .modal-text {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        /* JSON içeriğinden gelen HTML tagleri için stiller */
+        .modal-text p { margin-bottom: 20px; }
+        .modal-text strong { color: #fff; }
+        
+        /* Mobil Uyum */
+        @media (max-width: 768px) {
+            .modal-hero-image { height: 250px; }
+            .modal-title { font-size: 1.8rem; }
+            .modal-body { padding: 20px; }
         }
     </style>
 </head>
@@ -74,52 +226,15 @@
                 <h2 style="font-family:'Playfair Display',serif; font-size:3rem; margin:10px 0; color:#fff;">WalkAbout Travel Blog</h2>
                 <p class="blog-subtitle" style="color:#bbb;">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
                 <div class="title-gold-line" style="width:100px; height:2px; background:#ffcc66; margin:20px auto;"></div>
-                
-                <div class="blog-categories" style="margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-                    <span class="cat-btn active" style="color:#ffcc66; cursor:pointer;">Tümü</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Rota Önerileri</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Vize Rehberi</span>
-                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Otel İncelemeleri</span>
-                </div>
-            </div>
-
-            <div id="admin-panel-container" style="display:none; margin-bottom:40px; background:#222; padding:20px; border-radius:10px; border:1px solid #444;">
-                <div class="admin-header" style="display:flex; justify-content:space-between; color:#ffcc66;">
-                    <h3><i class="fas fa-compass"></i> Yeni Rota / Yazı Ekle</h3>
-                    <button onclick="document.getElementById('admin-panel-container').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer;">✖</button>
-                </div>
-                <br>
-                <p style="color:#888;">(Admin paneli fonksiyonları JavaScript ile eklenebilir)</p>
             </div>
 
             <div id="blog-grid-display" class="blog-grid">
-                <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
-                    <img src="assets/for_hero.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
-                    <div style="padding:20px;">
-                        <span style="color:#ffcc66; font-size:0.8rem;">22 KASIM 2025</span>
-                        <h3 style="color:#fff; margin:10px 0;">Kapadokya'da Balon Turu</h3>
-                        <p style="color:#aaa;">Peri bacalarının üzerinden gün doğumunu izlemek...</p>
-                    </div>
-                </article>
-                 <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
-                    <img src="assets/background.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
-                    <div style="padding:20px;">
-                        <span style="color:#ffcc66; font-size:0.8rem;">18 KASIM 2025</span>
-                        <h3 style="color:#fff; margin:10px 0;">İtalya'nın Saklı Köyleri</h3>
-                        <p style="color:#aaa;">Turistik rotaların dışına çıkıp gerçek İtalyan kültürünü keşfedin.</p>
-                    </div>
-                </article>
+                <p style="text-align:center; width:100%; color:#666;">Yazılar yükleniyor...</p>
             </div>
 
             <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
                 <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
                 <p style="color:#ddd;">Bültenimize katıl.</p>
-            </div>
-
-            <div class="admin-trigger-area" style="text-align:center; margin-top:20px;">
-                <button onclick="document.getElementById('admin-panel-container').style.display='block'" style="background:none; border:1px solid #555; color:#888; padding:5px 15px; cursor:pointer;">
-                    <i class="fas fa-pen-nib"></i> Editör
-                </button>
             </div>
 
         </div>
@@ -128,6 +243,107 @@
     <footer style="background:#0c0c0c; padding:40px; text-align:center; border-top:1px solid #333; color:#888;">
         <p>© 2025 Golden Palace & WalkAbout Travel.</p>
     </footer>
+
+    <div id="blog-modal" class="blog-modal-overlay">
+        <div class="blog-modal-content">
+            <button class="close-modal-btn" onclick="closeModal()">×</button>
+            <img id="modal-img" src="" alt="Detay Görseli" class="modal-hero-image">
+            <div class="modal-body">
+                <h2 id="modal-title" class="modal-title"></h2>
+                <span id="modal-date" class="modal-date"></span>
+                <div id="modal-full-content" class="modal-text">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allBlogPosts = [];
+
+        // 1. JSON Verisini Çekme
+        async function fetchBlogPosts() {
+            try {
+                // 'blog-posts.json' dosyasını okuyoruz
+                const response = await fetch('blog-posts.json');
+                if (!response.ok) {
+                    throw new Error('Dosya bulunamadı veya sunucu hatası.');
+                }
+                const data = await response.json();
+                allBlogPosts = data;
+                renderBlogGrid(allBlogPosts); // Veri gelince ekrana bas
+            } catch (error) {
+                console.error("Blog verileri yüklenemedi:", error);
+                document.getElementById('blog-grid-display').innerHTML = 
+                    `<p style="text-align:center; color:red;">Blog yazıları yüklenirken bir hata oluştu.<br>Lütfen blog-posts.json dosyasının ana dizinde olduğundan emin olun.</p>`;
+            }
+        }
+
+        // 2. Blog Kartlarını Ekrana Basma
+        function renderBlogGrid(posts) {
+            const container = document.getElementById('blog-grid-display');
+            container.innerHTML = ""; // Temizle
+
+            if(posts.length === 0) {
+                container.innerHTML = "<p>Henüz blog yazısı eklenmemiş.</p>";
+                return;
+            }
+
+            // Tarihe göre sırala (Yeniden eskiye)
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            posts.forEach(post => {
+                const html = `
+                    <article class="blog-card" onclick="openModal(${post.id})">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='assets/background.webp'">
+                        <div class="blog-content">
+                            <span class="blog-date">${post.date}</span>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-summary">${post.summary}</p>
+                            <span class="read-more">Devamını Oku →</span>
+                        </div>
+                    </article>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // 3. Modalı Açma (Detay Gösterme)
+        function openModal(id) {
+            // Tıklanan ID'ye sahip yazıyı bul
+            const post = allBlogPosts.find(p => p.id === id);
+            
+            if (post) {
+                // Modal içeriğini doldur
+                document.getElementById('modal-title').innerText = post.title;
+                document.getElementById('modal-date').innerText = post.date;
+                document.getElementById('modal-img').src = post.image;
+                document.getElementById('modal-full-content').innerHTML = post.fullContent;
+
+                // Modalı göster
+                const modal = document.getElementById('blog-modal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+            }
+        }
+
+        // 4. Modalı Kapatma
+        function closeModal() {
+            const modal = document.getElementById('blog-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Kaydırmayı geri aç
+        }
+
+        // Modalın dışına tıklayınca kapatma
+        document.getElementById('blog-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Sayfa yüklendiğinde çalıştır
+        document.addEventListener('DOMContentLoaded', fetchBlogPosts);
+
+    </script>
 
 </body>
 </html>
