@@ -492,8 +492,8 @@ header {
 section {
   padding: 100px 40px;
   text-align: center;
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: translateY(0);
   transition: all 1s var(--easing);
   background-color: transparent; 
   position: relative; 
@@ -2601,6 +2601,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  }
 
 }
+
 
 
 
