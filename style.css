@@ -2601,13 +2601,143 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  }
 
 }
+/* ======================================================= */
+/* ===       MOBİL OPTİMİZASYON PAKETİ (SON HAL)       === */
+/* ======================================================= */
+
+@media (max-width: 991px) {
+    /* 1. HEADER VE MENÜ İYİLEŞTİRMESİ */
+    header {
+        padding: 10px 20px !important;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%; /* Ekranın %80'ini kaplasın */
+        max-width: 300px;
+        height: 100vh;
+        background: #0c0c0c; /* Tam siyah arka plan */
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px; /* Üstten boşluk */
+        gap: 20px;
+        transform: translateX(100%); /* Başlangıçta gizli */
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        z-index: 999; /* Butonun altında kalsın */
+    }
+
+    .navbar.open {
+        transform: translateX(0) !important; /* Açılınca gelsin */
+    }
+
+    /* Menü Linkleri Mobilde Daha Büyük Olsun */
+    .navbar a {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Hamburger Menü Butonu */
+    .menu-toggle {
+        display: block !important;
+        font-size: 28px;
+        color: #ffcc66;
+        z-index: 1000; /* Menünün üstünde kalsın */
+    }
+
+    /* Dil Seçici Mobilde Menü İçine */
+    .language-selector.mobile-only {
+        display: flex !important;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .language-selector.desktop-only {
+        display: none !important;
+    }
+
+    /* 2. HERO (GİRİŞ) ALANI DÜZENLEMESİ */
+    .hero-content-overlay h1 {
+        font-size: 2.5rem !important; /* Dev başlığı küçült */
+        line-height: 1.2;
+    }
+    
+    .hero-content-overlay p {
+        font-size: 1rem !important;
+        padding: 0 10px;
+    }
+    
+    /* Video Mobilde Tam Otursun */
+    .hero-video-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 3. KARTLAR VE IZGARALAR (GRID) */
+    .house-gallery, .blog-grid, .project-grid, .service-grid {
+        grid-template-columns: 1fr !important; /* Tek sütuna düşür */
+        padding: 0 15px !important;
+    }
+
+    .house-card, .blog-card, .service-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin-bottom: 20px;
+    }
+    
+    .house-card img {
+        height: 220px !important; /* Resim yüksekliğini sabitle */
+    }
+
+    /* 4. MODAL VE POPUP DÜZELTMELERİ */
+    .modal-content, .blog-modal-content, .image-modal-content {
+        width: 95% !important;
+        max-height: 85vh !important;
+        margin: 0 auto;
+        overflow-y: scroll; /* İçerik taşarsa kaydır */
+    }
+    
+    .close-modal-btn {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        background: rgba(255, 68, 68, 0.9); /* Kapat butonu belirgin olsun */
+    }
+
+    /* 5. GENEL BOŞLUKLAR */
+    .page-section:not(#hero) {
+        padding-top: 100px !important; /* Header altına girmesin */
+        padding-bottom: 40px !important;
+    }
+    
+    .new-layout-container {
+        padding: 0 15px !important;
+    }
+
+    /* Footer Hizalaması */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+    
+    .footer-column {
+        border-bottom: 1px solid #222;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+    
+    /* Footer'daki sosyal medya ikonlarını ortala */
+    .footer-column.logo-column {
+        order: -1; /* Logoyu en başa al */
+    }
+}
 
 
-
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 9a05e6df8cbdd2a245f03c72dd55c0ae0a609f2c
