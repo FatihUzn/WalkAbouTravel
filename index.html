@@ -502,6 +502,8 @@ function renderBlogPosts() {
 
 // 3. Yeni Yazı Yayınlama
 function publishBlogPost() {
+    const titleInput = document.getElementById('blog-title');
+    if (!titleInput) return;
     const title = document.getElementById('blog-title').value;
     const img = document.getElementById('blog-image').value || 'assets/background.webp';
     const date = document.getElementById('blog-date').value || new Date().toISOString().split('T')[0];
@@ -582,5 +584,6 @@ setInterval(() => {
 </script>
 </body>
 </html>
+
 
 
