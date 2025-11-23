@@ -3,33 +3,116 @@
 // ==========================================
 window.onerror = function(message, source, lineno, colno, error) {
     console.error("JS Hatası:", message);
-    // Hata olsa bile sayfayı görünür yapmaya çalış
     document.body.style.opacity = "1";
     const hero = document.getElementById('hero');
     if(hero) hero.style.display = "flex";
 };
 
 // ==========================================
-// 1. VERİ TABANI VE JSON YÜKLEME
+// 1. VERİ TABANI (RESİMLER VE DETAYLAR)
 // ==========================================
-
-// 1.1 Veri Tabanı Değişkeni (Boş Başlatıyoruz)
-let galleryDatabase = {}; 
-
-// 1.2 JSON Dosyasından Veri Çeken Fonksiyon
-async function loadGalleryData() {
-    try {
-        const response = await fetch('galleries.json'); // JSON dosyasını çağır
-        if (!response.ok) throw new Error("JSON bulunamadı");
-        
-        const data = await response.json();
-        galleryDatabase = data; // JSON'daki tüm veriyi JS değişkenine aktar
-        console.log("Galeri verileri yüklendi:", galleryDatabase);
-        
-    } catch (error) {
-        console.error("Veri yükleme hatası:", error);
-    }
-}
+// NOT: Verileri buraya sabitledik, artık harici dosya aramıyor.
+const galleryDatabase = {
+  "TUR-TR-MARDIN": {
+    title: "Mardin - Tarihi Konaklar & Kültür Turu",
+    price: "5 Gün / 4 Gece, 8.900 TL",
+    location: "Mardin ve Çevresi",
+    area: "Güneydoğu Anadolu",
+    rooms: "Özel Butik Otel",
+    desc: "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
+    images: [
+      "assets/mardin-tarihi-konak-dokusu-1.webp", "assets/mardin-tarihi-konak-dokusu-2.webp", "assets/mardin-tarihi-konak-dokusu-3.webp", "assets/mardin-tarihi-konak-dokusu-4.webp", "assets/mardin-tarihi-konak-dokusu-5.webp", "assets/mardin-tarihi-konak-dokusu-6.webp", "assets/mardin-tarihi-konak-dokusu-7.webp", "assets/mardin-tarihi-konak-dokusu-8.webp", "assets/mardin-tarihi-konak-dokusu-9.webp", "assets/mardin-tarihi-konak-dokusu-10.webp", "assets/mardin-tarihi-konak-dokusu-11.webp", "assets/mardin-tarihi-konak-dokusu-12.webp", "assets/mardin-tarihi-konak-dokusu-13.webp", "assets/mardin-tarihi-konak-dokusu-14.webp", "assets/mardin-tarihi-konak-dokusu-15.webp", "assets/mardin-tarihi-konak-dokusu-16.webp"
+    ]
+  },
+  "TUR-TR-ANTALYA": {
+    title: "Antalya - Koy Gezisi & Tarihi Kaleiçi",
+    price: "7 Gün / 6 Gece, 12.500 TL",
+    location: "Antalya, Kaş, Kemer",
+    area: "Akdeniz Bölgesi",
+    rooms: "Her şey Dahil Otel",
+    desc: "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
+    images: [
+      "assets/antalya-koy-gezisi-1.webp"
+    ]
+  },
+  "TUR-TR-KAPADOKYA": {
+    title: "Kapadokya - Balon ve Peribacaları Turu",
+    price: "4 Gün / 3 Gece, 9.800 TL",
+    location: "Göreme, Uçhisar, Avanos",
+    area: "İç Anadolu",
+    rooms: "Mağara Otel Konaklama",
+    desc: "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
+    images: [
+      "assets/kapadokya-balon-turu-1.webp", "assets/kapadokya-balon-turu-2.webp", "assets/kapadokya-balon-turu-3.webp", "assets/kapadokya-balon-turu-4.webp", "assets/kapadokya-balon-turu-5.webp", "assets/kapadokya-balon-turu-6.webp", "assets/kapadokya-balon-turu-7.webp", "assets/kapadokya-balon-turu-8.webp", "assets/kapadokya-balon-turu-9.webp", "assets/kapadokya-balon-turu-10.webp", "assets/kapadokya-balon-turu-11.webp", "assets/kapadokya-balon-turu-12.webp", "assets/kapadokya-balon-turu-13.webp", "assets/kapadokya-balon-turu-14.webp", "assets/kapadokya-balon-turu-15.webp", "assets/kapadokya-balon-turu-16.webp", "assets/kapadokya-balon-turu-17.webp", "assets/kapadokya-balon-turu-18.webp", "assets/kapadokya-balon-turu-19.webp", "assets/kapadokya-balon-turu-20.webp"
+    ]
+  },
+  "TUR-TR-FETHIYE": {
+    title: "Fethiye - Yamaç Paraşütü & Ölüdeniz",
+    price: "3 Gün / 2 Gece, 6.750 TL",
+    location: "Ölüdeniz, Kelebekler Vadisi",
+    area: "Ege Bölgesi",
+    rooms: "Butik Pansiyon",
+    desc: "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
+    images: [
+      "assets/fethiye-oludeniz-manzarasi-14.webp"
+    ]
+  },
+  "TUR-TR-PAMUKKALE": {
+    title: "Pamukkale - Travertenler & Antik Kent",
+    price: "2 Gün / 1 Gece, 4.500 TL",
+    location: "Pamukkale, Hierapolis",
+    area: "Denizli",
+    rooms: "Termal Otel",
+    desc: "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
+    images: [
+      "assets/pamukkale-traverten-dogal-1.webp", "assets/pamukkale-traverten-dogal-2.webp", "assets/pamukkale-traverten-dogal-3.webp", "assets/pamukkale-traverten-dogal-4.webp", "assets/pamukkale-traverten-dogal-5.webp", "assets/pamukkale-traverten-dogal-6.webp", "assets/pamukkale-traverten-dogal-7.webp", "assets/pamukkale-traverten-dogal-8.webp", "assets/pamukkale-traverten-dogal-9.webp", "assets/pamukkale-traverten-dogal-10.webp", "assets/pamukkale-traverten-dogal-11.webp", "assets/pamukkale-traverten-dogal-12.webp"
+    ]
+  },
+  "TUR-D-ISPANYA": {
+    title: "İspanya - Barselona & Endülüs Rüyası",
+    price: "9 Gün / 8 Gece, 1.800 €",
+    location: "Barselona, Granada, Sevilla",
+    area: "İspanya",
+    rooms: "4 Yıldızlı Oteller",
+    desc: "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
+    images: [
+      "assets/spain-1.webp", "assets/spain-2.webp", "assets/spain-3.webp", "assets/spain-4.webp", "assets/spain-5.webp", "assets/spain-6.webp", "assets/spain-7.webp", "assets/spain-8.webp", "assets/spain-9.webp", "assets/spain-10.webp", "assets/spain-11.webp", "assets/spain-12.webp", "assets/spain-13.webp", "assets/spain-14.webp", "assets/spain-15.webp"
+    ]
+  },
+  "TUR-D-RUSYA": {
+    title: "Rusya (kış Masalı)",
+    price: "6 Gün / 5 Gece, 1.450 €",
+    location: "Moskova, St. Petersburg",
+    area: "Rusya Federasyonu",
+    rooms: "5 Yıldızlı Oteller",
+    desc: "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
+    images: [
+      "assets/rusya-1.webp", "assets/rusya-2.webp", "assets/rusya-3.webp", "assets/rusya-4.webp", "assets/rusya-5.webp", "assets/rusya-6.webp", "assets/rusya-7.webp", "assets/rusya-8.webp", "assets/rusya-9.webp", "assets/rusya-10.webp", "assets/rusya-11.webp", "assets/rusya-12.webp", "assets/rusya-13.webp"
+    ]
+  },
+  "TUR-D-BREZILYA": {
+    title: "Brezilya - Rio Karnavalı ve Amazon",
+    price: "10 Gün / 9 Gece, 2.990 $",
+    location: "Rio de Janeiro, Manaus",
+    area: "Brezilya",
+    rooms: "Lüks Lodge ve Oteller",
+    desc: "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
+    images: [
+      "assets/brazil-1.webp", "assets/brazil-2.webp", "assets/brazil-3.webp", "assets/brazil-4.webp", "assets/brazil-5.webp", "assets/brazil-6.webp", "assets/brazil-7.webp", "assets/brazil-8.webp", "assets/brazil-9.webp", "assets/brazil-10.webp", "assets/brazil-11.webp", "assets/brazil-12.webp", "assets/brazil-13.webp", "assets/brazil-14.webp", "assets/brazil-15.webp"
+    ]
+  },
+  "TUR-D-AMERIKA": {
+    title: "ABD - New York & Batı Kıyısı",
+    price: "14 Gün / 13 Gece, 3.500 $",
+    location: "New York, Los Angeles, San Francisco",
+    area: "Amerika Birleşik Devletleri",
+    rooms: "4 Yıldızlı Oteller",
+    desc: "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
+    images: [
+      "assets/new-york-1.webp", "assets/new-york-2.webp", "assets/new-york-3.webp", "assets/new-york-4.webp", "assets/new-york-5.webp", "assets/new-york-6.webp", "assets/new-york-7.webp", "assets/new-york-8.webp", "assets/new-york-9.webp"
+    ]
+  }
+};
 
 const projects = {
   otel: [
@@ -75,15 +158,16 @@ let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 
 // ==========================================
-// 3. DETAY SAYFASI MANTIĞI (MARDİN, ANTALYA VB.)
+// 3. DETAY SAYFASI MANTIĞI
 // ==========================================
 function openHouseDetail(id) {
   const detail = document.getElementById("house-detail");
   const content = document.getElementById("house-detail-content");
   
-  // Veritabanından veriyi çek (Yoksa boş obje döndür)
+  // Veritabanından veriyi çek
   const data = galleryDatabase[id];
   
+  // Eğer veri yoksa varsayılan boş veri kullan
   const safeData = data || { 
     title: "Detaylar", 
     desc: "İçerik yükleniyor veya bulunamadı...", 
@@ -142,7 +226,6 @@ function openLightbox(imgElement) {
     const lightboxImg = document.getElementById("lightbox-img");
     
     if(lightbox && lightboxImg) {
-        // Resim listesini belirle
         const gallery = imgElement.closest(".detail-gallery, .house-gallery, .restoration-gallery");
         if (gallery) {
             currentImages = Array.from(gallery.querySelectorAll("img"));
@@ -160,7 +243,6 @@ function openLightbox(imgElement) {
     }
 }
 
-// Lightbox kapatma ve navigasyon olayları
 document.addEventListener("click", function(e) {
   const lightbox = document.getElementById("lightbox");
   if (e.target.id === "lightbox" || e.target.id === "lightbox-close") {
@@ -200,25 +282,20 @@ function showPrevImage() {
 // 5. SAYFA YÖNETİMİ (ROUTING)
 // ==========================================
 async function showPage(pageId) {
-    // HATA ÖNLEME: Eğer sayfa ID'si yoksa 'hero'ya git
     if (!pageId || pageId === '#') pageId = 'hero';
 
-    // Tüm sayfaları gizle
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
     });
 
-    // Gitmek istenen sayfayı bul
     let newPage = document.getElementById(pageId);
     
-    // Sayfa HTML'de yoksa yüklemeye çalış
     if (!newPage) {
         if (pageCache[pageId]) {
             document.getElementById('page-container').insertAdjacentHTML('beforeend', pageCache[pageId]);
         } else {
             try {
                 let fileName = pageId;
-                // Dosya adı eşleştirmeleri
                 if (pageId === 'page-about') fileName = 'about';
                 if (pageId === 'page-services') fileName = 'services';
                 if (pageId === 'page-projects') fileName = 'projects';
@@ -237,9 +314,8 @@ async function showPage(pageId) {
                     document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
                 }
             } catch (error) {
-                console.warn("Sayfa yüklenemedi, anasayfaya dönülüyor:", error);
+                console.warn("Sayfa yüklenemedi:", error);
                 if(document.getElementById('hero')) {
-                     // Eğer istenen sayfa yoksa (örn: assets/.. gibi yanlış link) anasayfaya dön
                      location.hash = 'hero';
                      document.getElementById('hero').classList.add('active');
                      return;
@@ -254,19 +330,13 @@ async function showPage(pageId) {
             location.hash = pageId;
         }
         newPage.classList.add('active');
-        // Eğer Ana Sayfadaysak (hero), Blog bölümünü de aç
         const homeBlog = document.getElementById('homepage-blog');
         if (homeBlog) {
-            if (pageId === 'hero') {
-                homeBlog.classList.add('active');
-            } else {
-                // Diğer sayfalardaysak blogu gizle
-                homeBlog.classList.remove('active');
-            }
+            if (pageId === 'hero') homeBlog.classList.add('active');
+            else homeBlog.classList.remove('active');
         }
         window.scrollTo(0, 0); 
         
-        // Dili uygula (varsa)
         const currentLang = localStorage.getItem('lang') || 'tr';
         if (translations[currentLang]) {
             newPage.querySelectorAll('[data-key]').forEach(el => {
@@ -275,13 +345,11 @@ async function showPage(pageId) {
             });
         }
     } else {
-        // Hiçbir şey bulunamazsa Hero'yu aç
         const hero = document.getElementById('hero');
         if(hero) hero.classList.add('active');
     }
 }
 
-// Kategorileri Yükle (Otel, İnşaat vb.)
 function loadCategory(category) {
     const grid = document.getElementById("project-grid");
     if (!grid) return;
@@ -298,7 +366,6 @@ function loadCategory(category) {
     });
 }
 
-// Dil Yükle (Hata verirse geç)
 async function setLanguage(lang) {
     try {
         const response = await fetch(`${lang}.json`);
@@ -322,14 +389,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         console.log("Site başlatılıyor...");
         
-        // YENİ EKLENEN KISIM: Veri tabanını yükle
-        await loadGalleryData(); 
-
-        // Dili ayarla
         let savedLang = localStorage.getItem('lang') || 'tr';
         await setLanguage(savedLang);
 
-        // Mobil Menü
         const menuToggle = document.getElementById('menu-toggle');
         if(menuToggle) {
             menuToggle.addEventListener('click', () => {
@@ -338,9 +400,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
 
-        // Tıklama Olayları
         document.body.addEventListener('click', (e) => {
-            // Menü linkleri
             if (e.target.matches('.nav-link, .btn-hero-link')) {
                 e.preventDefault();
                 const page = e.target.getAttribute('data-page');
@@ -348,24 +408,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const nav = document.getElementById('navbar');
                 if(nav) nav.classList.remove('open');
             }
-            // Geri Butonu
             if (e.target.matches('.btn-page-back')) {
                 e.preventDefault();
                 location.hash = 'hero';
             }
         });
 
-        // Hash değişimi
         window.addEventListener('hashchange', () => {
             const pageId = location.hash.replace('#', '') || 'hero';
             showPage(pageId);
         });
 
-        // Başlangıç Sayfasını Aç
         const initialPage = location.hash.replace('#', '') || 'hero';
         showPage(initialPage);
 
-        // ZORLA GÖSTER (GÜVENLİK ÖNLEMİ)
         setTimeout(() => {
             document.body.style.opacity = "1";
             const hero = document.getElementById('hero');
@@ -374,7 +430,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     } catch (err) {
         console.error("Başlatma hatası:", err);
-        // Hata olsa bile sayfayı aç
         document.body.style.opacity = "1";
         const hero = document.getElementById('hero');
         if(hero) hero.style.display = "flex";
