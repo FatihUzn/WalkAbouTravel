@@ -17,7 +17,6 @@ function throttle(func, limit) {
 // ==========================================
 // 2. VERİ TABANI (RESİMLER VE DETAYLAR)
 // ==========================================
-// Not: Dışarıdan JSON dosyası aramamak için verileri buraya gömdük.
 const galleryDatabase = {
   // --- TÜRKİYE ROTALARI ---
   "TUR-TR-MARDIN": {
@@ -170,7 +169,7 @@ let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 
 // ==========================================
-// 4. DETAY SAYFASI MANTIĞI (ÖNEMLİ KISIM)
+// 4. DETAY SAYFASI MANTIĞI
 // ==========================================
 function openHouseDetail(id) {
   const detail = document.getElementById("house-detail");
@@ -179,16 +178,13 @@ function openHouseDetail(id) {
   // Veritabanından veriyi çek
   const data = galleryDatabase[id];
   
-  // Eğer veri yoksa konsola yaz ve kullanıcıyı uyar
-  if (!data) {
-      console.warn(`Veri bulunamadı: ${id}. (JSON kullanılmıyor, app.js içindeki liste kullanılıyor)`);
-      // Fallback: Eğer veri yoksa boş bir şablon açmasın diye uyarı verilebilir
-      // alert("Bu içerik hazırlanıyor."); 
-      // return; 
-      // Şimdilik devam etsin ki kod kırılmasın
-  }
-
-  const safeData = data || { title: "Detaylar", desc: "İçerik yükleniyor...", price: "", location: "", images: [] };
+  const safeData = data || { 
+    title: "Detaylar", 
+    desc: "Bu içerik şu anda hazırlanıyor.", 
+    price: "", 
+    location: "", 
+    images: [] 
+  };
 
   globalPropertyImages = safeData.images || [];
   globalImageIndex = 0;
@@ -220,7 +216,7 @@ function openHouseDetail(id) {
   }
 
   detail.style.display = "block";
-  detail.style.zIndex = "9998"; // Lightbox'ın (9999) bir altında
+  detail.style.zIndex = "9998";
   document.body.style.overflow = "hidden"; 
 }
 
@@ -244,11 +240,9 @@ function loadMoreRestorationImages(galleryType) {
   let galleryContainer = document.getElementById(`restoration-gallery-${galleryType}`);
   let loaderContainer = document.getElementById(`restoration-loader-${galleryType}`);
   let imagesArray = (galleryType === 'before') ? restorationBeforePaths : restorationAfterPaths;
-  let currentIndex = (galleryType === 'before') ? globalRestorationBeforeIndex : globalRestorationAfterIndex;
   
   if (!galleryContainer) return;
 
-  // Şimdilik hepsini yükle (Basitleştirilmiş mantık)
   const imagesHTML = imagesArray.map((img, index) => 
     `<img loading="lazy" src="${img}" alt="Restorasyon" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/350x260/111/f59e0b?text=Resim+Yok'">`
   ).join("");
@@ -260,45 +254,32 @@ function loadMoreRestorationImages(galleryType) {
 // ==========================================
 // 6. LIGHTBOX (RESİM BÜYÜTME) SİSTEMİ
 // ==========================================
-// Manuel açma fonksiyonu (HTML içindeki onclick="openLightbox(this)" için)
 function openLightbox(imgElement) {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     
     if(lightbox && lightboxImg) {
-        // Tıklanan resmin bulunduğu galeriyi bulup listeyi güncelle (İleri/Geri için)
         const gallery = imgElement.closest(".detail-gallery, .house-gallery, .restoration-gallery");
         if (gallery) {
             currentImages = Array.from(gallery.querySelectorAll("img"));
             currentIndex = currentImages.indexOf(imgElement);
         } else {
-            // Galeri içinde değilse tek resim gibi davran
             currentImages = [imgElement];
             currentIndex = 0;
         }
 
         lightboxImg.src = imgElement.src;
         lightbox.style.display = "flex";
-        lightbox.style.zIndex = "9999"; // En üstte olduğundan emin ol
+        lightbox.style.zIndex = "9999"; 
         
         updateLightboxNav();
     }
 }
 
-// Genel Tıklama Dinleyicisi (Otomatik yakalama ve kapatma için)
 document.addEventListener("click", function(e) {
   const lightbox = document.getElementById("lightbox");
-  
-  // Eğer Lightbox'ın siyah arka planına tıklanırsa kapat
-  if (e.target.id === "lightbox") {
-      lightbox.style.display = "none";
-      return;
-  }
-  
-  // Kapatma butonuna tıklanırsa
-  if (e.target.id === "lightbox-close") {
-      lightbox.style.display = "none";
-      return;
+  if (e.target.id === "lightbox" || e.target.id === "lightbox-close") {
+      if(lightbox) lightbox.style.display = "none";
   }
 });
 
@@ -307,44 +288,41 @@ function updateLightboxNav() {
   const nextBtn = document.getElementById('lightbox-next');
   if (!prevBtn || !nextBtn) return;
   
-  // Tek resim varsa okları gizle
   if (currentImages.length <= 1) {
       prevBtn.style.display = 'none';
       nextBtn.style.display = 'none';
       return;
   }
-  
   prevBtn.style.display = 'block';
   nextBtn.style.display = 'block';
 }
 
 function showNextImage() {
   if (currentImages.length > 0) {
-    currentIndex = (currentIndex + 1) % currentImages.length; // Döngüsel
+    currentIndex = (currentIndex + 1) % currentImages.length;
     document.getElementById("lightbox-img").src = currentImages[currentIndex].src;
   }
 }
 
 function showPrevImage() {
   if (currentImages.length > 0) {
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; // Döngüsel
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
     document.getElementById("lightbox-img").src = currentImages[currentIndex].src;
   }
 }
 
 // ==========================================
-// 7. SAYFA YÖNETİMİ VE DİL
+// 7. SAYFA YÖNETİMİ
 // ==========================================
 async function setLanguage(lang) {
     let langData;
     try {
         const response = await fetch(`${lang}.json`);
-        if (!response.ok) throw new Error('Dil dosyası yüklenemedi');
+        if (!response.ok) throw new Error('Dil dosyası bulunamadı');
         langData = await response.json(); 
         translations[lang] = langData; 
     } catch (error) {
-        console.warn(error);
-        if(lang !== 'tr') return; // Fallback yoksa dur
+        if(lang !== 'tr') return; 
     }
     
     if(langData) {
@@ -358,21 +336,24 @@ async function setLanguage(lang) {
 }
 
 async function showPage(pageId) {
+    // HATA ÖNLEME: Eğer sayfa ID'si yoksa 'hero'ya git
     if (!pageId || pageId === '#') pageId = 'hero';
 
+    // Önce tüm sayfaları gizle
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
     });
 
+    // Gitmek istenen sayfayı bul
     let newPage = document.getElementById(pageId);
     
     if (!newPage) {
+        // Sayfa henüz yüklenmediyse fetch ile al
         if (pageCache[pageId]) {
             document.getElementById('page-container').insertAdjacentHTML('beforeend', pageCache[pageId]);
         } else {
             try {
                 let fileName = pageId;
-                // Dosya adı eşleştirmeleri
                 if (pageId === 'page-about') fileName = 'about';
                 if (pageId === 'page-services') fileName = 'services';
                 if (pageId === 'page-projects') fileName = 'projects';
@@ -383,16 +364,22 @@ async function showPage(pageId) {
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
                 if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
 
+                // Eğer ana sayfada olmayan bir sayfa isteniyorsa fetch et
                 if (fileName !== pageId) {
                     const response = await fetch(`${fileName}.html`);
-                    if (!response.ok) throw new Error(`Sayfa yüklenemedi: ${fileName}`);
+                    if (!response.ok) throw new Error(`Sayfa bulunamadı: ${fileName}`);
                     const html = await response.text();
                     pageCache[pageId] = html; 
                     document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
                 }
             } catch (error) {
-                console.error(error);
-                location.hash = 'hero'; 
+                console.error("Sayfa yükleme hatası:", error);
+                // Hata olursa sonsuz döngüye girmemesi için sadece 'hero' varsa oraya dön
+                if(document.getElementById('hero')) {
+                    location.hash = 'hero';
+                } else {
+                    alert("Sayfa yüklenirken bir hata oluştu ve Ana Sayfa bulunamadı.");
+                }
                 return;
             }
         }
@@ -406,12 +393,11 @@ async function showPage(pageId) {
         newPage.classList.add('active');
         window.scrollTo(0, 0); 
         
-        // Sayfa özel yüklemeleri
         if (pageId === 'page-pruva-otel') {
           setupRestorationGalleries();
         }
         
-        // Dil güncellemesi
+        // Dili uygula
         const currentLang = localStorage.getItem('lang') || 'tr';
         if (translations[currentLang]) {
             newPage.querySelectorAll('[data-key]').forEach(el => {
@@ -425,8 +411,6 @@ async function showPage(pageId) {
 function loadCategory(category) {
     const grid = document.getElementById("project-grid");
     if (!grid) return;
-    
-    // Satılık Kiralık için boş geç (kendi HTML'i var)
     if (category === 'satilik_kiralik') return;
 
     grid.innerHTML = "";
@@ -444,51 +428,49 @@ function loadCategory(category) {
 // 8. BAŞLANGIÇ (INIT)
 // ==========================================
 document.addEventListener('DOMContentLoaded', async () => {
-    window.scrollTo(0, 0); 
-    
-    // Dil Ayarı
-    let savedLang = localStorage.getItem('lang') || 'tr';
-    await setLanguage(savedLang);
+    try {
+        window.scrollTo(0, 0); 
+        
+        let savedLang = localStorage.getItem('lang') || 'tr';
+        await setLanguage(savedLang);
 
-    // Resimleri Ön Yükle
-    setTimeout(() => {
-        Object.values(galleryDatabase).forEach(data => {
-            data.images.forEach(src => { const i = new Image(); i.src = src; });
-        });
-    }, 2000);
+        setTimeout(() => {
+            Object.values(galleryDatabase).forEach(data => {
+                if(data.images) data.images.forEach(src => { const i = new Image(); i.src = src; });
+            });
+        }, 2000);
 
-    // Mobil Menü
-    const menuToggle = document.getElementById('menu-toggle');
-    if(menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            document.getElementById('navbar').classList.toggle('open');
+        const menuToggle = document.getElementById('menu-toggle');
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                document.getElementById('navbar').classList.toggle('open');
+            });
+        }
+
+        document.body.addEventListener('click', (e) => {
+            if (e.target.matches('.nav-link, .btn-hero-link')) {
+                e.preventDefault();
+                const page = e.target.getAttribute('data-page');
+                if(page) location.hash = page;
+                if(document.getElementById('navbar')) document.getElementById('navbar').classList.remove('open');
+            }
+            if (e.target.matches('.btn-page-back')) {
+                e.preventDefault();
+                location.hash = 'hero';
+            }
         });
+
+        window.addEventListener('hashchange', () => {
+            const pageId = location.hash.replace('#', '') || 'hero';
+            showPage(pageId);
+        });
+
+        // Başlangıç sayfasını yükle
+        const initialPage = location.hash.replace('#', '') || 'hero';
+        showPage(initialPage);
+
+    } catch (err) {
+        console.error("Kritik Başlatma Hatası:", err);
+        alert("Site başlatılırken bir hata oluştu. Lütfen konsolu (F12) kontrol edin.");
     }
-
-    // Navigasyon Linkleri
-    document.body.addEventListener('click', (e) => {
-        // Nav Linkleri
-        if (e.target.matches('.nav-link, .btn-hero-link')) {
-            e.preventDefault();
-            const page = e.target.getAttribute('data-page');
-            if(page) location.hash = page;
-            // Mobilde menüyü kapat
-            document.getElementById('navbar').classList.remove('open');
-        }
-        // Geri Butonu
-        if (e.target.matches('.btn-page-back')) {
-            e.preventDefault();
-            location.hash = 'hero';
-        }
-    });
-
-    // Hash Değişimi Dinleyicisi
-    window.addEventListener('hashchange', () => {
-        const pageId = location.hash.replace('#', '') || 'hero';
-        showPage(pageId);
-    });
-
-    // İlk Açılış
-    const initialPage = location.hash.replace('#', '') || 'hero';
-    showPage(initialPage);
 });
