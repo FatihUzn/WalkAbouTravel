@@ -290,15 +290,31 @@
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
     </div>
 
-  </div> </section> <section id="homepage-blog" class="page-section active" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
+  </div> 
+</section>
+
+<section id="homepage-blog" class="page-section active" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
     <div class="new-layout-container">
         
-        <h2 style="text-align: center; margin-bottom: 10px; font-family: 'Playfair Display', serif; font-size: 36px; color: var(--blue-light);">
-            Seyahat Rehberi & Blog
-        </h2>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 50px;">
-            Dünyanın dört bir yanından ilham veren rotalar ve ipuçları.
-        </p>
+        <div class="section-title-wrapper" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--blue-light); margin-bottom: 10px;">
+                Seyahat Günlüğü
+            </h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 18px;">
+                Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
+            </p>
+        </div>
+
+        <div class="featured-blog" style="margin-bottom: 60px;">
+            <img src="assets/for_hero.webp" alt="Mardin" class="featured-img" onerror="this.src='https://placehold.co/800x400/1a1a2e/FFF?text=WalkAbouTravel'">
+            
+            <div class="featured-content">
+                <span class="blog-category">EDİTÖRÜN SEÇİMİ</span>
+                <h3>Mardin'in Büyülü Atmosferi: Taş Konaklar</h3>
+                <p>Mezopotamya'nın kalbinde, tarihin ve kültürün iç içe geçtiği Mardin sokaklarında, taş işçiliğinin en güzel örneklerini keşfedin.</p>
+                <a href="#" class="btn">Devamını Oku</a>
+            </div>
+        </div>
 
         <div id="blog-grid-display" class="blog-grid">
             </div>
@@ -470,126 +486,77 @@
     }
 </script>
 <script>
-/* === PREMIUM BLOG SİSTEMİ (JS) === */
+/* === SEYAHAT BLOG SİSTEMİ (GÜNCELLENMİŞ) === */
 
-// 1. Veri Tabanı (Local Storage)
-// Tarayıcı hafızasında 'goldenBlogData' adıyla yazıları saklar.
-let blogPosts = JSON.parse(localStorage.getItem('goldenBlogData')) || [
+// 1. Veri Tabanı: Artık "Golden Palace" değil, "Seyahat" verileri var.
+// Verileri 'travelBlogData' isminde saklıyoruz ki eskilerle karışmasın.
+let blogPosts = JSON.parse(localStorage.getItem('travelBlogData')) || [
     {
         id: 1,
-        title: "Golden Palace: Mimari Vizyonumuz",
-        image: "assets/for_hero.webp",
-        date: "2025-11-22",
-        content: "Modern yaşamın gereksinimlerini lüks ve estetikle birleştiren tasarım anlayışımız üzerine bir inceleme..."
+        title: "Kapadokya'da Balon Turu Deneyimi",
+        image: "assets/kapadokya-balon-turu-1.webp", 
+        date: "2025-10-15",
+        category: "GEZİ REHBERİ",
+        content: "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. İşte bilmeniz gerekenler..."
+    },
+    {
+        id: 2,
+        title: "Vizesiz Gidilebilecek 10 Cennet Ülke",
+        image: "assets/antalya-koy-gezisi-1.webp",
+        date: "2025-09-20",
+        category: "İPUÇLARI",
+        content: "Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri? Listemize göz atın."
+    },
+    {
+        id: 3,
+        title: "Avrupa Turu İçin Çanta Hazırlama Rehberi",
+        image: "assets/spain-1.webp",
+        date: "2025-08-05",
+        category: "REHBER",
+        content: "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları."
     }
 ];
 
 // 2. Blogları Ekrana Basma Fonksiyonu
 function renderBlogPosts() {
     const display = document.getElementById('blog-grid-display');
-    if(!display) return; // Eğer blog sayfasında değilsek dur.
+    
+    // Eğer blog alanı sayfada yoksa (başka sayfadaysak) işlemi durdur.
+    if(!display) return;
 
-    display.innerHTML = ""; // Önce temizle
+    display.innerHTML = ""; // İçini temizle
     
     // Yazıları tarihe göre (yeniden eskiye) sırala
     blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     blogPosts.forEach(post => {
+        // Resim yoksa varsayılan resmi kullan
+        const imgSource = post.image ? post.image : 'assets/background.webp';
+        
         const html = `
             <article class="blog-card">
-                <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/111/f59e0b?text=Golden+Palace'">
-                <div class="blog-content">
-                    <span class="blog-date-tag">${post.date}</span>
-                    <h3>${post.title}</h3>
-                    <p class="blog-excerpt">${post.content.substring(0, 120)}...</p>
-                    
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto;">
-                        <a href="#" class="blog-read-more">Devamını Oku</a>
-                        <button onclick="deletePost(${post.id})" style="background:none; border:none; color:#444; cursor:pointer; font-size:0.8rem;">Sil</button>
-                    </div>
-                </div>
+                <img src="${imgSource}" alt="${post.title}" loading="lazy" style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px;" onerror="this.src='https://placehold.co/600x400/e2e8f0/1a1a2e?text=Gezi+Rotasi'">
+                
+                <span style="font-size:0.75rem; color:#4c99ff; font-weight:700; letter-spacing:1px; margin-bottom:5px; display:block;">${post.category || 'GENEL'}</span>
+                
+                <h4 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin:10px 0; color:#1a1a2e;">${post.title}</h4>
+                
+                <p style="font-size:15px; color:#4e576f; line-height:1.6; margin-bottom:20px;">
+                    ${post.content.substring(0, 100)}...
+                </p>
+                
+                <a href="#" class="blog-readmore">Devamını Oku</a>
             </article>
         `;
         display.innerHTML += html;
     });
 }
 
-// 3. Yeni Yazı Yayınlama
-function publishBlogPost() {
-    const titleInput = document.getElementById('blog-title');
-    if (!titleInput) return;
-    const title = document.getElementById('blog-title').value;
-    const img = document.getElementById('blog-image').value || 'assets/background.webp';
-    const date = document.getElementById('blog-date').value || new Date().toISOString().split('T')[0];
-    const content = document.getElementById('blog-content').value;
-
-    if(title.trim() === "" || content.trim() === "") {
-        alert("Lütfen başlık ve içerik giriniz.");
-        return;
-    }
-
-    const newPost = {
-        id: Date.now(), // Benzersiz ID üretir
-        title: title,
-        image: img,
-        date: date,
-        content: content
-    };
-
-    blogPosts.push(newPost);
-    localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts)); // Kaydet
-    
-    // Formu Temizle
-    document.getElementById('blog-title').value = "";
-    document.getElementById('blog-content').value = "";
-    
-    renderBlogPosts(); // Listeyi güncelle
-    alert("Yazı başarıyla yayınlandı!");
-}
-
-// 4. Taslak Kaydetme (Browser Hafızası)
-function saveBlogDraft() {
-    const title = document.getElementById('blog-title').value;
-    const content = document.getElementById('blog-content').value;
-    
-    localStorage.setItem('draftTitle', title);
-    localStorage.setItem('draftContent', content);
-    alert("Taslak kaydedildi. Sayfayı yenileseniz bile geri çağırabilirsiniz.");
-}
-
-// 5. Admin Panel Aç/Kapat
-function toggleAdminPanel() {
-    const panel = document.getElementById('admin-panel-container');
-    if(panel.style.display === 'none') {
-        panel.style.display = 'block';
-        
-        // Varsa taslağı geri yükle
-        if(localStorage.getItem('draftTitle')) {
-            document.getElementById('blog-title').value = localStorage.getItem('draftTitle');
-            document.getElementById('blog-content').value = localStorage.getItem('draftContent');
-        }
-    } else {
-        panel.style.display = 'none';
-    }
-}
-
-// 6. Yazı Silme
-function deletePost(id) {
-    if(confirm("Bu yazıyı kalıcı olarak silmek istediğinize emin misiniz?")) {
-        blogPosts = blogPosts.filter(post => post.id !== id);
-        localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts));
-        renderBlogPosts();
-    }
-}
-
-// 7. Sayfa Yüklendiğinde ve Geçişlerde Blogu Çalıştır
-// App.js içindeki showPage fonksiyonu çalıştığında bunu tetiklememiz lazım.
-// Ancak basit çözüm olarak, DOM değişikliklerini dinleyebiliriz veya 
-// her saniye blog grid var mı diye kontrol edebiliriz (basit ve hatasız yöntem).
-
+// 3. Otomatik Başlatma (Her saniye kontrol eder)
+// Sayfa geçişlerinde blog gridi yüklendiği an içeriği basar.
 setInterval(() => {
     const blogGrid = document.getElementById('blog-grid-display');
-    // Eğer blog sayfası açıksa ve içi boşsa (henüz yüklenmediyse)
+    // Kutu varsa ama içi boşsa doldur
     if(blogGrid && blogGrid.innerHTML.trim() === "") {
         renderBlogPosts();
     }
