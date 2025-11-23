@@ -2519,5 +2519,85 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .modal-text p { margin-bottom: 15px; }
 }
+/* ========================================= */
+/* === LIGHTBOX & MODAL DÜZELTMELERİ === */
+/* ========================================= */
+
+/* 1. Detay Sayfasının Katmanı (Header'ın üstünde) */
+#house-detail {
+    z-index: 2000 !important; /* Header genellikle 1000 olur, bu onun üstüne çıkar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c0c0c; /* Arka plan rengi */
+    overflow-y: auto; /* İçerik uzunsa kaydırma çubuğu çıksın */
 }
+
+/* 2. Lightbox (Resim Büyütme) Katmanı (Her şeyin en üstünde) */
+#lightbox {
+    z-index: 3000 !important; /* Detay sayfasının (2000) bile üstünde */
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Arkası hafif şeffaf siyah */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Lightbox içindeki resim ayarı */
+#lightbox img {
+    max-width: 90%;
+    max-height: 90vh;
+    border: 2px solid #ffcc66; /* Altın rengi çerçeve */
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    object-fit: contain;
+}
+
+/* Lightbox İleri/Geri Okları */
+.lightbox-nav-btn {
+    background: none;
+    border: none;
+    color: #ffcc66;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 0 20px;
+    user-select: none;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.lightbox-nav-btn:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+/* 3. Restorasyon Öncesi/Sonrası Modalı */
+#restorationImageModal {
+    z-index: 3000 !important; /* Bu da en üstte olmalı */
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* 4. Eğer 'satilik_kiralik.html' sayfasındaki galeri bozuk görünüyorsa */
+.house-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.house-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.house-card:hover {
+    transform: translateY(-5px);
+}
+}
+
 
