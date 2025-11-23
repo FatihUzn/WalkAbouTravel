@@ -1,42 +1,113 @@
-[
-    {
-        "id": 1,
-        "title": "Geleceğin Konut Anlayışı: Akıllı ve Yeşil Binalar",
-        "image": "assets/insaat_hero-mobil.webp",
-        "date": "2025-11-22",
-        "summary": "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. Yeşil binalar ve akıllı ev sistemleri...",
-        "fullContent": "<p>Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk haline geldi. WalkAbouTravel İnşaat olarak, projelerimizde sadece betona değil, geleceğe yatırım yapıyoruz.</p><p><strong>Neden Yeşil Bina?</strong><br>Yeşil binalar, enerji tüketimini %30'a varan oranlarda azaltarak hem doğayı hem de bütçenizi korur. Kullandığımız güneş paneli entegreli cephe sistemleri ve yağmur suyu hasadı teknolojileri sayesinde, binalarımız kendi kendine yetebilen ekosistemlere dönüşüyor.</p><p><strong>Akıllı Ev Teknolojileri</strong><br>Yeni projelerimizde standart hale getirdiğimiz IoT (Nesnelerin İnterneti) sistemleri sayesinde, evinizdeki ısıtma, aydınlatma ve güvenlik sistemlerini dünyanın her yerinden kontrol edebilirsiniz.</p>"
-    },
-    {
-        "id": 2,
-        "title": "Ege'nin Kalbinde Bir Kaçış: Pruva Otel Deneyimi",
-        "image": "assets/otel_hero-mobil.webp",
-        "date": "2025-11-18",
-        "summary": "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim. Pruva Otel'in sunduğu ayrıcalıklar...",
-        "fullContent": "<p>Ege'nin turkuaz sularına nazır, zeytin ağaçlarının gölgesinde bir sabah uyanmayı hayal edin. Pruva Otel, size sadece bir konaklama değil, ruhunuzu dinlendirecek bir deneyim vaat ediyor.</p><p><strong>Gastronomi Yolculuğu</strong><br>Otelimizin mutfağı, 'Tarladan Sofraya' konseptiyle hizmet veriyor. Kendi bahçemizde yetiştirdiğimiz organik sebzeler ve Ege'nin taze deniz ürünleri, ödüllü şeflerimizin ellerinde sanat eserine dönüşüyor.</p><p><strong>Spa & Wellness</strong><br>Şehrin stresini atmak için özel olarak tasarlanan spa merkezimizde, Bali'den gelen terapistlerimiz eşliğinde kendinizi şımartabilirsiniz.</p>"
-    },
-    {
-        "id": 3,
-        "title": "Tarihi Dokuyu Korumak: Galata Restorasyon Projesi",
-        "image": "assets/restorasyon1.webp",
-        "date": "2025-11-10",
-        "summary": "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son restorasyon projemizin detayları...",
-        "fullContent": "<p>Restorasyon, sadece bir binayı yenilemek değil; hafızayı canlı tutmaktır. Galata bölgesindeki son projemizde, 19. yüzyıldan kalma metruk bir yapıyı, orijinal ruhuna sadık kalarak modern bir sanat merkezine dönüştürdük.</p><p><strong>Zorluklar ve Çözümler</strong><br>Yapının statik sorunlarını çözerken, tarihi tuğla dokusuna zarar vermemek için mikro-enjeksiyon yöntemleri kullandık. Ahşap doğramalar, dönemin tekniklerine uygun olarak el işçiliğiyle yeniden üretildi.</p>"
-    },
-    {
-        "id": 4,
-        "title": "2025 Gayrimenkul Yatırım Trendleri",
-        "image": "assets/for_hero.webp",
-        "date": "2025-10-25",
-        "summary": "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor...",
-        "fullContent": "<p>Gayrimenkul dünyası büyük bir dönüşümden geçiyor. 2025 yılında yatırımcıların odağında 'esneklik' ve 'konum' var.</p><p><strong>1. Turizm Odaklı Rezidanslar</strong><br>Kısa dönem kiralamaya (Airbnb vb.) uygun, otel konseptli rezidanslar, klasik daire kiralamalarına göre %40 daha fazla getiri sağlıyor.</p><p><strong>2. Mikro-Ofisler</strong><br>Hibrit çalışma modelinin kalıcı olmasıyla, dev plazalar yerini şehrin farklı noktalarına dağılmış butik ofislere bırakıyor.</p>"
-    },
-    {
-        "id": 5,
-        "title": "Minimalizm ve Lüksün Buluşması: İç Mekan Tasarımı",
-        "image": "assets/background.webp",
-        "date": "2025-10-05",
-        "summary": "Az aslında çoktur. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan trendleri...",
-        "fullContent": "<p>Lüks artık şatafat ve abartı demek değil. Yeni lüks; sadelik, kaliteli malzeme ve kusursuz işçilikte gizli. İç mekan tasarımlarımızda 'Sessiz Lüks' (Quiet Luxury) akımını benimsiyoruz.</p><p><strong>Doğal Malzemelerin Gücü</strong><br>Sentetik malzemeler yerine doğal taş, masif ahşap ve keten kumaşlar kullanarak mekanlara sıcaklık katıyoruz.</p><p>Eviniz, sizin sığınağınızdır. Karmaşadan uzak, dingin ve sofistike yaşam alanları tasarlamak için buradayız.</p>"
+<script>
+/* === SEYAHAT BLOG SİSTEMİ (JSON ENTEGRASYONLU) === */
+
+let blogPosts = []; // Boş liste, JSON'dan dolacak
+
+// 1. JSON Dosyasından Verileri Çekme Fonksiyonu
+async function loadBlogData() {
+    try {
+        // Senin 'blog-posts.json' dosyanı okuyoruz
+        const response = await fetch('blog-posts.json');
+        if (!response.ok) throw new Error("JSON dosyası bulunamadı!");
+        
+        blogPosts = await response.json();
+        
+        // Veri geldikten sonra ekrana bas
+        renderBlogPosts();
+    } catch (error) {
+        console.error("Blog verileri yüklenemedi:", error);
+        // Hata olursa kullanıcıya basit bir mesaj göster veya boş bırak
+        const display = document.getElementById('blog-grid-display');
+        if(display) display.innerHTML = "<p style='text-align:center; color:#888;'>Blog yazıları şu an yüklenemiyor.</p>";
     }
-]
+}
+
+// 2. Blogları Listeleme
+function renderBlogPosts() {
+    const display = document.getElementById('blog-grid-display');
+    if(!display) return;
+
+    display.innerHTML = ""; 
+    
+    // Tarihe göre sıralama (JSON'da date alanı varsa)
+    blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    blogPosts.forEach(post => {
+        const imgSource = post.image ? post.image : 'assets/background.webp';
+        
+        // JSON dosyasındaki 'summary' alanını kullanıyoruz
+        const summaryText = post.summary ? post.summary.substring(0, 100) + "..." : "Detaylar için tıklayın...";
+
+        const html = `
+            <article class="blog-card">
+                <img src="${imgSource}" alt="${post.title}" loading="lazy" style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px;" onerror="this.src='https://placehold.co/600x400/e2e8f0/1a1a2e?text=Gezi+Rotasi'">
+                
+                <span style="font-size:0.75rem; color:#4c99ff; font-weight:700; letter-spacing:1px; margin-bottom:5px; display:block;">${post.category || 'GENEL'}</span>
+                
+                <h4 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin:10px 0; color:#1a1a2e;">${post.title}</h4>
+                
+                <p style="font-size:15px; color:#4e576f; line-height:1.6; margin-bottom:20px;">
+                    ${summaryText}
+                </p>
+                
+                <a href="javascript:void(0)" onclick="openBlogModal(${post.id})" class="blog-readmore" style="cursor:pointer; font-weight:700; color:#0066cc;">Devamını Oku →</a>
+            </article>
+        `;
+        display.innerHTML += html;
+    });
+}
+
+// 3. Pencereyi (Modal) Açma Fonksiyonu
+function openBlogModal(id) {
+    const post = blogPosts.find(p => p.id === id);
+    if(!post) return;
+
+    // İçeriği Doldur
+    document.getElementById('modal-blog-img').src = post.image || 'assets/background.webp';
+    document.getElementById('modal-blog-category').innerText = post.category || 'BLOG';
+    document.getElementById('modal-blog-title').innerText = post.title;
+    
+    // JSON'daki 'fullContent' alanını kullanıyoruz
+    document.getElementById('modal-blog-text').innerHTML = post.fullContent;
+
+    // Pencereyi Göster
+    const modal = document.getElementById('blog-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// 4. Pencereyi Kapatma Fonksiyonu
+function closeBlogModal() {
+    const modal = document.getElementById('blog-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// 5. Başlat
+// Sayfa yüklendiğinde verileri çekmeye çalış
+document.addEventListener('DOMContentLoaded', () => {
+    loadBlogData();
+});
+
+// Sayfa geçişlerinde (SPA) blog bölümü görünür olunca veriyi kontrol et
+setInterval(() => {
+    const blogGrid = document.getElementById('blog-grid-display');
+    // Eğer grid var ama içi boşsa ve veri henüz çekilmemişse tekrar dene
+    if(blogGrid && blogGrid.innerHTML.trim() === "" && blogPosts.length === 0) {
+        loadBlogData();
+    } else if (blogGrid && blogGrid.innerHTML.trim() === "" && blogPosts.length > 0) {
+        // Veri varsa ama ekranda yoksa bas
+        renderBlogPosts();
+    }
+}, 1000);
+
+// Pencere dışına tıklayınca kapat
+const modalElement = document.getElementById('blog-modal');
+if(modalElement) {
+    modalElement.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeBlogModal();
+        }
+    });
+}
+</script>
