@@ -1,48 +1,133 @@
-<section id="page-blog" class="blog-page-section" style="padding-top: 160px; padding-bottom: 80px;">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - WalkAbout Travel</title>
     
-    <div style="max-width: 1400px; margin: 0 auto 20px auto; padding: 0 40px;">
-        <a href="#hero" class="btn-page-back" style="display:inline-block; text-decoration:none;">← Anasayfa</a>
-    </div>
+    <link rel="stylesheet" href="style.css?v=1.8"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Blog Sayfası İçin Özel Düzenlemeler */
+        body {
+            background-color: #111; /* Arka plan rengi */
+            padding-top: 0; /* Header fixed olduğu için */
+        }
+        .blog-wrapper-standalone {
+            padding-top: 140px; /* Header altı boşluk */
+            padding-bottom: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        /* Geri butonu düzenlemesi */
+        .btn-page-back-static {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ffcc66;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ffcc66;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-page-back-static:hover {
+            background: #ffcc66;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
 
-    <div class="blog-header-title" style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--blue-light);">Seyahat Günlüğü</h1>
-        <p style="color: var(--text-muted);">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
-    </div>
+    <header id="main-header">
+        <div class="header-top-row">
+            <div class="top-bar-left">
+                <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
+            </div>
+            <div class="top-bar-right">
+                <a href="index.html" class="btn btn-top-info"><i class="fas fa-home"></i> Anasayfaya Dön</a>
+            </div>
+        </div>
+      
+        <div class="header-bottom-row">
+            <div class="brand">
+                <img src="assets/golden_palace_logo.webp" alt="Logo" style="height:45px;"> 
+                <div class="brand-text-container">
+                    <span class="brand-title" style="color:#fff;">Golden Palace</span>
+                    <span class="brand-tagline" style="color:#aaa;">Real Estate & Architecture</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+    <main class="blog-wrapper-standalone">
         
-        <article class="blog-card" style="background: var(--section-bg); border: 1px solid var(--border-dark); border-radius: 14px; overflow: hidden;">
-            <div class="blog-image-wrapper" style="height: 240px;">
-                <img src="assets/for_hero.webp" alt="Kapadokya" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="blog-content" style="padding: 25px;">
-                <span class="blog-date" style="color: var(--blue-light); font-size: 0.85rem; font-weight: 600;">22 KASIM 2025</span>
-                <h3 class="blog-title" style="margin: 10px 0; color: var(--text);">Kapadokya'da Balon Turu</h3>
-                <p class="blog-excerpt" style="color: var(--text-muted);">Peri bacalarının üzerinden gün doğumunu izlemek...</p>
-            </div>
-        </article>
+        <a href="index.html" class="btn-page-back-static">← Anasayfa</a>
 
-        <article class="blog-card" style="background: var(--section-bg); border: 1px solid var(--border-dark); border-radius: 14px; overflow: hidden;">
-            <div class="blog-image-wrapper" style="height: 240px;">
-                <img src="assets/background.webp" alt="İtalya" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="blog-container">
+            
+            <div class="blog-header" style="text-align:center; margin-bottom:50px;">
+                <span class="blog-badge" style="color:#ffcc66; letter-spacing:2px; font-size:0.9rem;">SEYAHAT GÜNLÜĞÜ</span>
+                <h2 style="font-family:'Playfair Display',serif; font-size:3rem; margin:10px 0; color:#fff;">WalkAbout Travel Blog</h2>
+                <p class="blog-subtitle" style="color:#bbb;">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
+                <div class="title-gold-line" style="width:100px; height:2px; background:#ffcc66; margin:20px auto;"></div>
+                
+                <div class="blog-categories" style="margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                    <span class="cat-btn active" style="color:#ffcc66; cursor:pointer;">Tümü</span>
+                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Rota Önerileri</span>
+                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Vize Rehberi</span>
+                    <span class="cat-btn" style="color:#bbb; cursor:pointer;">Otel İncelemeleri</span>
+                </div>
             </div>
-            <div class="blog-content" style="padding: 25px;">
-                <span class="blog-date" style="color: var(--blue-light); font-size: 0.85rem; font-weight: 600;">18 KASIM 2025</span>
-                <h3 class="blog-title" style="margin: 10px 0; color: var(--text);">İtalya'nın Saklı Köyleri</h3>
-                <p class="blog-excerpt" style="color: var(--text-muted);">Turistik rotaların dışına çıkıp gerçek kültürü keşfedin.</p>
-            </div>
-        </article>
-        
-        <article class="blog-card" style="background: var(--section-bg); border: 1px solid var(--border-dark); border-radius: 14px; overflow: hidden;">
-            <div class="blog-image-wrapper" style="height: 240px;">
-                <img src="assets/otel_hero-mobil.webp" alt="Otel" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="blog-content" style="padding: 25px;">
-                <span class="blog-date" style="color: var(--blue-light); font-size: 0.85rem; font-weight: 600;">10 KASIM 2025</span>
-                <h3 class="blog-title" style="margin: 10px 0; color: var(--text);">Lüks Konaklama Rehberi</h3>
-                <p class="blog-excerpt" style="color: var(--text-muted);">En iyi otel seçim kriterleri ve ipuçları.</p>
-            </div>
-        </article>
 
-    </div>
-</section>
+            <div id="admin-panel-container" style="display:none; margin-bottom:40px; background:#222; padding:20px; border-radius:10px; border:1px solid #444;">
+                <div class="admin-header" style="display:flex; justify-content:space-between; color:#ffcc66;">
+                    <h3><i class="fas fa-compass"></i> Yeni Rota / Yazı Ekle</h3>
+                    <button onclick="document.getElementById('admin-panel-container').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer;">✖</button>
+                </div>
+                <br>
+                <p style="color:#888;">(Admin paneli fonksiyonları JavaScript ile eklenebilir)</p>
+            </div>
+
+            <div id="blog-grid-display" class="blog-grid">
+                <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
+                    <img src="assets/for_hero.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
+                    <div style="padding:20px;">
+                        <span style="color:#ffcc66; font-size:0.8rem;">22 KASIM 2025</span>
+                        <h3 style="color:#fff; margin:10px 0;">Kapadokya'da Balon Turu</h3>
+                        <p style="color:#aaa;">Peri bacalarının üzerinden gün doğumunu izlemek...</p>
+                    </div>
+                </article>
+                 <article class="blog-card" style="background:#1a1a1a; border-radius:10px; overflow:hidden; border:1px solid #333; margin-bottom:30px;">
+                    <img src="assets/background.webp" style="width:100%; height:250px; object-fit:cover;" alt="Blog">
+                    <div style="padding:20px;">
+                        <span style="color:#ffcc66; font-size:0.8rem;">18 KASIM 2025</span>
+                        <h3 style="color:#fff; margin:10px 0;">İtalya'nın Saklı Köyleri</h3>
+                        <p style="color:#aaa;">Turistik rotaların dışına çıkıp gerçek İtalyan kültürünü keşfedin.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
+                <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
+                <p style="color:#ddd;">Bültenimize katıl.</p>
+            </div>
+
+            <div class="admin-trigger-area" style="text-align:center; margin-top:20px;">
+                <button onclick="document.getElementById('admin-panel-container').style.display='block'" style="background:none; border:1px solid #555; color:#888; padding:5px 15px; cursor:pointer;">
+                    <i class="fas fa-pen-nib"></i> Editör
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="background:#0c0c0c; padding:40px; text-align:center; border-top:1px solid #333; color:#888;">
+        <p>© 2025 Golden Palace & WalkAbout Travel.</p>
+    </footer>
+
+</body>
+</html>
