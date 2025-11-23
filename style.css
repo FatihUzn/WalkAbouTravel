@@ -492,8 +492,8 @@ header {
 section {
   padding: 100px 40px;
   text-align: center;
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: translateY(0);
   transition: all 1s var(--easing);
   background-color: transparent; 
   position: relative; 
@@ -2435,6 +2435,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .blog-grid-display {
         grid-template-columns: 1fr;
     }
+}
 /* === BLOG MODAL STİLLERİ === */
 .blog-modal-overlay {
     position: fixed;
@@ -2597,54 +2598,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .house-card:hover {
     transform: translateY(-5px);
-}
-/* --- ACİL DURUM KODU: JS HATASI OLSA BİLE SİTEYİ GÖSTER --- */
-body, header, footer, section {
-    opacity: 1 !important;
-    display: block !important;
-    visibility: visible !important;
-    transform: none !important;
+ }
+
 }
 
-#hero {
-    display: flex !important; /* Hero'nun flex yapısını koru */
-    opacity: 1 !important;
-}
 
-/* Yükleme animasyonlarını iptal et ki takılı kalmasın */
-* {
-    animation-delay: 0s !important;
-    transition-delay: 0s !important;
-}
-/* --- SİTEYİ ZORLA TUTMA KODU (GİTMESİNİ ENGELLER) --- */
 
-/* 1. Sayfa opaklığını zorla %100 yap */
-body {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* 2. Hero (Video) bölümünü asla gizleme */
-#hero {
-    display: flex !important; /* Flex yapısı bozulmasın */
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important; /* Kayma efektini iptal et */
-}
-
-/* 3. Diğer bölümleri de göster */
-.page-section.active {
-    display: block !important;
-    opacity: 1 !important;
-}
-
-/* 4. Yükleme animasyonlarını devre dışı bırak (Takılmayı önler) */
-* {
-    animation-delay: 0s !important;
-    transition-delay: 0s !important;
-    animation-duration: 0s !important;
-}
-}
 
 
 
