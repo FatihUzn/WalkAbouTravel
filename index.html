@@ -91,14 +91,13 @@
     margin: 10px 0 30px 0;
   }
   
-  /* Keşfet Butonu stilleri - BURASI TEMİZLENDİ - */
   .cta-group {
     position: relative;
     display: inline-block;
   }
 
   /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ (Değişmedi) === */
+  /* === YENİ GENİŞ FOOTER STİLLERİ === */
   /* ========================================= */
   .site-footer {
     background-color: #0c0c0c; 
@@ -287,10 +286,10 @@
     
     <div class="hero-links-container action-buttons">
       <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-      <a href="blog.html" class="btn btn-hero-link" data-key="drop_restoration">Blog</a>
+      <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-key="drop_restoration" class="btn btn-hero-link">Blog</a>
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
     </div>
-</section>
+  </div> </section>
 
 <main id="page-container">
 </main>
@@ -331,8 +330,7 @@
             <div class="social-icons">
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behance
-ce"></i></a>
+                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
                 <a href="mailto:info@walkaboutravel.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
@@ -418,7 +416,7 @@ ce"></i></a>
             description: "Dünya çapında en uygun uçak, otobüs ve tren biletlerini hızlıca sağlıyor, konforlu transferinizi planlıyoruz."
         },
         {
-            title: "Konaklama & Rezervasyon", // Restorasyon yerine Konaklama
+            title: "Konaklama & Rezervasyon", 
             description: "İhtiyaçlarınıza uygun en lüks ve konforlu konaklama seçeneklerini güvenle rezerve ediyoruz."
         }
     ];
@@ -428,29 +426,20 @@ ce"></i></a>
     const intervalTime = 5000; // 3 saniye
 
     function changeTextWithFade() {
-        // 1. Fade Out: Opaklığı sıfıra düşür
         if(textElement) {
             textElement.style.opacity = '0'; 
         }
 
-        // 2. Metni 0.5 saniye sonra değiştir
         setTimeout(() => {
             if(textElement) {
                 const currentData = data[index];
-                
-                // Metin içeriğini Kalın Başlık ve Açıklama olarak HTML'e yaz
                 textElement.innerHTML = `<strong>${currentData.title}</strong><br>${currentData.description}`;
-                
-                // 3. Fade In: Opaklığı tekrar 1 yap
                 textElement.style.opacity = '1'; 
-                
-                // 4. İndeksi bir sonraki öğeye ilerlet (Döngü)
                 index = (index + 1) % data.length;
             }
-        }, 500); // CSS transition süresi ile uyumlu (0.5 saniye)
+        }, 500); 
     }
 
-    // HTML öğesi yüklü ise döngüyü başlat
     if(textElement) {
         changeTextWithFade();
         setInterval(changeTextWithFade, intervalTime);
@@ -459,32 +448,29 @@ ce"></i></a>
 <script>
 /* === PREMIUM BLOG SİSTEMİ (JS) === */
 
-// 1. Veri Tabanı (Local Storage)
-// Tarayıcı hafızasında 'goldenBlogData' adıyla yazıları saklar.
+// DÜZELTME: Varsayılan veri 'WalkAbouTravel' olarak güncellendi.
 let blogPosts = JSON.parse(localStorage.getItem('goldenBlogData')) || [
     {
         id: 1,
-        title: "Golden Palace: Mimari Vizyonumuz",
+        title: "WalkAbouTravel: Seyahat Vizyonumuz",
         image: "assets/for_hero.webp",
         date: "2025-11-22",
-        content: "Modern yaşamın gereksinimlerini lüks ve estetikle birleştiren tasarım anlayışımız üzerine bir inceleme..."
+        content: "Dünyayı keşfetme tutkusunu profesyonel hizmetle birleştiren seyahat anlayışımız üzerine bir inceleme..."
     }
 ];
 
-// 2. Blogları Ekrana Basma Fonksiyonu
 function renderBlogPosts() {
     const display = document.getElementById('blog-grid-display');
-    if(!display) return; // Eğer blog sayfasında değilsek dur.
+    if(!display) return; 
 
-    display.innerHTML = ""; // Önce temizle
+    display.innerHTML = ""; 
     
-    // Yazıları tarihe göre (yeniden eskiye) sırala
     blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     blogPosts.forEach(post => {
         const html = `
             <article class="blog-card">
-                <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/111/f59e0b?text=Golden+Palace'">
+                <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/111/f59e0b?text=WalkAbouTravel'">
                 <div class="blog-content">
                     <span class="blog-date-tag">${post.date}</span>
                     <h3>${post.title}</h3>
@@ -501,12 +487,23 @@ function renderBlogPosts() {
     });
 }
 
-// 3. Yeni Yazı Yayınlama
 function publishBlogPost() {
-    const title = document.getElementById('blog-title').value;
-    const img = document.getElementById('blog-image').value || 'assets/background.webp';
-    const date = document.getElementById('blog-date').value || new Date().toISOString().split('T')[0];
-    const content = document.getElementById('blog-content').value;
+    // NOT: Bu elementler (blog-title, blog-content) index.html'de değil, 
+    // muhtemelen blog.html'de (page-restorasyon) bulunuyor.
+    const titleEl = document.getElementById('blog-title');
+    const contentEl = document.getElementById('blog-content');
+    const imgEl = document.getElementById('blog-image');
+    const dateEl = document.getElementById('blog-date');
+
+    if(!titleEl || !contentEl) {
+        console.warn("Blog input alanları bulunamadı (Şu an Blog sayfasında olmayabilirsiniz).");
+        return;
+    }
+
+    const title = titleEl.value;
+    const img = imgEl ? imgEl.value : 'assets/background.webp';
+    const date = dateEl ? dateEl.value : new Date().toISOString().split('T')[0];
+    const content = contentEl.value;
 
     if(title.trim() === "" || content.trim() === "") {
         alert("Lütfen başlık ve içerik giriniz.");
@@ -514,7 +511,7 @@ function publishBlogPost() {
     }
 
     const newPost = {
-        id: Date.now(), // Benzersiz ID üretir
+        id: Date.now(), 
         title: title,
         image: img,
         date: date,
@@ -522,43 +519,43 @@ function publishBlogPost() {
     };
 
     blogPosts.push(newPost);
-    localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts)); // Kaydet
+    localStorage.setItem('goldenBlogData', JSON.stringify(blogPosts)); 
     
-    // Formu Temizle
-    document.getElementById('blog-title').value = "";
-    document.getElementById('blog-content').value = "";
+    titleEl.value = "";
+    contentEl.value = "";
     
-    renderBlogPosts(); // Listeyi güncelle
+    renderBlogPosts(); 
     alert("Yazı başarıyla yayınlandı!");
 }
 
-// 4. Taslak Kaydetme (Browser Hafızası)
 function saveBlogDraft() {
-    const title = document.getElementById('blog-title').value;
-    const content = document.getElementById('blog-content').value;
+    const titleEl = document.getElementById('blog-title');
+    const contentEl = document.getElementById('blog-content');
     
-    localStorage.setItem('draftTitle', title);
-    localStorage.setItem('draftContent', content);
-    alert("Taslak kaydedildi. Sayfayı yenileseniz bile geri çağırabilirsiniz.");
+    if(titleEl && contentEl) {
+        localStorage.setItem('draftTitle', titleEl.value);
+        localStorage.setItem('draftContent', contentEl.value);
+        alert("Taslak kaydedildi.");
+    }
 }
 
-// 5. Admin Panel Aç/Kapat
 function toggleAdminPanel() {
     const panel = document.getElementById('admin-panel-container');
+    if(!panel) return;
+
     if(panel.style.display === 'none') {
         panel.style.display = 'block';
-        
-        // Varsa taslağı geri yükle
         if(localStorage.getItem('draftTitle')) {
-            document.getElementById('blog-title').value = localStorage.getItem('draftTitle');
-            document.getElementById('blog-content').value = localStorage.getItem('draftContent');
+            const t = document.getElementById('blog-title');
+            const c = document.getElementById('blog-content');
+            if(t) t.value = localStorage.getItem('draftTitle');
+            if(c) c.value = localStorage.getItem('draftContent');
         }
     } else {
         panel.style.display = 'none';
     }
 }
 
-// 6. Yazı Silme
 function deletePost(id) {
     if(confirm("Bu yazıyı kalıcı olarak silmek istediğinize emin misiniz?")) {
         blogPosts = blogPosts.filter(post => post.id !== id);
@@ -567,14 +564,8 @@ function deletePost(id) {
     }
 }
 
-// 7. Sayfa Yüklendiğinde ve Geçişlerde Blogu Çalıştır
-// App.js içindeki showPage fonksiyonu çalıştığında bunu tetiklememiz lazım.
-// Ancak basit çözüm olarak, DOM değişikliklerini dinleyebiliriz veya 
-// her saniye blog grid var mı diye kontrol edebiliriz (basit ve hatasız yöntem).
-
 setInterval(() => {
     const blogGrid = document.getElementById('blog-grid-display');
-    // Eğer blog sayfası açıksa ve içi boşsa (henüz yüklenmediyse)
     if(blogGrid && blogGrid.innerHTML.trim() === "") {
         renderBlogPosts();
     }
@@ -583,4 +574,3 @@ setInterval(() => {
 </script>
 </body>
 </html>
-
