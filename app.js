@@ -12,72 +12,32 @@ window.onerror = function(message, source, lineno, colno, error) {
 // ==========================================
 // 1. VERİ TABANI (RESİMLER VE DETAYLAR)
 // ==========================================
-const galleryDatabase = {
-  "TUR-TR-MARDIN": {
-      title: "Mardin Kültür Turu",
-      desc: "Taş evlerin, dar sokakların ve tarihi manastırların büyüleyici atmosferi.",
-      price: "₺12.500 (Kişi Başı)",
-      location: "Mardin / Türkiye",
-      images: ["assets/mardin-tarihi-konak-dokusu-1.webp", "assets/restorasyon1.webp", "assets/background.webp"]
-  },
-  "TUR-TR-ANTALYA": {
-      title: "Antalya Koy Gezisi",
-      desc: "Turkuaz suların ve gizli koyların keşfi. Tekne turu dahildir.",
-      price: "₺8.000 (Kişi Başı)",
-      location: "Antalya / Kaş",
-      images: ["assets/antalya-koy-gezisi-1.webp", "assets/otel_hero-mobil.webp", "assets/for_hero.webp"]
-  },
-  "TUR-TR-KAPADOKYA": {
-      title: "Kapadokya Balon Turu",
-      desc: "Peri bacaları üzerinde gün doğumu ve mağara otel konaklaması.",
-      price: "₺15.000 (Kişi Başı)",
-      location: "Nevşehir / Göreme",
-      images: ["assets/kapadokya-balon-turu-1.webp", "assets/restorasyon2.webp", "assets/background.webp"]
-  },
-  "TUR-TR-FETHIYE": {
-      title: "Fethiye Ölüdeniz",
-      desc: "Yamaç paraşütü ve dünyaca ünlü plajlarda dinlenme fırsatı.",
-      price: "₺10.000 (Kişi Başı)",
-      location: "Muğla / Fethiye",
-      images: ["assets/fethiye-oludeniz-manzarasi-14.webp", "assets/otel1.webp", "assets/otel2.webp"]
-  },
-  "TUR-TR-PAMUKKALE": {
-      title: "Pamukkale Travertenleri",
-      desc: "Beyaz cennet ve Hierapolis antik kenti gezisi.",
-      price: "₺6.500 (Kişi Başı)",
-      location: "Denizli",
-      images: ["assets/pamukkale-traverten-dogal-1.webp", "assets/restorasyon3.webp", "assets/for_hero.webp"]
-  },
-  "TUR-D-ISPANYA": {
-      title: "İspanya & Endülüs Turu",
-      desc: "Barselona, Madrid ve Sevilla'nın tarihi sokakları.",
-      price: "€1.200 (Kişi Başı)",
-      location: "İspanya",
-      images: ["assets/spain-1.webp", "assets/insaat1.webp", "assets/insaat2.webp"]
-  },
-  "TUR-D-RUSYA": {
-      title: "Rusya Sanat Turu",
-      desc: "Moskova Kızıl Meydan ve St. Petersburg müzeleri.",
-      price: "$1.500 (Kişi Başı)",
-      location: "Rusya",
-      images: ["assets/rusya-1.webp", "assets/restorasyon4.webp", "assets/insaat3.webp"]
-  },
-  "TUR-D-BREZILYA": {
-      title: "Brezilya Karnavalı",
-      desc: "Rio de Janeiro'nun renkli dünyası ve Amazon ormanları.",
-      price: "$2.100 (Kişi Başı)",
-      location: "Brezilya",
-      images: ["assets/brazil-1.webp", "assets/otel3.webp", "assets/otel4.webp"]
-  },
-  "TUR-D-AMERIKA": {
-      title: "Amerika Batı Yakası",
-      desc: "Los Angeles, Las Vegas ve Grand Canyon rotası.",
-      price: "$2.500 (Kişi Başı)",
-      location: "ABD",
-      images: ["assets/new-york-1.webp", "assets/insaat4.webp", "assets/insaat5.webp"]
-  }
-};
 
+// Eskiden const idi, şimdi let yapıyoruz ki içine veri doldurabilelim
+let galleryDatabase = {
+    // ==========================================
+// YENİ: JSON DOSYASINDAN VERİ ÇEKME
+// ==========================================
+async function loadGalleryData() {
+    try {
+        const response = await fetch('galleries.json'); // JSON dosyasını çağır
+        if (!response.ok) throw new Error("JSON bulunamadı");
+        
+        const data = await response.json();
+        galleryDatabase = data; // JSON'daki tüm veriyi JS değişkenine aktar
+        console.log("Galeri verileri yüklendi:", galleryDatabase);
+        
+    } catch (error) {
+        console.error("Veri yükleme hatası:", error);
+    }
+}
+
+// Sayfa yüklenirken bu fonksiyonu çalıştır
+document.addEventListener('DOMContentLoaded', () => {
+    loadGalleryData();
+    // ... senin diğer başlangıç kodların burada devam edebilir ...
+});
+};
 const projects = {
   otel: [
     { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.webp" },
@@ -424,4 +384,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(hero) hero.style.display = "flex";
     }
 });
+
 
