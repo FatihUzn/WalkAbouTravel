@@ -1,128 +1,83 @@
 // ==========================================
-// 1. YARDIMCI FONKSİYONLAR
+// HATA YAKALAYICI (EN BAŞA EKLENDİ)
 // ==========================================
-function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  }
-}
+window.onerror = function(message, source, lineno, colno, error) {
+    console.error("JS Hatası:", message);
+    // Hata olsa bile sayfayı görünür yapmaya çalış
+    document.body.style.opacity = "1";
+    const hero = document.getElementById('hero');
+    if(hero) hero.style.display = "flex";
+};
 
 // ==========================================
-// 2. VERİ TABANI (RESİMLER VE DETAYLAR)
+// 1. VERİ TABANI (RESİMLER VE DETAYLAR)
 // ==========================================
 const galleryDatabase = {
-  // --- TÜRKİYE ROTALARI ---
   "TUR-TR-MARDIN": {
       title: "Mardin Kültür Turu",
       desc: "Taş evlerin, dar sokakların ve tarihi manastırların büyüleyici atmosferi.",
       price: "₺12.500 (Kişi Başı)",
       location: "Mardin / Türkiye",
-      images: [
-          "assets/mardin-tarihi-konak-dokusu-1.webp",
-          "assets/restorasyon1.webp", 
-          "assets/background.webp"
-      ]
+      images: ["assets/mardin-tarihi-konak-dokusu-1.webp", "assets/restorasyon1.webp", "assets/background.webp"]
   },
   "TUR-TR-ANTALYA": {
       title: "Antalya Koy Gezisi",
       desc: "Turkuaz suların ve gizli koyların keşfi. Tekne turu dahildir.",
       price: "₺8.000 (Kişi Başı)",
       location: "Antalya / Kaş",
-      images: [
-          "assets/antalya-koy-gezisi-1.webp",
-          "assets/otel_hero-mobil.webp",
-          "assets/for_hero.webp"
-      ]
+      images: ["assets/antalya-koy-gezisi-1.webp", "assets/otel_hero-mobil.webp", "assets/for_hero.webp"]
   },
   "TUR-TR-KAPADOKYA": {
       title: "Kapadokya Balon Turu",
       desc: "Peri bacaları üzerinde gün doğumu ve mağara otel konaklaması.",
       price: "₺15.000 (Kişi Başı)",
       location: "Nevşehir / Göreme",
-      images: [
-          "assets/kapadokya-balon-turu-1.webp",
-          "assets/restorasyon2.webp",
-          "assets/background.webp"
-      ]
+      images: ["assets/kapadokya-balon-turu-1.webp", "assets/restorasyon2.webp", "assets/background.webp"]
   },
   "TUR-TR-FETHIYE": {
       title: "Fethiye Ölüdeniz",
       desc: "Yamaç paraşütü ve dünyaca ünlü plajlarda dinlenme fırsatı.",
       price: "₺10.000 (Kişi Başı)",
       location: "Muğla / Fethiye",
-      images: [
-          "assets/fethiye-oludeniz-manzarasi-14.webp",
-          "assets/otel1.webp",
-          "assets/otel2.webp"
-      ]
+      images: ["assets/fethiye-oludeniz-manzarasi-14.webp", "assets/otel1.webp", "assets/otel2.webp"]
   },
   "TUR-TR-PAMUKKALE": {
       title: "Pamukkale Travertenleri",
       desc: "Beyaz cennet ve Hierapolis antik kenti gezisi.",
       price: "₺6.500 (Kişi Başı)",
       location: "Denizli",
-      images: [
-          "assets/pamukkale-traverten-dogal-1.webp",
-          "assets/restorasyon3.webp",
-          "assets/for_hero.webp"
-      ]
+      images: ["assets/pamukkale-traverten-dogal-1.webp", "assets/restorasyon3.webp", "assets/for_hero.webp"]
   },
-
-  // --- ULUSLARARASI ROTALAR ---
   "TUR-D-ISPANYA": {
       title: "İspanya & Endülüs Turu",
       desc: "Barselona, Madrid ve Sevilla'nın tarihi sokakları.",
       price: "€1.200 (Kişi Başı)",
       location: "İspanya",
-      images: [
-          "assets/spain-1.webp",
-          "assets/insaat1.webp",
-          "assets/insaat2.webp"
-      ]
+      images: ["assets/spain-1.webp", "assets/insaat1.webp", "assets/insaat2.webp"]
   },
   "TUR-D-RUSYA": {
       title: "Rusya Sanat Turu",
       desc: "Moskova Kızıl Meydan ve St. Petersburg müzeleri.",
       price: "$1.500 (Kişi Başı)",
       location: "Rusya",
-      images: [
-          "assets/rusya-1.webp",
-          "assets/restorasyon4.webp",
-          "assets/insaat3.webp"
-      ]
+      images: ["assets/rusya-1.webp", "assets/restorasyon4.webp", "assets/insaat3.webp"]
   },
   "TUR-D-BREZILYA": {
       title: "Brezilya Karnavalı",
       desc: "Rio de Janeiro'nun renkli dünyası ve Amazon ormanları.",
       price: "$2.100 (Kişi Başı)",
       location: "Brezilya",
-      images: [
-          "assets/brazil-1.webp",
-          "assets/otel3.webp",
-          "assets/otel4.webp"
-      ]
+      images: ["assets/brazil-1.webp", "assets/otel3.webp", "assets/otel4.webp"]
   },
   "TUR-D-AMERIKA": {
       title: "Amerika Batı Yakası",
       desc: "Los Angeles, Las Vegas ve Grand Canyon rotası.",
       price: "$2.500 (Kişi Başı)",
       location: "ABD",
-      images: [
-          "assets/new-york-1.webp",
-          "assets/insaat4.webp",
-          "assets/insaat5.webp"
-      ]
+      images: ["assets/new-york-1.webp", "assets/insaat4.webp", "assets/insaat5.webp"]
   }
 };
 
-// Projeler Sayfası Verileri
 const projects = {
   otel: [
     { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.webp" },
@@ -152,24 +107,22 @@ const projects = {
 };
 
 // ==========================================
-// 3. GLOBAL DEĞİŞKENLER
+// 2. GLOBAL DEĞİŞKENLER
 // ==========================================
 const translations = {}; 
 const pageCache = {}; 
 let globalPropertyImages = [];
-let globalImageIndex = 0;
 let currentImages = [];
 let currentIndex = 0;
 
 // Restorasyon Galerisi Değişkenleri
-const RESTORATION_IMAGES_PER_LOAD = 4;
-const restorationBeforePaths = ["assets/restorasyon-1-befor.webp", "assets/restorasyon-2-before.webp", "assets/restorasyon-3-before.webp"];
-const restorationAfterPaths = ["assets/restorasyon-1-after.webp", "assets/restorasyon-2-after.webp", "assets/restorasyon-3-after.webp"];
+const restorationBeforePaths = ["assets/restorasyon-1-befor.webp", "assets/restorasyon-2-before.webp"];
+const restorationAfterPaths = ["assets/restorasyon-1-after.webp", "assets/restorasyon-2-after.webp"];
 let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 
 // ==========================================
-// 4. DETAY SAYFASI MANTIĞI
+// 3. DETAY SAYFASI MANTIĞI (MARDİN, ANTALYA VB.)
 // ==========================================
 function openHouseDetail(id) {
   const detail = document.getElementById("house-detail");
@@ -180,14 +133,14 @@ function openHouseDetail(id) {
   
   const safeData = data || { 
     title: "Detaylar", 
-    desc: "Bu içerik şu anda hazırlanıyor.", 
+    desc: "İçerik yükleniyor...", 
     price: "", 
     location: "", 
     images: [] 
   };
 
+  // Global resim listesini güncelle (Lightbox için)
   globalPropertyImages = safeData.images || [];
-  globalImageIndex = 0;
 
   content.innerHTML = `
     <h2 style="color:#ffcc66; margin-top:20px; text-align:center;">${safeData.title}</h2>
@@ -196,12 +149,12 @@ function openHouseDetail(id) {
       <p><strong>📍 Konum:</strong> ${safeData.location}</p>
       <p><strong>💰 Fiyat:</strong> ${safeData.price}</p>
       <p>${safeData.desc}</p>
-      <a href="mailto:info@walkaboutravel.com?subject=Rezervasyon: ${safeData.title}" class="btn" style="margin-top:15px; display:inline-block;">Rezervasyon Yap</a>
+      <a href="mailto:info@walkaboutravel.com" class="btn" style="margin-top:15px; display:inline-block;">Rezervasyon Yap</a>
     </div>
 
     <h3 style="text-align:center; margin-top:40px; color:#ffcc66;">Galeri</h3>
     <div class="detail-gallery" id="detail-gallery-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:15px; padding:20px;">
-      </div>
+    </div>
   `;
   
   const galleryContainer = document.getElementById('detail-gallery-container');
@@ -212,12 +165,14 @@ function openHouseDetail(id) {
       ).join("");
       galleryContainer.innerHTML = imagesHTML;
   } else {
-      galleryContainer.innerHTML = "<p style='text-align:center; color:#777;'>Bu destinasyon için henüz görsel eklenmedi.</p>";
+      galleryContainer.innerHTML = "<p style='text-align:center; color:#777;'>Görsel bulunamadı.</p>";
   }
 
-  detail.style.display = "block";
-  detail.style.zIndex = "9998";
-  document.body.style.overflow = "hidden"; 
+  if(detail) {
+      detail.style.display = "block";
+      detail.style.zIndex = "9998"; 
+      document.body.style.overflow = "hidden"; 
+  }
 }
 
 function closeHouseDetail() {
@@ -227,38 +182,14 @@ function closeHouseDetail() {
 }
 
 // ==========================================
-// 5. RESTORASYON GALERİSİ İŞLEMLERİ
-// ==========================================
-function setupRestorationGalleries() {
-  globalRestorationBeforeIndex = 0;
-  globalRestorationAfterIndex = 0;
-  loadMoreRestorationImages('before');
-  loadMoreRestorationImages('after');
-}
-
-function loadMoreRestorationImages(galleryType) {
-  let galleryContainer = document.getElementById(`restoration-gallery-${galleryType}`);
-  let loaderContainer = document.getElementById(`restoration-loader-${galleryType}`);
-  let imagesArray = (galleryType === 'before') ? restorationBeforePaths : restorationAfterPaths;
-  
-  if (!galleryContainer) return;
-
-  const imagesHTML = imagesArray.map((img, index) => 
-    `<img loading="lazy" src="${img}" alt="Restorasyon" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/350x260/111/f59e0b?text=Resim+Yok'">`
-  ).join("");
-
-  galleryContainer.innerHTML = imagesHTML;
-  if(loaderContainer) loaderContainer.innerHTML = "";
-}
-
-// ==========================================
-// 6. LIGHTBOX (RESİM BÜYÜTME) SİSTEMİ
+// 4. LIGHTBOX (RESİM BÜYÜTME)
 // ==========================================
 function openLightbox(imgElement) {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     
     if(lightbox && lightboxImg) {
+        // Resim listesini belirle
         const gallery = imgElement.closest(".detail-gallery, .house-gallery, .restoration-gallery");
         if (gallery) {
             currentImages = Array.from(gallery.querySelectorAll("img"));
@@ -276,6 +207,7 @@ function openLightbox(imgElement) {
     }
 }
 
+// Lightbox kapatma ve navigasyon olayları
 document.addEventListener("click", function(e) {
   const lightbox = document.getElementById("lightbox");
   if (e.target.id === "lightbox" || e.target.id === "lightbox-close") {
@@ -291,10 +223,10 @@ function updateLightboxNav() {
   if (currentImages.length <= 1) {
       prevBtn.style.display = 'none';
       nextBtn.style.display = 'none';
-      return;
+  } else {
+      prevBtn.style.display = 'block';
+      nextBtn.style.display = 'block';
   }
-  prevBtn.style.display = 'block';
-  nextBtn.style.display = 'block';
 }
 
 function showNextImage() {
@@ -312,34 +244,13 @@ function showPrevImage() {
 }
 
 // ==========================================
-// 7. SAYFA YÖNETİMİ
+// 5. SAYFA YÖNETİMİ (ROUTING)
 // ==========================================
-async function setLanguage(lang) {
-    let langData;
-    try {
-        const response = await fetch(`${lang}.json`);
-        if (!response.ok) throw new Error('Dil dosyası bulunamadı');
-        langData = await response.json(); 
-        translations[lang] = langData; 
-    } catch (error) {
-        if(lang !== 'tr') return; 
-    }
-    
-    if(langData) {
-        document.documentElement.lang = lang; 
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (langData[key]) el.innerHTML = langData[key];
-        });
-    }
-    localStorage.setItem('lang', lang);
-}
-
 async function showPage(pageId) {
     // HATA ÖNLEME: Eğer sayfa ID'si yoksa 'hero'ya git
     if (!pageId || pageId === '#') pageId = 'hero';
 
-    // Önce tüm sayfaları gizle
+    // Tüm sayfaları gizle
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
     });
@@ -347,13 +258,14 @@ async function showPage(pageId) {
     // Gitmek istenen sayfayı bul
     let newPage = document.getElementById(pageId);
     
+    // Sayfa HTML'de yoksa yüklemeye çalış
     if (!newPage) {
-        // Sayfa henüz yüklenmediyse fetch ile al
         if (pageCache[pageId]) {
             document.getElementById('page-container').insertAdjacentHTML('beforeend', pageCache[pageId]);
         } else {
             try {
                 let fileName = pageId;
+                // Dosya adı eşleştirmeleri
                 if (pageId === 'page-about') fileName = 'about';
                 if (pageId === 'page-services') fileName = 'services';
                 if (pageId === 'page-projects') fileName = 'projects';
@@ -364,23 +276,21 @@ async function showPage(pageId) {
                 if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
                 if (pageId === 'page-pruva-otel') fileName = "pruva-otel";
 
-                // Eğer ana sayfada olmayan bir sayfa isteniyorsa fetch et
                 if (fileName !== pageId) {
                     const response = await fetch(`${fileName}.html`);
-                    if (!response.ok) throw new Error(`Sayfa bulunamadı: ${fileName}`);
+                    if (!response.ok) throw new Error("Dosya bulunamadı");
                     const html = await response.text();
                     pageCache[pageId] = html; 
                     document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
                 }
             } catch (error) {
-                console.error("Sayfa yükleme hatası:", error);
-                // Hata olursa sonsuz döngüye girmemesi için sadece 'hero' varsa oraya dön
+                console.warn("Sayfa yüklenemedi, anasayfaya dönülüyor:", error);
                 if(document.getElementById('hero')) {
-                    location.hash = 'hero';
-                } else {
-                    alert("Sayfa yüklenirken bir hata oluştu ve Ana Sayfa bulunamadı.");
+                     // Eğer istenen sayfa yoksa (örn: assets/.. gibi yanlış link) anasayfaya dön
+                     location.hash = 'hero';
+                     document.getElementById('hero').classList.add('active');
+                     return;
                 }
-                return;
             }
         }
         newPage = document.getElementById(pageId);
@@ -393,11 +303,7 @@ async function showPage(pageId) {
         newPage.classList.add('active');
         window.scrollTo(0, 0); 
         
-        if (pageId === 'page-pruva-otel') {
-          setupRestorationGalleries();
-        }
-        
-        // Dili uygula
+        // Dili uygula (varsa)
         const currentLang = localStorage.getItem('lang') || 'tr';
         if (translations[currentLang]) {
             newPage.querySelectorAll('[data-key]').forEach(el => {
@@ -405,9 +311,14 @@ async function showPage(pageId) {
                 if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
             });
         }
+    } else {
+        // Hiçbir şey bulunamazsa Hero'yu aç
+        const hero = document.getElementById('hero');
+        if(hero) hero.classList.add('active');
     }
 }
 
+// Kategorileri Yükle (Otel, İnşaat vb.)
 function loadCategory(category) {
     const grid = document.getElementById("project-grid");
     if (!grid) return;
@@ -424,53 +335,82 @@ function loadCategory(category) {
     });
 }
 
+// Dil Yükle (Hata verirse geç)
+async function setLanguage(lang) {
+    try {
+        const response = await fetch(`${lang}.json`);
+        if (response.ok) {
+            const langData = await response.json();
+            translations[lang] = langData;
+            document.documentElement.lang = lang; 
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (langData[key]) el.innerHTML = langData[key];
+            });
+        }
+    } catch (e) { console.warn("Dil yüklenemedi:", e); }
+    localStorage.setItem('lang', lang);
+}
+
 // ==========================================
-// 8. BAŞLANGIÇ (INIT)
+// 6. BAŞLANGIÇ (INIT)
 // ==========================================
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        window.scrollTo(0, 0); 
+        console.log("Site başlatılıyor...");
         
+        // Dili ayarla
         let savedLang = localStorage.getItem('lang') || 'tr';
         await setLanguage(savedLang);
 
-        setTimeout(() => {
-            Object.values(galleryDatabase).forEach(data => {
-                if(data.images) data.images.forEach(src => { const i = new Image(); i.src = src; });
-            });
-        }, 2000);
-
+        // Mobil Menü
         const menuToggle = document.getElementById('menu-toggle');
         if(menuToggle) {
             menuToggle.addEventListener('click', () => {
-                document.getElementById('navbar').classList.toggle('open');
+                const nav = document.getElementById('navbar');
+                if(nav) nav.classList.toggle('open');
             });
         }
 
+        // Tıklama Olayları
         document.body.addEventListener('click', (e) => {
+            // Menü linkleri
             if (e.target.matches('.nav-link, .btn-hero-link')) {
                 e.preventDefault();
                 const page = e.target.getAttribute('data-page');
                 if(page) location.hash = page;
-                if(document.getElementById('navbar')) document.getElementById('navbar').classList.remove('open');
+                const nav = document.getElementById('navbar');
+                if(nav) nav.classList.remove('open');
             }
+            // Geri Butonu
             if (e.target.matches('.btn-page-back')) {
                 e.preventDefault();
                 location.hash = 'hero';
             }
         });
 
+        // Hash değişimi
         window.addEventListener('hashchange', () => {
             const pageId = location.hash.replace('#', '') || 'hero';
             showPage(pageId);
         });
 
-        // Başlangıç sayfasını yükle
+        // Başlangıç Sayfasını Aç
         const initialPage = location.hash.replace('#', '') || 'hero';
         showPage(initialPage);
 
+        // ZORLA GÖSTER (GÜVENLİK ÖNLEMİ)
+        setTimeout(() => {
+            document.body.style.opacity = "1";
+            const hero = document.getElementById('hero');
+            if(hero && !location.hash) hero.classList.add('active');
+        }, 500);
+
     } catch (err) {
-        console.error("Kritik Başlatma Hatası:", err);
-        alert("Site başlatılırken bir hata oluştu. Lütfen konsolu (F12) kontrol edin.");
+        console.error("Başlatma hatası:", err);
+        // Hata olsa bile sayfayı aç
+        document.body.style.opacity = "1";
+        const hero = document.getElementById('hero');
+        if(hero) hero.style.display = "flex";
     }
 });
