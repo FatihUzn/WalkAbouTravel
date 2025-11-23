@@ -1,113 +1,29 @@
-<script>
-/* === SEYAHAT BLOG SİSTEMİ (JSON ENTEGRASYONLU) === */
-
-let blogPosts = []; // Boş liste, JSON'dan dolacak
-
-// 1. JSON Dosyasından Verileri Çekme Fonksiyonu
-async function loadBlogData() {
-    try {
-        // Senin 'blog-posts.json' dosyanı okuyoruz
-        const response = await fetch('blog-posts.json');
-        if (!response.ok) throw new Error("JSON dosyası bulunamadı!");
-        
-        blogPosts = await response.json();
-        
-        // Veri geldikten sonra ekrana bas
-        renderBlogPosts();
-    } catch (error) {
-        console.error("Blog verileri yüklenemedi:", error);
-        // Hata olursa kullanıcıya basit bir mesaj göster veya boş bırak
-        const display = document.getElementById('blog-grid-display');
-        if(display) display.innerHTML = "<p style='text-align:center; color:#888;'>Blog yazıları şu an yüklenemiyor.</p>";
+[
+    {
+        "id": 1,
+        "title": "Kapadokya'da Balon Turu Deneyimi",
+        "image": "assets/kapadokya-balon-turu-1.webp",
+        "date": "2025-10-15",
+        "category": "GEZİ REHBERİ",
+        "summary": "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri.",
+        "fullContent": "<p>Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor.</p><p><strong>Ne Zaman Gidilmeli?</strong><br>En iyi sezon Nisan-Ekim arasıdır ancak kışın karlar altındaki manzarası da ayrı bir güzeldir.</p><p><strong>İpucu:</strong><br>Rezervasyonunuzu en az 1 ay önceden yaptırmayı unutmayın, yerler çok çabuk doluyor!</p>"
+    },
+    {
+        "id": 2,
+        "title": "Vizesiz Gidilebilecek 10 Cennet Ülke",
+        "image": "assets/antalya-koy-gezisi-1.webp",
+        "date": "2025-09-20",
+        "category": "İPUÇLARI",
+        "summary": "Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri?",
+        "fullContent": "<p>Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri? Vize prosedürleriyle uğraşmadan tatil yapmanın keyfi paha biçilemez.</p><ul><li><strong>Karadağ:</strong> Adriyatik'in incisi.</li><li><strong>Sırbistan:</strong> Eğlenceli gece hayatı ve lezzetli yemekler.</li><li><strong>Tayland:</strong> Egzotik adalar ve tapınaklar.</li></ul><p>Listemizin tamamı için seyahat danışmanlarımızla iletişime geçebilirsiniz.</p>"
+    },
+    {
+        "id": 3,
+        "title": "Avrupa Turu İçin Çanta Hazırlama Rehberi",
+        "image": "assets/spain-1.webp",
+        "date": "2025-08-05",
+        "category": "REHBER",
+        "summary": "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları.",
+        "fullContent": "<p>Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları. </p><p>Öncelikle 'Kapsül Gardırop' mantığını benimseyin. Birbiriyle uyumlu 3 tişört, 2 pantolon ve 1 rahat yürüyüş ayakkabısı size 1 hafta yeter.</p><p>Unutmayın: Avrupa sokakları parke taşlıdır, tekerlekli valiz yerine sırt çantası tercih etmek hayatınızı kurtarır!</p>"
     }
-}
-
-// 2. Blogları Listeleme
-function renderBlogPosts() {
-    const display = document.getElementById('blog-grid-display');
-    if(!display) return;
-
-    display.innerHTML = ""; 
-    
-    // Tarihe göre sıralama (JSON'da date alanı varsa)
-    blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    blogPosts.forEach(post => {
-        const imgSource = post.image ? post.image : 'assets/background.webp';
-        
-        // JSON dosyasındaki 'summary' alanını kullanıyoruz
-        const summaryText = post.summary ? post.summary.substring(0, 100) + "..." : "Detaylar için tıklayın...";
-
-        const html = `
-            <article class="blog-card">
-                <img src="${imgSource}" alt="${post.title}" loading="lazy" style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px;" onerror="this.src='https://placehold.co/600x400/e2e8f0/1a1a2e?text=Gezi+Rotasi'">
-                
-                <span style="font-size:0.75rem; color:#4c99ff; font-weight:700; letter-spacing:1px; margin-bottom:5px; display:block;">${post.category || 'GENEL'}</span>
-                
-                <h4 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin:10px 0; color:#1a1a2e;">${post.title}</h4>
-                
-                <p style="font-size:15px; color:#4e576f; line-height:1.6; margin-bottom:20px;">
-                    ${summaryText}
-                </p>
-                
-                <a href="javascript:void(0)" onclick="openBlogModal(${post.id})" class="blog-readmore" style="cursor:pointer; font-weight:700; color:#0066cc;">Devamını Oku →</a>
-            </article>
-        `;
-        display.innerHTML += html;
-    });
-}
-
-// 3. Pencereyi (Modal) Açma Fonksiyonu
-function openBlogModal(id) {
-    const post = blogPosts.find(p => p.id === id);
-    if(!post) return;
-
-    // İçeriği Doldur
-    document.getElementById('modal-blog-img').src = post.image || 'assets/background.webp';
-    document.getElementById('modal-blog-category').innerText = post.category || 'BLOG';
-    document.getElementById('modal-blog-title').innerText = post.title;
-    
-    // JSON'daki 'fullContent' alanını kullanıyoruz
-    document.getElementById('modal-blog-text').innerHTML = post.fullContent;
-
-    // Pencereyi Göster
-    const modal = document.getElementById('blog-modal');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-// 4. Pencereyi Kapatma Fonksiyonu
-function closeBlogModal() {
-    const modal = document.getElementById('blog-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// 5. Başlat
-// Sayfa yüklendiğinde verileri çekmeye çalış
-document.addEventListener('DOMContentLoaded', () => {
-    loadBlogData();
-});
-
-// Sayfa geçişlerinde (SPA) blog bölümü görünür olunca veriyi kontrol et
-setInterval(() => {
-    const blogGrid = document.getElementById('blog-grid-display');
-    // Eğer grid var ama içi boşsa ve veri henüz çekilmemişse tekrar dene
-    if(blogGrid && blogGrid.innerHTML.trim() === "" && blogPosts.length === 0) {
-        loadBlogData();
-    } else if (blogGrid && blogGrid.innerHTML.trim() === "" && blogPosts.length > 0) {
-        // Veri varsa ama ekranda yoksa bas
-        renderBlogPosts();
-    }
-}, 1000);
-
-// Pencere dışına tıklayınca kapat
-const modalElement = document.getElementById('blog-modal');
-if(modalElement) {
-    modalElement.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeBlogModal();
-        }
-    });
-}
-</script>
+]
