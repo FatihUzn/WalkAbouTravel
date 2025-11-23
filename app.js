@@ -301,6 +301,16 @@ async function showPage(pageId) {
             location.hash = pageId;
         }
         newPage.classList.add('active');
+        // Eğer Ana Sayfadaysak (hero), Blog bölümünü de aç
+        const homeBlog = document.getElementById('homepage-blog');
+        if (homeBlog) {
+            if (pageId === 'hero') {
+                homeBlog.classList.add('active');
+            } else {
+                // Diğer sayfalardaysak blogu gizle
+                homeBlog.classList.remove('active');
+            }
+        }
         window.scrollTo(0, 0); 
         
         // Dili uygula (varsa)
@@ -414,3 +424,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(hero) hero.style.display = "flex";
     }
 });
+
