@@ -10,14 +10,13 @@ window.onerror = function(message, source, lineno, colno, error) {
 };
 
 // ==========================================
-// 1. VERİ TABANI (RESİMLER VE DETAYLAR)
+// 1. VERİ TABANI VE JSON YÜKLEME
 // ==========================================
 
-// Eskiden const idi, şimdi let yapıyoruz ki içine veri doldurabilelim
-let galleryDatabase = {
-    // ==========================================
-// YENİ: JSON DOSYASINDAN VERİ ÇEKME
-// ==========================================
+// 1.1 Veri Tabanı Değişkeni (Boş Başlatıyoruz)
+let galleryDatabase = {}; 
+
+// 1.2 JSON Dosyasından Veri Çeken Fonksiyon
 async function loadGalleryData() {
     try {
         const response = await fetch('galleries.json'); // JSON dosyasını çağır
@@ -32,12 +31,6 @@ async function loadGalleryData() {
     }
 }
 
-// Sayfa yüklenirken bu fonksiyonu çalıştır
-document.addEventListener('DOMContentLoaded', () => {
-    loadGalleryData();
-    // ... senin diğer başlangıç kodların burada devam edebilir ...
-});
-};
 const projects = {
   otel: [
     { name: "Lüks Kral Dairesi", price: " gecelik ₺15.000", img: "assets/otel1.webp" },
@@ -88,12 +81,12 @@ function openHouseDetail(id) {
   const detail = document.getElementById("house-detail");
   const content = document.getElementById("house-detail-content");
   
-  // Veritabanından veriyi çek
+  // Veritabanından veriyi çek (Yoksa boş obje döndür)
   const data = galleryDatabase[id];
   
   const safeData = data || { 
     title: "Detaylar", 
-    desc: "İçerik yükleniyor...", 
+    desc: "İçerik yükleniyor veya bulunamadı...", 
     price: "", 
     location: "", 
     images: [] 
@@ -329,6 +322,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         console.log("Site başlatılıyor...");
         
+        // YENİ EKLENEN KISIM: Veri tabanını yükle
+        await loadGalleryData(); 
+
         // Dili ayarla
         let savedLang = localStorage.getItem('lang') || 'tr';
         await setLanguage(savedLang);
@@ -384,5 +380,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(hero) hero.style.display = "flex";
     }
 });
-
-
