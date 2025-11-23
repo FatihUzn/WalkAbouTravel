@@ -2598,6 +2598,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .house-card:hover {
     transform: translateY(-5px);
 }
+/* --- ACİL DURUM KODU: JS HATASI OLSA BİLE SİTEYİ GÖSTER --- */
+body, header, footer, section {
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+    transform: none !important;
 }
+
+#hero {
+    display: flex !important; /* Hero'nun flex yapısını koru */
+    opacity: 1 !important;
+}
+
+/* Yükleme animasyonlarını iptal et ki takılı kalmasın */
+* {
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
+}
+}
+
 
 
