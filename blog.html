@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - WalkAbout Travel</title>
     
-    <link rel="stylesheet" href="style.css?v=2.0"> 
+    <link rel="stylesheet" href="style.css?v=1.9"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
@@ -185,8 +185,6 @@
         /* JSON içeriğinden gelen HTML tagleri için stiller */
         .modal-text p { margin-bottom: 20px; }
         .modal-text strong { color: #fff; }
-        .modal-text ul { margin-bottom: 20px; padding-left: 20px; }
-        .modal-text li { margin-bottom: 10px; }
         
         /* Mobil Uyum */
         @media (max-width: 768px) {
@@ -210,10 +208,10 @@
       
         <div class="header-bottom-row">
             <div class="brand">
-                <img src="assets/walkabou_travel_logo.webp" alt="Logo" style="height:45px;" onerror="this.src='assets/golden_palace_logo.webp'"> 
+                <img src="assets/golden_palace_logo.webp" alt="Logo" style="height:45px;"> 
                 <div class="brand-text-container">
-                    <span class="brand-title" style="color:#fff;">WalkAbouTravel</span>
-                    <span class="brand-tagline" style="color:#aaa;">Tourism & Travel</span>
+                    <span class="brand-title" style="color:#fff;">Golden Palace</span>
+                    <span class="brand-tagline" style="color:#aaa;">Real Estate & Architecture</span>
                 </div>
             </div>
         </div>
@@ -238,14 +236,14 @@
 
             <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
                 <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
-                <p style="color:#ddd;">E-Bültenimize katıl, fırsatları kaçırma.</p>
+                <p style="color:#ddd;">Bültenimize katıl.</p>
             </div>
 
         </div>
     </main>
 
     <footer style="background:#0c0c0c; padding:40px; text-align:center; border-top:1px solid #333; color:#888;">
-        <p>© 2025 WalkAbout Travel - Tüm Hakları Saklıdır.</p>
+        <p>© 2025 Golden Palace & WalkAbout Travel.</p>
     </footer>
 
     <div id="blog-modal" class="blog-modal-overlay">
@@ -262,47 +260,47 @@
     </div>
 
     <script>
-        // --- TURİZM VE SEYAHAT ODAKLI YENİ İÇERİKLER ---
+        // --- ÖNEMLİ: VERİLER ARTIK HTML İÇİNDE, HARİCİ DOSYA YOK ---
         const allBlogPosts = [
             {
                 "id": 1,
-                "title": "İtalya'nın Saklı Köyleri: Toskana Rotası",
-                "image": "assets/background.webp", 
-                "date": "22 KASIM 2025",
-                "summary": "Turistik kalabalıktan uzak, üzüm bağları ve orta çağ mimarisiyle dolu bir keşif rotası. İtalya'yı yerlisi gibi gezmek isteyenler için...",
-                "fullContent": "<p>Roma ve Venedik harika, ancak İtalya'nın gerçek ruhu Toskana'nın tepelerine gizlenmiş küçük köylerde atıyor. WalkAbout Travel olarak, sizi kitle turizminden uzaklaştırıp 'Dolce Vita'yı (Tatlı Hayat) gerçek anlamda yaşayacağınız bir rotaya davet ediyoruz.</p><p><strong>San Gimignano'dan Siena'ya</strong><br>Orta Çağ'ın Manhattan'ı olarak bilinen kuleleriyle ünlü San Gimignano'da güne başlayıp, gün batımını Siena'nın ünlü Piazza del Campo meydanında şarap tadımıyla sonlandırıyoruz.</p><p><strong>Yerel Lezzet Durakları</strong><br>Bu turumuzda Michelin yıldızlı restoranlar yerine, İtalyan büyükannelerin (Nonna) işlettiği, taze makarna ve trüf mantarı kokan yerel trattoria'ları tercih ediyoruz.</p>"
+                "title": "Geleceğin Konut Anlayışı: Akıllı ve Yeşil Binalar",
+                "image": "assets/insaat_hero-mobil.webp",
+                "date": "2025-11-22",
+                "summary": "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. Yeşil binalar ve akıllı ev sistemleri...",
+                "fullContent": "<p>Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk haline geldi. WalkAbouTravel İnşaat olarak, projelerimizde sadece betona değil, geleceğe yatırım yapıyoruz.</p><p><strong>Neden Yeşil Bina?</strong><br>Yeşil binalar, enerji tüketimini %30'a varan oranlarda azaltarak hem doğayı hem de bütçenizi korur. Kullandığımız güneş paneli entegreli cephe sistemleri ve yağmur suyu hasadı teknolojileri sayesinde, binalarımız kendi kendine yetebilen ekosistemlere dönüşüyor.</p><p><strong>Akıllı Ev Teknolojileri</strong><br>Yeni projelerimizde standart hale getirdiğimiz IoT (Nesnelerin İnterneti) sistemleri sayesinde, evinizdeki ısıtma, aydınlatma ve güvenlik sistemlerini dünyanın her yerinden kontrol edebilirsiniz.</p>"
             },
             {
                 "id": 2,
-                "title": "Vizesiz Seyahat Edebileceğiniz 5 Büyüleyici Ülke",
-                "image": "assets/for_hero.webp",
-                "date": "15 KASIM 2025",
-                "summary": "Pasaportunuzu kapıp yola çıkmak hiç bu kadar kolay olmamıştı. Vize prosedürleriyle uğraşmadan gidebileceğiniz en popüler rotalar.",
-                "fullContent": "<p>Seyahat etmenin önündeki en büyük engel vize süreçleri gibi görünse de, Türk vatandaşları için kapılarını ardına kadar açan harika ülkeler var. İşte 2025 yılında popülaritesi artan vizesiz rotalar:</p><ul><li><strong>1. Karadağ (Montenegro):</strong> Adriyatik'in incisi. Hem deniz tatili hem de tarih turu için ideal.</li><li><strong>2. Sırbistan:</strong> Belgrad'ın hareketli gece hayatı ve Tuna nehri manzarası sizi bekliyor.</li><li><strong>3. Japonya:</strong> Uzakdoğu'nun mistik atmosferi ve teknolojinin zirvesi. (Vize muafiyeti güncel durumu kontrol edilmeli).</li><li><strong>4. Tayland:</strong> Tropik adalar, egzotik meyveler ve tapınaklar.</li><li><strong>5. Bosna Hersek:</strong> Kültürel bağlarımızın güçlü olduğu, Mostar Köprüsü ile ünlü dost ülke.</li></ul>"
+                "title": "Ege'nin Kalbinde Bir Kaçış: Pruva Otel Deneyimi",
+                "image": "assets/otel_hero-mobil.webp",
+                "date": "2025-11-18",
+                "summary": "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim. Pruva Otel'in sunduğu ayrıcalıklar...",
+                "fullContent": "<p>Ege'nin turkuaz sularına nazır, zeytin ağaçlarının gölgesinde bir sabah uyanmayı hayal edin. Pruva Otel, size sadece bir konaklama değil, ruhunuzu dinlendirecek bir deneyim vaat ediyor.</p><p><strong>Gastronomi Yolculuğu</strong><br>Otelimizin mutfağı, 'Tarladan Sofraya' konseptiyle hizmet veriyor. Kendi bahçemizde yetiştirdiğimiz organik sebzeler ve Ege'nin taze deniz ürünleri, ödüllü şeflerimizin ellerinde sanat eserine dönüşüyor.</p><p><strong>Spa & Wellness</strong><br>Şehrin stresini atmak için özel olarak tasarlanan spa merkezimizde, Bali'den gelen terapistlerimiz eşliğinde kendinizi şımartabilirsiniz.</p>"
             },
             {
                 "id": 3,
-                "title": "Kurumsal Seyahatlerde 'Bleisure' Akımı",
-                "image": "assets/otel_hero-mobil.webp",
-                "date": "08 KASIM 2025",
-                "summary": "İş (Business) ve Eğlence (Leisure) birleşiyor. İş seyahatlerinizi nasıl mini bir tatile dönüştürebilirsiniz?",
-                "fullContent": "<p>Pandemi sonrası iş dünyasının en büyük trendi: <strong>Bleisure</strong>. Artık profesyoneller, iş toplantıları için gittikleri şehirlerde haftasonunu da kalarak seyahatlerini uzatıyorlar.</p><p><strong>WalkAbout Corporate Avantajları</strong><br>Kurumsal müşterilerimiz için sunduğumuz özel paketlerde, toplantı salonu rezervasyonlarının yanına şehir turları ve konser biletleri ekliyoruz. Paris'te bir fuara katıldıktan sonra Seine nehri üzerinde akşam yemeği yemeye ne dersiniz?</p><p>Şirketiniz için hem maliyet avantajı sağlayan hem de çalışan motivasyonunu artıran kurumsal seyahat çözümlerimiz için bizimle iletişime geçin.</p>"
+                "title": "Tarihi Dokuyu Korumak: Galata Restorasyon Projesi",
+                "image": "assets/restorasyon1.webp",
+                "date": "2025-11-10",
+                "summary": "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son restorasyon projemizin detayları...",
+                "fullContent": "<p>Restorasyon, sadece bir binayı yenilemek değil; hafızayı canlı tutmaktır. Galata bölgesindeki son projemizde, 19. yüzyıldan kalma metruk bir yapıyı, orijinal ruhuna sadık kalarak modern bir sanat merkezine dönüştürdük.</p><p><strong>Zorluklar ve Çözümler</strong><br>Yapının statik sorunlarını çözerken, tarihi tuğla dokusuna zarar vermemek için mikro-enjeksiyon yöntemleri kullandık. Ahşap doğramalar, dönemin tekniklerine uygun olarak el işçiliğiyle yeniden üretildi.</p>"
             },
             {
                 "id": 4,
-                "title": "Kapadokya: Peri Bacalarının Gölgesinde Bir Masal",
-                "image": "assets/restorasyon1.webp",
-                "date": "25 EKİM 2025",
-                "summary": "Gün doğarken havalanan yüzlerce sıcak hava balonu ve kayalara oyulmuş lüks oteller. Kapadokya'da unutulmaz bir haftasonu.",
-                "fullContent": "<p>Dünyada eşi benzeri olmayan bir coğrafya: Kapadokya. Sadece bir manzara değil, binlerce yıllık bir tarih ve jeolojik bir mucize.</p><p><strong>Mağara Otel Deneyimi</strong><br>Partner otelimiz 'Cave Luxury Suites' ile, konforunuzdan ödün vermeden bin yıllık mağara odalarda konaklama imkanı sunuyoruz. Doğal klima etkisiyle yazın serin, kışın sıcak olan bu odalar, jakuzi ve şömine detaylarıyla balayı çiftlerinin vazgeçilmezi.</p><p><strong>Balon Turu İpuçları</strong><br>Balon turu için en ideal mevsimler İlkbahar ve Sonbahar aylarıdır. Rezervasyonunuzu WalkAbout üzerinden yaptırarak transfer ve şampanya ikramı avantajlarından faydalanabilirsiniz.</p>"
+                "title": "2025 Gayrimenkul Yatırım Trendleri",
+                "image": "assets/for_hero.webp",
+                "date": "2025-10-25",
+                "summary": "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor...",
+                "fullContent": "<p>Gayrimenkul dünyası büyük bir dönüşümden geçiyor. 2025 yılında yatırımcıların odağında 'esneklik' ve 'konum' var.</p><p><strong>1. Turizm Odaklı Rezidanslar</strong><br>Kısa dönem kiralamaya (Airbnb vb.) uygun, otel konseptli rezidanslar, klasik daire kiralamalarına göre %40 daha fazla getiri sağlıyor.</p><p><strong>2. Mikro-Ofisler</strong><br>Hibrit çalışma modelinin kalıcı olmasıyla, dev plazalar yerini şehrin farklı noktalarına dağılmış butik ofislere bırakıyor.</p>"
             },
             {
                 "id": 5,
-                "title": "2026 Erken Rezervasyon Fırsatları Başladı",
-                "image": "assets/for_hero.webp",
-                "date": "10 EKİM 2025",
-                "summary": "Gelecek yazın tatil planını şimdiden yapanlar %40'a varan indirimlerden yararlanıyor. İşte favori otel listemiz...",
-                "fullContent": "<p>Ekonomik bir tatilin altın kuralı: Erken Planlama. WalkAbout Travel olarak Antalya, Bodrum ve Fethiye'nin en seçkin resort otelleriyle yaptığımız anlaşmalar sayesinde, şimdi alıp yaza keyifle gitme fırsatı sunuyoruz.</p><p><strong>Neden Erken Rezervasyon?</strong><br>Sadece fiyat avantajı değil, oda seçme özgürlüğü de sunar. Deniz manzaralı, havuz bağlantılı (swim-up) odalar genellikle sezon açılmadan tükenmektedir. Aile odaları ve villa seçenekleri için acele edin.</p>"
+                "title": "Minimalizm ve Lüksün Buluşması: İç Mekan Tasarımı",
+                "image": "assets/background.webp",
+                "date": "2025-10-05",
+                "summary": "Az aslında çoktur. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan trendleri...",
+                "fullContent": "<p>Lüks artık şatafat ve abartı demek değil. Yeni lüks; sadelik, kaliteli malzeme ve kusursuz işçilikte gizli. İç mekan tasarımlarımızda 'Sessiz Lüks' (Quiet Luxury) akımını benimsiyoruz.</p><p><strong>Doğal Malzemelerin Gücü</strong><br>Sentetik malzemeler yerine doğal taş, masif ahşap ve keten kumaşlar kullanarak mekanlara sıcaklık katıyoruz.</p><p>Eviniz, sizin sığınağınızdır. Karmaşadan uzak, dingin ve sofistike yaşam alanları tasarlamak için buradayız.</p>"
             }
         ];
 
@@ -316,8 +314,8 @@
                 return;
             }
 
-            // Tarihe göre sırala (Mevcut sıra kalsın istenirse bu satır kaldırılabilir)
-            // posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            // Tarihe göre sırala (Yeniden eskiye)
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             posts.forEach(post => {
                 const html = `
@@ -335,7 +333,7 @@
             });
         }
 
-        // 3. Modalı Açma
+        // 3. Modalı Açma (Detay Gösterme)
         function openModal(id) {
             const post = allBlogPosts.find(p => p.id === id);
             
