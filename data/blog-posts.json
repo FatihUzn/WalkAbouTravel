@@ -1,3 +1,4 @@
+
 [
     {
         "id": 1,
@@ -27,3 +28,33 @@
         "fullContent": "<p>Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları. </p><p>Öncelikle 'Kapsül Gardırop' mantığını benimseyin. Birbiriyle uyumlu 3 tişört, 2 pantolon ve 1 rahat yürüyüş ayakkabısı size 1 hafta yeter.</p><p>Unutmayın: Avrupa sokakları parke taşlıdır, tekerlekli valiz yerine sırt çantası tercih etmek hayatınızı kurtarır!</p>"
     }
 ]
+[
+    {
+        "id": 1,
+        "title": "Kapadokya'da Balon Turu Deneyimi",
+        "image": "assets/kapadokya-balon-turu-1.webp",
+        "date": "2025-10-15",
+        "category": "GEZİ REHBERİ",
+        "summary": "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri.",
+        "fullContent": "<p>Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor.</p><p><strong>Ne Zaman Gidilmeli?</strong><br>En iyi sezon Nisan-Ekim arasıdır ancak kışın karlar altındaki manzarası da ayrı bir güzeldir.</p><p><strong>İpucu:</strong><br>Rezervasyonunuzu en az 1 ay önceden yaptırmayı unutmayın, yerler çok çabuk doluyor!</p>"
+    },
+    {
+        "id": 2,
+        "title": "Vizesiz Gidilebilecek 10 Cennet Ülke",
+        "image": "assets/antalya-koy-gezisi-1.webp",
+        "date": "2025-09-20",
+        "category": "İPUÇLARI",
+        "summary": "Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri?",
+        "fullContent": "<p>Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri? Vize prosedürleriyle uğraşmadan tatil yapmanın keyfi paha biçilemez.</p><ul><li><strong>Karadağ:</strong> Adriyatik'in incisi.</li><li><strong>Sırbistan:</strong> Eğlenceli gece hayatı ve lezzetli yemekler.</li><li><strong>Tayland:</strong> Egzotik adalar ve tapınaklar.</li></ul><p>Listemizin tamamı için seyahat danışmanlarımızla iletişime geçebilirsiniz.</p>"
+    },
+    {
+        "id": 3,
+        "title": "Avrupa Turu İçin Çanta Hazırlama Rehberi",
+        "image": "assets/spain-1.webp",
+        "date": "2025-08-05",
+        "category": "REHBER",
+        "summary": "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları.",
+        "fullContent": "<p>Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları. </p><p>Öncelikle 'Kapsül Gardırop' mantığını benimseyin. Birbiriyle uyumlu 3 tişört, 2 pantolon ve 1 rahat yürüyüş ayakkabısı size 1 hafta yeter.</p><p>Unutmayın: Avrupa sokakları parke taşlıdır, tekerlekli valiz yerine sırt çantası tercih etmek hayatınızı kurtarır!</p>"
+    }
+]
+>>>>>>> 9a05e6df8cbdd2a245f03c72dd55c0ae0a609f2c
