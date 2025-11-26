@@ -1,37 +1,47 @@
-<section id="page-projects" class="page-section">
-  <div>
+<section id="page-otel" class="page-section" style="padding-top: 140px;">
+  
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');" data-key="btn_back">← Geri</a>
+
+  <div class="new-layout-container">
     
-    <h2 data-key="projects_title_featured">Öne Çıkan Tur Programlarımız</h2>
-    <div class="project-grid" style="margin-bottom: 80px;">
-      <div class="project-card">
-        <img loading="lazy" src="assets/for_konut.webp" alt="Konut Projesi" loading="lazy">
-        <h3 data-key="project_h3_residence">Kültür Turları</h3>
-      </div>
-      <div class="project-card">
-        <img src="assets/for_ticari.webp" alt="Ticari Proje" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=Ticari'">
-        <h3 data-key="project_h3_commercial">Macera Turları</h3>
-      </div>
-      <div class="project-card">
-        <img src="assets/for_cok_amacli.webp" alt="Cok Amacli Proje" loading="lazy" onerror="this.src='https://placehold.co/320x220/111/f59e0b?text=Çok+Amaçlı'">
-        <h3 data-key="project_h3_multipurpose">Kurumsal Seyahatler</h3>
-      </div>
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 10px;">
+            Yurt İçi Kültür Turları
+        </h2>
+        <p style="color: #aaa; font-size: 18px;">
+            Anadolu'nun eşsiz güzelliklerini profesyonel rehberlerimizle keşfedin.
+        </p>
+        <div class="title-gold-line"></div>
     </div>
 
-    
-    <h2 data-key="projects_title_latest">En Son Tamamlanan Turlarımız</h2>
-    <div class="latest-grid">
-      <div class="latest-card">
-        <img src="assets/for_latest1.webp" alt="Avrupa Başkentleri" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+1'"> 
-        <h3 data-key="latest_h3_1">Avrupa Başkentleri</h3>
-      </div>
-      <div class="latest-card">
-        <img src="assets/for_latest2.webp" alt="Uzakdoğu Keşifleri" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+2'">
-        <h3 data-key="latest_h3_2">Uzakdoğu Keşifleri</h3>
-      </div>
-      <div class="latest-card">
-        <img src="assets/for_latest3.webp" alt="Ege & Akdeniz Cruise" loading="lazy" onerror="this.src='https://placehold.co/340x240/111/f59e0b?text=Latest+3'">
-        <h3 data-key="latest_h3_3">Ege & Akdeniz Cruise</h3>
-      </div>
+    <div class="house-gallery">
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
+            <img src="assets/mardin-konak-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Mardin'">
+            <h3>Mardin Kültür Turu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
+            <img src="assets/kapadokya-balon-1.webp" alt="Kapadokya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Kapadokya'">
+            <h3>Kapadokya Balon Turu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
+            <img src="assets/antalya-koy-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Antalya'">
+            <h3>Antalya & Kaş Turu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
+            <img src="assets/fethiye-oludeniz-1.webp" alt="Fethiye Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Fethiye'">
+            <h3>Fethiye & Ölüdeniz</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-PAMUKKALE')">
+            <img src="assets/pamukkale-traverten-1.webp" alt="Pamukkale Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Pamukkale'">
+            <h3>Pamukkale & Hierapolis</h3>
+        </div>
+
     </div>
+
   </div>
 </section>
