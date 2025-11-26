@@ -2751,7 +2751,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: relative;
     z-index: 51;
 }
+/* Butonları her şeyin önüne getir */
+.hero-links-container, .btn-hero-link {
+    position: relative;
+    z-index: 999 !important; /* Video ve overlay katmanlarının en üstünde */
+    pointer-events: auto !important; /* Tıklamayı zorla aç */
+    cursor: pointer;
 }
+}
+
 
 
 
