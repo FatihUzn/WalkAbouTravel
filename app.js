@@ -400,35 +400,34 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
 
+
         // ==========================================
-        // DÜZELTİLMİŞ TIKLAMA YÖNETİMİ
-        // ==========================================
-        document.body.addEventListener('click', (e) => {
-            // 1. Tıklanan öğenin kendisi veya kapsayıcısı bizim butonumuz mu?
-            // (matches yerine closest kullanıyoruz, böylece ikon veya yazıya tıklansa bile çalışır)
-            const targetLink = e.target.closest('.nav-link, .btn-hero-link');
+// GÜNCELLENMİŞ TIKLAMA YÖNETİMİ (KESİN ÇÖZÜM)
+// ==========================================
+document.body.addEventListener('click', (e) => {
+    // 1. Tıklanan öğe (veya kapsayıcısı) bizim butonlarımızdan biri mi?
+    const targetLink = e.target.closest('.nav-link, .btn-hero-link, .btn');
 
-            // Eğer buton değilse işlem yapma
-            if (!targetLink) return;
+    // Buton değilse işlemi durdur
+    if (!targetLink) return;
 
-            // 2. Butonun 'data-page' özelliğini al
-            const page = targetLink.getAttribute('data-page');
+    // 2. Bu bir "Sayfa Değiştirme" butonu mu? (data-page özelliği var mı?)
+    const pageToLoad = targetLink.getAttribute('data-page');
 
-            // 3. Eğer 'data-page' VARSA (Örn: Turizm, Otel butonları):
-            if (page) {
-                e.preventDefault(); // Sayfanın en üste atmasını engelle
-                location.hash = page; // Yönlendirmeyi yap (showPage tetiklenir)
-                
-                // Mobilde menü açıksa kapat
-                const nav = document.getElementById('navbar');
-                if(nav) nav.classList.remove('open');
-            } 
-            // 4. Eğer 'data-page' YOKSA (Örn: Blog butonu):
-            else {
-                // e.preventDefault() YAPMIYORUZ. 
-                // Bırakıyoruz tarayıcı 'href' içindeki #homepage-blog'a gitsin.
-            }
-        });
+    if (pageToLoad) {
+        // EVET: Bu bir sayfa yükleme butonu.
+        e.preventDefault(); // Linkin standart davranışını engelle (# işareti atmasın)
+        console.log("Sayfa yükleniyor: " + pageToLoad); // Konsola bilgi yaz (Hata ayıklama için)
+        
+        location.hash = pageToLoad; // URL'deki hash'i değiştir (Bu, showPage fonksiyonunu tetikler)
+        
+        // Mobilde menü açıksa kapat
+        const nav = document.getElementById('navbar');
+        if(nav) nav.classList.remove('open');
+    } 
+    // HAYIR: Bu sadece sayfayı aşağı kaydıran bir buton (Blog butonu gibi).
+    // JavaScript buraya karışmaz, tarayıcı doğal olarak aşağı kayar.
+});
 
         window.addEventListener('hashchange', () => {
             const pageId = location.hash.replace('#', '') || 'hero';
@@ -464,3 +463,4 @@ window.addEventListener('scroll', function() {
     }
 
 });
+
