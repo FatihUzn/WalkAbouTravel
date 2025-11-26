@@ -12,11 +12,14 @@ function throttle(func, limit) {
   }
 }
 
-// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU ===
+// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU (GÜNCELLENDİ) ===
+// Artık tire (-) işaretini otomatik koymuyor.
+// Dosya adının başı (prefix) neyse tam olarak onu yazacağız.
 function generateImages(baseName, count) {
     const images = [];
     for (let i = 1; i <= count; i++) {
-        images.push(`assets/${baseName}-${i}.webp`);
+        // assets/ + dosya_adı_başı + sayı + .webp
+        images.push(`assets/${baseName}${i}.webp`);
     }
     return images;
 }
@@ -26,7 +29,6 @@ const translations = {};
 const pageCache = {}; 
 let globalPropertyImages = [];
 let globalImageIndex = 0;
-// En kalabalık klasöründe 20 resim var (Kapadokya), hepsini tek seferde açması için 25 yapıyoruz.
 const IMAGES_PER_LOAD = 25; 
 
 // --- RESTORASYON GALERİ DEĞİŞKENLERİ ---
@@ -37,7 +39,7 @@ let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 
 
-// === TURİZM VERİ TABANI (GERÇEK SAYILAR) ===
+// === TURİZM VERİ TABANI (ORİJİNAL DOSYA İSİMLERİYLE) ===
 const TOUR_DATA = {
   
   // --- YURT İÇİ ---
@@ -48,8 +50,8 @@ const TOUR_DATA = {
     "area": "Güneydoğu Anadolu",
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
-    // Elinde 16 resim var
-    "images": generateImages("mardin-konak", 16) 
+    // Dosya adı: mardin tarihi ko nak-dokusu-1.webp
+    "images": generateImages("mardin tarihi ko nak-dokusu-", 16) 
   },
   "TUR-TR-ANTALYA": {
     "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
@@ -58,8 +60,8 @@ const TOUR_DATA = {
     "area": "Akdeniz Bölgesi",
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    // Elinde 17 resim var
-    "images": generateImages("antalya-koy", 17)
+    // Dosya adı: antalya koy gezisi si-1.webp
+    "images": generateImages("antalya koy gezisi si-", 17)
   },
   "TUR-TR-KAPADOKYA": {
     "title": "Kapadokya - Balon ve Peribacaları Turu",
@@ -68,8 +70,8 @@ const TOUR_DATA = {
     "area": "İç Anadolu",
     "rooms": "Mağara Otel Konaklama",
     "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
-    // Elinde 20 resim var
-    "images": generateImages("kapadokya-balon", 20)
+    // Dosya adı: kapadokya-balon-turu-1.webp
+    "images": generateImages("kapadokya-balon-turu-", 20)
   },
   "TUR-TR-FETHIYE": {
     "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
@@ -78,8 +80,8 @@ const TOUR_DATA = {
     "area": "Ege Bölgesi",
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
-    // Elinde 19 resim var
-    "images": generateImages("fethiye-oludeniz", 19)
+    // Dosya adı: fethiye-oludeniz-manzarasi-1.webp
+    "images": generateImages("fethiye-oludeniz-manzarasi-", 19)
   },
   "TUR-TR-PAMUKKALE": {
     "title": "Pamukkale - Travertenler & Antik Kent",
@@ -88,8 +90,8 @@ const TOUR_DATA = {
     "area": "Denizli",
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
-    // Elinde 11 resim var
-    "images": generateImages("pamukkale-traverten", 11)
+    // Dosya adı: pamukkale traver ten-dogal-1.webp
+    "images": generateImages("pamukkale traver ten-dogal-", 11)
   },
 
   // --- YURT DIŞI ---
@@ -100,8 +102,8 @@ const TOUR_DATA = {
     "area": "İspanya",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
-    // Elinde 15 resim var
-    "images": generateImages("spain", 15)
+    // Dosya adı: spain-1.webp
+    "images": generateImages("spain-", 15)
   },
   "TUR-D-RUSYA-KIS": {
     "title": "Rusya (Kış Masalı)",
@@ -110,8 +112,8 @@ const TOUR_DATA = {
     "area": "Rusya Federasyonu",
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
-    // Elinde 13 resim var
-    "images": generateImages("rusya", 13)
+    // Dosya adı: rusya-1.webp
+    "images": generateImages("rusya-", 13)
   },
   "TUR-D-BREZILYA": {
     "title": "Brezilya - Rio Karnavalı ve Amazon",
@@ -120,8 +122,8 @@ const TOUR_DATA = {
     "area": "Brezilya",
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
-    // Elinde 15 resim var
-    "images": generateImages("brazil", 15)
+    // Dosya adı: brazil 1.webp (DİKKAT: Burada boşluk var!)
+    "images": generateImages("brazil ", 15)
   },
   "TUR-D-AMERIKA": {
     "title": "ABD - New York & Batı Kıyısı",
@@ -130,8 +132,8 @@ const TOUR_DATA = {
     "area": "Amerika Birleşik Devletleri",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
-    // Elinde 9 resim var
-    "images": generateImages("new-york", 9)
+    // Dosya adı: new-york-1.webp
+    "images": generateImages("new-york-", 9)
   }
 };
 
