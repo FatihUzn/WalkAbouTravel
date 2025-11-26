@@ -2738,6 +2738,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .footer-column.logo-column {
         order: -1; /* Logoyu en başa al */
     }
+/* Butonların her zaman en üstte ve tıklanabilir olmasını sağlar */
+.hero-links-container {
+    position: relative;
+    z-index: 50 !important; /* Video ve overlay katmanlarının üstüne çıkarır */
+    pointer-events: auto !important;
 }
+
+/* Butonların kendisine de tıklama özelliği ver */
+.btn-hero-link {
+    cursor: pointer;
+    position: relative;
+    z-index: 51;
+}
+}
+
 
 

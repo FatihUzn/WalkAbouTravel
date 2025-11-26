@@ -400,17 +400,33 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
 
+        // ==========================================
+        // DÜZELTİLMİŞ TIKLAMA YÖNETİMİ
+        // ==========================================
         document.body.addEventListener('click', (e) => {
-            if (e.target.matches('.nav-link, .btn-hero-link')) {
-                e.preventDefault();
-                const page = e.target.getAttribute('data-page');
-                if(page) location.hash = page;
+            // 1. Tıklanan öğenin kendisi veya kapsayıcısı bizim butonumuz mu?
+            // (matches yerine closest kullanıyoruz, böylece ikon veya yazıya tıklansa bile çalışır)
+            const targetLink = e.target.closest('.nav-link, .btn-hero-link');
+
+            // Eğer buton değilse işlem yapma
+            if (!targetLink) return;
+
+            // 2. Butonun 'data-page' özelliğini al
+            const page = targetLink.getAttribute('data-page');
+
+            // 3. Eğer 'data-page' VARSA (Örn: Turizm, Otel butonları):
+            if (page) {
+                e.preventDefault(); // Sayfanın en üste atmasını engelle
+                location.hash = page; // Yönlendirmeyi yap (showPage tetiklenir)
+                
+                // Mobilde menü açıksa kapat
                 const nav = document.getElementById('navbar');
                 if(nav) nav.classList.remove('open');
-            }
-            if (e.target.matches('.btn-page-back')) {
-                e.preventDefault();
-                location.hash = 'hero';
+            } 
+            // 4. Eğer 'data-page' YOKSA (Örn: Blog butonu):
+            else {
+                // e.preventDefault() YAPMIYORUZ. 
+                // Bırakıyoruz tarayıcı 'href' içindeki #homepage-blog'a gitsin.
             }
         });
 
@@ -446,4 +462,5 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
         header.style.padding = '16px 32px'; // Eski haline getir
     }
+
 });
