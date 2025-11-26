@@ -13,7 +13,6 @@ function throttle(func, limit) {
 }
 
 // === OTOMATİK RESİM LİSTESİ OLUŞTURUCU ===
-// Bu fonksiyon, verdiğin isim ve sayıya göre (örn: mardin-1...mardin-15) listeyi hazırlar.
 function generateImages(baseName, count) {
     const images = [];
     for (let i = 1; i <= count; i++) {
@@ -27,7 +26,8 @@ const translations = {};
 const pageCache = {}; 
 let globalPropertyImages = [];
 let globalImageIndex = 0;
-const IMAGES_PER_LOAD = 15; // Galerideki tüm resimleri tek seferde yükle
+// En kalabalık klasöründe 20 resim var (Kapadokya), hepsini tek seferde açması için 25 yapıyoruz.
+const IMAGES_PER_LOAD = 25; 
 
 // --- RESTORASYON GALERİ DEĞİŞKENLERİ ---
 const RESTORATION_IMAGES_PER_LOAD = 4;
@@ -37,9 +37,10 @@ let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 
 
-// === TURİZM VERİ TABANI ===
-// "generateImages" fonksiyonu sayesinde tek tek resim yazmıyoruz.
+// === TURİZM VERİ TABANI (GERÇEK SAYILAR) ===
 const TOUR_DATA = {
+  
+  // --- YURT İÇİ ---
   "TUR-TR-MARDIN": {
     "title": "Mardin - Tarihi Konaklar & Kültür Turu",
     "price": "5 Gün / 4 Gece, 8.900 TL",
@@ -47,7 +48,8 @@ const TOUR_DATA = {
     "area": "Güneydoğu Anadolu",
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
-    "images": generateImages("mardin-konak", 15) 
+    // Elinde 16 resim var
+    "images": generateImages("mardin-konak", 16) 
   },
   "TUR-TR-ANTALYA": {
     "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
@@ -56,7 +58,8 @@ const TOUR_DATA = {
     "area": "Akdeniz Bölgesi",
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    "images": generateImages("antalya-koy", 15)
+    // Elinde 17 resim var
+    "images": generateImages("antalya-koy", 17)
   },
   "TUR-TR-KAPADOKYA": {
     "title": "Kapadokya - Balon ve Peribacaları Turu",
@@ -65,7 +68,8 @@ const TOUR_DATA = {
     "area": "İç Anadolu",
     "rooms": "Mağara Otel Konaklama",
     "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
-    "images": generateImages("kapadokya-balon", 15)
+    // Elinde 20 resim var
+    "images": generateImages("kapadokya-balon", 20)
   },
   "TUR-TR-FETHIYE": {
     "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
@@ -74,7 +78,8 @@ const TOUR_DATA = {
     "area": "Ege Bölgesi",
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
-    "images": generateImages("fethiye-oludeniz", 15)
+    // Elinde 19 resim var
+    "images": generateImages("fethiye-oludeniz", 19)
   },
   "TUR-TR-PAMUKKALE": {
     "title": "Pamukkale - Travertenler & Antik Kent",
@@ -83,8 +88,11 @@ const TOUR_DATA = {
     "area": "Denizli",
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
-    "images": generateImages("pamukkale-traverten", 15)
+    // Elinde 11 resim var
+    "images": generateImages("pamukkale-traverten", 11)
   },
+
+  // --- YURT DIŞI ---
   "TUR-D-ISPANYA": {
     "title": "İspanya - Barselona & Endülüs Rüyası",
     "price": "9 Gün / 8 Gece, 1.800 €",
@@ -92,6 +100,7 @@ const TOUR_DATA = {
     "area": "İspanya",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
+    // Elinde 15 resim var
     "images": generateImages("spain", 15)
   },
   "TUR-D-RUSYA-KIS": {
@@ -101,7 +110,8 @@ const TOUR_DATA = {
     "area": "Rusya Federasyonu",
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
-    "images": generateImages("rusya", 15)
+    // Elinde 13 resim var
+    "images": generateImages("rusya", 13)
   },
   "TUR-D-BREZILYA": {
     "title": "Brezilya - Rio Karnavalı ve Amazon",
@@ -110,6 +120,7 @@ const TOUR_DATA = {
     "area": "Brezilya",
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
+    // Elinde 15 resim var
     "images": generateImages("brazil", 15)
   },
   "TUR-D-AMERIKA": {
@@ -119,14 +130,14 @@ const TOUR_DATA = {
     "area": "Amerika Birleşik Devletleri",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
-    "images": generateImages("new-york", 15)
+    // Elinde 9 resim var
+    "images": generateImages("new-york", 9)
   }
 };
 
 
 // === ANA FONKSİYON: DETAY PENCERESİNİ AÇ ===
 async function openHouseDetail(tourID) {
-  
   const tour = TOUR_DATA[tourID]; 
 
   if (!tour) {
@@ -189,7 +200,7 @@ function closeHouseDetail() {
   document.body.style.overflow = "auto"; 
 }
 
-// === GALERİ RESİM YÜKLEME (HATA YÖNETİMİ İLE) ===
+// === GALERİ RESİM YÜKLEME ===
 function loadMorePropertyImages() {
   const galleryContainer = document.getElementById('detail-gallery-container');
 
@@ -200,10 +211,9 @@ function loadMorePropertyImages() {
       return;
   }
 
-  // Tüm resimleri (1'den 15'e kadar) yükle
+  // Tüm resimleri (Limit 25 olduğu için hepsi) yükle
   const imagesToLoad = globalPropertyImages.slice(globalImageIndex, globalImageIndex + IMAGES_PER_LOAD);
 
-  // Hata durumunda (resim yoksa) o resmi gizle
   const imagesHTML = imagesToLoad.map(img => 
     `<img loading="lazy" src="${img}" alt="Tur Görseli" onclick="openLightbox(this.src)" onerror="this.style.display='none'" style="cursor:pointer; transition: transform 0.3s;">`
   ).join("");
