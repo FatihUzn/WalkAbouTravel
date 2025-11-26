@@ -27,85 +27,164 @@ let globalRestorationBeforeIndex = 0;
 let globalRestorationAfterIndex = 0;
 
 
-// === MANUEL VERİ TABANI (Sorunu Çözen Kısım) ===
-// Dışarıdan dosya (json) aramak yerine verileri buraya sabitliyoruz.
-const MANUAL_GALLERIES = {
-    // --- OTEL ODALARI ---
-    'OTEL1': { 
-        title: 'Kral Dairesi', location: 'İzmir / Konak', area: '85 m²', rooms: '2+1', price: '₺15.000 / Gece', 
-        desc: 'Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks dairemiz.',
-        images: ['assets/ks1.webp', 'assets/otel1.webp', 'assets/otel2.webp']
-    },
-    'OTEL2': { 
-        title: 'Deniz Manzaralı Suit', location: 'İzmir / Konak', area: '60 m²', rooms: '1+1', price: '₺8.500 / Gece', 
-        desc: 'Ege denizinin maviliğine uyanacağınız, geniş oturma alanlı suit.',
-        images: ['assets/b1_plus1.webp', 'assets/otel3.webp']
-    },
-    'OTEL3': { title: 'Aile Odası', location: 'İzmir / Konak', area: '50 m²', rooms: '1+1', price: '₺6.800 / Gece', desc: 'Geniş aileler için ideal, ferah ve konforlu.', images: ['assets/b2_plus1.webp'] },
-    'OTEL4': { title: 'Standart Oda (Deniz)', location: 'İzmir / Konak', area: '30 m²', rooms: '1+0', price: '₺4.200 / Gece', desc: 'Deniz manzaralı standart oda.', images: ['assets/fs1.webp'] },
-    'OTEL5': { title: 'Standart Oda (Kara)', location: 'İzmir / Konak', area: '28 m²', rooms: '1+0', price: '₺3.500 / Gece', desc: 'Şehir manzaralı sessiz oda.', images: ['assets/em1.webp'] },
-
-    // --- SATILIK / KİRALIK EMLAK ---
-    'A': { 
-        title: 'NURİPAŞA BİNA', location: 'Zeytinburnu', area: '450 m²', rooms: 'Komple Bina', price: 'Fiyat Sorunuz', 
-        desc: 'Merkezi konumda, yatırımlık komple bina.', 
-        images: ['assets/house-galleryA.webp', 'assets/house_inner1.webp', 'assets/house_inner2.webp'] 
-    },
-    'B': { title: 'BÜYÜKYALI 3.5+1', location: 'Zeytinburnu', area: '210 m²', rooms: '3.5+1', price: 'Fiyat Sorunuz', desc: 'Lüks site içerisinde, sosyal olanaklara sahip daire.', images: ['assets/house-galleryB.webp'] },
-    'C': { title: 'KAYAŞEHİR EMLAK KONUT', location: 'Başakşehir', area: '140 m²', rooms: '3+1', price: 'Fiyat Sorunuz', desc: 'Gelişmekte olan bölgede fırsat daire.', images: ['assets/house-galleryC.webp'] },
-    'D': { title: 'BAHÇELİEVLER DUBLEKS', location: 'Bahçelievler', area: '280 m²', rooms: '6+2', price: 'Fiyat Sorunuz', desc: 'Geniş aileler için ferah dubleks.', images: ['assets/house-galleryD.webp'] },
-    'E': { title: 'THE İSTANBUL RESIDENCE', location: 'Veliefendi', area: '110 m²', rooms: '2+1', price: 'Kiralık', desc: 'Residans konforunda kiralık daire.', images: ['assets/house-galleryE.webp'] },
-    'F': { title: 'THE İSTANBUL 1+1', location: 'Veliefendi', area: '75 m²', rooms: '1+1', price: 'Kiralık', desc: 'Yalnız yaşayanlar için ideal lüks daire.', images: ['assets/house-galleryF.webp'] },
-    'G': { title: 'YEDİ MAVİ 3+1', location: 'Zeytinburnu', area: '190 m²', rooms: '3+1', price: 'Satılık', desc: 'Denize sıfır markalı konut projesi.', images: ['assets/house-galleryG.webp'] },
-    'H': { title: 'YEDİ MAVİ H BLOK', location: 'Zeytinburnu', area: '185 m²', rooms: '3+1', price: 'Kiralık', desc: 'Özel blokta kiralık lüks daire.', images: ['assets/house-galleryH.webp'] }
+// === TURİZM VERİ TABANI (Galleries.json verilerin) ===
+const TOUR_DATA = {
+  "TUR-TR-MARDIN": {
+    "title": "Mardin - Tarihi Konaklar & Kültür Turu",
+    "price": "5 Gün / 4 Gece, 8.900 TL",
+    "location": "Mardin ve Çevresi",
+    "area": "Güneydoğu Anadolu",
+    "rooms": "Özel Butik Otel",
+    "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
+    "images": [
+      "assets/mardin-konak-1.webp", "assets/mardin-konak-2.webp", "assets/mardin-konak-3.webp"
+    ]
+  },
+  "TUR-TR-ANTALYA": {
+    "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
+    "price": "7 Gün / 6 Gece, 12.500 TL",
+    "location": "Antalya, Kaş, Kemer",
+    "area": "Akdeniz Bölgesi",
+    "rooms": "Her şey Dahil Otel",
+    "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
+    "images": [
+      "assets/antalya-koy-1.webp"
+    ]
+  },
+  "TUR-TR-KAPADOKYA": {
+    "title": "Kapadokya - Balon ve Peribacaları Turu",
+    "price": "4 Gün / 3 Gece, 9.800 TL",
+    "location": "Göreme, Uçhisar, Avanos",
+    "area": "İç Anadolu",
+    "rooms": "Mağara Otel Konaklama",
+    "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
+    "images": [
+      "assets/kapadokya-balon-1.webp", "assets/kapadokya-balon-2.webp", "assets/kapadokya-balon-3.webp"
+    ]
+  },
+  "TUR-TR-FETHIYE": {
+    "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
+    "price": "3 Gün / 2 Gece, 6.750 TL",
+    "location": "Ölüdeniz, Kelebekler Vadisi",
+    "area": "Ege Bölgesi",
+    "rooms": "Butik Pansiyon",
+    "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
+    "images": [
+      "assets/fethiye-oludeniz-1.webp"
+    ]
+  },
+  "TUR-TR-PAMUKKALE": {
+    "title": "Pamukkale - Travertenler & Antik Kent",
+    "price": "2 Gün / 1 Gece, 4.500 TL",
+    "location": "Pamukkale, Hierapolis",
+    "area": "Denizli",
+    "rooms": "Termal Otel",
+    "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
+    "images": [
+      "assets/pamukkale-traverten-1.webp"
+    ]
+  },
+  "TUR-D-ISPANYA": {
+    "title": "İspanya - Barselona & Endülüs Rüyası",
+    "price": "9 Gün / 8 Gece, 1.800 €",
+    "location": "Barselona, Granada, Sevilla",
+    "area": "İspanya",
+    "rooms": "4 Yıldızlı Oteller",
+    "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
+    "images": [
+      "assets/spain-1.webp", "assets/spain-2.webp"
+    ]
+  },
+  "TUR-D-RUSYA-KIS": {
+    "title": "Rusya (Kış Masalı)",
+    "price": "6 Gün / 5 Gece, 1.450 €",
+    "location": "Moskova, St. Petersburg",
+    "area": "Rusya Federasyonu",
+    "rooms": "5 Yıldızlı Oteller",
+    "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
+    "images": [
+      "assets/rusya-1.webp", "assets/rusya-2.webp"
+    ]
+  },
+  "TUR-D-BREZILYA": {
+    "title": "Brezilya - Rio Karnavalı ve Amazon",
+    "price": "10 Gün / 9 Gece, 2.990 $",
+    "location": "Rio de Janeiro, Manaus",
+    "area": "Brezilya",
+    "rooms": "Lüks Lodge ve Oteller",
+    "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
+    "images": [
+      "assets/brazil-1.webp", "assets/brazil-2.webp"
+    ]
+  },
+  "TUR-D-AMERIKA": {
+    "title": "ABD - New York & Batı Kıyısı",
+    "price": "14 Gün / 13 Gece, 3.500 $",
+    "location": "New York, Los Angeles, San Francisco",
+    "area": "Amerika Birleşik Devletleri",
+    "rooms": "4 Yıldızlı Oteller",
+    "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
+    "images": [
+      "assets/new-york-1.webp", "assets/new-york-2.webp"
+    ]
+  }
 };
 
 
-// === ANA FONKSİYON: DETAY PENCERESİNİ AÇ ===
-async function openHouseDetail(letter) {
+// === ANA FONKSİYON: DETAY PENCERESİNİ AÇ (TURİZM İÇİN GÜNCELLENDİ) ===
+async function openHouseDetail(tourID) {
   
-  // JSON Fetch sistemini iptal ettik. Doğrudan manuel veriden çekiyoruz.
-  const h = MANUAL_GALLERIES[letter]; 
+  // Veriyi yukarıdaki listeden çek
+  const tour = TOUR_DATA[tourID]; 
 
-  if (!h) {
-      console.error(`'${letter}' ID'li veri MANUAL_GALLERIES içinde bulunamadı.`);
-      alert("Bu projenin detayları şu anda yüklenemiyor."); // Kullanıcıya bilgi ver
+  if (!tour) {
+      console.error(`'${tourID}' ID'li veri bulunamadı.`);
+      alert("Bu turun detaylarına şu an ulaşılamıyor.");
       return;
   }
 
   const detail = document.getElementById("house-detail");
   const content = document.getElementById("house-detail-content");
   
-  // Çeviri sistemi varsa kullan, yoksa verideki metni al
-  const currentLang = localStorage.getItem('lang') || 'tr';
-  const langData = translations[currentLang] || {}; 
-
-  // İçeriği oluştur
-  const priceLabel = langData.js_fiyat || 'Fiyat';
-  const locationLabel = langData.js_konum || 'Konum';
-  const areaLabel = langData.js_alan || 'Alan';
-  const roomsLabel = langData.js_oda_sayisi || 'Oda Sayısı';
-
+  // HTML İçeriğini Turizme Göre Oluştur
   content.innerHTML = `
-    <h2>${h.title}</h2>
+    <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; margin-bottom: 20px;">${tour.title}</h2>
     
-    <div class="house-info">
-      <p><strong>${locationLabel}:</strong> ${h.location}</p>
-      <p><strong>${areaLabel}:</strong> ${h.area}</p>
-      <p><strong>${roomsLabel}:</strong> ${h.rooms}</p>
-      <p><strong>${priceLabel}:</strong> ${h.price}</p>
-      <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
-      <p>${h.desc}</p>
+    <div class="house-info" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border: 1px solid #333;">
+      <div style="margin-bottom: 10px;">
+        <i class="fas fa-map-marker-alt" style="color: #ffcc66; width: 20px;"></i> 
+        <strong style="color: #fff;">Lokasyon:</strong> <span style="color: #ccc;">${tour.location} (${tour.area})</span>
+      </div>
+      
+      <div style="margin-bottom: 10px;">
+        <i class="fas fa-clock" style="color: #ffcc66; width: 20px;"></i> 
+        <strong style="color: #fff;">Süre & Fiyat:</strong> <span style="color: #ffcc66; font-weight: bold;">${tour.price}</span>
+      </div>
+      
+      <div style="margin-bottom: 10px;">
+        <i class="fas fa-bed" style="color: #ffcc66; width: 20px;"></i> 
+        <strong style="color: #fff;">Konaklama:</strong> <span style="color: #ccc;">${tour.rooms}</span>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
+      
+      <p style="color: #ddd; line-height: 1.6;">${tour.desc}</p>
+
+      <div style="margin-top: 25px; text-align: center;">
+          <a href="mailto:info@goldenpalace.com?subject=Rezervasyon Talebi: ${tour.title}" class="btn" style="display: inline-block;">
+             <i class="fas fa-paper-plane"></i> Rezervasyon Yap
+          </a>
+      </div>
     </div>
 
-    <div class="detail-gallery" id="detail-gallery-container">
+    <div class="detail-gallery" id="detail-gallery-container" style="margin-top: 30px;">
       </div>
     
     <div id="gallery-loader-container" style="text-align: center; margin-top: 20px; margin-bottom: 20px;"></div>
   `;
 
   // Global resim listesini güncelle
-  globalPropertyImages = h.images || [];
+  globalPropertyImages = tour.images || [];
   globalImageIndex = 0;
   
   // İlk resim grubunu yükle
@@ -131,16 +210,21 @@ function loadMorePropertyImages() {
 
   if (!galleryContainer) return;
 
+  // Eğer bu tur için hiç resim tanımlanmamışsa
+  if (globalPropertyImages.length === 0) {
+      galleryContainer.innerHTML = "<p style='text-align:center; color:#666;'>Bu tur için henüz görsel eklenmemiş.</p>";
+      if(loaderContainer) loaderContainer.innerHTML = "";
+      return;
+  }
+
   const imagesToLoad = globalPropertyImages.slice(globalImageIndex, globalImageIndex + IMAGES_PER_LOAD);
 
   if (imagesToLoad.length === 0 && globalImageIndex === 0) {
-     galleryContainer.innerHTML = "<p style='text-align:center; color:#666;'>Görsel hazırlanıyor...</p>";
-     if(loaderContainer) loaderContainer.innerHTML = "";
      return;
   }
 
   const imagesHTML = imagesToLoad.map(img => 
-    `<img loading="lazy" src="${img}" alt="Detay Görseli" onclick="openLightbox(this.src)" onerror="this.style.display='none'">`
+    `<img loading="lazy" src="${img}" alt="Tur Görseli" onclick="openLightbox(this.src)" onerror="this.style.display='none'" style="cursor:pointer; transition: transform 0.3s;">`
   ).join("");
 
   galleryContainer.insertAdjacentHTML('beforeend', imagesHTML);
@@ -149,7 +233,7 @@ function loadMorePropertyImages() {
   if(loaderContainer) {
       loaderContainer.innerHTML = '';
       if (globalImageIndex < globalPropertyImages.length) {
-        loaderContainer.innerHTML = `<button class="btn" id="load-more-btn" onclick="loadMorePropertyImages()">Daha Fazla</button>`;
+        loaderContainer.innerHTML = `<button class="btn" id="load-more-btn" onclick="loadMorePropertyImages()">Daha Fazla Görsel</button>`;
       }
   }
 }
@@ -163,7 +247,6 @@ function openLightbox(src) {
         lightbox.style.display = "flex";
     }
 }
-// Diğer Lightbox kapatma/gezme olayları aşağıda listener'da tanımlı...
 
 
 // === SAYFA YÖNETİMİ VE DİL ===
