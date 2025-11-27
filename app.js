@@ -29,7 +29,7 @@ const translations = {};
 const pageCache = {}; 
 let globalPropertyImages = [];
 let globalImageIndex = 0;
-const IMAGES_PER_LOAD = 25; 
+const IMAGES_PER_LOAD = 6; 
 
 // --- RESTORASYON GALERİ DEĞİŞKENLERİ ---
 const RESTORATION_IMAGES_PER_LOAD = 4;
@@ -390,3 +390,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 });
+
