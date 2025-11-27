@@ -18,7 +18,7 @@
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
     "images": [
-      "assets/antalya-koy-gezisi-si-1.webp", "assets/antalya-koy-gezisi-si-2.webp", "assets/antalya-koy-gezisi-si-3.webp", "assets/antalya-koy-gezisi-si-4.webp", "assets/antalya-koy-gezisi-si-5.webp", "assets/antalya-koy-gezisi-si-6.webp", "assets/antalya-koy-gezisi-si-7.webp", "assets/antalya-koy-gezisi-si-8.webp", "assets/antalya-koy-gezisi-si-9.webp", "assets/antalya-koy-gezisi-si-10.webp", "assets/antalya-koy-gezisi-si-11.webp", "assets/antalya-koy-gezisi-si-12.webp", "assets/antalya-koy-gezisi-si-13.webp", "assets/antalya-koy-gezisi-si-14.webp", "assets/antalya-koy-gezisi-si-15.webp", "assets/antalya-koy-gezisi-si-16.webp"
+      "assets/antalya-koy-gezisi-1.webp"
     ]
   },
   "TUR-TR-KAPADOKYA": {
@@ -40,7 +40,7 @@
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
     "images": [
-      "assets/fethiye-oludeniz-manzarasi-1.webp", "assets/fethiye-oludeniz-manzarasi-2.webp", "assets/fethiye-oludeniz-manzarasi-3.webp", "assets/fethiye-oludeniz-manzarasi-4.webp", "assets/fethiye-oludeniz-manzarasi-5.webp", "assets/fethiye-oludeniz-manzarasi-6.webp", "assets/fethiye-oludeniz-manzarasi-7.webp", "assets/fethiye-oludeniz-manzarasi-8.webp", "assets/fethiye-oludeniz-manzarasi-9.webp", "assets/fethiye-oludeniz-manzarasi-10.webp", "assets/fethiye-oludeniz-manzarasi-11.webp", "assets/fethiye-oludeniz-manzarasi-12.webp", "assets/fethiye-oludeniz-manzarasi-13.webp", "assets/fethiye-oludeniz-manzarasi-14.webp", "assets/fethiye-oludeniz-manzarasi-15.webp", "assets/fethiye-oludeniz-manzarasi-16.webp", "assets/fethiye-oludeniz-manzarasi-17.webp", "assets/fethiye-oludeniz-manzarasi-18.webp", "assets/fethiye-oludeniz-manzarasi-19.webp", "assets/fethiye-oludeniz-manzarasi-20.webp"
+      "assets/fethiye-oludeniz-manzarasi-14.webp"
     ]
   },
   "TUR-TR-PAMUKKALE": {
@@ -62,18 +62,18 @@
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
     "images": [
-      "assets/antalya-koy-gezisi-si-1.webp", "assets/antalya-koy-gezisi-si-2.webp", "assets/antalya-koy-gezisi-si-3.webp", "assets/antalya-koy-gezisi-si-4.webp", "assets/antalya-koy-gezisi-si-5.webp", "assets/antalya-koy-gezisi-si-6.webp", "assets/antalya-koy-gezisi-si-7.webp", "assets/antalya-koy-gezisi-si-8.webp"
+      "assets/spain-1.webp", "assets/spain-2.webp", "assets/spain-3.webp", "assets/spain-4.webp", "assets/spain-5.webp", "assets/spain-6.webp", "assets/spain-7.webp", "assets/spain-8.webp", "assets/spain-9.webp", "assets/spain-10.webp", "assets/spain-11.webp", "assets/spain-12.webp", "assets/spain-13.webp", "assets/spain-14.webp", "assets/spain-15.webp"
     ]
   },
-  "TUR-D-RUSYA": {
-    "title": "Rusya - Moskova & St. Petersburg Sanat",
+  "TUR-D-RUSYA-KIS": {
+    "title": "Rusya (kış Masalı)",
     "price": "6 Gün / 5 Gece, 1.450 €",
     "location": "Moskova, St. Petersburg",
     "area": "Rusya Federasyonu",
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
     "images": [
-      "assets/istanbul-tarihi-bogaz-1.webp", "assets/istanbul-tarihi-bogaz-2.webp", "assets/mardin-tarihi-konak-dokusu-1.webp", "assets/mardin-tarihi-konak-dokusu-2.webp", "assets/mardin-tarihi-konak-dokusu-3.webp", "assets/mardin-tarihi-konak-dokusu-4.webp"
+      "assets/rusya-1.webp", "assets/rusya-2.webp", "assets/rusya-3.webp", "assets/rusya-4.webp", "assets/rusya-5.webp", "assets/rusya-6.webp", "assets/rusya-7.webp", "assets/rusya-8.webp", "assets/rusya-9.webp", "assets/rusya-10.webp", "assets/rusya-11.webp", "assets/rusya-12.webp", "assets/rusya-13.webp"
     ]
   },
   "TUR-D-BREZILYA": {
@@ -84,7 +84,7 @@
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
     "images": [
-      "assets/kapadokya-balon-turu-1.webp", "assets/kapadokya-balon-turu-2.webp", "assets/kapadokya-balon-turu-3.webp", "assets/kapadokya-balon-turu-4.webp", "assets/kapadokya-balon-turu-5.webp", "assets/kapadokya-balon-turu-6.webp", "assets/kapadokya-balon-turu-7.webp", "assets/kapadokya-balon-turu-8.webp"
+      "assets/brazil-1.webp", "assets/brazil-2.webp", "assets/brazil-3.webp", "assets/brazil-4.webp", "assets/brazil-5.webp", "assets/brazil-6.webp", "assets/brazil-7.webp", "assets/brazil-8.webp", "assets/brazil-9.webp", "assets/brazil-10.webp", "assets/brazil-11.webp", "assets/brazil-12.webp", "assets/brazil-13.webp", "assets/brazil-14.webp", "assets/brazil-15.webp"
     ]
   },
   "TUR-D-AMERIKA": {
@@ -95,21 +95,7 @@
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
     "images": [
-      "assets/fethiye-oludeniz-manzarasi-1.webp", "assets/fethiye-oludeniz-manzarasi-2.webp", "assets/fethiye-oludeniz-manzarasi-3.webp", "assets/fethiye-oludeniz-manzarasi-4.webp", "assets/fethiye-oludeniz-manzarasi-5.webp", "assets/fethiye-oludeniz-manzarasi-6.webp", "assets/fethiye-oludeniz-manzarasi-7.webp", "assets/fethiye-oludeniz-manzarasi-8.webp"
-    ]
-  },
-  
-  "OTEL1": {
-    "title": "Kral Dairesi (Özel Konaklama)",
-    "price": "Gecelik Fiyat Sorunuz",
-    "location": "Golden Palace Otel",
-    "area": "120 m2",
-    "rooms": "1 Yatak Odası + 1 Salon",
-    "desc": "Panoramik deniz manzaralı, jakuzili ve özel teraslı en lüks süitimiz.",
-    "images": [
-      "assets/ks1.webp", "assets/ks2.webp", "assets/ks3.webp", "assets/ks4.webp", "assets/ks5.webp", "assets/ks6.webp", "assets/ks7.webp", "assets/ks8.webp", "assets/ks9.webp", "assets/ks10.webp", "assets/ks11.webp", "assets/ks12.webp", "assets/ks13.webp", "assets/ks14.webp", "assets/ks15.webp", "assets/ks16.webp"
+      "assets/new-york-1.webp", "assets/new-york-2.webp", "assets/new-york-3.webp", "assets/new-york-4.webp", "assets/new-york-5.webp", "assets/new-york-6.webp", "assets/new-york-7.webp", "assets/new-york-8.webp", "assets/new-york-9.webp"
     ]
   }
-  // Diğer OTEL ve INSAAT ID'leri bu şekilde kalsın, çünkü OTEL sayfasına hala ihtiyacımız var.
-  // Not: Diğer OTEL ve INSAAT ID'lerini (OTEL2-OTEL10 ve INSAAT1-INSAAT5) yer kazanmak için sildim, ancak uygulamanızda kalsınlar.
 }
