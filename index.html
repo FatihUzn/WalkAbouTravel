@@ -8,7 +8,7 @@
 <link rel="preload" as="image" href="assets/walkabou_travel_logo.webp">
 <link rel="preload" as="image" href="assets/background.webp">
 <link rel="preload" as="image" href="assets/for_hero.webp">
-<link rel="preload" as="fetch" href="galleries.json" crossorigin>
+<link rel="preload" as="fetch" href="data/galleries.json?v=1.1" crossorigin>
 <link rel="preload" as="fetch" href="en.json" crossorigin>
 <link rel="preload" as="fetch" href="ar.json" crossorigin>
 <link rel="preload" as="fetch" href="zh.json" crossorigin>
@@ -16,9 +16,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
-<link rel="stylesheet" href="style.css?v=1.7">
+<link rel="stylesheet" href="style.css?v=1.6">
 
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
@@ -90,13 +91,14 @@
     margin: 10px 0 30px 0;
   }
   
+  /* Keşfet Butonu stilleri - BURASI TEMİZLENDİ - */
   .cta-group {
     position: relative;
     display: inline-block;
   }
 
   /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ === */
+  /* === YENİ GENİŞ FOOTER STİLLERİ (Değişmedi) === */
   /* ========================================= */
   .site-footer {
     background-color: #0c0c0c; 
@@ -254,6 +256,7 @@
         <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
         <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
         <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
+        <a data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
         <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
         <div class="language-selector mobile-only" style="display: none;">
             <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
@@ -284,153 +287,12 @@
     
     <div class="hero-links-container action-buttons">
       <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-      <a href="#homepage-blog" class="btn btn-hero-link">Blog</a>
+      <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-category="restorasyon" data-key="drop_restoration" class="btn btn-hero-link">Blog</a>
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
-    </div>
-
-  </div> 
-</section>
-
-<section id="homepage-blog" class="page-section active" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
-    <div class="new-layout-container">
-        
-        <div class="section-title-wrapper" style="text-align: center; margin-bottom: 50px;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--blue-light); margin-bottom: 10px;">
-                Seyahat Günlüğü
-            </h2>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 18px;">
-                Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
-            </p>
-        </div>
-
-        <div class="featured-blog" style="margin-bottom: 60px;">
-            <img src="assets/for_hero.webp" alt="Mardin" class="featured-img" onerror="this.src='https://placehold.co/800x400/1a1a2e/FFF?text=WalkAbouTravel'">
-            
-            <div class="featured-content">
-                <span class="blog-category">EDİTÖRÜN SEÇİMİ</span>
-                <h3>Mardin'in Büyülü Atmosferi: Taş Konaklar</h3>
-                <p>Mezopotamya'nın kalbinde, tarihin ve kültürün iç içe geçtiği Mardin sokaklarında, taş işçiliğinin en güzel örneklerini keşfedin.</p>
-                <a href="#" class="btn">Devamını Oku</a>
-            </div>
-        </div>
-
-        <div id="blog-grid-display" class="blog-grid">
-            </div>
-
     </div>
 </section>
 
 <main id="page-container">
-
-<section id="page-otel" class="page-section" style="padding-top: 140px;">
-  
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
-
-  <div class="new-layout-container">
-    
-    <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 10px;">
-            Yurt İçi Kültür Turları
-        </h2>
-        <p style="color: #aaa; font-size: 18px;">
-            Anadolu'nun eşsiz güzelliklerini profesyonel rehberlerimizle keşfedin.
-        </p>
-        <div class="title-gold-line" style="width: 100px; height: 2px; background: #f59e0b; margin: 20px auto;"></div>
-    </div>
-
-    <div class="house-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
-            <img src="assets/mardin-konak-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Mardin'">
-            <h3>Mardin Kültür Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
-            <img src="assets/kapadokya-balon-1.webp" alt="Kapadokya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Kapadokya'">
-            <h3>Kapadokya Balon Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
-            <img src="assets/antalya-koy-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Antalya'">
-            <h3>Antalya & Kaş Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
-            <img src="assets/fethiye-oludeniz-1.webp" alt="Fethiye Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Fethiye'">
-            <h3>Fethiye & Ölüdeniz</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-PAMUKKALE')">
-            <img src="assets/pamukkale-traverten-1.webp" alt="Pamukkale Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Pamukkale'">
-            <h3>Pamukkale & Hierapolis</h3>
-        </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section id="page-satilik_kiralik" class="page-section" style="padding-top: 160px;">
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
-  <div class="new-layout-container">
-
-    <h2 data-key="page_satilik_h2">Türkiye Rotaları</h2>
-
-    <div class="house-gallery">
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
-            <img loading="lazy" src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Tarihi Konak Turu">
-            <h3 data-key="page_satilik_1">Mardin Kültür Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
-            <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Liman Manzarası" loading="lazy">
-            <h3 data-key="page_satilik_2">Antalya Koy Gezisi</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
-            <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Balon Turu" loading="lazy">
-            <h3 data-key="page_satilik_3">Kapadokya Balon Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
-            <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Ölüdeniz Manzarası" loading="lazy">
-            <h3 data-key="page_satilik_4">Fethiye Ölüdeniz</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-PAMUKKALE')">
-            <img src="assets/pamukkale-traverten-dogal-1.webp" alt="Pamukkale Turu" loading="lazy">
-            <h3 data-key="page_satilik_5">Pamukkale Turu</h3>
-        </div>
-    </div>
-
-    <h2 style="margin-top: 80px;" data-key="page_kiralik_h2">Uluslararası Rotalar</h2>
-
-    <div class="house-gallery">
-        <div class="house-card" onclick="openHouseDetail('TUR-D-ISPANYA')">
-            <img src="assets/spain-1.webp" alt="İspanya Barselona Turu" loading="lazy">
-            <h3 data-key="page_kiralik_1">İspanya Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-RUSYA')">
-            <img src="assets/rusya-1.webp" alt="Rusya Moskova Turu" loading="lazy">
-            <h3 data-key="page_kiralik_2">Rusya Sanat Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-BREZILYA')">
-            <img src="assets/brazil-1.webp" alt="Brezilya Karnavalı" loading="lazy">
-            <h3 data-key="page_kiralik_3">Brezilya Karnavalı</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-AMERIKA')">
-            <img src="assets/new-york-1.webp" alt="Amerika Batı Kıyısı" loading="lazy">
-            <h3 data-key="page_kiralik_4">Amerika Batı Kıyısı</h3>
-        </div>
-        
-    </div>
-
-  </div>
-</section>
-
 </main>
 
 
@@ -443,6 +305,7 @@
                 <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
                 <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
                 <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
+                <li><a href="#page-projects" data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a></li>
                 <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
             </ul>
         </div>
@@ -468,7 +331,8 @@
             <div class="social-icons">
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                <a href="#" aria-label="Behance"><i class="fab fa-behandu
+ce"></i></a>
                 <a href="mailto:info@walkaboutravel.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
@@ -537,7 +401,7 @@
   </div>
 </div>
 
-<script src="app.js?v=1.7" defer></script>
+<script src="app.js?v=1.6" defer></script>
 
 <script>
     const data = [
@@ -592,153 +456,6 @@
         setInterval(changeTextWithFade, intervalTime);
     }
 </script>
-<script>
-/* === SEYAHAT BLOG SİSTEMİ (GARANTİLİ & SORUNSUZ) === */
 
-// Verileri direkt buraya yazıyoruz (Hata riskini sıfırlar)
-const blogData = [
-    {
-        id: 1,
-        title: "Kapadokya'da Balon Turu",
-        image: "assets/kapadokya-balon-turu-1.webp",
-        category: "GEZİ REHBERİ",
-        summary: "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri.",
-        content: `
-            <p><strong>Peri Bacaları Üzerinde Bir Masal</strong></p>
-            <p>Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor. Bu deneyim, sadece bir manzara izlemek değil, tarihin ve doğanın içinde süzülmek demektir.</p>
-            <br>
-            <p><strong>İpuçları:</strong></p>
-            <ul>
-                <li>En iyi sezon: Nisan - Ekim arası.</li>
-                <li>Sabah çok erken (05:00 gibi) kalkmanız gerekecek, kalın giyinin.</li>
-                <li>Rezervasyonunuzu turdan en az 2 hafta önce yapın.</li>
-            </ul>
-        `
-    },
-    {
-        id: 2,
-        title: "Vizesiz Cennet: Karadağ & Balkanlar",
-        image: "assets/antalya-koy-gezisi-1.webp",
-        category: "İPUÇLARI",
-        summary: "Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri?",
-        content: `
-            <p>Vize prosedürleriyle uğraşmadan, sadece pasaportunuzla (hatta bazılarına kimlikle) gidebileceğiniz harika rotalar var.</p>
-            <p><strong>Karadağ (Montenegro):</strong></p>
-            <p>Adriyatik denizinin incisi. Budva'nın plajları ve Kotor'un tarihi sokakları sizi Venedik'teymiş gibi hissettirecek ama çok daha uygun fiyatlarla.</p>
-            <p><strong>Sırbistan:</strong></p>
-            <p>Belgrad'ın canlı gece hayatı ve Osmanlı izleri taşıyan mutfağı, hafta sonu kaçamakları için ideal.</p>
-        `
-    },
-    {
-        id: 3,
-        title: "Avrupa Turu: Minimalist Çanta Hazırlığı",
-        image: "assets/spain-1.webp",
-        category: "REHBER",
-        summary: "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları.",
-        content: `
-            <p>Avrupa sokaklarında elinizde devasa bir valizle Arnavut kaldırımlarında sürüklenmek istemiyorsanız, minimalist paketleme sanatını öğrenmelisiniz.</p>
-            <p><strong>Altın Kural: Kapsül Gardırop</strong></p>
-            <p>Yanınıza alacağınız her parça, diğerleriyle uyumlu olmalı. 3 Tişört, 2 Pantolon ve 1 Rahat Yürüyüş Ayakkabısı (asla topuklu veya sert tabanlı değil!) size 1 hafta boyunca yeter.</p>
-            <p>Powerbank ve dönüştürücü priz (Avrupa uyumlu) almayı sakın unutmayın!</p>
-        `
-    }
-];
-
-// Blogları Ekrana Bas
-function renderBlogPosts() {
-    const display = document.getElementById('blog-grid-display');
-    if(!display) return;
-
-    display.innerHTML = ""; 
-    
-    blogData.forEach(post => {
-        // Resim kontrolü
-        const imgSource = post.image ? post.image : 'assets/background.webp';
-        
-        const html = `
-            <article class="blog-card" style="display:flex; flex-direction:column; height:100%;">
-                <img src="${imgSource}" alt="${post.title}" loading="lazy" style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px;" onerror="this.src='https://placehold.co/600x400/e2e8f0/1a1a2e?text=Gezi+Rotasi'">
-                
-                <span style="font-size:0.75rem; color:#4c99ff; font-weight:700; letter-spacing:1px; margin-bottom:5px; display:block;">${post.category}</span>
-                
-                <h4 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin:10px 0; color:#1a1a2e;">${post.title}</h4>
-                
-                <p style="font-size:15px; color:#4e576f; line-height:1.6; margin-bottom:20px; flex-grow:1;">
-                    ${post.summary}
-                </p>
-                
-                <button type="button" onclick="openBlogModal(${post.id})" class="blog-readmore" style="background:none; border:none; padding:0; cursor:pointer; font-weight:700; color:#0066cc; text-align:left; font-size:1rem; display:inline-flex; align-items:center;">
-                    Devamını Oku <span style="margin-left:5px;">→</span>
-                </button>
-            </article>
-        `;
-        display.innerHTML += html;
-    });
-}
-
-// Pencereyi Aç
-function openBlogModal(id) {
-    const post = blogData.find(p => p.id === id);
-    if(!post) return;
-
-    // İçeriği Doldur
-    document.getElementById('modal-blog-img').src = post.image || 'assets/background.webp';
-    document.getElementById('modal-blog-category').innerText = post.category;
-    document.getElementById('modal-blog-title').innerText = post.title;
-    document.getElementById('modal-blog-text').innerHTML = post.content;
-
-    // Göster
-    const modal = document.getElementById('blog-modal');
-    modal.style.display = 'flex'; // Flex ile ortalar
-    document.body.style.overflow = 'hidden'; // Arka planı kilitle
-}
-
-// Pencereyi Kapat
-function closeBlogModal() {
-    const modal = document.getElementById('blog-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Kaydırmayı aç
-}
-
-// Başlat
-setInterval(() => {
-    const blogGrid = document.getElementById('blog-grid-display');
-    if(blogGrid && blogGrid.innerHTML.trim() === "") {
-        renderBlogPosts();
-    }
-}, 1000);
-
-// Dışarı tıklayınca kapatma
-const modalEl = document.getElementById('blog-modal');
-if(modalEl) {
-    modalEl.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeBlogModal();
-        }
-    });
-}
-</script>
-<div id="blog-modal" class="availability-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; align-items: center; justify-content: center; z-index: 99999; background: rgba(0,0,0,0.95);">
-    
-    <div class="modal-content" style="position: relative; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; text-align: left; padding: 0; border: 1px solid #333; background: #fff; border-radius: 12px;">
-        
-        <button onclick="closeBlogModal()" style="position: absolute; top: 15px; right: 15px; background: #ff4444; color: white; border: none; font-size: 18px; cursor: pointer; z-index: 20; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">✕</button>
-
-        <img id="modal-blog-img" src="" alt="Blog Detay" style="width: 100%; height: 350px; object-fit: cover; display: block;">
-
-        <div style="padding: 40px;">
-            <span id="modal-blog-category" style="color: #4c99ff; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">KATEGORİ</span>
-            <h2 id="modal-blog-title" style="font-family: 'Playfair Display', serif; font-size: 2rem; margin: 15px 0 25px 0; color: #1a1a2e; line-height: 1.2;">Başlık</h2>
-            
-            <div id="modal-blog-text" style="font-size: 1.1rem; line-height: 1.8; color: #4e576f; font-family: 'Inter', sans-serif;">
-                </div>
-            
-            <div style="margin-top: 30px; text-align: center;">
-                <button onclick="closeBlogModal()" class="btn" style="background: #1a1a2e; color: #fff; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer;">Kapat</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 </body>
 </html>
