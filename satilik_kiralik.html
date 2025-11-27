@@ -1,5 +1,6 @@
 <section id="page-satilik_kiralik" class="page-section" style="padding-top: 160px;">
   <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
+  
   <div class="new-layout-container">
 
     <h2 data-key="page_satilik_h2">Türkiye Rotaları</h2>
@@ -53,9 +54,18 @@
             <img src="assets/new-york-1.webp" alt="Amerika Batı Kıyısı" loading="lazy">
             <h3 data-key="page_kiralik_4">Amerika Batı Kıyısı</h3>
         </div>
-        
-        
     </div>
 
   </div>
-</section>
+
+  <div id="house-detail" class="house-detail" style="display:none;">
+      <div id="house-detail-content"></div>
+      <button onclick="closeHouseDetail()" style="position:fixed; top:20px; right:20px; z-index:2001; padding:10px 20px; background:#ff4444; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+          KAPAT (X)
+      </button>
+  </div>
+  
+  <div id="lightbox" onclick="this.style.display='none'">
+      <img id="lightbox-img" src="">
+  </div>
+  </section>
