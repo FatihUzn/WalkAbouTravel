@@ -2758,42 +2758,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     pointer-events: auto !important; /* Tıklamayı zorla aç */
     cursor: pointer;
 }
-/* ... mevcut kodların devamı ... */
-
-/* === DÜZELTME: HOUSE DETAIL GÖRÜNÜRLÜK GARANTİSİ === */
-#house-detail, .house-detail {
-    /* Header (1000) ve Hero (Video) katmanlarının kesinlikle üzerinde */
-    z-index: 9999 !important; 
-    
-    /* Konumlandırma */
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    /* Arka plan rengini biraz daha opak yaparak alt tarafın karışmasını engelle */
-    background-color: rgba(244, 247, 252, 0.98) !important;
-    
-    /* İçerik taşarsa scroll çıksın */
-    overflow-y: auto !important;
-    
-    /* Animasyonun "bitince kaybolma" riskine karşı */
-    animation-fill-mode: forwards;
 }
-
-/* Eğer JS bir 'active' veya 'show' sınıfı ekliyorsa bunu da garantiye alalım */
-#house-detail.active, #house-detail.show {
-    display: block !important;
-}
-
-/* Kartların tıklama alanının resimlerle çakışmaması için */
-.house-card {
-    /* Kartın içindeki her şeyin tıklanabilirliğini düzeltir */
-    pointer-events: auto;
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-}
-}
-
