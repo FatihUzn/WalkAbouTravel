@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<link rel="stylesheet" href="style.css?v=2.1">
+<link rel="stylesheet" href="style.css?v=2.2">
 
 <style>
   /* Header ve Temel Yerleşim Ayarları */
@@ -387,6 +387,114 @@
 </section>
 
 <main id="page-container">
+
+<section id="page-otel" class="page-section" style="padding-top: 140px;">
+  
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
+
+  <div class="new-layout-container">
+    
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 10px;">
+            Yurt İçi Kültür Turları
+        </h2>
+        <p style="color: #aaa; font-size: 18px;">
+            Anadolu'nun eşsiz güzelliklerini profesyonel rehberlerimizle keşfedin.
+        </p>
+        <div class="title-gold-line" style="width: 100px; height: 2px; background: #f59e0b; margin: 20px auto;"></div>
+    </div>
+
+    <div class="house-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
+            <img src="assets/mardin-konak-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Mardin'">
+            <h3>Mardin Kültür Turu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
+            <img src="assets/kapadokya-balon-1.webp" alt="Kapadokya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Kapadokya'">
+            <h3>Kapadokya Balon Turu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
+            <img src="assets/antalya-koy-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Antalya'">
+            <h3>Antalya & Kaş Turu</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
+            <img src="assets/fethiye-oludeniz-1.webp" alt="Fethiye Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Fethiye'">
+            <h3>Fethiye & Ölüdeniz</h3>
+        </div>
+
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-PAMUKKALE')">
+            <img src="assets/pamukkale-traverten-1.webp" alt="Pamukkale Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Pamukkale'">
+            <h3>Pamukkale & Hierapolis</h3>
+        </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- TURİZM (TÜRKİYE ROTALARI) BÖLÜMÜ GÜNCELLEMESİ -->
+<section id="page-satilik_kiralik" class="page-section" style="padding-top: 160px;">
+  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
+  <div class="new-layout-container">
+
+    <h2 data-key="page_satilik_h2">Türkiye Rotaları</h2>
+
+    <!-- GÜNCELLEME: Burada 5 değil 4 kart bırakıldı -->
+    <div class="house-gallery">
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
+            <img loading="lazy" src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Tarihi Konak Turu">
+            <h3 data-key="page_satilik_1">Mardin Kültür Turu</h3>
+        </div>
+        
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
+            <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Liman Manzarası" loading="lazy">
+            <h3 data-key="page_satilik_2">Antalya Koy Gezisi</h3>
+        </div>
+        
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
+            <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Balon Turu" loading="lazy">
+            <h3 data-key="page_satilik_3">Kapadokya Balon Turu</h3>
+        </div>
+        
+        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
+            <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Ölüdeniz Manzarası" loading="lazy">
+            <h3 data-key="page_satilik_4">Fethiye Ölüdeniz</h3>
+        </div>
+        <!-- Pamukkale kartı kaldırıldı (4 tane olsun diye) -->
+    </div>
+
+    <h2 style="margin-top: 80px;" data-key="page_kiralik_h2">Uluslararası Rotalar</h2>
+
+    <div class="house-gallery">
+        <div class="house-card" onclick="openHouseDetail('TUR-D-ISPANYA')">
+            <img src="assets/spain-1.webp" alt="İspanya Barselona Turu" loading="lazy">
+            <h3 data-key="page_kiralik_1">İspanya Turu</h3>
+        </div>
+        
+        <div class="house-card" onclick="openHouseDetail('TUR-D-RUSYA')">
+            <img src="assets/rusya-1.webp" alt="Rusya Moskova Turu" loading="lazy">
+            <h3 data-key="page_kiralik_2">Rusya Sanat Turu</h3>
+        </div>
+        
+        <div class="house-card" onclick="openHouseDetail('TUR-D-BREZILYA')">
+            <img src="assets/brazil-1.webp" alt="Brezilya Karnavalı" loading="lazy">
+            <h3 data-key="page_kiralik_3">Brezilya Karnavalı</h3>
+        </div>
+        
+        <div class="house-card" onclick="openHouseDetail('TUR-D-AMERIKA')">
+            <img src="assets/new-york-1.webp" alt="Amerika Batı Kıyısı" loading="lazy">
+            <h3 data-key="page_kiralik_4">Amerika Batı Kıyısı</h3>
+        </div>
+        
+    </div>
+
+  </div>
+</section>
+
 </main>
 
 
