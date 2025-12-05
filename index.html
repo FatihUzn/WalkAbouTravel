@@ -95,90 +95,92 @@
     display: inline-block;
   }
 
-  /* --- YENİ EKLENEN KART DÜZENİ İÇİN STİLLER (BAŞLANGIÇ) --- */
-  /* Kartların taşındığı yeni siyah bölüm */
+  /* --- YENİ EKLENEN KART DÜZENİ (Referans resimdeki gibi) --- */
   #quick-access-links {
-      background-color: #121212; 
-      padding: 60px 20px; 
-      border-bottom: 1px solid #333;
+      background-color: #f9f9f9; /* Daha temiz, açık renk arka plan */
+      padding: 80px 20px;
       position: relative;
       z-index: 10;
   }
 
-  /* Kartları tutan kapsayıcı */
-  .hero-quick-access-container {
+  .quick-access-grid {
       display: flex;
-      justify-content: center; /* Ortala */
-      gap: 30px; /* Aralarında boşluk bırak */
-      flex-wrap: wrap; /* Sığmazsa alt satıra geç */
-      width: 100%;
-      max-width: 1200px;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      max-width: 1400px;
       margin: 0 auto;
-      
-      /* Eski stillerden kalabilecek pozisyonları sıfırlıyoruz */
-      position: static !important; 
-      transform: none !important;
-      bottom: auto !important;
-      background: transparent !important;
-      padding: 0 !important;
-      box-shadow: none !important;
   }
 
-  /* Her bir sütun */
-  .hero-access-col {
-      flex: 1; /* Eşit genişlik */
-      min-width: 300px; /* Çok küçülmesin */
-      background: rgba(255, 255, 255, 0.05); /* Hafif şeffaf arka plan */
-      padding: 20px;
+  .category-card {
+      background: #fff;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* Mini kartlar ızgarası */
-  .mini-cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-  }
-
-  .mini-card {
-      background: #222;
-      border-radius: 8px;
       overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s;
-      position: relative;
-  }
-  .mini-card:hover {
-      transform: translateY(-3px);
-  }
-  .mini-card img {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       width: 100%;
-      height: 80px;
+      max-width: 380px; /* Kart genişliği */
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .category-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+
+  .category-card img {
+      width: 100%;
+      height: 250px; /* Resim yüksekliği */
       object-fit: cover;
       display: block;
+      transition: transform 0.5s ease;
   }
-  .mini-card span {
-      display: block;
-      padding: 8px;
-      font-size: 13px;
-      color: #fff;
+  
+  .category-card:hover img {
+      transform: scale(1.05);
+  }
+
+  .category-card-content {
+      padding: 25px;
       text-align: center;
+      border-top: 1px solid #eee;
+  }
+
+  .category-card h3 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 10px;
+  }
+
+  .category-card p {
+      margin: 0;
+      color: #777;
+      font-size: 0.95rem;
+      line-height: 1.5;
+  }
+
+  .category-btn {
+      margin-top: 15px;
+      display: inline-block;
+      color: #f59e0b;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
   }
 
   /* Mobil düzenlemeler */
   @media (max-width: 992px) {
-      .hero-quick-access-container {
-          flex-direction: column;
-          align-items: center;
+      .category-card {
+          max-width: 100%; /* Mobilde tam genişlik */
       }
-      .hero-access-col {
-          width: 100%;
-          max-width: 400px;
-          margin-bottom: 30px;
+      .quick-access-grid {
+          gap: 20px;
       }
   }
-  /* --- YENİ EKLENEN KART DÜZENİ İÇİN STİLLER (BİTİŞ) --- */
 
 
   /* Footer Stilleri */
@@ -363,85 +365,54 @@
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
     </div>
 
-    <!-- NOT: BURADAKİ ESKİ KART YAPISI ÇIKARILDI VE AŞAĞIYA TAŞINDI -->
-
   </div> 
 </section>
 <!-- HERO BÖLÜMÜ BİTİŞİ -->
 
 
-<!-- YENİ BÖLÜM: HIZLI ERİŞİM KARTLARI (KAYMA SORUNUNU ÇÖZEN BÖLÜM) -->
+<!-- YENİ BÖLÜM: BÜYÜK KARTLARLA KATEGORİ SEÇİMİ (Referans Resimdeki Gibi) -->
 <section id="quick-access-links">
     
-    <!-- 3 SÜTUNLU KART YAPISI BURAYA TAŞINDI -->
-    <div class="hero-quick-access-container">
+    <div class="section-title-wrapper" style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: #1a1a2e; margin: 0;">Rotalarınızı Keşfedin</h2>
+        <div style="width: 60px; height: 3px; background: #f59e0b; margin: 15px auto;"></div>
+    </div>
+
+    <div class="quick-access-grid">
         
-        <!-- SÜTUN 1: TURİZM DE BİZ (Yurt İçi) -->
-        <div class="hero-access-col">
-            <h3 class="col-title" style="font-size:18px; color:var(--blue-light, #ffcc66); margin-bottom:15px; font-family:'Playfair Display',serif; text-align:center;">Kültür Turları</h3>
-            <div class="mini-cards-grid">
-                <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/mardin-konak-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Mardin'" alt="Mardin">
-                    <span>Mardin</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/antalya-koy-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Antalya'" alt="Antalya">
-                    <span>Antalya</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/kapadokya-balon-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Kapadokya'" alt="Kapadokya">
-                    <span>Kapadokya</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/fethiye-oludeniz-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Fethiye'" alt="Fethiye">
-                    <span>Fethiye</span>
-                </div>
+        <!-- KART 1: KÜLTÜR TURLARI -->
+        <div class="category-card" onclick="location.hash='page-otel'">
+            <div style="overflow: hidden;">
+                <img src="assets/kapadokya-balon-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Kültür+Turları'" alt="Kültür Turları">
+            </div>
+            <div class="category-card-content">
+                <h3>Kültür Turları</h3>
+                <p>Mardin, Kapadokya, Antalya ve daha fazlası.</p>
+                <span class="category-btn">İncele →</span>
             </div>
         </div>
 
-        <!-- SÜTUN 2: RESTORASYON PROJELERİ -->
-        <div class="hero-access-col">
-            <h3 class="col-title" style="font-size:18px; color:var(--blue-light, #ffcc66); margin-bottom:15px; font-family:'Playfair Display',serif; text-align:center;">Restorasyon</h3>
-            <div class="mini-cards-grid">
-                <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon-1-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Yalı'" alt="Yalı">
-                    <span>Yalı</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon-2-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Kilise'" alt="Kilise">
-                    <span>Kilise</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon-3-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Han'" alt="Han">
-                    <span>Han</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon-4-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Kule'" alt="Kule">
-                    <span>Kule</span>
-                </div>
+        <!-- KART 2: RESTORASYON -->
+        <div class="category-card" onclick="location.hash='page-restorasyon'">
+            <div style="overflow: hidden;">
+                <img src="assets/restorasyon-1-before.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Restorasyon'" alt="Restorasyon">
+            </div>
+            <div class="category-card-content">
+                <h3>Restorasyon</h3>
+                <p>Tarihi yapılar, yalılar ve koruma projeleri.</p>
+                <span class="category-btn">İncele →</span>
             </div>
         </div>
 
-        <!-- SÜTUN 3: TURİZM & TRANSFER -->
-        <div class="hero-access-col">
-            <h3 class="col-title" style="font-size:18px; color:var(--blue-light, #ffcc66); margin-bottom:15px; font-family:'Playfair Display',serif; text-align:center;">Yurt Dışı & Transfer</h3>
-            <div class="mini-cards-grid">
-                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="assets/spain-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=İspanya'" alt="İspanya">
-                    <span>İspanya</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="assets/rusya-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Rusya'" alt="Rusya">
-                    <span>Rusya</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="https://placehold.co/100x65/222/f59e0b?text=Transfer" alt="Transfer">
-                    <span>Transfer</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="https://placehold.co/100x65/222/f59e0b?text=Bilet" alt="Bilet">
-                    <span>Bilet</span>
-                </div>
+        <!-- KART 3: YURT DIŞI & TRANSFER -->
+        <div class="category-card" onclick="location.hash='page-satilik_kiralik'">
+            <div style="overflow: hidden;">
+                <img src="assets/spain-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Yurt+Dışı'" alt="Yurt Dışı">
+            </div>
+            <div class="category-card-content">
+                <h3>Yurt Dışı & Transfer</h3>
+                <p>Avrupa turları, uçak bileti ve transfer hizmetleri.</p>
+                <span class="category-btn">İncele →</span>
             </div>
         </div>
 
