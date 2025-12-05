@@ -1488,4 +1488,174 @@ html[dir="rtl"] .info-item i { margin-right: 0; margin-left: 15px; }
     .new-layout-container { padding: 0 20px; }
     .hero h1 { font-size: 36px; }
     .hero p { font-size: 17px; }
+/* === EKSİK BLOG TASARIMLARI (GERİ EKLENENLER) === */
+
+/* 1. Blog Hero (Altın Başlık Alanı) */
+.blog-page-wrapper {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-height: 100vh;
 }
+
+.blog-hero {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+}
+
+.blog-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    /* Altın Rengi Gradyan */
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -1px;
+}
+
+.blog-hero p {
+    font-family: 'Inter', sans-serif;
+    color: #a1a1aa;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.blog-hero::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--blue-dark);
+    margin: 30px auto 0;
+}
+
+/* 2. Featured Post (Öne Çıkan Büyük Kart - Cam Efektli) */
+.featured-post {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0;
+    margin-bottom: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease;
+}
+
+.featured-post:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 204, 102, 0.3);
+}
+
+.featured-img-container {
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.featured-post:hover .featured-img-container img {
+    transform: scale(1.05);
+}
+
+.featured-content {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue-light);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.featured-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #fff; /* Yazı rengi beyaz, arka plan koyu varsayılmış */
+    margin-bottom: 20px;
+    line-height: 1.2;
+    background: none;
+    -webkit-text-fill-color: #fff;
+}
+
+/* Eğer arka plan beyazsa başlığı görünür yapmak için bu kuralı açın:
+.featured-content h2 { color: var(--text); -webkit-text-fill-color: initial; } 
+*/
+
+.featured-content p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.read-more-link {
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--blue-light);
+    padding-bottom: 5px;
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.read-more-link i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    color: var(--blue-light);
+}
+
+.read-more-link:hover {
+    color: var(--blue-light);
+    border-color: transparent;
+}
+
+.read-more-link:hover i {
+    transform: translateX(5px);
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 900px) {
+    .featured-post {
+        grid-template-columns: 1fr;
+    }
+    .featured-img-container {
+        min-height: 250px;
+        height: 250px;
+    }
+    .featured-content {
+        padding: 30px;
+    }
+    .blog-hero h1 {
+        font-size: 2.8rem;
+    }
+}
+}
+
