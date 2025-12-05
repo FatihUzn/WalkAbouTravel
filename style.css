@@ -1656,6 +1656,119 @@ html[dir="rtl"] .info-item i { margin-right: 0; margin-left: 15px; }
     .blog-hero h1 {
         font-size: 2.8rem;
     }
+/* === HERO BÖLÜMÜ KAYMA DÜZELTMESİ (REPAIR KIT) === */
+
+/* 1. Ana Konteynerı Ortalama ve Sınırlama */
+.hero-quick-access-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Kutuları yukarı hizalar */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px; /* Çok geniş ekranda dağılmayı önler */
+    margin: 40px auto 0 auto;
+    padding: 0 10px;
+    z-index: 50;
+    position: relative;
 }
+
+/* 2. Şeffaf Kutuların (Sütunların) Düzeni */
+.hero-access-col {
+    flex: 1;
+    min-width: 300px;
+    max-width: 360px;
+    background: rgba(20, 20, 20, 0.6); /* Arka planı biraz daha koyulaştırdık ki okunsun */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
+/* 3. İçerideki 4'lü Küçük Kartların Izgarası */
+.mini-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) !important; /* Kesinlikle 4 sütun olsun */
+    gap: 8px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* 4. Küçük Kart (Mini Card) Tasarımı */
+.mini-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Dışarı taşan her şeyi kes */
+    transition: transform 0.2s ease;
+    height: 100%;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.mini-card:hover {
+    transform: translateY(-3px) scale(1.05);
+    z-index: 10;
+}
+
+/* Resimlerin Kutuyu Doldurması */
+.mini-card img {
+    width: 100%;
+    height: 50px !important; /* Resim yüksekliğini sabitledik */
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Yazıların Düzeni */
+.mini-card span {
+    font-size: 11px !important;
+    font-weight: 700;
+    color: #333;
+    background: #fff;
+    padding: 6px 2px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    white-space: nowrap; /* Yazıyı tek satıra zorla */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Sığmazsa üç nokta koy (...) */
+}
+
+/* Üstteki Mavi Buton Linkleri */
+.main-cat-link {
+    width: 100%;
+    margin-bottom: 0; /* Alt boşluğu sıfırladık, grid ile arası açılsın diye yukarıda margin verdik */
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+/* MOBİL DÜZELTMELER */
+@media (max-width: 992px) {
+    .hero-quick-access-container {
+        flex-direction: column; /* Mobilde alt alta */
+        align-items: center;
+    }
+    
+    .hero-access-col {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    /* Mobilde 4 sütun çok sıkışık olur, 2 sütun yapalım */
+    .mini-cards-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .mini-card img {
+        height: 80px !important; /* Mobilde resimler daha büyük olsun */
+    }
+}
+
+
 
