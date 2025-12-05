@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title data-key="title">Golden Palace — Real Estate & Architecture</title>
-<link rel="icon" type="image/png" href="assets/golden_palace_logo.webp">
-<link rel="preload" as="image" href="assets/golden_palace_logo.webp">
+<title data-key="title">WalkAbouTravel — Tourism & Travel</title>
+<link rel="icon" type="image/png" href="assets/walkabou_travel_logo.webp">
+<link rel="preload" as="image" href="assets/walkabou_travel_logo.webp">
 <link rel="preload" as="image" href="assets/background.webp">
 <link rel="preload" as="image" href="assets/for_hero.webp">
-<link rel="preload" as="fetch" href="data/galleries.json?v=1.1" crossorigin>
+<link rel="preload" as="fetch" href="galleries.json" crossorigin>
 <link rel="preload" as="fetch" href="en.json" crossorigin>
 <link rel="preload" as="fetch" href="ar.json" crossorigin>
 <link rel="preload" as="fetch" href="zh.json" crossorigin>
@@ -18,10 +18,10 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<link rel="stylesheet" href="style.css?v=1.7">
+<link rel="stylesheet" href="style.css?v=1.9">
 
 <style>
-  /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
+  /* Header ve Temel Yerleşim Ayarları */
   header {
     display: block; 
     padding: 0;
@@ -95,9 +95,7 @@
     display: inline-block;
   }
 
-  /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ === */
-  /* ========================================= */
+  /* Footer Stilleri */
   .site-footer {
     background-color: #0c0c0c; 
     color: #a0a0a0;
@@ -176,7 +174,7 @@
     background-color: transparent;
   }
 
-  /* === MOBİL UYUMLULUK GÜNCELLEMELERİ === */
+  /* Mobil Uyumluluk */
   @media (max-width: 992px) {
     .footer-grid {
       grid-template-columns: 1fr 1fr 1fr;
@@ -228,18 +226,18 @@
   <div class="header-top-row">
     <div class="top-bar-left">
       <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="mailto:info@goldenpalace.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@goldenpalace.com</a>
+      <a href="mailto:info@walkaboutravel.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@walkaboutravel.com</a>
       </div>
     <div class="top-bar-right">
-      <a href="https://www.google.com/maps/search/?api=1&query=Kazliçesme,+Kennedy+Cad.+I+blok+no+99,+34020+Zeytinburnu/istanbul" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
     </div>
   </div>
 
   <div class="header-bottom-row">
     <div class="brand">
-      <img src="assets/golden_palace_logo.webp" alt="Golden Palace Logo"> <div class="brand-text-container">
-          <span class="brand-title" data-key="brand_golden_palace">Golden Palace</span>
-          <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
+      <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo"> <div class="brand-text-container">
+          <span class="brand-title" data-key="brand_walkabou_travel">WalkAbouTravel</span>
+          <span class="brand-tagline" data-key="brand_Tourism">Tourism & Travel</span>
       </div>
     </div>
   
@@ -252,7 +250,6 @@
         <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
         <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
         <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
-        <a data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a>
         <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
         <div class="language-selector mobile-only" style="display: none;">
             <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
@@ -269,8 +266,6 @@
     </div>
   </div>
 </header>
-
-<!-- GÜNCELLENMİŞ HERO BÖLÜMÜ -->
 <section class="hero-video page-section active" id="hero">
   <video autoplay muted loop playsinline class="hero-video-bg">
     <source src="assets/hero_background.mp4" type="video/mp4">
@@ -279,95 +274,122 @@
 
   <div class="hero-content-overlay">
     <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
-    <h1 data-key="hero_title">Golden Palace</h1>
+    <h1 data-key="hero_title">WalkAbouTravel</h1>
     
     <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;"></h2>
     
-    <!-- YENİ 3 SÜTUNLU KART YAPISI -->
+    <!-- YENİ 3 SÜTUNLU KART YAPISI (WalkAbouTravel) -->
     <div class="hero-quick-access-container">
         
-        <!-- SÜTUN 1: TURİZM -->
+        <!-- SÜTUN 1: TURİZM DE BİZ (Yurt İçi) -->
         <div class="hero-access-col">
             <a href="#" data-page="page-otel" class="btn btn-hero-link main-cat-link">
                 Turizm De Biz <i class="fas fa-arrow-right" style="font-size:12px; margin-left:5px;"></i>
             </a>
             <div class="mini-cards-grid">
-                <!-- Kart 1 -->
                 <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/otel1.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Mardin'" alt="Mardin">
-                    <span>Mardin Kültür Turu</span>
+                    <img src="assets/mardin-konak-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Mardin'" alt="Mardin">
+                    <span>Mardin Kültür</span>
                 </div>
-                <!-- Kart 2 -->
                 <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/otel2.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Antalya'" alt="Antalya">
-                    <span>Antalya Koy Gezisi</span>
+                    <img src="assets/antalya-koy-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Antalya'" alt="Antalya">
+                    <span>Antalya Koy</span>
                 </div>
-                <!-- Kart 3 -->
                 <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/otel3.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Kapadokya'" alt="Kapadokya">
-                    <span>Kapadokya Balon</span>
+                    <img src="assets/kapadokya-balon-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Kapadokya'" alt="Kapadokya">
+                    <span>Kapadokya</span>
                 </div>
-                <!-- Kart 4 -->
                 <div class="mini-card" onclick="location.hash='page-otel'">
-                    <img src="assets/otel4.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Fethiye'" alt="Fethiye">
-                    <span>Fethiye Ölüdeniz</span>
+                    <img src="assets/fethiye-oludeniz-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Fethiye'" alt="Fethiye">
+                    <span>Fethiye</span>
                 </div>
             </div>
         </div>
 
-        <!-- SÜTUN 2: RESTORASYON -->
+        <!-- SÜTUN 2: RESTORASYON PROJELERİ -->
         <div class="hero-access-col">
             <a href="#" data-page="page-restorasyon" class="btn btn-hero-link main-cat-link">
                 Restorasyon Projeleri <i class="fas fa-arrow-right" style="font-size:12px; margin-left:5px;"></i>
             </a>
             <div class="mini-cards-grid">
                 <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon1.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Yalı'" alt="Yalı">
+                    <img src="assets/restorasyon-1-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Yalı'" alt="Yalı">
                     <span>Tarihi Yalı</span>
                 </div>
                 <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon2.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Kilise'" alt="Kilise">
+                    <img src="assets/restorasyon-2-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Kilise'" alt="Kilise">
                     <span>Eski Kilise</span>
                 </div>
                 <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon3.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Han'" alt="Han">
+                    <img src="assets/restorasyon-3-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Han'" alt="Han">
                     <span>Kervansaray</span>
                 </div>
                 <div class="mini-card" onclick="location.hash='page-restorasyon'">
-                    <img src="assets/restorasyon4.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Kule'" alt="Kule">
+                    <img src="assets/restorasyon-4-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Kule'" alt="Kule">
                     <span>Saat Kulesi</span>
                 </div>
             </div>
         </div>
 
-        <!-- SÜTUN 3: TURİZM & TRANSFER (SATILIK/KİRALIK) -->
+        <!-- SÜTUN 3: TURİZM & TRANSFER (Uluslararası/Transfer) -->
         <div class="hero-access-col">
             <a href="#" data-page="page-satilik_kiralik" class="btn btn-hero-link main-cat-link">
                 Turizm & Transfer <i class="fas fa-arrow-right" style="font-size:12px; margin-left:5px;"></i>
             </a>
             <div class="mini-cards-grid">
                 <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="assets/insaat1.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=VIP'" alt="VIP">
+                    <img src="assets/spain-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=İspanya'" alt="İspanya">
+                    <span>İspanya Turu</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
+                    <img src="assets/rusya-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Rusya'" alt="Rusya">
+                    <span>Rusya Turu</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
+                    <img src="https://placehold.co/100x65/222/f59e0b?text=Transfer" alt="Transfer">
                     <span>VIP Transfer</span>
                 </div>
                 <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="assets/insaat2.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Havalimanı'" alt="Havalimanı">
-                    <span>Havalimanı</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="assets/insaat3.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Villa'" alt="Villa">
-                    <span>Villa Kiralama</span>
-                </div>
-                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
-                    <img src="assets/insaat4.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Tekne'" alt="Tekne">
-                    <span>Özel Tekne</span>
+                    <img src="https://placehold.co/100x65/222/f59e0b?text=Bilet" alt="Bilet">
+                    <span>Uçak Bileti</span>
                 </div>
             </div>
         </div>
 
     </div>
-    <!-- 3 SÜTUNLU YAPI SONU -->
+    <!-- YAPI SONU -->
 
+  </div> 
+</section>
+
+<!-- Blog Bölümü -->
+<section id="homepage-blog" class="page-section active" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
+    <div class="new-layout-container">
+        
+        <div class="section-title-wrapper" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a2e; margin-bottom: 10px;">
+                Seyahat Günlüğü
+            </h2>
+            <p style="color: #666; max-width: 600px; margin: 0 auto; font-size: 18px;">
+                Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
+            </p>
+        </div>
+
+        <div class="featured-blog" style="margin-bottom: 60px;">
+            <img src="assets/for_hero.webp" alt="Mardin" class="featured-img" onerror="this.src='https://placehold.co/800x400/1a1a2e/FFF?text=WalkAbouTravel'">
+            <div class="featured-content">
+                <span class="blog-category">EDİTÖRÜN SEÇİMİ</span>
+                <h3>Mardin'in Büyülü Atmosferi: Taş Konaklar</h3>
+                <p>Mezopotamya'nın kalbinde, tarihin ve kültürün iç içe geçtiği Mardin sokaklarında, taş işçiliğinin en güzel örneklerini keşfedin.</p>
+                <a href="#" class="btn">Devamını Oku</a>
+            </div>
+        </div>
+
+        <div id="blog-grid-display" class="blog-grid">
+            <!-- JS ile doldurulacak -->
+        </div>
+
+    </div>
 </section>
 
 <main id="page-container">
@@ -383,7 +405,6 @@
                 <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
                 <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
                 <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
-                <li><a href="#page-projects" data-page="page-projects" class="nav-link" data-key="nav_projects">Projeler</a></li>
                 <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
             </ul>
         </div>
@@ -400,17 +421,17 @@
 
         <div class="footer-column logo-column">
             <div class="footer-logo-container">
-                <img src="assets/golden_palace_logo.webp" alt="Golden Palace Logo">
+                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo">
                 <div class="footer-text-container">
-                    <span class="footer-title" data-key="brand_golden_palace">Golden Palace</span>
-                    <span class="brand-tagline" data-key="brand_realstate">Real Estate & Architecture</span>
+                    <span class="footer-title" data-key="brand_walkabou_travel">WalkAbouTravel</span>
+                    <span class="brand-tagline" data-key="brand_Tourism">Tourism & Travel</span>
                 </div>
             </div>
             <div class="social-icons">
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                <a href="mailto:info@goldenpalace.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:info@walkaboutravel.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
 
@@ -419,7 +440,7 @@
             <ul class="footer-links">
                 <li><a href="#page-otel" data-page="page-otel" data-key="drop_hotel">Turizm De Biz</a></li>
                 <li><a href="#page-restorasyon" data-page="page-restorasyon" data-key="drop_restoration">Restorasyon Projeleri</a></li>
-                <li><a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-key="drop_rental">Ticari Ve Konut</a></li>
+                <li><a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-key="drop_rental">Bilet & Transfer</a></li>
             </ul>
         </div>
 
@@ -428,7 +449,7 @@
             <ul class="footer-links contact-info">
                 <li>
                     <i class="fas fa-map-marker-alt"></i>
-                    <span data-key="contact_info_address_p">Kazliçesme, Kennedy Cad. I blok no 99, 34020 Zeytinburnu/İstanbul</span>
+                    <span data-key="contact_info_address_p">Mimar Sinan Cd. No: 42/A, WalkAbouTravel Tower Kat: 12, İstanbul/Türkiye</span>
                 </li>
                 <li>
                     <i class="fas fa-phone"></i>
@@ -436,7 +457,7 @@
                 </li>
                 <li>
                     <i class="fas fa-envelope"></i>
-                    <a href="mailto:info@goldenpalace.com" data-key="contact_info_email_p">info@goldenpalace.com</a>
+                    <a href="mailto:info@walkaboutravel.com" data-key="contact_info_email_p">info@walkaboutravel.com</a>
                 </li>
             </ul>
         </div>
@@ -444,7 +465,7 @@
     </div>
     
     <div class="footer-bottom" data-key="footer_copyright">
-        © 2025 Golden Palace Mimarlık. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.
+        © 2025 WalkAbouTravel Kurumsal Seyahat. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.
     </div>
 </footer>
 <div id="lightbox" class="availability-modal" style="cursor: pointer; padding: 20px; display: none; align-items: center; justify-content: center;">
@@ -478,25 +499,25 @@
   </div>
 </div>
 
-<script src="app.js?v=1.6" defer></script>
+<script src="app.js?v=1.7" defer></script>
 
 <script>
     const data = [
         {
-            title: "Mimarlık",
-            description: "Teknik standartlara göre şekillendirilmiş, verimli ve sürdürülebilir mimari çözümler tasarlıyoruz."
+            title: "Kurumsal Seyahat",
+            description: "İş toplantılarınız ve kongreleriniz için özel lojistik ve konaklama çözümleri sunuyoruz."
         },
         {
-            title: "Kat Karşılığı Sözleşme",
-            description: "Proje teslimi, bağımsız bölüm paylaşımı ve inşaat standartlarını hukuki normlara uygun şekilde yapılandırıyoruz."
+            title: "Özel Turlar & Deneyimler",
+            description: "Size özel rehberler ve benzersiz rotalarla unutulmaz kültür ve macera turları düzenliyoruz."
         },
         {
-            title: "Ticari ve Konut",
-            description: "Doğru fiyatlama, teknik raporlama ve hızlı işlem süreçleriyle satış ve kiralama süreçlerini profesyonelce yönetiyoruz."
+            title: "Bilet & Transfer",
+            description: "Dünya çapında en uygun uçak, otobüs ve tren biletlerini hızlıca sağlıyor, konforlu transferinizi planlıyoruz."
         },
         {
-            title: "Restorasyon",
-            description: "Tarihi yapıları özgün değerleriyle ustalıkla yeniliyoruz."
+            title: "Konaklama & Rezervasyon", 
+            description: "İhtiyaçlarınıza uygun en lüks ve konforlu konaklama seçeneklerini güvenle rezerve ediyoruz."
         }
     ];
 
@@ -505,29 +526,20 @@
     const intervalTime = 5000; // 3 saniye
 
     function changeTextWithFade() {
-        // 1. Fade Out: Opaklığı sıfıra düşür
         if(textElement) {
             textElement.style.opacity = '0'; 
         }
 
-        // 2. Metni 0.5 saniye sonra değiştir
         setTimeout(() => {
             if(textElement) {
                 const currentData = data[index];
-                
-                // Metin içeriğini Kalın Başlık ve Açıklama olarak HTML'e yaz
                 textElement.innerHTML = `<strong>${currentData.title}</strong><br>${currentData.description}`;
-                
-                // 3. Fade In: Opaklığı tekrar 1 yap
                 textElement.style.opacity = '1'; 
-                
-                // 4. İndeksi bir sonraki öğeye ilerlet (Döngü)
                 index = (index + 1) % data.length;
             }
-        }, 500); // CSS transition süresi ile uyumlu (0.5 saniye)
+        }, 500); 
     }
 
-    // HTML öğesi yüklü ise döngüyü başlat
     if(textElement) {
         changeTextWithFade();
         setInterval(changeTextWithFade, intervalTime);
