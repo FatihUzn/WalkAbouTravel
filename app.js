@@ -31,12 +31,7 @@ let globalPropertyImages = [];
 let globalImageIndex = 0;
 const IMAGES_PER_LOAD = 6; 
 
-// --- RESTORASYON GALERİ DEĞİŞKENLERİ ---
-const RESTORATION_IMAGES_PER_LOAD = 4;
-const restorationBeforePaths = Array.from({length: 13}, (_, i) => `assets/restorasyon-${i+1}-before.webp`);
-const restorationAfterPaths = Array.from({length: 13}, (_, i) => `assets/restorasyon-${i+1}-after.webp`);
-let globalRestorationBeforeIndex = 0;
-let globalRestorationAfterIndex = 0;
+// TEMİZLİK YAPILDI: Restorasyon (Before/After) değişkenleri silindi.
 
 
 // === TURİZM VERİ TABANI (ORİJİNAL DOSYA İSİMLERİYLE) ===
@@ -304,48 +299,14 @@ async function showPage(pageId) {
                 if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
             });
         }
-        if (pageId === 'page-pruva-otel' || fileName === 'restorasyon') {
-             setupRestorationGalleries();
-        }
+        
+        // TEMİZLİK YAPILDI: setupRestorationGalleries() çağrısı silindi.
+        
         setTimeout(() => newPage.classList.add('visible'), 50);
     }
 }
 
-// === RESTORASYON GALERİLERİ ===
-function setupRestorationGalleries() {
-  globalRestorationBeforeIndex = 0;
-  globalRestorationAfterIndex = 0;
-  
-  const beforeGal = document.getElementById('restoration-gallery-before');
-  const afterGal = document.getElementById('restoration-gallery-after');
-  
-  if (beforeGal) { beforeGal.innerHTML = ''; loadMoreRestorationImages('before'); }
-  if (afterGal) { afterGal.innerHTML = ''; loadMoreRestorationImages('after'); }
-}
-
-function loadMoreRestorationImages(type) {
-  const container = document.getElementById(type === 'before' ? 'restoration-gallery-before' : 'restoration-gallery-after');
-  const loader = document.getElementById(type === 'before' ? 'restoration-loader-before' : 'restoration-loader-after');
-  const images = type === 'before' ? restorationBeforePaths : restorationAfterPaths;
-  let idx = type === 'before' ? globalRestorationBeforeIndex : globalRestorationAfterIndex;
-
-  if (!container) return;
-
-  const slice = images.slice(idx, idx + RESTORATION_IMAGES_PER_LOAD);
-  if(slice.length === 0) return;
-
-  container.insertAdjacentHTML('beforeend', slice.map(src => `<img src="${src}" loading="lazy">`).join(''));
-  
-  if (type === 'before') globalRestorationBeforeIndex += RESTORATION_IMAGES_PER_LOAD;
-  else globalRestorationAfterIndex += RESTORATION_IMAGES_PER_LOAD;
-  
-  if (loader) {
-      loader.innerHTML = '';
-      if ((type === 'before' ? globalRestorationBeforeIndex : globalRestorationAfterIndex) < images.length) {
-          loader.innerHTML = `<button class="btn" onclick="loadMoreRestorationImages('${type}')">Daha Fazla</button>`;
-      }
-  }
-}
+// TEMİZLİK YAPILDI: Restorasyon galeri fonksiyonları (setupRestorationGalleries, loadMoreRestorationImages) tamamen silindi.
 
 // === BAŞLANGIÇ AYARLARI ===
 document.addEventListener('DOMContentLoaded', async () => {
@@ -390,4 +351,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 });
-
