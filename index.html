@@ -16,10 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<link rel="stylesheet" href="style.css?v=1.6">
+<link rel="stylesheet" href="style.css?v=1.7">
 
 <style>
   /* === HEADER (ÜST BİLGİ) İÇİN YENİ STİLLER === */
@@ -91,14 +90,13 @@
     margin: 10px 0 30px 0;
   }
   
-  /* Keşfet Butonu stilleri - BURASI TEMİZLENDİ - */
   .cta-group {
     position: relative;
     display: inline-block;
   }
 
   /* ========================================= */
-  /* === YENİ GENİŞ FOOTER STİLLERİ (Değişmedi) === */
+  /* === YENİ GENİŞ FOOTER STİLLERİ === */
   /* ========================================= */
   .site-footer {
     background-color: #0c0c0c; 
@@ -191,7 +189,6 @@
   }
 
   @media (max-width: 768px) {
-    /* Header mobil ayarı */
     .header-top-row {
       padding: 10px 15px;
       font-size: 0.75rem;
@@ -206,10 +203,9 @@
       height: 70px;
     }
     .hero-content-overlay h1 {
-      font-size: 3rem; /* Mobil'de başlık */
+      font-size: 3rem; 
     }
 
-    /* Footer Mobil */
     .footer-grid {
       grid-template-columns: 1fr;
     }
@@ -273,6 +269,8 @@
     </div>
   </div>
 </header>
+
+<!-- GÜNCELLENMİŞ HERO BÖLÜMÜ -->
 <section class="hero-video page-section active" id="hero">
   <video autoplay muted loop playsinline class="hero-video-bg">
     <source src="assets/hero_background.mp4" type="video/mp4">
@@ -285,11 +283,91 @@
     
     <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;"></h2>
     
-    <div class="hero-links-container action-buttons">
-      <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-      <a href="#" data-page="page-restorasyon" data-category="restorasyon" data-category="restorasyon" data-key="drop_restoration" class="btn btn-hero-link">Restorasyon Projeleri</a>
-      <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Ticari Ve Konut</a>
+    <!-- YENİ 3 SÜTUNLU KART YAPISI -->
+    <div class="hero-quick-access-container">
+        
+        <!-- SÜTUN 1: TURİZM -->
+        <div class="hero-access-col">
+            <a href="#" data-page="page-otel" class="btn btn-hero-link main-cat-link">
+                Turizm De Biz <i class="fas fa-arrow-right" style="font-size:12px; margin-left:5px;"></i>
+            </a>
+            <div class="mini-cards-grid">
+                <!-- Kart 1 -->
+                <div class="mini-card" onclick="location.hash='page-otel'">
+                    <img src="assets/otel1.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Mardin'" alt="Mardin">
+                    <span>Mardin Kültür Turu</span>
+                </div>
+                <!-- Kart 2 -->
+                <div class="mini-card" onclick="location.hash='page-otel'">
+                    <img src="assets/otel2.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Antalya'" alt="Antalya">
+                    <span>Antalya Koy Gezisi</span>
+                </div>
+                <!-- Kart 3 -->
+                <div class="mini-card" onclick="location.hash='page-otel'">
+                    <img src="assets/otel3.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Kapadokya'" alt="Kapadokya">
+                    <span>Kapadokya Balon</span>
+                </div>
+                <!-- Kart 4 -->
+                <div class="mini-card" onclick="location.hash='page-otel'">
+                    <img src="assets/otel4.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Fethiye'" alt="Fethiye">
+                    <span>Fethiye Ölüdeniz</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SÜTUN 2: RESTORASYON -->
+        <div class="hero-access-col">
+            <a href="#" data-page="page-restorasyon" class="btn btn-hero-link main-cat-link">
+                Restorasyon Projeleri <i class="fas fa-arrow-right" style="font-size:12px; margin-left:5px;"></i>
+            </a>
+            <div class="mini-cards-grid">
+                <div class="mini-card" onclick="location.hash='page-restorasyon'">
+                    <img src="assets/restorasyon1.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Yalı'" alt="Yalı">
+                    <span>Tarihi Yalı</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-restorasyon'">
+                    <img src="assets/restorasyon2.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Kilise'" alt="Kilise">
+                    <span>Eski Kilise</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-restorasyon'">
+                    <img src="assets/restorasyon3.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Han'" alt="Han">
+                    <span>Kervansaray</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-restorasyon'">
+                    <img src="assets/restorasyon4.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Kule'" alt="Kule">
+                    <span>Saat Kulesi</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SÜTUN 3: TURİZM & TRANSFER (SATILIK/KİRALIK) -->
+        <div class="hero-access-col">
+            <a href="#" data-page="page-satilik_kiralik" class="btn btn-hero-link main-cat-link">
+                Turizm & Transfer <i class="fas fa-arrow-right" style="font-size:12px; margin-left:5px;"></i>
+            </a>
+            <div class="mini-cards-grid">
+                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
+                    <img src="assets/insaat1.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=VIP'" alt="VIP">
+                    <span>VIP Transfer</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
+                    <img src="assets/insaat2.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Havalimanı'" alt="Havalimanı">
+                    <span>Havalimanı</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
+                    <img src="assets/insaat3.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Villa'" alt="Villa">
+                    <span>Villa Kiralama</span>
+                </div>
+                <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
+                    <img src="assets/insaat4.webp" onerror="this.src='https://placehold.co/100x80/222/f59e0b?text=Tekne'" alt="Tekne">
+                    <span>Özel Tekne</span>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <!-- 3 SÜTUNLU YAPI SONU -->
+
 </section>
 
 <main id="page-container">
@@ -331,8 +409,7 @@
             <div class="social-icons">
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behandu
-ce"></i></a>
+                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
                 <a href="mailto:info@goldenpalace.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
