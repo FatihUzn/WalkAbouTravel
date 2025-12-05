@@ -95,6 +95,92 @@
     display: inline-block;
   }
 
+  /* --- YENİ EKLENEN KART DÜZENİ İÇİN STİLLER (BAŞLANGIÇ) --- */
+  /* Kartların taşındığı yeni siyah bölüm */
+  #quick-access-links {
+      background-color: #121212; 
+      padding: 60px 20px; 
+      border-bottom: 1px solid #333;
+      position: relative;
+      z-index: 10;
+  }
+
+  /* Kartları tutan kapsayıcı */
+  .hero-quick-access-container {
+      display: flex;
+      justify-content: center; /* Ortala */
+      gap: 30px; /* Aralarında boşluk bırak */
+      flex-wrap: wrap; /* Sığmazsa alt satıra geç */
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      
+      /* Eski stillerden kalabilecek pozisyonları sıfırlıyoruz */
+      position: static !important; 
+      transform: none !important;
+      bottom: auto !important;
+      background: transparent !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+  }
+
+  /* Her bir sütun */
+  .hero-access-col {
+      flex: 1; /* Eşit genişlik */
+      min-width: 300px; /* Çok küçülmesin */
+      background: rgba(255, 255, 255, 0.05); /* Hafif şeffaf arka plan */
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Mini kartlar ızgarası */
+  .mini-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+  }
+
+  .mini-card {
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+      position: relative;
+  }
+  .mini-card:hover {
+      transform: translateY(-3px);
+  }
+  .mini-card img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      display: block;
+  }
+  .mini-card span {
+      display: block;
+      padding: 8px;
+      font-size: 13px;
+      color: #fff;
+      text-align: center;
+  }
+
+  /* Mobil düzenlemeler */
+  @media (max-width: 992px) {
+      .hero-quick-access-container {
+          flex-direction: column;
+          align-items: center;
+      }
+      .hero-access-col {
+          width: 100%;
+          max-width: 400px;
+          margin-bottom: 30px;
+      }
+  }
+  /* --- YENİ EKLENEN KART DÜZENİ İÇİN STİLLER (BİTİŞ) --- */
+
+
   /* Footer Stilleri */
   .site-footer {
     background-color: #0c0c0c; 
@@ -277,12 +363,22 @@
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
     </div>
 
-    <!-- 3. BÖLÜM: YENİ 3 SÜTUNLU KART YAPISI (ALTA EKLENDİ) -->
+    <!-- NOT: BURADAKİ ESKİ KART YAPISI ÇIKARILDI VE AŞAĞIYA TAŞINDI -->
+
+  </div> 
+</section>
+<!-- HERO BÖLÜMÜ BİTİŞİ -->
+
+
+<!-- YENİ BÖLÜM: HIZLI ERİŞİM KARTLARI (KAYMA SORUNUNU ÇÖZEN BÖLÜM) -->
+<section id="quick-access-links">
+    
+    <!-- 3 SÜTUNLU KART YAPISI BURAYA TAŞINDI -->
     <div class="hero-quick-access-container">
         
         <!-- SÜTUN 1: TURİZM DE BİZ (Yurt İçi) -->
         <div class="hero-access-col">
-            <h3 class="col-title" style="font-size:18px; color:var(--blue-light); margin-bottom:15px; font-family:'Playfair Display',serif;">Kültür Turları</h3>
+            <h3 class="col-title" style="font-size:18px; color:var(--blue-light, #ffcc66); margin-bottom:15px; font-family:'Playfair Display',serif; text-align:center;">Kültür Turları</h3>
             <div class="mini-cards-grid">
                 <div class="mini-card" onclick="location.hash='page-otel'">
                     <img src="assets/mardin-konak-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Mardin'" alt="Mardin">
@@ -305,7 +401,7 @@
 
         <!-- SÜTUN 2: RESTORASYON PROJELERİ -->
         <div class="hero-access-col">
-            <h3 class="col-title" style="font-size:18px; color:var(--blue-light); margin-bottom:15px; font-family:'Playfair Display',serif;">Restorasyon</h3>
+            <h3 class="col-title" style="font-size:18px; color:var(--blue-light, #ffcc66); margin-bottom:15px; font-family:'Playfair Display',serif; text-align:center;">Restorasyon</h3>
             <div class="mini-cards-grid">
                 <div class="mini-card" onclick="location.hash='page-restorasyon'">
                     <img src="assets/restorasyon-1-before.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=Yalı'" alt="Yalı">
@@ -328,7 +424,7 @@
 
         <!-- SÜTUN 3: TURİZM & TRANSFER -->
         <div class="hero-access-col">
-            <h3 class="col-title" style="font-size:18px; color:var(--blue-light); margin-bottom:15px; font-family:'Playfair Display',serif;">Yurt Dışı & Transfer</h3>
+            <h3 class="col-title" style="font-size:18px; color:var(--blue-light, #ffcc66); margin-bottom:15px; font-family:'Playfair Display',serif; text-align:center;">Yurt Dışı & Transfer</h3>
             <div class="mini-cards-grid">
                 <div class="mini-card" onclick="location.hash='page-satilik_kiralik'">
                     <img src="assets/spain-1.webp" onerror="this.src='https://placehold.co/100x65/222/f59e0b?text=İspanya'" alt="İspanya">
@@ -350,11 +446,9 @@
         </div>
 
     </div>
-    <!-- YAPI SONU -->
-
-  </div> 
 </section>
-<!-- HERO BÖLÜMÜ BİTİŞİ -->
+<!-- YENİ BÖLÜM BİTİŞİ -->
+
 
 <!-- Blog Bölümü -->
 <section id="homepage-blog" class="page-section active" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
