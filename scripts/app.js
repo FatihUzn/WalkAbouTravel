@@ -4,10 +4,10 @@ import { setLanguage, getCurrentLanguage } from './modules/language.js';
 import { showPage } from './modules/navigation.js';
 import { loadTourData, openHouseDetail, closeHouseDetail, loadMorePropertyImages, getCurrentGalleryImages, renderTourGrid } from './modules/tours.js';
 import { openGallery, closeLightbox, showNextImage, showPrevImage } from './modules/lightbox.js';
-import { loadBlogData, openBlogModal, closeBlogModal } from './modules/blog.js';
+// DİKKAT: renderBlogGrid BURAYA EKLENDİ
+import { loadBlogData, openBlogModal, closeBlogModal, renderBlogGrid } from './modules/blog.js';
 
 // === 2. FONKSİYONLARI HTML'E AÇ (WINDOW BAĞLANTISI) ===
-// HTML'deki onclick="openHouseDetail(...)" komutlarının çalışması için şarttır.
 window.setLanguage = setLanguage;
 window.showPage = showPage;
 window.openHouseDetail = openHouseDetail;
@@ -20,7 +20,7 @@ window.openBlogModal = openBlogModal;
 window.closeModal = closeBlogModal;
 window.renderTourGrid = renderTourGrid; 
 
-// Özel Galeri Açma Fonksiyonu (Tours modülünden anlık veriyi alır)
+// Özel Galeri Açma Fonksiyonu
 window.openGlobalGallery = (index) => {
     const images = getCurrentGalleryImages();
     openGallery(images, index);
@@ -31,22 +31,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log("Uygulama başlatılıyor...");
 
     try {
-        // A. Verileri Yükle (Turlar ve Bloglar)
+        // A. Verileri Yükle (Veriler çekilir ama ekrana basılmaz)
         await Promise.all([
             loadTourData(),
             loadBlogData()
         ]);
 
-        // B. Dili Ayarla (Kaydedilmiş dil veya varsayılan)
+        // B. Dili Ayarla
         const lang = getCurrentLanguage();
         await setLanguage(lang);
 
         // C. Doğru Sayfayı Göster
-        // Eğer linkte #page-tours varsa orayı, yoksa ana sayfayı aç
         const initialPage = location.hash.replace('#', '') || 'hero';
         await handleRouting(initialPage);
 
-        // D. Dinleyicileri Kur (Butonlar, Klavye vb.)
+        // D. Dinleyicileri Kur
         setupEventListeners();
 
     } catch (error) {
@@ -59,25 +58,29 @@ async function handleRouting(pageId) {
     // İstenen sayfayı ekrana getir
     await showPage(pageId);
 
-    // Eğer "Turlar" sayfasına geldiysek, içeriği (Grid'i) doldur
+    // --- TURLAR SAYFASI İÇİN ÖZEL İŞLEM ---
     if (pageId === 'page-tours' || pageId === 'tours') {
-        // Kullanıcının seçtiği kategoriyi hafızadan al (yoksa 'all')
         const savedCat = localStorage.getItem('selectedCategory') || 'all';
         renderTourGrid(savedCat);
-        // Kullandıktan sonra temizle (ki sonraki girişlerde karışmasın)
         localStorage.removeItem('selectedCategory');
+    }
+
+    // --- BLOG SAYFASI İÇİN ÖZEL İŞLEM (YENİ EKLENDİ) ---
+    // Sayfa DOM'a eklendikten sonra blogları render et
+    if (pageId === 'page-blog' || pageId === 'blog') {
+        renderBlogGrid();
     }
 }
 
 // === 5. OLAY DİNLEYİCİLERİ (EVENT LISTENERS) ===
 function setupEventListeners() {
-    // A. URL Değişimini Dinle (Geri/İleri tuşları için)
+    // A. URL Değişimini Dinle
     window.addEventListener('hashchange', () => {
         const pageId = location.hash.replace('#', '') || 'hero';
         handleRouting(pageId);
     });
 
-    // B. Mobil Menü Aç/Kapa
+    // B. Mobil Menü
     const menuToggle = document.getElementById('menu-toggle');
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
@@ -86,38 +89,35 @@ function setupEventListeners() {
         });
     }
 
-    // C. Kategori Linklerini Takip Et (data-category)
+    // C. Kategori Linkleri
     document.body.addEventListener('click', (e) => {
-        // Tıklanan öğe veya ebeveyni 'data-category' içeriyor mu?
         const categoryLink = e.target.closest('[data-category]');
-        if (categoryLink) { // categoryLink null değilse devam et
+        if (categoryLink) { 
             const cat = categoryLink.dataset.category;
-            // Seçimi kaydet, sayfa yüklendiğinde kullanacağız
             localStorage.setItem('selectedCategory', cat);
-            // Sayfa yenilenmeden gridi güncellemek için (opsiyonel ama iyi bir UX)
+            
             if (location.hash === '#page-tours' || location.hash === '#tours') {
                 renderTourGrid(cat);
             }
         }
     });
 
-    // D. Klavye Kontrolleri (ESC, Sağ, Sol)
+    // D. Klavye Kontrolleri
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             closeLightbox();
             closeHouseDetail();
             closeBlogModal();
         }
-        // Sadece Lightbox açıkken ok tuşlarını dinle
         if (document.getElementById('lightbox-modal')?.style.display === 'flex') {
             if (e.key === 'ArrowRight') showNextImage();
             if (e.key === 'ArrowLeft') showPrevImage();
         }
     });
 
-    // E. Lightbox Butonları (ID ile doğrudan erişim)
+    // E. Lightbox Butonları
     document.getElementById('next-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation(); // Tıklamanın arkaya geçmesini engelle
+        e.stopPropagation();
         showNextImage();
     });
     document.getElementById('prev-btn')?.addEventListener('click', (e) => {
@@ -126,7 +126,7 @@ function setupEventListeners() {
     });
     document.getElementById('close-lightbox')?.addEventListener('click', closeLightbox);
     
-    // F. Blog Modalı Dışına Tıklama (Kapatmak için)
+    // F. Blog Modalı Dışına Tıklama
     const blogModal = document.getElementById('blog-modal');
     if (blogModal) {
         blogModal.addEventListener('click', (e) => {

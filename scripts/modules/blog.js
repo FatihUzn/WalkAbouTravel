@@ -1,6 +1,9 @@
 import { PATHS } from '../config/constants.js';
 
-// YEDEK VERİ (FALLBACK): JSON Yüklenemezse devreye girer
+// Verileri hafızada tutmak için değişken
+let cachedPosts = [];
+
+// YEDEK VERİ (FALLBACK)
 const MOCK_DATA = [
     {
         "id": 1,
@@ -36,33 +39,34 @@ export async function loadBlogData() {
         const response = await fetch(PATHS.BLOG_DATA);
         if (!response.ok) throw new Error('Blog verisi alınamadı');
         
-        const posts = await response.json();
-        renderBlogGrid(posts);
-        
-        // Blog verilerini detay modalı için global scope'a kaydet (basitlik için)
-        window.blogPostsData = posts; 
+        cachedPosts = await response.json();
         
     } catch (error) {
         console.warn('Blog verisi yüklenemedi, yedek veri kullanılıyor:', error);
-        
-        // Hata durumunda MOCK_DATA kullan
-        renderBlogGrid(MOCK_DATA);
-        window.blogPostsData = MOCK_DATA;
+        cachedPosts = MOCK_DATA;
     }
+
+    // Modal açılırken global erişim gerekebilir diye window'a da atıyoruz
+    window.blogPostsData = cachedPosts;
 }
 
-function renderBlogGrid(posts) {
+// BU FONKSİYONU ARTIK APP.JS ÇAĞIRACAK (EXPORT EKLENDİ)
+export function renderBlogGrid() {
     const container = document.getElementById('blog-grid-display');
+    
+    // Eğer sayfada blog container yoksa (başka sayfadaysak) işlemi durdur
     if (!container) return;
     
-    if (!posts || posts.length === 0) {
+    // Veri yoksa mesaj göster
+    if (!cachedPosts || cachedPosts.length === 0) {
         container.innerHTML = '<p>Henüz yazı yok.</p>';
         return;
     }
     
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Tarihe göre sırala (Yeniden eskiye)
+    const sortedPosts = [...cachedPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
     
-    container.innerHTML = posts.map(post => `
+    container.innerHTML = sortedPosts.map(post => `
         <article class="blog-card" onclick="openBlogModal(${post.id})">
             <div class="card-img-top">
                 <img src="${post.image}" alt="${post.title}" loading="lazy"
@@ -79,20 +83,27 @@ function renderBlogGrid(posts) {
 }
 
 export function openBlogModal(id) {
-    const posts = window.blogPostsData || [];
+    // Veriyi cachedPosts veya window'dan al
+    const posts = cachedPosts.length > 0 ? cachedPosts : (window.blogPostsData || []);
     const post = posts.find(p => p.id === id);
     
     if (post) {
-        document.getElementById('modal-title').innerText = post.title;
-        document.getElementById('modal-date').innerText = post.date;
-        
-        const img = document.getElementById('modal-img');
-        img.src = post.image;
-        img.onerror = function() { this.src = PATHS.FALLBACK_IMAGE; this.onerror = null; };
-        
-        document.getElementById('modal-full-content').innerHTML = post.fullContent;
-        
+        const titleEl = document.getElementById('modal-title');
+        const dateEl = document.getElementById('modal-date');
+        const imgEl = document.getElementById('modal-img');
+        const contentEl = document.getElementById('modal-full-content');
         const modal = document.getElementById('blog-modal');
+
+        if (titleEl) titleEl.innerText = post.title;
+        if (dateEl) dateEl.innerText = post.date;
+        
+        if (imgEl) {
+            imgEl.src = post.image;
+            imgEl.onerror = function() { this.src = PATHS.FALLBACK_IMAGE; this.onerror = null; };
+        }
+        
+        if (contentEl) contentEl.innerHTML = post.fullContent;
+        
         if (modal) {
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
