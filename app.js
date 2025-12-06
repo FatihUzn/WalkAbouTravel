@@ -102,7 +102,7 @@ const TOUR_DATA = {
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
     // Dosya adı: spain-1.webp
-    "images": generateImages("spain-", 15)
+    "images": generateImages("spain-1", 15)
   },
   "TUR-D-RUSYA-KIS": {
     "title": "Rusya (Kış Masalı)",
@@ -112,7 +112,7 @@ const TOUR_DATA = {
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
     // Dosya adı: rusya-1.webp
-    "images": generateImages("rusya-", 13)
+    "images": generateImages("rusya-1", 13)
   },
   "TUR-D-BREZILYA": {
     "title": "Brezilya - Rio Karnavalı ve Amazon",
@@ -122,7 +122,7 @@ const TOUR_DATA = {
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
     // Dosya adı: brazil 1.webp (DİKKAT: Burada boşluk var!)
-    "images": generateImages("brazil ", 15)
+    "images": generateImages("brazil 1", 15)
   },
   "TUR-D-AMERIKA": {
     "title": "ABD - New York & Batı Kıyısı",
@@ -132,7 +132,7 @@ const TOUR_DATA = {
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
     // Dosya adı: new-york-1.webp
-    "images": generateImages("new-york-", 9)
+    "images": generateImages("new-york-1", 9)
   }
 };
 
