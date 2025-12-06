@@ -90,10 +90,14 @@ function setupEventListeners() {
     document.body.addEventListener('click', (e) => {
         // Tıklanan öğe veya ebeveyni 'data-category' içeriyor mu?
         const categoryLink = e.target.closest('[data-category]');
-        if (categoryLink) {
+        if (categoryLink) { // categoryLink null değilse devam et
             const cat = categoryLink.dataset.category;
             // Seçimi kaydet, sayfa yüklendiğinde kullanacağız
             localStorage.setItem('selectedCategory', cat);
+            // Sayfa yenilenmeden gridi güncellemek için (opsiyonel ama iyi bir UX)
+            if (location.hash === '#page-tours' || location.hash === '#tours') {
+                renderTourGrid(cat);
+            }
         }
     });
 
