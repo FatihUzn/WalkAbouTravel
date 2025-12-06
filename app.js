@@ -49,8 +49,8 @@ const TOUR_DATA = {
     "area": "Güneydoğu Anadolu",
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
-    // Dosya adı: mardin tarihi ko nak-dokusu-1.webp
-    "images": generateImages("mardin tarihi konak-dokusu-", 16) 
+    // Dosya adı: mardin-tarihi-konak-dokusu-1.webp
+    "images": generateImages("mardin-tarihi-konak-dokusu-", 16) 
   },
   "TUR-TR-ANTALYA": {
     "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
@@ -59,8 +59,8 @@ const TOUR_DATA = {
     "area": "Akdeniz Bölgesi",
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    // Dosya adı: antalya koy gezisi si-1.webp
-    "images": generateImages("antalya koy gezisisi-", 17)
+    // Dosya adı: antalya-koy-gezisi-1.webp
+    "images": generateImages("antalya-koy-gezisi-", 17)
   },
   "TUR-TR-KAPADOKYA": {
     "title": "Kapadokya - Balon ve Peribacaları Turu",
@@ -89,8 +89,8 @@ const TOUR_DATA = {
     "area": "Denizli",
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
-    // Dosya adı: pamukkale traver ten-dogal-1.webp
-    "images": generateImages("pamukkale traverten-dogal-", 11)
+    // Dosya adı: pamukkale-traverten-dogal-1.webp
+    "images": generateImages("pamukkale-traverten-dogal-", 12)
   },
 
   // --- YURT DIŞI ---
@@ -102,7 +102,7 @@ const TOUR_DATA = {
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
     // Dosya adı: spain-1.webp
-    "images": generateImages("spain-1", 15)
+    "images": generateImages("spain-", 15)
   },
   "TUR-D-RUSYA-KIS": {
     "title": "Rusya (Kış Masalı)",
@@ -112,7 +112,7 @@ const TOUR_DATA = {
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
     // Dosya adı: rusya-1.webp
-    "images": generateImages("rusya-1", 13)
+    "images": generateImages("rusya-", 13)
   },
   "TUR-D-BREZILYA": {
     "title": "Brezilya - Rio Karnavalı ve Amazon",
@@ -121,8 +121,8 @@ const TOUR_DATA = {
     "area": "Brezilya",
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
-    // Dosya adı: brazil 1.webp (DİKKAT: Burada boşluk var!)
-    "images": generateImages("brazil 1", 15)
+    // Dosya adı: brazil-1.webp
+    "images": generateImages("brazil-", 15)
   },
   "TUR-D-AMERIKA": {
     "title": "ABD - New York & Batı Kıyısı",
@@ -132,7 +132,7 @@ const TOUR_DATA = {
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
     // Dosya adı: new-york-1.webp
-    "images": generateImages("new-york-1", 9)
+    "images": generateImages("new-york-", 9)
   }
 };
 
@@ -174,7 +174,7 @@ async function openHouseDetail(tourID) {
       <p style="color: #ddd; line-height: 1.6;">${tour.desc}</p>
 
       <div style="margin-top: 25px; text-align: center;">
-          <a href="mailto:info@goldenpalace.com?subject=Rezervasyon Talebi: ${tour.title}" class="btn" style="display: inline-block;">
+          <a href="mailto:info@walkaboutravel.com?subject=Rezervasyon Talebi: ${tour.title}" class="btn" style="display: inline-block;">
              <i class="fas fa-paper-plane"></i> Rezervasyon Yap
           </a>
       </div>
@@ -213,25 +213,43 @@ function loadMorePropertyImages() {
   }
 
   // Yüklenecek resimleri al
-  const imagesToLoad = globalPropertyImages.slice(globalImageIndex, globalImageIndex + IMAGES_PER_LOAD);
+  const endIndex = Math.min(globalImageIndex + IMAGES_PER_LOAD, globalPropertyImages.length);
+  const imagesToLoad = globalPropertyImages.slice(globalImageIndex, endIndex);
 
-  // HTML oluştur (DİKKAT: openGlobalGallery çağrısına indeks ekleniyor)
-  const imagesHTML = imagesToLoad.map((img, i) => {
-    const absoluteIndex = globalImageIndex + i; // Resmin gerçek (global) indeksi
-    return `<img loading="lazy" src="${img}" alt="Tur Görseli" onclick="openGlobalGallery(${absoluteIndex})" onerror="this.style.display='none'" style="cursor:pointer; transition: transform 0.3s;">`;
-  }).join("");
+  imagesToLoad.forEach((imgSrc, idx) => {
+      const imgEl = document.createElement('img');
+      imgEl.src = imgSrc;
+      imgEl.alt = `Tur Görseli ${globalImageIndex + idx + 1}`;
+      imgEl.loading = 'lazy';
+      imgEl.onerror = function() { 
+          this.src = 'https://placehold.co/350x250/1a1a2e/FFF?text=Görsel+Yok'; 
+      };
+      
+      imgEl.onclick = () => openGallery(globalPropertyImages, globalImageIndex + idx);
+      
+      galleryContainer.appendChild(imgEl);
+  });
 
-  galleryContainer.insertAdjacentHTML('beforeend', imagesHTML);
-  globalImageIndex += IMAGES_PER_LOAD;
+  globalImageIndex = endIndex;
+
+  // "Daha fazla yükle" butonu
+  if (globalImageIndex < globalPropertyImages.length) {
+      if (!document.getElementById('load-more-btn')) {
+          const loadMoreBtn = document.createElement('button');
+          loadMoreBtn.id = 'load-more-btn';
+          loadMoreBtn.textContent = 'Daha Fazla Yükle';
+          loadMoreBtn.className = 'btn';
+          loadMoreBtn.style.cssText = 'display:block; margin:30px auto;';
+          loadMoreBtn.onclick = loadMorePropertyImages;
+          galleryContainer.appendChild(loadMoreBtn);
+      }
+  } else {
+      const existingBtn = document.getElementById('load-more-btn');
+      if (existingBtn) existingBtn.remove();
+  }
 }
 
-// === YENİ LIGHTBOX SİSTEMİ ===
-
-// HTML içinden çağırmak için yardımcı fonksiyon
-function openGlobalGallery(index) {
-    openGallery(globalPropertyImages, index);
-}
-
+// === LIGHTBOX FONKSİYONLARI ===
 // Galeri açma
 function openGallery(images, startIndex = 0) {
     if (!images || images.length === 0) return;
