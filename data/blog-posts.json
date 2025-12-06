@@ -25,5 +25,23 @@
         "category": "REHBER",
         "summary": "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları.",
         "fullContent": "<p>Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları. </p><p>Öncelikle 'Kapsül Gardırop' mantığını benimseyin. Birbiriyle uyumlu 3 tişört, 2 pantolon ve 1 rahat yürüyüş ayakkabısı size 1 hafta yeter.</p><p>Unutmayın: Avrupa sokakları parke taşlıdır, tekerlekli valiz yerine sırt çantası tercih etmek hayatınızı kurtarır!</p>"
+    },
+    {
+        "id": 4,
+        "title": "Mardin'in Gizli Köşeleri: Taş Konaklar Rehberi",
+        "image": "assets/mardin-tarihi-konak-dokusu-1.webp",
+        "date": "2025-07-12",
+        "category": "KÜLTÜR",
+        "summary": "Mesopotamya'nın binlerce yıllık mirasını taşıyan Mardin'de mutlaka görülmesi gereken tarihi konaklar.",
+        "fullContent": "<p>Mardin, taş konaklarıyla ünlü bu muhteşem şehir, Mesopotamya'nın binlerce yıllık tarihini sokaklarında taşıyor. Her köşesinde farklı bir medeniyet, her taşında bir hikaye var.</p><p><strong>Mutlaka Görülmesi Gerekenler:</strong></p><ul><li><strong>Kasımiye Medresesi:</strong> 15. yüzyıldan kalma bu muhteşem yapı, Artuklu mimarisinin en güzel örneklerinden biri.</li><li><strong>Zinciriye Medresesi:</strong> Taş işçiliğinin doruk noktası.</li></ul>"
+    },
+    {
+        "id": 5,
+        "title": "Ölüdeniz'de Yamaç Paraşütü: Adrenalin Dolu Bir Gün",
+        "image": "assets/fethiye-oludeniz-manzarasi-14.webp",
+        "date": "2025-06-28",
+        "category": "MACERA",
+        "summary": "Babadağ'dan atlayıp Ölüdeniz'in turkuaz sularına süzülmek nasıl bir duygu? İşte deneyimimiz.",
+        "fullContent": "<p>Babadağ'dan 1960 metre yükseklikten Ölüdeniz'in eşsiz manzarasına doğru atlayış yapmak, hayatta en az bir kez yaşanması gereken deneyimlerden biri.</p><p><strong>Hazırlık Süreci:</strong><br>Yamaç paraşütü için herhangi bir deneyim gerekmez. Tandem uçuşlarda deneyimli pilotlar tüm süreci yönetir.</p>"
     }
 ]

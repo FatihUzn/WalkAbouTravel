@@ -21,7 +21,7 @@
     
     "drop_hotel": "Turizm De Biz",
     "drop_restoration": "Restorasyon Projeleri",
-    "drop_rental": "Turizm & Transfer",
+    "drop_rental": "Bilet & Transfer",
 
     "about_main_title": "Hakkımızda",
     "about_p1": "1997 yılında yolculuğuna başlayan WalkAbouTravel, Turizm ve Seyahat sektöründe güven, yenilikçilik ve müşteri memnuniyetinin adresi olarak faaliyet göstermektedir. Kurulduğumuz günden bu yana, sadece seyahat satışı değil, unutulmaz deneyimler ve güvenli bir yolculuk sunmayı hedefledik.",
@@ -33,13 +33,13 @@
     "about_vision_p": "Sektördeki köklü deneyimimizi, yenilikçi seyahat yaklaşımları ve dijital çözümlerle birleştirerek, hem ulusal hem de uluslararası arenada saygın, öncü ve güvenilir bir Turizm markası olarak konumumuzu güçlendirmek.",
     "about_sub_title_3": "Misyonumuz",
     "about_mission_p": "Her müşterimizin beklentisine uygun, yüksek standartlarda, sigorta güvencesi altında ve unutulmaz anılar yaratan seyahat çözümleri üretmek.",
-    "about_tagline": "WalkAbouTravel Turizm – Güvenle planlanan yolculuklar, 1997’den bugüne.",
+    "about_tagline": "WalkAbouTravel Turizm – Güvenle planlanan yolculuklar, 1997'den bugüne.",
 
     "services_title": "Hizmetlerimiz",
-    "service_h3_1": "Mimari Tasarım",
-    "service_p_1": "Konsept geliştirmeden uygulama projelerine kadar, yaratıcı ve işlevsel çözümler sunuyoruz.",
-    "service_h3_2": "İç Mekan Tasarımı",
-    "service_p_2": "Mekanlarınızın ruhunu yansıtan, estetik ve ergonomik iç mekan çözümleri.",
+    "service_h3_1": "Kültür Turları",
+    "service_p_1": "Yurt içi ve yurt dışı, profesyonel rehberler eşliğinde düzenlenen kapsamlı keşif turları.",
+    "service_h3_2": "Vize Danışmanlığı",
+    "service_p_2": "Schengen, Amerika ve İngiltere vizeleri için dosya hazırlama ve randevu takibi hizmeti.",
     "service_h3_3": "Restorasyon ve Koruma",
     "service_p_3": "Tarihi ve kültürel miras yapılarını aslına uygun olarak restore ediyor, geleceğe taşıyoruz.",
     "service_h3_4": "Proje Yönetimi",
