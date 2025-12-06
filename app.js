@@ -50,7 +50,7 @@ const TOUR_DATA = {
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
     // Dosya adı: mardin tarihi ko nak-dokusu-1.webp
-    "images": generateImages("mardin tarihi ko nak-dokusu-", 16) 
+    "images": generateImages("mardin tarihi konak-dokusu-", 16) 
   },
   "TUR-TR-ANTALYA": {
     "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
@@ -60,7 +60,7 @@ const TOUR_DATA = {
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
     // Dosya adı: antalya koy gezisi si-1.webp
-    "images": generateImages("antalya koy gezisi si-", 17)
+    "images": generateImages("antalya koy gezisisi-", 17)
   },
   "TUR-TR-KAPADOKYA": {
     "title": "Kapadokya - Balon ve Peribacaları Turu",
@@ -90,7 +90,7 @@ const TOUR_DATA = {
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
     // Dosya adı: pamukkale traver ten-dogal-1.webp
-    "images": generateImages("pamukkale traver ten-dogal-", 11)
+    "images": generateImages("pamukkale traverten-dogal-", 11)
   },
 
   // --- YURT DIŞI ---
