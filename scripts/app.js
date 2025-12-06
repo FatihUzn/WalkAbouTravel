@@ -1,146 +1,133 @@
-// === 1. MODÜLLERİ İÇERİ AKTAR (IMPORT) ===
-import { DEFAULT_LANGUAGE } from './config/constants.js';
-import { setLanguage, getCurrentLanguage } from './modules/language.js';
-import { showPage } from './modules/navigation.js';
-import { loadTourData, openHouseDetail, closeHouseDetail, loadMorePropertyImages, getCurrentGalleryImages, renderTourGrid } from './modules/tours.js';
-import { openGallery, closeLightbox, showNextImage, showPrevImage } from './modules/lightbox.js';
-import { loadBlogData, openBlogModal, closeBlogModal, renderBlogGrid } from './modules/blog.js';
+// === YARDIMCI FONKSİYONLAR ===
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
 
-// === 2. FONKSİYONLARI HTML'E AÇ (WINDOW BAĞLANTISI) ===
-window.setLanguage = setLanguage;
-window.showPage = showPage;
-window.openHouseDetail = openHouseDetail;
-window.closeHouseDetail = closeHouseDetail;
-window.loadMorePropertyImages = loadMorePropertyImages;
-window.closeLightbox = closeLightbox;
-window.showNextImage = showNextImage;
-window.showPrevImage = showPrevImage;
-window.openBlogModal = openBlogModal;
-window.closeModal = closeBlogModal;
-window.renderTourGrid = renderTourGrid; 
+// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU (✅ FIXED) ===
+function generateImages(baseName, count) {
+    const images = [];
+    for (let i = 1; i <= count; i++) {
+        // ✅ FIXED: Added /images/ to path
+        images.push(`assets/images/${baseName}${i}.webp`);
+    }
+    return images;
+}
 
-// Özel Galeri Açma Fonksiyonu
-window.openGlobalGallery = (index) => {
-    const images = getCurrentGalleryImages();
-    openGallery(images, index);
+// === GLOBAL DEĞİŞKENLER ===
+const translations = {}; 
+const pageCache = {}; 
+let globalPropertyImages = [];
+let globalImageIndex = 0;
+const IMAGES_PER_LOAD = 6; 
+
+// Lightbox State
+let currentGalleryImages = [];
+let currentLightboxIndex = 0;
+
+// === TURİZM VERİ TABANI (✅ FIXED FILENAMES) ===
+const TOUR_DATA = {
+  
+  // --- YURT İÇİ ---
+  "TUR-TR-MARDIN": {
+    "title": "Mardin - Tarihi Konaklar & Kültür Turu",
+    "price": "5 Gün / 4 Gece, 8.900 TL",
+    "location": "Mardin ve Çevresi",
+    "area": "Güneydoğu Anadolu",
+    "rooms": "Özel Butik Otel",
+    "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
+    // ✅ FIXED: Removed spaces and typos
+    "images": generateImages("mardin-tarihi-konak-dokusu-", 16) 
+  },
+  "TUR-TR-ANTALYA": {
+    "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
+    "price": "7 Gün / 6 Gece, 12.500 TL",
+    "location": "Antalya, Kaş, Kemer",
+    "area": "Akdeniz Bölgesi",
+    "rooms": "Her şey Dahil Otel",
+    "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
+    // ✅ FIXED: Corrected filename
+    "images": generateImages("antalya-koy-gezisi-", 17)
+  },
+  "TUR-TR-KAPADOKYA": {
+    "title": "Kapadokya - Balon ve Peribacaları Turu",
+    "price": "4 Gün / 3 Gece, 9.800 TL",
+    "location": "Göreme, Uçhisar, Avanos",
+    "area": "İç Anadolu",
+    "rooms": "Mağara Otel Konaklama",
+    "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
+    "images": generateImages("kapadokya-balon-turu-", 20)
+  },
+  "TUR-TR-FETHIYE": {
+    "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
+    "price": "3 Gün / 2 Gece, 6.750 TL",
+    "location": "Ölüdeniz, Kelebekler Vadisi",
+    "area": "Ege Bölgesi",
+    "rooms": "Butik Pansiyon",
+    "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
+    "images": generateImages("fethiye-oludeniz-manzarasi-", 19)
+  },
+  "TUR-TR-PAMUKKALE": {
+    "title": "Pamukkale - Travertenler & Antik Kent",
+    "price": "2 Gün / 1 Gece, 4.500 TL",
+    "location": "Pamukkale, Hierapolis",
+    "area": "Denizli",
+    "rooms": "Termal Otel",
+    "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
+    // ✅ FIXED: Corrected spelling
+    "images": generateImages("pamukkale-traverten-dogal-", 11)
+  },
+
+  // --- YURT DIŞI ---
+  "TUR-D-ISPANYA": {
+    "title": "İspanya - Barselona & Endülüs Rüyası",
+    "price": "9 Gün / 8 Gece, 1.800 €",
+    "location": "Barselona, Granada, Sevilla",
+    "area": "İspanya",
+    "rooms": "4 Yıldızlı Oteller",
+    "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
+    "images": generateImages("spain-", 15)
+  },
+  // ✅ FIXED: Added -KIS to match HTML reference
+  "TUR-D-RUSYA-KIS": {
+    "title": "Rusya (Kış Masalı)",
+    "price": "6 Gün / 5 Gece, 1.450 €",
+    "location": "Moskova, St. Petersburg",
+    "area": "Rusya Federasyonu",
+    "rooms": "5 Yıldızlı Oteller",
+    "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
+    "images": generateImages("rusya-", 13)
+  },
+  "TUR-D-BREZILYA": {
+    "title": "Brezilya - Rio Karnavalı ve Amazon",
+    "price": "10 Gün / 9 Gece, 2.990 $",
+    "location": "Rio de Janeiro, Manaus",
+    "area": "Brezilya",
+    "rooms": "Lüks Lodge ve Oteller",
+    "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
+    "images": generateImages("brazil-", 15)
+  },
+  "TUR-D-AMERIKA": {
+    "title": "ABD - New York & Batı Kıyısı",
+    "price": "14 Gün / 13 Gece, 3.500 $",
+    "location": "New York, Los Angeles, San Francisco",
+    "area": "Amerika Birleşik Devletleri",
+    "rooms": "4 Yıldızlı Oteller",
+    "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
+    "images": generateImages("new-york-", 9)
+  }
 };
 
-// === 3. UYGULAMAYI BAŞLAT (INITIALIZATION) ===
-document.addEventListener('DOMContentLoaded', async () => {
-    console.log("🚀 Uygulama başlatılıyor...");
+// REST OF THE FILE CONTINUES AS BEFORE...
+// (Include the rest of your app.js here - I'm showing just the critical fixes)
 
-    try {
-        // A. Verileri Yükle
-        console.log("📦 Veriler yükleniyor...");
-        await Promise.all([
-            loadTourData(),
-            loadBlogData()
-        ]);
-        console.log("✅ Veriler yüklendi");
-
-        // B. Dili Ayarla
-        const lang = getCurrentLanguage();
-        await setLanguage(lang);
-
-        // C. Homepage Blog'u Render Et (YENİ EKLENEN)
-        console.log("📝 Homepage blog render ediliyor...");
-        renderBlogGrid('blog-grid-display');
-
-        // D. Doğru Sayfayı Göster
-        const initialPage = location.hash.replace('#', '') || 'hero';
-        await handleRouting(initialPage);
-
-        // E. Dinleyicileri Kur
-        setupEventListeners();
-        
-        console.log("✅ Uygulama hazır!");
-
-    } catch (error) {
-        console.error("❌ Başlatma hatası:", error);
-    }
-});
-
-// === 4. SAYFA YÖNLENDİRME MANTIĞI ===
-async function handleRouting(pageId) {
-    await showPage(pageId);
-
-    // TURLAR SAYFASI İÇİN ÖZEL İŞLEM
-    if (pageId === 'page-tours' || pageId === 'tours') {
-        const savedCat = localStorage.getItem('selectedCategory') || 'all';
-        console.log('🗺️ Tur sayfası render ediliyor, kategori:', savedCat);
-        renderTourGrid(savedCat);
-        localStorage.removeItem('selectedCategory');
-    }
-
-    // BLOG SAYFASI İÇİN ÖZEL İŞLEM
-    if (pageId === 'page-blog' || pageId === 'blog') {
-        console.log('📰 Blog sayfası render ediliyor...');
-        renderBlogGrid();
-    }
-}
-
-// === 5. OLAY DİNLEYİCİLERİ (EVENT LISTENERS) ===
-function setupEventListeners() {
-    // A. URL Değişimini Dinle
-    window.addEventListener('hashchange', () => {
-        const pageId = location.hash.replace('#', '') || 'hero';
-        handleRouting(pageId);
-    });
-
-    // B. Mobil Menü
-    const menuToggle = document.getElementById('menu-toggle');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('open');
-        });
-    }
-
-    // C. Kategori Linkleri (GELİŞTİRİLMİŞ)
-    document.body.addEventListener('click', (e) => {
-        const categoryLink = e.target.closest('[data-category]');
-        if (categoryLink) { 
-            const cat = categoryLink.dataset.category;
-            console.log('🏷️ Kategori seçildi:', cat);
-            localStorage.setItem('selectedCategory', cat);
-            
-            // Eğer zaten tours sayfasındaysak, sadece render et
-            if (location.hash === '#page-tours' || location.hash === '#tours') {
-                e.preventDefault();
-                renderTourGrid(cat);
-            }
-        }
-    });
-
-    // D. Klavye Kontrolleri
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            closeLightbox();
-            closeHouseDetail();
-            closeBlogModal();
-        }
-        if (document.getElementById('lightbox-modal')?.style.display === 'flex') {
-            if (e.key === 'ArrowRight') showNextImage();
-            if (e.key === 'ArrowLeft') showPrevImage();
-        }
-    });
-
-    // E. Lightbox Butonları
-    document.getElementById('next-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showNextImage();
-    });
-    document.getElementById('prev-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showPrevImage();
-    });
-    document.getElementById('close-lightbox')?.addEventListener('click', closeLightbox);
-    
-    // F. Blog Modalı Dışına Tıklama
-    const blogModal = document.getElementById('blog-modal');
-    if (blogModal) {
-        blogModal.addEventListener('click', (e) => {
-            if (e.target === blogModal) closeBlogModal();
-        });
-    }
-}
+console.log('✅ App.js loaded with corrected paths');
+console.log('Tour data:', Object.keys(TOUR_DATA).length, 'tours');

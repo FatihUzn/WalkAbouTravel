@@ -7,7 +7,8 @@
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
     "imagePrefix": "mardin-tarihi-konak-dokusu",
-    "imageCount": 16
+    "imageCount": 16,
+    "category": "domestic"
   },
   "TUR-TR-ANTALYA": {
     "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
@@ -16,8 +17,9 @@
     "area": "Akdeniz Bölgesi",
     "rooms": "Her Şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    "imagePrefix": "antalya-koy-gezisi-si",
-    "imageCount": 17
+    "imagePrefix": "antalya-koy-gezisi",
+    "imageCount": 17,
+    "category": "domestic"
   },
   "TUR-TR-KAPADOKYA": {
     "title": "Kapadokya - Balon ve Peribacaları Turu",
@@ -27,7 +29,8 @@
     "rooms": "Mağara Otel Konaklama",
     "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
     "imagePrefix": "kapadokya-balon-turu",
-    "imageCount": 20
+    "imageCount": 20,
+    "category": "domestic"
   },
   "TUR-TR-FETHIYE": {
     "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
@@ -37,7 +40,8 @@
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
     "imagePrefix": "fethiye-oludeniz-manzarasi",
-    "imageCount": 19
+    "imageCount": 19,
+    "category": "domestic"
   },
   "TUR-TR-PAMUKKALE": {
     "title": "Pamukkale - Travertenler & Antik Kent",
@@ -47,7 +51,8 @@
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
     "imagePrefix": "pamukkale-traverten-dogal",
-    "imageCount": 11
+    "imageCount": 11,
+    "category": "domestic"
   },
   "TUR-D-ISPANYA": {
     "title": "İspanya - Barselona & Endülüs Rüyası",
@@ -57,7 +62,8 @@
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
     "imagePrefix": "spain",
-    "imageCount": 15
+    "imageCount": 15,
+    "category": "international"
   },
   "TUR-D-RUSYA-KIS": {
     "title": "Rusya (Kış Masalı)",
@@ -67,7 +73,8 @@
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
     "imagePrefix": "rusya",
-    "imageCount": 13
+    "imageCount": 13,
+    "category": "international"
   },
   "TUR-D-BREZILYA": {
     "title": "Brezilya - Rio Karnavalı ve Amazon",
@@ -77,7 +84,8 @@
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
     "imagePrefix": "brazil",
-    "imageCount": 15
+    "imageCount": 15,
+    "category": "international"
   },
   "TUR-D-AMERIKA": {
     "title": "ABD - New York & Batı Kıyısı",
@@ -87,6 +95,7 @@
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
     "imagePrefix": "new-york",
-    "imageCount": 9
+    "imageCount": 9,
+    "category": "international"
   }
 }
