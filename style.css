@@ -1,23 +1,32 @@
 /* TÜM KOD BURAYA YAPILDI - AÇIK MAVİ & BEYAZ TEMA GÜNCELLEMESİ (V2) */
 :root {
-  /* Arka Plan ve Metin Renkleri */
-  --bg: #f8fbff; /* Çok Açık Buz Mavisi Arka Plan */
-  --text: #1a1a2e; /* Koyu Lacivert Metin (Okunabilirlik için) */
-  --text-muted: #5b6b8c; /* Gri/Mavi Pastel Metin */
+  /* Background & Text Colors - Warm & Inviting */
+  --bg: #fff9f0; /* Warm Cream Background - like sandy beaches */
+  --text: #2d1810; /* Rich Dark Brown - excellent readability */
+  --text-muted: #8b6f47; /* Warm Brown-Gray for secondary text */
   
-  /* Vurgu Renkleri: Açık Mavi Tonları */
-  --blue-light: #4c99ff; /* Canlı Açık Mavi */
-  --blue-dark: #0056b3;  /* Derin Mavi (Başlıklar ve Butonlar) */
+  /* Primary Accent: Sunset Orange/Coral */
+  --blue-light: #ff6b35; /* Vibrant Sunset Orange (replaces old blue-light) */
+  --blue-dark: #d84315; /* Deep Burnt Orange (replaces old blue-dark) */
   
-  /* Mavi Vurgu Efektleri */
-  --vibrant-gradient: linear-gradient(90deg, var(--blue-dark), var(--blue-light), var(--blue-dark));
-  --vibrant-shadow: 0 4px 20px rgba(76, 153, 255, 0.25);
-  --vibrant-shadow-intense: 0 8px 30px rgba(76, 153, 255, 0.4);
+  /* Secondary Accent: Golden Hour */
+  --gold-light: #ffcc66; /* Warm Golden Yellow */
+  --gold-dark: #f4a261; /* Peachy Golden Glow */
   
-  /* Diğer Elemanlar */
-  --border-dark: #e6efff; /* Çok Silik Mavi Çizgiler */
-  --section-bg: #ffffff; /* Bölüm Arka Planı (Tam Beyaz) */
+  /* Gradient Effects - Sunset Vibes */
+  --vibrant-gradient: linear-gradient(90deg, #ff6b35, #f4a261, #ff6b35);
+  --vibrant-shadow: 0 4px 20px rgba(255, 107, 53, 0.25);
+  --vibrant-shadow-intense: 0 8px 30px rgba(255, 107, 53, 0.4);
+  
+  /* Supporting Colors */
+  --border-dark: #ffe8d6; /* Soft Peachy Border */
+  --section-bg: #ffffff; /* Pure White Sections */
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
+  
+  /* Additional Travel Colors */
+  --ocean-blue: #4a90e2; /* For water/ocean elements */
+  --forest-green: #52b788; /* For nature/eco tours */
+  --sky-blue: #87ceeb; /* For sky/flight elements */
 }
 
 *, *::before, *::after {
