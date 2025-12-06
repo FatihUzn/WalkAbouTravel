@@ -1,428 +1,136 @@
-// === CONFIGURATION ===
-const CONFIG = {
-  IMAGES_PER_LOAD: 6,
-  DEFAULT_LANGUAGE: 'tr',
-  TOURS_DATA_PATH: 'data/tours.json',
-  LANGUAGES_PATH: 'data/languages/'
-};
+// === 1. MODÜLLERİ İÇERİ AKTAR (IMPORT) ===
+import { DEFAULT_LANGUAGE } from './config/constants.js';
+import { setLanguage, getCurrentLanguage } from './modules/language.js';
+import { showPage } from './modules/navigation.js';
+import { loadTourData, openHouseDetail, closeHouseDetail, loadMorePropertyImages, getCurrentGalleryImages, renderTourGrid } from './modules/tours.js';
+import { openGallery, closeLightbox, showNextImage, showPrevImage } from './modules/lightbox.js';
+import { loadBlogData, openBlogModal, closeBlogModal } from './modules/blog.js';
 
-// === STATE MANAGEMENT ===
-const AppState = {
-  translations: {},
-  pageCache: {},
-  tourData: {},
-  gallery: {
-    images: [],
-    index: 0
-  },
-  lightbox: {
-    images: [],
-    index: 0
-  }
-};
-
-// === UTILITY FUNCTIONS ===
-function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  }
-}
-
-function generateImages(baseName, count) {
-  const images = [];
-  for (let i = 1; i <= count; i++) {
-    images.push(`assets/${baseName}${i}.webp`);
-  }
-  return images;
-}
-
-// === DATA LOADING ===
-async function loadTourData() {
-  try {
-    const response = await fetch(CONFIG.TOURS_DATA_PATH);
-    if (!response.ok) {
-      throw new Error(`Failed to load tour data: ${response.status}`);
-    }
-    const data = await response.json();
-    
-    // Process images for each tour
-    Object.entries(data).forEach(([id, tour]) => {
-      if (tour.imagePrefix && tour.imageCount) {
-        tour.images = generateImages(tour.imagePrefix + '-', tour.imageCount);
-      }
-    });
-    
-    AppState.tourData = data;
-    return data;
-  } catch (error) {
-    console.error('Error loading tour data:', error);
-    showError('Tur verileri yüklenemedi. Lütfen sayfayı yenileyin.');
-    throw error;
-  }
-}
-
-// === TOUR DETAIL MODAL ===
-function openHouseDetail(tourID) {
-  const tour = AppState.tourData[tourID];
-
-  if (!tour) {
-    console.error(`Tour '${tourID}' not found`);
-    alert("Bu turun detaylarına şu an ulaşılamıyor.");
-    return;
-  }
-
-  const detail = document.getElementById("house-detail");
-  const content = document.getElementById("house-detail-content");
-  
-  content.innerHTML = `
-    <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; margin-bottom: 20px;">${tour.title}</h2>
-    
-    <div class="house-info" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border: 1px solid #333;">
-      <div style="margin-bottom: 10px;">
-        <i class="fas fa-map-marker-alt" style="color: #ffcc66; width: 20px;"></i> 
-        <strong style="color: #fff;">Lokasyon:</strong> <span style="color: #ccc;">${tour.location} (${tour.area})</span>
-      </div>
-      
-      <div style="margin-bottom: 10px;">
-        <i class="fas fa-clock" style="color: #ffcc66; width: 20px;"></i> 
-        <strong style="color: #fff;">Süre & Fiyat:</strong> <span style="color: #ffcc66; font-weight: bold;">${tour.price}</span>
-      </div>
-      
-      <div style="margin-bottom: 10px;">
-        <i class="fas fa-bed" style="color: #ffcc66; width: 20px;"></i> 
-        <strong style="color: #fff;">Konaklama:</strong> <span style="color: #ccc;">${tour.rooms}</span>
-      </div>
-
-      <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
-      
-      <p style="color: #ddd; line-height: 1.6;">${tour.desc}</p>
-
-      <div style="margin-top: 25px; text-align: center;">
-        <a href="mailto:info@walkaboutravel.com?subject=Rezervasyon Talebi: ${tour.title}" class="btn" style="display: inline-block;">
-          <i class="fas fa-paper-plane"></i> Rezervasyon Yap
-        </a>
-      </div>
-    </div>
-
-    <div class="detail-gallery" id="detail-gallery-container" style="margin-top: 30px;"></div>
-  `;
-
-  AppState.gallery.images = tour.images || [];
-  AppState.gallery.index = 0;
-  
-  loadMorePropertyImages();
-  
-  detail.style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-
-function closeHouseDetail() {
-  const detail = document.getElementById("house-detail");
-  if (detail) {
-    detail.style.display = "none";
-  }
-  document.body.style.overflow = "auto";
-}
-
-// === GALLERY IMAGE LOADING ===
-function loadMorePropertyImages() {
-  const galleryContainer = document.getElementById('detail-gallery-container');
-  if (!galleryContainer) return;
-
-  if (AppState.gallery.images.length === 0) {
-    galleryContainer.innerHTML = "<p style='text-align:center; color:#666;'>Bu tur için henüz görsel eklenmemiş.</p>";
-    return;
-  }
-
-  const imagesToLoad = AppState.gallery.images.slice(
-    AppState.gallery.index, 
-    AppState.gallery.index + CONFIG.IMAGES_PER_LOAD
-  );
-
-  const imagesHTML = imagesToLoad.map((img, i) => {
-    const absoluteIndex = AppState.gallery.index + i;
-    return `<img loading="lazy" src="${img}" alt="Tur Görseli" onclick="openGlobalGallery(${absoluteIndex})" onerror="this.style.display='none'" style="cursor:pointer; transition: transform 0.3s;">`;
-  }).join("");
-
-  galleryContainer.insertAdjacentHTML('beforeend', imagesHTML);
-  AppState.gallery.index += CONFIG.IMAGES_PER_LOAD;
-}
-
-// === LIGHTBOX SYSTEM ===
-function openGlobalGallery(index) {
-  openGallery(AppState.gallery.images, index);
-}
-
-function openGallery(images, startIndex = 0) {
-  if (!images || images.length === 0) return;
-
-  AppState.lightbox.images = images;
-  AppState.lightbox.index = startIndex;
-  
-  const lightboxModal = document.getElementById('lightbox-modal');
-  if (lightboxModal) {
-    lightboxModal.style.display = 'flex';
-    lightboxModal.classList.add('active');
-    updateLightboxView();
-  }
-}
-
-function updateLightboxView() {
-  const lightboxImage = document.getElementById('lightbox-image');
-  const lightboxCounter = document.getElementById('lightbox-counter');
-
-  if (!lightboxImage) return;
-
-  lightboxImage.style.opacity = '0.5';
-
-  setTimeout(() => {
-    lightboxImage.src = AppState.lightbox.images[AppState.lightbox.index];
-    lightboxImage.style.opacity = '1';
-  }, 150);
-
-  if (lightboxCounter) {
-    lightboxCounter.innerText = `${AppState.lightbox.index + 1} / ${AppState.lightbox.images.length}`;
-  }
-}
-
-function showNextImage() {
-  if (AppState.lightbox.images.length === 0) return;
-
-  AppState.lightbox.index++;
-  if (AppState.lightbox.index >= AppState.lightbox.images.length) {
-    AppState.lightbox.index = 0;
-  }
-  updateLightboxView();
-}
-
-function showPrevImage() {
-  if (AppState.lightbox.images.length === 0) return;
-
-  AppState.lightbox.index--;
-  if (AppState.lightbox.index < 0) {
-    AppState.lightbox.index = AppState.lightbox.images.length - 1;
-  }
-  updateLightboxView();
-}
-
-function closeLightbox() {
-  const lightboxModal = document.getElementById('lightbox-modal');
-  if (lightboxModal) {
-    lightboxModal.style.display = 'none';
-    lightboxModal.classList.remove('active');
-  }
-}
-
-// === LANGUAGE MANAGEMENT ===
-async function setLanguage(lang) {
-  let langData;
-  
-  if (AppState.translations[lang]) {
-    langData = AppState.translations[lang];
-  } else {
-    try {
-      const response = await fetch(`${CONFIG.LANGUAGES_PATH}${lang}.json`);
-      if (!response.ok) {
-        throw new Error(`Language file not found: ${lang}`);
-      }
-      langData = await response.json();
-      AppState.translations[lang] = langData;
-    } catch (error) {
-      console.warn("Language failed to load, using default (TR):", error);
-      if (lang !== 'tr' && !AppState.translations['tr']) {
-        await setLanguage('tr');
-      }
-      return;
-    }
-  }
-  
-  document.documentElement.lang = lang;
-  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const key = el.getAttribute('data-key');
-    if (langData && langData[key]) {
-      el.innerHTML = langData[key];
-    }
-  });
-  
-  localStorage.setItem('lang', lang);
-}
-
-// === PAGE NAVIGATION ===
-async function showPage(pageId) {
-  try {
-    if (!pageId || pageId === '#') pageId = 'hero';
-    
-    document.querySelectorAll('.page-section').forEach(sec => {
-      sec.classList.remove('active', 'visible');
-    });
-
-    let newPage = document.getElementById(pageId);
-    
-    if (!newPage) {
-      if (AppState.pageCache[pageId]) {
-        document.getElementById('page-container').insertAdjacentHTML('beforeend', AppState.pageCache[pageId]);
-      } else {
-        let fileName = pageId;
-        if (pageId.startsWith('page-')) {
-          fileName = pageId.replace('page-', '');
-        }
-        if (pageId === 'page-satilik_kiralik') {
-          fileName = "satilik_kiralik";
-        }
-        
-        const response = await fetch(`${fileName}.html`);
-        if (!response.ok) {
-          throw new Error(`Page not found: ${fileName}`);
-        }
-        
-        const html = await response.text();
-        AppState.pageCache[pageId] = html;
-        document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
-      }
-      
-      newPage = document.getElementById(pageId);
-    }
-
-    if (newPage) {
-      if (location.hash.replace('#', '') !== pageId) {
-        location.hash = pageId;
-      }
-      
-      newPage.classList.add('active');
-      window.scrollTo(0, 0);
-
-      const currentLang = localStorage.getItem('lang') || CONFIG.DEFAULT_LANGUAGE;
-      if (AppState.translations[currentLang]) {
-        newPage.querySelectorAll('[data-key]').forEach(el => {
-          const key = el.getAttribute('data-key');
-          if (AppState.translations[currentLang][key]) {
-            el.innerHTML = AppState.translations[currentLang][key];
-          }
-        });
-      }
-      
-      setTimeout(() => newPage.classList.add('visible'), 50);
-    }
-  } catch (error) {
-    console.error('Error loading page:', error);
-    showError('Sayfa yüklenemedi. Lütfen tekrar deneyin.');
-  }
-}
-
-// === ERROR HANDLING ===
-function showError(message) {
-  const container = document.getElementById('page-container');
-  if (container) {
-    container.innerHTML = `
-      <div style="text-align:center; padding:100px 20px;">
-        <h2>Bir Hata Oluştu</h2>
-        <p>${message}</p>
-        <button onclick="location.reload()" class="btn">Sayfayı Yenile</button>
-      </div>
-    `;
-  }
-}
-
-// === INITIALIZATION ===
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    // Load tour data
-    await loadTourData();
-    
-    // Set language
-    const savedLang = localStorage.getItem('lang') || CONFIG.DEFAULT_LANGUAGE;
-    await setLanguage(savedLang);
-    
-    // Show initial page
-    const initialPage = location.hash.replace('#', '') || 'hero';
-    showPage(initialPage);
-
-    // Hash change listener
-    window.addEventListener('hashchange', () => {
-      showPage(location.hash.replace('#', '') || 'hero');
-    });
-
-    // Menu toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', () => {
-        document.getElementById('navbar').classList.toggle('open');
-      });
-    }
-
-    // Global click handlers
-    document.body.addEventListener('click', (e) => {
-      if (e.target.classList.contains('btn-page-back')) {
-        e.preventDefault();
-        location.hash = 'hero';
-      }
-      
-      if (e.target.matches('[data-page]')) {
-        e.preventDefault();
-        const page = e.target.getAttribute('data-page');
-        location.hash = page;
-        document.getElementById('navbar').classList.remove('open');
-      }
-      
-      if (e.target.id === 'lightbox-modal') {
-        closeLightbox();
-      }
-    });
-
-    // Keyboard controls
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") {
-        const detail = document.getElementById("house-detail");
-        const lightbox = document.getElementById("lightbox-modal");
-        
-        if (detail && detail.style.display !== "none" && (!lightbox || lightbox.style.display === "none")) {
-          closeHouseDetail();
-        } else if (lightbox && lightbox.style.display !== "none") {
-          closeLightbox();
-        }
-      }
-      
-      if (document.getElementById('lightbox-modal')?.style.display !== 'none') {
-        if (e.key === 'ArrowRight') showNextImage();
-        if (e.key === 'ArrowLeft') showPrevImage();
-      }
-    });
-
-    // Lightbox buttons
-    const nextBtn = document.getElementById('next-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const closeBtn = document.getElementById('close-lightbox');
-
-    if (nextBtn) nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showNextImage();
-    });
-
-    if (prevBtn) prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showPrevImage();
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-    
-  } catch (error) {
-    console.error('Fatal initialization error:', error);
-    showError('Uygulama başlatılamadı. Lütfen sayfayı yenileyin.');
-  }
-});
-
-// === MAKE FUNCTIONS GLOBALLY AVAILABLE ===
-window.openHouseDetail = openHouseDetail;
-window.closeHouseDetail = closeHouseDetail;
-window.openGlobalGallery = openGlobalGallery;
+// === 2. FONKSİYONLARI HTML'E AÇ (WINDOW BAĞLANTISI) ===
+// HTML'deki onclick="openHouseDetail(...)" komutlarının çalışması için şarttır.
 window.setLanguage = setLanguage;
 window.showPage = showPage;
+window.openHouseDetail = openHouseDetail;
+window.closeHouseDetail = closeHouseDetail;
+window.loadMorePropertyImages = loadMorePropertyImages;
+window.closeLightbox = closeLightbox;
+window.showNextImage = showNextImage;
+window.showPrevImage = showPrevImage;
+window.openBlogModal = openBlogModal;
+window.closeModal = closeBlogModal;
+window.renderTourGrid = renderTourGrid; 
+
+// Özel Galeri Açma Fonksiyonu (Tours modülünden anlık veriyi alır)
+window.openGlobalGallery = (index) => {
+    const images = getCurrentGalleryImages();
+    openGallery(images, index);
+};
+
+// === 3. UYGULAMAYI BAŞLAT (INITIALIZATION) ===
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("Uygulama başlatılıyor...");
+
+    try {
+        // A. Verileri Yükle (Turlar ve Bloglar)
+        await Promise.all([
+            loadTourData(),
+            loadBlogData()
+        ]);
+
+        // B. Dili Ayarla (Kaydedilmiş dil veya varsayılan)
+        const lang = getCurrentLanguage();
+        await setLanguage(lang);
+
+        // C. Doğru Sayfayı Göster
+        // Eğer linkte #page-tours varsa orayı, yoksa ana sayfayı aç
+        const initialPage = location.hash.replace('#', '') || 'hero';
+        await handleRouting(initialPage);
+
+        // D. Dinleyicileri Kur (Butonlar, Klavye vb.)
+        setupEventListeners();
+
+    } catch (error) {
+        console.error("Başlatma hatası:", error);
+    }
+});
+
+// === 4. SAYFA YÖNLENDİRME MANTIĞI ===
+async function handleRouting(pageId) {
+    // İstenen sayfayı ekrana getir
+    await showPage(pageId);
+
+    // Eğer "Turlar" sayfasına geldiysek, içeriği (Grid'i) doldur
+    if (pageId === 'page-tours' || pageId === 'tours') {
+        // Kullanıcının seçtiği kategoriyi hafızadan al (yoksa 'all')
+        const savedCat = localStorage.getItem('selectedCategory') || 'all';
+        renderTourGrid(savedCat);
+        // Kullandıktan sonra temizle (ki sonraki girişlerde karışmasın)
+        localStorage.removeItem('selectedCategory');
+    }
+}
+
+// === 5. OLAY DİNLEYİCİLERİ (EVENT LISTENERS) ===
+function setupEventListeners() {
+    // A. URL Değişimini Dinle (Geri/İleri tuşları için)
+    window.addEventListener('hashchange', () => {
+        const pageId = location.hash.replace('#', '') || 'hero';
+        handleRouting(pageId);
+    });
+
+    // B. Mobil Menü Aç/Kapa
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('open');
+        });
+    }
+
+    // C. Kategori Linklerini Takip Et (data-category)
+    document.body.addEventListener('click', (e) => {
+        // Tıklanan öğe veya ebeveyni 'data-category' içeriyor mu?
+        const categoryLink = e.target.closest('[data-category]');
+        if (categoryLink) {
+            const cat = categoryLink.dataset.category;
+            // Seçimi kaydet, sayfa yüklendiğinde kullanacağız
+            localStorage.setItem('selectedCategory', cat);
+            // Sayfa yenilenmeden gridi güncellemek için (opsiyonel ama iyi bir UX)
+            if (location.hash === '#page-tours' || location.hash === '#tours') {
+                renderTourGrid(cat);
+            }
+        }
+    });
+
+    // D. Klavye Kontrolleri (ESC, Sağ, Sol)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            closeLightbox();
+            closeHouseDetail();
+            closeBlogModal();
+        }
+        // Sadece Lightbox açıkken ok tuşlarını dinle
+        if (document.getElementById('lightbox-modal')?.style.display === 'flex') {
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+        }
+    });
+
+    // E. Lightbox Butonları (ID ile doğrudan erişim)
+    document.getElementById('next-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation(); // Tıklamanın arkaya geçmesini engelle
+        showNextImage();
+    });
+    document.getElementById('prev-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showPrevImage();
+    });
+    document.getElementById('close-lightbox')?.addEventListener('click', closeLightbox);
+    
+    // F. Blog Modalı Dışına Tıklama (Kapatmak için)
+    const blogModal = document.getElementById('blog-modal');
+    if (blogModal) {
+        blogModal.addEventListener('click', (e) => {
+            if (e.target === blogModal) closeBlogModal();
+        });
+    }
+}

@@ -1,0 +1,31 @@
+#page-otel {
+    background-color: var(--bg) !important;
+    padding-bottom: 100px !important;
+}
+.page-content-padding { padding-top: 140px; }
+.page-content-padding-large { padding-top: 160px; }
+
+.house-info {
+  max-width: 900px;
+  margin: 40px auto;
+  background: var(--section-bg);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid var(--border-dark);
+}
+.house-info p strong { color: var(--blue-dark); }
+
+/* Restorasyon Karşılaştırma */
+.img-comparison-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.img-wrapper {
+    position: relative;
+    width: 50%;
+    border: 2px solid var(--border-dark);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.img-wrapper img { width: 100%; height: 220px; object-fit: cover; }

@@ -1,0 +1,27 @@
+{
+  "name": "walkaboutravel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FatihUzn/WalkAbouTravel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FatihUzn/WalkAbouTravel/issues"
+  },
+  "homepage": "https://github.com/FatihUzn/WalkAbouTravel#readme",
+  "devDependencies": {
+    "vite": "^7.2.6",
+    "vite-plugin-imagemin": "^0.6.1"
+  }
+}

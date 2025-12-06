@@ -1,0 +1,22 @@
+<div class="new-layout-container page-content-padding">
+    
+    <div class="section-intro">
+        <!-- Başlık JS tarafından doldurulacak -->
+        <h2 id="tours-page-title" class="page-title-gold">Turlar</h2>
+        <p id="tours-page-subtitle" class="page-subtitle-gray">Rotalarımızı keşfedin</p>
+        <div class="page-divider-long"></div>
+    </div>
+
+    <!-- Filtre Butonları (Opsiyonel) -->
+    <div class="tour-filters" style="text-align: center; margin-bottom: 40px;">
+        <button class="btn btn-hero-link" onclick="renderTourGrid('all')">Tümü</button>
+        <button class="btn btn-hero-link" onclick="renderTourGrid('domestic')">Yurt İçi</button>
+        <button class="btn btn-hero-link" onclick="renderTourGrid('international')">Yurt Dışı</button>
+    </div>
+
+    <!-- Kartların Listeleneceği Alan -->
+    <div id="tours-grid" class="house-gallery gallery-flex-container">
+        <p style="text-align:center; width:100%;">Yükleniyor...</p>
+    </div>
+
+</div>

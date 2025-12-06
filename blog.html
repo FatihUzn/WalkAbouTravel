@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - WalkAbout Travel</title>
     
+    <!-- CSS Dosyası Yolu (Day 4 Kuralı) -->
     <link rel="stylesheet" href="styles/style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -41,12 +42,40 @@
             color: #000;
         }
 
-        /* --- BLOG GRID YAPISI --- */
+        /* --- BLOG HEADER --- */
+        .blog-header-section {
+            text-align: center; 
+            margin-bottom: 50px;
+        }
+        .blog-badge {
+            color: #ffcc66; 
+            letter-spacing: 2px; 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .blog-main-title {
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 10px 0; 
+            color: #fff;
+        }
+        .blog-subtitle {
+            color: #bbb;
+        }
+        .title-gold-line {
+            width: 100px; 
+            height: 2px; 
+            background: #ffcc66; 
+            margin: 20px auto;
+        }
+
+        /* --- BLOG GRID --- */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 40px;
+            min-height: 200px;
         }
         .blog-card {
             background: #1a1a1a;
@@ -67,6 +96,7 @@
             width: 100%;
             height: 240px;
             object-fit: cover;
+            background-color: #222; /* Resim yüklenene kadar gri fon */
         }
         .blog-content {
             padding: 20px;
@@ -100,7 +130,33 @@
             font-size: 0.9rem;
         }
 
-        /* --- DETAY MODAL (AÇILIR PENCERE) --- */
+        /* --- NEWSLETTER --- */
+        .newsletter-section {
+            background: rgba(255,204,102,0.1); 
+            padding: 40px; 
+            text-align: center; 
+            border-radius: 15px; 
+            margin-top: 60px; 
+            border: 1px solid #ffcc66;
+        }
+        .newsletter-title {
+            color: #ffcc66;
+            margin-bottom: 10px;
+        }
+        .newsletter-text {
+            color: #ddd;
+        }
+
+        /* --- FOOTER --- */
+        .site-footer {
+            background: #0c0c0c; 
+            padding: 40px; 
+            text-align: center; 
+            border-top: 1px solid #333; 
+            color: #888;
+        }
+
+        /* --- MODAL (POPUP) --- */
         .blog-modal-overlay {
             position: fixed;
             top: 0;
@@ -109,7 +165,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
             z-index: 9999;
-            display: none; /* Başlangıçta gizli */
+            display: none;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -128,7 +184,7 @@
             border-radius: 15px;
             border: 1px solid #333;
             position: relative;
-            overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu */
+            overflow-y: auto;
             box-shadow: 0 0 50px rgba(255, 204, 102, 0.1);
             animation: slideUp 0.4s ease;
         }
@@ -185,12 +241,14 @@
         /* JSON içeriğinden gelen HTML tagleri için stiller */
         .modal-text p { margin-bottom: 20px; }
         .modal-text strong { color: #fff; }
+        .modal-text ul { margin-bottom: 20px; padding-left: 20px; }
+        .modal-text li { margin-bottom: 10px; }
         
-        /* Mobil Uyum */
         @media (max-width: 768px) {
             .modal-hero-image { height: 250px; }
             .modal-title { font-size: 1.8rem; }
             .modal-body { padding: 20px; }
+            .blog-main-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -208,7 +266,8 @@
       
         <div class="header-bottom-row">
             <div class="brand">
-                <img src="assets/golden_palace_logo.webp" alt="Logo" style="height:45px;"> 
+                <!-- GÜNCELLENDİ: Logo yeni klasörden çekiliyor -->
+                <img src="assets/images/golden_palace_logo.webp" alt="Logo" style="height:45px;"> 
                 <div class="brand-text-container">
                     <span class="brand-title" style="color:#fff;">Golden Palace</span>
                     <span class="brand-tagline" style="color:#aaa;">Real Estate & Architecture</span>
@@ -223,94 +282,107 @@
 
         <div class="blog-container">
             
-            <div class="blog-header" style="text-align:center; margin-bottom:50px;">
-                <span class="blog-badge" style="color:#ffcc66; letter-spacing:2px; font-size:0.9rem;">SEYAHAT GÜNLÜĞÜ</span>
-                <h2 style="font-family:'Playfair Display',serif; font-size:3rem; margin:10px 0; color:#fff;">WalkAbout Travel Blog</h2>
-                <p class="blog-subtitle" style="color:#bbb;">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
-                <div class="title-gold-line" style="width:100px; height:2px; background:#ffcc66; margin:20px auto;"></div>
+            <div class="blog-header-section">
+                <span class="blog-badge">SEYAHAT GÜNLÜĞÜ</span>
+                <h2 class="blog-main-title">WalkAbout Travel Blog</h2>
+                <p class="blog-subtitle">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
+                <div class="title-gold-line"></div>
             </div>
 
             <div id="blog-grid-display" class="blog-grid">
-                <p style="text-align:center; color:#666;">Yazılar yükleniyor...</p>
+                <!-- Yükleniyor animasyonu -->
+                <p style="text-align:center; color:#666; grid-column: 1/-1;">Yazılar yükleniyor...</p>
             </div>
 
-            <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
-                <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
-                <p style="color:#ddd;">Bültenimize katıl.</p>
+            <div class="newsletter-section">
+                <h3 class="newsletter-title"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
+                <p class="newsletter-text">Bültenimize katıl, en yeni rotalardan ilk sen haberdar ol.</p>
             </div>
 
         </div>
     </main>
 
-    <footer style="background:#0c0c0c; padding:40px; text-align:center; border-top:1px solid #333; color:#888;">
+    <footer class="site-footer">
         <p>© 2025 Golden Palace & WalkAbout Travel.</p>
     </footer>
 
+    <!-- MODAL YAPISI -->
     <div id="blog-modal" class="blog-modal-overlay">
         <div class="blog-modal-content">
             <button class="close-modal-btn" onclick="closeModal()">×</button>
+            <!-- Modal resmi içinde de fallback var (aşağıdaki JS'te) -->
             <img id="modal-img" src="" alt="Detay Görseli" class="modal-hero-image">
             <div class="modal-body">
                 <h2 id="modal-title" class="modal-title"></h2>
                 <span id="modal-date" class="modal-date"></span>
-                <div id="modal-full-content" class="modal-text">
-                    </div>
+                <div id="modal-full-content" class="modal-text"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- ÖNEMLİ: VERİLER ARTIK HTML İÇİNDE, HARİCİ DOSYA YOK ---
-        const allBlogPosts = [
+        // Verileri saklayacağımız global değişken
+        let allBlogPosts = [];
+
+        // YEDEK VERİ (FALLBACK): JSON Yüklenemezse devreye girer
+        const MOCK_DATA = [
             {
                 "id": 1,
-                "title": "Geleceğin Konut Anlayışı: Akıllı ve Yeşil Binalar",
-                "image": "assets/insaat_hero-mobil.webp",
-                "date": "2025-11-22",
-                "summary": "Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk. Yeşil binalar ve akıllı ev sistemleri...",
-                "fullContent": "<p>Modern yaşamın hızına ayak uydururken doğayı korumak artık bir tercih değil, zorunluluk haline geldi. WalkAbouTravel İnşaat olarak, projelerimizde sadece betona değil, geleceğe yatırım yapıyoruz.</p><p><strong>Neden Yeşil Bina?</strong><br>Yeşil binalar, enerji tüketimini %30'a varan oranlarda azaltarak hem doğayı hem de bütçenizi korur. Kullandığımız güneş paneli entegreli cephe sistemleri ve yağmur suyu hasadı teknolojileri sayesinde, binalarımız kendi kendine yetebilen ekosistemlere dönüşüyor.</p><p><strong>Akıllı Ev Teknolojileri</strong><br>Yeni projelerimizde standart hale getirdiğimiz IoT (Nesnelerin İnterneti) sistemleri sayesinde, evinizdeki ısıtma, aydınlatma ve güvenlik sistemlerini dünyanın her yerinden kontrol edebilirsiniz.</p>"
+                "title": "Kapadokya'da Balon Turu Deneyimi",
+                "image": "assets/images/kapadokya-balon-turu-1.webp",
+                "date": "2025-10-15",
+                "category": "GEZİ REHBERİ",
+                "summary": "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri.",
+                "fullContent": "<p>Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor.</p><p><strong>Ne Zaman Gidilmeli?</strong><br>En iyi sezon Nisan-Ekim arasıdır ancak kışın karlar altındaki manzarası da ayrı bir güzeldir.</p>"
             },
             {
                 "id": 2,
-                "title": "Ege'nin Kalbinde Bir Kaçış: Pruva Otel Deneyimi",
-                "image": "assets/otel_hero-mobil.webp",
-                "date": "2025-11-18",
-                "summary": "Şehrin gürültüsünden uzak, mavinin her tonuna şahit olacağınız özel bir deneyim. Pruva Otel'in sunduğu ayrıcalıklar...",
-                "fullContent": "<p>Ege'nin turkuaz sularına nazır, zeytin ağaçlarının gölgesinde bir sabah uyanmayı hayal edin. Pruva Otel, size sadece bir konaklama değil, ruhunuzu dinlendirecek bir deneyim vaat ediyor.</p><p><strong>Gastronomi Yolculuğu</strong><br>Otelimizin mutfağı, 'Tarladan Sofraya' konseptiyle hizmet veriyor. Kendi bahçemizde yetiştirdiğimiz organik sebzeler ve Ege'nin taze deniz ürünleri, ödüllü şeflerimizin ellerinde sanat eserine dönüşüyor.</p><p><strong>Spa & Wellness</strong><br>Şehrin stresini atmak için özel olarak tasarlanan spa merkezimizde, Bali'den gelen terapistlerimiz eşliğinde kendinizi şımartabilirsiniz.</p>"
+                "title": "Vizesiz Gidilebilecek 10 Cennet Ülke",
+                "image": "assets/images/antalya-koy-gezisi-1.webp",
+                "date": "2025-09-20",
+                "category": "İPUÇLARI",
+                "summary": "Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri?",
+                "fullContent": "<p>Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri?</p>"
             },
             {
                 "id": 3,
-                "title": "Tarihi Dokuyu Korumak: Galata Restorasyon Projesi",
-                "image": "assets/restorasyon1.webp",
-                "date": "2025-11-10",
-                "summary": "Yüzyıllık taş duvarların ardındaki hikayeleri dinlemek gerekir. Galata'daki son restorasyon projemizin detayları...",
-                "fullContent": "<p>Restorasyon, sadece bir binayı yenilemek değil; hafızayı canlı tutmaktır. Galata bölgesindeki son projemizde, 19. yüzyıldan kalma metruk bir yapıyı, orijinal ruhuna sadık kalarak modern bir sanat merkezine dönüştürdük.</p><p><strong>Zorluklar ve Çözümler</strong><br>Yapının statik sorunlarını çözerken, tarihi tuğla dokusuna zarar vermemek için mikro-enjeksiyon yöntemleri kullandık. Ahşap doğramalar, dönemin tekniklerine uygun olarak el işçiliğiyle yeniden üretildi.</p>"
-            },
-            {
-                "id": 4,
-                "title": "2025 Gayrimenkul Yatırım Trendleri",
-                "image": "assets/for_hero.webp",
-                "date": "2025-10-25",
-                "summary": "Yatırımcıların rotası değişiyor. Artık sadece metrekare değil, 'deneyim alanı' sunan mülkler değer kazanıyor...",
-                "fullContent": "<p>Gayrimenkul dünyası büyük bir dönüşümden geçiyor. 2025 yılında yatırımcıların odağında 'esneklik' ve 'konum' var.</p><p><strong>1. Turizm Odaklı Rezidanslar</strong><br>Kısa dönem kiralamaya (Airbnb vb.) uygun, otel konseptli rezidanslar, klasik daire kiralamalarına göre %40 daha fazla getiri sağlıyor.</p><p><strong>2. Mikro-Ofisler</strong><br>Hibrit çalışma modelinin kalıcı olmasıyla, dev plazalar yerini şehrin farklı noktalarına dağılmış butik ofislere bırakıyor.</p>"
-            },
-            {
-                "id": 5,
-                "title": "Minimalizm ve Lüksün Buluşması: İç Mekan Tasarımı",
-                "image": "assets/background.webp",
-                "date": "2025-10-05",
-                "summary": "Az aslında çoktur. Mermer, doğal ahşap ve pirinç detayların hakim olduğu yeni iç mekan trendleri...",
-                "fullContent": "<p>Lüks artık şatafat ve abartı demek değil. Yeni lüks; sadelik, kaliteli malzeme ve kusursuz işçilikte gizli. İç mekan tasarımlarımızda 'Sessiz Lüks' (Quiet Luxury) akımını benimsiyoruz.</p><p><strong>Doğal Malzemelerin Gücü</strong><br>Sentetik malzemeler yerine doğal taş, masif ahşap ve keten kumaşlar kullanarak mekanlara sıcaklık katıyoruz.</p><p>Eviniz, sizin sığınağınızdır. Karmaşadan uzak, dingin ve sofistike yaşam alanları tasarlamak için buradayız.</p>"
+                "title": "Avrupa Turu İçin Çanta Hazırlama Rehberi",
+                "image": "assets/images/spain-1.webp",
+                "date": "2025-08-05",
+                "category": "REHBER",
+                "summary": "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları.",
+                "fullContent": "<p>Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler...</p>"
             }
         ];
+
+        // 1. Verileri JSON dosyasından çek
+        async function fetchBlogPosts() {
+            try {
+                // data klasöründen veriyi al
+                const response = await fetch('data/blog-posts.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Hata: ${response.status}`);
+                }
+                
+                allBlogPosts = await response.json();
+                renderBlogGrid(allBlogPosts);
+
+            } catch (error) {
+                console.warn('JSON dosyasına erişilemedi (Yerel sunucu veya önizleme sorunu). Yedek veri yükleniyor...');
+                // HATA DURUMUNDA YEDEK VERİYİ KULLAN
+                allBlogPosts = MOCK_DATA;
+                renderBlogGrid(allBlogPosts);
+            }
+        }
 
         // 2. Blog Kartlarını Ekrana Basma
         function renderBlogGrid(posts) {
             const container = document.getElementById('blog-grid-display');
-            container.innerHTML = ""; // Temizle
+            container.innerHTML = ""; // Yükleniyor yazısını temizle
 
-            if(posts.length === 0) {
-                container.innerHTML = "<p>Henüz blog yazısı eklenmemiş.</p>";
+            if (!posts || posts.length === 0) {
+                container.innerHTML = "<p style='text-align:center; grid-column: 1/-1;'>Henüz blog yazısı eklenmemiş.</p>";
                 return;
             }
 
@@ -318,9 +390,15 @@
             posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             posts.forEach(post => {
+                // Not: JSON'da resim yolu "assets/images/..." olarak kayıtlı olmalı
                 const html = `
                     <article class="blog-card" onclick="openModal(${post.id})">
-                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='assets/background.webp'">
+                        <div class="blog-image-wrapper">
+                            <img src="${post.image}" 
+                                 alt="${post.title}" 
+                                 loading="lazy" 
+                                 onerror="this.src='assets/fallback.webp'; this.onerror=null;">
+                        </div>
                         <div class="blog-content">
                             <span class="blog-date">${post.date}</span>
                             <h3 class="blog-title">${post.title}</h3>
@@ -333,14 +411,22 @@
             });
         }
 
-        // 3. Modalı Açma (Detay Gösterme)
+        // 3. Modalı Açma
         function openModal(id) {
             const post = allBlogPosts.find(p => p.id === id);
             
             if (post) {
                 document.getElementById('modal-title').innerText = post.title;
                 document.getElementById('modal-date').innerText = post.date;
-                document.getElementById('modal-img').src = post.image;
+                
+                const modalImg = document.getElementById('modal-img');
+                modalImg.src = post.image;
+                // Modal içinde de fallback (yedek resim) kontrolü
+                modalImg.onerror = function() {
+                    this.src = 'assets/fallback.webp';
+                    this.onerror = null;
+                };
+
                 document.getElementById('modal-full-content').innerHTML = post.fullContent;
 
                 const modal = document.getElementById('blog-modal');
@@ -356,15 +442,21 @@
             document.body.style.overflow = 'auto'; 
         }
 
+        // Dışarı tıklayınca kapat
         document.getElementById('blog-modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
+        // ESC tuşu ile kapat
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModal();
+        });
+
         // Sayfa yüklendiğinde çalıştır
         document.addEventListener('DOMContentLoaded', () => {
-            renderBlogGrid(allBlogPosts);
+            fetchBlogPosts();
         });
     </script>
 

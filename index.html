@@ -1,390 +1,37 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title data-key="title">WalkAbouTravel — Tourism & Travel</title>
-<link rel="icon" type="image/png" href="assets/walkabou_travel_logo.webp">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-key="title">WalkAbouTravel — Tourism & Travel</title>
+    <link rel="icon" type="image/png" href="assets/images/walkabou_travel_logo.webp">
 
-<!-- TEMİZLİK YAPILDI: Sadece kullanılan dosyalar preload ediliyor -->
-<link rel="preload" as="image" href="assets/walkabou_travel_logo.webp">
-<link rel="preload" as="fetch" href="data/languages/en.json" crossorigin>
-<link rel="preload" as="fetch" href="data/languages/ar.json" crossorigin>
-<link rel="preload" as="fetch" href="data/languages/zh.json" crossorigin>
+    <link rel="preload" as="image" href="assets/images/walkabou_travel_logo.webp">
+    <link rel="preload" as="fetch" href="data/languages/en.json" crossorigin>
+    <link rel="preload" as="fetch" href="data/languages/ar.json" crossorigin>
+    <link rel="preload" as="fetch" href="data/languages/zh.json" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujm/0/1NnL4A7qYv6E4t+8aC6S5L4b5L4ZlV5x5F5a0d3Q3n8A/gI/oXq2VlM2R0p8C5lS5o5A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/main.css">
 
-<style>
-  /* Header ve Temel Yerleşim Ayarları */
-  header {
-    display: block; 
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.0) 100%);
-    transition: background-color 0.3s;
-  }
-  header.scrolled {
-      background-color: rgba(10, 10, 10, 0.95);
-  }
-  .header-top-row {
-    background-color: #1a1a1a;
-    color: #ccc;
-    padding: 8px 30px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .header-top-row a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .header-top-row a:hover {
-    color: #ffcc66;
-  }
-  .header-top-row .top-bar-left a {
-    margin-right: 20px;
-  }
-  .header-top-row i {
-    margin-right: 8px;
-    color: #ffcc66;
-  }
-  .header-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 10px 30px;
-    height: 80px;
-  }
-
-  .hero-content-overlay .hero-since {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-  }
-  .hero-content-overlay h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin: 0;
-  }
-  .hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
-  }
-  
-  .cta-group {
-    position: relative;
-    display: inline-block;
-  }
-
-  /* --- YENİ EKLENEN KART DÜZENİ (Referans resimdeki gibi) --- */
-  #quick-access-links {
-      background-color: #f9f9f9; /* Daha temiz, açık renk arka plan */
-      padding: 80px 20px;
-      position: relative;
-      z-index: 10;
-  }
-
-  .quick-access-grid {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      max-width: 1400px;
-      margin: 0 auto;
-  }
-
-  .category-card {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      width: 100%;
-      max-width: 380px; /* Kart genişliği */
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-  }
-
-  .category-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  }
-
-  .category-card img {
-      width: 100%;
-      height: 250px; /* Resim yüksekliği */
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-  }
-  
-  .category-card:hover img {
-      transform: scale(1.05);
-  }
-
-  .category-card-content {
-      padding: 25px;
-      text-align: center;
-      border-top: 1px solid #eee;
-  }
-
-  .category-card h3 {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: #333;
-      margin-bottom: 10px;
-  }
-
-  .category-card p {
-      margin: 0;
-      color: #777;
-      font-size: 0.95rem;
-      line-height: 1.5;
-  }
-
-  .category-btn {
-      margin-top: 15px;
-      display: inline-block;
-      color: #f59e0b;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-  }
-
-  /* Mobil düzenlemeler */
-  @media (max-width: 992px) {
-      .category-card {
-          max-width: 100%; /* Mobilde tam genişlik */
-      }
-      .quick-access-grid {
-          gap: 20px;
-      }
-  }
-
-
-  /* Footer Stilleri */
-  .site-footer {
-    background-color: #0c0c0c; 
-    color: #a0a0a0;
-    padding: 60px 30px 20px 30px;
-    border-top: 1px solid #333;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto 40px auto;
-  }
-  .footer-column h3 {
-    font-family: 'Playfair Display', serif;
-    color: #ffffff;
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ffcc66;
-    padding-bottom: 10px;
-    font-weight: 700;
-  }
-  .footer-column.logo-column h3 {
-    border-bottom: none;
-  }
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-links li {
-    margin-bottom: 12px;
-  }
-  .footer-links a {
-    color: #a0a0a0;
-    text-decoration: none;
-    transition: color 0.3s, padding-left 0.3s;
-    display: inline-block;
-  }
-  .footer-links a:hover {
-    color: #ffcc66;
-    padding-left: 5px;
-  }
-  .footer-column.logo-column {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .footer-column.logo-column .social-icons {
-    margin-top: 20px;
-  }
-  .footer-links.contact-info li {
-    display: flex;
-    align-items: flex-start;
-  }
-  .footer-links.contact-info i {
-    color: #ffcc66;
-    margin-right: 12px;
-    margin-top: 5px;
-    width: 15px;
-  }
-  .footer-links.contact-info span,
-  .footer-links.contact-info a {
-    flex: 1;
-    padding-left: 0; 
-  }
-  .footer-links.contact-info a:hover {
-    color: #ffcc66;
-    padding-left: 0;
-  }
-  .footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    background-color: transparent;
-  }
-
-  /* Mobil Uyumluluk */
-  @media (max-width: 992px) {
-    .header-top-row {
-      padding: 10px 15px;
-      font-size: 0.75rem;
-    }
-    .header-top-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .header-bottom-row {
-      padding: 10px 15px;
-      height: 70px;
-    }
-    .hero-content-overlay h1 {
-      font-size: 3rem; 
-    }
-
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
-    .footer-column {
-      margin-bottom: 20px;
-    }
-    .footer-column.logo-column {
-      margin-bottom: 30px;
-    }
-    .site-footer {
-      padding: 40px 15px 20px 15px;
-    }
-  }
-
-  /* Basic Lightbox Styles (Fallback if not in CSS) */
-  .lightbox {
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-
-  .lightbox-content {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 80%;
-  }
-
-  #lightbox-image {
-      max-width: 90%;
-      max-height: 90vh;
-      object-fit: contain;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      transition: opacity 0.3s ease;
-  }
-
-  .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #f1f1f1;
-      font-size: 40px;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
-      z-index: 10001;
-  }
-
-  .close:hover,
-  .close:focus {
-      color: #bbb;
-      text-decoration: none;
-      cursor: pointer;
-  }
-
-  .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -50px;
-      color: white;
-      font-weight: bold;
-      font-size: 30px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-      -webkit-user-select: none;
-      background-color: rgba(0,0,0,0.3);
-      z-index: 10000;
-  }
-
-  .next {
-      right: 20px;
-      border-radius: 3px 0 0 3px;
-  }
-  
-  .prev {
-      left: 20px;
-      border-radius: 3px 0 0 3px;
-  }
-
-  .prev:hover, .next:hover {
-      background-color: rgba(255, 204, 102, 0.8);
-      color: black;
-  }
-
-  #lightbox-counter {
-      color: #ccc;
-      margin-top: 10px;
-      font-family: 'Inter', sans-serif;
-  }
-</style>
+    <style>
+        /* Geçici Text Animasyonu Stili - Diğerleri styles/main.css içinde */
+        #changing-text {
+            font-size: 1.25rem; 
+            margin: 10px 0 30px 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        /* Kart linkleri için stil düzeltmesi */
+        a.category-card {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+        }
+    </style>
 
 </head>
 <body>
@@ -402,13 +49,14 @@
 
   <div class="header-bottom-row">
     <div class="brand">
-      <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo"> <div class="brand-text-container">
+      <img src="assets/images/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo"> 
+      <div class="brand-text-container">
           <span class="brand-title" data-key="brand_walkabou_travel">WalkAbouTravel</span>
           <span class="brand-tagline" data-key="brand_Tourism">Tourism & Travel</span>
       </div>
     </div>
-  
-    <div style="display: flex; align-items: center;">
+   
+    <div class="header-controls">
       <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
           <i class="fas fa-bars"></i>
       </button>
@@ -418,114 +66,124 @@
         <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
         <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
         <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
+        
         <div class="language-selector mobile-only" style="display: none;">
             <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
             <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> 
+        </div>
       </nav>
     
       <div class="language-selector desktop-only" style="margin-left: 20px;">
           <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
           <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
+          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> 
+      </div>
     </div>
   </div>
 </header>
 
-<!-- HERO BÖLÜMÜ BAŞLANGICI -->
+<!-- HERO BÖLÜMÜ -->
 <section class="hero-video page-section active" id="hero">
   <video autoplay muted loop playsinline class="hero-video-bg">
-    <source src="assets/hero_background.mp4" type="video/mp4">
+    <source src="assets/videos/hero_background.mp4" type="video/mp4">
     Tarayıcınız video etiketini desteklemiyor.
   </video>
 
   <div class="hero-content-overlay">
     
-    <!-- 1. BÖLÜM: BAŞLIK VE SLOGAN -->
     <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
     <h1 data-key="hero_title">WalkAbouTravel</h1>
-    <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;"></h2>
+    <h2 id="changing-text" data-key="hero_subtitle"></h2>
     
-    <!-- 2. BÖLÜM: ANA BUTONLAR (KORUNDU) -->
+    <!-- GÜNCELLENDİ: Butonlar Yeni Sisteme Bağlandı -->
     <div class="hero-links-container action-buttons" style="margin-bottom: 50px;">
-      <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
+      <!-- Yurt İçi Butonu -->
+      <a href="#page-tours" data-category="domestic" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
+      <!-- Blog Butonu -->
       <a href="#homepage-blog" class="btn btn-hero-link">Blog</a>
-      <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
+      <!-- Yurt Dışı Butonu -->
+      <a href="#page-tours" data-category="international" data-key="drop_rental" class="btn btn-hero-link">Turizm</a>
     </div>
 
   </div> 
 </section>
-<!-- HERO BÖLÜMÜ BİTİŞİ -->
 
-
-<!-- YENİ BÖLÜM: BÜYÜK KARTLARLA KATEGORİ SEÇİMİ (Referans Resimdeki Gibi) -->
+<!-- KATEGORİ SEÇİMİ -->
 <section id="quick-access-links">
     
-    <div class="section-title-wrapper" style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: #1a1a2e; margin: 0;">Rotalarınızı Keşfedin</h2>
-        <div style="width: 60px; height: 3px; background: #f59e0b; margin: 15px auto;"></div>
+    <div class="section-title-wrapper">
+        <h2 class="section-main-title">Rotalarınızı Keşfedin</h2>
+        <div class="gold-divider"></div>
     </div>
 
     <div class="quick-access-grid">
         
-        <!-- KART 1: KÜLTÜR TURLARI -->
-        <div class="category-card" onclick="location.hash='page-otel'">
-            <div style="overflow: hidden;">
-                <img src="assets/kapadokya-balon-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Kültür+Turları'" alt="Kültür Turları">
+        <!-- GÜNCELLENDİ: Div -> A etiketi ve yeni linkler -->
+        <a href="#page-tours" data-category="domestic" class="category-card">
+            <div class="card-image-wrapper">
+                <img src="assets/images/kapadokya-balon-1.webp" 
+                     onerror="this.src='assets/fallback.webp'; this.onerror=null;" 
+                     alt="Kültür Turları">
             </div>
             <div class="category-card-content">
                 <h3>Kültür Turları</h3>
                 <p>Mardin, Kapadokya, Antalya ve daha fazlası.</p>
                 <span class="category-btn">İncele →</span>
             </div>
-        </div>
+        </a>
 
-        <!-- KART 2: blog -->
-        <div class="category-card" onclick="location.hash='page-blog'">
-            <div style="overflow: hidden;">
-                <img src="assets/blog-1-before.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=blog'" alt="blog">
+        <!-- Blog Linki -->
+        <a href="#homepage-blog" class="category-card">
+            <div class="card-image-wrapper">
+                <img src="assets/images/blog-1-before.webp" 
+                     onerror="this.src='assets/fallback.webp'; this.onerror=null;" 
+                     alt="Blog">
             </div>
             <div class="category-card-content">
-                <h3>blog</h3>
+                <h3>Blog</h3>
                 <p>Tarihi yapılar, yalılar ve koruma projeleri.</p>
                 <span class="category-btn">İncele →</span>
             </div>
-        </div>
+        </a>
 
-        <!-- KART 3: YURT DIŞI & TRANSFER -->
-        <div class="category-card" onclick="location.hash='page-satilik_kiralik'">
-            <div style="overflow: hidden;">
-                <img src="assets/spain-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Yurt+Dışı'" alt="Yurt Dışı">
+        <!-- Yurt Dışı Linki -->
+        <a href="#page-tours" data-category="international" class="category-card">
+            <div class="card-image-wrapper">
+                <img src="assets/images/spain-1.webp" 
+                     onerror="this.src='assets/fallback.webp'; this.onerror=null;" 
+                     alt="Yurt Dışı">
             </div>
             <div class="category-card-content">
                 <h3>Yurt Dışı & Transfer</h3>
                 <p>Avrupa turları, uçak bileti ve transfer hizmetleri.</p>
                 <span class="category-btn">İncele →</span>
             </div>
-        </div>
+        </a>
 
     </div>
 </section>
-<!-- YENİ BÖLÜM BİTİŞİ -->
-
 
 <!-- Blog Bölümü -->
-<section id="homepage-blog" class="page-section active" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
+<section id="homepage-blog" class="page-section active homepage-blog-section">
     <div class="new-layout-container">
         
-        <div class="section-title-wrapper" style="text-align: center; margin-bottom: 50px;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a2e; margin-bottom: 10px;">
+        <div class="section-title-wrapper" style="margin-bottom: 50px;">
+            <h2 class="blog-section-title">
                 Seyahat Günlüğü
             </h2>
-            <p style="color: #666; max-width: 600px; margin: 0 auto; font-size: 18px;">
+            <p class="blog-section-desc">
                 Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
             </p>
         </div>
 
-        <div class="featured-blog" style="margin-bottom: 60px;">
-            <img src="assets/for_hero.webp" alt="Mardin" class="featured-img" onerror="this.src='https://placehold.co/800x400/1a1a2e/FFF?text=WalkAbouTravel'">
+        <div class="featured-blog featured-blog-wrapper">
+            <img src="assets/images/for_hero.webp" 
+                 alt="Mardin" 
+                 class="featured-img" 
+                 onerror="this.src='assets/fallback.webp'; this.onerror=null;">
             <div class="featured-content">
                 <span class="blog-category">EDİTÖRÜN SEÇİMİ</span>
                 <h3>Mardin'in Büyülü Atmosferi: Taş Konaklar</h3>
@@ -541,117 +199,12 @@
     </div>
 </section>
 
+<!-- NOT: Eski 'page-otel' ve 'page-satilik_kiralik' bölümleri SİLİNDİ. 
+     Artık bu sayfalar pages/tours.html şablonu üzerinden dinamik oluşturuluyor. -->
+
 <main id="page-container">
-
-<section id="page-otel" class="page-section" style="padding-top: 140px;">
-  
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
-
-  <div class="new-layout-container">
-    
-    <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 10px;">
-            Yurt İçi Kültür Turları
-        </h2>
-        <p style="color: #aaa; font-size: 18px;">
-            Anadolu'nun eşsiz güzelliklerini profesyonel rehberlerimizle keşfedin.
-        </p>
-        <div class="title-gold-line" style="width: 100px; height: 2px; background: #f59e0b; margin: 20px auto;"></div>
-    </div>
-
-    <div class="house-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
-            <img src="assets/mardin-konak-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Mardin'">
-            <h3>Mardin Kültür Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
-            <img src="assets/kapadokya-balon-1.webp" alt="Kapadokya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Kapadokya'">
-            <h3>Kapadokya Balon Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
-            <img src="assets/antalya-koy-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Antalya'">
-            <h3>Antalya & Kaş Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
-            <img src="assets/fethiye-oludeniz-1.webp" alt="Fethiye Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Fethiye'">
-            <h3>Fethiye & Ölüdeniz</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-PAMUKKALE')">
-            <img src="assets/pamukkale-traverten-1.webp" alt="Pamukkale Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Pamukkale'">
-            <h3>Pamukkale & Hierapolis</h3>
-        </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- TURİZM (TÜRKİYE ROTALARI) BÖLÜMÜ GÜNCELLEMESİ -->
-<section id="page-satilik_kiralik" class="page-section" style="padding-top: 160px;">
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
-  <div class="new-layout-container">
-
-    <h2 data-key="page_satilik_h2">Türkiye Rotaları</h2>
-
-    <!-- GÜNCELLEME: Burada 5 değil 4 kart bırakıldı -->
-    <div class="house-gallery">
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
-            <img loading="lazy" src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Tarihi Konak Turu">
-            <h3 data-key="page_satilik_1">Mardin Kültür Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
-            <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Liman Manzarası" loading="lazy">
-            <h3 data-key="page_satilik_2">Antalya Koy Gezisi</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
-            <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Balon Turu" loading="lazy">
-            <h3 data-key="page_satilik_3">Kapadokya Balon Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
-            <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Ölüdeniz Manzarası" loading="lazy">
-            <h3 data-key="page_satilik_4">Fethiye Ölüdeniz</h3>
-        </div>
-        <!-- Pamukkale kartı kaldırıldı (4 tane olsun diye) -->
-    </div>
-
-    <h2 style="margin-top: 80px;" data-key="page_kiralik_h2">Uluslararası Rotalar</h2>
-
-    <div class="house-gallery">
-        <div class="house-card" onclick="openHouseDetail('TUR-D-ISPANYA')">
-            <img src="assets/spain-1.webp" alt="İspanya Barselona Turu" loading="lazy">
-            <h3 data-key="page_kiralik_1">İspanya Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-RUSYA')">
-            <img src="assets/rusya-1.webp" alt="Rusya Moskova Turu" loading="lazy">
-            <h3 data-key="page_kiralik_2">Rusya Sanat Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-BREZILYA')">
-            <img src="assets/brazil-1.webp" alt="Brezilya Karnavalı" loading="lazy">
-            <h3 data-key="page_kiralik_3">Brezilya Karnavalı</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-AMERIKA')">
-            <img src="assets/new-york-1.webp" alt="Amerika Batı Kıyısı" loading="lazy">
-            <h3 data-key="page_kiralik_4">Amerika Batı Kıyısı</h3>
-        </div>
-        
-    </div>
-
-  </div>
-</section>
-
+    <!-- Dinamik sayfalar (pages/tours.html, pages/about.html vb.) buraya yüklenecek -->
 </main>
-
 
 <footer class="site-footer">
     <div class="footer-grid">
@@ -671,14 +224,14 @@
             <ul class="footer-links">
                 <li><a href="#page-services" data-page="page-services" data-key="service_h3_1">Mimari Tasarım</a></li>
                 <li><a href="#page-services" data-page="page-services" data-key="service_h3_2">İç Mekan Tasarımı</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">blog ve Koruma</a></li>
+                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">Restorasyon ve Koruma</a></li>
                 <li><a href="#page-services" data-page="page-services" data-key="service_h3_4">Proje Yönetimi</a></li>
             </ul>
         </div>
 
         <div class="footer-column logo-column">
             <div class="footer-logo-container">
-                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo">
+                <img src="assets/images/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo">
                 <div class="footer-text-container">
                     <span class="footer-title" data-key="brand_walkabou_travel">WalkAbouTravel</span>
                     <span class="brand-tagline" data-key="brand_Tourism">Tourism & Travel</span>
@@ -695,9 +248,10 @@
         <div class="footer-column">
             <h3 data-key="footer_col_4_title">Projeler</h3>
             <ul class="footer-links">
-                <li><a href="#page-otel" data-page="page-otel" data-key="drop_hotel">Turizm De Biz</a></li>
-                <li><a href="#page-blog" data-page="page-blog" data-key="drop_restoration">blog Projeleri</a></li>
-                <li><a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-key="drop_rental">Bilet & Transfer</a></li>
+                <!-- GÜNCELLENDİ: Footer Linkleri -->
+                <li><a href="#page-tours" data-category="domestic" data-key="drop_hotel">Turizm De Biz</a></li>
+                <li><a href="#homepage-blog">Blog</a></li>
+                <li><a href="#page-tours" data-category="international" data-key="drop_rental">Bilet & Transfer</a></li>
             </ul>
         </div>
 
@@ -726,38 +280,40 @@
     </div>
 </footer>
 
-<!-- Updated Lightbox Modal -->
+<!-- Lightbox Modal -->
 <div id="lightbox-modal" class="lightbox" style="display: none;">
-  <!-- Close Button -->
   <span id="close-lightbox" class="close">&times;</span>
-
-  <!-- Main Content -->
   <div class="lightbox-content">
-      <!-- Previous Button -->
       <a id="prev-btn" class="prev">&#10094;</a>
-      
-      <!-- The Image -->
       <img id="lightbox-image" src="" alt="Gallery Image">
-      
-      <!-- Next Button -->
       <a id="next-btn" class="next">&#10095;</a>
   </div>
-
-  <!-- Optional Counter -->
   <div id="lightbox-counter"></div>
 </div>
 
-
+<!-- House Detail Modal -->
 <div id="house-detail" class="house-detail">
   <button onclick="closeHouseDetail()">← Geri</button>
   <div id="house-detail-content"></div>
 </div>
 
-<!-- TEMİZLİK YAPILDI: restorationImageModal Silindi -->
+<!-- Blog Detail Modal -->
+<div id="blog-modal" class="blog-modal-overlay">
+    <div class="blog-modal-content">
+        <button class="close-modal-btn" onclick="closeModal()">×</button>
+        <img id="modal-img" src="" alt="Detay Görseli" class="modal-hero-image">
+        <div class="blog-modal-body">
+            <h2 id="modal-title" class="modal-title"></h2>
+            <span id="modal-date" class="modal-date"></span>
+            <div id="modal-full-content" class="modal-text"></div>
+        </div>
+    </div>
+</div>
 
-<script src="scripts/app.js"></script>
+<script type="module" src="scripts/app.js"></script>
 
 <script>
+    // Geçici metin animasyonu (Veriler artık HTML içinde kalabilir çünkü sadece basit bir animasyon)
     const data = [
         {
             title: "Kurumsal Seyahat",
@@ -779,7 +335,7 @@
 
     let index = 0; 
     const textElement = document.getElementById('changing-text'); 
-    const intervalTime = 5000; // 3 saniye
+    const intervalTime = 5000; 
 
     function changeTextWithFade() {
         if(textElement) {
