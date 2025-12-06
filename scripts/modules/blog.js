@@ -40,36 +40,43 @@ export async function loadBlogData() {
         if (!response.ok) throw new Error('Blog verisi alınamadı');
         
         cachedPosts = await response.json();
+        console.log('✅ Blog verileri yüklendi:', cachedPosts.length, 'yazı');
         
     } catch (error) {
-        console.warn('Blog verisi yüklenemedi, yedek veri kullanılıyor:', error);
+        console.warn('⚠️ Blog verisi yüklenemedi, yedek veri kullanılıyor:', error);
         cachedPosts = MOCK_DATA;
     }
 
-    // Modal açılırken global erişim gerekebilir diye window'a da atıyoruz
+    // Modal açılırken global erişim için
     window.blogPostsData = cachedPosts;
 }
 
-// BU FONKSİYONU ARTIK APP.JS ÇAĞIRACAK (EXPORT EKLENDİ)
-export function renderBlogGrid() {
-    const container = document.getElementById('blog-grid-display');
+// GELİŞTİRİLMİŞ: containerId parametresi ile farklı containerlarda render edebilir
+export function renderBlogGrid(containerId = 'blog-grid-display') {
+    const container = document.getElementById(containerId);
     
-    // Eğer sayfada blog container yoksa (başka sayfadaysak) işlemi durdur
-    if (!container) return;
+    // Container yoksa uyarı ver ama hata fırlatma
+    if (!container) {
+        console.warn('⚠️ Blog container bulunamadı:', containerId);
+        return;
+    }
     
     // Veri yoksa mesaj göster
     if (!cachedPosts || cachedPosts.length === 0) {
-        container.innerHTML = '<p>Henüz yazı yok.</p>';
+        container.innerHTML = '<p style="text-align:center; width:100%; color:#999;">Henüz yazı yok.</p>';
         return;
     }
     
     // Tarihe göre sırala (Yeniden eskiye)
     const sortedPosts = [...cachedPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
     
+    // HTML Oluştur
     container.innerHTML = sortedPosts.map(post => `
-        <article class="blog-card" onclick="openBlogModal(${post.id})">
+        <article class="blog-card" onclick="openBlogModal(${post.id})" style="cursor:pointer;">
             <div class="card-img-top">
-                <img src="${post.image}" alt="${post.title}" loading="lazy"
+                <img src="${post.image}" 
+                     alt="${post.title}" 
+                     loading="lazy"
                      onerror="this.src='${PATHS.FALLBACK_IMAGE}'; this.onerror=null;">
             </div>
             <div class="card-body">
@@ -80,6 +87,8 @@ export function renderBlogGrid() {
             </div>
         </article>
     `).join('');
+    
+    console.log('✅ Blog grid render edildi:', sortedPosts.length, 'kart');
 }
 
 export function openBlogModal(id) {
@@ -87,27 +96,37 @@ export function openBlogModal(id) {
     const posts = cachedPosts.length > 0 ? cachedPosts : (window.blogPostsData || []);
     const post = posts.find(p => p.id === id);
     
-    if (post) {
-        const titleEl = document.getElementById('modal-title');
-        const dateEl = document.getElementById('modal-date');
-        const imgEl = document.getElementById('modal-img');
-        const contentEl = document.getElementById('modal-full-content');
-        const modal = document.getElementById('blog-modal');
+    if (!post) {
+        console.error('❌ Blog yazısı bulunamadı:', id);
+        alert('Bu blog yazısına şu an ulaşılamıyor.');
+        return;
+    }
+    
+    console.log('📖 Blog modalı açılıyor:', post.title);
+    
+    const titleEl = document.getElementById('modal-title');
+    const dateEl = document.getElementById('modal-date');
+    const imgEl = document.getElementById('modal-img');
+    const contentEl = document.getElementById('modal-full-content');
+    const modal = document.getElementById('blog-modal');
 
-        if (titleEl) titleEl.innerText = post.title;
-        if (dateEl) dateEl.innerText = post.date;
-        
-        if (imgEl) {
-            imgEl.src = post.image;
-            imgEl.onerror = function() { this.src = PATHS.FALLBACK_IMAGE; this.onerror = null; };
-        }
-        
-        if (contentEl) contentEl.innerHTML = post.fullContent;
-        
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    if (titleEl) titleEl.innerText = post.title;
+    if (dateEl) dateEl.innerText = post.date;
+    
+    if (imgEl) {
+        imgEl.src = post.image;
+        imgEl.onerror = function() { 
+            console.warn('⚠️ Blog resmi yüklenemedi, fallback kullanılıyor');
+            this.src = PATHS.FALLBACK_IMAGE; 
+            this.onerror = null; 
+        };
+    }
+    
+    if (contentEl) contentEl.innerHTML = post.fullContent;
+    
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 }
 
@@ -117,4 +136,5 @@ export function closeBlogModal() {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
+    console.log('✅ Blog modalı kapatıldı');
 }

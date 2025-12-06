@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "Kapadokya'da Balon Turu Deneyimi",
-        "image": "assets/kapadokya-balon-turu-1.webp",
+        "image": "assets/images/kapadokya-balon-turu-1.webp",
         "date": "2025-10-15",
         "category": "GEZİ REHBERİ",
         "summary": "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri.",
@@ -11,7 +11,7 @@
     {
         "id": 2,
         "title": "Vizesiz Gidilebilecek 10 Cennet Ülke",
-        "image": "assets/antalya-koy-gezisi-1.webp",
+        "image": "assets/images/antalya-koy-gezisi-1.webp",
         "date": "2025-09-20",
         "category": "İPUÇLARI",
         "summary": "Pasaportunuzu kapıp hemen yola çıkabileceğiniz, turkuaz suları ve tarihiyle büyüleyen o ülkeler hangileri?",
@@ -20,7 +20,7 @@
     {
         "id": 3,
         "title": "Avrupa Turu İçin Çanta Hazırlama Rehberi",
-        "image": "assets/spain-1.webp",
+        "image": "assets/images/spain-1.webp",
         "date": "2025-08-05",
         "category": "REHBER",
         "summary": "Uzun bir Avrupa seyahatine çıkarken yanınıza almanız gerekenler ve hayat kurtaran minimalist paketleme tüyoları.",

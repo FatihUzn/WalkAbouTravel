@@ -4,7 +4,6 @@ import { setLanguage, getCurrentLanguage } from './modules/language.js';
 import { showPage } from './modules/navigation.js';
 import { loadTourData, openHouseDetail, closeHouseDetail, loadMorePropertyImages, getCurrentGalleryImages, renderTourGrid } from './modules/tours.js';
 import { openGallery, closeLightbox, showNextImage, showPrevImage } from './modules/lightbox.js';
-// DİKKAT: renderBlogGrid BURAYA EKLENDİ
 import { loadBlogData, openBlogModal, closeBlogModal, renderBlogGrid } from './modules/blog.js';
 
 // === 2. FONKSİYONLARI HTML'E AÇ (WINDOW BAĞLANTISI) ===
@@ -28,46 +27,54 @@ window.openGlobalGallery = (index) => {
 
 // === 3. UYGULAMAYI BAŞLAT (INITIALIZATION) ===
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("Uygulama başlatılıyor...");
+    console.log("🚀 Uygulama başlatılıyor...");
 
     try {
-        // A. Verileri Yükle (Veriler çekilir ama ekrana basılmaz)
+        // A. Verileri Yükle
+        console.log("📦 Veriler yükleniyor...");
         await Promise.all([
             loadTourData(),
             loadBlogData()
         ]);
+        console.log("✅ Veriler yüklendi");
 
         // B. Dili Ayarla
         const lang = getCurrentLanguage();
         await setLanguage(lang);
 
-        // C. Doğru Sayfayı Göster
+        // C. Homepage Blog'u Render Et (YENİ EKLENEN)
+        console.log("📝 Homepage blog render ediliyor...");
+        renderBlogGrid('blog-grid-display');
+
+        // D. Doğru Sayfayı Göster
         const initialPage = location.hash.replace('#', '') || 'hero';
         await handleRouting(initialPage);
 
-        // D. Dinleyicileri Kur
+        // E. Dinleyicileri Kur
         setupEventListeners();
+        
+        console.log("✅ Uygulama hazır!");
 
     } catch (error) {
-        console.error("Başlatma hatası:", error);
+        console.error("❌ Başlatma hatası:", error);
     }
 });
 
 // === 4. SAYFA YÖNLENDİRME MANTIĞI ===
 async function handleRouting(pageId) {
-    // İstenen sayfayı ekrana getir
     await showPage(pageId);
 
-    // --- TURLAR SAYFASI İÇİN ÖZEL İŞLEM ---
+    // TURLAR SAYFASI İÇİN ÖZEL İŞLEM
     if (pageId === 'page-tours' || pageId === 'tours') {
         const savedCat = localStorage.getItem('selectedCategory') || 'all';
+        console.log('🗺️ Tur sayfası render ediliyor, kategori:', savedCat);
         renderTourGrid(savedCat);
         localStorage.removeItem('selectedCategory');
     }
 
-    // --- BLOG SAYFASI İÇİN ÖZEL İŞLEM (YENİ EKLENDİ) ---
-    // Sayfa DOM'a eklendikten sonra blogları render et
+    // BLOG SAYFASI İÇİN ÖZEL İŞLEM
     if (pageId === 'page-blog' || pageId === 'blog') {
+        console.log('📰 Blog sayfası render ediliyor...');
         renderBlogGrid();
     }
 }
@@ -89,14 +96,17 @@ function setupEventListeners() {
         });
     }
 
-    // C. Kategori Linkleri
+    // C. Kategori Linkleri (GELİŞTİRİLMİŞ)
     document.body.addEventListener('click', (e) => {
         const categoryLink = e.target.closest('[data-category]');
         if (categoryLink) { 
             const cat = categoryLink.dataset.category;
+            console.log('🏷️ Kategori seçildi:', cat);
             localStorage.setItem('selectedCategory', cat);
             
+            // Eğer zaten tours sayfasındaysak, sadece render et
             if (location.hash === '#page-tours' || location.hash === '#tours') {
+                e.preventDefault();
                 renderTourGrid(cat);
             }
         }
