@@ -1,3 +1,42 @@
+<!-- UPDATED <head> SECTION FOR index.html -->
+<!-- Copy this entire section to replace your current <head> -->
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-key="title">WalkAbouTravel — Tourism & Travel</title>
+
+<!-- FAVICON FIX - Add this line to fix favicon 404 error -->
+<link rel="icon" type="image/png" href="assets/walkabou_travel_logo.webp">
+
+<!-- Preload critical assets -->
+<link rel="preload" as="image" href="assets/walkabou_travel_logo.webp">
+<link rel="preload" as="fetch" href="tr.json" crossorigin>
+<link rel="preload" as="fetch" href="en.json" crossorigin>
+<link rel="preload" as="fetch" href="ar.json" crossorigin>
+<link rel="preload" as="fetch" href="zh.json" crossorigin>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="style.css?v=2.2">
+</head>
+
+<!-- 
+NOTES:
+1. Favicon now points to your existing logo
+2. Added crossorigin for preloaded JSON files
+3. Removed xintegrity attribute (was incomplete)
+4. Version 2.2 for style.css (forces cache refresh)
+
+Place this at the very beginning of your index.html file, 
+right after <!DOCTYPE html> and <html lang="tr">
+-->
 <!-- SECTION 1: Replace your <script> tag near the end of body -->
 <script src="app-fixed.js?v=2.0" defer></script>
 
@@ -78,3 +117,4 @@
         <li><a href="#page-tours" data-page="page-tours" data-key="drop_rental">Bilet & Transfer</a></li>
     </ul>
 </div>
+
