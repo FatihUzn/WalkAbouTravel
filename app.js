@@ -12,13 +12,10 @@ function throttle(func, limit) {
   }
 }
 
-// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU (GÜNCELLENDİ) ===
-// Artık tire (-) işaretini otomatik koymuyor.
-// Dosya adının başı (prefix) neyse tam olarak onu yazacağız.
+// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU ===
 function generateImages(baseName, count) {
     const images = [];
     for (let i = 1; i <= count; i++) {
-        // assets/ + dosya_adı_başı + sayı + .webp
         images.push(`assets/${baseName}${i}.webp`);
     }
     return images;
@@ -28,19 +25,15 @@ function generateImages(baseName, count) {
 const translations = {}; 
 const pageCache = {}; 
 let globalPropertyImages = [];
-let globalImageIndex = 0; // Yükleme için sayaç
+let globalImageIndex = 0; 
 const IMAGES_PER_LOAD = 6; 
 
 // Lightbox State
-let currentGalleryImages = []; // Şu an açık olan galerinin resimleri
-let currentLightboxIndex = 0;  // Şu an gösterilen resmin indeksi
+let currentGalleryImages = []; 
+let currentLightboxIndex = 0;  
 
-// TEMİZLİK YAPILDI: Restorasyon (Before/After) değişkenleri silindi.
-
-
-// === TURİZM VERİ TABANI (ORİJİNAL DOSYA İSİMLERİYLE) ===
+// === TURİZM VERİ TABANI ===
 const TOUR_DATA = {
-  
   // --- YURT İÇİ ---
   "TUR-TR-MARDIN": {
     "title": "Mardin - Tarihi Konaklar & Kültür Turu",
@@ -49,7 +42,6 @@ const TOUR_DATA = {
     "area": "Güneydoğu Anadolu",
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
-    // Dosya adı: mardin-tarihi-konak-dokusu-1.webp
     "images": generateImages("mardin-tarihi-konak-dokusu-", 16) 
   },
   "TUR-TR-ANTALYA": {
@@ -59,7 +51,6 @@ const TOUR_DATA = {
     "area": "Akdeniz Bölgesi",
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    // Dosya adı: antalya-koy-gezisi-1.webp
     "images": generateImages("antalya-koy-gezisi-", 17)
   },
   "TUR-TR-KAPADOKYA": {
@@ -69,7 +60,6 @@ const TOUR_DATA = {
     "area": "İç Anadolu",
     "rooms": "Mağara Otel Konaklama",
     "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
-    // Dosya adı: kapadokya-balon-turu-1.webp
     "images": generateImages("kapadokya-balon-turu-", 20)
   },
   "TUR-TR-FETHIYE": {
@@ -79,7 +69,6 @@ const TOUR_DATA = {
     "area": "Ege Bölgesi",
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
-    // Dosya adı: fethiye-oludeniz-manzarasi-1.webp
     "images": generateImages("fethiye-oludeniz-manzarasi-", 19)
   },
   "TUR-TR-PAMUKKALE": {
@@ -89,7 +78,6 @@ const TOUR_DATA = {
     "area": "Denizli",
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
-    // Dosya adı: pamukkale-traverten-dogal-1.webp
     "images": generateImages("pamukkale-traverten-dogal-", 12)
   },
 
@@ -101,7 +89,6 @@ const TOUR_DATA = {
     "area": "İspanya",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
-    // Dosya adı: spain-1.webp
     "images": generateImages("spain-", 15)
   },
   "TUR-D-RUSYA-KIS": {
@@ -111,7 +98,6 @@ const TOUR_DATA = {
     "area": "Rusya Federasyonu",
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
-    // Dosya adı: rusya-1.webp
     "images": generateImages("rusya-", 13)
   },
   "TUR-D-BREZILYA": {
@@ -121,7 +107,6 @@ const TOUR_DATA = {
     "area": "Brezilya",
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
-    // Dosya adı: brazil-1.webp
     "images": generateImages("brazil-", 15)
   },
   "TUR-D-AMERIKA": {
@@ -131,7 +116,6 @@ const TOUR_DATA = {
     "area": "Amerika Birleşik Devletleri",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
-    // Dosya adı: new-york-1.webp
     "images": generateImages("new-york-", 9)
   }
 };
@@ -143,7 +127,7 @@ async function openHouseDetail(tourID) {
 
   if (!tour) {
       console.error(`'${tourID}' ID'li veri bulunamadı.`);
-      alert("Bu turun detaylarına şu an ulaşılamıyor.");
+      alert("Bu turun detaylarına şu an ulaşılamıyor. Lütfen daha sonra tekrar deneyin.");
       return;
   }
 
@@ -201,7 +185,7 @@ function closeHouseDetail() {
   document.body.style.overflow = "auto"; 
 }
 
-// === GALERİ RESİM YÜKLEME (GÜNCELLENDİ) ===
+// === GALERİ RESİM YÜKLEME ===
 function loadMorePropertyImages() {
   const galleryContainer = document.getElementById('detail-gallery-container');
 
@@ -212,7 +196,6 @@ function loadMorePropertyImages() {
       return;
   }
 
-  // Yüklenecek resimleri al
   const endIndex = Math.min(globalImageIndex + IMAGES_PER_LOAD, globalPropertyImages.length);
   const imagesToLoad = globalPropertyImages.slice(globalImageIndex, endIndex);
 
@@ -222,7 +205,9 @@ function loadMorePropertyImages() {
       imgEl.alt = `Tur Görseli ${globalImageIndex + idx + 1}`;
       imgEl.loading = 'lazy';
       imgEl.onerror = function() { 
-          this.src = 'https://placehold.co/350x250/1a1a2e/FFF?text=Görsel+Yok'; 
+          // Hata durumunda (resim yoksa)
+          console.warn(`Görsel yüklenemedi: ${this.src}`);
+          this.style.display = 'none'; 
       };
       
       imgEl.onclick = () => openGallery(globalPropertyImages, globalImageIndex + idx);
@@ -232,7 +217,6 @@ function loadMorePropertyImages() {
 
   globalImageIndex = endIndex;
 
-  // "Daha fazla yükle" butonu
   if (globalImageIndex < globalPropertyImages.length) {
       if (!document.getElementById('load-more-btn')) {
           const loadMoreBtn = document.createElement('button');
@@ -250,7 +234,6 @@ function loadMorePropertyImages() {
 }
 
 // === LIGHTBOX FONKSİYONLARI ===
-// Galeri açma
 function openGallery(images, startIndex = 0) {
     if (!images || images.length === 0) return;
 
@@ -265,14 +248,12 @@ function openGallery(images, startIndex = 0) {
     }
 }
 
-// Görüntüyü güncelle
 function updateLightboxView() {
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCounter = document.getElementById('lightbox-counter');
 
     if (!lightboxImage) return;
 
-    // Ufak bir opaklık efekti
     lightboxImage.style.opacity = '0.5';
 
     setTimeout(() => {
@@ -285,39 +266,33 @@ function updateLightboxView() {
     }
 }
 
-// Sonraki Resim
 function showNextImage() {
     if (currentGalleryImages.length === 0) return;
 
     currentLightboxIndex++;
     if (currentLightboxIndex >= currentGalleryImages.length) {
-        currentLightboxIndex = 0; // Başa dön
+        currentLightboxIndex = 0; 
     }
     updateLightboxView();
 }
 
-// Önceki Resim
 function showPrevImage() {
     if (currentGalleryImages.length === 0) return;
 
     currentLightboxIndex--;
     if (currentLightboxIndex < 0) {
-        currentLightboxIndex = currentGalleryImages.length - 1; // Sona git
+        currentLightboxIndex = currentGalleryImages.length - 1; 
     }
     updateLightboxView();
 }
 
-// Kapat
 function closeLightbox() {
     const lightboxModal = document.getElementById('lightbox-modal');
     if (lightboxModal) {
         lightboxModal.style.display = 'none';
         lightboxModal.classList.remove('active');
     }
-    // Verileri temizlemeyelim, kullanıcı tekrar açarsa kaldığı yerden devam edebilir veya sıfırlanabilir.
-    // Şimdilik temizlemiyoruz.
 }
-
 
 // === SAYFA YÖNETİMİ VE DİL ===
 async function setLanguage(lang) {
@@ -331,7 +306,6 @@ async function setLanguage(lang) {
             langData = await response.json(); 
             translations[lang] = langData; 
         } catch (error) {
-            console.warn("Dil yüklenemedi, varsayılan (TR) kullanılıyor.");
             if (lang !== 'tr' && !translations['tr']) await setLanguage('tr');
             return;
         }
@@ -422,17 +396,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             location.hash = page;
             document.getElementById('navbar').classList.remove('open');
         }
-        // Lightbox dışına tıklayınca kapatma
         if (e.target.id === 'lightbox-modal') {
             closeLightbox();
         }
     });
 
-    // Klavye kontrolleri
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             const detail = document.getElementById("house-detail");
-            const lightbox = document.getElementById("lightbox-modal"); // ID Güncellendi
+            const lightbox = document.getElementById("lightbox-modal"); 
             
             if (detail && detail.style.display !== "none" && (!lightbox || lightbox.style.display === "none")) {
                 detail.style.display = "none";
@@ -441,27 +413,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 closeLightbox();
             }
         }
-        // Sağ/Sol ok tuşları
         if (document.getElementById('lightbox-modal') && document.getElementById('lightbox-modal').style.display !== 'none') {
             if (e.key === 'ArrowRight') showNextImage();
             if (e.key === 'ArrowLeft') showPrevImage();
         }
     });
 
-    // Lightbox Butonları (Event Delegation yerine direkt ID ile)
+    // FIXED: Duplicate event listeners removed. Simplified logic.
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const closeBtn = document.getElementById('close-lightbox');
 
-    if (nextBtn) nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showNextImage();
-    });
-
-    if (prevBtn) prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showPrevImage();
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); showNextImage(); };
+    if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); showPrevImage(); };
+    if (closeBtn) closeBtn.onclick = (e) => { e.stopPropagation(); closeLightbox(); };
 });
