@@ -40,7 +40,8 @@
             <h3 data-key="page_kiralik_1">İspanya Turu</h3>
         </div>
         
-        <div class="house-card" onclick="event.stopPropagation(); openHouseDetail('TUR-D-RUSYA')">
+        <!-- FIXED: Correct ID for Russia Tour -->
+        <div class="house-card" onclick="event.stopPropagation(); openHouseDetail('TUR-D-RUSYA-KIS')">
             <img src="assets/rusya-1.webp" alt="Rusya Moskova Turu" loading="lazy">
             <h3 data-key="page_kiralik_2">Rusya Sanat Turu</h3>
         </div>
@@ -65,7 +66,5 @@
       </button>
   </div>
   
-  <div id="lightbox" onclick="this.style.display='none'">
-      <img id="lightbox-img" src="">
-  </div>
+  <!-- DUPLICATE LIGHTBOX REMOVED FROM HERE -->
 </section>
