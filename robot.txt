@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /assets/private/
+Disallow: /data/
+
+Sitemap: https://www.walkaboutravel.com/sitemap.xml
