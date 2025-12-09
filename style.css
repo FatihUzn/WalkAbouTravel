@@ -1337,18 +1337,6 @@ html[dir="rtl"] .info-item i {
   text-shadow: 0 0 20px rgba(255,255,255,0.8); /* Yazı arkası aydınlatma */
 }
 
-.hero-video::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(244, 247, 252, 0.65); /* YARI SAYDAM BEYAZ/MAVİ KATMAN (Video Overlay Geri Geldi) */
-  z-index: 2;
-  backdrop-filter: blur(2px); /* Hafif buzlu cam efekti */
-}
-
 .hero-video::before {
   content: "";
   position: absolute;
