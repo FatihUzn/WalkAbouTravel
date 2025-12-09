@@ -1,4 +1,4 @@
-// === UTILITY FUNCTIONS ===
+// === YARDIMCI FONKSİYONLAR ===
 function throttle(func, limit) {
   let inThrottle;
   return function() {
@@ -12,30 +12,36 @@ function throttle(func, limit) {
   }
 }
 
-// === IMAGE LIST GENERATOR ===
+// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU (GÜNCELLENDİ) ===
+// Artık tire (-) işaretini otomatik koymuyor.
+// Dosya adının başı (prefix) neyse tam olarak onu yazacağız.
 function generateImages(baseName, count) {
     const images = [];
     for (let i = 1; i <= count; i++) {
+        // assets/ + dosya_adı_başı + sayı + .webp
         images.push(`assets/${baseName}${i}.webp`);
     }
     return images;
 }
 
-// === GLOBAL VARIABLES ===
+// === GLOBAL DEĞİŞKENLER ===
 const translations = {}; 
 const pageCache = {}; 
 let globalPropertyImages = [];
-let globalImageIndex = 0;
+let globalImageIndex = 0; // Yükleme için sayaç
 const IMAGES_PER_LOAD = 6; 
 
 // Lightbox State
-let currentGalleryImages = [];
-let currentLightboxIndex = 0;
+let currentGalleryImages = []; // Şu an açık olan galerinin resimleri
+let currentLightboxIndex = 0;  // Şu an gösterilen resmin indeksi
 
-// === TOUR DATABASE ===
+// TEMİZLİK YAPILDI: Restorasyon (Before/After) değişkenleri silindi.
+
+
+// === TURİZM VERİ TABANI (ORİJİNAL DOSYA İSİMLERİYLE) ===
 const TOUR_DATA = {
   
-  // --- DOMESTIC TOURS ---
+  // --- YURT İÇİ ---
   "TUR-TR-MARDIN": {
     "title": "Mardin - Tarihi Konaklar & Kültür Turu",
     "price": "5 Gün / 4 Gece, 8.900 TL",
@@ -43,6 +49,7 @@ const TOUR_DATA = {
     "area": "Güneydoğu Anadolu",
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
+    // Dosya adı: mardin-tarihi-konak-dokusu-1.webp
     "images": generateImages("mardin-tarihi-konak-dokusu-", 16) 
   },
   "TUR-TR-ANTALYA": {
@@ -52,6 +59,7 @@ const TOUR_DATA = {
     "area": "Akdeniz Bölgesi",
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
+    // Dosya adı: antalya-koy-gezisi-1.webp
     "images": generateImages("antalya-koy-gezisi-", 17)
   },
   "TUR-TR-KAPADOKYA": {
@@ -61,6 +69,7 @@ const TOUR_DATA = {
     "area": "İç Anadolu",
     "rooms": "Mağara Otel Konaklama",
     "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
+    // Dosya adı: kapadokya-balon-turu-1.webp
     "images": generateImages("kapadokya-balon-turu-", 20)
   },
   "TUR-TR-FETHIYE": {
@@ -70,6 +79,7 @@ const TOUR_DATA = {
     "area": "Ege Bölgesi",
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
+    // Dosya adı: fethiye-oludeniz-manzarasi-1.webp
     "images": generateImages("fethiye-oludeniz-manzarasi-", 19)
   },
   "TUR-TR-PAMUKKALE": {
@@ -79,10 +89,11 @@ const TOUR_DATA = {
     "area": "Denizli",
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
+    // Dosya adı: pamukkale-traverten-dogal-1.webp
     "images": generateImages("pamukkale-traverten-dogal-", 12)
   },
 
-  // --- INTERNATIONAL TOURS ---
+  // --- YURT DIŞI ---
   "TUR-D-ISPANYA": {
     "title": "İspanya - Barselona & Endülüs Rüyası",
     "price": "9 Gün / 8 Gece, 1.800 €",
@@ -90,6 +101,7 @@ const TOUR_DATA = {
     "area": "İspanya",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
+    // Dosya adı: spain-1.webp
     "images": generateImages("spain-", 15)
   },
   "TUR-D-RUSYA-KIS": {
@@ -99,6 +111,7 @@ const TOUR_DATA = {
     "area": "Rusya Federasyonu",
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
+    // Dosya adı: rusya-1.webp
     "images": generateImages("rusya-", 13)
   },
   "TUR-D-BREZILYA": {
@@ -108,6 +121,7 @@ const TOUR_DATA = {
     "area": "Brezilya",
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
+    // Dosya adı: brazil-1.webp
     "images": generateImages("brazil-", 15)
   },
   "TUR-D-AMERIKA": {
@@ -117,16 +131,18 @@ const TOUR_DATA = {
     "area": "Amerika Birleşik Devletleri",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
+    // Dosya adı: new-york-1.webp
     "images": generateImages("new-york-", 9)
   }
 };
 
-// === MAIN FUNCTION: OPEN TOUR DETAIL ===
+
+// === ANA FONKSİYON: DETAY PENCERESİNİ AÇ ===
 async function openHouseDetail(tourID) {
   const tour = TOUR_DATA[tourID]; 
 
   if (!tour) {
-      console.error(`Tour with ID '${tourID}' not found.`);
+      console.error(`'${tourID}' ID'li veri bulunamadı.`);
       alert("Bu turun detaylarına şu an ulaşılamıyor.");
       return;
   }
@@ -165,7 +181,7 @@ async function openHouseDetail(tourID) {
     </div>
 
     <div class="detail-gallery" id="detail-gallery-container" style="margin-top: 30px;">
-    </div>
+      </div>
   `;
 
   globalPropertyImages = tour.images || [];
@@ -185,7 +201,7 @@ function closeHouseDetail() {
   document.body.style.overflow = "auto"; 
 }
 
-// === GALLERY IMAGE LOADING ===
+// === GALERİ RESİM YÜKLEME (GÜNCELLENDİ) ===
 function loadMorePropertyImages() {
   const galleryContainer = document.getElementById('detail-gallery-container');
 
@@ -196,6 +212,7 @@ function loadMorePropertyImages() {
       return;
   }
 
+  // Yüklenecek resimleri al
   const endIndex = Math.min(globalImageIndex + IMAGES_PER_LOAD, globalPropertyImages.length);
   const imagesToLoad = globalPropertyImages.slice(globalImageIndex, endIndex);
 
@@ -215,6 +232,7 @@ function loadMorePropertyImages() {
 
   globalImageIndex = endIndex;
 
+  // "Daha fazla yükle" butonu
   if (globalImageIndex < globalPropertyImages.length) {
       if (!document.getElementById('load-more-btn')) {
           const loadMoreBtn = document.createElement('button');
@@ -231,7 +249,8 @@ function loadMorePropertyImages() {
   }
 }
 
-// === LIGHTBOX FUNCTIONS ===
+// === LIGHTBOX FONKSİYONLARI ===
+// Galeri açma
 function openGallery(images, startIndex = 0) {
     if (!images || images.length === 0) return;
 
@@ -246,12 +265,14 @@ function openGallery(images, startIndex = 0) {
     }
 }
 
+// Görüntüyü güncelle
 function updateLightboxView() {
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCounter = document.getElementById('lightbox-counter');
 
     if (!lightboxImage) return;
 
+    // Ufak bir opaklık efekti
     lightboxImage.style.opacity = '0.5';
 
     setTimeout(() => {
@@ -264,35 +285,41 @@ function updateLightboxView() {
     }
 }
 
+// Sonraki Resim
 function showNextImage() {
     if (currentGalleryImages.length === 0) return;
 
     currentLightboxIndex++;
     if (currentLightboxIndex >= currentGalleryImages.length) {
-        currentLightboxIndex = 0;
+        currentLightboxIndex = 0; // Başa dön
     }
     updateLightboxView();
 }
 
+// Önceki Resim
 function showPrevImage() {
     if (currentGalleryImages.length === 0) return;
 
     currentLightboxIndex--;
     if (currentLightboxIndex < 0) {
-        currentLightboxIndex = currentGalleryImages.length - 1;
+        currentLightboxIndex = currentGalleryImages.length - 1; // Sona git
     }
     updateLightboxView();
 }
 
+// Kapat
 function closeLightbox() {
     const lightboxModal = document.getElementById('lightbox-modal');
     if (lightboxModal) {
         lightboxModal.style.display = 'none';
         lightboxModal.classList.remove('active');
     }
+    // Verileri temizlemeyelim, kullanıcı tekrar açarsa kaldığı yerden devam edebilir veya sıfırlanabilir.
+    // Şimdilik temizlemiyoruz.
 }
 
-// === PAGE MANAGEMENT AND LANGUAGE ===
+
+// === SAYFA YÖNETİMİ VE DİL ===
 async function setLanguage(lang) {
     let langData;
     if (translations[lang]) {
@@ -300,11 +327,11 @@ async function setLanguage(lang) {
     } else {
         try {
             const response = await fetch(`${lang}.json`);
-            if (!response.ok) throw new Error("Language file not found");
+            if (!response.ok) throw new Error("Dil dosyası yok");
             langData = await response.json(); 
             translations[lang] = langData; 
         } catch (error) {
-            console.warn("Language could not be loaded, using default (TR).");
+            console.warn("Dil yüklenemedi, varsayılan (TR) kullanılıyor.");
             if (lang !== 'tr' && !translations['tr']) await setLanguage('tr');
             return;
         }
@@ -322,10 +349,6 @@ async function setLanguage(lang) {
 
 async function showPage(pageId) {
     if (!pageId || pageId === '#') pageId = 'hero';
-    
-    // Special handling for old page IDs
-    if (pageId === 'page-satilik_kiralik') pageId = 'page-tours';
-    
     document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active', 'visible'));
 
     let newPage = document.getElementById(pageId);
@@ -337,12 +360,10 @@ async function showPage(pageId) {
             try {
                 let fileName = pageId;
                 if (pageId.startsWith('page-')) fileName = pageId.replace('page-', '');
-                
-                // Map old filenames to new ones
-                if (fileName === 'satilik_kiralik') fileName = 'tours';
+                if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
                 
                 const response = await fetch(`${fileName}.html`);
-                if (!response.ok) throw new Error("Page not found");
+                if (!response.ok) throw new Error("Sayfa bulunamadı");
                 const html = await response.text();
                 
                 pageCache[pageId] = html; 
@@ -372,7 +393,8 @@ async function showPage(pageId) {
     }
 }
 
-// === INITIALIZATION ===
+
+// === BAŞLANGIÇ AYARLARI VE EVENT LISTENER'LAR ===
 document.addEventListener('DOMContentLoaded', async () => {
     await setLanguage(localStorage.getItem('lang') || 'tr');
     const initialPage = location.hash.replace('#', '') || 'hero';
@@ -397,21 +419,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (e.target.matches('[data-page]')) {
             e.preventDefault();
             const page = e.target.getAttribute('data-page');
-            // Map old page names to new ones
-            const mappedPage = page === 'page-satilik_kiralik' ? 'page-tours' : page;
-            location.hash = mappedPage;
+            location.hash = page;
             document.getElementById('navbar').classList.remove('open');
         }
+        // Lightbox dışına tıklayınca kapatma
         if (e.target.id === 'lightbox-modal') {
             closeLightbox();
         }
     });
 
-    // Keyboard controls
+    // Klavye kontrolleri
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             const detail = document.getElementById("house-detail");
-            const lightbox = document.getElementById("lightbox-modal");
+            const lightbox = document.getElementById("lightbox-modal"); // ID Güncellendi
             
             if (detail && detail.style.display !== "none" && (!lightbox || lightbox.style.display === "none")) {
                 detail.style.display = "none";
@@ -420,13 +441,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 closeLightbox();
             }
         }
+        // Sağ/Sol ok tuşları
         if (document.getElementById('lightbox-modal') && document.getElementById('lightbox-modal').style.display !== 'none') {
             if (e.key === 'ArrowRight') showNextImage();
             if (e.key === 'ArrowLeft') showPrevImage();
         }
     });
 
-    // Lightbox Buttons
+    // Lightbox Butonları (Event Delegation yerine direkt ID ile)
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const closeBtn = document.getElementById('close-lightbox');
