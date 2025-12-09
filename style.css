@@ -1,32 +1,32 @@
 /* TÜM KOD BURAYA YAPILDI - AÇIK MAVİ & BEYAZ TEMA GÜNCELLEMESİ (V2) */
 :root {
-  /* Background & Text Colors - Warm & Inviting */
-  --bg: #fff9f0; /* Warm Cream Background - like sandy beaches */
-  --text: #2d1810; /* Rich Dark Brown - excellent readability */
-  --text-muted: #8b6f47; /* Warm Brown-Gray for secondary text */
+  /* Background & Text Colors - Fresh & Cool */
+  --bg: #f0f8ff; /* Alice Blue - Very pale, fresh background */
+  --text: #0d1b2a; /* Dark Navy - Replaces the Brown/Black for text */
+  --text-muted: #415a77; /* Cool Slate Blue for secondary text */
   
-  /* Primary Accent: Sunset Orange/Coral */
-  --blue-light: #ff6b35; /* Vibrant Sunset Orange (replaces old blue-light) */
-  --blue-dark: #d84315; /* Deep Burnt Orange (replaces old blue-dark) */
+  /* Primary Accent: Tourism Light Blue */
+  --blue-light: #48cae4; /* Vivid Sky Blue (Primary Action Color) */
+  --blue-dark: #0077b6; /* Deep Ocean Blue (Hover states/Headings) */
   
-  /* Secondary Accent: Golden Hour */
-  --gold-light: #ffcc66; /* Warm Golden Yellow */
-  --gold-dark: #f4a261; /* Peachy Golden Glow */
+  /* Secondary Accent: Replaces the "Gold" with softer cyans */
+  --gold-light: #90e0ef; /* Pale Cyan */
+  --gold-dark: #0096c7; /* Pacific Blue */
   
-  /* Gradient Effects - Sunset Vibes */
-  --vibrant-gradient: linear-gradient(90deg, #ff6b35, #f4a261, #ff6b35);
-  --vibrant-shadow: 0 4px 20px rgba(255, 107, 53, 0.25);
-  --vibrant-shadow-intense: 0 8px 30px rgba(255, 107, 53, 0.4);
+  /* Gradient Effects - Ocean/Sky Vibes */
+  --vibrant-gradient: linear-gradient(90deg, #48cae4, #90e0ef, #0077b6);
+  --vibrant-shadow: 0 4px 20px rgba(72, 202, 228, 0.3);
+  --vibrant-shadow-intense: 0 8px 30px rgba(0, 119, 182, 0.4);
   
   /* Supporting Colors */
-  --border-dark: #ffe8d6; /* Soft Peachy Border */
+  --border-dark: #dbe7e9; /* Cool light gray-blue border */
   --section-bg: #ffffff; /* Pure White Sections */
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
   
-  /* Additional Travel Colors */
-  --ocean-blue: #4a90e2; /* For water/ocean elements */
-  --forest-green: #52b788; /* For nature/eco tours */
-  --sky-blue: #87ceeb; /* For sky/flight elements */
+  /* Keep these as they are useful utility colors */
+  --ocean-blue: #4a90e2; 
+  --forest-green: #52b788; 
+  --sky-blue: #87ceeb; 
 }
 
 *, *::before, *::after {
@@ -40,11 +40,11 @@ html {
 body {
   margin: 0;
   font-family: 'Inter', Roboto, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg); /* Uses the new Alice Blue */
+  color: var(--text);    /* Uses the new Dark Navy */
   overflow-x: hidden;
   line-height: 1.6;
-  background-color: var(--bg); 
+  /* Remove any other 'background-color' lines here to avoid conflicts */
   position: relative;
   z-index: 1; 
 }
