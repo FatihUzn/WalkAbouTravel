@@ -1,1316 +1,689 @@
-/* ================================================
-   WALKABOUT TRAVEL - MODERN DESIGN SYSTEM
-   Version: 2.0
-   ================================================ */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    /* Primary Colors */
-    --ocean-blue: #0ea5e9;
-    --sunset-orange: #f97316;
-    --forest-green: #10b981;
-    --gold-accent: #fbbf24;
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walkabout Travel - Minimal Blue</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
-    /* Neutral Colors */
-    --deep-navy: #0f172a;
-    --cloud-white: #f8fafc;
-    --soft-gray: #64748b;
-    --border-gray: #e2e8f0;
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
-    --gradient-dark: linear-gradient(135deg, var(--deep-navy) 0%, #1e293b 100%);
-    
-    /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
-    
-    /* Transitions */
-    --transition-base: all 0.3s ease;
-    --transition-slow: all 0.4s ease;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--cloud-white);
-    color: var(--deep-navy);
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
-/* ================================================
-   TYPOGRAPHY
-   ================================================ */
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-h1 { font-size: 72px; }
-h2 { font-size: 48px; }
-h3 { font-size: 26px; }
-h4 { font-size: 20px; }
-
-p {
-    line-height: 1.7;
-    color: var(--soft-gray);
-}
-
-/* ================================================
-   NAVIGATION
-   ================================================ */
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 20px 0;
-    transition: var(--transition-base);
-}
-
-nav.scrolled {
-    padding: 15px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: white;
-    text-decoration: none;
-}
-
-.logo img {
-    height: 45px;
-    border-radius: 8px;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gold-accent);
-}
-
-.logo-subtitle {
-    font-size: 11px;
-    color: #94a3b8;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.nav-links {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 15px;
-    transition: var(--transition-base);
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gold-accent);
-    transition: var(--transition-base);
-}
-
-.nav-links a:hover {
-    color: var(--gold-accent);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.lang-switcher {
-    display: flex;
-    gap: 10px;
-}
-
-.lang-btn {
-    padding: 8px 12px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: var(--transition-base);
-}
-
-.lang-btn:hover,
-.lang-btn.active {
-    background: var(--gold-accent);
-    border-color: var(--gold-accent);
-    color: var(--deep-navy);
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 28px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* ================================================
-   BUTTONS
-   ================================================ */
-
-.btn {
-    padding: 16px 40px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 16px;
-    text-decoration: none;
-    transition: var(--transition-base);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    border: none;
-    font-family: 'Inter', sans-serif;
-}
-
-.btn-primary {
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-    background: white;
-    color: var(--deep-navy);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--ocean-blue);
-    color: var(--ocean-blue);
-}
-
-.btn-outline:hover {
-    background: var(--ocean-blue);
-    color: white;
-}
-
-/* ================================================
-   HERO SECTION
-   ================================================ */
-
-.hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: var(--gradient-dark);
-}
-
-.hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.4;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.3));
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    color: white;
-    max-width: 900px;
-    padding: 0 20px;
-    animation: fadeInUp 1s ease;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(251, 191, 36, 0.2);
-    border: 1px solid var(--gold-accent);
-    border-radius: 30px;
-    color: var(--gold-accent);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-}
-
-.hero h1 {
-    font-size: 72px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.hero-gradient {
-    background: linear-gradient(to right, var(--gold-accent), var(--ocean-blue), var(--sunset-orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero p {
-    font-size: 22px;
-    color: #cbd5e1;
-    margin-bottom: 40px;
-    line-height: 1.6;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* ================================================
-   SECTIONS
-   ================================================ */
-
-section {
-    padding: 120px 40px;
-}
-
-.section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 80px;
-}
-
-.section-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(14, 165, 233, 0.1);
-    border-radius: 20px;
-    color: var(--ocean-blue);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.section-header h2 {
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--deep-navy);
-    margin-bottom: 20px;
-}
-
-.section-header p {
-    font-size: 18px;
-    color: var(--soft-gray);
-    line-height: 1.7;
-}
-
-/* ================================================
-   TOUR CARDS
-   ================================================ */
-
-.tours-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.tour-card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    background: white;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-slow);
-    cursor: pointer;
-}
-
-.tour-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-}
-
-.tour-image {
-    position: relative;
-    height: 320px;
-    overflow: hidden;
-}
-
-.tour-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.tour-card:hover .tour-image img {
-    transform: scale(1.1);
-}
-
-.tour-badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 8px 16px;
-    background: var(--gold-accent);
-    color: var(--deep-navy);
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.tour-content {
-    padding: 30px;
-}
-
-.tour-content h3 {
-    font-size: 26px;
-    color: var(--deep-navy);
-    margin-bottom: 15px;
-    line-height: 1.3;
-}
-
-.tour-content p {
-    color: var(--soft-gray);
-    line-height: 1.7;
-    margin-bottom: 25px;
-}
-
-.tour-features {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-}
-
-.feature-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: rgba(14, 165, 233, 0.1);
-    border-radius: 20px;
-    color: var(--ocean-blue);
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.tour-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--ocean-blue);
-    font-weight: 600;
-    text-decoration: none;
-    transition: gap 0.3s ease;
-}
-
-.tour-card:hover .tour-link {
-    gap: 12px;
-}
-
-/* ================================================
-   WHY US SECTION
-   ================================================ */
-
-.why-us-section {
-    background: var(--gradient-dark);
-    color: white;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    max-width: 1400px;
-    margin: 60px auto 0;
-}
-
-.feature-card {
-    text-align: center;
-    padding: 40px 30px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: var(--transition-base);
-}
-
-.feature-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
-
-.feature-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 25px;
-    background: var(--gradient-primary);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-}
-
-.feature-card h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: white;
-}
-
-.feature-card p {
-    color: #94a3b8;
-    line-height: 1.6;
-    font-size: 15px;
-}
-
-/* ================================================
-   BLOG CARDS
-   ================================================ */
-
-.blog-section {
-    background: #f8fafc;
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.blog-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-slow);
-}
-
-.blog-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-}
-
-.blog-image {
-    height: 240px;
-    overflow: hidden;
-}
-
-.blog-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.blog-card:hover .blog-image img {
-    transform: scale(1.1);
-}
-
-.blog-content {
-    padding: 30px;
-}
-
-.blog-meta {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    font-size: 13px;
-    color: var(--soft-gray);
-}
-
-.blog-content h3 {
-    font-size: 22px;
-    color: var(--deep-navy);
-    margin-bottom: 15px;
-    line-height: 1.4;
-}
-
-.blog-content p {
-    color: var(--soft-gray);
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-/* ================================================
-   CONTACT FORM
-   ================================================ */
-
-.contact-section {
-    background: white;
-}
-
-.contact-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.contact-form {
-    background: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: var(--deep-navy);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 15px 20px;
-    border: 2px solid var(--border-gray);
-    border-radius: 12px;
-    font-size: 15px;
-    font-family: 'Inter', sans-serif;
-    transition: var(--transition-base);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--ocean-blue);
-    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 150px;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 18px;
-    background: var(--gradient-primary);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-base);
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-}
-
-.contact-info {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.info-item {
-    text-align: center;
-    padding: 30px;
-    background: #f8fafc;
-    border-radius: 16px;
-}
-
-.info-item i {
-    font-size: 32px;
-    color: var(--ocean-blue);
-    margin-bottom: 15px;
-}
-
-.info-item h4 {
-    font-size: 16px;
-    color: var(--deep-navy);
-    margin-bottom: 8px;
-}
-
-.info-item p {
-    color: var(--soft-gray);
-    font-size: 14px;
-}
-
-/* ================================================
-   FOOTER
-   ================================================ */
-
-footer {
-    background: var(--deep-navy);
-    color: white;
-    padding: 80px 40px 40px;
-}
-
-.footer-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 50px;
-}
-
-.footer-brand {
-    max-width: 350px;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.footer-logo img {
-    height: 50px;
-    border-radius: 8px;
-}
-
-.footer-brand p {
-    color: #94a3b8;
-    line-height: 1.7;
-    margin-bottom: 25px;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.social-links a {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 20px;
-    transition: var(--transition-base);
-}
-
-.social-links a:hover {
-    background: var(--ocean-blue);
-    transform: translateY(-3px);
-}
-
-.footer-column h4 {
-    font-size: 18px;
-    margin-bottom: 25px;
-    color: white;
-}
-
-.footer-links {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: 15px;
-}
-
-.footer-links a {
-    color: #94a3b8;
-    text-decoration: none;
-    transition: var(--transition-base);
-    font-size: 15px;
-}
-
-.footer-links a:hover {
-    color: var(--gold-accent);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 30px;
-    text-align: center;
-    color: #94a3b8;
-    font-size: 14px;
-}
-
-/* ================================================
-   WHATSAPP FLOAT BUTTON
-   ================================================ */
-
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 28px;
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-    z-index: 999;
-    cursor: pointer;
-    transition: var(--transition-base);
-    animation: pulse 2s infinite;
-    text-decoration: none;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.15);
-    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
-}
-
-/* ================================================
-   RESPONSIVE DESIGN
-   ================================================ */
-
-@media (max-width: 992px) {
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 80%;
-        max-width: 350px;
-        background: var(--deep-navy);
-        flex-direction: column;
-        padding: 100px 40px 40px;
-        transition: right 0.4s ease;
-        gap: 30px;
-        align-items: flex-start;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .hero p {
-        font-size: 18px;
-    }
-
-    .tours-grid,
-    .blog-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .contact-info {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    section {
-        padding: 80px 20px;
-    }
-
-    .nav-container {
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .section-header h2 {
-        font-size: 36px;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form {
-        padding: 30px 20px;
-    }
-
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        bottom: 20px;
-        right: 20px;
-    }
-}
-
-/* ================================================
-   UTILITY CLASSES
-   ================================================ */
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.mt-20 { margin-top: 20px; }
-.mt-40 { margin-top: 40px; }
-.mb-20 { margin-bottom: 20px; }
-.mb-40 { margin-bottom: 40px; }
-
-/* ================================================
-   TOUR DETAIL PAGE STYLES
-   ================================================ */
-
-.tour-detail-hero {
-    position: relative;
-    height: 60vh;
-    min-height: 500px;
-    display: flex;
-    align-items: flex-end;
-    padding: 60px 40px;
-    margin-top: 85px;
-}
-
-.tour-detail-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
-    z-index: 1;
-}
-
-.tour-detail-hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
-
-.tour-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    color: white;
-}
-
-.tour-hero-content .tour-badge {
-    margin-bottom: 15px;
-}
-
-.tour-hero-content h1 {
-    font-size: 56px;
-    margin-bottom: 20px;
-    color: white;
-}
-
-.tour-meta {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    font-size: 16px;
-    color: #cbd5e1;
-}
-
-.tour-meta-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.tour-meta-item i {
-    font-size: 20px;
-    color: var(--gold-accent);
-}
-
-.tour-detail-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 80px 40px;
-}
-
-.tour-grid-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 60px;
-}
-
-.tour-main {
-    background: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
-}
-
-.tour-main h2 {
-    font-size: 36px;
-    color: var(--deep-navy);
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-gray);
-}
-
-.tour-main h3 {
-    font-size: 24px;
-    color: var(--deep-navy);
-    margin: 40px 0 20px;
-}
-
-.tour-main h4 {
-    font-size: 20px;
-    color: var(--deep-navy);
-    margin: 30px 0 15px;
-}
-
-.tour-main p {
-    font-size: 17px;
-    line-height: 1.8;
-    color: var(--soft-gray);
-    margin-bottom: 20px;
-}
-
-.tour-highlights {
-    background: #f8fafc;
-    padding: 30px;
-    border-radius: 16px;
-    margin: 30px 0;
-}
-
-.tour-highlights h4 {
-    color: var(--deep-navy);
-    margin-bottom: 20px;
-}
-
-.tour-highlights ul {
-    list-style: none;
-    padding: 0;
-}
-
-.tour-highlights li {
-    padding: 12px 0;
-    color: var(--deep-navy);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-}
-
-.tour-highlights li i {
-    color: var(--forest-green);
-    font-size: 20px;
-}
-
-.tour-sidebar {
-    position: sticky;
-    top: 120px;
-}
-
-.tour-booking-card {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
-    margin-bottom: 30px;
-}
-
-.tour-price {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid var(--border-gray);
-}
-
-.tour-price .price-label {
-    font-size: 14px;
-    color: var(--soft-gray);
-    margin-bottom: 10px;
-}
-
-.tour-price .price-amount {
-    font-size: 42px;
-    font-weight: 900;
-    color: var(--ocean-blue);
-    font-family: 'Playfair Display', serif;
-}
-
-.booking-cta {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.booking-cta .btn {
-    width: 100%;
-    justify-content: center;
-}
-
-.tour-info-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 30px;
-}
-
-.tour-info-list li {
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border-gray);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tour-info-list li:last-child {
-    border-bottom: none;
-}
-
-.tour-info-label {
-    color: var(--soft-gray);
-    font-size: 14px;
-}
-
-.tour-info-value {
-    color: var(--deep-navy);
-    font-weight: 600;
-}
-
-.tour-gallery {
-    margin: 50px 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.gallery-item {
-    position: relative;
-    aspect-ratio: 4/3;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-/* Lightbox */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90vh;
-}
-
-.lightbox-content img {
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 12px;
-}
-
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 10000;
-}
-
-.lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.lightbox-prev {
-    left: 20px;
-}
-
-.lightbox-next {
-    right: 20px;
-}
-
-@media (max-width: 992px) {
-    .tour-grid-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .tour-sidebar {
-        position: static;
-    }
-
-    .tour-main {
-        padding: 30px 20px;
-    }
-
-    .tour-hero-content h1 {
-        font-size: 36px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-}
+    <style>
+        /* ================================================
+           WALKABOUT TRAVEL - MINIMAL BLUE SYSTEM
+           ================================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Sadece Açık Mavi ve Beyaz */
+            --main-blue: #0ea5e9;       /* Canlı Açık Mavi */
+            --light-blue-bg: #e0f2fe;   /* Çok açık mavi (zemin ayrımı için) */
+            --white: #ffffff;
+            
+            /* Efektler tamamen kaldırıldı */
+            --shadow: none;
+            --gradient: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--main-blue); /* Tüm metinler mavi */
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ================================================
+           TYPOGRAPHY
+           ================================================ */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--main-blue);
+        }
+
+        h1 { font-size: 72px; }
+        h2 { font-size: 48px; }
+        h3 { font-size: 26px; }
+        h4 { font-size: 20px; }
+
+        p {
+            line-height: 1.7;
+            color: var(--main-blue); /* Gri yerine Mavi */
+            opacity: 0.8; /* Hafif ton farkı için opaklık */
+        }
+
+        /* ================================================
+           NAVIGATION
+           ================================================ */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white); /* Arkaplan düz beyaz */
+            padding: 20px 0;
+            border-bottom: 2px solid var(--light-blue-bg); /* Gölge yerine çizgi */
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--main-blue);
+            text-decoration: none;
+        }
+
+        .logo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--main-blue);
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--main-blue);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--main-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--main-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid var(--main-blue);
+            color: var(--main-blue);
+            border-radius: 0; /* Yuvarlatma azaltıldı veya kaldırıldı */
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--main-blue);
+            color: var(--white);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: var(--main-blue);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ================================================
+           BUTTONS
+           ================================================ */
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 4px; /* Daha keskin köşeler */
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: 2px solid var(--main-blue);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            box-shadow: none !important; /* Gölge kesinlikle yok */
+        }
+
+        .btn-primary {
+            background: var(--main-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            color: var(--main-blue);
+            transform: none; /* Hareket efekti kaldırıldı */
+        }
+
+        .btn-secondary, .btn-outline {
+            background: var(--white);
+            color: var(--main-blue);
+        }
+
+        .btn-secondary:hover, .btn-outline:hover {
+            background: var(--light-blue-bg);
+            color: var(--main-blue);
+        }
+
+        /* ================================================
+           HERO SECTION
+           ================================================ */
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-blue-bg); /* Düz renk arkaplan */
+            padding-top: 80px;
+        }
+
+        /* Video/Resim overlay kaldırıldı */
+        .hero-video, .hero-overlay {
+            display: none; 
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--white);
+            border: 1px solid var(--main-blue);
+            color: var(--main-blue);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            color: var(--main-blue);
+            margin-bottom: 20px;
+            text-shadow: none; /* Gölge yok */
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: var(--main-blue);
+            margin-bottom: 40px;
+        }
+
+        /* ================================================
+           SECTIONS
+           ================================================ */
+
+        section {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--light-blue-bg);
+            color: var(--main-blue);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* ================================================
+           TOURS & CARDS
+           ================================================ */
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tour-card {
+            border-radius: 8px;
+            background: var(--white);
+            border: 2px solid var(--light-blue-bg); /* Gölge yerine kenarlık */
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        .tour-card:hover {
+            border-color: var(--main-blue); /* Hover'da sadece renk değişimi */
+            transform: none;
+            box-shadow: none;
+        }
+
+        .tour-image {
+            height: 250px;
+            background-color: var(--light-blue-bg); /* Resim yoksa dolgu rengi */
+            position: relative;
+        }
+        
+        .tour-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tour-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background: var(--white);
+            color: var(--main-blue);
+            border: 1px solid var(--main-blue);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tour-content {
+            padding: 30px;
+        }
+
+        .feature-tag {
+            background: var(--light-blue-bg);
+            color: var(--main-blue);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* ================================================
+           WHY US (FEATURES)
+           ================================================ */
+
+        .why-us-section {
+            background: var(--light-blue-bg); /* Ayrım için açık mavi zemin */
+            color: var(--main-blue);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--white);
+            border: 1px solid var(--main-blue); /* Basit çerçeve */
+            border-radius: 8px;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            background: var(--light-blue-bg);
+            color: var(--main-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            border: 1px solid var(--main-blue);
+        }
+
+        .feature-card h3 {
+            color: var(--main-blue);
+        }
+
+        .feature-card p {
+            color: var(--main-blue);
+        }
+
+        /* ================================================
+           CONTACT
+           ================================================ */
+
+        .contact-form {
+            background: var(--white);
+            padding: 50px;
+            border: 2px solid var(--main-blue); /* Çerçeve */
+            border-radius: 8px;
+            box-shadow: none;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            border: 2px solid var(--light-blue-bg);
+            color: var(--main-blue);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--main-blue);
+            box-shadow: none;
+        }
+
+        .submit-btn {
+            background: var(--main-blue);
+            color: var(--white);
+            box-shadow: none;
+        }
+
+        .info-item {
+            background: var(--light-blue-bg);
+            border: 1px solid var(--main-blue);
+        }
+
+        /* ================================================
+           FOOTER
+           ================================================ */
+
+        footer {
+            background: var(--main-blue); /* Düz mavi zemin */
+            color: var(--white);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-logo {
+            color: var(--white);
+        }
+        
+        .footer-logo-text h3 {
+             color: var(--white);
+        }
+
+        .footer-brand p, 
+        .footer-column h4,
+        .footer-links a,
+        .footer-bottom {
+            color: var(--white);
+        }
+
+        .social-links a {
+            background: var(--white);
+            color: var(--main-blue);
+            border-radius: 4px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: var(--white);
+        }
+
+        /* ================================================
+           RESPONSIVE
+           ================================================ */
+        
+        @media (max-width: 992px) {
+            .tours-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 48px; }
+            
+            .nav-links {
+                background: var(--white);
+                border-left: 2px solid var(--main-blue);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-text">
+                    <span class="logo-title">WALKABOUT</span>
+                    <span class="logo-subtitle">TRAVEL AGENCY</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="#">Turlar</a>
+                <a href="#">Hakkımızda</a>
+                <a href="#">Blog</a>
+                <a href="#">İletişim</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active">TR</button>
+                    <button class="lang-btn">EN</button>
+                </div>
+            </div>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Yeni Sezon</span>
+            <h1>Dünyayı Maviyle Keşfet</h1>
+            <p>Sadelik, huzur ve macera. Karmaşadan uzak, sadece mavi gökyüzü ve beyaz bulutlar.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Keşfetmeye Başla <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="btn btn-secondary">Tanıtımı İzle <i class="fas fa-play"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tours Section -->
+    <section>
+        <div class="section-header">
+            <span class="section-badge">Popüler Rotalar</span>
+            <h2>Unutulmaz Deneyimler</h2>
+            <p>Sizin için seçtiğimiz en özel mavi rotalar.</p>
+        </div>
+
+        <div class="tours-grid">
+            <!-- Card 1 -->
+            <div class="tour-card">
+                <div class="tour-image">
+                    <!-- Placeholder image matching blue theme -->
+                    <img src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1000&auto=format&fit=crop" alt="Blue Beach">
+                    <span class="tour-badge">7 Gün</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Ege Mavisi Turu</h3>
+                    <p>Ege'nin en sakin koylarında mavi yolculuk.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-ship"></i> Gemi</span>
+                        <span class="feature-tag"><i class="fas fa-utensils"></i> Yemek</span>
+                    </div>
+                    <a href="#" class="btn btn-outline" style="width:100%; justify-content:center;">İncele</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="tour-card">
+                <div class="tour-image">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop" alt="Switzerland">
+                    <span class="tour-badge">5 Gün</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Alp Gölleri</h3>
+                    <p>İsviçre'nin kristal mavisi göllerinde huzur.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-hiking"></i> Doğa</span>
+                        <span class="feature-tag"><i class="fas fa-hotel"></i> Konaklama</span>
+                    </div>
+                    <a href="#" class="btn btn-outline" style="width:100%; justify-content:center;">İncele</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="tour-card">
+                <div class="tour-image">
+                    <img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?q=80&w=1000&auto=format&fit=crop" alt="Ocean">
+                    <span class="tour-badge">10 Gün</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Okyanus Esintisi</h3>
+                    <p>Maldivler'de sonsuz maviliğin tadını çıkarın.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-plane"></i> Uçak</span>
+                        <span class="feature-tag"><i class="fas fa-umbrella-beach"></i> Plaj</span>
+                    </div>
+                    <a href="#" class="btn btn-outline" style="width:100%; justify-content:center;">İncele</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Neden Biz?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Rehberler</h3>
+                    <p>Yerel uzmanlarla dünyayı gezin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>Şeffaf Fiyat</h3>
+                    <p>Gizli ücret yok, net fiyatlar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>7/24 Destek</h3>
+                    <p>Yolculuğunuz boyunca yanınızdayız.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Güvenli Ödeme</h3>
+                    <p>Bilgileriniz koruma altında.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-text">
+                        <h3>WALKABOUT</h3>
+                    </div>
+                </div>
+                <p>Dünyayı keşfetmek hiç bu kadar sade ve huzurlu olmamıştı.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Hızlı Bağlantılar</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">Turlar</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Destek</h4>
+                <ul class="footer-links">
+                    <li><a href="#">SSS</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Kullanım Şartları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>İletişim</h4>
+                <ul class="footer-links">
+                    <li>info@walkabout.com</li>
+                    <li>+90 212 555 0000</li>
+                    <li>İstanbul, Türkiye</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Walkabout Travel. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
