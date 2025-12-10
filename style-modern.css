@@ -968,3 +968,349 @@ footer {
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
+
+/* ================================================
+   TOUR DETAIL PAGE STYLES
+   ================================================ */
+
+.tour-detail-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 40px;
+    margin-top: 85px;
+}
+
+.tour-detail-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
+    z-index: 1;
+}
+
+.tour-detail-hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.tour-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    color: white;
+}
+
+.tour-hero-content .tour-badge {
+    margin-bottom: 15px;
+}
+
+.tour-hero-content h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.tour-meta {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 16px;
+    color: #cbd5e1;
+}
+
+.tour-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tour-meta-item i {
+    font-size: 20px;
+    color: var(--gold-accent);
+}
+
+.tour-detail-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+}
+
+.tour-grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+}
+
+.tour-main {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.tour-main h2 {
+    font-size: 36px;
+    color: var(--deep-navy);
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-gray);
+}
+
+.tour-main h3 {
+    font-size: 24px;
+    color: var(--deep-navy);
+    margin: 40px 0 20px;
+}
+
+.tour-main h4 {
+    font-size: 20px;
+    color: var(--deep-navy);
+    margin: 30px 0 15px;
+}
+
+.tour-main p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--soft-gray);
+    margin-bottom: 20px;
+}
+
+.tour-highlights {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 16px;
+    margin: 30px 0;
+}
+
+.tour-highlights h4 {
+    color: var(--deep-navy);
+    margin-bottom: 20px;
+}
+
+.tour-highlights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tour-highlights li {
+    padding: 12px 0;
+    color: var(--deep-navy);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+}
+
+.tour-highlights li i {
+    color: var(--forest-green);
+    font-size: 20px;
+}
+
+.tour-sidebar {
+    position: sticky;
+    top: 120px;
+}
+
+.tour-booking-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 30px;
+}
+
+.tour-price {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--border-gray);
+}
+
+.tour-price .price-label {
+    font-size: 14px;
+    color: var(--soft-gray);
+    margin-bottom: 10px;
+}
+
+.tour-price .price-amount {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--ocean-blue);
+    font-family: 'Playfair Display', serif;
+}
+
+.booking-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-cta .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.tour-info-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.tour-info-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tour-info-list li:last-child {
+    border-bottom: none;
+}
+
+.tour-info-label {
+    color: var(--soft-gray);
+    font-size: 14px;
+}
+
+.tour-info-value {
+    color: var(--deep-navy);
+    font-weight: 600;
+}
+
+.tour-gallery {
+    margin: 50px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 12px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+@media (max-width: 992px) {
+    .tour-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tour-sidebar {
+        position: static;
+    }
+
+    .tour-main {
+        padding: 30px 20px;
+    }
+
+    .tour-hero-content h1 {
+        font-size: 36px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
