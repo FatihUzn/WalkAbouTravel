@@ -214,6 +214,28 @@
             color: white;
         }
         
+        /* TOAST BİLDİRİMİ */
+        .language-toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--ocean-blue);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: 600;
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+        }
+        
+        .language-toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
         @media (max-width: 768px) {
             .header-top-row {
                 flex-direction: column;
@@ -267,11 +289,11 @@
             </a>
 
             <div class="nav-links" id="navLinks">
-                <a href="#home">Ana Sayfa</a>
-                <a href="#quick-access-links">Turlar</a>
-                <a href="#why-us">Neden Biz</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">İletişim</a>
+                <a href="#home" data-i18n="nav_home">Ana Sayfa</a>
+                <a href="#quick-access-links" data-i18n="nav_tours">Turlar</a>
+                <a href="#why-us" data-i18n="nav_why_us">Neden Biz</a>
+                <a href="#blog" data-i18n="nav_blog">Blog</a>
+                <a href="#contact" data-i18n="nav_contact">İletişim</a>
                 <div class="lang-switcher">
                     <button class="lang-btn active" data-lang="tr" onclick="setLanguage('tr')">TR</button>
                     <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
@@ -293,12 +315,12 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-badge">1997'DEN BERİ</span>
+            <span class="hero-badge" data-i18n="hero_since">1997'DEN BERİ</span>
             <h1>
-                Hayalinizdeki Tatili <br>
+                <span data-i18n="hero_subtitle">Hayalinizdeki Tatili</span> <br>
                 <span class="hero-gradient">Birlikte Planlayalım</span>
             </h1>
-            <p>Dünyanın en güzel destinasyonlarına profesyonel rehberlik eşliğinde unutulmaz yolculuklar</p>
+            <p data-i18n="hero_description">Dünyanın en güzel destinasyonlarına profesyonel rehberlik eşliğinde unutulmaz yolculuklar</p>
             
             <!-- 3 HERO BUTONU -->
             <div class="hero-links-container">
@@ -682,6 +704,7 @@
     </a>
 
     <!-- SCRIPTS -->
+    <script src="i18n.js"></script>
     <script src="app.js"></script>
     <script src="Blog.js"></script>
     
@@ -761,8 +784,8 @@
         });
 
         // Language Switcher Function
-        function setLanguage(lang) {
-            console.log('Dil değiştirildi:', lang);
+        async function setLanguage(lang) {
+            console.log('🌍 Dil değiştiriliyor:', lang);
             
             // Aktif buton işaretleme
             document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -773,34 +796,51 @@
                 }
             });
             
-            // localStorage'a kaydet
-            localStorage.setItem('language', lang);
-            
             // i18n sistemi varsa kullan
-            if (typeof i18n !== 'undefined' && i18n.changeLanguage) {
-                i18n.changeLanguage(lang);
-            } else {
-                console.log('Dil ayarlandı:', lang);
-                // Basit bildirim
-                const messages = {
-                    'tr': 'Dil Türkçe olarak ayarlandı',
-                    'en': 'Language set to English',
-                    'ar': 'تم تعيين اللغة إلى العربية'
-                };
+            if (typeof i18n !== 'undefined') {
+                await i18n.changeLanguage(lang);
                 
-                // Toast notification (optional)
-                if (messages[lang]) {
-                    const toast = document.createElement('div');
-                    toast.style.cssText = 'position:fixed;top:100px;right:20px;background:var(--ocean-blue);color:white;padding:15px 25px;border-radius:8px;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.2);animation:slideIn 0.3s ease;';
-                    toast.textContent = messages[lang];
-                    document.body.appendChild(toast);
-                    
-                    setTimeout(() => {
-                        toast.style.animation = 'slideOut 0.3s ease';
-                        setTimeout(() => toast.remove(), 300);
-                    }, 2000);
-                }
+                // Başarı bildirimi
+                showToast(getSuccessMessage(lang));
+            } else {
+                // i18n yoksa sadece localStorage'a kaydet
+                localStorage.setItem('language', lang);
+                console.log('⚠️ i18n sistemi bulunamadı, sadece localStorage güncellendi');
+                showToast(`Dil ${lang.toUpperCase()} olarak ayarlandı`);
             }
+        }
+        
+        // Toast bildirimi göster
+        function showToast(message) {
+            // Mevcut toast'ı kaldır
+            const existingToast = document.querySelector('.language-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = 'language-toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Animasyon
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // 2 saniye sonra kaldır
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+        
+        // Dil başarı mesajları
+        function getSuccessMessage(lang) {
+            const messages = {
+                'tr': '✓ Dil Türkçe olarak ayarlandı',
+                'en': '✓ Language set to English',
+                'ar': '✓ تم تعيين اللغة إلى العربية'
+            };
+            return messages[lang] || `✓ Language set to ${lang.toUpperCase()}`;
         }
 
         // Sayfa yüklendiğinde kayıtlı dili uygula
