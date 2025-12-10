@@ -1,3 +1,5 @@
+// === FIXED APP.JS - CORRECTED IMAGE COUNTS ===
+
 // === YARDIMCI FONKSİYONLAR ===
 function throttle(func, limit) {
   let inThrottle;
@@ -32,7 +34,7 @@ const IMAGES_PER_LOAD = 6;
 let currentGalleryImages = []; 
 let currentLightboxIndex = 0;  
 
-// === TURİZM VERİ TABANI ===
+// === TURİZM VERİ TABANI - FIXED IMAGE COUNTS ===
 const TOUR_DATA = {
   // --- YURT İÇİ ---
   "TUR-TR-MARDIN": {
@@ -42,7 +44,7 @@ const TOUR_DATA = {
     "area": "Güneydoğu Anadolu",
     "rooms": "Özel Butik Otel",
     "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
-    "images": generateImages("mardin-tarihi-konak-dokusu-", 16) 
+    "images": generateImages("mardin-tarihi-konak-dokusu-", 16) // ✅ CORRECT: 16 files
   },
   "TUR-TR-ANTALYA": {
     "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
@@ -51,7 +53,7 @@ const TOUR_DATA = {
     "area": "Akdeniz Bölgesi",
     "rooms": "Her şey Dahil Otel",
     "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    "images": generateImages("antalya-koy-gezisi-", 17)
+    "images": generateImages("antalya-koy-gezisi-", 17) // ✅ CORRECT: 17 files
   },
   "TUR-TR-KAPADOKYA": {
     "title": "Kapadokya - Balon ve Peribacaları Turu",
@@ -60,7 +62,7 @@ const TOUR_DATA = {
     "area": "İç Anadolu",
     "rooms": "Mağara Otel Konaklama",
     "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
-    "images": generateImages("kapadokya-balon-turu-", 20)
+    "images": generateImages("kapadokya-balon-turu-", 20) // ✅ CORRECT: 20 files
   },
   "TUR-TR-FETHIYE": {
     "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
@@ -69,7 +71,7 @@ const TOUR_DATA = {
     "area": "Ege Bölgesi",
     "rooms": "Butik Pansiyon",
     "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
-    "images": generateImages("fethiye-oludeniz-manzarasi-", 19)
+    "images": generateImages("fethiye-oludeniz-manzarasi-", 19) // ✅ CORRECT: 19 files
   },
   "TUR-TR-PAMUKKALE": {
     "title": "Pamukkale - Travertenler & Antik Kent",
@@ -78,7 +80,7 @@ const TOUR_DATA = {
     "area": "Denizli",
     "rooms": "Termal Otel",
     "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
-    "images": generateImages("pamukkale-traverten-dogal-", 12)
+    "images": generateImages("pamukkale-traverten-dogal-", 11) // ✅ FIXED: Was 12, now 11 (matches actual files)
   },
 
   // --- YURT DIŞI ---
@@ -89,7 +91,7 @@ const TOUR_DATA = {
     "area": "İspanya",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
-    "images": generateImages("spain-", 15)
+    "images": generateImages("spain-", 15) // ✅ CORRECT: 15 files
   },
   "TUR-D-RUSYA-KIS": {
     "title": "Rusya (Kış Masalı)",
@@ -98,7 +100,7 @@ const TOUR_DATA = {
     "area": "Rusya Federasyonu",
     "rooms": "5 Yıldızlı Oteller",
     "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
-    "images": generateImages("rusya-", 13)
+    "images": generateImages("rusya-", 13) // ✅ CORRECT: 13 files (uses Turkish spelling)
   },
   "TUR-D-BREZILYA": {
     "title": "Brezilya - Rio Karnavalı ve Amazon",
@@ -107,7 +109,7 @@ const TOUR_DATA = {
     "area": "Brezilya",
     "rooms": "Lüks Lodge ve Oteller",
     "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
-    "images": generateImages("brazil-", 15)
+    "images": generateImages("brazil-", 15) // ✅ CORRECT: 15 files
   },
   "TUR-D-AMERIKA": {
     "title": "ABD - New York & Batı Kıyısı",
@@ -116,7 +118,7 @@ const TOUR_DATA = {
     "area": "Amerika Birleşik Devletleri",
     "rooms": "4 Yıldızlı Oteller",
     "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
-    "images": generateImages("new-york-", 9)
+    "images": generateImages("new-york-", 9) // ✅ CORRECT: 9 files
   }
 };
 
@@ -135,21 +137,21 @@ async function openHouseDetail(tourID) {
   const content = document.getElementById("house-detail-content");
   
   content.innerHTML = `
-    <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; margin-bottom: 20px;">${tour.title}</h2>
+    <h2 style="color: #38bdf8; font-family: 'Playfair Display', serif; margin-bottom: 20px;">${tour.title}</h2>
     
     <div class="house-info" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border: 1px solid #333;">
       <div style="margin-bottom: 10px;">
-        <i class="fas fa-map-marker-alt" style="color: #ffcc66; width: 20px;"></i> 
+        <i class="fas fa-map-marker-alt" style="color: #38bdf8; width: 20px;"></i> 
         <strong style="color: #fff;">Lokasyon:</strong> <span style="color: #ccc;">${tour.location} (${tour.area})</span>
       </div>
       
       <div style="margin-bottom: 10px;">
-        <i class="fas fa-clock" style="color: #ffcc66; width: 20px;"></i> 
-        <strong style="color: #fff;">Süre & Fiyat:</strong> <span style="color: #ffcc66; font-weight: bold;">${tour.price}</span>
+        <i class="fas fa-clock" style="color: #38bdf8; width: 20px;"></i> 
+        <strong style="color: #fff;">Süre & Fiyat:</strong> <span style="color: #38bdf8; font-weight: bold;">${tour.price}</span>
       </div>
       
       <div style="margin-bottom: 10px;">
-        <i class="fas fa-bed" style="color: #ffcc66; width: 20px;"></i> 
+        <i class="fas fa-bed" style="color: #38bdf8; width: 20px;"></i> 
         <strong style="color: #fff;">Konaklama:</strong> <span style="color: #ccc;">${tour.rooms}</span>
       </div>
 
@@ -419,7 +421,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // FIXED: Duplicate event listeners removed. Simplified logic.
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const closeBtn = document.getElementById('close-lightbox');
