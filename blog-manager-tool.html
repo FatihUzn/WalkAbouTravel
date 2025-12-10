@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Manager - WalkAbout Travel</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-section, .preview-section {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #334155;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #38bdf8;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .image-upload-area {
+            border: 3px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .image-upload-area:hover {
+            border-color: #38bdf8;
+            background: #f0f9ff;
+        }
+        
+        .image-upload-area.dragover {
+            border-color: #38bdf8;
+            background: #e0f2fe;
+            transform: scale(1.02);
+        }
+        
+        .image-upload-area i {
+            font-size: 3em;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+        
+        .image-preview {
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .image-preview img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        
+        .image-preview.show {
+            display: block;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .preview-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .preview-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .preview-card-content {
+            padding: 20px;
+        }
+        
+        .preview-card h3 {
+            color: #334155;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        
+        .preview-card .meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-card .meta span {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        .preview-card .meta i {
+            color: #38bdf8;
+            margin-right: 5px;
+        }
+        
+        .preview-card .description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .preview-card .content {
+            color: #334155;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        
+        .blog-list {
+            margin-top: 20px;
+        }
+        
+        .blog-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .blog-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .blog-item-info h4 {
+            color: #334155;
+            margin-bottom: 5px;
+        }
+        
+        .blog-item-info p {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        .blog-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert.show {
+            display: block;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            color: #065f46;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            border: 2px solid #ef4444;
+            color: #991b1b;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-blog"></i> Blog Manager</h1>
+            <p>Manage your WalkAbout Travel blog posts easily</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- FORM SECTION -->
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-edit"></i> Add New Blog Post</h2>
+                
+                <div class="alert" id="alert"></div>
+                
+                <form id="blogForm">
+                    <!-- Image Upload -->
+                    <div class="form-group">
+                        <label><i class="fas fa-image"></i> Blog Image *</label>
+                        <div class="image-upload-area" id="imageUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop image here or click to browse</p>
+                            <small>Recommended: 1200x800px, WebP format, <200KB</small>
+                        </div>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                        <div class="image-preview" id="imagePreview">
+                            <img id="previewImg" src="" alt="Preview">
+                        </div>
+                    </div>
+                    
+                    <!-- Turkish Title -->
+                    <div class="form-group">
+                        <label><i class="fas fa-heading"></i> Title (Turkish) *</label>
+                        <input type="text" id="titleTR" placeholder="e.g., Kapadokya'nın Gizli Hazineleri" required>
+                    </div>
+                    
+                    <!-- English Title -->
+                    <div class="form-group">
+                        <label><i class="fas fa-heading"></i> Title (English) *</label>
+                        <input type="text" id="titleEN" placeholder="e.g., Hidden Treasures of Cappadocia" required>
+                    </div>
+                    
+                    <!-- Turkish Description -->
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Description (Turkish) *</label>
+                        <textarea id="descTR" placeholder="Short description (2-3 sentences)" rows="3" required></textarea>
+                    </div>
+                    
+                    <!-- English Description -->
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Description (English) *</label>
+                        <textarea id="descEN" placeholder="Short description (2-3 sentences)" rows="3" required></textarea>
+                    </div>
+                    
+                    <!-- Category -->
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Category *</label>
+                        <select id="category" required>
+                            <option value="">Select category...</option>
+                            <option value="Seyahat İpuçları">Seyahat İpuçları (Travel Tips)</option>
+                            <option value="Destinasyon Rehberi">Destinasyon Rehberi (Destination Guide)</option>
+                            <option value="Kültür & Tarih">Kültür & Tarih (Culture & History)</option>
+                            <option value="Yemek & Gastronomi">Yemek & Gastronomi (Food & Gastronomy)</option>
+                            <option value="Macera & Aktiviteler">Macera & Aktiviteler (Adventure & Activities)</option>
+                            <option value="Bütçe Seyahat">Bütçe Seyahat (Budget Travel)</option>
+                            <option value="Lüks Seyahat">Lüks Seyahat (Luxury Travel)</option>
+                            <option value="Aile Seyahati">Aile Seyahati (Family Travel)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Author -->
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Author *</label>
+                        <input type="text" id="author" placeholder="e.g., Mehmet Yılmaz" required>
+                    </div>
+                    
+                    <!-- Turkish Content -->
+                    <div class="form-group">
+                        <label><i class="fas fa-file-alt"></i> Content (Turkish) *</label>
+                        <textarea id="contentTR" placeholder="Full blog post content in Turkish..." rows="10" required></textarea>
+                    </div>
+                    
+                    <!-- English Content -->
+                    <div class="form-group">
+                        <label><i class="fas fa-file-alt"></i> Content (English) *</label>
+                        <textarea id="contentEN" placeholder="Full blog post content in English..." rows="10" required></textarea>
+                    </div>
+                    
+                    <!-- Buttons -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" id="previewBtn">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Add to Blog
+                        </button>
+                        <button type="button" class="btn btn-warning" id="resetBtn">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- PREVIEW/MANAGE SECTION -->
+            <div class="preview-section">
+                <h2 class="section-title"><i class="fas fa-eye"></i> Preview & Manage</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="number" id="totalPosts">0</div>
+                        <div class="label">Total Posts</div>
+                    </div>
+                </div>
+                
+                <!-- Preview Card -->
+                <div id="previewContainer" style="display: none;">
+                    <h3 style="color: #334155; margin-bottom: 15px;">Preview:</h3>
+                    <div class="preview-card" id="previewCard"></div>
+                </div>
+                
+                <!-- Blog List -->
+                <div class="blog-list" id="blogList"></div>
+                
+                <!-- Export Button -->
+                <div class="button-group" style="margin-top: 20px;">
+                    <button class="btn btn-success" id="exportBtn">
+                        <i class="fas fa-download"></i> Export blog.json
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Blog data storage
+        let blogPosts = [];
+        let currentImageData = null;
+        let currentImageName = null;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBlogPosts();
+            setupEventListeners();
+            updateStats();
+        });
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const imageInput = document.getElementById('imageInput');
+            
+            // Click to upload
+            imageUploadArea.addEventListener('click', () => imageInput.click());
+            
+            // Drag and drop
+            imageUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.add('dragover');
+            });
+            
+            imageUploadArea.addEventListener('dragleave', () => {
+                imageUploadArea.classList.remove('dragover');
+            });
+            
+            imageUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.remove('dragover');
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    handleImageUpload(file);
+                }
+            });
+            
+            // File input change
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) handleImageUpload(file);
+            });
+            
+            // Form submission
+            document.getElementById('blogForm').addEventListener('submit', handleFormSubmit);
+            
+            // Preview button
+            document.getElementById('previewBtn').addEventListener('click', showPreview);
+            
+            // Reset button
+            document.getElementById('resetBtn').addEventListener('click', resetForm);
+            
+            // Export button
+            document.getElementById('exportBtn').addEventListener('click', exportBlogJSON);
+        }
+        
+        // Handle image upload
+        function handleImageUpload(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentImageData = e.target.result;
+                currentImageName = `blog-${Date.now()}.webp`;
+                
+                const previewImg = document.getElementById('previewImg');
+                const imagePreview = document.getElementById('imagePreview');
+                
+                previewImg.src = currentImageData;
+                imagePreview.classList.add('show');
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Show preview
+        function showPreview() {
+            if (!validateForm()) return;
+            
+            const previewContainer = document.getElementById('previewContainer');
+            const previewCard = document.getElementById('previewCard');
+            
+            const formData = getFormData();
+            
+            previewCard.innerHTML = `
+                ${currentImageData ? `<img src="${currentImageData}" alt="${formData.titleTR}">` : ''}
+                <div class="preview-card-content">
+                    <h3>${formData.titleTR}</h3>
+                    <div class="meta">
+                        <span><i class="fas fa-calendar"></i> ${formData.date}</span>
+                        <span><i class="fas fa-user"></i> ${formData.author}</span>
+                        <span><i class="fas fa-tag"></i> ${formData.category}</span>
+                    </div>
+                    <div class="description">${formData.descTR}</div>
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                    <div class="content">${formData.contentTR}</div>
+                </div>
+            `;
+            
+            previewContainer.style.display = 'block';
+            previewContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Validate form
+        function validateForm() {
+            const requiredFields = ['titleTR', 'titleEN', 'descTR', 'descEN', 'category', 'author', 'contentTR', 'contentEN'];
+            
+            for (const field of requiredFields) {
+                if (!document.getElementById(field).value.trim()) {
+                    showAlert('Please fill in all required fields!', 'error');
+                    return false;
+                }
+            }
+            
+            if (!currentImageData) {
+                showAlert('Please upload an image!', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Get form data
+        function getFormData() {
+            const date = new Date();
+            const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
+                           'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+            
+            return {
+                id: `blog-${blogPosts.length + 1}`,
+                title: document.getElementById('titleTR').value.trim(),
+                title_en: document.getElementById('titleEN').value.trim(),
+                description: document.getElementById('descTR').value.trim(),
+                description_en: document.getElementById('descEN').value.trim(),
+                image: `assets/${currentImageName}`,
+                date: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
+                author: document.getElementById('author').value.trim(),
+                category: document.getElementById('category').value,
+                content: document.getElementById('contentTR').value.trim(),
+                content_en: document.getElementById('contentEN').value.trim()
+            };
+        }
+        
+        // Handle form submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            const formData = getFormData();
+            blogPosts.push(formData);
+            
+            saveBlogPosts();
+            updateBlogList();
+            updateStats();
+            resetForm();
+            
+            showAlert('Blog post added successfully!', 'success');
+        }
+        
+        // Reset form
+        function resetForm() {
+            document.getElementById('blogForm').reset();
+            document.getElementById('imagePreview').classList.remove('show');
+            document.getElementById('previewContainer').style.display = 'none';
+            currentImageData = null;
+            currentImageName = null;
+        }
+        
+        // Update blog list
+        function updateBlogList() {
+            const blogList = document.getElementById('blogList');
+            blogList.innerHTML = '<h3 style="color: #334155; margin-bottom: 15px;">Your Blog Posts:</h3>';
+            
+            blogPosts.forEach((post, index) => {
+                const blogItem = document.createElement('div');
+                blogItem.className = 'blog-item';
+                blogItem.innerHTML = `
+                    <div class="blog-item-info">
+                        <h4>${post.title}</h4>
+                        <p>${post.category} • ${post.date} • ${post.author}</p>
+                    </div>
+                    <div class="blog-item-actions">
+                        <button class="btn btn-small btn-danger" onclick="deleteBlogPost(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                blogList.appendChild(blogItem);
+            });
+        }
+        
+        // Delete blog post
+        function deleteBlogPost(index) {
+            if (confirm('Are you sure you want to delete this blog post?')) {
+                blogPosts.splice(index, 1);
+                saveBlogPosts();
+                updateBlogList();
+                updateStats();
+                showAlert('Blog post deleted!', 'success');
+            }
+        }
+        
+        // Update stats
+        function updateStats() {
+            document.getElementById('totalPosts').textContent = blogPosts.length;
+        }
+        
+        // Show alert
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.className = `alert alert-${type} show`;
+            alert.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i> ${message}`;
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Save to localStorage
+        function saveBlogPosts() {
+            localStorage.setItem('walkabout_blog_posts', JSON.stringify(blogPosts));
+        }
+        
+        // Load from localStorage
+        function loadBlogPosts() {
+            const saved = localStorage.getItem('walkabout_blog_posts');
+            if (saved) {
+                blogPosts = JSON.parse(saved);
+                updateBlogList();
+            }
+        }
+        
+        // Export blog.json
+        function exportBlogJSON() {
+            if (blogPosts.length === 0) {
+                showAlert('No blog posts to export!', 'error');
+                return;
+            }
+            
+            const dataStr = JSON.stringify(blogPosts, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'blog.json';
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showAlert('blog.json exported successfully!', 'success');
+        }
+    </script>
+</body>
+</html>
