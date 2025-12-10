@@ -3,309 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WalkAbout Travel - Keşfetmeye Hazır Ol</title>
+    <title>WalkAbout Travel - Dünyayı Keşfedin</title>
+    <link rel="icon" href="assets/walkabou_travel_logo.webp">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* === KRİTİK DÜZELTME: BU SATIR KAYMAYI ENGELLER === */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --ocean-blue: #38bdf8;
-            --ocean-dark: #0ea5e9;
-            --deep-navy: #0c4a6e;
-            --heading-color: #075985;
-            --cloud-white: #ffffff;
-            --soft-gray: #64748b;
-            --light-gray: #f1f5f9;
-            --border-gray: #e2e8f0;
-            --gradient-light: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
-            --transition-base: all 0.3s ease;
-        }
-
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cloud-white);
-            color: var(--deep-navy);
-            line-height: 1.6;
-            overflow-x: hidden; /* Yatay kaydırmayı zorla kapat */
-        }
-
-        /* TİPOGRAFİ */
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            color: var(--heading-color);
-            text-shadow: none !important;
-        }
-
-        h1 { font-size: 72px; }
-        h2 { font-size: 48px; }
-        h3 { font-size: 26px; }
-        p { color: var(--soft-gray); margin-bottom: 1rem; }
-
-        /* NAVİGASYON (DÜZELTİLDİ) */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); /* Hafif şeffaf */
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-gray);
-            display: flex; justify-content: center;
-        }
-        
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            width: 100%; max-width: 1400px; padding: 0 20px;
-        }
-
-        .logo h1 { font-size: 24px; margin: 0; color: var(--ocean-dark); }
-
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a {
-            color: var(--deep-navy); text-decoration: none; font-weight: 600;
-            font-size: 15px; transition: var(--transition-base);
-        }
-        .nav-links a:hover { color: var(--ocean-blue); }
-
-        /* MOBİL MENÜ İÇİN AYAR */
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Şimdilik mobilde menüyü gizle ki taşmasın */
-            h1 { font-size: 40px; }
-            h2 { font-size: 32px; }
-        }
-
-        /* BUTONLAR */
-        .btn, .btn-primary, button {
-            padding: 12px 30px; border-radius: 8px; font-weight: 600;
-            text-decoration: none; display: inline-block; cursor: pointer;
-            border: none; transition: var(--transition-base); 
-            background: var(--ocean-blue); color: white;
-            box-shadow: none !important;
-        }
-        .btn:hover { background: var(--ocean-dark); transform: translateY(-2px); }
-        .theme-switch button { background: transparent; color: var(--deep-navy); font-size: 1.2rem; padding: 5px; }
-
-        /* HERO BÖLÜMÜ (BOŞLUK ALINARAK DÜZELTİLDİ) */
-        .hero {
-            min-height: 70vh; /* Yükseklik biraz azaltıldı */
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; background: var(--gradient-light); 
-            padding-top: 80px; padding-bottom: 40px;
-        }
-        .hero-content { max-width: 800px; padding: 20px; }
-
-        /* ARAMA KUTUSU */
-        .search-container { padding: 2rem 0; background: var(--light-gray); display: flex; justify-content: center; }
-        .search-box {
-            background: white; padding: 10px; border-radius: 50px; display: flex; gap: 10px;
-            border: 1px solid var(--border-gray); width: 90%; max-width: 600px;
-        }
-        .search-box input { border: none; outline: none; padding: 10px 20px; flex: 1; font-size: 16px; border-radius: 50px; }
-
-        /* KARTLAR */
-        .tours-section, .blog-section { padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 40px; color: var(--deep-navy); }
-        
-        .tour-grid, .blog-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            justify-content: center; /* Kartları ortala */
-        }
-        
-        .tour-card, .blog-card {
-            background: white; border-radius: 12px; overflow: hidden;
-            border: 1px solid var(--border-gray); transition: var(--transition-base);
-        }
-        .tour-card:hover, .blog-card:hover {
-            transform: translateY(-5px); border-color: var(--ocean-blue);
-        }
-        
-        .card-img, .blog-img { height: 250px; width: 100%; overflow: hidden; }
-        .card-img img, .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; display: block; }
-        .tour-card:hover img { transform: scale(1.05); }
-        
-        .card-content, .blog-content { padding: 20px; }
-        .card-content h3 { font-size: 1.3rem; margin: 0 0 10px; color: var(--deep-navy); }
-        
-        .card-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-gray);
-        }
-        .price { font-size: 1.2rem; font-weight: 700; color: var(--ocean-dark); }
-        .btn-sm {
-            padding: 8px 16px; font-size: 0.9rem; background: transparent;
-            border: 1px solid var(--ocean-blue); color: var(--ocean-blue); border-radius: 6px;
-        }
-        .btn-sm:hover { background: var(--ocean-blue); color: white; }
-
-        /* FOOTER */
-        footer { background: var(--light-gray); padding: 40px 20px; text-align: center; border-top: 1px solid var(--border-gray); margin-top: 40px; }
-        .socials { margin-top: 20px; }
-        .socials a { color: var(--ocean-blue); font-size: 24px; margin: 0 15px; }
-    </style>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            <h1>WalkAbout Travel</h1>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#tours">Turlar</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">İletişim</a></li>
-        </ul>
-        <div class="theme-switch">
-            <button id="theme-btn"><i class="fas fa-moon"></i></button>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span class="logo-title">WalkAbout Travel</span>
+                    <span class="logo-subtitle">Tourism & Travel</span>
+                </div>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Ana Sayfa</a>
+                <a href="#tours">Turlar</a>
+                <a href="#why-us">Neden Biz</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">İletişim</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://cdn.pixabay.com/vimeo/342333750/pamukkale-15740.mp4?width=1280&hash=f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2>Dünyayı Bizimle Keşfedin</h2>
-            <p>Unutulmaz anılar biriktirmek için doğru adrestesiniz.</p>
-            <a href="#tours" class="btn">Turları İncele</a>
+            <span class="hero-badge">1997'DEN BERİ</span>
+            <h1>
+                Hayalinizdeki Tatili <br>
+                <span class="hero-gradient">Birlikte Planlayalım</span>
+            </h1>
+            <p>Dünyanın en güzel destinasyonlarına profesyonel rehberlik eşliğinde unutulmaz yolculuklar</p>
+            <div class="hero-buttons">
+                <a href="#tours" class="btn btn-primary">
+                    <i class="fas fa-compass"></i> Turları Keşfet
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Hemen İletişime Geç
+                </a>
+            </div>
         </div>
     </section>
 
-    <section class="search-container">
-        <div class="search-box">
-            <input type="text" placeholder="Nereye gitmek istersiniz?">
-            <button><i class="fas fa-search"></i> Ara</button>
-        </div>
-    </section>
-
+    <!-- TOURS SECTION -->
     <section id="tours" class="tours-section">
-        <h2 class="section-title">Popüler Turlar</h2>
-        <div class="tour-grid">
-            <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1579007603632-159673934372?q=80&w=1000&auto=format&fit=crop" alt="Mardin"></div>
-                <div class="card-content">
-                    <h3>Mardin Turları</h3>
-                    <p>Tarihi dokusu ve eşsiz mimarisiyle Mardin'i keşfedin.</p>
-                    <div class="card-footer">
-                        <span class="price">₺3.500</span>
-                        <button class="btn-sm">Detaylar</button>
+        <div class="section-header">
+            <span class="section-badge">POPÜLER ROTALAR</span>
+            <h2>Öne Çıkan Turlarımız</h2>
+            <p>En çok tercih edilen destinasyonlarımızı keşfedin</p>
+        </div>
+
+        <div class="tours-grid">
+            <!-- Mardin -->
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-MARDIN'">
+                <div class="tour-image">
+                    <img src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579007603632-159673934372?w=600'">
+                    <span class="tour-badge">Kültür</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Mardin - Tarihi Konaklar & Kültür Turu</h3>
+                    <p>Mezopotamya'nın kalbinde binlerce yıllık medeniyetlerin izlerini keşfedin.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 5 Gün / 4 Gece</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Mardin</span>
                     </div>
+                    <a href="tour-detail.html?id=TUR-TR-MARDIN" class="tour-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=1000&auto=format&fit=crop" alt="Antalya"></div>
-                <div class="card-content">
-                    <h3>Antalya Tatili</h3>
-                    <p>Güneş, deniz ve tarihin buluştuğu nokta.</p>
-                    <div class="card-footer">
-                        <span class="price">₺5.000</span>
-                        <button class="btn-sm">Detaylar</button>
+
+            <!-- Kapadokya -->
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-KAPADOKYA'">
+                <div class="tour-image">
+                    <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Balon Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?w=600'">
+                    <span class="tour-badge">Popüler</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Kapadokya - Balon ve Peribacaları</h3>
+                    <p>Gün doğumunda balon turu deneyimi ve vadilerde eşsiz keşif.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 4 Gün / 3 Gece</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Göreme</span>
                     </div>
+                    <a href="tour-detail.html?id=TUR-TR-KAPADOKYA" class="tour-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=1000&auto=format&fit=crop" alt="Kapadokya"></div>
-                <div class="card-content">
-                    <h3>Kapadokya Balon</h3>
-                    <p>Peri bacaları eşliğinde eşsiz bir deneyim.</p>
-                    <div class="card-footer">
-                        <span class="price">₺4.200</span>
-                        <button class="btn-sm">Detaylar</button>
+
+            <!-- Antalya -->
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-ANTALYA'">
+                <div class="tour-image">
+                    <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600'">
+                    <span class="tour-badge">Deniz</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Antalya - Köy Gezisi & Kaleiçi</h3>
+                    <p>Akdeniz'in turkuaz koylarında tekne turu ve tarihi keşif.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 7 Gün / 6 Gece</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Antalya</span>
                     </div>
+                    <a href="tour-detail.html?id=TUR-TR-ANTALYA" class="tour-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1580226963425-4155f81e35d2?q=80&w=1000&auto=format&fit=crop" alt="Fethiye"></div>
-                <div class="card-content">
-                    <h3>Fethiye / Ölüdeniz</h3>
-                    <p>Yamaç paraşütü ve masmavi sular.</p>
-                    <div class="card-footer">
-                        <span class="price">₺6.000</span>
-                        <button class="btn-sm">Detaylar</button>
+
+            <!-- Fethiye -->
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-FETHIYE'">
+                <div class="tour-image">
+                    <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Ölüdeniz" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580226963425-4155f81e35d2?w=600'">
+                    <span class="tour-badge">Macera</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Fethiye - Yamaç Paraşütü & Ölüdeniz</h3>
+                    <p>Babadağ'dan atlayış ve Ölüdeniz'in eşsiz güzelliği.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 3 Gün / 2 Gece</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Fethiye</span>
                     </div>
+                    <a href="tour-detail.html?id=TUR-TR-FETHIYE" class="tour-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-             <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?q=80&w=1000&auto=format&fit=crop" alt="Rusya"></div>
-                <div class="card-content">
-                    <h3>Rusya / Moskova</h3>
-                    <p>Kızıl Meydan ve tarihi saraylar.</p>
-                    <div class="card-footer">
-                        <span class="price">$1.500</span>
-                        <button class="btn-sm">Detaylar</button>
+
+            <!-- Pamukkale -->
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-PAMUKKALE'">
+                <div class="tour-image">
+                    <img src="assets/pamukkale-traverten-dogal-1.webp" alt="Pamukkale" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513326738677-b964603b136d?w=600'">
+                    <span class="tour-badge">Doğa</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Pamukkale - Travertenler & Hierapolis</h3>
+                    <p>Bembeyaz travertenler ve antik şehir keşfi.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 2 Gün / 1 Gece</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Denizli</span>
                     </div>
+                    <a href="tour-detail.html?id=TUR-TR-PAMUKKALE" class="tour-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-             <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000&auto=format&fit=crop" alt="Brezilya"></div>
-                <div class="card-content">
-                    <h3>Brezilya Karnavalı</h3>
-                    <p>Rio de Janeiro'nun renkli dünyası.</p>
-                    <div class="card-footer">
-                        <span class="price">$2.100</span>
-                        <button class="btn-sm">Detaylar</button>
+
+            <!-- İspanya -->
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-D-ISPANYA'">
+                <div class="tour-image">
+                    <img src="assets/spain-1.webp" alt="İspanya Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600'">
+                    <span class="tour-badge">Premium</span>
+                </div>
+                <div class="tour-content">
+                    <h3>İspanya - Barselona & Endülüs</h3>
+                    <p>Gaudi'nin şaheserleri ve El Hamra Sarayı.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 9 Gün / 8 Gece</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> İspanya</span>
                     </div>
+                    <a href="tour-detail.html?id=TUR-D-ISPANYA" class="tour-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- WHY US SECTION -->
+    <section id="why-us" class="why-us-section">
+        <div class="section-header">
+            <span class="section-badge">NEDEN WalkAbout Travel?</span>
+            <h2>Bizi Tercih Etme Nedenleri</h2>
+            <p>28 yıllık deneyimimizle güvenli ve unutulmaz yolculuklar</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Güvenli Seyahat</h3>
+                <p>TURSAB belgeli, sigorta güvenceli ve lisanslı rehberlerimizle tam güvenlik</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>28 Yıllık Deneyim</h3>
+                <p>1997'den beri binlerce mutlu müşteriye hizmet verdik</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>7/24 Destek</h3>
+                <p>Seyahatinizin her anında yanınızdayız</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>En İyi Fiyat Garantisi</h3>
+                <p>Kaliteli hizmeti en uygun fiyatlarla sunuyoruz</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
     <section id="blog" class="blog-section">
-        <h2 class="section-title">Seyahat Rehberi & Blog</h2>
-        <div class="blog-grid">
-            <div class="blog-card">
-                <div class="blog-img"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop" alt="Blog 1"></div>
-                <div class="blog-content">
-                    <h3>Valiz Hazırlama Tüyoları</h3>
-                    <p>Seyahate çıkarken yanınıza almanız gereken 10 temel eşya.</p>
-                    <a href="#" style="color: var(--ocean-dark); font-weight:bold;">Devamını Oku &rarr;</a>
+        <div class="section-header">
+            <span class="section-badge">SEYAHAT NOTLARI</span>
+            <h2>Blog & Seyahat Rehberi</h2>
+            <p>Deneyimlerimizden ilham alın</p>
+        </div>
+
+        <div class="blog-grid" id="blogContainer">
+            <!-- Blog posts will be loaded by Blog.js -->
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <span class="section-badge">BİZE ULAŞIN</span>
+            <h2>Hayalinizdeki Tatili Planlayalım</h2>
+            <p>Uzman ekibimiz size yardımcı olmak için hazır</p>
+        </div>
+
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Adınız Soyadınız *</label>
+                    <input type="text" id="name" required placeholder="Ahmet Yılmaz">
                 </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-img"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1000&auto=format&fit=crop" alt="Blog 2"></div>
-                <div class="blog-content">
-                    <h3>Ucuz Uçak Bileti</h3>
-                    <p>Erken rezervasyon avantajları ve ipuçları.</p>
-                    <a href="#" style="color: var(--ocean-dark); font-weight:bold;">Devamını Oku &rarr;</a>
+
+                <div class="form-group">
+                    <label for="email">E-posta Adresiniz *</label>
+                    <input type="email" id="email" required placeholder="ahmet@example.com">
                 </div>
-            </div>
-             <div class="blog-card">
-                <div class="blog-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop" alt="Blog 3"></div>
-                <div class="blog-content">
-                    <h3>Vizesiz Ülkeler</h3>
-                    <p>Pasaportunuzu alıp hemen yola çıkabileceğiniz rotalar.</p>
-                    <a href="#" style="color: var(--ocean-dark); font-weight:bold;">Devamını Oku &rarr;</a>
+
+                <div class="form-group">
+                    <label for="phone">Telefon Numaranız</label>
+                    <input type="tel" id="phone" placeholder="+90 555 123 45 67">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mesajınız *</label>
+                    <textarea id="message" required placeholder="Hangi tura ilgi duyuyorsunuz? Tarihleriniz neler?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Gönder
+                </button>
+            </form>
+
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Adresimiz</h4>
+                    <p>Mimar Sinan Cd. No: 42/A<br>İstanbul, Türkiye</p>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <h4>Telefon</h4>
+                    <p>+90 (212) 555 1923</p>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>E-posta</h4>
+                    <p>info@walkaboutravel.com</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 WalkAbout Travel. Tüm hakları saklıdır.</p>
-            <div class="socials">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/walkabou_travel_logo.webp" alt="Logo" onerror="this.style.display='none'">
+                    <div class="logo-text">
+                        <span class="logo-title">WalkAbout Travel</span>
+                        <span class="logo-subtitle">Tourism & Travel</span>
+                    </div>
+                </div>
+                <p>1997'den beri güvenle planlanan yolculuklar. Hayalinizdeki tatil için yanınızdayız.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
+
+            <div class="footer-column">
+                <h4>Hızlı Linkler</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#tours">Turlar</a></li>
+                    <li><a href="#why-us">Neden Biz</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Turlar</h4>
+                <ul class="footer-links">
+                    <li><a href="tour-detail.html?id=TUR-TR-MARDIN">Mardin Turu</a></li>
+                    <li><a href="tour-detail.html?id=TUR-TR-KAPADOKYA">Kapadokya Turu</a></li>
+                    <li><a href="tour-detail.html?id=TUR-TR-ANTALYA">Antalya Turu</a></li>
+                    <li><a href="tour-detail.html?id=TUR-D-ISPANYA">İspanya Turu</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Hizmetler</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Vize Danışmanlığı</a></li>
+                    <li><a href="#">Otel Rezervasyonu</a></li>
+                    <li><a href="#">Uçak Bileti</a></li>
+                    <li><a href="#">Transfer Hizmeti</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 WalkAbout Travel. Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank" aria-label="WhatsApp İletişim">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
     <script src="app.js"></script>
+    <script src="Blog.js"></script>
+    
     <script>
-        const btn = document.getElementById('theme-btn');
-        if(btn) {
-            btn.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme');
-                const target = current === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', target);
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
             });
         }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const message = document.getElementById('message').value;
+                
+                // WhatsApp message
+                const whatsappMessage = `Merhaba! Web sitenizden ulaşıyorum.%0A%0AAdım: ${name}%0AE-posta: ${email}%0ATelefon: ${phone}%0A%0AMesajım:%0A${message}`;
+                window.open(`https://wa.me/5491135870045?text=${whatsappMessage}`, '_blank');
+                
+                // Reset form
+                contactForm.reset();
+                alert('Mesajınız WhatsApp üzerinden gönderiliyor...');
+            });
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#!') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu if open
+                        if (navLinks) {
+                            navLinks.classList.remove('active');
+                        }
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
