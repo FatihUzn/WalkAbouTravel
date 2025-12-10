@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tur Detayları - WalkAbout Travel</title>
+    <link rel="icon" href="assets/walkabou_travel_logo.webp">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style-modern.css">
+    
+    <style>
+        /* Tour Detail Specific Styles */
+        .tour-detail-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: flex-end;
+            padding: 60px 40px;
+            margin-top: 85px;
+        }
+
+        .tour-detail-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .tour-detail-hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .tour-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            color: white;
+        }
+
+        .tour-hero-content .tour-badge {
+            margin-bottom: 15px;
+        }
+
+        .tour-hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .tour-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 16px;
+            color: #cbd5e1;
+        }
+
+        .tour-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tour-meta-item i {
+            font-size: 20px;
+            color: var(--gold-accent);
+        }
+
+        .tour-detail-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .tour-grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+
+        .tour-main {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .tour-main h2 {
+            font-size: 36px;
+            color: var(--deep-navy);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+
+        .tour-main h3 {
+            font-size: 24px;
+            color: var(--deep-navy);
+            margin: 40px 0 20px;
+        }
+
+        .tour-main p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--soft-gray);
+            margin-bottom: 20px;
+        }
+
+        .tour-highlights {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+        }
+
+        .tour-highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tour-highlights li {
+            padding: 12px 0;
+            color: var(--deep-navy);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+
+        .tour-highlights li i {
+            color: var(--forest-green);
+            font-size: 20px;
+        }
+
+        .tour-sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .tour-booking-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .tour-price {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+
+        .tour-price .price-label {
+            font-size: 14px;
+            color: var(--soft-gray);
+            margin-bottom: 10px;
+        }
+
+        .tour-price .price-amount {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--ocean-blue);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .booking-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .booking-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .tour-info-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .tour-info-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tour-info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tour-info-label {
+            color: var(--soft-gray);
+            font-size: 14px;
+        }
+
+        .tour-info-value {
+            color: var(--deep-navy);
+            font-weight: 600;
+        }
+
+        .tour-gallery {
+            margin: 50px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .tour-grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .tour-sidebar {
+                position: static;
+            }
+
+            .tour-main {
+                padding: 30px 20px;
+            }
+
+            .tour-hero-content h1 {
+                font-size: 36px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION (Same as index) -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbout Travel Logo">
+                <div class="logo-text">
+                    <span class="logo-title">WalkAbout Travel</span>
+                    <span class="logo-subtitle">Tourism & Travel</span>
+                </div>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#home">Ana Sayfa</a>
+                <a href="index.html#tours">Turlar</a>
+                <a href="index.html#blog">Blog</a>
+                <a href="index.html#contact">İletişim</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active">TR</button>
+                    <button class="lang-btn">EN</button>
+                    <button class="lang-btn">AR</button>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- TOUR DETAIL HERO -->
+    <div class="tour-detail-hero" id="tourHero">
+        <img id="tourHeroImage" src="" alt="">
+        <div class="tour-hero-content">
+            <span class="tour-badge" id="tourBadge">Popüler</span>
+            <h1 id="tourTitle">Tur Yükleniyor...</h1>
+            <div class="tour-meta" id="tourMeta">
+                <!-- Meta bilgiler JavaScript ile yüklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TOUR DETAIL CONTENT -->
+    <div class="tour-detail-content">
+        <div class="tour-grid-layout">
+            <!-- MAIN CONTENT -->
+            <div class="tour-main" id="tourMainContent">
+                <h2>Tur Açıklaması</h2>
+                <div id="tourDescription">
+                    <!-- JavaScript ile yüklenecek -->
+                </div>
+
+                <!-- GALLERY -->
+                <div class="tour-gallery">
+                    <h2>Fotoğraf Galerisi</h2>
+                    <div class="gallery-grid" id="tourGallery">
+                        <!-- JavaScript ile yüklenecek -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="tour-sidebar">
+                <div class="tour-booking-card">
+                    <div class="tour-price">
+                        <div class="price-label">Tur Fiyatı</div>
+                        <div class="price-amount" id="tourPrice">
+                            <!-- JavaScript ile yüklenecek -->
+                        </div>
+                    </div>
+
+                    <ul class="tour-info-list" id="tourInfoList">
+                        <!-- JavaScript ile yüklenecek -->
+                    </ul>
+
+                    <div class="booking-cta">
+                        <a href="#" class="btn btn-primary" id="emailBtn">
+                            <i class="fas fa-paper-plane"></i> E-posta ile Rezervasyon
+                        </a>
+                        <a href="#" class="btn btn-outline" id="whatsappBtn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp ile İletişim
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (Same as index) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/walkabou_travel_logo.webp" alt="Logo">
+                    <div class="logo-text">
+                        <span class="logo-title">WalkAbout Travel</span>
+                        <span class="logo-subtitle">Tourism & Travel</span>
+                    </div>
+                </div>
+                <p>
+                    1997'den beri güvenle planlanan yolculuklar. 
+                    Hayalinizdeki tatil için yanınızdayız.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Hızlı Linkler</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#home">Ana Sayfa</a></li>
+                    <li><a href="index.html#tours">Turlar</a></li>
+                    <li><a href="index.html#blog">Blog</a></li>
+                    <li><a href="index.html#contact">İletişim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Turlar</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Yurt İçi Turlar</a></li>
+                    <li><a href="#">Yurt Dışı Turlar</a></li>
+                    <li><a href="#">Kültür Turları</a></li>
+                    <li><a href="#">Macera Turları</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Hizmetler</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Vize Danışmanlığı</a></li>
+                    <li><a href="#">Otel Rezervasyonu</a></li>
+                    <li><a href="#">Uçak Bileti</a></li>
+                    <li><a href="#">Sigorta</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 WalkAbout Travel. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="nextImage()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- WHATSAPP FLOAT BUTTON -->
+    <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
+    <script>
+        // Get tour ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const tourId = urlParams.get('id');
+
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Lightbox
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightboxImage').src = galleryImages[index];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex];
+        }
+
+        // Close lightbox with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Load tour data
+        if (tourId && typeof TOUR_DATA !== 'undefined' && TOUR_DATA[tourId]) {
+            loadTourDetail(tourId);
+        } else {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>
