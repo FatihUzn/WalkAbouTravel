@@ -1,352 +1,153 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - WalkAbout Travel</title>
-    
-    <link rel="stylesheet" href="style.css?v=1.9"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        /* --- SAYFA GENEL DÜZENİ --- */
-        body {
-            background-color: #111;
-            padding-top: 0;
-            color: #ddd;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
+<!-- Bu kodu blog.html dosyanızın sonundaki <script> bölümünün yerine koyun -->
+
+<script>
+    let allBlogPosts = [];
+
+    // 1. Verileri Çek (JSON'dan veya Yedek veriden)
+    async function fetchBlogPosts() {
+        try {
+            const response = await fetch('data/blog-posts.json');
+            if (!response.ok) throw new Error('JSON okunamadı');
+            allBlogPosts = await response.json();
+            renderBlogGrid(allBlogPosts);
+        } catch (error) {
+            console.warn("JSON verisi alınamadı, yedek veri kullanılıyor:", error);
+            // Fallback / Yedek Veri
+            allBlogPosts = [
+                {
+                    "id": 1,
+                    "title": "Kapadokya'da Balon Turu Deneyimi",
+                    "image": "assets/kapadokya-balon-turu-1.webp",
+                    "date": "2025-10-15",
+                    "category": "GEZİ REHBERİ",
+                    "summary": "Peri bacalarının üzerinde gün doğumunu izlemek...",
+                    "fullContent": "<p>Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor.</p><p><strong>Ne Zaman Gidilmeli?</strong><br>En iyi sezon Nisan-Ekim arasıdır ancak kışın karlar altındaki manzarası da ayrı bir güzeldir.</p>"
+                },
+                {
+                    "id": 2,
+                    "title": "Vizesiz Gidilebilecek 10 Cennet Ülke",
+                    "image": "assets/antalya-koy-gezisi-1.webp",
+                    "date": "2025-09-20",
+                    "category": "İPUÇLARI",
+                    "summary": "Pasaportunuzu kapıp hemen yola çıkabileceğiniz...",
+                    "fullContent": "<p>Vize prosedürleriyle uğraşmadan tatil yapmanın keyfi paha biçilemez. İşte en güzel vizesiz destinasyonlar...</p>"
+                },
+                {
+                    "id": 3,
+                    "title": "Avrupa Turu İçin Çanta Hazırlama Rehberi",
+                    "image": "assets/spain-1.webp",
+                    "date": "2025-08-05",
+                    "category": "REHBER",
+                    "summary": "Uzun bir Avrupa seyahatine çıkarken...",
+                    "fullContent": "<p>Kapsül gardırop sistemi ile hafif seyahat edin. 3 üst, 2 alt, 1 ayakkabı yeterli!</p>"
+                }
+            ];
+            renderBlogGrid(allBlogPosts);
         }
-        .blog-wrapper-standalone {
-            padding-top: 140px;
-            padding-bottom: 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        .btn-page-back-static {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #ffcc66;
-            text-decoration: none;
-            font-weight: bold;
-            border: 1px solid #ffcc66;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .btn-page-back-static:hover {
-            background: #ffcc66;
-            color: #000;
+    }
+
+    // 2. Blog Kartlarını Ekrana Basma
+    function renderBlogGrid(posts) {
+        const container = document.getElementById('blog-grid-display');
+        container.innerHTML = ""; 
+
+        if(!posts || posts.length === 0) {
+            container.innerHTML = "<p style='text-align:center; color:#888; grid-column:1/-1;'>Henüz blog yazısı eklenmemiş.</p>";
+            return;
         }
 
-        /* --- BLOG GRID YAPISI --- */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .blog-card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: #ffcc66;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .blog-card img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-        }
-        .blog-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .blog-date {
-            font-size: 0.8rem;
-            color: #ffcc66;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .blog-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: #fff;
-            margin: 0 0 10px 0;
-            line-height: 1.3;
-        }
-        .blog-summary {
-            font-size: 0.95rem;
-            color: #aaa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .read-more {
-            margin-top: auto;
-            color: #ffcc66;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+        // Tarihe göre sırala (Yeniden eskiye)
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        /* --- DETAY MODAL (AÇILIR PENCERE) --- */
-        .blog-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 9999;
-            display: none; /* Başlangıçta gizli */
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .blog-modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-        .blog-modal-content {
-            background: #151515;
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            border-radius: 15px;
-            border: 1px solid #333;
-            position: relative;
-            overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu */
-            box-shadow: 0 0 50px rgba(255, 204, 102, 0.1);
-            animation: slideUp 0.4s ease;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .close-modal-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        .close-modal-btn:hover {
-            background: #ffcc66;
-            color: #000;
-        }
-        .modal-hero-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-        .modal-body {
-            padding: 40px;
-        }
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #ffcc66;
-            margin-bottom: 10px;
-        }
-        .modal-date {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            display: block;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-        }
-        .modal-text {
-            color: #ddd;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        .modal-text p { margin-bottom: 20px; }
-        .modal-text strong { color: #ffcc66; }
-        
-        @media (max-width: 768px) {
-            .modal-hero-image { height: 250px; }
-            .modal-title { font-size: 1.8rem; }
-            .modal-body { padding: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header id="main-header">
-        <div class="header-top-row">
-            <div class="top-bar-left">
-                <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-            </div>
-            <div class="top-bar-right">
-                <a href="index.html" class="btn btn-top-info"><i class="fas fa-home"></i> Anasayfaya Dön</a>
-            </div>
-        </div>
-      
-        <div class="header-bottom-row">
-            <div class="brand">
-                <img src="assets/walkabou_travel_logo.webp" alt="Logo" style="height:45px;"> 
-                <div class="brand-text-container">
-                    <span class="brand-title" style="color:#fff;">WalkAbouTravel</span>
-                    <span class="brand-tagline" style="color:#aaa;">Tourism & Travel</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="blog-wrapper-standalone">
-        
-        <a href="index.html" class="btn-page-back-static">← Anasayfa</a>
-
-        <div class="blog-container">
+        posts.forEach(post => {
+            const excerpt = (post.summary || post.description || '').substring(0, 150) + '...';
             
-            <div class="blog-header" style="text-align:center; margin-bottom:50px;">
-                <span class="blog-badge" style="color:#ffcc66; letter-spacing:2px; font-size:0.9rem;">SEYAHAT GÜNLÜĞÜ</span>
-                <h2 style="font-family:'Playfair Display',serif; font-size:3rem; margin:10px 0; color:#fff;">WalkAbout Travel Blog</h2>
-                <p class="blog-subtitle" style="color:#bbb;">Dünyayı keşfet, rotanı oluştur ve maceraya atıl.</p>
-                <div class="title-gold-line" style="width:100px; height:2px; background:#ffcc66; margin:20px auto;"></div>
-            </div>
-
-            <div id="blog-grid-display" class="blog-grid">
-                <p style="text-align:center; color:#666;">Yazılar yükleniyor...</p>
-            </div>
-
-            <div class="newsletter-section" style="background:rgba(255,204,102,0.1); padding:40px; text-align:center; border-radius:15px; margin-top:60px; border:1px solid #ffcc66;">
-                <h3 style="color:#ffcc66;"><i class="fas fa-paper-plane"></i> Keşfetmeye Hazır Mısın?</h3>
-                <p style="color:#ddd;">Bültenimize katıl, özel fırsatlardan haberdar ol.</p>
-            </div>
-
-        </div>
-    </main>
-
-    <footer style="background:#0c0c0c; padding:40px; text-align:center; border-top:1px solid #333; color:#888;">
-        <p>© 2025 WalkAbouTravel Tourism & Travel. Tüm hakları saklıdır.</p>
-    </footer>
-
-    <div id="blog-modal" class="blog-modal-overlay">
-        <div class="blog-modal-content">
-            <button class="close-modal-btn" onclick="closeModal()">×</button>
-            <img id="modal-img" src="" alt="Detay Görseli" class="modal-hero-image">
-            <div class="modal-body">
-                <h2 id="modal-title" class="modal-title"></h2>
-                <span id="modal-date" class="modal-date"></span>
-                <div id="modal-full-content" class="modal-text">
+            const html = `
+                <article class="blog-card" onclick="openModal(${post.id})">
+                    <img src="${post.image}" alt="${post.title}" loading="lazy" 
+                         onerror="this.src='https://placehold.co/400x250/38bdf8/FFF?text=WalkAbout'">
+                    <div class="blog-content">
+                        <span class="blog-date">${post.date}</span>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-summary">${excerpt}</p>
+                        <span class="read-more">Devamını Oku →</span>
                     </div>
-            </div>
-        </div>
-    </div>
+                </article>
+            `;
+            container.innerHTML += html;
+        });
+    }
 
-    <script>
-        let allBlogPosts = [];
-
-        // 1. Verileri Çek (JSON'dan veya Yedek veriden)
-        async function fetchBlogPosts() {
-            try {
-                const response = await fetch('blog-posts.json');
-                if (!response.ok) throw new Error('JSON okunamadı');
-                allBlogPosts = await response.json();
-                renderBlogGrid(allBlogPosts);
-            } catch (error) {
-                console.warn("JSON verisi alınamadı, yedek veri kullanılıyor:", error);
-                // Fallback / Yedek Veri
-                allBlogPosts = [
-                    {
-                        "id": 1,
-                        "title": "Kapadokya'da Balon Turu Deneyimi",
-                        "image": "assets/kapadokya-balon-turu-1.webp",
-                        "date": "2025-10-15",
-                        "summary": "Peri bacalarının üzerinde gün doğumunu izlemek...",
-                        "fullContent": "<p>Yedek içerik...</p>"
-                    }
-                ];
-                renderBlogGrid(allBlogPosts);
-            }
+    // 3. Modalı Açma (Detay Gösterme)
+    function openModal(postId) {
+        console.log('Opening modal for post:', postId);
+        
+        const post = allBlogPosts.find(p => p.id == postId);
+        
+        if (!post) {
+            console.error('Post bulunamadı:', postId);
+            return;
         }
 
-        // 2. Blog Kartlarını Ekrana Basma
-        function renderBlogGrid(posts) {
-            const container = document.getElementById('blog-grid-display');
-            container.innerHTML = ""; 
+        // Modal elemanlarını bul
+        const modal = document.getElementById('blog-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDate = document.getElementById('modal-date');
+        const modalImg = document.getElementById('modal-img');
+        const modalContent = document.getElementById('modal-full-content');
 
-            if(!posts || posts.length === 0) {
-                container.innerHTML = "<p>Henüz blog yazısı eklenmemiş.</p>";
-                return;
-            }
+        if (!modal) {
+            console.error('Modal element bulunamadı!');
+            return;
+        }
 
-            // Tarihe göre sırala (Yeniden eskiye)
-            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // İçerikleri doldur
+        if (modalTitle) modalTitle.textContent = post.title;
+        if (modalDate) modalDate.textContent = `${post.date} ${post.category ? '• ' + post.category : ''}`;
+        if (modalImg) modalImg.src = post.image;
+        if (modalContent) {
+            modalContent.innerHTML = post.fullContent || post.content || post.description || post.summary;
+        }
 
-            posts.forEach(post => {
-                const html = `
-                    <article class="blog-card" onclick="openModal('${post.id})">
-                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://placehold.co/400x250?text=WalkAbout'">
-                        <div class="blog-content">
-                            <span class="blog-date">${post.date}</span>
-                            <h3 class="blog-title">${post.title}</h3>
-                            <p class="blog-summary">${post.summary}</p>
-                            <span class="read-more">Devamını Oku →</span>
-                        </div>
-                    </article>
-                `;
-                container.innerHTML += html;
+        // Modal'ı göster
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        console.log('Modal açıldı');
+    }
+
+    // 4. Modalı Kapatma
+    function closeModal() {
+        const modal = document.getElementById('blog-modal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Modal dışına tıklanınca kapat
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('blog-modal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
             });
         }
 
-        // 3. Modalı Açma (Detay Gösterme)
-        function openModal(id) {
-            const post = allBlogPosts.find(p => p.id === id);
-            
-            if (post) {
-                document.getElementById('modal-title').innerText = post.title;
-                document.getElementById('modal-date').innerText = post.date;
-                document.getElementById('modal-img').src = post.image;
-                document.getElementById('modal-full-content').innerHTML = post.fullContent;
-
-                const modal = document.getElementById('blog-modal');
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; 
-            }
-        }
-
-        // 4. Modalı Kapatma
-        function closeModal() {
-            const modal = document.getElementById('blog-modal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; 
-        }
-
-        document.getElementById('blog-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
+        // ESC tuşu ile kapat
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Sayfa yüklendiğinde çalıştır
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchBlogPosts();
-        });
-    </script>
+        // Sayfaya yüklendiğinde blog'ları getir
+        fetchBlogPosts();
+    });
 
-</body>
-</html>
+    // Global fonksiyon olarak tanımla
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+</script>
