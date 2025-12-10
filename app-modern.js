@@ -1,313 +1,1316 @@
-// ================================================
-// WALKABOUT TRAVEL - MODERN APP.JS
-// Version: 2.0
-// ================================================
+/* ================================================
+   WALKABOUT TRAVEL - MODERN DESIGN SYSTEM
+   Version: 2.0
+   ================================================ */
 
-// === TOUR DATABASE ===
-const TOUR_DATA = {
-  // --- YURT İÇİ ---
-  "TUR-TR-MARDIN": {
-    "title": "Mardin - Tarihi Konaklar & Kültür Turu",
-    "price": "8.900 TL",
-    "duration": "5 Gün / 4 Gece",
-    "location": "Mardin ve Çevresi",
-    "area": "Güneydoğu Anadolu",
-    "accommodation": "Özel Butik Otel",
-    "groupSize": "10-15 Kişi",
-    "badge": "Popüler",
-    "description": `
-      <p>Binlerce yıllık medeniyetin izlerini taşıyan Mardin, Mezopotamya'nın kalbinde yer alan eşsiz bir şehirdir. Taş konakları, dar sokakları ve panoramik manzarasıyla büyüleyen bu antik şehirde, tarihin en derin izlerini takip edeceksiniz.</p>
-      
-      <h3>Tur Programı</h3>
-      <p>5 günlük turumuza Mardin'in tarihi merkezinde başlayacağız. Dara Antik Kenti, Deyrulzafaran Manastırı ve Kasımiye Medresesi'ni ziyaret edeceğiz.</p>
-      
-      <div class="tour-highlights">
-        <h4>✨ Tur Dahilinde</h4>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Havalimanı karşılama ve transferler</li>
-          <li><i class="fas fa-check-circle"></i> 4 gece butik otel konaklaması</li>
-          <li><i class="fas fa-check-circle"></i> Sabah kahvaltıları ve akşam yemekleri</li>
-          <li><i class="fas fa-check-circle"></i> Profesyonel Türkçe rehber</li>
-          <li><i class="fas fa-check-circle"></i> Müze ve antik kent giriş ücretleri</li>
-          <li><i class="fas fa-check-circle"></i> Seyahat sigortası</li>
-        </ul>
-      </div>
-      
-      <h3>Görülecek Yerler</h3>
-      <p>Mardin Kalesi, Zinciriye Medresesi, Kasımiye Medresesi, Dara Antik Kenti, Deyrulzafaran Manastırı, Midyat gümüş atölyeleri ve daha fazlası...</p>
-    `,
-    "images": generateTourImages("mardin-tarihi-konak-dokusu-", 16)
-  },
-  
-  "TUR-TR-ANTALYA": {
-    "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
-    "price": "12.500 TL",
-    "duration": "7 Gün / 6 Gece",
-    "location": "Antalya, Kaş, Kemer",
-    "area": "Akdeniz Bölgesi",
-    "accommodation": "Her şey Dahil Otel",
-    "groupSize": "15-20 Kişi",
-    "badge": "Özel",
-    "description": `
-      <p>Akdeniz'in turkuaz sularında unutulmaz bir yolculuğa çıkmaya hazır mısınız? Antalya'nın en güzel koylarını, tarihi Kaleiçi'ni ve antik kentleri keşfedeceğiniz 7 günlük bu turda, hem dinlenecek hem de tarihi zenginlikleri göreceksiniz.</p>
-      
-      <h3>Tur Programı</h3>
-      <p>Antalya'da başlayıp Kaş ve Kemer'e uzanan rotamızda, tekne turları, tarihi geziler ve doğa yürüyüşleri sizi bekliyor.</p>
-      
-      <div class="tour-highlights">
-        <h4>✨ Tur Dahilinde</h4>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Havalimanı transferleri</li>
-          <li><i class="fas fa-check-circle"></i> 6 gece her şey dahil otel</li>
-          <li><i class="fas fa-check-circle"></i> Tekne turu (öğle yemeği dahil)</li>
-          <li><i class="fas fa-check-circle"></i> Aspendos Antik Tiyatrosu ziyareti</li>
-          <li><i class="fas fa-check-circle"></i> Profesyonel rehber</li>
-          <li><i class="fas fa-check-circle"></i> Seyahat sigortası</li>
-        </ul>
-      </div>
-    `,
-    "images": generateTourImages("antalya-koy-gezisi-", 17)
-  },
-  
-  "TUR-TR-KAPADOKYA": {
-    "title": "Kapadokya - Balon ve Peribacaları Turu",
-    "price": "9.800 TL",
-    "duration": "4 Gün / 3 Gece",
-    "location": "Göreme, Uçhisar, Avanos",
-    "area": "İç Anadolu",
-    "accommodation": "Mağara Otel Konaklama",
-    "groupSize": "12-18 Kişi",
-    "badge": "Popüler",
-    "description": `
-      <p>Kapadokya'nın eşsiz peribacaları ve gün doğumu balon turları ile unutulmaz bir deneyim yaşayın. Dünyanın en özel coğrafyalarından birinde, yer altı şehirlerini, vadileri ve tarihi kiliseleri keşfedeceksiniz.</p>
-      
-      <div class="tour-highlights">
-        <h4>✨ Tur Dahilinde</h4>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Gün doğumu balon turu</li>
-          <li><i class="fas fa-check-circle"></i> 3 gece mağara otel</li>
-          <li><i class="fas fa-check-circle"></i> Göreme Açık Hava Müzesi</li>
-          <li><i class="fas fa-check-circle"></i> Derinkuyu Yer Altı Şehri</li>
-          <li><i class="fas fa-check-circle"></i> Avanos çömlek atölyesi</li>
-          <li><i class="fas fa-check-circle"></i> Tüm transferler ve rehber</li>
-        </ul>
-      </div>
-    `,
-    "images": generateTourImages("kapadokya-balon-turu-", 20)
-  },
-  
-  "TUR-TR-FETHIYE": {
-    "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
-    "price": "6.750 TL",
-    "duration": "3 Gün / 2 Gece",
-    "location": "Ölüdeniz, Kelebekler Vadisi",
-    "area": "Ege Bölgesi",
-    "accommodation": "Butik Pansiyon",
-    "groupSize": "8-12 Kişi",
-    "badge": "Macera",
-    "description": `
-      <p>Babadağ'dan yamaç paraşütü ile Ölüdeniz'in turkuaz sularına süzülün. Kelebekler Vadisi'nde tekne turu yapın ve Likya Yolu'nda doğa yürüyüşü deneyimi yaşayın.</p>
-      
-      <div class="tour-highlights">
-        <h4>✨ Tur Dahilinde</h4>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Yamaç paraşütü deneyimi</li>
-          <li><i class="fas fa-check-circle"></i> Tekne turu (öğle yemeği dahil)</li>
-          <li><i class="fas fa-check-circle"></i> 2 gece butik pansiyon</li>
-          <li><i class="fas fa-check-circle"></i> Likya Yolu rehberli yürüyüş</li>
-        </ul>
-      </div>
-    `,
-    "images": generateTourImages("fethiye-oludeniz-manzarasi-", 19)
-  },
-  
-  "TUR-TR-PAMUKKALE": {
-    "title": "Pamukkale - Travertenler & Antik Kent",
-    "price": "4.500 TL",
-    "duration": "2 Gün / 1 Gece",
-    "location": "Pamukkale, Hierapolis",
-    "area": "Denizli",
-    "accommodation": "Termal Otel",
-    "groupSize": "15-20 Kişi",
-    "badge": "Hızlı Tur",
-    "description": `
-      <p>Pamukkale'nin bembeyaz traverten teraslarında yürüyün ve Kleopatra Havuzu'nda termal sularda yüzün. Hierapolis Antik Kenti'ni keşfedin.</p>
-      
-      <div class="tour-highlights">
-        <h4>✨ Tur Dahilinde</h4>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Travertenler girişi</li>
-          <li><i class="fas fa-check-circle"></i> Hierapolis Antik Kenti</li>
-          <li><i class="fas fa-check-circle"></i> 1 gece termal otel</li>
-          <li><i class="fas fa-check-circle"></i> Kleopatra Havuzu</li>
-        </ul>
-      </div>
-    `,
-    "images": generateTourImages("pamukkale-traverten-dogal-", 11)
-  },
-
-  // --- YURT DIŞI ---
-  "TUR-D-ISPANYA": {
-    "title": "İspanya - Barselona & Endülüs Rüyası",
-    "price": "1.800 €",
-    "duration": "9 Gün / 8 Gece",
-    "location": "Barselona, Granada, Sevilla",
-    "area": "İspanya",
-    "accommodation": "4 Yıldızlı Oteller",
-    "groupSize": "20-25 Kişi",
-    "badge": "Premium",
-    "description": `
-      <p>Gaudi'nin eşsiz eserleri, Endülüs'ün büyülü sarayları ve flamenko gösterileri ile dolu İspanya turumuza katılın!</p>
-      
-      <div class="tour-highlights">
-        <h4>✨ Tur Dahilinde</h4>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Uçak bileti dahil</li>
-          <li><i class="fas fa-check-circle"></i> 8 gece 4 yıldızlı otel</li>
-          <li><i class="fas fa-check-circle"></i> Sagrada Familia rehberli tur</li>
-          <li><i class="fas fa-check-circle"></i> El Hamra Sarayı ziyareti</li>
-          <li><i class="fas fa-check-circle"></i> Flamenko gösterisi</li>
-          <li><i class="fas fa-check-circle"></i> Schengen vizesi desteği</li>
-        </ul>
-      </div>
-    `,
-    "images": generateTourImages("spain-", 15)
-  },
-  
-  "TUR-D-RUSYA-KIS": {
-    "title": "Rusya - Kış Masalı (Moskova & St. Petersburg)",
-    "price": "1.450 €",
-    "duration": "6 Gün / 5 Gece",
-    "location": "Moskova, St. Petersburg",
-    "area": "Rusya Federasyonu",
-    "accommodation": "5 Yıldızlı Oteller",
-    "groupSize": "15-20 Kişi",
-    "badge": "Kış Özel",
-    "description": `
-      <p>Kızıl Meydan, Hermitage Müzesi ve Çar'ın saraylarında tarihe yolculuk yapın. Kar manzaraları eşliğinde unutulmaz bir deneyim!</p>
-    `,
-    "images": generateTourImages("rusya-", 13)
-  },
-  
-  "TUR-D-BREZILYA": {
-    "title": "Brezilya - Rio Karnavalı ve Amazon",
-    "price": "2.990 $",
-    "duration": "10 Gün / 9 Gece",
-    "location": "Rio de Janeiro, Manaus",
-    "area": "Brezilya",
-    "accommodation": "Lüks Lodge ve Oteller",
-    "groupSize": "15-20 Kişi",
-    "badge": "Egzotik",
-    "description": `
-      <p>Rio Karnavalı'nın coşkusu ve Amazon Yağmur Ormanları'nın doğal güzelliğiyle dolu macera!</p>
-    `,
-    "images": generateTourImages("brazil-", 15)
-  },
-  
-  "TUR-D-AMERIKA": {
-    "title": "ABD - New York & Batı Kıyısı",
-    "price": "3.500 $",
-    "duration": "14 Gün / 13 Gece",
-    "location": "New York, Los Angeles, San Francisco",
-    "area": "Amerika Birleşik Devletleri",
-    "accommodation": "4 Yıldızlı Oteller",
-    "groupSize": "20-25 Kişi",
-    "badge": "Kapsamlı",
-    "description": `
-      <p>Amerika'nın iki kıyısını keşfedin! New York'tan Hollywood'a, Golden Gate'ten Özgürlük Heykeli'ne kadar...</p>
-    `,
-    "images": generateTourImages("new-york-", 9)
-  }
-};
-
-// === HELPER FUNCTIONS ===
-function generateTourImages(baseName, count) {
-    const images = [];
-    for (let i = 1; i <= count; i++) {
-        images.push(`assets/${baseName}${i}.webp`);
-    }
-    return images;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-// === TOUR DETAIL PAGE LOADER ===
-function loadTourDetail(tourId) {
-    const tour = TOUR_DATA[tourId];
+:root {
+    /* Primary Colors */
+    --ocean-blue: #0ea5e9;
+    --sunset-orange: #f97316;
+    --forest-green: #10b981;
+    --gold-accent: #fbbf24;
     
-    if (!tour) {
-        console.error('Tour not found:', tourId);
-        return;
-    }
-
-    // Set hero image
-    document.getElementById('tourHeroImage').src = tour.images[0];
-    document.getElementById('tourBadge').textContent = tour.badge || 'Tur';
-    document.getElementById('tourTitle').textContent = tour.title;
-
-    // Set meta info
-    const meta = document.getElementById('tourMeta');
-    meta.innerHTML = `
-        <div class="tour-meta-item">
-            <i class="fas fa-clock"></i>
-            <span>${tour.duration}</span>
-        </div>
-        <div class="tour-meta-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>${tour.location}</span>
-        </div>
-        <div class="tour-meta-item">
-            <i class="fas fa-users"></i>
-            <span>${tour.groupSize}</span>
-        </div>
-    `;
-
-    // Set description
-    document.getElementById('tourDescription').innerHTML = tour.description;
-
-    // Set price
-    document.getElementById('tourPrice').textContent = tour.price;
-
-    // Set info list
-    const infoList = document.getElementById('tourInfoList');
-    infoList.innerHTML = `
-        <li>
-            <span class="tour-info-label">Süre</span>
-            <span class="tour-info-value">${tour.duration}</span>
-        </li>
-        <li>
-            <span class="tour-info-label">Lokasyon</span>
-            <span class="tour-info-value">${tour.location}</span>
-        </li>
-        <li>
-            <span class="tour-info-label">Konaklama</span>
-            <span class="tour-info-value">${tour.accommodation}</span>
-        </li>
-        <li>
-            <span class="tour-info-label">Grup Büyüklüğü</span>
-            <span class="tour-info-value">${tour.groupSize}</span>
-        </li>
-    `;
-
-    // Set gallery
-    galleryImages = tour.images;
-    const gallery = document.getElementById('tourGallery');
-    gallery.innerHTML = tour.images.map((img, index) => `
-        <div class="gallery-item" onclick="openLightbox(${index})">
-            <img src="${img}" alt="${tour.title} - Görsel ${index + 1}" loading="lazy">
-        </div>
-    `).join('');
-
-    // Set booking buttons
-    const emailSubject = `Rezervasyon Talebi: ${tour.title}`;
-    const emailBody = `Merhaba WalkAbout Travel,%0D%0A%0D%0A${tour.title} turu için rezervasyon yapmak istiyorum.%0D%0A%0D%0ASüre: ${tour.duration}%0D%0AFiyat: ${tour.price}%0D%0A%0D%0ALütfen bana detaylı bilgi gönderebilir misiniz?`;
+    /* Neutral Colors */
+    --deep-navy: #0f172a;
+    --cloud-white: #f8fafc;
+    --soft-gray: #64748b;
+    --border-gray: #e2e8f0;
     
-    document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSubject}&body=${emailBody}`;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
+    --gradient-dark: linear-gradient(135deg, var(--deep-navy) 0%, #1e293b 100%);
     
-    const whatsappMsg = `Merhaba! *${tour.title}* turu hakkında bilgi almak istiyorum.%0A%0A📍 Lokasyon: ${tour.location}%0A⏰ Süre: ${tour.duration}%0A💰 Fiyat: ${tour.price}`;
-    document.getElementById('whatsappBtn').href = `https://wa.me/5491135870045?text=${whatsappMsg}`;
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+    
+    /* Transitions */
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.4s ease;
 }
 
-// === EXPORT FOR GLOBAL ACCESS ===
-if (typeof window !== 'undefined') {
-    window.TOUR_DATA = TOUR_DATA;
-    window.loadTourDetail = loadTourDetail;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--cloud-white);
+    color: var(--deep-navy);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ================================================
+   TYPOGRAPHY
+   ================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 { font-size: 72px; }
+h2 { font-size: 48px; }
+h3 { font-size: 26px; }
+h4 { font-size: 20px; }
+
+p {
+    line-height: 1.7;
+    color: var(--soft-gray);
+}
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    transition: var(--transition-base);
+}
+
+nav.scrolled {
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 45px;
+    border-radius: 8px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-accent);
+}
+
+.logo-subtitle {
+    font-size: 11px;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-accent);
+    transition: var(--transition-base);
+}
+
+.nav-links a:hover {
+    color: var(--gold-accent);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.lang-switcher {
+    display: flex;
+    gap: 10px;
+}
+
+.lang-btn {
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: var(--transition-base);
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    background: var(--gold-accent);
+    border-color: var(--gold-accent);
+    color: var(--deep-navy);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ================================================
+   BUTTONS
+   ================================================ */
+
+.btn {
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: var(--deep-navy);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--ocean-blue);
+    color: var(--ocean-blue);
+}
+
+.btn-outline:hover {
+    background: var(--ocean-blue);
+    color: white;
+}
+
+/* ================================================
+   HERO SECTION
+   ================================================ */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--gradient-dark);
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.3));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    max-width: 900px;
+    padding: 0 20px;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid var(--gold-accent);
+    border-radius: 30px;
+    color: var(--gold-accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-gradient {
+    background: linear-gradient(to right, var(--gold-accent), var(--ocean-blue), var(--sunset-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 22px;
+    color: #cbd5e1;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ================================================
+   SECTIONS
+   ================================================ */
+
+section {
+    padding: 120px 40px;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px;
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: 20px;
+    color: var(--ocean-blue);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.section-header h2 {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--deep-navy);
+    margin-bottom: 20px;
+}
+
+.section-header p {
+    font-size: 18px;
+    color: var(--soft-gray);
+    line-height: 1.7;
+}
+
+/* ================================================
+   TOUR CARDS
+   ================================================ */
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tour-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-slow);
+    cursor: pointer;
+}
+
+.tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.tour-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.tour-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.tour-card:hover .tour-image img {
+    transform: scale(1.1);
+}
+
+.tour-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    background: var(--gold-accent);
+    color: var(--deep-navy);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tour-content {
+    padding: 30px;
+}
+
+.tour-content h3 {
+    font-size: 26px;
+    color: var(--deep-navy);
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.tour-content p {
+    color: var(--soft-gray);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.tour-features {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.feature-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: 20px;
+    color: var(--ocean-blue);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tour-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ocean-blue);
+    font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+}
+
+.tour-card:hover .tour-link {
+    gap: 12px;
+}
+
+/* ================================================
+   WHY US SECTION
+   ================================================ */
+
+.why-us-section {
+    background: var(--gradient-dark);
+    color: white;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 60px auto 0;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-base);
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.feature-card p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* ================================================
+   BLOG CARDS
+   ================================================ */
+
+.blog-section {
+    background: #f8fafc;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-slow);
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-image {
+    height: 240px;
+    overflow: hidden;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.blog-content {
+    padding: 30px;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: var(--soft-gray);
+}
+
+.blog-content h3 {
+    font-size: 22px;
+    color: var(--deep-navy);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.blog-content p {
+    color: var(--soft-gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* ================================================
+   CONTACT FORM
+   ================================================ */
+
+.contact-section {
+    background: white;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--deep-navy);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--border-gray);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition-base);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--ocean-blue);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.info-item {
+    text-align: center;
+    padding: 30px;
+    background: #f8fafc;
+    border-radius: 16px;
+}
+
+.info-item i {
+    font-size: 32px;
+    color: var(--ocean-blue);
+    margin-bottom: 15px;
+}
+
+.info-item h4 {
+    font-size: 16px;
+    color: var(--deep-navy);
+    margin-bottom: 8px;
+}
+
+.info-item p {
+    color: var(--soft-gray);
+    font-size: 14px;
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+
+footer {
+    background: var(--deep-navy);
+    color: white;
+    padding: 80px 40px 40px;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.footer-brand {
+    max-width: 350px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.footer-logo img {
+    height: 50px;
+    border-radius: 8px;
+}
+
+.footer-brand p {
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    transition: var(--transition-base);
+}
+
+.social-links a:hover {
+    background: var(--ocean-blue);
+    transform: translateY(-3px);
+}
+
+.footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: var(--transition-base);
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: var(--gold-accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* ================================================
+   WHATSAPP FLOAT BUTTON
+   ================================================ */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    cursor: pointer;
+    transition: var(--transition-base);
+    animation: pulse 2s infinite;
+    text-decoration: none;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+}
+
+/* ================================================
+   RESPONSIVE DESIGN
+   ================================================ */
+
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 350px;
+        background: var(--deep-navy);
+        flex-direction: column;
+        padding: 100px 40px 40px;
+        transition: right 0.4s ease;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .tours-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    section {
+        padding: 80px 20px;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .section-header h2 {
+        font-size: 36px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* ================================================
+   UTILITY CLASSES
+   ================================================ */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 { margin-top: 20px; }
+.mt-40 { margin-top: 40px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-40 { margin-bottom: 40px; }
+
+/* ================================================
+   TOUR DETAIL PAGE STYLES
+   ================================================ */
+
+.tour-detail-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 40px;
+    margin-top: 85px;
+}
+
+.tour-detail-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
+    z-index: 1;
+}
+
+.tour-detail-hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.tour-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    color: white;
+}
+
+.tour-hero-content .tour-badge {
+    margin-bottom: 15px;
+}
+
+.tour-hero-content h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.tour-meta {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 16px;
+    color: #cbd5e1;
+}
+
+.tour-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tour-meta-item i {
+    font-size: 20px;
+    color: var(--gold-accent);
+}
+
+.tour-detail-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+}
+
+.tour-grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+}
+
+.tour-main {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.tour-main h2 {
+    font-size: 36px;
+    color: var(--deep-navy);
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-gray);
+}
+
+.tour-main h3 {
+    font-size: 24px;
+    color: var(--deep-navy);
+    margin: 40px 0 20px;
+}
+
+.tour-main h4 {
+    font-size: 20px;
+    color: var(--deep-navy);
+    margin: 30px 0 15px;
+}
+
+.tour-main p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--soft-gray);
+    margin-bottom: 20px;
+}
+
+.tour-highlights {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 16px;
+    margin: 30px 0;
+}
+
+.tour-highlights h4 {
+    color: var(--deep-navy);
+    margin-bottom: 20px;
+}
+
+.tour-highlights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tour-highlights li {
+    padding: 12px 0;
+    color: var(--deep-navy);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+}
+
+.tour-highlights li i {
+    color: var(--forest-green);
+    font-size: 20px;
+}
+
+.tour-sidebar {
+    position: sticky;
+    top: 120px;
+}
+
+.tour-booking-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 30px;
+}
+
+.tour-price {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--border-gray);
+}
+
+.tour-price .price-label {
+    font-size: 14px;
+    color: var(--soft-gray);
+    margin-bottom: 10px;
+}
+
+.tour-price .price-amount {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--ocean-blue);
+    font-family: 'Playfair Display', serif;
+}
+
+.booking-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-cta .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.tour-info-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.tour-info-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tour-info-list li:last-child {
+    border-bottom: none;
+}
+
+.tour-info-label {
+    color: var(--soft-gray);
+    font-size: 14px;
+}
+
+.tour-info-value {
+    color: var(--deep-navy);
+    font-weight: 600;
+}
+
+.tour-gallery {
+    margin: 50px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 12px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+@media (max-width: 992px) {
+    .tour-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tour-sidebar {
+        position: static;
+    }
+
+    .tour-main {
+        padding: 30px 20px;
+    }
+
+    .tour-hero-content h1 {
+        font-size: 36px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
 }
