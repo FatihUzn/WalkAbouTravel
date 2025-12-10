@@ -493,21 +493,39 @@
     </div>
 </section>
 
-<!-- BLOG BÖLÜMÜ -->
-<section id="homepage-blog" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
+<!-- GELİŞTİRİLMİŞ BLOG BÖLÜMÜ -->
+<section id="homepage-blog" style="padding: 120px 20px 80px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); position: relative; z-index: 20;">
+    
+    <!-- Geri Butonu - Üstte Sabit -->
+    <div style="max-width: 1400px; margin: 0 auto 30px auto;">
+        <a href="#hero" onclick="event.preventDefault(); location.hash='hero';" 
+           style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #38bdf8; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);">
+            <i class="fas fa-arrow-left"></i> Geri
+        </a>
+    </div>
+
     <div style="max-width: 1400px; margin: 0 auto;">
         
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a2e; margin-bottom: 10px;">
+        <!-- Başlık Bölümü -->
+        <div style="text-align: center; margin-bottom: 60px;">
+            <span style="display: inline-block; padding: 8px 20px; background: rgba(56, 189, 248, 0.1); border-radius: 20px; color: #0284c7; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 15px;">
+                SEYAHAT BLOGU
+            </span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 48px; color: #1e293b; margin: 0 0 15px 0; font-weight: 900;">
                 Seyahat Günlüğü
             </h2>
-            <p style="color: #666; max-width: 600px; margin: 0 auto; font-size: 18px;">
+            <p style="color: #64748b; max-width: 600px; margin: 0 auto; font-size: 18px; line-height: 1.6;">
                 Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
             </p>
+            <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #38bdf8, #0284c7); margin: 25px auto 0; border-radius: 2px;"></div>
         </div>
 
-        <div id="blog-grid-display" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <p style="text-align:center;color:#666;">Blog yazıları yükleniyor...</p>
+        <!-- Blog Kartları Grid -->
+        <div id="blog-grid-display" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px;">
+            <div style="text-align:center; padding: 40px; color:#64748b; grid-column: 1 / -1;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #38bdf8; margin-bottom: 15px;"></i>
+                <p style="margin: 0;">Blog yazıları yükleniyor...</p>
+            </div>
         </div>
 
     </div>
@@ -523,15 +541,28 @@ async function loadBlogPosts() {
         renderBlogPosts(posts);
     } catch (error) {
         console.error('Blog yüklenirken hata:', error);
-        document.getElementById('blog-grid-display').innerHTML = '<p style="text-align:center;color:#666;">Blog yazıları şu anda yüklenemiyor. blog.json dosyasının ana dizinde olduğundan emin olun.</p>';
+        document.getElementById('blog-grid-display').innerHTML = `
+            <div style="text-align:center; padding: 60px 20px; background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); grid-column: 1 / -1;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: #f59e0b; margin-bottom: 20px;"></i>
+                <h3 style="color: #1e293b; margin: 0 0 10px 0;">Blog Yazıları Yüklenemedi</h3>
+                <p style="color: #64748b; margin: 0;">blog.json dosyasının ana dizinde olduğundan emin olun.</p>
+            </div>
+        `;
     }
 }
 
-// Blog kartlarını oluştur
+// Blog kartlarını oluştur - GELİŞTİRİLMİŞ TASARIM
 function renderBlogPosts(posts) {
     const container = document.getElementById('blog-grid-display');
+    
     if (!posts || posts.length === 0) {
-        container.innerHTML = '<p style="text-align:center;color:#666;">Henüz blog yazısı eklenmemiş.</p>';
+        container.innerHTML = `
+            <div style="text-align:center; padding: 60px 20px; background: #fff; border-radius: 16px; grid-column: 1 / -1;">
+                <i class="fas fa-pen-fancy" style="font-size: 48px; color: #38bdf8; margin-bottom: 20px;"></i>
+                <h3 style="color: #1e293b; margin: 0 0 10px 0;">Henüz Blog Yazısı Yok</h3>
+                <p style="color: #64748b; margin: 0;">Blog Manager Tool ile yeni yazılar ekleyebilirsiniz.</p>
+            </div>
+        `;
         return;
     }
 
@@ -539,22 +570,123 @@ function renderBlogPosts(posts) {
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     let html = '';
-    posts.forEach(post => {
+    posts.forEach((post, index) => {
+        // Kategori renkleri
+        const categoryColors = {
+            'KÜLTÜR': '#8b5cf6',
+            'MACERA': '#f59e0b',
+            'GASTRONOMİ': '#ef4444',
+            'REHBER': '#10b981',
+            'İPUCU': '#3b82f6',
+            'default': '#38bdf8'
+        };
+        
+        const categoryColor = categoryColors[post.category?.toUpperCase()] || categoryColors.default;
+        
         html += `
-            <article style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
-                <img src="${post.image}" alt="${post.title}" style="width: 100%; height: 200px; object-fit: cover;" 
-                     onerror="this.src='https://placehold.co/400x200/1a1a2e/FFF?text=Blog'" loading="lazy">
-                <div style="padding: 20px;">
-                    <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">${post.date}</span>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #1a1a2e; margin: 10px 0;">${post.title}</h3>
-                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">${(post.summary || post.description || '').substring(0, 120)}...</p>
+            <article class="blog-card-enhanced" style="
+                background: #fff;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                cursor: pointer;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                animation: fadeInUp 0.6s ease ${index * 0.1}s both;
+            " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(56, 189, 248, 0.2)';" 
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+                
+                <!-- Resim Bölümü -->
+                <div style="position: relative; overflow: hidden; height: 220px;">
+                    <img src="${post.image}" alt="${post.title}" 
+                         style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" 
+                         onerror="this.src='https://placehold.co/400x250/38bdf8/FFF?text=${encodeURIComponent(post.title.substring(0, 20))}'\" 
+                         loading="lazy"
+                         onmouseover="this.style.transform='scale(1.1)'" 
+                         onmouseout="this.style.transform='scale(1)'">
+                    
+                    <!-- Kategori Rozeti -->
+                    ${post.category ? `
+                        <span style="
+                            position: absolute;
+                            top: 15px;
+                            right: 15px;
+                            padding: 6px 14px;
+                            background: ${categoryColor};
+                            color: #fff;
+                            border-radius: 20px;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            letter-spacing: 0.5px;
+                            text-transform: uppercase;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                        ">${post.category}</span>
+                    ` : ''}
                 </div>
+
+                <!-- İçerik Bölümü -->
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    
+                    <!-- Tarih -->
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #38bdf8; font-size: 0.85rem; font-weight: 600;">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>${post.date}</span>
+                    </div>
+
+                    <!-- Başlık -->
+                    <h3 style="
+                        font-family: 'Playfair Display', serif;
+                        font-size: 1.5rem;
+                        color: #1e293b;
+                        margin: 0 0 12px 0;
+                        line-height: 1.3;
+                        font-weight: 700;
+                    ">${post.title}</h3>
+
+                    <!-- Açıklama -->
+                    <p style="
+                        color: #64748b;
+                        font-size: 0.95rem;
+                        line-height: 1.7;
+                        margin: 0 0 20px 0;
+                        flex-grow: 1;
+                    ">${(post.summary || post.description || '').substring(0, 140)}...</p>
+
+                    <!-- Devamını Oku Linki -->
+                    <div style="display: flex; align-items: center; gap: 8px; color: #38bdf8; font-weight: 600; font-size: 0.9rem; margin-top: auto;">
+                        <span>Devamını Oku</span>
+                        <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                    </div>
+                </div>
+
             </article>
         `;
     });
 
     container.innerHTML = html;
 }
+
+// Animasyon keyframes
+const blogStyle = document.createElement('style');
+blogStyle.textContent = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .blog-card-enhanced:hover .fa-arrow-right {
+        transform: translateX(5px);
+    }
+`;
+document.head.appendChild(blogStyle);
 
 // Sayfa yüklendiğinde blog'u yükle
 document.addEventListener('DOMContentLoaded', loadBlogPosts);
