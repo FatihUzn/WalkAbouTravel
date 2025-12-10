@@ -385,7 +385,7 @@
   <div class="header-top-row">
     <div class="top-bar-left">
       <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="mailto:info@walkaboutravel.com" class="btn btn-top-info"><i class="fas fa-envelope"></i> info@walkaboutravel.com</a>
+      <a href="/cdn-cgi/l/email-protection#87eee9e1e8c7f0e6ebece6e5e8f2f3f5e6f1e2eba9e4e8ea" class="btn btn-top-info"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="b6dfd8d0d9f6c1d7daddd7d4d9c3c2c4d7c0d3da98d5d9db">[email&#160;protected]</span></a>
       </div>
     <div class="top-bar-right">
       <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
@@ -438,10 +438,10 @@
     <h1 data-key="hero_title">WalkAbouTravel</h1>
     <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;"></h2>
     
-    <!-- ANA BUTONLAR - BLOG KALDIRILDI -->
+    <!-- ANA BUTONLAR -->
     <div class="hero-links-container action-buttons" style="margin-bottom: 50px;">
       <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-      <!-- BLOG BUTONU GEÇİCİ OLARAK KALDIRILDI -->
+      <a href="#homepage-blog" class="btn btn-hero-link">Blog</a>
       <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Yurt Dışı Turlar</a>
     </div>
   </div> 
@@ -493,8 +493,72 @@
     </div>
 </section>
 
-<!-- BLOG BÖLÜMÜ GEÇİCİ OLARAK KALDIRILDI -->
-<!-- İleride blog eklenecekse buraya eklenecek -->
+<!-- BLOG BÖLÜMÜ -->
+<section id="homepage-blog" style="padding: 100px 20px; background-color: #f4f7fc; position: relative; z-index: 20;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a2e; margin-bottom: 10px;">
+                Seyahat Günlüğü
+            </h2>
+            <p style="color: #666; max-width: 600px; margin: 0 auto; font-size: 18px;">
+                Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
+            </p>
+        </div>
+
+        <div id="blog-grid-display" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <p style="text-align:center;color:#666;">Blog yazıları yükleniyor...</p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+// Blog verilerini yükle
+async function loadBlogPosts() {
+    try {
+        const response = await fetch('blog.json');
+        if (!response.ok) throw new Error('Blog yüklenemedi');
+        const posts = await response.json();
+        renderBlogPosts(posts);
+    } catch (error) {
+        console.error('Blog yüklenirken hata:', error);
+        document.getElementById('blog-grid-display').innerHTML = '<p style="text-align:center;color:#666;">Blog yazıları şu anda yüklenemiyor. blog.json dosyasının ana dizinde olduğundan emin olun.</p>';
+    }
+}
+
+// Blog kartlarını oluştur
+function renderBlogPosts(posts) {
+    const container = document.getElementById('blog-grid-display');
+    if (!posts || posts.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:#666;">Henüz blog yazısı eklenmemiş.</p>';
+        return;
+    }
+
+    // En yeni yazıları önce göster
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    let html = '';
+    posts.forEach(post => {
+        html += `
+            <article style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease;">
+                <img src="${post.image}" alt="${post.title}" style="width: 100%; height: 200px; object-fit: cover;" 
+                     onerror="this.src='https://placehold.co/400x200/1a1a2e/FFF?text=Blog'" loading="lazy">
+                <div style="padding: 20px;">
+                    <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">${post.date}</span>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #1a1a2e; margin: 10px 0;">${post.title}</h3>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">${(post.summary || post.description || '').substring(0, 120)}...</p>
+                </div>
+            </article>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+// Sayfa yüklendiğinde blog'u yükle
+document.addEventListener('DOMContentLoaded', loadBlogPosts);
+</script>
 
 <main id="page-container">
 
@@ -630,7 +694,7 @@
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                <a href="mailto:info@walkaboutravel.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="/cdn-cgi/l/email-protection#60090e060f2017010c0b01020f1514120116050c4e030f0d" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
 
@@ -655,7 +719,7 @@
                 </li>
                 <li>
                     <i class="fas fa-envelope"></i>
-                    <a href="mailto:info@walkaboutravel.com" data-key="contact_info_email_p">info@walkaboutravel.com</a>
+                    <a href="/cdn-cgi/l/email-protection#0c65626a634c7b6d60676d6e6379787e6d7a6960226f6361" data-key="contact_info_email_p"><span class="__cf_email__" data-cfemail="aac3c4ccc5eaddcbc6c1cbc8c5dfded8cbdccfc684c9c5c7">[email&#160;protected]</span></a>
                 </li>
             </ul>
         </div>
@@ -681,7 +745,7 @@
   <div id="house-detail-content"></div>
 </div>
 
-<script src="app.js?v=1.7" defer></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="app.js?v=1.7" defer></script>
 
 <script>
     const data = [
@@ -714,19 +778,3 @@
 
         setTimeout(() => {
             if(textElement) {
-                const currentData = data[index];
-                textElement.innerHTML = `<strong>${currentData.title}</strong><br>${currentData.description}`;
-                textElement.style.opacity = '1'; 
-                index = (index + 1) % data.length;
-            }
-        }, 500); 
-    }
-
-    if(textElement) {
-        changeTextWithFade();
-        setInterval(changeTextWithFade, intervalTime);
-    }
-</script>
-
-</body>
-</html>
