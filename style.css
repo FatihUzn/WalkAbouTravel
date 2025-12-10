@@ -1,6 +1,6 @@
 /* ================================================
-   WALKABOUT TRAVEL - MODERN LIGHT THEME (FIXED)
-   Version: 2.2
+   WALKABOUT TRAVEL - FRESH OCEAN THEME
+   Version: 3.0 (Light & Blue Edition)
    ================================================ */
 
 * {
@@ -10,28 +10,29 @@
 }
 
 :root {
-    /* Primary Colors */
-    --ocean-blue: #0ea5e9;
-    --sunset-orange: #f97316;
+    /* Primary Colors - Okyanus ve Gökyüzü Tonları */
+    --ocean-blue: #0ea5e9;       /* Ana Mavi */
+    --sky-blue: #bae6fd;         /* Açık Mavi */
+    --pale-blue: #f0f9ff;        /* Çok Açık Zemin Mavisi */
+    --sunset-orange: #f97316;    /* Turuncu Aksan */
     --forest-green: #10b981;
     --gold-accent: #fbbf24;
     
-    /* Neutral Colors - Light Theme Optimized */
-    --deep-navy: #0f172a;      /* Ana Metin Rengi */
-    --cloud-white: #ffffff;    /* Saf Beyaz Arkaplan */
-    --off-white: #f1f5f9;      /* Hafif Gri Arkaplan (Bölüm ayırıcı) */
-    --soft-gray: #475569;      /* Yardımcı Metin Rengi */
-    --border-gray: #cbd5e1;    /* Belirgin Çerçeve Rengi */
+    /* Neutral Colors - Metin ve Zemin */
+    --deep-navy: #1e293b;        /* Metin Rengi (Siyah yerine koyu lacivert/gri) */
+    --heading-color: #0f172a;    /* Başlıklar için daha koyu ton */
+    --cloud-white: #ffffff;
+    --soft-gray: #475569;        /* Açıklama metinleri */
+    --border-gray: #e2e8f0;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
-    --gradient-light: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    /* Gradients - Ferah Geçişler */
+    --gradient-primary: linear-gradient(135deg, var(--ocean-blue), #38bdf8);
+    --gradient-light: linear-gradient(180deg, #ffffff 0%, #e0f2fe 100%); /* Hero arka planı */
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* Shadows - Yumuşak Gölgeler */
+    --shadow-sm: 0 2px 8px rgba(14, 165, 233, 0.08);
+    --shadow-md: 0 10px 40px rgba(14, 165, 233, 0.12);
+    --shadow-lg: 0 20px 60px rgba(14, 165, 233, 0.18);
     
     /* Transitions */
     --transition-base: all 0.3s ease;
@@ -58,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     line-height: 1.2;
-    color: var(--deep-navy);
+    color: var(--heading-color);
 }
 
 h1 { font-size: 72px; }
@@ -80,18 +81,18 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95); /* Beyaz Arka Plan */
+    backdrop-filter: blur(10px);
     padding: 20px 0;
     transition: var(--transition-base);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
 }
 
 nav.scrolled {
     padding: 15px 0;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .nav-container {
@@ -107,6 +108,7 @@ nav.scrolled {
     display: flex;
     align-items: center;
     gap: 12px;
+    color: var(--deep-navy);
     text-decoration: none;
 }
 
@@ -124,7 +126,7 @@ nav.scrolled {
     font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 700;
-    color: var(--deep-navy);
+    color: var(--ocean-blue); /* Logo Mavi */
 }
 
 .logo-subtitle {
@@ -141,9 +143,9 @@ nav.scrolled {
 }
 
 .nav-links a {
-    color: var(--deep-navy);
+    color: var(--deep-navy); /* Linkler Koyu Renk */
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 15px;
     transition: var(--transition-base);
     position: relative;
@@ -187,8 +189,8 @@ nav.scrolled {
 
 .lang-btn:hover,
 .lang-btn.active {
-    background: var(--deep-navy);
-    border-color: var(--deep-navy);
+    background: var(--ocean-blue);
+    border-color: var(--ocean-blue);
     color: white;
 }
 
@@ -223,25 +225,25 @@ nav.scrolled {
 .btn-primary {
     background: var(--gradient-primary);
     color: white;
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.35);
+    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
 }
 
 .btn-secondary {
     background: white;
-    color: var(--deep-navy);
+    color: var(--ocean-blue);
     border: 1px solid var(--border-gray);
     box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
-    background: var(--off-white);
-    border-color: var(--deep-navy);
-    transform: translateY(-3px);
+    background: var(--ocean-blue);
+    color: white;
+    border-color: var(--ocean-blue);
 }
 
 .btn-outline {
@@ -266,7 +268,7 @@ nav.scrolled {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--gradient-light);
+    background: var(--gradient-light); /* Açık Gradient */
 }
 
 .hero-video {
@@ -276,8 +278,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.1;
-    mix-blend-mode: multiply;
+    opacity: 0.2; /* Video çok silik olsun ki yazı okunsun */
 }
 
 .hero-overlay {
@@ -286,14 +287,15 @@ nav.scrolled {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.9));
+    /* Beyazdan şeffafa geçiş - Aydınlık hissi */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 249, 255, 0.5));
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
     text-align: center;
-    color: var(--deep-navy);
+    color: var(--deep-navy); /* Yazı Rengi Koyu */
     max-width: 900px;
     padding: 0 20px;
     animation: fadeInUp 1s ease;
@@ -313,16 +315,15 @@ nav.scrolled {
 .hero-badge {
     display: inline-block;
     padding: 8px 20px;
-    background: white;
-    border: 1px solid var(--gold-accent);
+    background: rgba(14, 165, 233, 0.1); /* Mavi rozet */
+    border: 1px solid var(--ocean-blue);
     border-radius: 30px;
-    color: #d97706;
+    color: var(--ocean-blue);
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 2px;
     margin-bottom: 25px;
     text-transform: uppercase;
-    box-shadow: var(--shadow-sm);
 }
 
 .hero h1 {
@@ -331,10 +332,11 @@ nav.scrolled {
     line-height: 1.1;
     margin-bottom: 20px;
     color: var(--deep-navy);
+    /* Gölge yok, temiz yazı */
 }
 
 .hero-gradient {
-    background: linear-gradient(to right, var(--ocean-blue), var(--sunset-orange));
+    background: linear-gradient(to right, var(--ocean-blue), #2563eb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -345,7 +347,6 @@ nav.scrolled {
     color: var(--soft-gray);
     margin-bottom: 40px;
     line-height: 1.6;
-    font-weight: 500;
 }
 
 .hero-buttons {
@@ -372,7 +373,7 @@ section {
 .section-badge {
     display: inline-block;
     padding: 8px 20px;
-    background: #e0f2fe;
+    background: #e0f2fe; /* Çok açık mavi */
     border-radius: 20px;
     color: var(--ocean-blue);
     font-size: 13px;
@@ -412,10 +413,10 @@ section {
     border-radius: 20px;
     overflow: hidden;
     background: white;
-    border: 1px solid var(--border-gray);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm); /* Hafif gölge */
     transition: var(--transition-slow);
     cursor: pointer;
+    border: 1px solid rgba(226, 232, 240, 0.5);
 }
 
 .tour-card:hover {
@@ -447,13 +448,13 @@ section {
     right: 20px;
     padding: 8px 16px;
     background: white;
-    color: var(--deep-navy);
+    color: var(--ocean-blue);
     border-radius: 20px;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .tour-content {
@@ -465,6 +466,12 @@ section {
     color: var(--deep-navy);
     margin-bottom: 15px;
     line-height: 1.3;
+}
+
+.tour-content p {
+    color: var(--soft-gray);
+    line-height: 1.7;
+    margin-bottom: 25px;
 }
 
 .tour-features {
@@ -479,10 +486,9 @@ section {
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    background: var(--off-white);
-    border: 1px solid #e2e8f0;
+    background: #f0f9ff;
     border-radius: 20px;
-    color: var(--soft-gray);
+    color: var(--ocean-blue);
     font-size: 13px;
     font-weight: 600;
 }
@@ -502,11 +508,11 @@ section {
 }
 
 /* ================================================
-   WHY US SECTION
+   WHY US SECTION (Updated Light)
    ================================================ */
 
 .why-us-section {
-    background: var(--off-white);
+    background: var(--pale-blue); /* Açık Mavi Zemin */
     color: var(--deep-navy);
 }
 
@@ -521,16 +527,16 @@ section {
 .feature-card {
     text-align: center;
     padding: 40px 30px;
-    background: white;
+    background: white; /* Kartlar Beyaz */
     border-radius: 20px;
-    border: 1px solid var(--border-gray);
+    border: 1px solid rgba(14, 165, 233, 0.1);
     box-shadow: var(--shadow-sm);
     transition: var(--transition-base);
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     border-color: var(--ocean-blue);
 }
 
@@ -538,7 +544,7 @@ section {
     width: 70px;
     height: 70px;
     margin: 0 auto 25px;
-    background: #e0f2fe;
+    background: linear-gradient(135deg, #e0f2fe, #bae6fd); /* Mavi İkon Arka Planı */
     color: var(--ocean-blue);
     border-radius: 20px;
     display: flex;
@@ -555,6 +561,7 @@ section {
 
 .feature-card p {
     color: var(--soft-gray);
+    line-height: 1.6;
     font-size: 15px;
 }
 
@@ -578,9 +585,9 @@ section {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid var(--border-gray);
     box-shadow: var(--shadow-sm);
     transition: var(--transition-slow);
+    border: 1px solid var(--border-gray);
 }
 
 .blog-card:hover {
@@ -625,6 +632,7 @@ section {
 
 .blog-content p {
     color: var(--soft-gray);
+    line-height: 1.7;
     margin-bottom: 20px;
 }
 
@@ -633,7 +641,7 @@ section {
    ================================================ */
 
 .contact-section {
-    background: var(--off-white);
+    background: var(--pale-blue); /* Açık Mavi Zemin */
 }
 
 .contact-container {
@@ -645,7 +653,6 @@ section {
     background: white;
     padding: 50px;
     border-radius: 20px;
-    border: 1px solid var(--border-gray);
     box-shadow: var(--shadow-md);
 }
 
@@ -714,7 +721,6 @@ section {
     text-align: center;
     padding: 30px;
     background: white;
-    border: 1px solid var(--border-gray);
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
 }
@@ -737,13 +743,14 @@ section {
 }
 
 /* ================================================
-   FOOTER
+   FOOTER (Updated Light)
    ================================================ */
 
 footer {
-    background: var(--deep-navy);
-    color: white;
+    background: #f1f5f9; /* Çok Açık Gri/Mavi */
+    color: var(--deep-navy);
     padding: 80px 40px 40px;
+    border-top: 1px solid var(--border-gray);
 }
 
 .footer-content {
@@ -769,12 +776,10 @@ footer {
 .footer-logo img {
     height: 50px;
     border-radius: 8px;
-    background: white;
-    padding: 2px;
 }
 
 .footer-brand p {
-    color: #94a3b8;
+    color: var(--soft-gray);
     line-height: 1.7;
     margin-bottom: 25px;
 }
@@ -787,25 +792,29 @@ footer {
 .social-links a {
     width: 45px;
     height: 45px;
-    background: rgba(255, 255, 255, 0.1);
+    background: white;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--ocean-blue);
     font-size: 20px;
     transition: var(--transition-base);
+    border: 1px solid var(--border-gray);
 }
 
 .social-links a:hover {
     background: var(--ocean-blue);
+    color: white;
     transform: translateY(-3px);
+    border-color: var(--ocean-blue);
 }
 
 .footer-column h4 {
     font-size: 18px;
     margin-bottom: 25px;
-    color: white;
+    color: var(--deep-navy);
+    font-weight: 700;
 }
 
 .footer-links {
@@ -817,18 +826,19 @@ footer {
 }
 
 .footer-links a {
-    color: #94a3b8;
+    color: var(--soft-gray);
     text-decoration: none;
     transition: var(--transition-base);
     font-size: 15px;
 }
 
 .footer-links a:hover {
-    color: var(--gold-accent);
+    color: var(--ocean-blue);
+    padding-left: 5px;
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-gray);
     padding-top: 30px;
     text-align: center;
     color: #94a3b8;
@@ -836,7 +846,7 @@ footer {
 }
 
 /* ================================================
-   WHATSAPP FLOAT
+   WHATSAPP FLOAT BUTTON
    ================================================ */
 
 .whatsapp-float {
@@ -861,8 +871,12 @@ footer {
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .whatsapp-float:hover {
@@ -882,13 +896,13 @@ footer {
         height: 100vh;
         width: 80%;
         max-width: 350px;
-        background: white;
-        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        background: white; /* Mobil Menü Beyaz */
         flex-direction: column;
         padding: 100px 40px 40px;
         transition: right 0.4s ease;
         gap: 30px;
         align-items: flex-start;
+        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
     }
 
     .nav-links.active {
@@ -971,7 +985,9 @@ footer {
     padding: 0 40px;
 }
 
-.text-center { text-align: center; }
+.text-center {
+    text-align: center;
+}
 
 .mt-20 { margin-top: 20px; }
 .mt-40 { margin-top: 40px; }
@@ -979,7 +995,7 @@ footer {
 .mb-40 { margin-bottom: 40px; }
 
 /* ================================================
-   TOUR DETAIL PAGE
+   TOUR DETAIL PAGE STYLES (Updated Light)
    ================================================ */
 
 .tour-detail-hero {
@@ -999,7 +1015,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.8) 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 100%); /* Beyaz Geçiş */
     z-index: 1;
 }
 
@@ -1019,19 +1035,19 @@ footer {
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
-    color: white;
+    color: var(--deep-navy); /* Koyu Metin */
 }
 
 .tour-hero-content .tour-badge {
     margin-bottom: 15px;
-    background: var(--gold-accent);
-    color: var(--deep-navy);
+    background: var(--ocean-blue);
+    color: white;
 }
 
 .tour-hero-content h1 {
     font-size: 56px;
     margin-bottom: 20px;
-    color: white;
+    color: var(--deep-navy);
 }
 
 .tour-meta {
@@ -1039,18 +1055,21 @@ footer {
     gap: 30px;
     flex-wrap: wrap;
     font-size: 16px;
-    color: white;
+    color: var(--deep-navy);
 }
 
 .tour-meta-item {
     display: flex;
     align-items: center;
     gap: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
 .tour-meta-item i {
     font-size: 20px;
-    color: var(--gold-accent);
+    color: var(--ocean-blue);
 }
 
 .tour-detail-content {
@@ -1069,7 +1088,7 @@ footer {
     background: white;
     padding: 50px;
     border-radius: 20px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-gray);
 }
 
@@ -1101,11 +1120,10 @@ footer {
 }
 
 .tour-highlights {
-    background: var(--off-white);
+    background: var(--pale-blue);
     padding: 30px;
     border-radius: 16px;
     margin: 30px 0;
-    border: 1px solid var(--border-gray);
 }
 
 .tour-highlights h4 {
@@ -1242,8 +1260,8 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.98);
-    z-index: 10000;
+    background: rgba(255, 255, 255, 0.95); /* Beyaz Lightbox */
+    z-index: 9999;
     align-items: center;
     justify-content: center;
 }
@@ -1256,15 +1274,13 @@ footer {
     position: relative;
     max-width: 90%;
     max-height: 90vh;
-    box-shadow: var(--shadow-xl);
-    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
 }
 
 .lightbox-content img {
     max-width: 100%;
     max-height: 90vh;
     border-radius: 12px;
-    display: block;
 }
 
 .lightbox-close {
@@ -1279,13 +1295,7 @@ footer {
     color: var(--deep-navy);
     font-size: 24px;
     cursor: pointer;
-    z-index: 10001;
-    transition: all 0.3s ease;
-}
-
-.lightbox-close:hover {
-    background: var(--ocean-blue);
-    color: white;
+    z-index: 10000;
 }
 
 .lightbox-nav {
@@ -1294,20 +1304,12 @@ footer {
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid var(--border-gray);
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
     border-radius: 50%;
     color: var(--deep-navy);
     font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
-}
-
-.lightbox-nav:hover {
-    background: var(--ocean-blue);
-    color: white;
-    border-color: var(--ocean-blue);
 }
 
 .lightbox-prev {
