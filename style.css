@@ -10,31 +10,35 @@
 }
 
 :root {
-    /* Primary Colors - Okyanus ve Gökyüzü Tonları */
-    --ocean-blue: #0ea5e9;       /* Ana Mavi */
-    --sky-blue: #bae6fd;         /* Açık Mavi */
-    --pale-blue: #f0f9ff;        /* Çok Açık Zemin Mavisi */
-    --sunset-orange: #f97316;    /* Turuncu Aksan */
-    --forest-green: #10b981;
-    --gold-accent: #fbbf24;
+    /* --- YENİ RENK PALETİ: SADECE MAVİ VE BEYAZ --- */
     
-    /* Neutral Colors - Metin ve Zemin */
-    --deep-navy: #1e293b;        /* Metin Rengi (Siyah yerine koyu lacivert/gri) */
-    --heading-color: #0f172a;    /* Başlıklar için daha koyu ton */
-    --cloud-white: #ffffff;
-    --soft-gray: #475569;        /* Açıklama metinleri */
-    --border-gray: #e2e8f0;
+    /* Ana Renkler */
+    --ocean-blue: #38bdf8;       /* Canlı Açık Mavi (Sky Blue 400) */
+    --sky-blue: #e0f2fe;         /* Çok Açık Mavi (Sky Blue 100) */
+    --pale-blue: #f0f9ff;        /* Zemin için en açık mavi (Sky Blue 50) */
     
-    /* Gradients - Ferah Geçişler */
-    --gradient-primary: linear-gradient(135deg, var(--ocean-blue), #38bdf8);
-    --gradient-light: linear-gradient(180deg, #ffffff 0%, #e0f2fe 100%); /* Hero arka planı */
+    /* İstenmeyen Renklerin İptali (Hepsini Maviye Çevirdik) */
+    --sunset-orange: #38bdf8;    /* Turuncu -> Mavi oldu */
+    --forest-green: #38bdf8;     /* Yeşil -> Mavi oldu */
+    --gold-accent: #bae6fd;      /* Altın -> Açık Mavi oldu */
     
-    /* Shadows - Yumuşak Gölgeler */
-    --shadow-sm: 0 2px 8px rgba(14, 165, 233, 0.08);
-    --shadow-md: 0 10px 40px rgba(14, 165, 233, 0.12);
-    --shadow-lg: 0 20px 60px rgba(14, 165, 233, 0.18);
+    /* Metin ve Zemin Renkleri */
+    --deep-navy: #0c4a6e;        /* Metin Rengi: Siyah yerine Çok Koyu Mavi */
+    --heading-color: #075985;    /* Başlık Rengi: Koyu Mavi */
+    --cloud-white: #ffffff;      /* Tam Beyaz */
+    --soft-gray: #64748b;        /* Açıklama metinleri: Mavimsi Gri */
+    --border-gray: #e0f2fe;      /* Kenarlıklar: Çok açık mavi */
     
-    /* Transitions */
+    /* Gradientler (Tamamen Maviye Dönük) */
+    --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+    --gradient-light: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    
+    /* Gölgeler (Mavi tonlu gölgeler) */
+    --shadow-sm: 0 2px 8px rgba(56, 189, 248, 0.15);
+    --shadow-md: 0 10px 40px rgba(56, 189, 248, 0.15);
+    --shadow-lg: 0 20px 60px rgba(56, 189, 248, 0.20);
+    
+    /* Geçişler (Aynı kalabilir) */
     --transition-base: all 0.3s ease;
     --transition-slow: all 0.4s ease;
 }
