@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* === KRİTİK DÜZELTME: BU SATIR KAYMAYI ENGELLER === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
             --ocean-blue: #38bdf8;
             --ocean-dark: #0ea5e9;
@@ -21,18 +28,20 @@
         }
 
         html { scroll-behavior: smooth; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--cloud-white);
             color: var(--deep-navy);
-            margin: 0; padding: 0; line-height: 1.6;
+            line-height: 1.6;
+            overflow-x: hidden; /* Yatay kaydırmayı zorla kapat */
         }
 
+        /* TİPOGRAFİ */
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             color: var(--heading-color);
-            margin-top: 0;
             text-shadow: none !important;
         }
 
@@ -41,41 +50,57 @@
         h3 { font-size: 26px; }
         p { color: var(--soft-gray); margin-bottom: 1rem; }
 
-        /* NAVİGASYON */
+        /* NAVİGASYON (DÜZELTİLDİ) */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: #ffffff; padding: 20px 0;
+            background: rgba(255, 255, 255, 0.95); /* Hafif şeffaf */
+            padding: 15px 0;
             border-bottom: 1px solid var(--border-gray);
             display: flex; justify-content: center;
         }
+        
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            width: 100%; max-width: 1400px; padding: 0 40px;
+            width: 100%; max-width: 1400px; padding: 0 20px;
         }
-        .nav-links { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+
+        .logo h1 { font-size: 24px; margin: 0; color: var(--ocean-dark); }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a {
             color: var(--deep-navy); text-decoration: none; font-weight: 600;
             font-size: 15px; transition: var(--transition-base);
         }
         .nav-links a:hover { color: var(--ocean-blue); }
 
+        /* MOBİL MENÜ İÇİN AYAR */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Şimdilik mobilde menüyü gizle ki taşmasın */
+            h1 { font-size: 40px; }
+            h2 { font-size: 32px; }
+        }
+
         /* BUTONLAR */
         .btn, .btn-primary, button {
             padding: 12px 30px; border-radius: 8px; font-weight: 600;
             text-decoration: none; display: inline-block; cursor: pointer;
-            border: none; transition: var(--transition-base); background: var(--ocean-blue); color: white;
+            border: none; transition: var(--transition-base); 
+            background: var(--ocean-blue); color: white;
+            box-shadow: none !important;
         }
-        .btn:hover, .btn-primary:hover {
-            background: var(--ocean-dark); transform: translateY(-2px);
-        }
+        .btn:hover { background: var(--ocean-dark); transform: translateY(-2px); }
         .theme-switch button { background: transparent; color: var(--deep-navy); font-size: 1.2rem; padding: 5px; }
 
-        /* HERO & ARAMA */
+        /* HERO BÖLÜMÜ (BOŞLUK ALINARAK DÜZELTİLDİ) */
         .hero {
-            height: 80vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; background: var(--gradient-light); padding-top: 80px;
+            min-height: 70vh; /* Yükseklik biraz azaltıldı */
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; background: var(--gradient-light); 
+            padding-top: 80px; padding-bottom: 40px;
         }
         .hero-content { max-width: 800px; padding: 20px; }
+
+        /* ARAMA KUTUSU */
         .search-container { padding: 2rem 0; background: var(--light-gray); display: flex; justify-content: center; }
         .search-box {
             background: white; padding: 10px; border-radius: 50px; display: flex; gap: 10px;
@@ -84,9 +109,15 @@
         .search-box input { border: none; outline: none; padding: 10px 20px; flex: 1; font-size: 16px; border-radius: 50px; }
 
         /* KARTLAR */
-        .tours-section, .blog-section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 60px; color: var(--deep-navy); }
-        .tour-grid, .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .tours-section, .blog-section { padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 40px; color: var(--deep-navy); }
+        
+        .tour-grid, .blog-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            justify-content: center; /* Kartları ortala */
+        }
         
         .tour-card, .blog-card {
             background: white; border-radius: 12px; overflow: hidden;
@@ -95,34 +126,29 @@
         .tour-card:hover, .blog-card:hover {
             transform: translateY(-5px); border-color: var(--ocean-blue);
         }
-        .card-img, .blog-img { height: 250px; overflow: hidden; }
-        .card-img img, .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .tour-card:hover img, .blog-card:hover img { transform: scale(1.05); }
         
-        .card-content, .blog-content { padding: 25px; }
-        .card-content h3 { font-size: 1.4rem; margin: 0 0 10px; }
+        .card-img, .blog-img { height: 250px; width: 100%; overflow: hidden; }
+        .card-img img, .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; display: block; }
+        .tour-card:hover img { transform: scale(1.05); }
+        
+        .card-content, .blog-content { padding: 20px; }
+        .card-content h3 { font-size: 1.3rem; margin: 0 0 10px; color: var(--deep-navy); }
+        
         .card-footer {
             display: flex; justify-content: space-between; align-items: center;
-            margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-gray);
+            margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-gray);
         }
         .price { font-size: 1.2rem; font-weight: 700; color: var(--ocean-dark); }
         .btn-sm {
-            padding: 8px 20px; font-size: 0.9rem; background: transparent;
+            padding: 8px 16px; font-size: 0.9rem; background: transparent;
             border: 1px solid var(--ocean-blue); color: var(--ocean-blue); border-radius: 6px;
         }
         .btn-sm:hover { background: var(--ocean-blue); color: white; }
 
-        /* FOOTER & RESPONSIVE */
-        footer { background: var(--light-gray); padding: 60px 20px; text-align: center; border-top: 1px solid var(--border-gray); margin-top: 60px; }
+        /* FOOTER */
+        footer { background: var(--light-gray); padding: 40px 20px; text-align: center; border-top: 1px solid var(--border-gray); margin-top: 40px; }
         .socials { margin-top: 20px; }
         .socials a { color: var(--ocean-blue); font-size: 24px; margin: 0 15px; }
-        
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 20px; }
-            .nav-links { flex-wrap: wrap; justify-content: center; }
-            h1 { font-size: 42px; }
-            .hero { height: auto; padding: 150px 20px 60px; }
-        }
     </style>
 </head>
 <body>
@@ -204,17 +230,6 @@
                     </div>
                 </div>
             </div>
-            <div class="tour-card">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=1000&auto=format&fit=crop" alt="İspanya"></div>
-                <div class="card-content">
-                    <h3>İspanya Turu</h3>
-                    <p>Barselona ve Madrid sokaklarında flamenko rüzgarı.</p>
-                    <div class="card-footer">
-                        <span class="price">€1.200</span>
-                        <button class="btn-sm">Detaylar</button>
-                    </div>
-                </div>
-            </div>
              <div class="tour-card">
                 <div class="card-img"><img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?q=80&w=1000&auto=format&fit=crop" alt="Rusya"></div>
                 <div class="card-content">
@@ -222,6 +237,17 @@
                     <p>Kızıl Meydan ve tarihi saraylar.</p>
                     <div class="card-footer">
                         <span class="price">$1.500</span>
+                        <button class="btn-sm">Detaylar</button>
+                    </div>
+                </div>
+            </div>
+             <div class="tour-card">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000&auto=format&fit=crop" alt="Brezilya"></div>
+                <div class="card-content">
+                    <h3>Brezilya Karnavalı</h3>
+                    <p>Rio de Janeiro'nun renkli dünyası.</p>
+                    <div class="card-footer">
+                        <span class="price">$2.100</span>
                         <button class="btn-sm">Detaylar</button>
                     </div>
                 </div>
