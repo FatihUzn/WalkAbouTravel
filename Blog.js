@@ -127,7 +127,7 @@ class BlogManager {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                const postId = parseInt(element.getAttribute('data-post-id'));
+                const postId = element.getAttribute('data-post-id');
                 this.openModal(postId);
             });
         });
@@ -355,7 +355,7 @@ class BlogManager {
     }
 
     openModal(postId) {
-        const post = this.posts.find(p => p.id === postId);
+        const post = this.posts.find(p => p.id == postId);
         if (!post) {
             console.error('Post not found:', postId);
             return;
@@ -371,7 +371,7 @@ class BlogManager {
         document.getElementById('blogModalTitle').textContent = post.title;
         document.getElementById('blogModalDate').innerHTML = `<i class="far fa-calendar"></i> ${post.date}`;
         document.getElementById('blogModalCategory').textContent = post.category || 'BLOG';
-        document.getElementById('blogModalContent').innerHTML = post.fullContent || post.description || post.summary;
+        document.getElementById('blogModalContent').innerHTML = post.content || post.fullContent || post.description || post.summary;
 
         // Modal'ı göster
         modal.classList.add('active');
