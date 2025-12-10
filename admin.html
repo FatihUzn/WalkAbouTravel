@@ -3,220 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WalkAbout Admin Paneli</title>
-    
+    <title>WalkAbout İçerik Sihirbazı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #334155;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        
-        header {
-            background: white;
-            padding: 30px;
-            border-radius: 20px 20px 0 0;
-            text-align: center;
-        }
-        header h1 { color: #0f172a; margin-bottom: 5px; }
-        header p { color: #64748b; }
-        
-        .main-content {
-            background: #f1f5f9;
-            padding: 30px;
-            border-radius: 0 0 20px 20px;
-        }
-        
-        .form-section { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #334155; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;
-            font-size: 1rem; transition: all 0.3s;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: #3b82f6; outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        /* Resim Yükleme Alanı */
-        .image-upload-area {
-            border: 2px dashed #cbd5e1; border-radius: 10px; padding: 30px;
-            text-align: center; cursor: pointer; transition: 0.3s; background: #f8fafc;
-        }
-        .image-upload-area:hover { border-color: #3b82f6; background: #eff6ff; }
-        .image-upload-area i { font-size: 2em; color: #94a3b8; margin-bottom: 10px; }
-        
-        .image-preview { margin-top: 15px; border-radius: 8px; overflow: hidden; display: none; }
-        .image-preview img { width: 100%; height: 200px; object-fit: cover; }
-        .image-preview.show { display: block; }
-
-        .btn {
-            width: 100%; padding: 15px; border: none; border-radius: 8px;
-            font-size: 1.1em; font-weight: 600; cursor: pointer; transition: 0.3s;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-        }
-        .btn-success { background: #10b981; color: white; }
-        .btn-success:hover { background: #059669; transform: translateY(-2px); }
-        .btn:disabled { opacity: 0.7; cursor: not-allowed; }
-
-        /* Bildirimler */
-        .alert { padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none; }
-        .alert.show { display: block; }
-        .alert-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-        .alert-error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
+        .step { margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 5px solid #3498db; }
+        .step h3 { margin-top: 0; color: #3498db; }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .btn { padding: 15px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; width: 100%; margin-top: 10px; }
+        .btn-primary { background: #3498db; }
+        .btn-success { background: #27ae60; }
+        .btn-warning { background: #e67e22; }
+        #resultArea { display: none; margin-top: 20px; border-top: 2px dashed #ddd; padding-top: 20px; }
+        #jsonOutput { background: #2d3436; color: #81ecec; font-family: monospace; padding: 15px; width: 100%; height: 150px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-rocket"></i> WalkAbout Blog Paneli</h1>
-            <p>Yeni bir blog yazısı yayınla</p>
-        </header>
+<div class="container">
+    <h1><i class="fas fa-magic"></i> Blog Yazısı Oluşturucu</h1>
+    
+    <div class="step">
+        <h3>1. İçeriği Girin</h3>
+        <label>Resim Seçin:</label>
+        <input type="file" id="imageInput" accept="image/*">
         
-        <div class="main-content">
-            <div class="form-section">
-                
-                <div class="alert" id="alertBox"></div>
-
-                <form id="blogForm">
-                    
-                    <div class="form-group">
-                        <label>Blog Görseli *</label>
-                        <div class="image-upload-area" id="uploadArea">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Resmi buraya sürükleyin veya tıklayın</p>
-                            <input type="file" id="imageInput" accept="image/*" required style="display: none;">
-                        </div>
-                        <div class="image-preview" id="previewContainer">
-                            <img id="previewImg" src="">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Başlık *</label>
-                        <input type="text" id="title" placeholder="Örn: Mardin'in Gizemli Sokakları" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kategori</label>
-                        <select id="category" required>
-                            <option value="Seyahat İpuçları">Seyahat İpuçları</option>
-                            <option value="Destinasyon Rehberi">Destinasyon Rehberi</option>
-                            <option value="Kültür & Tarih">Kültür & Tarih</option>
-                            <option value="Yeme & İçme">Yeme & İçme</option>
-                            <option value="Macera">Macera</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kısa Özet (Ana sayfada görünür) *</label>
-                        <textarea id="summary" rows="3" placeholder="Yazı hakkında 1-2 cümlelik özet..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>İçerik (Tam Metin) *</label>
-                        <textarea id="content" rows="10" placeholder="Blog yazısının tamamını buraya yazın..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-success" id="submitBtn">
-                        <i class="fas fa-paper-plane"></i> Yazıyı Yayınla
-                    </button>
-                </form>
-            </div>
-        </div>
+        <label>Başlık (Türkçe):</label>
+        <input type="text" id="title" placeholder="Örn: Kapadokya Gezisi">
+        
+        <label>Kategori:</label>
+        <select id="category">
+            <option>Seyahat İpuçları</option>
+            <option>Destinasyon Rehberi</option>
+            <option>Kültür & Tarih</option>
+        </select>
+        
+        <label>Kısa Özet:</label>
+        <textarea id="summary" rows="3"></textarea>
+        
+        <label>İçerik (Tamamı):</label>
+        <textarea id="content" rows="6"></textarea>
     </div>
 
-    <script>
-        // 1. Resim Önizleme Mantığı
-        const uploadArea = document.getElementById('uploadArea');
-        const imageInput = document.getElementById('imageInput');
-        const previewContainer = document.getElementById('previewContainer');
-        const previewImg = document.getElementById('previewImg');
+    <button onclick="generate()" class="btn btn-primary">Verileri Oluştur</button>
 
-        uploadArea.addEventListener('click', () => imageInput.click());
+    <div id="resultArea">
+        <div class="step" style="border-left-color: #27ae60; background: #e8f8f5;">
+            <h3>2. Dosyaları İndirin ve Gönderin</h3>
+            <p>1. Önce resmi indirin.<br>2. Sonra kodu kopyalayın.<br>3. Bu ikisini yazılımcınıza gönderin.</p>
+            
+            <button onclick="downloadImage()" class="btn btn-warning"><i class="fas fa-download"></i> 1. Resmi İndir</button>
+            
+            <label style="margin-top:15px">Kopyalanacak Kod:</label>
+            <textarea id="jsonOutput" readonly></textarea>
+            <button onclick="copyCode()" class="btn btn-success"><i class="fas fa-copy"></i> 2. Kodu Kopyala</button>
+        </div>
+    </div>
+</div>
 
-        imageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewImg.src = e.target.result;
-                    previewContainer.classList.add('show');
-                    uploadArea.style.display = 'none'; // Alanı gizle
-                }
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
+<script>
+    let imageFile = null;
+    let newImageName = "";
 
-        // 2. Form Gönderme Mantığı (PHP'ye Bağlı)
-        document.getElementById('blogForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+    document.getElementById('imageInput').addEventListener('change', function(e) {
+        if (e.target.files[0]) imageFile = e.target.files[0];
+    });
 
-            const btn = document.getElementById('submitBtn');
-            const originalText = btn.innerHTML;
-            const alertBox = document.getElementById('alertBox');
+    function generate() {
+        const title = document.getElementById('title').value;
+        if(!title || !imageFile) { alert("Lütfen başlık ve resim giriniz."); return; }
 
-            // Yükleniyor durumuna geç
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...';
-            alertBox.className = 'alert'; 
+        const uniqueId = Date.now();
+        const ext = imageFile.name.split('.').pop();
+        newImageName = `blog-${uniqueId}.${ext}`; // Otomatik isimlendirme
 
-            try {
-                const formData = new FormData();
-                
-                // Güvenlik Anahtarı (save-blog.php içindeki ile aynı olmalı)
-                formData.append('key', 'walkabout2025');
+        // Tarih Oluşturma
+        const d = new Date();
+        const months = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+        const dateStr = d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
 
-                // Form verilerini ekle
-                formData.append('title', document.getElementById('title').value);
-                formData.append('category', document.getElementById('category').value);
-                formData.append('summary', document.getElementById('summary').value);
-                formData.append('content', document.getElementById('content').value);
-                formData.append('image', imageInput.files[0]);
+        // JSON Datası
+        const data = {
+            id: `blog-${uniqueId}`,
+            title: title,
+            date: dateStr,
+            image: `assets/${newImageName}`,
+            summary: document.getElementById('summary').value,
+            category: document.getElementById('category').value,
+            content: document.getElementById('content').value,
+            // Dil desteği için boş kalmasın diye kopyalıyoruz
+            title_en: title,
+            description_en: document.getElementById('summary').value,
+            content_en: document.getElementById('content').value
+        };
 
-                // PHP dosyasına gönder
-                const response = await fetch('save-blog.php', {
-                    method: 'POST',
-                    body: formData
-                });
+        const jsonStr = JSON.stringify(data, null, 2);
+        document.getElementById('jsonOutput').value = "  " + jsonStr + ","; // Başına boşluk, sonuna virgül
+        document.getElementById('resultArea').style.display = 'block';
+    }
 
-                const result = await response.json();
+    function downloadImage() {
+        if (!imageFile) return;
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(imageFile);
+        link.download = newImageName; // Doğru isimle indirir
+        link.click();
+    }
 
-                if (result.status === 'success') {
-                    // Başarılı
-                    alertBox.textContent = '✅ Harika! Blog yazısı başarıyla eklendi.';
-                    alertBox.className = 'alert alert-success show';
-                    
-                    // Formu temizle
-                    document.getElementById('blogForm').reset();
-                    previewContainer.classList.remove('show');
-                    uploadArea.style.display = 'block';
-                    
-                    // Sayfayı yukarı kaydır
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    // Sunucu hatası
-                    throw new Error(result.message);
-                }
-
-            } catch (error) {
-                // Hata durumu
-                console.error(error);
-                alertBox.textContent = '❌ Hata: ' + (error.message || 'Sunucuya bağlanılamadı.');
-                alertBox.className = 'alert alert-error show';
-            } finally {
-                // Butonu eski haline getir
-                btn.disabled = false;
-                btn.innerHTML = originalText;
-            }
-        });
-    </script>
+    function copyCode() {
+        const copyText = document.getElementById("jsonOutput");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Kod kopyalandı!");
+    }
+</script>
 </body>
 </html>
