@@ -1,912 +1,1314 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title data-key="title">WalkAbouTravel — Tourism & Travel</title>
-<link rel="icon" type="image/png" href="assets/walkabou_travel_logo.webp">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WalkAbout Travel — Hayalinizdeki Tatil Bir Tık Ötede</title>
+    <link rel="icon" href="assets/walkabou_travel_logo.webp">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Font Awesome CDN - İKONLAR İÇİN ÖNEMLİ! -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+        :root {
+            --ocean-blue: #0ea5e9;
+            --sunset-orange: #f97316;
+            --forest-green: #10b981;
+            --gold-accent: #fbbf24;
+            --deep-navy: #0f172a;
+            --cloud-white: #f8fafc;
+            --soft-gray: #64748b;
+        }
 
-<link rel="preload" as="image" href="assets/walkabou_travel_logo.webp">
-<link rel="preload" as="fetch" href="en.json" crossorigin>
-<link rel="preload" as="fetch" href="ar.json" crossorigin>
-<link rel="preload" as="fetch" href="zh.json" crossorigin>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cloud-white);
+            color: var(--deep-navy);
+            overflow-x: hidden;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+        /* === SMOOTH SCROLL === */
+        html {
+            scroll-behavior: smooth;
+        }
 
-<link rel="stylesheet" href="style.css?v=2.2">
+        /* === NAVIGATION === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
 
-<style>
-  /* Header ve Temel Yerleşim Ayarları */
-  header {
-    display: block; 
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.0) 100%);
-    transition: background-color 0.3s;
-  }
-  header.scrolled {
-      background-color: rgba(10, 10, 10, 0.95);
-  }
-  .header-top-row {
-    background-color: #1a1a1a;
-    color: #ccc;
-    padding: 8px 30px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .header-top-row a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .header-top-row a:hover {
-    color: #ffcc66;
-  }
-  .header-top-row .top-bar-left a {
-    margin-right: 20px;
-  }
-  .header-top-row i {
-    margin-right: 8px;
-    color: #ffcc66;
-  }
-  .header-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 10px 30px;
-    height: 80px;
-  }
+        nav.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
 
-  .hero-content-overlay .hero-since {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-  }
-  .hero-content-overlay h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin: 0;
-  }
-  .hero-content-overlay p {
-    font-size: 1.25rem;
-    margin: 10px 0 30px 0;
-  }
-  
-  .cta-group {
-    position: relative;
-    display: inline-block;
-  }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  /* --- YENİ EKLENEN KART DÜZENİ (Referans resimdeki gibi) --- */
-  #quick-access-links {
-      background-color: #f9f9f9;
-      padding: 80px 20px;
-      position: relative;
-      z-index: 10;
-  }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+        }
 
-  .quick-access-grid {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      max-width: 1400px;
-      margin: 0 auto;
-  }
+        .logo img {
+            height: 45px;
+            border-radius: 8px;
+        }
 
-  .category-card {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      width: 100%;
-      max-width: 380px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-  }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
 
-  .category-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  }
+        .logo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold-accent);
+        }
 
-  .category-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-  }
-  
-  .category-card:hover img {
-      transform: scale(1.05);
-  }
+        .logo-subtitle {
+            font-size: 11px;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-  .category-card-content {
-      padding: 25px;
-      text-align: center;
-      border-top: 1px solid #eee;
-  }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
 
-  .category-card h3 {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: #333;
-      margin-bottom: 10px;
-  }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-  .category-card p {
-      margin: 0;
-      color: #777;
-      font-size: 0.95rem;
-      line-height: 1.5;
-  }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold-accent);
+            transition: width 0.3s ease;
+        }
 
-  .category-btn {
-      margin-top: 15px;
-      display: inline-block;
-      color: #f59e0b;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-  }
+        .nav-links a:hover {
+            color: var(--gold-accent);
+        }
 
-  @media (max-width: 992px) {
-      .category-card {
-          max-width: 100%;
-      }
-      .quick-access-grid {
-          gap: 20px;
-      }
-  }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-  .site-footer {
-    background-color: #0c0c0c; 
-    color: #a0a0a0;
-    padding: 60px 30px 20px 30px;
-    border-top: 1px solid #333;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto 40px auto;
-  }
-  .footer-column h3 {
-    font-family: 'Playfair Display', serif;
-    color: #ffffff;
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ffcc66;
-    padding-bottom: 10px;
-    font-weight: 700;
-  }
-  .footer-column.logo-column h3 {
-    border-bottom: none;
-  }
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-links li {
-    margin-bottom: 12px;
-  }
-  .footer-links a {
-    color: #a0a0a0;
-    text-decoration: none;
-    transition: color 0.3s, padding-left 0.3s;
-    display: inline-block;
-  }
-  .footer-links a:hover {
-    color: #ffcc66;
-    padding-left: 5px;
-  }
-  .footer-column.logo-column {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .footer-column.logo-column .social-icons {
-    margin-top: 20px;
-  }
-  .footer-links.contact-info li {
-    display: flex;
-    align-items: flex-start;
-  }
-  .footer-links.contact-info i {
-    color: #ffcc66;
-    margin-right: 12px;
-    margin-top: 5px;
-    width: 15px;
-  }
-  .footer-links.contact-info span,
-  .footer-links.contact-info a {
-    flex: 1;
-    padding-left: 0; 
-  }
-  .footer-links.contact-info a:hover {
-    color: #ffcc66;
-    padding-left: 0;
-  }
-  .footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    background-color: transparent;
-  }
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+        }
 
-  @media (max-width: 992px) {
-    .header-top-row {
-      padding: 10px 15px;
-      font-size: 0.75rem;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .header-bottom-row {
-      padding: 10px 15px;
-      height: 70px;
-    }
-    .hero-content-overlay h1 {
-      font-size: 3rem; 
-    }
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
-    .footer-column {
-      margin-bottom: 20px;
-    }
-    .footer-column.logo-column {
-      margin-bottom: 30px;
-    }
-    .site-footer {
-      padding: 40px 15px 20px 15px;
-    }
-  }
+        .lang-btn {
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
 
-  .lightbox {
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
+        .lang-btn:hover {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+            color: var(--deep-navy);
+        }
 
-  .lightbox-content {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 80%;
-  }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
 
-  #lightbox-image {
-      max-width: 90%;
-      max-height: 90vh;
-      object-fit: contain;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      transition: opacity 0.3s ease;
-  }
+        /* === HERO SECTION === */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
 
-  .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #f1f1f1;
-      font-size: 40px;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
-      z-index: 10001;
-  }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
 
-  .close:hover,
-  .close:focus {
-      color: #bbb;
-      text-decoration: none;
-      cursor: pointer;
-  }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.3));
+        }
 
-  .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -50px;
-      color: white;
-      font-weight: bold;
-      font-size: 30px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-      -webkit-user-select: none;
-      background-color: rgba(0,0,0,0.3);
-      z-index: 10000;
-  }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
 
-  .next {
-      right: 20px;
-      border-radius: 3px 0 0 3px;
-  }
-  
-  .prev {
-      left: 20px;
-      border-radius: 3px 0 0 3px;
-  }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  .prev:hover, .next:hover {
-      background-color: rgba(255, 204, 102, 0.8);
-      color: black;
-  }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid var(--gold-accent);
+            border-radius: 30px;
+            color: var(--gold-accent);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
 
-  #lightbox-counter {
-      color: #ccc;
-      margin-top: 10px;
-      font-family: 'Inter', sans-serif;
-  }
-</style>
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
 
+        .hero-gradient {
+            background: linear-gradient(to right, var(--gold-accent), var(--ocean-blue), var(--sunset-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
+            color: white;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--deep-navy);
+        }
+
+        /* === TOURS SECTION === */
+        .tours-section {
+            padding: 120px 40px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 20px;
+            color: var(--ocean-blue);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--deep-navy);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--soft-gray);
+            line-height: 1.7;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tour-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-image {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .tour-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .tour-card:hover .tour-image img {
+            transform: scale(1.1);
+        }
+
+        .tour-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background: var(--gold-accent);
+            color: var(--deep-navy);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tour-content {
+            padding: 30px;
+        }
+
+        .tour-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--deep-navy);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .tour-content p {
+            color: var(--soft-gray);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .tour-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 20px;
+            color: var(--ocean-blue);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .tour-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--ocean-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .tour-card:hover .tour-link {
+            gap: 12px;
+        }
+
+        /* === WHY US SECTION === */
+        .why-us-section {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #1e293b 100%);
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 60px auto 0;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === BLOG SECTION === */
+        .blog-section {
+            padding: 120px 40px;
+            background: #f8fafc;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: var(--soft-gray);
+        }
+
+        .blog-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--deep-navy);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: var(--soft-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-section {
+            padding: 120px 40px;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--deep-navy);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--ocean-blue);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 16px;
+        }
+
+        .info-item i {
+            font-size: 32px;
+            color: var(--ocean-blue);
+            margin-bottom: 15px;
+        }
+
+        .info-item h4 {
+            font-size: 16px;
+            color: var(--deep-navy);
+            margin-bottom: 8px;
+        }
+
+        .info-item p {
+            color: var(--soft-gray);
+            font-size: 14px;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 80px 40px 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .footer-logo-text .logo-title {
+            font-size: 24px;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--ocean-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* === WHATSAPP BUTTON === */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 350px;
+                background: var(--deep-navy);
+                flex-direction: column;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                gap: 30px;
+                align-items: flex-start;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .tours-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header id="main-header">
-  <div class="header-top-row">
-    <div class="top-bar-left">
-      <a href="tel:+902125551923" class="btn btn-top-info"><i class="fas fa-phone"></i> +90 (212) 555 1923</a>
-      <a href="/cdn-cgi/l/email-protection#87eee9e1e8c7f0e6ebece6e5e8f2f3f5e6f1e2eba9e4e8ea" class="btn btn-top-info"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="b6dfd8d0d9f6c1d7daddd7d4d9c3c2c4d7c0d3da98d5d9db">[email&#160;protected]</span></a>
-      </div>
-    <div class="top-bar-right">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Golden+Palace+Tower+Kat:+12,+İstanbul/Türkiye" target="_blank" rel="noopener noreferrer" class="btn btn-top-info"><i class="fas fa-map-marker-alt"></i> Yol Tarifi Al</a>
-    </div>
-  </div>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbout Travel Logo">
+                <div class="logo-text">
+                    <span class="logo-title">WalkAbout Travel</span>
+                    <span class="logo-subtitle">Tourism & Travel</span>
+                </div>
+            </a>
 
-  <div class="header-bottom-row">
-    <div class="brand">
-      <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo"> <div class="brand-text-container">
-          <span class="brand-title" data-key="brand_walkabou_travel">WalkAbouTravel</span>
-          <span class="brand-tagline" data-key="brand_Tourism">Tourism & Travel</span>
-      </div>
-    </div>
-  
-    <div style="display: flex; align-items: center;">
-      <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat">
-          <i class="fas fa-bars"></i>
-      </button>
-    
-      <nav class="navbar" id="navbar">
-        <a data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a>
-        <a data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a>
-        <a data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a>
-        <a data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a>
-        <div class="language-selector mobile-only" style="display: none;">
-            <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-      </nav>
-    
-      <div class="language-selector desktop-only" style="margin-left: 20px;">
-          <button class="lang-btn" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-          <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button> </div>
-    </div>
-  </div>
-</header>
-
-<!-- HERO BÖLÜMÜ -->
-<section class="hero-video page-section active" id="hero">
-  <video autoplay muted loop playsinline class="hero-video-bg">
-    <source src="assets/hero_background.mp4" type="video/mp4">
-    Tarayıcınız video etiketini desteklemiyor.
-  </video>
-
-  <div class="hero-content-overlay">
-    <p class="hero-since" data-key="hero_since">1997'DEN BERİ</p>
-    <h1 data-key="hero_title">WalkAbouTravel</h1>
-    <h2 id="changing-text" data-key="hero_subtitle" style="font-size: 1.25rem; margin: 10px 0 30px 0;"></h2>
-    
-    <!-- ANA BUTONLAR -->
-    <div class="hero-links-container action-buttons" style="margin-bottom: 50px;">
-      <a href="#" data-page="page-otel" data-category="otel" data-key="drop_hotel" class="btn btn-hero-link">Turizm De Biz</a>
-      <a href="#homepage-blog" class="btn btn-hero-link">Blog</a>
-      <a href="#" data-page="page-satilik_kiralik" data-category="satilik_kiralik" data-key="drop_rental" class="btn btn-hero-link">Yurt Dışı Turlar</a>
-    </div>
-  </div> 
-</section>
-
-<!-- KATEGORİ KARTLARI -->
-<section id="quick-access-links">
-    <div class="section-title-wrapper" style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: #1a1a2e; margin: 0;">Rotalarınızı Keşfedin</h2>
-        <div style="width: 60px; height: 3px; background: #f59e0b; margin: 15px auto;"></div>
-    </div>
-
-    <div class="quick-access-grid">
-        <!-- KART 1: KÜLTÜR TURLARI -->
-        <div class="category-card" onclick="location.hash='page-otel'">
-            <div style="overflow: hidden;">
-                <img src="assets/kapadokya-balon-turu-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Kültür+Turları'" alt="Kültür Turları">
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Ana Sayfa</a>
+                <a href="#tours">Turlar</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">İletişim</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn">TR</button>
+                    <button class="lang-btn">EN</button>
+                    <button class="lang-btn">AR</button>
+                </div>
             </div>
-            <div class="category-card-content">
-                <h3>Kültür Turları</h3>
-                <p>Mardin, Kapadokya, Antalya ve daha fazlası.</p>
-                <span class="category-btn">İncele →</span>
-            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
+    </nav>
 
-        <!-- KART 2: HİZMETLER -->
-        <div class="category-card" onclick="location.hash='page-services'">
-            <div style="overflow: hidden;">
-                <img src="assets/spain-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Hizmetler'" alt="Hizmetlerimiz">
-            </div>
-            <div class="category-card-content">
-                <h3>Hizmetlerimiz</h3>
-                <p>Vize, bilet, otel rezervasyon hizmetleri.</p>
-                <span class="category-btn">İncele →</span>
-            </div>
-        </div>
-
-        <!-- KART 3: YURT DIŞI -->
-        <div class="category-card" onclick="location.hash='page-satilik_kiralik'">
-            <div style="overflow: hidden;">
-                <img src="assets/rusya-1.webp" onerror="this.src='https://placehold.co/400x250/222/f59e0b?text=Yurt+Dışı'" alt="Yurt Dışı">
-            </div>
-            <div class="category-card-content">
-                <h3>Yurt Dışı Turlar</h3>
-                <p>Avrupa, Amerika, Rusya ve daha fazlası.</p>
-                <span class="category-btn">İncele →</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- GELİŞTİRİLMİŞ BLOG BÖLÜMÜ -->
-<section id="homepage-blog" style="padding: 120px 20px 80px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); position: relative; z-index: 20;">
-    
-    <!-- Geri Butonu - Üstte Sabit -->
-    <div style="max-width: 1400px; margin: 0 auto 30px auto;">
-        <a href="#hero" onclick="event.preventDefault(); location.hash='hero';" 
-           style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #38bdf8; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);">
-            <i class="fas fa-arrow-left"></i> Geri
-        </a>
-    </div>
-
-    <div style="max-width: 1400px; margin: 0 auto;">
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/hero_background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         
-        <!-- Başlık Bölümü -->
-        <div style="text-align: center; margin-bottom: 60px;">
-            <span style="display: inline-block; padding: 8px 20px; background: rgba(56, 189, 248, 0.1); border-radius: 20px; color: #0284c7; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 15px;">
-                SEYAHAT BLOGU
-            </span>
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 48px; color: #1e293b; margin: 0 0 15px 0; font-weight: 900;">
-                Seyahat Günlüğü
-            </h2>
-            <p style="color: #64748b; max-width: 600px; margin: 0 auto; font-size: 18px; line-height: 1.6;">
-                Dünyanın en büyüleyici rotaları, vizesiz seyahat ipuçları ve konaklama rehberleri.
+        <div class="hero-content">
+            <span class="hero-badge">1997'den Beri Güvenle</span>
+            <h1>
+                Hayalinizdeki Tatil<br>
+                <span class="hero-gradient">Bir Tık Ötede</span>
+            </h1>
+            <p>
+                Dünyanın en büyüleyici destinasyonlarını keşfedin. 
+                Profesyonel ekibimiz ve 27 yıllık deneyimimizle unutulmaz anılar yaratıyoruz.
             </p>
-            <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #38bdf8, #0284c7); margin: 25px auto 0; border-radius: 2px;"></div>
-        </div>
-
-        <!-- Blog Kartları Grid -->
-        <div id="blog-grid-display" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px;">
-            <div style="text-align:center; padding: 40px; color:#64748b; grid-column: 1 / -1;">
-                <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #38bdf8; margin-bottom: 15px;"></i>
-                <p style="margin: 0;">Blog yazıları yükleniyor...</p>
+            <div class="hero-buttons">
+                <a href="#tours" class="btn btn-primary">
+                    <i class="fas fa-compass"></i> Turları Keşfet
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Bize Ulaşın
+                </a>
             </div>
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- TOURS SECTION -->
+    <section class="tours-section" id="tours">
+        <div class="section-header">
+            <span class="section-badge">Popüler Destinasyonlar</span>
+            <h2>Özenle Hazırlanan Turlarımız</h2>
+            <p>
+                Her biri dikkatle planlanmış, unutulmaz deneyimler sunan tur paketlerimizi keşfedin.
+                Yurt içi kültür turlarından egzotik yurt dışı maceralarına kadar.
+            </p>
+        </div>
 
-<script>
-// Blog verilerini yükle
-async function loadBlogPosts() {
-    try {
-        const response = await fetch('blog.json');
-        if (!response.ok) throw new Error('Blog yüklenemedi');
-        const posts = await response.json();
-        renderBlogPosts(posts);
-    } catch (error) {
-        console.error('Blog yüklenirken hata:', error);
-        document.getElementById('blog-grid-display').innerHTML = `
-            <div style="text-align:center; padding: 60px 20px; background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); grid-column: 1 / -1;">
-                <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: #f59e0b; margin-bottom: 20px;"></i>
-                <h3 style="color: #1e293b; margin: 0 0 10px 0;">Blog Yazıları Yüklenemedi</h3>
-                <p style="color: #64748b; margin: 0;">blog.json dosyasının ana dizinde olduğundan emin olun.</p>
-            </div>
-        `;
-    }
-}
-
-// Blog kartlarını oluştur - GELİŞTİRİLMİŞ TASARIM
-function renderBlogPosts(posts) {
-    const container = document.getElementById('blog-grid-display');
-    
-    if (!posts || posts.length === 0) {
-        container.innerHTML = `
-            <div style="text-align:center; padding: 60px 20px; background: #fff; border-radius: 16px; grid-column: 1 / -1;">
-                <i class="fas fa-pen-fancy" style="font-size: 48px; color: #38bdf8; margin-bottom: 20px;"></i>
-                <h3 style="color: #1e293b; margin: 0 0 10px 0;">Henüz Blog Yazısı Yok</h3>
-                <p style="color: #64748b; margin: 0;">Blog Manager Tool ile yeni yazılar ekleyebilirsiniz.</p>
-            </div>
-        `;
-        return;
-    }
-
-    // En yeni yazıları önce göster
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    let html = '';
-    posts.forEach((post, index) => {
-        // Kategori renkleri
-        const categoryColors = {
-            'KÜLTÜR': '#8b5cf6',
-            'MACERA': '#f59e0b',
-            'GASTRONOMİ': '#ef4444',
-            'REHBER': '#10b981',
-            'İPUCU': '#3b82f6',
-            'default': '#38bdf8'
-        };
-        
-        const categoryColor = categoryColors[post.category?.toUpperCase()] || categoryColors.default;
-        
-        html += `
-            <article class="blog-card-enhanced" style="
-                background: #fff;
-                border-radius: 16px;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                cursor: pointer;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                animation: fadeInUp 0.6s ease ${index * 0.1}s both;
-            " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(56, 189, 248, 0.2)';" 
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-                
-                <!-- Resim Bölümü -->
-                <div style="position: relative; overflow: hidden; height: 220px;">
-                    <img src="${post.image}" alt="${post.title}" 
-                         style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" 
-                         onerror="this.src='https://placehold.co/400x250/38bdf8/FFF?text=${encodeURIComponent(post.title.substring(0, 20))}'\" 
-                         loading="lazy"
-                         onmouseover="this.style.transform='scale(1.1)'" 
-                         onmouseout="this.style.transform='scale(1)'">
-                    
-                    <!-- Kategori Rozeti -->
-                    ${post.category ? `
-                        <span style="
-                            position: absolute;
-                            top: 15px;
-                            right: 15px;
-                            padding: 6px 14px;
-                            background: ${categoryColor};
-                            color: #fff;
-                            border-radius: 20px;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            letter-spacing: 0.5px;
-                            text-transform: uppercase;
-                            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-                        ">${post.category}</span>
-                    ` : ''}
+        <div class="tours-grid">
+            <!-- TUR 1: YURT İÇİ -->
+            <div class="tour-card" onclick="location.href='#page-otel'">
+                <div class="tour-image">
+                    <img src="assets/kapadokya-balon-turu-1.webp" alt="Yurt İçi Turlar">
+                    <span class="tour-badge">Popüler</span>
                 </div>
-
-                <!-- İçerik Bölümü -->
-                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
-                    
-                    <!-- Tarih -->
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #38bdf8; font-size: 0.85rem; font-weight: 600;">
-                        <i class="far fa-calendar-alt"></i>
-                        <span>${post.date}</span>
+                <div class="tour-content">
+                    <h3>Yurt İçİ Kültür Turları</h3>
+                    <p>Kapadokya, Mardin, Pamukkale... Anadolu'nun eşsiz güzelliklerini profesyonel rehberlerimizle keşfedin.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag">
+                            <i class="fas fa-map-marked-alt"></i> 5 Destinasyon
+                        </span>
+                        <span class="feature-tag">
+                            <i class="fas fa-hotel"></i> Butik Oteller
+                        </span>
                     </div>
+                    <a href="#" class="tour-link">
+                        Detayları Gör <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
 
-                    <!-- Başlık -->
-                    <h3 style="
-                        font-family: 'Playfair Display', serif;
-                        font-size: 1.5rem;
-                        color: #1e293b;
-                        margin: 0 0 12px 0;
-                        line-height: 1.3;
-                        font-weight: 700;
-                    ">${post.title}</h3>
-
-                    <!-- Açıklama -->
-                    <p style="
-                        color: #64748b;
-                        font-size: 0.95rem;
-                        line-height: 1.7;
-                        margin: 0 0 20px 0;
-                        flex-grow: 1;
-                    ">${(post.summary || post.description || '').substring(0, 140)}...</p>
-
-                    <!-- Devamını Oku Linki -->
-                    <div style="display: flex; align-items: center; gap: 8px; color: #38bdf8; font-weight: 600; font-size: 0.9rem; margin-top: auto;">
-                        <span>Devamını Oku</span>
-                        <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+            <!-- TUR 2: YURT DIŞI -->
+            <div class="tour-card" onclick="location.href='#page-satilik_kiralik'">
+                <div class="tour-image">
+                    <img src="assets/spain-1.webp" alt="Yurt Dışı Turlar">
+                    <span class="tour-badge">Özel</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Yurt Dışı Turlar</h3>
+                    <p>İspanya, Rusya, Brezilya, Amerika... Dünyanın en güzel şehirlerini keşfedin.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag">
+                            <i class="fas fa-globe-americas"></i> 15+ Ülke
+                        </span>
+                        <span class="feature-tag">
+                            <i class="fas fa-plane"></i> Vize Dahil
+                        </span>
                     </div>
-                </div>
-
-            </article>
-        `;
-    });
-
-    container.innerHTML = html;
-}
-
-// Animasyon keyframes
-const blogStyle = document.createElement('style');
-blogStyle.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .blog-card-enhanced:hover .fa-arrow-right {
-        transform: translateX(5px);
-    }
-`;
-document.head.appendChild(blogStyle);
-
-// Sayfa yüklendiğinde blog'u yükle
-document.addEventListener('DOMContentLoaded', loadBlogPosts);
-</script>
-
-<main id="page-container">
-
-<section id="page-otel" class="page-section" style="padding-top: 140px;">
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
-
-  <div class="new-layout-container">
-    <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="color: #ffcc66; font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 10px;">
-            Yurt İçi Kültür Turları
-        </h2>
-        <p style="color: #aaa; font-size: 18px;">
-            Anadolu'nun eşsiz güzelliklerini profesyonel rehberlerimizle keşfedin.
-        </p>
-        <div class="title-gold-line" style="width: 100px; height: 2px; background: #f59e0b; margin: 20px auto;"></div>
-    </div>
-
-    <div class="house-gallery" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
-            <img src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Mardin'">
-            <h3>Mardin Kültür Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
-            <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Kapadokya'">
-            <h3>Kapadokya Balon Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
-            <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Antalya'">
-            <h3>Antalya & Kaş Turu</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
-            <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Fethiye'">
-            <h3>Fethiye & Ölüdeniz</h3>
-        </div>
-
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-PAMUKKALE')">
-            <img src="assets/pamukkale-traverten-dogal-1.webp" alt="Pamukkale Turu" loading="lazy" onerror="this.src='https://placehold.co/350x250?text=Pamukkale'">
-            <h3>Pamukkale & Hierapolis</h3>
-        </div>
-    </div>
-  </div>
-</section>
-
-<section id="page-satilik_kiralik" class="page-section" style="padding-top: 160px;">
-  <a href="#" class="btn-page-back" onclick="event.preventDefault(); showPage('hero');">← Geri</a>
-  <div class="new-layout-container">
-    <h2 data-key="page_satilik_h2">Türkiye Rotaları</h2>
-
-    <div class="house-gallery">
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-MARDIN')">
-            <img loading="lazy" src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Tarihi Konak Turu">
-            <h3 data-key="page_satilik_1">Mardin Kültür Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-ANTALYA')">
-            <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Liman Manzarası" loading="lazy">
-            <h3 data-key="page_satilik_2">Antalya Koy Gezisi</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-KAPADOKYA')">
-            <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Balon Turu" loading="lazy">
-            <h3 data-key="page_satilik_3">Kapadokya Balon Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-TR-FETHIYE')">
-            <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Ölüdeniz Manzarası" loading="lazy">
-            <h3 data-key="page_satilik_4">Fethiye Ölüdeniz</h3>
-        </div>
-    </div>
-
-    <h2 style="margin-top: 80px;" data-key="page_kiralik_h2">Uluslararası Rotalar</h2>
-
-    <div class="house-gallery">
-        <div class="house-card" onclick="openHouseDetail('TUR-D-ISPANYA')">
-            <img src="assets/spain-1.webp" alt="İspanya Barselona Turu" loading="lazy">
-            <h3 data-key="page_kiralik_1">İspanya Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-RUSYA-KIS')">
-            <img src="assets/rusya-1.webp" alt="Rusya Moskova Turu" loading="lazy">
-            <h3 data-key="page_kiralik_2">Rusya Sanat Turu</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-BREZILYA')">
-            <img src="assets/brazil-1.webp" alt="Brezilya Karnavalı" loading="lazy">
-            <h3 data-key="page_kiralik_3">Brezilya Karnavalı</h3>
-        </div>
-        
-        <div class="house-card" onclick="openHouseDetail('TUR-D-AMERIKA')">
-            <img src="assets/new-york-1.webp" alt="Amerika Batı Kıyısı" loading="lazy">
-            <h3 data-key="page_kiralik_4">Amerika Batı Kıyısı</h3>
-        </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div class="footer-column">
-            <h3 data-key="footer_col_1_title">Menü Link</h3>
-            <ul class="footer-links">
-                <li><a href="#hero" data-page="hero" class="nav-link" data-key="nav_home">Anasayfa</a></li>
-                <li><a href="#page-about" data-page="page-about" class="nav-link" data-key="nav_about">Kurumsal</a></li>
-                <li><a href="#page-services" data-page="page-services" class="nav-link" data-key="nav_services">Hizmetler</a></li>
-                <li><a href="#page-contact" data-page="page-contact" class="nav-link" data-key="nav_contact">İletişim</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3 data-key="footer_col_2_title">Hizmetlerimiz</h3>
-            <ul class="footer-links">
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_1">Kültür Turları</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_2">Vize Danışmanlığı</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_3">Uçak Bileti</a></li>
-                <li><a href="#page-services" data-page="page-services" data-key="service_h3_4">Otel Rezervasyonu</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column logo-column">
-            <div class="footer-logo-container">
-                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbouTravel Logo">
-                <div class="footer-text-container">
-                    <span class="footer-title" data-key="brand_walkabou_travel">WalkAbouTravel</span>
-                    <span class="brand-tagline" data-key="brand_Tourism">Tourism & Travel</span>
+                    <a href="#" class="tour-link">
+                        Detayları Gör <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="social-icons">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                <a href="/cdn-cgi/l/email-protection#60090e060f2017010c0b01020f1514120116050c4e030f0d" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+            <!-- TUR 3: BLOG -->
+            <div class="tour-card" onclick="location.href='#blog'">
+                <div class="tour-image">
+                    <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Seyahat Blogu">
+                    <span class="tour-badge">Yeni</span>
+                </div>
+                <div class="tour-content">
+                    <h3>Seyahat Günlüğü</h3>
+                    <p>Seyahat ipuçları, vizesiz ülkeler, konaklama önerileri ve daha fazlası...</p>
+                    <div class="tour-features">
+                        <span class="feature-tag">
+                            <i class="fas fa-book-open"></i> 50+ Makale
+                        </span>
+                        <span class="feature-tag">
+                            <i class="fas fa-camera"></i> Fotoğraflar
+                        </span>
+                    </div>
+                    <a href="#" class="tour-link">
+                        Bloga Git <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="footer-column">
-            <h3 data-key="footer_col_4_title">Projeler</h3>
-            <ul class="footer-links">
-                <li><a href="#page-otel" data-page="page-otel" data-key="drop_hotel">Yurt İçi Turlar</a></li>
-                <li><a href="#page-satilik_kiralik" data-page="page-satilik_kiralik" data-key="drop_rental">Yurt Dışı Turlar</a></li>
-            </ul>
+    <!-- WHY US SECTION -->
+    <section class="why-us-section">
+        <div class="section-header">
+            <span class="section-badge" style="background: rgba(251, 191, 36, 0.2); color: var(--gold-accent);">
+                Neden Bizi Seçmelisiniz?
+            </span>
+            <h2 style="color: white;">27 Yıllık Deneyim, Sınırsız Güven</h2>
+            <p style="color: #94a3b8;">
+                1997'den beri müşteri memnuniyeti odaklı hizmet anlayışımızla 
+                binlerce mutlu müşteriye unutulmaz tatiller yaşattık.
+            </p>
         </div>
 
-        <div class="footer-column">
-            <h3 data-key="footer_col_5_title">Bize Ulaşın</h3>
-            <ul class="footer-links contact-info">
-                <li>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span data-key="contact_info_address_p">Mimar Sinan Cd. No: 42/A, WalkAbouTravel Tower Kat: 12, İstanbul/Türkiye</span>
-                </li>
-                <li>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>7/24 Destek</h3>
+                <p>Tatiliniz boyunca her an yanınızdayız. Sorularınız için 7/24 ulaşabilirsiniz.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>TURSAB Belgeli</h3>
+                <p>TURSAB Belgeli acente güvencesiyle hizmet veriyoruz.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Güvenli Ödeme</h3>
+                <p>Tüm ödemeleriniz SSL sertifikası ile korunmaktadır.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>27 Yıllık Deneyim</h3>
+                <p>1997'den beri turizm sektöründe kesintisiz hizmet veriyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="blog-section" id="blog">
+        <div class="section-header">
+            <span class="section-badge">Seyahat İpuçları</span>
+            <h2>Seyahat Günlüğümüz</h2>
+            <p>
+                Gezilerimizden anılar, seyahat ipuçları ve destinasyon rehberleri.
+            </p>
+        </div>
+
+        <div class="blog-grid" id="blogContainer">
+            <!-- Blog kartları JavaScript ile yüklenecek -->
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--soft-gray);">
+                <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: var(--ocean-blue); margin-bottom: 15px;"></i>
+                <p>Blog yazıları yükleniyor...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <span class="section-badge">İletişim</span>
+            <h2>Hemen Rezervasyon Yapın</h2>
+            <p>
+                Size en uygun tatil paketini planlamak için bizimle iletişime geçin.
+            </p>
+        </div>
+
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Adınız Soyadınız *</label>
+                    <input type="text" required placeholder="Adınızı girin">
+                </div>
+                <div class="form-group">
+                    <label>E-posta Adresiniz *</label>
+                    <input type="email" required placeholder="ornek@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Telefon Numaranız</label>
+                    <input type="tel" placeholder="+90 555 123 4567">
+                </div>
+                <div class="form-group">
+                    <label>Mesajınız *</label>
+                    <textarea required placeholder="Hangi tur hakkında bilgi almak istersiniz?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Gönder
+                </button>
+            </form>
+
+            <div class="contact-info">
+                <div class="info-item">
                     <i class="fas fa-phone"></i>
-                    <a href="tel:+902125551923" data-key="contact_info_phone_p">+90 (212) 555 1923</a>
-                </li>
-                <li>
+                    <h4>Telefon</h4>
+                    <p>+90 (212) 555 1923</p>
+                </div>
+                <div class="info-item">
                     <i class="fas fa-envelope"></i>
-                    <a href="/cdn-cgi/l/email-protection#0c65626a634c7b6d60676d6e6379787e6d7a6960226f6361" data-key="contact_info_email_p"><span class="__cf_email__" data-cfemail="aac3c4ccc5eaddcbc6c1cbc8c5dfded8cbdccfc684c9c5c7">[email&#160;protected]</span></a>
-                </li>
-            </ul>
+                    <h4>E-posta</h4>
+                    <p>info@walkaboutravel.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Adres</h4>
+                    <p>İstanbul, Türkiye</p>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <div class="footer-bottom" data-key="footer_copyright">
-        © 2025 WalkAbouTravel Kurumsal Seyahat. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu.
-    </div>
-</footer>
+    </section>
 
-<div id="lightbox-modal" class="lightbox" style="display: none;">
-  <span id="close-lightbox" class="close">&times;</span>
-  <div class="lightbox-content">
-      <a id="prev-btn" class="prev">&#10094;</a>
-      <img id="lightbox-image" src="" alt="Gallery Image">
-      <a id="next-btn" class="next">&#10095;</a>
-  </div>
-  <div id="lightbox-counter"></div>
-</div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/walkabou_travel_logo.webp" alt="Logo">
+                    <div class="footer-logo-text logo-text">
+                        <span class="logo-title">WalkAbout Travel</span>
+                        <span class="logo-subtitle">Tourism & Travel</span>
+                    </div>
+                </div>
+                <p>
+                    1997'den beri güvenle planlanan yolculuklar. 
+                    Hayalinizdeki tatil için yanınızdayız.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
 
-<div id="house-detail" class="house-detail">
-  <button onclick="closeHouseDetail()">← Geri</button>
-  <div id="house-detail-content"></div>
-</div>
+            <div class="footer-column">
+                <h4>Hızlı Linkler</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#tours">Turlar</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="app.js?v=1.7" defer></script>
+            <div class="footer-column">
+                <h4>Turlar</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Yurt İçi Turlar</a></li>
+                    <li><a href="#">Yurt Dışı Turlar</a></li>
+                    <li><a href="#">Kültür Turları</a></li>
+                    <li><a href="#">Macera Turları</a></li>
+                </ul>
+            </div>
 
-<script>
-    const data = [
-        {
-            title: "Kurumsal Seyahat",
-            description: "İş toplantılarınız ve kongreleriniz için özel lojistik ve konaklama çözümleri sunuyoruz."
-        },
-        {
-            title: "Özel Turlar & Deneyimler",
-            description: "Size özel rehberler ve benzersiz rotalarla unutulmaz kültür ve macera turları düzenliyoruz."
-        },
-        {
-            title: "Bilet & Transfer",
-            description: "Dünya çapında en uygun uçak, otobüs ve tren biletlerini hızlıca sağlıyor, konforlu transferinizi planlıyoruz."
-        },
-        {
-            title: "Konaklama & Rezervasyon", 
-            description: "İhtiyaçlarınıza uygun en lüks ve konforlu konaklama seçeneklerini güvenle rezerve ediyoruz."
+            <div class="footer-column">
+                <h4>Hizmetler</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Vize Danışmanlığı</a></li>
+                    <li><a href="#">Otel Rezervasyonu</a></li>
+                    <li><a href="#">Uçak Bileti</a></li>
+                    <li><a href="#">Sigorta</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 WalkAbout Travel. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT BUTTON -->
+    <a href="https://wa.me/5491135870045?text=Merhaba! WalkAbout Travel turları hakkında bilgi almak istiyorum." 
+       class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Load Blog Posts
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch('blog.json');
+                if (!response.ok) throw new Error('Blog yüklenemedi');
+                const posts = await response.json();
+                renderBlogPosts(posts);
+            } catch (error) {
+                console.error('Blog yüklenirken hata:', error);
+                document.getElementById('blogContainer').innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: var(--sunset-orange); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--deep-navy); margin-bottom: 10px;">Blog Yazıları Yüklenemedi</h3>
+                        <p style="color: var(--soft-gray);">blog.json dosyasının ana dizinde olduğundan emin olun.</p>
+                    </div>
+                `;
+            }
         }
-    ];
 
-    let index = 0; 
-    const textElement = document.getElementById('changing-text'); 
-    const intervalTime = 5000;
+        function renderBlogPosts(posts) {
+            const container = document.getElementById('blogContainer');
+            
+            if (!posts || posts.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-pen-fancy" style="font-size: 48px; color: var(--ocean-blue); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--deep-navy); margin-bottom: 10px;">Henüz Blog Yazısı Yok</h3>
+                        <p style="color: var(--soft-gray);">Yakında yeni içerikler eklenecek.</p>
+                    </div>
+                `;
+                return;
+            }
 
-    function changeTextWithFade() {
-        if(textElement) {
-            textElement.style.opacity = '0'; 
+            // Sort by date
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            // Show only first 3 posts
+            const recentPosts = posts.slice(0, 3);
+
+            let html = '';
+            recentPosts.forEach(post => {
+                html += `
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="${post.image}" alt="${post.title}" 
+                                 onerror="this.src='https://placehold.co/400x250/0ea5e9/FFF?text=Blog'">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> ${post.date}</span>
+                                ${post.category ? `<span><i class="fas fa-tag"></i> ${post.category}</span>` : ''}
+                            </div>
+                            <h3>${post.title}</h3>
+                            <p>${(post.description || post.summary || '').substring(0, 120)}...</p>
+                            <a href="#" class="tour-link">
+                                Devamını Oku <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
         }
 
-        setTimeout(() => {
-            if(textElement) {
+        // Form Submit Handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Mesajınız alındı! En kısa sürede size dönüş yapacağız.');
+            event.target.reset();
+        }
+
+        // Load blog on page load
+        document.addEventListener('DOMContentLoaded', loadBlogPosts);
+    </script>
+
+</body>
+</html>
