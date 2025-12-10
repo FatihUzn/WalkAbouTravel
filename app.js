@@ -159,9 +159,17 @@ async function openHouseDetail(tourID) {
       
       <p style="color: #ddd; line-height: 1.6;">${tour.desc}</p>
 
-      <div style="margin-top: 25px; text-align: center;">
-          <a href="mailto:info@walkaboutravel.com?subject=Rezervasyon Talebi: ${tour.title}" class="btn" style="display: inline-block;">
-             <i class="fas fa-paper-plane"></i> Rezervasyon Yap
+      <div style="margin-top: 25px; text-align: center; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <a href="mailto:info@walkaboutravel.com?subject=Rezervasyon Talebi: ${tour.title}&body=Merhaba WalkAbout Travel,%0D%0A%0D%0ALütfen aşağıdaki bilgileri doldurup bize gönderin:%0D%0A%0D%0A--- TUR BİLGİLERİ ---%0D%0ATur Adı: ${tour.title}%0D%0ALokasyon: ${tour.location}%0D%0ASüre ve Fiyat: ${tour.price}%0D%0AKonaklama: ${tour.rooms}%0D%0A%0D%0A--- KİŞİSEL BİLGİLERİNİZ ---%0D%0AAdınız Soyadınız:%0D%0ATelefon Numaranız:%0D%0AE-posta Adresiniz:%0D%0A%0D%0AKaç Kişi İçin Rezervasyon:%0D%0ATercih Ettiğiniz Tarih:%0D%0A%0D%0AEk Notlarınız (opsiyonel):%0D%0A%0D%0A%0D%0ATeşekkürler!" 
+             class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+             <i class="fas fa-paper-plane"></i> E-posta ile Rezervasyon
+          </a>
+          
+          <a href="https://wa.me/905XXXXXXXXX?text=Merhaba! *${encodeURIComponent(tour.title)}* turu hakkında bilgi almak istiyorum.%0A%0A📍 Lokasyon: ${encodeURIComponent(tour.location)}%0A⏰ Süre: ${encodeURIComponent(tour.price)}%0A🏨 Konaklama: ${encodeURIComponent(tour.rooms)}" 
+             class="btn whatsapp-btn" 
+             target="_blank"
+             style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #25D366, #128C7E); animation: whatsapp-pulse 2s infinite;">
+             <i class="fab fa-whatsapp" style="font-size: 1.2em;"></i> WhatsApp ile İletişim
           </a>
       </div>
     </div>
