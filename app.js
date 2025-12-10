@@ -165,7 +165,7 @@ async function openHouseDetail(tourID) {
              <i class="fas fa-paper-plane"></i> E-posta ile Rezervasyon
           </a>
           
-          <a href="https://wa.me/905XXXXXXXXX?text=Merhaba! *${encodeURIComponent(tour.title)}* turu hakkında bilgi almak istiyorum.%0A%0A📍 Lokasyon: ${encodeURIComponent(tour.location)}%0A⏰ Süre: ${encodeURIComponent(tour.price)}%0A🏨 Konaklama: ${encodeURIComponent(tour.rooms)}" 
+          <a href="https://wa.me/5491135870045?text=Merhaba! *${encodeURIComponent(tour.title)}* turu hakkında bilgi almak istiyorum.%0A%0A📍 Lokasyon: ${encodeURIComponent(tour.location)}%0A⏰ Süre: ${encodeURIComponent(tour.price)}%0A🏨 Konaklama: ${encodeURIComponent(tour.rooms)}" 
              class="btn whatsapp-btn" 
              target="_blank"
              style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #25D366, #128C7E); animation: whatsapp-pulse 2s infinite;">
