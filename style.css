@@ -1,6 +1,6 @@
 /* ================================================
-   WALKABOUT TRAVEL - FRESH OCEAN THEME
-   Version: 3.0 (Light & Blue Edition)
+   WALKABOUT TRAVEL - OCEAN BLUE & WHITE THEME
+   Version: 3.1 (Optimized & Clean)
    ================================================ */
 
 * {
@@ -10,37 +10,37 @@
 }
 
 :root {
-    /* --- YENİ RENK PALETİ: SADECE MAVİ VE BEYAZ --- */
+    /* === ANA RENK PALETİ: MAVİ & BEYAZ === */
     
-    /* Ana Renkler */
-    --ocean-blue: #38bdf8;       /* Canlı Açık Mavi (Sky Blue 400) */
-    --sky-blue: #e0f2fe;         /* Çok Açık Mavi (Sky Blue 100) */
-    --pale-blue: #f0f9ff;        /* Zemin için en açık mavi (Sky Blue 50) */
-    
-    /* İstenmeyen Renklerin İptali (Hepsini Maviye Çevirdik) */
-    --sunset-orange: #38bdf8;    /* Turuncu -> Mavi oldu */
-    --forest-green: #38bdf8;     /* Yeşil -> Mavi oldu */
-    --gold-accent: #bae6fd;      /* Altın -> Açık Mavi oldu */
+    /* Mavi Tonları */
+    --ocean-blue: #38bdf8;       /* Ana Mavi (Sky 400) */
+    --ocean-dark: #0ea5e9;       /* Koyu Mavi (Sky 500) */
+    --sky-blue: #e0f2fe;         /* Açık Mavi (Sky 100) */
+    --pale-blue: #f0f9ff;        /* En Açık Mavi (Sky 50) */
+    --blue-accent: #bae6fd;      /* Vurgu Mavisi (Sky 200) */
     
     /* Metin ve Zemin Renkleri */
-    --deep-navy: #0c4a6e;        /* Metin Rengi: Siyah yerine Çok Koyu Mavi */
-    --heading-color: #075985;    /* Başlık Rengi: Koyu Mavi */
+    --deep-navy: #0c4a6e;        /* Ana Metin: Koyu Mavi */
+    --heading-color: #075985;    /* Başlıklar: Orta Koyu Mavi */
     --cloud-white: #ffffff;      /* Tam Beyaz */
-    --soft-gray: #64748b;        /* Açıklama metinleri: Mavimsi Gri */
-    --border-gray: #e0f2fe;      /* Kenarlıklar: Çok açık mavi */
+    --soft-gray: #64748b;        /* İkincil Metin: Mavimsi Gri */
+    --light-gray: #f1f5f9;       /* Açık Gri Zemin */
+    --border-gray: #e2e8f0;      /* Kenarlıklar */
     
-    /* Gradientler (Tamamen Maviye Dönük) */
+    /* Gradientler */
     --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
     --gradient-light: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    --gradient-blue: linear-gradient(135deg, #e0f2fe, #bae6fd);
     
-    /* Gölgeler (Mavi tonlu gölgeler) */
-    --shadow-sm: 0 2px 8px rgba(56, 189, 248, 0.15);
-    --shadow-md: 0 10px 40px rgba(56, 189, 248, 0.15);
-    --shadow-lg: 0 20px 60px rgba(56, 189, 248, 0.20);
+    /* Gölgeler (Mavi tonlu - tutarlı) */
+    --shadow-sm: 0 2px 8px rgba(56, 189, 248, 0.1);
+    --shadow-md: 0 10px 40px rgba(56, 189, 248, 0.12);
+    --shadow-lg: 0 20px 60px rgba(56, 189, 248, 0.18);
+    --shadow-hover: 0 15px 50px rgba(56, 189, 248, 0.25);
     
-    /* Geçişler (Aynı kalabilir) */
-    --transition-base: all 0.3s ease;
-    --transition-slow: all 0.4s ease;
+    /* Geçişler */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -86,17 +86,17 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.95); /* Beyaz Arka Plan */
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
     padding: 20px 0;
     transition: var(--transition-base);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow: 0 2px 20px rgba(56, 189, 248, 0.08);
+    border-bottom: 1px solid var(--border-gray);
 }
 
 nav.scrolled {
     padding: 15px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-md);
 }
 
 .nav-container {
@@ -130,7 +130,7 @@ nav.scrolled {
     font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 700;
-    color: var(--ocean-blue); /* Logo Mavi */
+    color: var(--ocean-blue);
 }
 
 .logo-subtitle {
@@ -147,7 +147,7 @@ nav.scrolled {
 }
 
 .nav-links a {
-    color: var(--deep-navy); /* Linkler Koyu Renk */
+    color: var(--deep-navy);
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
@@ -180,11 +180,11 @@ nav.scrolled {
 }
 
 .lang-btn {
-    padding: 8px 12px;
+    padding: 8px 14px;
     background: transparent;
     border: 1px solid var(--border-gray);
     color: var(--deep-navy);
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
@@ -229,12 +229,12 @@ nav.scrolled {
 .btn-primary {
     background: var(--gradient-primary);
     color: white;
-    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+    box-shadow: var(--shadow-hover);
 }
 
 .btn-secondary {
@@ -248,6 +248,7 @@ nav.scrolled {
     background: var(--ocean-blue);
     color: white;
     border-color: var(--ocean-blue);
+    transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -259,6 +260,7 @@ nav.scrolled {
 .btn-outline:hover {
     background: var(--ocean-blue);
     color: white;
+    transform: translateY(-2px);
 }
 
 /* ================================================
@@ -272,7 +274,7 @@ nav.scrolled {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--gradient-light); /* Açık Gradient */
+    background: var(--gradient-light);
 }
 
 .hero-video {
@@ -282,7 +284,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.2; /* Video çok silik olsun ki yazı okunsun */
+    opacity: 0.15;
 }
 
 .hero-overlay {
@@ -291,15 +293,17 @@ nav.scrolled {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Beyazdan şeffafa geçiş - Aydınlık hissi */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 249, 255, 0.5));
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.85), 
+        rgba(240, 249, 255, 0.6)
+    );
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
     text-align: center;
-    color: var(--deep-navy); /* Yazı Rengi Koyu */
+    color: var(--deep-navy);
     max-width: 900px;
     padding: 0 20px;
     animation: fadeInUp 1s ease;
@@ -318,8 +322,8 @@ nav.scrolled {
 
 .hero-badge {
     display: inline-block;
-    padding: 8px 20px;
-    background: rgba(14, 165, 233, 0.1); /* Mavi rozet */
+    padding: 10px 24px;
+    background: rgba(56, 189, 248, 0.1);
     border: 1px solid var(--ocean-blue);
     border-radius: 30px;
     color: var(--ocean-blue);
@@ -336,7 +340,6 @@ nav.scrolled {
     line-height: 1.1;
     margin-bottom: 20px;
     color: var(--deep-navy);
-    /* Gölge yok, temiz yazı */
 }
 
 .hero-gradient {
@@ -376,8 +379,8 @@ section {
 
 .section-badge {
     display: inline-block;
-    padding: 8px 20px;
-    background: #e0f2fe; /* Çok açık mavi */
+    padding: 10px 24px;
+    background: var(--sky-blue);
     border-radius: 20px;
     color: var(--ocean-blue);
     font-size: 13px;
@@ -417,16 +420,16 @@ section {
     border-radius: 20px;
     overflow: hidden;
     background: white;
-    box-shadow: var(--shadow-sm); /* Hafif gölge */
+    box-shadow: var(--shadow-sm);
     transition: var(--transition-slow);
     cursor: pointer;
-    border: 1px solid rgba(226, 232, 240, 0.5);
+    border: 1px solid var(--border-gray);
 }
 
 .tour-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
-    border-color: rgba(14, 165, 233, 0.3);
+    border-color: rgba(56, 189, 248, 0.3);
 }
 
 .tour-image {
@@ -458,7 +461,7 @@ section {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .tour-content {
@@ -490,7 +493,7 @@ section {
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    background: #f0f9ff;
+    background: var(--pale-blue);
     border-radius: 20px;
     color: var(--ocean-blue);
     font-size: 13px;
@@ -512,11 +515,11 @@ section {
 }
 
 /* ================================================
-   WHY US SECTION (Updated Light)
+   WHY US SECTION
    ================================================ */
 
 .why-us-section {
-    background: var(--pale-blue); /* Açık Mavi Zemin */
+    background: var(--pale-blue);
     color: var(--deep-navy);
 }
 
@@ -531,15 +534,15 @@ section {
 .feature-card {
     text-align: center;
     padding: 40px 30px;
-    background: white; /* Kartlar Beyaz */
+    background: white;
     border-radius: 20px;
-    border: 1px solid rgba(14, 165, 233, 0.1);
+    border: 1px solid transparent;
     box-shadow: var(--shadow-sm);
     transition: var(--transition-base);
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-md);
     border-color: var(--ocean-blue);
 }
@@ -548,7 +551,7 @@ section {
     width: 70px;
     height: 70px;
     margin: 0 auto 25px;
-    background: linear-gradient(135deg, #e0f2fe, #bae6fd); /* Mavi İkon Arka Planı */
+    background: var(--gradient-blue);
     color: var(--ocean-blue);
     border-radius: 20px;
     display: flex;
@@ -645,7 +648,7 @@ section {
    ================================================ */
 
 .contact-section {
-    background: var(--pale-blue); /* Açık Mavi Zemin */
+    background: var(--pale-blue);
 }
 
 .contact-container {
@@ -658,6 +661,7 @@ section {
     padding: 50px;
     border-radius: 20px;
     box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-gray);
 }
 
 .form-group {
@@ -680,7 +684,8 @@ section {
     font-size: 15px;
     font-family: 'Inter', sans-serif;
     transition: var(--transition-base);
-    background: #f8fafc;
+    background: var(--cloud-white);
+    color: var(--deep-navy);
 }
 
 .form-group input:focus,
@@ -688,7 +693,7 @@ section {
     outline: none;
     border-color: var(--ocean-blue);
     background: white;
-    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
 }
 
 .form-group textarea {
@@ -711,7 +716,7 @@ section {
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    box-shadow: var(--shadow-hover);
 }
 
 .contact-info {
@@ -727,6 +732,13 @@ section {
     background: white;
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-gray);
+    transition: var(--transition-base);
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 .info-item i {
@@ -747,11 +759,11 @@ section {
 }
 
 /* ================================================
-   FOOTER (Updated Light)
+   FOOTER
    ================================================ */
 
 footer {
-    background: #f1f5f9; /* Çok Açık Gri/Mavi */
+    background: var(--light-gray);
     color: var(--deep-navy);
     padding: 80px 40px 40px;
     border-top: 1px solid var(--border-gray);
@@ -889,117 +901,7 @@ footer {
 }
 
 /* ================================================
-   RESPONSIVE DESIGN
-   ================================================ */
-
-@media (max-width: 992px) {
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 80%;
-        max-width: 350px;
-        background: white; /* Mobil Menü Beyaz */
-        flex-direction: column;
-        padding: 100px 40px 40px;
-        transition: right 0.4s ease;
-        gap: 30px;
-        align-items: flex-start;
-        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .hero p {
-        font-size: 18px;
-    }
-
-    .tours-grid,
-    .blog-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .contact-info {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    section {
-        padding: 80px 20px;
-    }
-
-    .nav-container {
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .section-header h2 {
-        font-size: 36px;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form {
-        padding: 30px 20px;
-    }
-
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        bottom: 20px;
-        right: 20px;
-    }
-}
-
-/* ================================================
-   UTILITY CLASSES
-   ================================================ */
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.mt-20 { margin-top: 20px; }
-.mt-40 { margin-top: 40px; }
-.mb-20 { margin-bottom: 20px; }
-.mb-40 { margin-bottom: 40px; }
-
-/* ================================================
-   TOUR DETAIL PAGE STYLES (Updated Light)
+   TOUR DETAIL PAGE STYLES
    ================================================ */
 
 .tour-detail-hero {
@@ -1019,7 +921,10 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 100%); /* Beyaz Geçiş */
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.95) 100%
+    );
     z-index: 1;
 }
 
@@ -1039,7 +944,7 @@ footer {
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
-    color: var(--deep-navy); /* Koyu Metin */
+    color: var(--deep-navy);
 }
 
 .tour-hero-content .tour-badge {
@@ -1066,9 +971,10 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.8);
-    padding: 5px 15px;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--border-gray);
 }
 
 .tour-meta-item i {
@@ -1128,6 +1034,7 @@ footer {
     padding: 30px;
     border-radius: 16px;
     margin: 30px 0;
+    border: 1px solid var(--sky-blue);
 }
 
 .tour-highlights h4 {
@@ -1150,13 +1057,14 @@ footer {
 }
 
 .tour-highlights li i {
-    color: var(--forest-green);
+    color: var(--ocean-blue);
     font-size: 20px;
 }
 
 .tour-sidebar {
     position: sticky;
     top: 120px;
+    height: fit-content;
 }
 
 .tour-booking-card {
@@ -1243,6 +1151,7 @@ footer {
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
+    border: 1px solid var(--border-gray);
 }
 
 .gallery-item img {
@@ -1264,7 +1173,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.95); /* Beyaz Lightbox */
+    background: rgba(15, 23, 42, 0.95);
     z-index: 9999;
     align-items: center;
     justify-content: center;
@@ -1293,13 +1202,19 @@ footer {
     right: 20px;
     width: 50px;
     height: 50px;
-    background: rgba(0, 0, 0, 0.1);
-    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    color: var(--deep-navy);
+    color: white;
     font-size: 24px;
     cursor: pointer;
     z-index: 10000;
+    transition: var(--transition-base);
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .lightbox-nav {
@@ -1308,12 +1223,18 @@ footer {
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
-    background: rgba(0, 0, 0, 0.1);
-    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    color: var(--deep-navy);
+    color: white;
     font-size: 20px;
     cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .lightbox-prev {
@@ -1324,7 +1245,70 @@ footer {
     right: 20px;
 }
 
+/* ================================================
+   RESPONSIVE DESIGN
+   ================================================ */
+
 @media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 350px;
+        background: white;
+        flex-direction: column;
+        padding: 100px 40px 40px;
+        transition: right 0.4s ease;
+        gap: 30px;
+        align-items: flex-start;
+        box-shadow: -5px 0 30px rgba(56, 189, 248, 0.15);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .tours-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    section {
+        padding: 80px 20px;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
     .tour-grid-layout {
         grid-template-columns: 1fr;
     }
@@ -1347,7 +1331,60 @@ footer {
 }
 
 @media (max-width: 576px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .section-header h2 {
+        font-size: 36px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+    }
+
     .gallery-grid {
         grid-template-columns: 1fr;
     }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
+
+/* ================================================
+   UTILITY CLASSES
+   ================================================ */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 { margin-top: 20px; }
+.mt-40 { margin-top: 40px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-40 { margin-bottom: 40px; }
