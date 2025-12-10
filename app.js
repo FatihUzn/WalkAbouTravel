@@ -1,21 +1,227 @@
-// === FIXED APP.JS - CORRECTED IMAGE COUNTS ===
+// ================================================
+// WALKABOUT TRAVEL - MODERN APP.JS
+// Version: 2.0
+// ================================================
 
-// === YARDIMCI FONKSİYONLAR ===
-function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
+// === TOUR DATABASE ===
+const TOUR_DATA = {
+  // --- YURT İÇİ ---
+  "TUR-TR-MARDIN": {
+    "title": "Mardin - Tarihi Konaklar & Kültür Turu",
+    "price": "8.900 TL",
+    "duration": "5 Gün / 4 Gece",
+    "location": "Mardin ve Çevresi",
+    "area": "Güneydoğu Anadolu",
+    "accommodation": "Özel Butik Otel",
+    "groupSize": "10-15 Kişi",
+    "badge": "Popüler",
+    "description": `
+      <p>Binlerce yıllık medeniyetin izlerini taşıyan Mardin, Mezopotamya'nın kalbinde yer alan eşsiz bir şehirdir. Taş konakları, dar sokakları ve panoramik manzarasıyla büyüleyen bu antik şehirde, tarihin en derin izlerini takip edeceksiniz.</p>
+      
+      <h3>Tur Programı</h3>
+      <p>5 günlük turumuza Mardin'in tarihi merkezinde başlayacağız. Dara Antik Kenti, Deyrulzafaran Manastırı ve Kasımiye Medresesi'ni ziyaret edeceğiz.</p>
+      
+      <div class="tour-highlights">
+        <h4>✨ Tur Dahilinde</h4>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Havalimanı karşılama ve transferler</li>
+          <li><i class="fas fa-check-circle"></i> 4 gece butik otel konaklaması</li>
+          <li><i class="fas fa-check-circle"></i> Sabah kahvaltıları ve akşam yemekleri</li>
+          <li><i class="fas fa-check-circle"></i> Profesyonel Türkçe rehber</li>
+          <li><i class="fas fa-check-circle"></i> Müze ve antik kent giriş ücretleri</li>
+          <li><i class="fas fa-check-circle"></i> Seyahat sigortası</li>
+        </ul>
+      </div>
+      
+      <h3>Görülecek Yerler</h3>
+      <p>Mardin Kalesi, Zinciriye Medresesi, Kasımiye Medresesi, Dara Antik Kenti, Deyrulzafaran Manastırı, Midyat gümüş atölyeleri ve daha fazlası...</p>
+    `,
+    "images": generateTourImages("mardin-tarihi-konak-dokusu-", 16)
+  },
+  
+  "TUR-TR-ANTALYA": {
+    "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
+    "price": "12.500 TL",
+    "duration": "7 Gün / 6 Gece",
+    "location": "Antalya, Kaş, Kemer",
+    "area": "Akdeniz Bölgesi",
+    "accommodation": "Her şey Dahil Otel",
+    "groupSize": "15-20 Kişi",
+    "badge": "Özel",
+    "description": `
+      <p>Akdeniz'in turkuaz sularında unutulmaz bir yolculuğa çıkmaya hazır mısınız? Antalya'nın en güzel koylarını, tarihi Kaleiçi'ni ve antik kentleri keşfedeceğiniz 7 günlük bu turda, hem dinlenecek hem de tarihi zenginlikleri göreceksiniz.</p>
+      
+      <h3>Tur Programı</h3>
+      <p>Antalya'da başlayıp Kaş ve Kemer'e uzanan rotamızda, tekne turları, tarihi geziler ve doğa yürüyüşleri sizi bekliyor.</p>
+      
+      <div class="tour-highlights">
+        <h4>✨ Tur Dahilinde</h4>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Havalimanı transferleri</li>
+          <li><i class="fas fa-check-circle"></i> 6 gece her şey dahil otel</li>
+          <li><i class="fas fa-check-circle"></i> Tekne turu (öğle yemeği dahil)</li>
+          <li><i class="fas fa-check-circle"></i> Aspendos Antik Tiyatrosu ziyareti</li>
+          <li><i class="fas fa-check-circle"></i> Profesyonel rehber</li>
+          <li><i class="fas fa-check-circle"></i> Seyahat sigortası</li>
+        </ul>
+      </div>
+    `,
+    "images": generateTourImages("antalya-koy-gezisi-", 17)
+  },
+  
+  "TUR-TR-KAPADOKYA": {
+    "title": "Kapadokya - Balon ve Peribacaları Turu",
+    "price": "9.800 TL",
+    "duration": "4 Gün / 3 Gece",
+    "location": "Göreme, Uçhisar, Avanos",
+    "area": "İç Anadolu",
+    "accommodation": "Mağara Otel Konaklama",
+    "groupSize": "12-18 Kişi",
+    "badge": "Popüler",
+    "description": `
+      <p>Kapadokya'nın eşsiz peribacaları ve gün doğumu balon turları ile unutulmaz bir deneyim yaşayın. Dünyanın en özel coğrafyalarından birinde, yer altı şehirlerini, vadileri ve tarihi kiliseleri keşfedeceksiniz.</p>
+      
+      <div class="tour-highlights">
+        <h4>✨ Tur Dahilinde</h4>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Gün doğumu balon turu</li>
+          <li><i class="fas fa-check-circle"></i> 3 gece mağara otel</li>
+          <li><i class="fas fa-check-circle"></i> Göreme Açık Hava Müzesi</li>
+          <li><i class="fas fa-check-circle"></i> Derinkuyu Yer Altı Şehri</li>
+          <li><i class="fas fa-check-circle"></i> Avanos çömlek atölyesi</li>
+          <li><i class="fas fa-check-circle"></i> Tüm transferler ve rehber</li>
+        </ul>
+      </div>
+    `,
+    "images": generateTourImages("kapadokya-balon-turu-", 20)
+  },
+  
+  "TUR-TR-FETHIYE": {
+    "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
+    "price": "6.750 TL",
+    "duration": "3 Gün / 2 Gece",
+    "location": "Ölüdeniz, Kelebekler Vadisi",
+    "area": "Ege Bölgesi",
+    "accommodation": "Butik Pansiyon",
+    "groupSize": "8-12 Kişi",
+    "badge": "Macera",
+    "description": `
+      <p>Babadağ'dan yamaç paraşütü ile Ölüdeniz'in turkuaz sularına süzülün. Kelebekler Vadisi'nde tekne turu yapın ve Likya Yolu'nda doğa yürüyüşü deneyimi yaşayın.</p>
+      
+      <div class="tour-highlights">
+        <h4>✨ Tur Dahilinde</h4>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Yamaç paraşütü deneyimi</li>
+          <li><i class="fas fa-check-circle"></i> Tekne turu (öğle yemeği dahil)</li>
+          <li><i class="fas fa-check-circle"></i> 2 gece butik pansiyon</li>
+          <li><i class="fas fa-check-circle"></i> Likya Yolu rehberli yürüyüş</li>
+        </ul>
+      </div>
+    `,
+    "images": generateTourImages("fethiye-oludeniz-manzarasi-", 19)
+  },
+  
+  "TUR-TR-PAMUKKALE": {
+    "title": "Pamukkale - Travertenler & Antik Kent",
+    "price": "4.500 TL",
+    "duration": "2 Gün / 1 Gece",
+    "location": "Pamukkale, Hierapolis",
+    "area": "Denizli",
+    "accommodation": "Termal Otel",
+    "groupSize": "15-20 Kişi",
+    "badge": "Hızlı Tur",
+    "description": `
+      <p>Pamukkale'nin bembeyaz traverten teraslarında yürüyün ve Kleopatra Havuzu'nda termal sularda yüzün. Hierapolis Antik Kenti'ni keşfedin.</p>
+      
+      <div class="tour-highlights">
+        <h4>✨ Tur Dahilinde</h4>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Travertenler girişi</li>
+          <li><i class="fas fa-check-circle"></i> Hierapolis Antik Kenti</li>
+          <li><i class="fas fa-check-circle"></i> 1 gece termal otel</li>
+          <li><i class="fas fa-check-circle"></i> Kleopatra Havuzu</li>
+        </ul>
+      </div>
+    `,
+    "images": generateTourImages("pamukkale-traverten-dogal-", 11)
+  },
+
+  // --- YURT DIŞI ---
+  "TUR-D-ISPANYA": {
+    "title": "İspanya - Barselona & Endülüs Rüyası",
+    "price": "1.800 €",
+    "duration": "9 Gün / 8 Gece",
+    "location": "Barselona, Granada, Sevilla",
+    "area": "İspanya",
+    "accommodation": "4 Yıldızlı Oteller",
+    "groupSize": "20-25 Kişi",
+    "badge": "Premium",
+    "description": `
+      <p>Gaudi'nin eşsiz eserleri, Endülüs'ün büyülü sarayları ve flamenko gösterileri ile dolu İspanya turumuza katılın!</p>
+      
+      <div class="tour-highlights">
+        <h4>✨ Tur Dahilinde</h4>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Uçak bileti dahil</li>
+          <li><i class="fas fa-check-circle"></i> 8 gece 4 yıldızlı otel</li>
+          <li><i class="fas fa-check-circle"></i> Sagrada Familia rehberli tur</li>
+          <li><i class="fas fa-check-circle"></i> El Hamra Sarayı ziyareti</li>
+          <li><i class="fas fa-check-circle"></i> Flamenko gösterisi</li>
+          <li><i class="fas fa-check-circle"></i> Schengen vizesi desteği</li>
+        </ul>
+      </div>
+    `,
+    "images": generateTourImages("spain-", 15)
+  },
+  
+  "TUR-D-RUSYA-KIS": {
+    "title": "Rusya - Kış Masalı (Moskova & St. Petersburg)",
+    "price": "1.450 €",
+    "duration": "6 Gün / 5 Gece",
+    "location": "Moskova, St. Petersburg",
+    "area": "Rusya Federasyonu",
+    "accommodation": "5 Yıldızlı Oteller",
+    "groupSize": "15-20 Kişi",
+    "badge": "Kış Özel",
+    "description": `
+      <p>Kızıl Meydan, Hermitage Müzesi ve Çar'ın saraylarında tarihe yolculuk yapın. Kar manzaraları eşliğinde unutulmaz bir deneyim!</p>
+    `,
+    "images": generateTourImages("rusya-", 13)
+  },
+  
+  "TUR-D-BREZILYA": {
+    "title": "Brezilya - Rio Karnavalı ve Amazon",
+    "price": "2.990 $",
+    "duration": "10 Gün / 9 Gece",
+    "location": "Rio de Janeiro, Manaus",
+    "area": "Brezilya",
+    "accommodation": "Lüks Lodge ve Oteller",
+    "groupSize": "15-20 Kişi",
+    "badge": "Egzotik",
+    "description": `
+      <p>Rio Karnavalı'nın coşkusu ve Amazon Yağmur Ormanları'nın doğal güzelliğiyle dolu macera!</p>
+    `,
+    "images": generateTourImages("brazil-", 15)
+  },
+  
+  "TUR-D-AMERIKA": {
+    "title": "ABD - New York & Batı Kıyısı",
+    "price": "3.500 $",
+    "duration": "14 Gün / 13 Gece",
+    "location": "New York, Los Angeles, San Francisco",
+    "area": "Amerika Birleşik Devletleri",
+    "accommodation": "4 Yıldızlı Oteller",
+    "groupSize": "20-25 Kişi",
+    "badge": "Kapsamlı",
+    "description": `
+      <p>Amerika'nın iki kıyısını keşfedin! New York'tan Hollywood'a, Golden Gate'ten Özgürlük Heykeli'ne kadar...</p>
+    `,
+    "images": generateTourImages("new-york-", 9)
   }
-}
+};
 
-// === OTOMATİK RESİM LİSTESİ OLUŞTURUCU ===
-function generateImages(baseName, count) {
+// === HELPER FUNCTIONS ===
+function generateTourImages(baseName, count) {
     const images = [];
     for (let i = 1; i <= count; i++) {
         images.push(`assets/${baseName}${i}.webp`);
@@ -23,417 +229,85 @@ function generateImages(baseName, count) {
     return images;
 }
 
-// === GLOBAL DEĞİŞKENLER ===
-const translations = {}; 
-const pageCache = {}; 
-let globalPropertyImages = [];
-let globalImageIndex = 0; 
-const IMAGES_PER_LOAD = 6; 
-
-// Lightbox State
-let currentGalleryImages = []; 
-let currentLightboxIndex = 0;  
-
-// === TURİZM VERİ TABANI - FIXED IMAGE COUNTS ===
-const TOUR_DATA = {
-  // --- YURT İÇİ ---
-  "TUR-TR-MARDIN": {
-    "title": "Mardin - Tarihi Konaklar & Kültür Turu",
-    "price": "5 Gün / 4 Gece, 8.900 TL",
-    "location": "Mardin ve Çevresi",
-    "area": "Güneydoğu Anadolu",
-    "rooms": "Özel Butik Otel",
-    "desc": "Binlerce yıllık medeniyetin izlerini taşıyan Mardin'de taş konakları, tarihi kiliseleri ve Dara Antik Kenti'ni keşfedin. Yemekler ve yerel rehberlik dahildir.",
-    "images": generateImages("mardin-tarihi-konak-dokusu-", 16) // ✅ CORRECT: 16 files
-  },
-  "TUR-TR-ANTALYA": {
-    "title": "Antalya - Koy Gezisi & Tarihi Kaleiçi",
-    "price": "7 Gün / 6 Gece, 12.500 TL",
-    "location": "Antalya, Kaş, Kemer",
-    "area": "Akdeniz Bölgesi",
-    "rooms": "Her şey Dahil Otel",
-    "desc": "Akdeniz'in turkuaz sularında Kaş ve Kalkan koylarını keşfedin. Tarihi Kaleiçi'nin dar sokaklarında keyifli bir mola ve Aspendos Antik Tiyatrosu ziyareti.",
-    "images": generateImages("antalya-koy-gezisi-", 17) // ✅ CORRECT: 17 files
-  },
-  "TUR-TR-KAPADOKYA": {
-    "title": "Kapadokya - Balon ve Peribacaları Turu",
-    "price": "4 Gün / 3 Gece, 9.800 TL",
-    "location": "Göreme, Uçhisar, Avanos",
-    "area": "İç Anadolu",
-    "rooms": "Mağara Otel Konaklama",
-    "desc": "Eşsiz Kapadokya vadilerinde gün doğumu balon turu deneyimi. Yer altı şehirleri, kiliseler ve çömlek atölyeleri gezisi. Tüm transferler dahil.",
-    "images": generateImages("kapadokya-balon-turu-", 20) // ✅ CORRECT: 20 files
-  },
-  "TUR-TR-FETHIYE": {
-    "title": "Fethiye - Yamaç Paraşütü & Ölüdeniz",
-    "price": "3 Gün / 2 Gece, 6.750 TL",
-    "location": "Ölüdeniz, Kelebekler Vadisi",
-    "area": "Ege Bölgesi",
-    "rooms": "Butik Pansiyon",
-    "desc": "Ölüdeniz'in eşsiz manzarasında Babadağ'dan yamaç paraşütü heyecanı. Kelebekler Vadisi tekne turu ve Likya Yolu yürüyüşü.",
-    "images": generateImages("fethiye-oludeniz-manzarasi-", 19) // ✅ CORRECT: 19 files
-  },
-  "TUR-TR-PAMUKKALE": {
-    "title": "Pamukkale - Travertenler & Antik Kent",
-    "price": "2 Gün / 1 Gece, 4.500 TL",
-    "location": "Pamukkale, Hierapolis",
-    "area": "Denizli",
-    "rooms": "Termal Otel",
-    "desc": "Pamukkale'nin bembeyaz traverten teraslarında yürüyüş. Hierapolis Antik Kenti ve Kleopatra Havuzu ziyareti.",
-    "images": generateImages("pamukkale-traverten-dogal-", 11) // ✅ FIXED: Was 12, now 11 (matches actual files)
-  },
-
-  // --- YURT DIŞI ---
-  "TUR-D-ISPANYA": {
-    "title": "İspanya - Barselona & Endülüs Rüyası",
-    "price": "9 Gün / 8 Gece, 1.800 €",
-    "location": "Barselona, Granada, Sevilla",
-    "area": "İspanya",
-    "rooms": "4 Yıldızlı Oteller",
-    "desc": "Gaudi'nin eserleri Sagrada Familia'yı ve Endülüs'ün büyülü El Hamra Sarayı'nı ziyaret edin. Flamenko gösterisi dahildir.",
-    "images": generateImages("spain-", 15) // ✅ CORRECT: 15 files
-  },
-  "TUR-D-RUSYA-KIS": {
-    "title": "Rusya (Kış Masalı)",
-    "price": "6 Gün / 5 Gece, 1.450 €",
-    "location": "Moskova, St. Petersburg",
-    "area": "Rusya Federasyonu",
-    "rooms": "5 Yıldızlı Oteller",
-    "desc": "Kızıl Meydan, Hermitage Müzesi ve Çar'ın yazlık sarayları. Rus Sanat ve tarihine odaklı özel tur.",
-    "images": generateImages("rusya-", 13) // ✅ CORRECT: 13 files (uses Turkish spelling)
-  },
-  "TUR-D-BREZILYA": {
-    "title": "Brezilya - Rio Karnavalı ve Amazon",
-    "price": "10 Gün / 9 Gece, 2.990 $",
-    "location": "Rio de Janeiro, Manaus",
-    "area": "Brezilya",
-    "rooms": "Lüks Lodge ve Oteller",
-    "desc": "Rio'da Corcovado Dağı, Ipanema Plajı ve Sambadrome. Amazon Yağmur Ormanları'nda rehberli doğa gezisi.",
-    "images": generateImages("brazil-", 15) // ✅ CORRECT: 15 files
-  },
-  "TUR-D-AMERIKA": {
-    "title": "ABD - New York & Batı Kıyısı",
-    "price": "14 Gün / 13 Gece, 3.500 $",
-    "location": "New York, Los Angeles, San Francisco",
-    "area": "Amerika Birleşik Devletleri",
-    "rooms": "4 Yıldızlı Oteller",
-    "desc": "New York'ta Özgürlük Heykeli, LA'de Hollywood ve San Francisco'da Golden Gate Köprüsü. Tamamen rehberli büyük tur.",
-    "images": generateImages("new-york-", 9) // ✅ CORRECT: 9 files
-  }
-};
-
-
-// === ANA FONKSİYON: DETAY PENCERESİNİ AÇ ===
-async function openHouseDetail(tourID) {
-  const tour = TOUR_DATA[tourID]; 
-
-  if (!tour) {
-      console.error(`'${tourID}' ID'li veri bulunamadı.`);
-      alert("Bu turun detaylarına şu an ulaşılamıyor. Lütfen daha sonra tekrar deneyin.");
-      return;
-  }
-
-  const detail = document.getElementById("house-detail");
-  const content = document.getElementById("house-detail-content");
-  
-  content.innerHTML = `
-    <h2 style="color: #38bdf8; font-family: 'Playfair Display', serif; margin-bottom: 20px;">${tour.title}</h2>
+// === TOUR DETAIL PAGE LOADER ===
+function loadTourDetail(tourId) {
+    const tour = TOUR_DATA[tourId];
     
-    <div class="house-info" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border: 1px solid #333;">
-      <div style="margin-bottom: 10px;">
-        <i class="fas fa-map-marker-alt" style="color: #38bdf8; width: 20px;"></i> 
-        <strong style="color: #fff;">Lokasyon:</strong> <span style="color: #ccc;">${tour.location} (${tour.area})</span>
-      </div>
-      
-      <div style="margin-bottom: 10px;">
-        <i class="fas fa-clock" style="color: #38bdf8; width: 20px;"></i> 
-        <strong style="color: #fff;">Süre & Fiyat:</strong> <span style="color: #38bdf8; font-weight: bold;">${tour.price}</span>
-      </div>
-      
-      <div style="margin-bottom: 10px;">
-        <i class="fas fa-bed" style="color: #38bdf8; width: 20px;"></i> 
-        <strong style="color: #fff;">Konaklama:</strong> <span style="color: #ccc;">${tour.rooms}</span>
-      </div>
+    if (!tour) {
+        console.error('Tour not found:', tourId);
+        return;
+    }
 
-      <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
-      
-      <p style="color: #ddd; line-height: 1.6;">${tour.desc}</p>
+    // Set hero image
+    document.getElementById('tourHeroImage').src = tour.images[0];
+    document.getElementById('tourBadge').textContent = tour.badge || 'Tur';
+    document.getElementById('tourTitle').textContent = tour.title;
 
-      <div style="margin-top: 25px; text-align: center; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <a href="mailto:info@walkaboutravel.com?subject=Rezervasyon Talebi: ${tour.title}&body=Merhaba WalkAbout Travel,%0D%0A%0D%0ALütfen aşağıdaki bilgileri doldurup bize gönderin:%0D%0A%0D%0A--- TUR BİLGİLERİ ---%0D%0ATur Adı: ${tour.title}%0D%0ALokasyon: ${tour.location}%0D%0ASüre ve Fiyat: ${tour.price}%0D%0AKonaklama: ${tour.rooms}%0D%0A%0D%0A--- KİŞİSEL BİLGİLERİNİZ ---%0D%0AAdınız Soyadınız:%0D%0ATelefon Numaranız:%0D%0AE-posta Adresiniz:%0D%0A%0D%0AKaç Kişi İçin Rezervasyon:%0D%0ATercih Ettiğiniz Tarih:%0D%0A%0D%0AEk Notlarınız (opsiyonel):%0D%0A%0D%0A%0D%0ATeşekkürler!" 
-             class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
-             <i class="fas fa-paper-plane"></i> E-posta ile Rezervasyon
-          </a>
-          
-          <a href="https://wa.me/5491135870045?text=Merhaba! *${encodeURIComponent(tour.title)}* turu hakkında bilgi almak istiyorum.%0A%0A📍 Lokasyon: ${encodeURIComponent(tour.location)}%0A⏰ Süre: ${encodeURIComponent(tour.price)}%0A🏨 Konaklama: ${encodeURIComponent(tour.rooms)}" 
-             class="btn whatsapp-btn" 
-             target="_blank"
-             style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #25D366, #128C7E); animation: whatsapp-pulse 2s infinite;">
-             <i class="fab fa-whatsapp" style="font-size: 1.2em;"></i> WhatsApp ile İletişim
-          </a>
-      </div>
-    </div>
+    // Set meta info
+    const meta = document.getElementById('tourMeta');
+    meta.innerHTML = `
+        <div class="tour-meta-item">
+            <i class="fas fa-clock"></i>
+            <span>${tour.duration}</span>
+        </div>
+        <div class="tour-meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>${tour.location}</span>
+        </div>
+        <div class="tour-meta-item">
+            <i class="fas fa-users"></i>
+            <span>${tour.groupSize}</span>
+        </div>
+    `;
 
-    <div class="detail-gallery" id="detail-gallery-container" style="margin-top: 30px;">
-      </div>
-  `;
+    // Set description
+    document.getElementById('tourDescription').innerHTML = tour.description;
 
-  globalPropertyImages = tour.images || [];
-  globalImageIndex = 0;
-  
-  loadMorePropertyImages();
-  
-  detail.style.display = "block";
-  document.body.style.overflow = "hidden"; 
-}
+    // Set price
+    document.getElementById('tourPrice').textContent = tour.price;
 
-function closeHouseDetail() {
-  const detail = document.getElementById("house-detail");
-  if (detail) {
-    detail.style.display = "none";
-  }
-  document.body.style.overflow = "auto"; 
-}
+    // Set info list
+    const infoList = document.getElementById('tourInfoList');
+    infoList.innerHTML = `
+        <li>
+            <span class="tour-info-label">Süre</span>
+            <span class="tour-info-value">${tour.duration}</span>
+        </li>
+        <li>
+            <span class="tour-info-label">Lokasyon</span>
+            <span class="tour-info-value">${tour.location}</span>
+        </li>
+        <li>
+            <span class="tour-info-label">Konaklama</span>
+            <span class="tour-info-value">${tour.accommodation}</span>
+        </li>
+        <li>
+            <span class="tour-info-label">Grup Büyüklüğü</span>
+            <span class="tour-info-value">${tour.groupSize}</span>
+        </li>
+    `;
 
-// === GALERİ RESİM YÜKLEME ===
-function loadMorePropertyImages() {
-  const galleryContainer = document.getElementById('detail-gallery-container');
+    // Set gallery
+    galleryImages = tour.images;
+    const gallery = document.getElementById('tourGallery');
+    gallery.innerHTML = tour.images.map((img, index) => `
+        <div class="gallery-item" onclick="openLightbox(${index})">
+            <img src="${img}" alt="${tour.title} - Görsel ${index + 1}" loading="lazy">
+        </div>
+    `).join('');
 
-  if (!galleryContainer) return;
-
-  if (globalPropertyImages.length === 0) {
-      galleryContainer.innerHTML = "<p style='text-align:center; color:#666;'>Bu tur için henüz görsel eklenmemiş.</p>";
-      return;
-  }
-
-  const endIndex = Math.min(globalImageIndex + IMAGES_PER_LOAD, globalPropertyImages.length);
-  const imagesToLoad = globalPropertyImages.slice(globalImageIndex, endIndex);
-
-  imagesToLoad.forEach((imgSrc, idx) => {
-      const imgEl = document.createElement('img');
-      imgEl.src = imgSrc;
-      imgEl.alt = `Tur Görseli ${globalImageIndex + idx + 1}`;
-      imgEl.loading = 'lazy';
-      imgEl.onerror = function() { 
-          // Hata durumunda (resim yoksa)
-          console.warn(`Görsel yüklenemedi: ${this.src}`);
-          this.style.display = 'none'; 
-      };
-      
-      imgEl.onclick = () => openGallery(globalPropertyImages, globalImageIndex + idx);
-      
-      galleryContainer.appendChild(imgEl);
-  });
-
-  globalImageIndex = endIndex;
-
-  if (globalImageIndex < globalPropertyImages.length) {
-      if (!document.getElementById('load-more-btn')) {
-          const loadMoreBtn = document.createElement('button');
-          loadMoreBtn.id = 'load-more-btn';
-          loadMoreBtn.textContent = 'Daha Fazla Yükle';
-          loadMoreBtn.className = 'btn';
-          loadMoreBtn.style.cssText = 'display:block; margin:30px auto;';
-          loadMoreBtn.onclick = loadMorePropertyImages;
-          galleryContainer.appendChild(loadMoreBtn);
-      }
-  } else {
-      const existingBtn = document.getElementById('load-more-btn');
-      if (existingBtn) existingBtn.remove();
-  }
-}
-
-// === LIGHTBOX FONKSİYONLARI ===
-function openGallery(images, startIndex = 0) {
-    if (!images || images.length === 0) return;
-
-    currentGalleryImages = images;
-    currentLightboxIndex = startIndex;
+    // Set booking buttons
+    const emailSubject = `Rezervasyon Talebi: ${tour.title}`;
+    const emailBody = `Merhaba WalkAbout Travel,%0D%0A%0D%0A${tour.title} turu için rezervasyon yapmak istiyorum.%0D%0A%0D%0ASüre: ${tour.duration}%0D%0AFiyat: ${tour.price}%0D%0A%0D%0ALütfen bana detaylı bilgi gönderebilir misiniz?`;
     
-    const lightboxModal = document.getElementById('lightbox-modal');
-    if (lightboxModal) {
-        lightboxModal.style.display = 'flex';
-        lightboxModal.classList.add('active');
-        updateLightboxView();
-    }
-}
-
-function updateLightboxView() {
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxCounter = document.getElementById('lightbox-counter');
-
-    if (!lightboxImage) return;
-
-    lightboxImage.style.opacity = '0.5';
-
-    setTimeout(() => {
-        lightboxImage.src = currentGalleryImages[currentLightboxIndex];
-        lightboxImage.style.opacity = '1';
-    }, 150);
-
-    if (lightboxCounter) {
-        lightboxCounter.innerText = `${currentLightboxIndex + 1} / ${currentGalleryImages.length}`;
-    }
-}
-
-function showNextImage() {
-    if (currentGalleryImages.length === 0) return;
-
-    currentLightboxIndex++;
-    if (currentLightboxIndex >= currentGalleryImages.length) {
-        currentLightboxIndex = 0; 
-    }
-    updateLightboxView();
-}
-
-function showPrevImage() {
-    if (currentGalleryImages.length === 0) return;
-
-    currentLightboxIndex--;
-    if (currentLightboxIndex < 0) {
-        currentLightboxIndex = currentGalleryImages.length - 1; 
-    }
-    updateLightboxView();
-}
-
-function closeLightbox() {
-    const lightboxModal = document.getElementById('lightbox-modal');
-    if (lightboxModal) {
-        lightboxModal.style.display = 'none';
-        lightboxModal.classList.remove('active');
-    }
-}
-
-// === SAYFA YÖNETİMİ VE DİL ===
-async function setLanguage(lang) {
-    let langData;
-    if (translations[lang]) {
-        langData = translations[lang];
-    } else {
-        try {
-            const response = await fetch(`${lang}.json`);
-            if (!response.ok) throw new Error("Dil dosyası yok");
-            langData = await response.json(); 
-            translations[lang] = langData; 
-        } catch (error) {
-            if (lang !== 'tr' && !translations['tr']) await setLanguage('tr');
-            return;
-        }
-    }
+    document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSubject}&body=${emailBody}`;
     
-    document.documentElement.lang = lang; 
-    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-
-    document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (langData && langData[key]) el.innerHTML = langData[key];
-    });
-    localStorage.setItem('lang', lang);
+    const whatsappMsg = `Merhaba! *${tour.title}* turu hakkında bilgi almak istiyorum.%0A%0A📍 Lokasyon: ${tour.location}%0A⏰ Süre: ${tour.duration}%0A💰 Fiyat: ${tour.price}`;
+    document.getElementById('whatsappBtn').href = `https://wa.me/5491135870045?text=${whatsappMsg}`;
 }
 
-async function showPage(pageId) {
-    if (!pageId || pageId === '#') pageId = 'hero';
-    document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active', 'visible'));
-
-    let newPage = document.getElementById(pageId);
-    
-    if (!newPage) {
-        if (pageCache[pageId]) {
-            document.getElementById('page-container').insertAdjacentHTML('beforeend', pageCache[pageId]);
-        } else {
-            try {
-                let fileName = pageId;
-                if (pageId.startsWith('page-')) fileName = pageId.replace('page-', '');
-                if (pageId === 'page-satilik_kiralik') fileName = "satilik_kiralik";
-                
-                const response = await fetch(`${fileName}.html`);
-                if (!response.ok) throw new Error("Sayfa bulunamadı");
-                const html = await response.text();
-                
-                pageCache[pageId] = html; 
-                document.getElementById('page-container').insertAdjacentHTML('beforeend', html);
-            } catch (e) {
-                console.error(e);
-                return;
-            }
-        }
-        newPage = document.getElementById(pageId);
-    }
-
-    if (newPage) {
-        if (location.hash.replace('#', '') !== pageId) location.hash = pageId;
-        newPage.classList.add('active');
-        window.scrollTo(0, 0);
-
-        const currentLang = localStorage.getItem('lang') || 'tr';
-        if (translations[currentLang]) {
-            newPage.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-            });
-        }
-        
-        setTimeout(() => newPage.classList.add('visible'), 50);
-    }
+// === EXPORT FOR GLOBAL ACCESS ===
+if (typeof window !== 'undefined') {
+    window.TOUR_DATA = TOUR_DATA;
+    window.loadTourDetail = loadTourDetail;
 }
-
-
-// === BAŞLANGIÇ AYARLARI VE EVENT LISTENER'LAR ===
-document.addEventListener('DOMContentLoaded', async () => {
-    await setLanguage(localStorage.getItem('lang') || 'tr');
-    const initialPage = location.hash.replace('#', '') || 'hero';
-    showPage(initialPage);
-
-    window.addEventListener('hashchange', () => {
-        showPage(location.hash.replace('#', '') || 'hero');
-    });
-
-    const menuToggle = document.getElementById('menu-toggle');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            document.getElementById('navbar').classList.toggle('open');
-        });
-    }
-
-    document.body.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-page-back')) {
-            e.preventDefault();
-            location.hash = 'hero';
-        }
-        if (e.target.matches('[data-page]')) {
-            e.preventDefault();
-            const page = e.target.getAttribute('data-page');
-            location.hash = page;
-            document.getElementById('navbar').classList.remove('open');
-        }
-        if (e.target.id === 'lightbox-modal') {
-            closeLightbox();
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            const detail = document.getElementById("house-detail");
-            const lightbox = document.getElementById("lightbox-modal"); 
-            
-            if (detail && detail.style.display !== "none" && (!lightbox || lightbox.style.display === "none")) {
-                detail.style.display = "none";
-                document.body.style.overflow = "auto";
-            } else if (lightbox && lightbox.style.display !== "none") {
-                closeLightbox();
-            }
-        }
-        if (document.getElementById('lightbox-modal') && document.getElementById('lightbox-modal').style.display !== 'none') {
-            if (e.key === 'ArrowRight') showNextImage();
-            if (e.key === 'ArrowLeft') showPrevImage();
-        }
-    });
-
-    const nextBtn = document.getElementById('next-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const closeBtn = document.getElementById('close-lightbox');
-
-    if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); showNextImage(); };
-    if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); showPrevImage(); };
-    if (closeBtn) closeBtn.onclick = (e) => { e.stopPropagation(); closeLightbox(); };
-});
