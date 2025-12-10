@@ -1,5 +1,6 @@
 /* ================================================
    WALKABOUT TRAVEL - BLOG SYSTEM WITH MODAL
+   Optimized Version - 10 Aralık 2025
    ================================================ */
 
 class BlogManager {
@@ -10,9 +11,13 @@ class BlogManager {
     }
 
     async init() {
-        await this.loadPosts();
-        this.setupModal();
-        this.renderBlogGrid();
+        try {
+            await this.loadPosts();
+            this.setupModal();
+            this.renderBlogGrid();
+        } catch (error) {
+            console.error('Blog initialization error:', error);
+        }
     }
 
     async loadPosts() {
@@ -21,9 +26,9 @@ class BlogManager {
             if (!response.ok) throw new Error('Blog posts not found');
             
             this.posts = await response.json();
+            console.log('✅ Blog posts loaded:', this.posts.length);
         } catch (error) {
-            console.error('Error loading blog posts:', error);
-            // Fallback data
+            console.warn('⚠️ Could not load blog-posts.json, using fallback data');
             this.posts = this.getFallbackPosts();
         }
     }
@@ -33,16 +38,16 @@ class BlogManager {
             {
                 "id": 1,
                 "title": "Kapadokya'da Balon Turu Deneyimi",
-                "image": "https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=400&fit=crop",
+                "image": "assets/kapadokya-balon-turu-1.webp",
                 "date": "2025-10-15",
                 "category": "GEZİ REHBERİ",
                 "summary": "Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri.",
-                "fullContent": "<p>Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor.</p>"
+                "fullContent": "<p>Peri bacalarının üzerinde gün doğumunu izlemek hayatınızda yaşayabileceğiniz en büyüleyici deneyimlerden biri. Sabahın ilk ışıklarıyla birlikte gökyüzüne yükselen yüzlerce balon, Kapadokya'nın eşsiz coğrafyasını bir masal diyarına dönüştürüyor.</p><p><strong>Ne Zaman Gidilmeli?</strong><br>En iyi sezon Nisan-Ekim arasıdır ancak kışın karlar altındaki manzarası da ayrı bir güzeldir.</p><p><strong>İpucu:</strong><br>Rezervasyonunuzu en az 1 ay önceden yaptırmayı unutmayın, yerler çok çabuk doluyor!</p>"
             },
             {
                 "id": 2,
                 "title": "Vizesiz Gidilebilecek Cennet Ülkeler",
-                "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop",
+                "image": "assets/antalya-koy-gezisi-1.webp",
                 "date": "2025-09-20",
                 "category": "İPUÇLARI",
                 "summary": "Pasaportunuzu kapıp hemen yola çıkabileceğiniz destinasyonlar.",
@@ -51,7 +56,7 @@ class BlogManager {
             {
                 "id": 3,
                 "title": "Avrupa Turu İçin Çanta Hazırlama",
-                "image": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=600&h=400&fit=crop",
+                "image": "assets/spain-1.webp",
                 "date": "2025-08-05",
                 "category": "REHBER",
                 "summary": "Minimalist paketleme tüyoları ve hayat kurtaran ipuçları.",
@@ -62,7 +67,10 @@ class BlogManager {
 
     renderBlogGrid() {
         const container = document.getElementById('blogContainer');
-        if (!container) return;
+        if (!container) {
+            console.warn('⚠️ #blogContainer element not found');
+            return;
+        }
 
         if (!this.posts || this.posts.length === 0) {
             container.innerHTML = `
@@ -92,17 +100,21 @@ class BlogManager {
 
         // Add click events
         this.attachClickEvents();
+        
+        console.log(`✅ Rendered ${displayPosts.length} blog posts`);
     }
 
     createBlogCard(post) {
         const imageUrl = post.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop';
         const description = post.description || post.summary || '';
-        const excerpt = description.substring(0, 120) + '...';
+        const excerpt = description.length > 120 ? description.substring(0, 120) + '...' : description;
 
         return `
             <div class="blog-card" data-post-id="${post.id}">
                 <div class="blog-image">
-                    <img src="${imageUrl}" alt="${post.title}" 
+                    <img src="${imageUrl}" 
+                         alt="${post.title}" 
+                         loading="lazy"
                          onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop'">
                 </div>
                 <div class="blog-content">
@@ -128,7 +140,9 @@ class BlogManager {
                 e.stopPropagation();
                 
                 const postId = element.getAttribute('data-post-id');
-                this.openModal(postId);
+                if (postId) {
+                    this.openModal(postId);
+                }
             });
         });
     }
@@ -139,7 +153,7 @@ class BlogManager {
             const modalHTML = `
                 <div id="blogModal" class="blog-modal-overlay">
                     <div class="blog-modal-content">
-                        <button class="blog-modal-close" onclick="blogManager.closeModal()">
+                        <button class="blog-modal-close" aria-label="Close modal">
                             <i class="fas fa-times"></i>
                         </button>
                         <div class="blog-modal-header">
@@ -158,6 +172,12 @@ class BlogManager {
             `;
             document.body.insertAdjacentHTML('beforeend', modalHTML);
 
+            // Close button event
+            const closeBtn = document.querySelector('.blog-modal-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => this.closeModal());
+            }
+
             // Modal dışına tıklanınca kapat
             document.getElementById('blogModal').addEventListener('click', (e) => {
                 if (e.target.id === 'blogModal') {
@@ -171,6 +191,8 @@ class BlogManager {
                     this.closeModal();
                 }
             });
+
+            console.log('✅ Blog modal created');
         }
 
         // CSS ekle
@@ -286,7 +308,7 @@ class BlogManager {
                     gap: 6px;
                     padding: 6px 16px;
                     background: rgba(251, 191, 36, 0.1);
-                    color: var(--gold-accent);
+                    color: #f59e0b;
                     border-radius: 20px;
                     font-size: 13px;
                     font-weight: 600;
@@ -357,7 +379,7 @@ class BlogManager {
     openModal(postId) {
         const post = this.posts.find(p => p.id == postId);
         if (!post) {
-            console.error('Post not found:', postId);
+            console.error('❌ Post not found:', postId);
             return;
         }
 
@@ -376,13 +398,18 @@ class BlogManager {
         // Modal'ı göster
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        console.log('✅ Modal opened for:', post.title);
     }
 
     closeModal() {
         const modal = document.getElementById('blogModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        this.currentPost = null;
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            this.currentPost = null;
+            console.log('✅ Modal closed');
+        }
     }
 }
 
@@ -390,11 +417,17 @@ class BlogManager {
 let blogManager;
 
 // Sayfa yüklendiğinde başlat
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        blogManager = new BlogManager();
+    });
+} else {
     blogManager = new BlogManager();
-});
+}
 
-// Export for use in other modules
+// Export for use in other modules (Node.js uyumluluğu için)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { BlogManager, blogManager };
 }
+
+console.log('✅ Blog.js loaded successfully');
