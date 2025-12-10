@@ -12,868 +12,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --ocean-blue: #0ea5e9;
-            --sunset-orange: #f97316;
-            --forest-green: #10b981;
-            --gold-accent: #fbbf24;
-            --deep-navy: #0f172a;
-            --cloud-white: #f8fafc;
-            --soft-gray: #64748b;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cloud-white);
-            color: var(--deep-navy);
-            overflow-x: hidden;
-        }
-
-        /* === SMOOTH SCROLL === */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* === NAVIGATION === */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 45px;
-            border-radius: 8px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--gold-accent);
-        }
-
-        .logo-subtitle {
-            font-size: 11px;
-            color: #94a3b8;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold-accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold-accent);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .lang-switcher {
-            display: flex;
-            gap: 10px;
-        }
-
-        .lang-btn {
-            padding: 8px 12px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn:hover {
-            background: var(--gold-accent);
-            border-color: var(--gold-accent);
-            color: var(--deep-navy);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* === HERO SECTION === */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.3));
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            color: white;
-            max-width: 900px;
-            padding: 0 20px;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(251, 191, 36, 0.2);
-            border: 1px solid var(--gold-accent);
-            border-radius: 30px;
-            color: var(--gold-accent);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 72px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-gradient {
-            background: linear-gradient(to right, var(--gold-accent), var(--ocean-blue), var(--sunset-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 22px;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 16px 40px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
-            color: white;
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--deep-navy);
-        }
-
-        /* === TOURS SECTION === */
-        .tours-section {
-            padding: 120px 40px;
-            background: white;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 80px;
-        }
-
-        .section-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(14, 165, 233, 0.1);
-            border-radius: 20px;
-            color: var(--ocean-blue);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--deep-navy);
-            margin-bottom: 20px;
-        }
-
-        .section-header p {
-            font-size: 18px;
-            color: var(--soft-gray);
-            line-height: 1.7;
-        }
-
-        .tours-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .tour-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .tour-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .tour-image {
-            position: relative;
-            height: 320px;
-            overflow: hidden;
-        }
-
-        .tour-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .tour-card:hover .tour-image img {
-            transform: scale(1.1);
-        }
-
-        .tour-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 16px;
-            background: var(--gold-accent);
-            color: var(--deep-navy);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tour-content {
-            padding: 30px;
-        }
-
-        .tour-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            color: var(--deep-navy);
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .tour-content p {
-            color: var(--soft-gray);
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .tour-features {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .feature-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            background: rgba(14, 165, 233, 0.1);
-            border-radius: 20px;
-            color: var(--ocean-blue);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .tour-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--ocean-blue);
-            font-weight: 600;
-            text-decoration: none;
-            transition: gap 0.3s ease;
-        }
-
-        .tour-card:hover .tour-link {
-            gap: 12px;
-        }
-
-        /* === WHY US SECTION === */
-        .why-us-section {
-            padding: 120px 40px;
-            background: linear-gradient(135deg, var(--deep-navy) 0%, #1e293b 100%);
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 60px auto 0;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        .feature-card p {
-            color: #94a3b8;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        /* === BLOG SECTION === */
-        .blog-section {
-            padding: 120px 40px;
-            background: #f8fafc;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .blog-image {
-            height: 240px;
-            overflow: hidden;
-        }
-
-        .blog-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .blog-card:hover .blog-image img {
-            transform: scale(1.1);
-        }
-
-        .blog-content {
-            padding: 30px;
-        }
-
-        .blog-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            font-size: 13px;
-            color: var(--soft-gray);
-        }
-
-        .blog-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            color: var(--deep-navy);
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .blog-content p {
-            color: var(--soft-gray);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        /* === CONTACT SECTION === */
-        .contact-section {
-            padding: 120px 40px;
-            background: white;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--deep-navy);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--ocean-blue);
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--ocean-blue), var(--sunset-orange));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .info-item {
-            text-align: center;
-            padding: 30px;
-            background: #f8fafc;
-            border-radius: 16px;
-        }
-
-        .info-item i {
-            font-size: 32px;
-            color: var(--ocean-blue);
-            margin-bottom: 15px;
-        }
-
-        .info-item h4 {
-            font-size: 16px;
-            color: var(--deep-navy);
-            margin-bottom: 8px;
-        }
-
-        .info-item p {
-            color: var(--soft-gray);
-            font-size: 14px;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background: var(--deep-navy);
-            color: white;
-            padding: 80px 40px 40px;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 50px;
-        }
-
-        .footer-brand {
-            max-width: 350px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .footer-logo img {
-            height: 50px;
-            border-radius: 8px;
-        }
-
-        .footer-logo-text .logo-title {
-            font-size: 24px;
-        }
-
-        .footer-brand p {
-            color: #94a3b8;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--ocean-blue);
-            transform: translateY(-3px);
-        }
-
-        .footer-column h4 {
-            font-size: 18px;
-            margin-bottom: 25px;
-            color: white;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 15px;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold-accent);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
-            text-align: center;
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        /* === WHATSAPP BUTTON === */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.15);
-            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 992px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 80%;
-                max-width: 350px;
-                background: var(--deep-navy);
-                flex-direction: column;
-                padding: 100px 40px 40px;
-                transition: right 0.4s ease;
-                gap: 30px;
-                align-items: flex-start;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .tours-grid,
-            .blog-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .section-header h2 {
-                font-size: 36px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 30px 20px;
-            }
-
-            .nav-container {
-                padding: 0 20px;
-            }
-        }
-    </style>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -891,12 +31,12 @@
             <div class="nav-links" id="navLinks">
                 <a href="#home">Ana Sayfa</a>
                 <a href="#tours">Turlar</a>
-                <a href="#blog">Blog</a>
+                <a href="blog.html">Blog</a>
                 <a href="#contact">İletişim</a>
                 <div class="lang-switcher">
-                    <button class="lang-btn">TR</button>
-                    <button class="lang-btn">EN</button>
-                    <button class="lang-btn">AR</button>
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
                 </div>
             </div>
 
@@ -1184,6 +324,12 @@
                 <p>Blog yazıları yükleniyor...</p>
             </div>
         </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="blog.html" class="btn btn-outline">
+                Tüm Blog Yazıları <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
 
     <!-- CONTACT SECTION -->
@@ -1228,7 +374,7 @@
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
                     <h4>E-posta</h4>
-                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="31585f575e7146505d5a50535e4445435047545d1f525e5c">[email&#160;protected]</a></p>
+                    <p>info@walkaboutravel.com</p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
@@ -1245,7 +391,7 @@
             <div class="footer-brand">
                 <div class="footer-logo">
                     <img src="assets/walkabou_travel_logo.webp" alt="Logo">
-                    <div class="footer-logo-text logo-text">
+                    <div class="logo-text">
                         <span class="logo-title">WalkAbout Travel</span>
                         <span class="logo-subtitle">Tourism & Travel</span>
                     </div>
@@ -1267,7 +413,7 @@
                 <ul class="footer-links">
                     <li><a href="#home">Ana Sayfa</a></li>
                     <li><a href="#tours">Turlar</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="blog.html">Blog</a></li>
                     <li><a href="#contact">İletişim</a></li>
                 </ul>
             </div>
@@ -1275,20 +421,20 @@
             <div class="footer-column">
                 <h4>Turlar</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Yurt İçi Turlar</a></li>
-                    <li><a href="#">Yurt Dışı Turlar</a></li>
-                    <li><a href="#">Kültür Turları</a></li>
-                    <li><a href="#">Macera Turları</a></li>
+                    <li><a href="#tours">Yurt İçi Turlar</a></li>
+                    <li><a href="#tours">Yurt Dışı Turlar</a></li>
+                    <li><a href="#tours">Kültür Turları</a></li>
+                    <li><a href="#tours">Macera Turları</a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
                 <h4>Hizmetler</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Vize Danışmanlığı</a></li>
-                    <li><a href="#">Otel Rezervasyonu</a></li>
-                    <li><a href="#">Uçak Bileti</a></li>
-                    <li><a href="#">Sigorta</a></li>
+                    <li><a href="#contact">Vize Danışmanlığı</a></li>
+                    <li><a href="#contact">Otel Rezervasyonu</a></li>
+                    <li><a href="#contact">Uçak Bileti</a></li>
+                    <li><a href="#contact">Sigorta</a></li>
                 </ul>
             </div>
         </div>
@@ -1304,52 +450,71 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JAVASCRIPT -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <!-- JAVASCRIPT - SADECE BİR KEZ YÜKLE -->
+    <script src="app.js"></script>
+    <script src="i18n.js"></script>
+    
+    <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-                menuToggle.querySelector('i').classList.remove('fa-times');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
             });
-        });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+        }
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             }
         });
 
-        // Load Blog Posts
+        // Contact Form Submit Handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Mesajınız alındı! En kısa sürede size dönüş yapacağız.');
+            return false;
+        }
+
+        // Load Blog Posts for Homepage (First 3)
         async function loadBlogPosts() {
             try {
-                const response = await fetch('blog.json');
+                const response = await fetch('data/blog-posts.json');
                 if (!response.ok) throw new Error('Blog yüklenemedi');
                 const posts = await response.json();
-                renderBlogPosts(posts);
+                renderBlogPosts(posts.slice(0, 3)); // Sadece ilk 3 yazı
             } catch (error) {
                 console.error('Blog yüklenirken hata:', error);
                 document.getElementById('blogContainer').innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
                         <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: var(--sunset-orange); margin-bottom: 20px;"></i>
                         <h3 style="color: var(--deep-navy); margin-bottom: 10px;">Blog Yazıları Yüklenemedi</h3>
-                        <p style="color: var(--soft-gray);">blog.json dosyasının ana dizinde olduğundan emin olun.</p>
+                        <p style="color: var(--soft-gray);">data/blog-posts.json dosyasını kontrol edin.</p>
                     </div>
                 `;
             }
@@ -1369,16 +534,10 @@
                 return;
             }
 
-            // Sort by date
-            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            // Show only first 3 posts
-            const recentPosts = posts.slice(0, 3);
-
             let html = '';
-            recentPosts.forEach(post => {
+            posts.forEach(post => {
                 html += `
-                    <div class="blog-card">
+                    <div class="blog-card" onclick="location.href='blog.html'">
                         <div class="blog-image">
                             <img src="${post.image}" alt="${post.title}" 
                                  onerror="this.src='https://placehold.co/400x250/0ea5e9/FFF?text=Blog'">
@@ -1390,7 +549,7 @@
                             </div>
                             <h3>${post.title}</h3>
                             <p>${(post.description || post.summary || '').substring(0, 120)}...</p>
-                            <a href="#" class="tour-link">
+                            <a href="blog.html" class="tour-link">
                                 Devamını Oku <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1401,97 +560,9 @@
             container.innerHTML = html;
         }
 
-        // Form Submit Handler
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Mesajınız al�ındı! En kısa sürede size dönüş yapacağız.');
-        }
-
         // Load blog on page load
         document.addEventListener('DOMContentLoaded', loadBlogPosts);
     </script>
     
-    <!-- Tour Data & Functions -->
-    <script src="app.js"></script>
-<!-- ================================================
-   WALKABOUT TRAVEL - SCRIPT INTEGRATION
-   Bu kodu mevcut index.html dosyanızın </body> etiketinden ÖNCE ekleyin
-   ================================================ -->
-
-<!-- Tour Data & Tour Detail Functions -->
-<script src="app.js"></script>
-
-<!-- Multi-Language Translation System -->
-<script src="i18n.js"></script>
-
-<!-- Blog System with Modal Functionality -->
-<script src="blog.js"></script>
-
-<!-- Basic Page Functionality (Navbar, Mobile Menu, etc.) -->
-<script>
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-            });
-        });
-    }
-
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (navbar) {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        }
-    });
-
-    // Contact Form Submit Handler
-    function handleSubmit(event) {
-        event.preventDefault();
-        alert('Mesajınız alındı! En kısa sürede size dönüş yapacağız.');
-        return false;
-    }
-
-    // Make function available globally
-    window.handleSubmit = handleSubmit;
-</script>
-
-<!-- ================================================
-   DİKKAT: 
-   - app.js dosyasını mutlaka güncelleyin (eski CSS içerikli olanı silin)
-   - i18n.js ve blog.js dosyalarını aynı dizine ekleyin
-   - data/blog-posts.json dosyasını oluşturun
-   
-   HTML Elementlerinize data-i18n attribute'leri ekleyin:
-   Örnek: <h1 data-i18n="hero_title">WalkAbout Travel</h1>
-   
-   Dil butonlarına data-lang attribute'leri ekleyin:
-   Örnek: <button class="lang-btn" data-lang="tr">TR</button>
-   ================================================ -->
-    
 </body>
-</html
-
+</html>
