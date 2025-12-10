@@ -1,32 +1,20 @@
-/* TÜM KOD BURAYA YAPILDI - AÇIK MAVİ & BEYAZ TEMA GÜNCELLEMESİ (V2) */
 :root {
-  /* Background & Text Colors - Warm & Inviting */
-  --bg: #fff9f0; /* Warm Cream Background - like sandy beaches */
-  --text: #2d1810; /* Rich Dark Brown - excellent readability */
-  --text-muted: #8b6f47; /* Warm Brown-Gray for secondary text */
-  
-  /* Primary Accent: Sunset Orange/Coral */
-  --blue-light: #ff6b35; /* Vibrant Sunset Orange (replaces old blue-light) */
-  --blue-dark: #d84315; /* Deep Burnt Orange (replaces old blue-dark) */
-  
-  /* Secondary Accent: Golden Hour */
-  --gold-light: #ffcc66; /* Warm Golden Yellow */
-  --gold-dark: #f4a261; /* Peachy Golden Glow */
-  
-  /* Gradient Effects - Sunset Vibes */
-  --vibrant-gradient: linear-gradient(90deg, #ff6b35, #f4a261, #ff6b35);
-  --vibrant-shadow: 0 4px 20px rgba(255, 107, 53, 0.25);
-  --vibrant-shadow-intense: 0 8px 30px rgba(255, 107, 53, 0.4);
-  
-  /* Supporting Colors */
-  --border-dark: #ffe8d6; /* Soft Peachy Border */
-  --section-bg: #ffffff; /* Pure White Sections */
+  --bg: #f8fafc; /* Light blue-gray */
+  --text: #1e293b; /* Dark slate */
+  --text-muted: #64748b; /* Muted slate */
+  --blue-light: #38bdf8; /* ✨ NEW LIGHT BLUE */
+  --blue-dark: #0284c7; /* ✨ NEW DARK BLUE */
+  --gold-light: #60a5fa; /* Blue accent */
+  --gold-dark: #3b82f6; /* Blue accent */
+  --vibrant-gradient: linear-gradient(90deg, #38bdf8, #3b82f6, #38bdf8);
+  --vibrant-shadow: 0 4px 20px rgba(56, 189, 248, 0.25);
+  --vibrant-shadow-intense: 0 8px 30px rgba(56, 189, 248, 0.4);
+  --border-dark: #e2e8f0; /* Light blue-gray border */
+  --section-bg: #ffffff;
   --easing: cubic-bezier(0.25, 1, 0.5, 1);
-  
-  /* Additional Travel Colors */
-  --ocean-blue: #4a90e2; /* For water/ocean elements */
-  --forest-green: #52b788; /* For nature/eco tours */
-  --sky-blue: #87ceeb; /* For sky/flight elements */
+  --ocean-blue: #0ea5e9;
+  --forest-green: #52b788;
+  --sky-blue: #7dd3fc;
 }
 
 *, *::before, *::after {
