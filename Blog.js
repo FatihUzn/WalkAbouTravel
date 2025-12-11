@@ -89,7 +89,7 @@ class BlogManager {
         );
 
         // Show only first 3 posts on homepage
-        const displayPosts = sortedPosts.slice(0, 3);
+        const displayPosts = sortedPosts;
 
         let html = '';
         displayPosts.forEach(post => {
