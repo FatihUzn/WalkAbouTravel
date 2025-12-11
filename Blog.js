@@ -247,18 +247,19 @@ class BlogManager {
                     }
                 }
 
-                .blog-modal-close {
+               .blog-modal-close {
                     position: absolute;
                     top: 20px;
                     right: 20px;
                     width: 45px;
                     height: 45px;
                     border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.9);
-                    border: none;
+                    background: white;
+                    border: 2px solid #0c4a6e;
                     font-size: 20px;
+                    color: #0c4a6e;
                     cursor: pointer;
-                    z-index: 10;
+                    z-index: 10001;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -269,6 +270,7 @@ class BlogManager {
                 .blog-modal-close:hover {
                     background: var(--ocean-blue);
                     color: white;
+                    border-color: var(--ocean-blue);
                     transform: rotate(90deg);
                 }
 
