@@ -248,7 +248,7 @@ class BlogManager {
                 }
 
                .blog-modal-close {
-                    position: absolute;
+                    position: fixed;
                     top: 20px;
                     right: 20px;
                     width: 45px;
