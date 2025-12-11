@@ -263,7 +263,7 @@ nav.scrolled {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #0a0a0a; /* Video yüklenene kadar fallback */
+    background: #0a0a0a;
 }
 
 .hero-video {
@@ -273,18 +273,17 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1; /* TAM GÖRÜNÜR - KARARTMA YOK */
+    opacity: 1;
     z-index: 1;
 }
 
-/* Overlay'i şeffaf yapıyoruz ama elementi koruyoruz (layout için) */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent; /* TAMAMEN ŞEFFAF - EFEKT YOK */
+    background: transparent;
     z-index: 2;
     pointer-events: none;
 }
@@ -293,7 +292,7 @@ nav.scrolled {
     position: relative;
     z-index: 10;
     text-align: center;
-    color: white; /* Video üzerinde beyaz yazı */
+    color: white;
     max-width: 900px;
     padding: 0 20px;
     animation: fadeInUp 1s ease;
@@ -482,16 +481,24 @@ section {
     flex-wrap: wrap;
 }
 
+/* ========== GÜNCELLENMIŞ: DAHA BELİRGİN FEATURE TAGS ========== */
 .feature-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: var(--pale-blue);
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(224, 242, 254, 0.95);
     border-radius: 20px;
+    color: var(--deep-navy);
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.15);
+}
+
+.feature-tag i {
+    font-size: 16px;
     color: var(--ocean-blue);
-    font-size: 13px;
-    font-weight: 600;
 }
 
 .tour-link {
@@ -962,19 +969,31 @@ footer {
     color: var(--deep-navy);
 }
 
+/* ========== GÜNCELLENMIŞ: DAHA BELİRGİN META BİLGİLERİ ========== */
 .tour-meta-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 8px 20px;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 24px;
     border-radius: 25px;
-    border: 1px solid var(--border-gray);
+    border: 2px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
 }
 
 .tour-meta-item i {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--ocean-blue);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.tour-meta-item span {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.3px;
 }
 
 .tour-detail-content {
@@ -1322,6 +1341,24 @@ footer {
 
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Mobilde meta bilgiler için iyileştirmeler */
+    .tour-meta-item {
+        padding: 10px 20px;
+    }
+    
+    .tour-meta-item span {
+        font-size: 16px;
+    }
+    
+    .tour-meta-item i {
+        font-size: 22px;
+    }
+    
+    .feature-tag {
+        font-size: 13px;
+        padding: 7px 14px;
     }
 }
 
