@@ -1,6 +1,6 @@
 /* ================================================
    WALKABOUT TRAVEL - BLOG SYSTEM WITH MODAL
-   Optimized Version - 10 Aralık 2025
+   Modal Düzeltilmiş Versiyon - 11 Aralık 2025
    ================================================ */
 
 class BlogManager {
@@ -204,6 +204,7 @@ class BlogManager {
 
         const styles = `
             <style id="blogModalStyles">
+                /* ========== MODAL OVERLAY - DÜZELTİLMİŞ ========== */
                 .blog-modal-overlay {
                     display: none;
                     position: fixed;
@@ -213,7 +214,7 @@ class BlogManager {
                     bottom: 0;
                     background: rgba(0, 0, 0, 0.9);
                     z-index: 10000;
-                    padding: 20px;
+                    padding: 0;
                     overflow-y: auto;
                     opacity: 0;
                     transition: opacity 0.3s ease;
@@ -224,16 +225,23 @@ class BlogManager {
                     align-items: center;
                     justify-content: center;
                     opacity: 1;
+                    padding: 20px;
                 }
 
+                /* ========== MODAL CONTENT - DÜZELTİLMİŞ ========== */
                 .blog-modal-content {
                     background: white;
                     border-radius: 20px;
                     max-width: 900px;
                     width: 100%;
+                    max-height: 90vh;
                     position: relative;
                     animation: slideUp 0.4s ease;
                     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    margin: auto;
                 }
 
                 @keyframes slideUp {
@@ -247,7 +255,8 @@ class BlogManager {
                     }
                 }
 
-               .blog-modal-close {
+                /* ========== CLOSE BUTTON - DÜZELTİLMİŞ ========== */
+                .blog-modal-close {
                     position: absolute;
                     top: 20px;
                     right: 20px;
@@ -274,15 +283,43 @@ class BlogManager {
                     transform: rotate(90deg);
                 }
 
-                .blog-modal-image {
-                    width: 100%;
-                    height: 400px;
-                    object-fit: cover;
+                /* ========== MODAL HEADER (IMAGE) ========== */
+                .blog-modal-header {
+                    flex-shrink: 0;
+                    overflow: hidden;
                     border-radius: 20px 20px 0 0;
                 }
 
+                .blog-modal-image {
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                /* ========== MODAL BODY (SCROLLABLE) - DÜZELTİLMİŞ ========== */
                 .blog-modal-body {
-                    padding: 50px;
+                    padding: 40px 50px;
+                    overflow-y: auto;
+                    flex: 1;
+                }
+
+                /* Custom scrollbar */
+                .blog-modal-body::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                .blog-modal-body::-webkit-scrollbar-track {
+                    background: #f1f5f9;
+                }
+
+                .blog-modal-body::-webkit-scrollbar-thumb {
+                    background: #cbd5e1;
+                    border-radius: 4px;
+                }
+
+                .blog-modal-body::-webkit-scrollbar-thumb:hover {
+                    background: #94a3b8;
                 }
 
                 .blog-modal-meta {
@@ -318,9 +355,9 @@ class BlogManager {
 
                 .blog-modal-title {
                     font-family: 'Playfair Display', serif;
-                    font-size: 36px;
+                    font-size: 32px;
                     color: var(--deep-navy);
-                    margin-bottom: 30px;
+                    margin-bottom: 25px;
                     line-height: 1.3;
                 }
 
@@ -356,9 +393,21 @@ class BlogManager {
                     line-height: 1.7;
                 }
 
+                /* ========== RESPONSIVE - DÜZELTİLMİŞ ========== */
                 @media (max-width: 768px) {
+                    .blog-modal-overlay.active {
+                        padding: 0;
+                        align-items: flex-start;
+                    }
+
+                    .blog-modal-content {
+                        max-height: 100vh;
+                        border-radius: 0;
+                        margin: 0;
+                    }
+
                     .blog-modal-image {
-                        height: 250px;
+                        height: 200px;
                     }
 
                     .blog-modal-body {
@@ -366,11 +415,29 @@ class BlogManager {
                     }
 
                     .blog-modal-title {
-                        font-size: 28px;
+                        font-size: 24px;
                     }
 
                     .blog-modal-text {
                         font-size: 16px;
+                    }
+
+                    .blog-modal-close {
+                        top: 10px;
+                        right: 10px;
+                        width: 40px;
+                        height: 40px;
+                        font-size: 18px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .blog-modal-title {
+                        font-size: 22px;
+                    }
+
+                    .blog-modal-body {
+                        padding: 25px 15px;
                     }
                 }
             </style>
@@ -400,6 +467,12 @@ class BlogManager {
         // Modal'ı göster
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Scroll'u en üste al
+        const modalBody = document.querySelector('.blog-modal-body');
+        if (modalBody) {
+            modalBody.scrollTop = 0;
+        }
         
         console.log('✅ Modal opened for:', post.title);
     }
