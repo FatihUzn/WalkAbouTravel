@@ -773,19 +773,6 @@
                 }
             });
         });
-
-        // Language Switcher Function
-        async function setLanguage(lang) {
-            console.log('🌍 Language changing:', lang);
-            
-            // Aktif buton işaretleme
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
             
             // i18n sistemi varsa kullan
             if (typeof i18n !== 'undefined') {
@@ -844,3 +831,4 @@
     </script>
 </body>
 </html>
+
