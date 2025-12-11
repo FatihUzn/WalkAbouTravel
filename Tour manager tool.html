@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Manager - WalkAbout Travel</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-section, .preview-section {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #334155;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #38bdf8;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .image-upload-area {
+            border: 3px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .image-upload-area:hover {
+            border-color: #38bdf8;
+            background: #f0f9ff;
+        }
+        
+        .image-upload-area.dragover {
+            border-color: #38bdf8;
+            background: #e0f2fe;
+            transform: scale(1.02);
+        }
+        
+        .image-upload-area i {
+            font-size: 3em;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+        
+        .image-preview {
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .image-preview img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        
+        .image-preview.show {
+            display: block;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .preview-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .preview-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .preview-card-content {
+            padding: 20px;
+        }
+        
+        .preview-card h3 {
+            color: #334155;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        
+        .preview-card .meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-card .meta span {
+            color: #64748b;
+            font-size: 0.9em;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .preview-card .meta i {
+            color: #38bdf8;
+        }
+        
+        .preview-card .description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .tour-list {
+            margin-top: 20px;
+        }
+        
+        .tour-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .tour-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tour-item-info h4 {
+            color: #334155;
+            margin-bottom: 5px;
+        }
+        
+        .tour-item-info p {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        .tour-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert.show {
+            display: block;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            color: #065f46;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            border: 2px solid #ef4444;
+            color: #991b1b;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .price-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .price-input-group input {
+            flex: 1;
+        }
+        
+        .price-input-group select {
+            width: 100px;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-plane"></i> Tour Manager</h1>
+            <p>WalkAbout Travel turlarını kolayca yönetin</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- FORM SECTION -->
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-plus-circle"></i> Yeni Tur Ekle</h2>
+                
+                <div class="alert" id="alert"></div>
+                
+                <form id="tourForm">
+                    <!-- Görsel Yükleme -->
+                    <div class="form-group">
+                        <label><i class="fas fa-image"></i> Ana Görsel *</label>
+                        <div class="image-upload-area" id="imageUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Görseli sürükle bırak veya tıklayarak seç</p>
+                            <small>Önerilen: 1200x800px, WebP format, <200KB</small>
+                        </div>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                        <div class="image-preview" id="imagePreview">
+                            <img id="previewImg" src="" alt="Preview">
+                        </div>
+                    </div>
+                    
+                    <!-- Başlık (TR & EN) -->
+                    <div class="form-group">
+                        <label><i class="fas fa-heading"></i> Tur Başlığı (Türkçe) *</label>
+                        <input type="text" id="titleTR" placeholder="ör: Kapadokya - Balon ve Peribacaları Turu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-heading"></i> Tour Title (English) *</label>
+                        <input type="text" id="titleEN" placeholder="e.g: Cappadocia - Balloon & Fairy Chimneys Tour" required>
+                    </div>
+                    
+                    <!-- Fiyat ve Süre -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-tag"></i> Fiyat *</label>
+                            <div class="price-input-group">
+                                <input type="number" id="price" placeholder="9800" required>
+                                <select id="currency" required>
+                                    <option value="TL">TL</option>
+                                    <option value="€">€</option>
+                                    <option value="$">$</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Süre *</label>
+                            <input type="text" id="duration" placeholder="4 Gün / 3 Gece" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Lokasyon ve Bölge -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Lokasyon *</label>
+                            <input type="text" id="location" placeholder="Göreme, Uçhisar, Avanos" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-map"></i> Bölge *</label>
+                            <input type="text" id="area" placeholder="İç Anadolu" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Kategori -->
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Kategori *</label>
+                        <select id="category" required>
+                            <option value="">Kategori seçin...</option>
+                            <option value="Kültür">Kültür</option>
+                            <option value="Deniz">Deniz</option>
+                            <option value="Macera">Macera</option>
+                            <option value="Doğa">Doğa</option>
+                            <option value="Popüler">Popüler</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Kış">Kış</option>
+                            <option value="Festival">Festival</option>
+                            <option value="Metropol">Metropol</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Kısa Açıklama (TR) -->
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Kısa Açıklama (Türkçe) *</label>
+                        <textarea id="descriptionTR" placeholder="Kısa tanıtım metni (1-2 cümle)" rows="3" required></textarea>
+                    </div>
+                    
+                    <!-- Kısa Açıklama (EN) -->
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Short Description (English) *</label>
+                        <textarea id="descriptionEN" placeholder="Short description (1-2 sentences)" rows="3" required></textarea>
+                    </div>
+                    
+                    <!-- Detaylı Açıklama (TR) -->
+                    <div class="form-group">
+                        <label><i class="fas fa-file-alt"></i> Detaylı Açıklama (Türkçe - HTML) *</label>
+                        <textarea id="contentTR" placeholder="Tur programı, özellikler vb. (HTML kullanabilirsiniz)" rows="10" required></textarea>
+                    </div>
+                    
+                    <!-- Detaylı Açıklama (EN) -->
+                    <div class="form-group">
+                        <label><i class="fas fa-file-alt"></i> Full Description (English - HTML) *</label>
+                        <textarea id="contentEN" placeholder="Tour program, features etc. (You can use HTML)" rows="10" required></textarea>
+                    </div>
+                    
+                    <!-- Butonlar -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" id="previewBtn">
+                            <i class="fas fa-eye"></i> Önizle
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Turu Ekle
+                        </button>
+                        <button type="button" class="btn btn-warning" id="resetBtn">
+                            <i class="fas fa-redo"></i> Formu Temizle
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- PREVIEW/MANAGE SECTION -->
+            <div class="preview-section">
+                <h2 class="section-title"><i class="fas fa-eye"></i> Önizle & Yönet</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="number" id="totalTours">0</div>
+                        <div class="label">Toplam Tur</div>
+                    </div>
+                </div>
+                
+                <!-- Preview Card -->
+                <div id="previewContainer" style="display: none;">
+                    <h3 style="color: #334155; margin-bottom: 15px;">Önizleme:</h3>
+                    <div class="preview-card" id="previewCard"></div>
+                </div>
+                
+                <!-- Tour List -->
+                <div class="tour-list" id="tourList"></div>
+                
+                <!-- Export Button -->
+                <div class="button-group" style="margin-top: 20px;">
+                    <button class="btn btn-success" id="exportBtn">
+                        <i class="fas fa-download"></i> tours.json İndir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tours = [];
+        let currentImageData = null;
+        let currentImageName = null;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTours();
+            setupEventListeners();
+            updateStats();
+        });
+        
+        function setupEventListeners() {
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const imageInput = document.getElementById('imageInput');
+            
+            imageUploadArea.addEventListener('click', () => imageInput.click());
+            
+            imageUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.add('dragover');
+            });
+            
+            imageUploadArea.addEventListener('dragleave', () => {
+                imageUploadArea.classList.remove('dragover');
+            });
+            
+            imageUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.remove('dragover');
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    handleImageUpload(file);
+                }
+            });
+            
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) handleImageUpload(file);
+            });
+            
+            document.getElementById('tourForm').addEventListener('submit', handleFormSubmit);
+            document.getElementById('previewBtn').addEventListener('click', showPreview);
+            document.getElementById('resetBtn').addEventListener('click', resetForm);
+            document.getElementById('exportBtn').addEventListener('click', exportToursJSON);
+        }
+        
+        function handleImageUpload(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentImageData = e.target.result;
+                currentImageName = `tour-${Date.now()}.webp`;
+                
+                const previewImg = document.getElementById('previewImg');
+                const imagePreview = document.getElementById('imagePreview');
+                
+                previewImg.src = currentImageData;
+                imagePreview.classList.add('show');
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function showPreview() {
+            if (!validateForm()) return;
+            
+            const previewContainer = document.getElementById('previewContainer');
+            const previewCard = document.getElementById('previewCard');
+            
+            const formData = getFormData();
+            
+            previewCard.innerHTML = `
+                ${currentImageData ? `<img src="${currentImageData}" alt="${formData.title}">` : ''}
+                <div class="preview-card-content">
+                    <h3>${formData.title}</h3>
+                    <div class="meta">
+                        <span><i class="fas fa-tag"></i> ${formData.price}</span>
+                        <span><i class="fas fa-clock"></i> ${formData.duration}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${formData.location}</span>
+                        <span><i class="fas fa-bookmark"></i> ${formData.category}</span>
+                    </div>
+                    <div class="description">${formData.description}</div>
+                </div>
+            `;
+            
+            previewContainer.style.display = 'block';
+            previewContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function validateForm() {
+            const requiredFields = ['titleTR', 'titleEN', 'price', 'duration', 'location', 'area', 'category', 'descriptionTR', 'descriptionEN', 'contentTR', 'contentEN'];
+            
+            for (const field of requiredFields) {
+                if (!document.getElementById(field).value.trim()) {
+                    showAlert('Lütfen tüm zorunlu alanları doldurun!', 'error');
+                    return false;
+                }
+            }
+            
+            if (!currentImageData) {
+                showAlert('Lütfen bir görsel yükleyin!', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function getFormData() {
+            const price = document.getElementById('price').value;
+            const currency = document.getElementById('currency').value;
+            
+            return {
+                id: `TUR-${Date.now()}`,
+                title: document.getElementById('titleTR').value.trim(),
+                title_en: document.getElementById('titleEN').value.trim(),
+                price: `${price} ${currency}`,
+                duration: document.getElementById('duration').value.trim(),
+                location: document.getElementById('location').value.trim(),
+                area: document.getElementById('area').value.trim(),
+                category: document.getElementById('category').value,
+                description: document.getElementById('descriptionTR').value.trim(),
+                description_en: document.getElementById('descriptionEN').value.trim(),
+                image: `assets/${currentImageName}`,
+                content: document.getElementById('contentTR').value.trim(),
+                content_en: document.getElementById('contentEN').value.trim()
+            };
+        }
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            const formData = getFormData();
+            tours.push(formData);
+            
+            saveTours();
+            updateTourList();
+            updateStats();
+            resetForm();
+            
+            showAlert('Tur başarıyla eklendi!', 'success');
+        }
+        
+        function resetForm() {
+            document.getElementById('tourForm').reset();
+            document.getElementById('imagePreview').classList.remove('show');
+            document.getElementById('previewContainer').style.display = 'none';
+            currentImageData = null;
+            currentImageName = null;
+        }
+        
+        function updateTourList() {
+            const tourList = document.getElementById('tourList');
+            tourList.innerHTML = '<h3 style="color: #334155; margin-bottom: 15px;">Turlarınız:</h3>';
+            
+            tours.forEach((tour, index) => {
+                const tourItem = document.createElement('div');
+                tourItem.className = 'tour-item';
+                tourItem.innerHTML = `
+                    <div class="tour-item-info">
+                        <h4>${tour.title}</h4>
+                        <p>${tour.category} • ${tour.price} • ${tour.location}</p>
+                    </div>
+                    <div class="tour-item-actions">
+                        <button class="btn btn-small btn-danger" onclick="deleteTour(${index})">
+                            <i class="fas fa-trash"></i> Sil
+                        </button>
+                    </div>
+                `;
+                tourList.appendChild(tourItem);
+            });
+        }
+        
+        function deleteTour(index) {
+            if (confirm('Bu turu silmek istediğinizden emin misiniz?')) {
+                tours.splice(index, 1);
+                saveTours();
+                updateTourList();
+                updateStats();
+                showAlert('Tur silindi!', 'success');
+            }
+        }
+        
+        function updateStats() {
+            document.getElementById('totalTours').textContent = tours.length;
+        }
+        
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.className = `alert alert-${type} show`;
+            alert.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i> ${message}`;
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+            }, 5000);
+        }
+        
+        function saveTours() {
+            localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+        }
+        
+        function loadTours() {
+            const saved = localStorage.getItem('walkabout_tours');
+            if (saved) {
+                tours = JSON.parse(saved);
+                updateTourList();
+            }
+        }
+        
+        function exportToursJSON() {
+            if (tours.length === 0) {
+                showAlert('Dışa aktarılacak tur yok!', 'error');
+                return;
+            }
+            
+            const dataStr = JSON.stringify(tours, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'tours.json';
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showAlert('tours.json başarıyla indirildi!', 'success');
+        }
+        
+        window.deleteTour = deleteTour;
+    </script>
+</body>
+</html>
