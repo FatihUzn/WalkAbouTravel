@@ -2,7 +2,8 @@
 // WalkAbout Travel - 2025
 
 const i18n = {
-  currentLang: 'tr',
+  // Varsayılan dili İngilizce yaptık (TR silindiği için)
+  currentLang: 'en',
   translations: {},
   
   // Dil dosyasını yükle
@@ -88,7 +89,8 @@ const i18n = {
   },
   
   // Başlangıç
-  async init(defaultLang = 'tr') {
+  // Varsayılan dil parametresi 'en' olarak güncellendi
+  async init(defaultLang = 'en') {
     console.log('🚀 i18n sistemi başlatılıyor...');
     
     // localStorage'dan dil tercihi
@@ -120,6 +122,7 @@ if (typeof window !== 'undefined') {
   // DOM hazır olduğunda çalıştır
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+      // Init fonksiyonu artık varsayılan olarak İngilizce açılacak
       i18n.init();
     });
   } else {
