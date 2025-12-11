@@ -123,11 +123,11 @@ const TOUR_DATA = {
         "category": "Macera",
         "image": "assets/fethiye-oludeniz-manzarasi-14.webp",
         "description": `
-            <p>Babadağ'dan 1960 metre yükseklikten Ölüdeniz'in turkuaz sularına doğru yamaç paraşütü heyecanı.</p>
+            <p>Ferit Tosun </p>
             
             <h3>Tur Programı</h3>
             <p><strong>1. Gün:</strong> Fethiye varış, otele yerleşme, Ölüdeniz plajı.</p>
-            <p><strong>2. Gün:</strong> Babadağ yamaç paraşütü, Kelebekler Vadisi tekne turu.</p>
+            <p><strong>2. Gün:</strong> Ferit  yamaç paraşütü, Kelebekler Vadisi tekne turu.</p>
             <p><strong>3. Gün:</strong> Likya Yolu yürüyüşü ve dönüş.</p>
             
             <div class="tour-highlights">
