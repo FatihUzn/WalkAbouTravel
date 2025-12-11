@@ -66,12 +66,14 @@ class BlogManager {
         ];
     }
 
-    renderBlogGrid() {
-        const container = document.getElementById('blogContainer');
-        if (!container) {
-            console.warn('⚠️ #blogContainer element not found');
-            return;
-        }
+      renderBlogGrid() {
+    // Kodu buradaki gibi "VEYA (||)" ekleyerek değiştirin:
+    const container = document.getElementById('blogContainer') || document.getElementById('blog-grid-display');
+    
+    if (!container) {
+        console.warn('⚠️ Blog container bulunamadı! HTML idnizi kontrol edin.');
+        return;
+    }
 
         if (!this.posts || this.posts.length === 0) {
             container.innerHTML = `
