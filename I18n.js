@@ -2,17 +2,15 @@
 // WalkAbout Travel - 2025
 
 const i18n = {
-  // Varsayılan dili İngilizce yaptık (TR silindiği için)
-  currentLang: 'en',
+  currentLang: 'tr',
   translations: {},
   
-  // Dil dosyasını yükle
   async loadLanguage(lang) {
     try {
-      const response = await fetch(`${lang}.json`);
+      const response = await fetch(`/data/${lang}.json`);
       if (!response.ok) throw new Error(`Dil dosyası yüklenemedi: ${lang}.json`);
       this.translations[lang] = await response.json();
-      console.log(`✅ ${lang.toUpperCase()} dil dosyası yüklendi`, this.translations[lang]);
+      console.log(`✅ ${lang.toUpperCase()} dil dosyası yüklendi`);
       return true;
     } catch (error) {
       console.error(`❌ Dil yükleme hatası (${lang}):`, error);
@@ -20,7 +18,6 @@ const i18n = {
     }
   },
   
-  // Çeviri anahtarını getir
   t(key) {
     if (!this.translations[this.currentLang]) {
       console.warn(`Dil yüklenmemiş: ${this.currentLang}`);
@@ -29,11 +26,9 @@ const i18n = {
     return this.translations[this.currentLang][key] || key;
   },
   
-  // Dili değiştir
   async changeLanguage(lang) {
     console.log(`🌍 Dil değiştiriliyor: ${this.currentLang} → ${lang}`);
     
-    // Dil dosyası yüklü değilse yükle
     if (!this.translations[lang]) {
       const loaded = await this.loadLanguage(lang);
       if (!loaded) {
@@ -42,19 +37,11 @@ const i18n = {
       }
     }
     
-    // Mevcut dili güncelle
     this.currentLang = lang;
-    
-    // localStorage'a kaydet
     localStorage.setItem('language', lang);
-    
-    // Sayfayı güncelle
     this.updatePageContent();
-    
-    // HTML lang attribute
     document.documentElement.lang = lang;
     
-    // RTL desteği (Arapça için)
     if (lang === 'ar') {
       document.body.setAttribute('dir', 'rtl');
     } else {
@@ -65,9 +52,7 @@ const i18n = {
     return true;
   },
   
-  // Sayfa içeriğini güncelle
   updatePageContent() {
-    // Tüm data-i18n elementlerini güncelle
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
       const translation = this.t(key);
@@ -79,7 +64,6 @@ const i18n = {
       }
     });
     
-    // Title güncelle
     const titleKey = document.querySelector('title')?.getAttribute('data-i18n');
     if (titleKey) {
       document.title = this.t(titleKey);
@@ -88,25 +72,16 @@ const i18n = {
     console.log('📝 Sayfa içeriği güncellendi');
   },
   
-  // Başlangıç
-  // Varsayılan dil parametresi 'en' olarak güncellendi
-  async init(defaultLang = 'en') {
+  async init(defaultLang = 'tr') {
     console.log('🚀 i18n sistemi başlatılıyor...');
     
-    // localStorage'dan dil tercihi
     const savedLang = localStorage.getItem('language') || defaultLang;
     
-    // Varsayılan dili yükle
     await this.loadLanguage(savedLang);
     this.currentLang = savedLang;
-    
-    // Sayfa içeriğini güncelle
     this.updatePageContent();
-    
-    // HTML lang attribute
     document.documentElement.lang = savedLang;
     
-    // RTL desteği
     if (savedLang === 'ar') {
       document.body.setAttribute('dir', 'rtl');
     }
@@ -115,22 +90,18 @@ const i18n = {
   }
 };
 
-// Sayfa yüklendiğinde başlat
 if (typeof window !== 'undefined') {
   window.i18n = i18n;
   
-  // DOM hazır olduğunda çalıştır
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      // Init fonksiyonu artık varsayılan olarak İngilizce açılacak
-      i18n.init();
+      i18n.init('tr');
     });
   } else {
-    i18n.init();
+    i18n.init('tr');
   }
 }
 
-// Export (modül olarak kullanılırsa)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = i18n;
 }
