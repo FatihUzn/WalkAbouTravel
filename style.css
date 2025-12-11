@@ -966,16 +966,24 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 8px 20px;
     border-radius: 25px;
-    border: 1px solid var(--border-gray);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #0c4a6e;
+    font-weight: 600;
 }
 
 .tour-meta-item i {
     font-size: 20px;
-    color: var(--ocean-blue);
+    color: #38bdf8;
 }
+
+.tour-meta-item span {
+    color: #0c4a6e;
+    font-weight: 600;
+}
+
 
 .tour-detail-content {
     max-width: 1400px;
