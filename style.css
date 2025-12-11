@@ -787,9 +787,11 @@ section {
 
 .blog-modal-overlay.active {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     opacity: 1;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .blog-modal-content {
@@ -1633,6 +1635,11 @@ footer {
         font-size: 18px;
     }
 
+    .blog-modal-overlay.active {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
     .blog-modal-image {
         height: 250px;
     }
@@ -1647,6 +1654,14 @@ footer {
 
     .blog-modal-text {
         font-size: 16px;
+    }
+
+    .blog-modal-close {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 }
 
