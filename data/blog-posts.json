@@ -49,4 +49,32 @@
         "description": "Babadağ'dan 1960 metre yükseklikten Ölüdeniz'in eşsiz manzarasına doğru atlayış yapmak, hayatta en az bir kez yaşanması gereken deneyimlerden biri.",
         "fullContent": "<p>Babadağ'dan 1960 metre yükseklikten Ölüdeniz'in eşsiz manzarasına doğru atlayış yapmak, hayatta en az bir kez yaşanması gereken deneyimlerden biri.</p><p><strong>Hazırlık Süreci:</strong><br>Yamaç paraşütü için herhangi bir deneyim gerekmez. Tandem uçuşlarda deneyimli pilotlar tüm süreci yönetir.</p>"
     }
+   [
+  {
+    "id": "blog-1",
+    "title": "daf",
+    "title_en": "sd",
+    "description": "fbdfhg",
+    "description_en": "sfgfd",
+    "image": "assets/blog-1765351671936.webp",
+    "date": "10 Aralık 2025",
+    "author": "ret",
+    "category": "Seyahat İpuçları",
+    "content": "afdf",
+    "content_en": "sdf"
+  },
+  {
+    "id": "blog-2",
+    "title": "logo",
+    "title_en": "logo",
+    "description": "logomuz",
+    "description_en": "lopgomuz",
+    "image": "assets/blog-1765467945587.webp",
+    "date": "11 Aralık 2025",
+    "author": "Fatih",
+    "category": "Seyahat İpuçları",
+    "content": "logo güncellemesi",
+    "content_en": "logo güncellemesi"
+  },
+]
 ]
