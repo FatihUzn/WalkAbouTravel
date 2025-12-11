@@ -22,7 +22,7 @@ class BlogManager {
 
     async loadPosts() {
         try {
-            const response = await fetch('data/blog-posts.json');
+            const response = await fetch('/WalkAboutTravel/data/blog-posts.json');
             if (!response.ok) throw new Error('Blog posts not found');
             
             this.posts = await response.json();
