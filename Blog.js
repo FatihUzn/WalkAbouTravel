@@ -5,8 +5,7 @@
 
 class BlogManager {
     constructor() {
-        
-        
+        this.posts = [];    
         this.currentPost = null;
         this.init();
     }
