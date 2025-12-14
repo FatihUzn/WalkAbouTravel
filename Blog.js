@@ -1,22 +1,33 @@
 /* ================================================
-   WALKABOUT TRAVEL - BLOG SYSTEM (EMBEDDED DATA)
-   Emergency Fix - Direct Data Loading
+   WALKABOUT TRAVEL - BLOG SYSTEM (JSON LOADING)
    ================================================ */
 
 class BlogManager {
     constructor() {
-        this.posts = [];    
+        this.posts = [];
         this.currentPost = null;
         this.init();
     }
 
-    init() {
+    async init() {
+        await this.loadBlogPosts();
         this.setupModal();
         this.renderBlogGrid();
     }
 
+    async loadBlogPosts() {
+        try {
+            const response = await fetch('data/blog-posts.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            this.posts = await response.json();
+            console.log(`✅ ${this.posts.length} blog yazısı JSON'dan yüklendi`);
+        } catch (error) {
+            console.error('❌ Blog yükleme hatası:', error);
+            this.posts = [];
+        }
+    }
+
     renderBlogGrid() {
-        // İki ID'yi de kontrol ediyoruz (Garanti olsun diye)
         const container = document.getElementById('blogContainer') || document.getElementById('blog-grid-display');
         
         if (!container) {
@@ -29,7 +40,6 @@ class BlogManager {
             return;
         }
 
-        // SADECE 3 YAZI LİMİTİNİ KALDIRDIK (Hepsi gözükecek)
         const displayPosts = this.posts;
 
         let html = '';
@@ -39,11 +49,10 @@ class BlogManager {
 
         container.innerHTML = html;
         this.attachClickEvents();
-        console.log(`✅ ${displayPosts.length} blog yazısı başarıyla yüklendi.`);
+        console.log(`✅ ${displayPosts.length} blog yazısı ekranda gösteriliyor`);
     }
 
     createBlogCard(post) {
-        // Resim yoksa varsayılan resim kullan
         const imageUrl = post.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop';
         
         return `
@@ -57,7 +66,7 @@ class BlogManager {
                         ${post.category ? `<span style="margin-left:10px;"><i class="fas fa-tag"></i> ${post.category}</span>` : ''}
                     </div>
                     <h3 style="margin-bottom:10px; color:#333;">${post.title}</h3>
-                    <p style="color:#666; font-size:0.95em; line-height:1.6;">${post.summary}</p>
+                    <p style="color:#666; font-size:0.95em; line-height:1.6;">${post.description}</p>
                     <a href="#" class="blog-read-more" data-post-id="${post.id}" style="display:inline-block; margin-top:15px; color:#38bdf8; font-weight:600; text-decoration:none;">
                         Devamını Oku <i class="fas fa-arrow-right"></i>
                     </a>
@@ -70,7 +79,7 @@ class BlogManager {
         document.querySelectorAll('.blog-card, .blog-read-more').forEach(element => {
             element.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation(); // Tıklama çakışmasını önle
+                e.stopPropagation();
                 const postId = element.getAttribute('data-post-id');
                 this.openModal(postId);
             });
@@ -93,7 +102,6 @@ class BlogManager {
             document.body.insertAdjacentHTML('beforeend', modalHTML);
             this.injectModalStyles();
 
-            // Kapatma eventleri
             document.querySelector('.blog-modal-close').addEventListener('click', () => this.closeModal());
             document.getElementById('blogModal').addEventListener('click', (e) => {
                 if (e.target.id === 'blogModal') this.closeModal();
@@ -124,7 +132,7 @@ class BlogManager {
         
         document.getElementById('blogModalImage').src = post.image;
         document.getElementById('blogModalTitle').textContent = post.title;
-        document.getElementById('blogModalContent').innerHTML = post.fullContent || post.summary;
+        document.getElementById('blogModalContent').innerHTML = post.fullContent || post.description;
         document.getElementById('blogModal').classList.add('active');
     }
 
