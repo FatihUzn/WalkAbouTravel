@@ -79,6 +79,10 @@
                                 <i class="fas fa-plus"></i>
                                 Yeni Blog Ekle
                             </button>
+                            <button class="btn btn-success" onclick="showPage('tours')">
+                                <i class="fas fa-plus"></i>
+                                Yeni Tur Ekle
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -220,10 +224,175 @@
                 <div id="page-tours" class="page">
                     <div class="page-header">
                         <h2>Tur Paketleri</h2>
+                        <button class="btn btn-primary" onclick="showTourForm()">
+                            <i class="fas fa-plus"></i>
+                            Yeni Tur Ekle
+                        </button>
                     </div>
-                    <p style="text-align: center; padding: 40px; color: #64748b;">
-                        Tur yönetimi yakında eklenecek...
-                    </p>
+                    
+                    <!-- Tour Form -->
+                    <div id="tour-form-container" class="form-container" style="display: none;">
+                        <div class="form-header">
+                            <h3 id="tour-form-title">Yeni Tur Paketi</h3>
+                            <button class="btn-close" onclick="closeTourForm()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <form id="tour-form">
+                            <!-- Görsel -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label class="form-label">
+                                        <i class="fas fa-image"></i>
+                                        Ana Görsel *
+                                    </label>
+                                    <div class="upload-zone" id="tour-upload-zone">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Görseli sürükle-bırak veya tıklayarak seç</p>
+                                        <small>Max 5MB, JPG/PNG/WebP</small>
+                                    </div>
+                                    <input type="file" id="tour-image" accept="image/*" style="display: none;">
+                                    <div id="tour-preview" class="image-preview"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Başlıklar -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-heading"></i>
+                                        Tur Başlığı (Türkçe) *
+                                    </label>
+                                    <input type="text" id="tour-title-tr" placeholder="Örn: Kapadokya Balon Turu" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-heading"></i>
+                                        Tour Title (English) *
+                                    </label>
+                                    <input type="text" id="tour-title-en" placeholder="e.g: Cappadocia Balloon Tour" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Fiyat ve Süre -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-tag"></i>
+                                        Fiyat *
+                                    </label>
+                                    <input type="text" id="tour-price" placeholder="9.800 TL" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-clock"></i>
+                                        Süre *
+                                    </label>
+                                    <input type="text" id="tour-duration" placeholder="4 Gün / 3 Gece" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Lokasyon ve Kategori -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Lokasyon *
+                                    </label>
+                                    <input type="text" id="tour-location" placeholder="Göreme, Uçhisar, Avanos" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-tag"></i>
+                                        Kategori *
+                                    </label>
+                                    <select id="tour-category" required>
+                                        <option value="">Seçin...</option>
+                                        <option value="Kültür">Kültür</option>
+                                        <option value="Macera">Macera</option>
+                                        <option value="Deniz">Deniz</option>
+                                        <option value="Doğa">Doğa</option>
+                                        <option value="Popüler">Popüler</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Bölge -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-map"></i>
+                                        Bölge *
+                                    </label>
+                                    <input type="text" id="tour-area" placeholder="İç Anadolu" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Kısa Açıklama (TR) -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label class="form-label">
+                                        <i class="fas fa-align-left"></i>
+                                        Kısa Açıklama (Türkçe) *
+                                    </label>
+                                    <textarea id="tour-description-tr" placeholder="Kısa tanıtım metni (1-2 cümle)" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Kısa Açıklama (EN) -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label class="form-label">
+                                        <i class="fas fa-align-left"></i>
+                                        Short Description (English) *
+                                    </label>
+                                    <textarea id="tour-description-en" placeholder="Short description (1-2 sentences)" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Detaylı İçerik (TR) -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label class="form-label">
+                                        <i class="fas fa-file-alt"></i>
+                                        Detaylı İçerik (Türkçe - HTML) *
+                                    </label>
+                                    <textarea id="tour-content-tr" placeholder="HTML kullanabilirsiniz" rows="10" required></textarea>
+                                    <small class="help-text">💡 <strong>&lt;h3&gt;</strong> Alt başlık, <strong>&lt;ul&gt;&lt;li&gt;</strong> Liste</small>
+                                </div>
+                            </div>
+                            
+                            <!-- Detaylı İçerik (EN) -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label class="form-label">
+                                        <i class="fas fa-file-alt"></i>
+                                        Full Content (English - HTML) *
+                                    </label>
+                                    <textarea id="tour-content-en" placeholder="You can use HTML" rows="10" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Butonlar -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i>
+                                    Kaydet
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="closeTourForm()">
+                                    <i class="fas fa-times"></i>
+                                    İptal
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Tour Listesi -->
+                    <div id="tour-list" class="items-list"></div>
                 </div>
             </div>
         </main>
