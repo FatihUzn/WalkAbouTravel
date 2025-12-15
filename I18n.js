@@ -33,7 +33,21 @@ const i18n = {
       return key;
     }
     
-    const translation = this.translations[this.currentLang][key];
+    // Hem noktalı hem alt çizgili anahtarları dene
+    let translation = this.translations[this.currentLang][key];
+    
+    // Noktalı anahtar yoksa, alt çizgiliye çevir (nav.home → nav_home)
+    if (!translation) {
+      const underscoreKey = key.replace(/\./g, '_');
+      translation = this.translations[this.currentLang][underscoreKey];
+    }
+    
+    // Alt çizgili yoksa, noktalıya çevir (nav_home → nav.home)
+    if (!translation) {
+      const dotKey = key.replace(/_/g, '.');
+      translation = this.translations[this.currentLang][dotKey];
+    }
+    
     if (!translation) {
       console.warn(`⚠️ Translation not found: ${key} (${this.currentLang})`);
       return key;
