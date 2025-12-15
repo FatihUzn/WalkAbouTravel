@@ -1,42 +1,304 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="title">WalkAbout Travel - Türkiye ve Dünya Turları</title>
+    <title>WalkAbout Travel - Discover the World</title>
+    <link rel="icon" href="assets/walkabou_travel_logo.jpg">
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="1997'den beri güvenilir tur organizasyonları. Kapadokya, Mardin, Antalya turları ve daha fazlası.">
-    <meta name="keywords" content="tur, seyahat, tatil, kapadokya, mardin, antalya, türkiye turları">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Main Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* HERO VIDEO STİLLERİ - EFEKTSİZ VERSİYON */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            object-fit: cover;
+            opacity: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(56, 189, 248, 0.95);
+            color: white;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin: 20px 0;
+            line-height: 1.2;
+            color: white !important;
+            background: none !important;
+            -webkit-text-fill-color: white !important;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(90deg, #38bdf8, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.4));
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95) !important;
+            margin: 20px 0;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-links-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .btn-hero-link {
+            padding: 15px 30px;
+            background: rgba(56, 189, 248, 0.9);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-hero-link:hover {
+            background: white;
+            color: var(--ocean-blue);
+            border-color: var(--ocean-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+        }
+        
+        .header-top-row {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 8px 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-top-row a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-right: 20px;
+        }
+        
+        .header-top-row a:hover {
+            color: var(--ocean-blue);
+        }
+        
+        .header-top-row i {
+            margin-right: 8px;
+            color: var(--ocean-blue);
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-card-content {
+            padding: 25px;
+        }
+        
+        .category-card h3 {
+            font-size: 24px;
+            color: var(--deep-navy);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .category-card p {
+            color: var(--soft-gray);
+            margin-bottom: 15px;
+        }
+        
+        .category-btn {
+            color: var(--ocean-blue);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .lang-btn.active {
+            background: var(--ocean-blue);
+            color: white;
+        }
+        
+        .language-toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--ocean-blue);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: 600;
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+        }
+        
+        .language-toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .header-top-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 10px 15px;
+            }
+            
+            .hero-links-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-hero-link {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
+    <nav id="navbar">
+        <div class="header-top-row">
+            <div class="top-bar-left">
+                <a href="tel:+902125551923">
+                    <i class="fas fa-phone"></i> +90 (212) 555 1923
+                </a>
+                <a href="mailto:info@walkaboutravel.com">
+                    <i class="fas fa-envelope"></i> info@walkaboutravel.com
+                </a>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Istanbul" 
+                   target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-map-marker-alt"></i> Yol Tarifi Al
+                </a>
+            </div>
+        </div>
+        
+        <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="assets/walkabou_travel_logo.webp" alt="WalkAbout Travel Logo">
+                <img src="assets/walkabou_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
-                    <span class="brand-name">WalkAbout Travel</span>
-                    <span class="brand-tagline">TOURISM & TRAVEL</span>
+                    <span class="logo-title">WalkAbout Travel</span>
+                    <span class="logo-subtitle">Tourism & Travel</span>
                 </div>
             </a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" data-i18n="nav.home">Ana Sayfa</a></li>
-                <li><a href="#tours" data-i18n="nav.tours">Turlar</a></li>
-                <li><a href="#why-us" data-i18n="nav.whyus">Neden Biz</a></li>
-                <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
-                <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" data-i18n="nav_home">Home</a>
+                <a href="#quick-access-links" data-i18n="nav_tours">Tours</a>
+                <a href="#why-us" data-i18n="nav_why_us">Why Us</a>
+                <a href="#blog" data-i18n="nav_blog">Blog</a>
+                <a href="#contact" data-i18n="nav_contact">Contact</a>
                 
                 <div class="lang-switcher">
                     <button class="lang-btn active" data-lang="tr">TR</button>
@@ -44,7 +306,7 @@
                     <button class="lang-btn" data-lang="zh">ZH</button>
                     <button class="lang-btn" data-lang="ar">AR</button>
                 </div>
-            </ul>
+            </div>
 
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
@@ -52,496 +314,456 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
+    <section id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
             <source src="assets/hero_background.mp4" type="video/mp4">
+            <source src="https://cdn.coverr.co/videos/coverr-beautiful-coastline-aerial-view-5146/1080p.mp4" type="video/mp4">
         </video>
-        
         <div class="hero-overlay"></div>
-        
         <div class="hero-content">
-            <h1 data-i18n="hero.title">Hayalinizdeki Yolculuk Başlasın</h1>
-            <p data-i18n="hero.subtitle">1997'den beri güvenle planlanan unutulmaz deneyimler</p>
-            <div class="hero-buttons">
-                <a href="#tours" class="btn btn-primary" data-i18n="hero.explore">Turları Keşfet</a>
-                <a href="#contact" class="btn btn-secondary" data-i18n="hero.contact">Bize Ulaşın</a>
+            <span class="hero-badge" data-i18n="hero_since">SINCE 1997</span>
+            <h1>
+                <span data-i18n="hero_subtitle">Discover the Adventure</span> <br>
+                <span class="hero-gradient" data-i18n="hero_title">WalkAbouTravel</span>
+            </h1>
+            <p data-i18n="hero_description">Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
+            
+            <div class="hero-links-container">
+                <a href="#quick-access-links" class="btn-hero-link">
+                    <i class="fas fa-map"></i> <span data-i18n="drop_hotel">Our Tourism</span>
+                </a>
+                <a href="#blog" class="btn-hero-link">
+                    <i class="fas fa-blog"></i> <span data-i18n="nav_blog">Blog</span>
+                </a>
+                <a href="#tours" class="btn-hero-link">
+                    <i class="fas fa-plane"></i> <span data-i18n="page_kiralik_h2">International Routes</span>
+                </a>
             </div>
-        </div>
-
-        <div class="hero-scroll">
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- QUICK INFO -->
-    <section class="quick-info">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3 data-i18n="info.experience.title">28 Yıl Deneyim</h3>
-                        <p data-i18n="info.experience.text">Sektörde güvenilir liderlik</p>
-                    </div>
-                </div>
+    <section id="quick-access-links" style="background-color: #f9f9f9; padding: 80px 20px;">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            
+            <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-badge" data-i18n="projects_title_featured">POPULAR ROUTES</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 48px; color: var(--deep-navy); margin: 20px 0;" data-i18n="hero_subtitle">
+                    Discover Your Routes
+                </h2>
+                <div style="width: 80px; height: 3px; background: var(--ocean-blue); margin: 0 auto;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
                 
+                <div class="category-card" onclick="window.location.href='#tours'">
+                    <div style="overflow: hidden; height: 250px;">
+                        <img src="assets/kapadokya-balon-turu-1.webp" 
+                             alt="Cultural Tours"
+                             onerror="this.src='https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?w=600'">
+                    </div>
+                    <div class="category-card-content">
+                        <h3 data-i18n="service_h3_1">Cultural Tours</h3>
+                        <p data-i18n="service_p_1">Mardin, Cappadocia, Antalya and more. Unique beauties of Anatolia.</p>
+                        <span class="category-btn">
+                            <span data-i18n="btn_discover">Discover</span> <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='#why-us'">
+                    <div style="overflow: hidden; height: 250px;">
+                        <img src="assets/spain-1.webp" 
+                             alt="Services"
+                             onerror="this.src='https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600'">
+                    </div>
+                    <div class="category-card-content">
+                        <h3 data-i18n="nav_services">Our Services</h3>
+                        <p data-i18n="about_p2">Visa, tickets, hotel reservations and VIP transfer services.</p>
+                        <span class="category-btn">
+                             <span data-i18n="btn_discover">Discover</span> <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='#tours'">
+                    <div style="overflow: hidden; height: 250px;">
+                        <img src="assets/rusya-1.webp" 
+                             alt="International Tours"
+                             onerror="this.src='https://images.unsplash.com/photo-1513326738677-b964603b136d?w=600'">
+                    </div>
+                    <div class="category-card-content">
+                        <h3 data-i18n="page_kiralik_h2">International Routes</h3>
+                        <p data-i18n="service_p_1">Europe, America, Russia and more. Global destinations.</p>
+                        <span class="category-btn">
+                             <span data-i18n="btn_discover">Discover</span> <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="tours" class="tours-section">
+        <div class="section-header">
+            <span class="section-badge" data-i18n="projects_title_featured">ALL ROUTES</span>
+            <h2 data-i18n="projects_title_latest">Featured Tours</h2>
+            <p>Discover our most preferred destinations</p>
+        </div>
+
+        <div class="tours-grid">
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-MARDIN'">
+                <div class="tour-image">
+                    <img src="assets/mardin-tarihi-konak-dokusu-1.webp" alt="Mardin Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579007603632-159673934372?w=600'">
+                    <span class="tour-badge" data-i18n="service_h3_1">Cultural</span>
+                </div>
+                <div class="tour-content">
+                    <h3 data-i18n="page_satilik_1">Mardin Cultural Tour</h3>
+                    <p>Discover the traces of thousands of years of civilization in the heart of Mesopotamia.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 5 Days / 4 Nights</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Mardin</span>
+                    </div>
+                    <a href="tour-detail.html?id=TUR-TR-MARDIN" class="tour-link">
+                        <span data-i18n="btn_discover">View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-KAPADOKYA'">
+                <div class="tour-image">
+                    <img src="assets/kapadokya-balon-turu-1.webp" alt="Kapadokya Balon Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?w=600'">
+                    <span class="tour-badge">Popular</span>
+                </div>
+                <div class="tour-content">
+                    <h3 data-i18n="page_satilik_3">Cappadocia Balloon Tour</h3>
+                    <p>Hot air balloon experience at sunrise and unique exploration in the valleys.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 4 Days / 3 Nights</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Goreme</span>
+                    </div>
+                    <a href="tour-detail.html?id=TUR-TR-KAPADOKYA" class="tour-link">
+                         <span data-i18n="btn_discover">View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-ANTALYA'">
+                <div class="tour-image">
+                    <img src="assets/antalya-koy-gezisi-1.webp" alt="Antalya Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600'">
+                    <span class="tour-badge">Sea</span>
+                </div>
+                <div class="tour-content">
+                    <h3 data-i18n="page_satilik_2">Antalya Bay Trip</h3>
+                    <p>Boat tour and historical exploration in the turquoise bays of the Mediterranean.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 7 Days / 6 Nights</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Antalya</span>
+                    </div>
+                    <a href="tour-detail.html?id=TUR-TR-ANTALYA" class="tour-link">
+                        <span data-i18n="btn_discover">View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-FETHIYE'">
+                <div class="tour-image">
+                    <img src="assets/fethiye-oludeniz-manzarasi-14.webp" alt="Fethiye Ölüdeniz" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580226963425-4155f81e35d2?w=600'">
+                    <span class="tour-badge">Adventure</span>
+                </div>
+                <div class="tour-content">
+                    <h3 data-i18n="page_satilik_4">Fethiye Oludeniz</h3>
+                    <p>Paragliding from Babadag and the unique beauty of Oludeniz.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 3 Days / 2 Nights</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Fethiye</span>
+                    </div>
+                    <a href="tour-detail.html?id=TUR-TR-FETHIYE" class="tour-link">
+                        <span data-i18n="btn_discover">View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-TR-PAMUKKALE'">
+                <div class="tour-image">
+                    <img src="assets/pamukkale-traverten-dogal-1.webp" alt="Pamukkale" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513326738677-b964603b136d?w=600'">
+                    <span class="tour-badge">Nature</span>
+                </div>
+                <div class="tour-content">
+                    <h3 data-i18n="page_satilik_5">Pamukkale Tour</h3>
+                    <p>White travertines and ancient city exploration.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 2 Days / 1 Night</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Denizli</span>
+                    </div>
+                    <a href="tour-detail.html?id=TUR-TR-PAMUKKALE" class="tour-link">
+                        <span data-i18n="btn_discover">View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=TUR-D-ISPANYA'">
+                <div class="tour-image">
+                    <img src="assets/spain-1.webp" alt="İspanya Turu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600'">
+                    <span class="tour-badge">Premium</span>
+                </div>
+                <div class="tour-content">
+                    <h3 data-i18n="page_kiralik_1">Spain Tour</h3>
+                    <p>Masterpieces of Gaudi and Alhambra Palace.</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-clock"></i> 9 Days / 8 Nights</span>
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> Spain</span>
+                    </div>
+                    <a href="tour-detail.html?id=TUR-D-ISPANYA" class="tour-link">
+                        <span data-i18n="btn_discover">View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="why-us-section">
+        <div class="section-header">
+            <span class="section-badge" data-i18n="about_main_title">WHY WalkAbout Travel?</span>
+            <h2 data-i18n="about_tagline">Reasons to Choose Us</h2>
+            <p data-i18n="about_p1">Safe and unforgettable journeys with our 28 years of experience</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 data-i18n="about_sub_title_2">Safe Travel</h3>
+                <p data-i18n="about_p4">Full security with TURSAB certified, insurance guaranteed and licensed guides.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 data-i18n="hero_since">28 Years of Experience</h3>
+                <p data-i18n="about_p2">We have served thousands of happy customers since 1997.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>We are with you at every moment of your trip.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3 data-i18n="about_mission_p">Best Price Guarantee</h3>
+                <p>We offer quality service at the most affordable prices.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog-section">
+        <div class="section-header">
+            <span class="section-badge" data-i18n="blog_title">TRAVEL DIARY</span>
+            <h2 data-i18n="blog_title">Blog & Travel Guide</h2>
+            <p>Get inspired by our experiences</p>
+        </div>
+
+        <div class="blog-grid" id="blogContainer">
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <span class="section-badge" data-i18n="nav_contact">CONTACT US</span>
+            <h2 data-i18n="contact_form_title">Let's Plan Your Holiday</h2>
+            <p>Our expert team is ready to help you</p>
+        </div>
+
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-i18n="contact_label_name">Full Name *</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email" data-i18n="contact_label_email">Email Address *</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" data-i18n="contact_info_phone_title">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+90 555 123 45 67">
+                </div>
+
+                <div class="form-group">
+                    <label for="message" data-i18n="contact_label_message">Your Message *</label>
+                    <textarea id="message" required placeholder="Which tour are you interested in? What are your dates?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="btn_send">Send</span>
+                </button>
+            </form>
+
+            <div class="contact-info">
                 <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3 data-i18n="info.customers.title">50.000+ Mutlu Müşteri</h3>
-                        <p data-i18n="info.customers.text">Hayallerini gerçekleştirdik</p>
-                    </div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4 data-i18n="contact_info_address_title">Our Address</h4>
+                    <p data-i18n="contact_info_address_p">Mimar Sinan St. No: 42/A<br>Istanbul, Turkey</p>
                 </div>
-                
+
                 <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3 data-i18n="info.rating.title">4.9/5 Puan</h3>
-                        <p data-i18n="info.rating.text">Müşteri memnuniyeti</p>
-                    </div>
+                    <i class="fas fa-phone"></i>
+                    <h4 data-i18n="contact_info_phone_title">Phone</h4>
+                    <p data-i18n="contact_info_phone_p">+90 (212) 555 1923</p>
                 </div>
-                
+
                 <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3 data-i18n="info.destinations.title">45+ Destinasyon</h3>
-                        <p data-i18n="info.destinations.text">Dünya çapında turlar</p>
-                    </div>
+                    <i class="fas fa-envelope"></i>
+                    <h4 data-i18n="contact_info_email_title">Email</h4>
+                    <p data-i18n="contact_info_email_p">info@walkaboutravel.com</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TOURS SECTION -->
-    <section class="tours-section" id="tours">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" data-i18n="tours.badge">Popüler Turlar</span>
-                <h2 data-i18n="tours.title">Öne Çıkan Destinasyonlar</h2>
-                <p data-i18n="tours.subtitle">Türkiye'nin en güzel köşelerini keşfedin</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/walkabou_travel_logo.jpg" alt="Logo" onerror="this.style.display='none'">
+                    <div class="logo-text">
+                        <span class="logo-title" data-i18n="brand_walkabou_travel">WalkAbout Travel</span>
+                        <span class="logo-subtitle" data-i18n="brand_Tourism">Tourism & Travel</span>
+                    </div>
+                </div>
+                <p data-i18n="about_tagline">Journeys planned with confidence since 1997. We are with you for your dream holiday.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
 
-            <!-- Tour filters -->
-            <div class="tour-filters">
-                <button class="filter-btn active" data-filter="all" data-i18n="tours.filter.all">Tümü</button>
-                <button class="filter-btn" data-filter="cultural" data-i18n="tours.filter.cultural">Kültür Turları</button>
-                <button class="filter-btn" data-filter="nature" data-i18n="tours.filter.nature">Doğa Turları</button>
-                <button class="filter-btn" data-filter="adventure" data-i18n="tours.filter.adventure">Macera</button>
+            <div class="footer-column">
+                <h4 data-i18n="footer_col_1_title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#quick-access-links" data-i18n="nav_tours">Tours</a></li>
+                    <li><a href="#why-us" data-i18n="nav_why_us">Why Us</a></li>
+                    <li><a href="#blog" data-i18n="nav_blog">Blog</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                </ul>
             </div>
 
-            <!-- Tours Grid (populated by Tours.js) -->
-            <div class="tours-grid" id="toursGrid">
-                <!-- Tours will be loaded here by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- WHY CHOOSE US -->
-    <section class="why-us" id="why-us">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" data-i18n="whyus.badge">Neden Biz?</span>
-                <h2 data-i18n="whyus.title">Sizi Özel Kılan Hizmetler</h2>
-                <p data-i18n="whyus.subtitle">Yolculuğunuzu unutulmaz kılmak için buradayız</p>
+            <div class="footer-column">
+                <h4 data-i18n="footer_col_4_title">Tours</h4>
+                <ul class="footer-links">
+                    <li><a href="tour-detail.html?id=TUR-TR-MARDIN" data-i18n="page_satilik_1">Mardin Tour</a></li>
+                    <li><a href="tour-detail.html?id=TUR-TR-KAPADOKYA" data-i18n="page_satilik_3">Cappadocia Tour</a></li>
+                    <li><a href="tour-detail.html?id=TUR-TR-ANTALYA" data-i18n="page_satilik_2">Antalya Tour</a></li>
+                    <li><a href="tour-detail.html?id=TUR-D-ISPANYA" data-i18n="page_kiralik_1">Spain Tour</a></li>
+                </ul>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 data-i18n="whyus.safety.title">Güvenli Seyahat</h3>
-                    <p data-i18n="whyus.safety.text">Tüm turlarımızda tam sigorta ve güvenlik garantisi</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3 data-i18n="whyus.guides.title">Profesyonel Rehberler</h3>
-                    <p data-i18n="whyus.guides.text">Deneyimli ve sertifikalı tur rehberleri</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tags"></i>
-                    </div>
-                    <h3 data-i18n="whyus.price.title">En İyi Fiyatlar</h3>
-                    <p data-i18n="whyus.price.text">Kaliteden ödün vermeden uygun fiyatlar</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 data-i18n="whyus.support.title">7/24 Destek</h3>
-                    <p data-i18n="whyus.support.text">Her an yanınızdayız, sorularınız için buradayız</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3 data-i18n="whyus.flexible.title">Esnek İptal</h3>
-                    <p data-i18n="whyus.flexible.text">Planlarınız değişirse endişelenmeyin</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h3 data-i18n="whyus.bonus.title">Özel Hediyeler</h3>
-                    <p data-i18n="whyus.bonus.text">Sadık müşterilerimize özel avantajlar</p>
-                </div>
+            <div class="footer-column">
+                <h4 data-i18n="footer_col_2_title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#why-us" data-i18n="service_h3_2">Visa Consultancy</a></li>
+                    <li><a href="#contact" data-i18n="service_p_4">Hotel Reservation</a></li>
+                    <li><a href="#contact" data-i18n="drop_rental">Flight Ticket</a></li>
+                    <li><a href="#contact" data-i18n="drop_rental">Transfer Service</a></li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <!-- BLOG PREVIEW SECTION -->
-    <section class="blog-preview-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" data-i18n="blog.badge">Blog</span>
-                <h2 data-i18n="blog.title">Seyahat İpuçları ve Hikayeler</h2>
-                <p data-i18n="blog.subtitle">En son seyahat rehberleri ve önerileri</p>
-            </div>
-
-            <div class="blog-preview-grid" id="blogPreviewGrid">
-                <!-- Blog posts will be loaded here by JavaScript -->
-            </div>
-
-            <div class="blog-cta">
-                <a href="blog.html" class="btn btn-primary" data-i18n="blog.viewall">Tüm Yazıları Görüntüle</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" data-i18n="testimonials.badge">Yorumlar</span>
-                <h2 data-i18n="testimonials.title">Müşterilerimiz Ne Diyor?</h2>
-                <p data-i18n="testimonials.subtitle">Binlerce mutlu yolcudan bazıları</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text" data-i18n="testimonials.review1.text">"Kapadokya turumuz harikaydı! Her detay mükemmel planlanmıştı. Kesinlikle tavsiye ediyorum."</p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/100?img=1" alt="Ayşe Yılmaz">
-                        <div>
-                            <h4 data-i18n="testimonials.review1.name">Ayşe Yılmaz</h4>
-                            <p data-i18n="testimonials.review1.location">İstanbul</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text" data-i18n="testimonials.review2.text">"Mardin gezimiz unutulmazdı. Rehberimiz çok bilgiliydi ve organizasyon kusursuzdu."</p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/100?img=12" alt="Mehmet Demir">
-                        <div>
-                            <h4 data-i18n="testimonials.review2.name">Mehmet Demir</h4>
-                            <p data-i18n="testimonials.review2.location">Ankara</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text" data-i18n="testimonials.review3.text">"Antalya turunda harika vakit geçirdik. Ailece çok keyif aldık, teşekkürler!"</p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/100?img=5" alt="Zeynep Kaya">
-                        <div>
-                            <h4 data-i18n="testimonials.review3.name">Zeynep Kaya</h4>
-                            <p data-i18n="testimonials.review3.location">İzmir</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="section-header-left">
-                        <span class="section-badge" data-i18n="contact.badge">İletişim</span>
-                        <h2 data-i18n="contact.title">Bizimle İletişime Geçin</h2>
-                        <p data-i18n="contact.subtitle">Sorularınız için buradayız</p>
-                    </div>
-
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4 data-i18n="contact.phone.title">Telefon</h4>
-                                <p>+90 (212) 555 1923</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 data-i18n="contact.email.title">E-posta</h4>
-                                <p>info@walkaboutravel.com</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 data-i18n="contact.address.title">Adres</h4>
-                                <p data-i18n="contact.address.text">Taksim, İstanbul, Türkiye</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h4 data-i18n="contact.hours.title">Çalışma Saatleri</h4>
-                                <p data-i18n="contact.hours.text">Pazartesi - Cumartesi: 09:00 - 18:00</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label data-i18n="contact.form.name">Adınız</label>
-                                <input type="text" required data-i18n="contact.form.name" placeholder="Adınız">
-                            </div>
-                            <div class="form-group">
-                                <label data-i18n="contact.form.email">E-posta</label>
-                                <input type="email" required data-i18n="contact.form.email" placeholder="E-posta">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label data-i18n="contact.form.subject">Konu</label>
-                            <input type="text" required data-i18n="contact.form.subject" placeholder="Konu">
-                        </div>
-
-                        <div class="form-group">
-                            <label data-i18n="contact.form.message">Mesajınız</label>
-                            <textarea rows="5" required data-i18n="contact.form.message" placeholder="Mesajınız"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block" data-i18n="contact.form.send">
-                            <i class="fas fa-paper-plane"></i> Gönder
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="assets/walkabou_travel_logo.webp" alt="Logo">
-                        <div class="logo-text">
-                            <span class="brand-name">WalkAbout Travel</span>
-                            <span class="brand-tagline">TOURISM & TRAVEL</span>
-                        </div>
-                    </div>
-                    <p data-i18n="footer.description">1997'den beri güvenle planlanan yolculuklar. Hayalinizdeki tatil için yanınızdayız.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4 data-i18n="footer.quicklinks">Hızlı Linkler</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home" data-i18n="footer.link.home">Ana Sayfa</a></li>
-                        <li><a href="#tours" data-i18n="footer.link.tours">Turlar</a></li>
-                        <li><a href="blog.html" data-i18n="footer.link.blog">Blog</a></li>
-                        <li><a href="#contact" data-i18n="footer.link.contact">İletişim</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 data-i18n="footer.tours">Turlar</h4>
-                    <ul class="footer-links">
-                        <li><a href="#" data-i18n="footer.tour.domestic">Yurt İçi Turlar</a></li>
-                        <li><a href="#" data-i18n="footer.tour.international">Yurt Dışı Turlar</a></li>
-                        <li><a href="#" data-i18n="footer.tour.cultural">Kültür Turları</a></li>
-                        <li><a href="#" data-i18n="footer.tour.adventure">Macera Turları</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 data-i18n="footer.services">Hizmetler</h4>
-                    <ul class="footer-links">
-                        <li><a href="#" data-i18n="footer.service.visa">Vize Danışmanlığı</a></li>
-                        <li><a href="#" data-i18n="footer.service.hotel">Otel Rezervasyonu</a></li>
-                        <li><a href="#" data-i18n="footer.service.flight">Uçak Bileti</a></li>
-                        <li><a href="#" data-i18n="footer.service.insurance">Sigorta</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p data-i18n="footer.copyright">&copy; 2025 WalkAbout Travel. Tüm hakları saklıdır.</p>
-            </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer_copyright">© 2025 WalkAbout Travel. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/905491135870045" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Toast for language change notifications -->
-    <style>
-        .language-toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
-            font-weight: 600;
-            font-size: 14px;
-            z-index: 10000;
-            opacity: 0;
-            transform: translateX(100px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .language-toast.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    </style>
-
-    <!-- SCRIPTS -->
-    <script src="Tours.js"></script>
-    <script src="app.js"></script>
     <script src="i18n.js"></script>
+    <script src="app.js"></script>
+    <script src="Blog.js"></script>
     
     <script>
-        // Blog Preview Loading
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                const response = await fetch('data/blog-posts.json');
-                const posts = await response.json();
-                
-                const previewGrid = document.getElementById('blogPreviewGrid');
-                const previewPosts = posts.slice(0, 3);
-                
-                previewGrid.innerHTML = previewPosts.map(post => `
-                    <div class="blog-preview-card">
-                        <div class="blog-preview-image">
-                            <img src="${post.image}" alt="${post.title}" loading="lazy">
-                            <span class="blog-category">${post.category}</span>
-                        </div>
-                        <div class="blog-preview-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> ${post.date}</span>
-                            </div>
-                            <h3>${post.title}</h3>
-                            <p>${post.description.substring(0, 120)}...</p>
-                            <a href="blog.html" class="blog-read-more" data-i18n="blog.readmore">
-                                Devamını Oku <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (error) {
-                console.error('Blog preview loading error:', error);
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             }
         });
 
         // Contact Form Handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mesajınız alındı! En kısa sürede size dönüş yapacağız.');
-            this.reset();
-        });
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const message = document.getElementById('message').value;
+                
+                const whatsappMessage = `Hello! I am reaching out from your website.%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0A%0AMessage:%0A${message}`;
+                window.open(`https://wa.me/5491135870045?text=${whatsappMessage}`, '_blank');
+                
+                contactForm.reset();
+                alert('Your message is being sent via WhatsApp...');
+            });
+        }
 
-        // Tour Filter Logic
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filter = this.dataset.filter;
-                const tourCards = document.querySelectorAll('.tour-card');
-                
-                tourCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#!') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        if (navLinks) {
+                            navLinks.classList.remove('active');
+                            const icon = menuToggle?.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('fa-times');
+                                icon.classList.add('fa-bars');
+                            }
+                        }
                     }
-                });
+                }
             });
         });
 
@@ -618,11 +840,14 @@
                 if (activeBtn) {
                     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
                     activeBtn.classList.add('active');
+                    console.log(`✅ Active button marked: ${savedLang}`);
                 }
             }, 100);
         });
-    </script>
+        
+        window.setLanguage = setLanguage;
 
+        console.log('✅ WalkAbout Travel - All systems active!');
+    </script>
 </body>
 </html>
-
