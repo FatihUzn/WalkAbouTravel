@@ -7,8 +7,6 @@ const i18n = {
   
   async loadLanguage(lang) {
     try {
-      console.log(`🔄 Loading language file: ${lang}.json`);
-      
       // Try data folder first
       let response = await fetch(`data/${lang}.json`);
       
@@ -22,8 +20,6 @@ const i18n = {
       }
       
       this.translations[lang] = await response.json();
-      console.log(`✅ ${lang.toUpperCase()} language loaded successfully`);
-      console.log(`📦 ${Object.keys(this.translations[lang]).length} translations loaded`);
       return true;
     } catch (error) {
       console.error(`❌ Language loading error (${lang}):`, error);
@@ -47,8 +43,6 @@ const i18n = {
   },
   
   async changeLanguage(lang) {
-    console.log(`🌍 Changing language: ${this.currentLang} → ${lang}`);
-    
     // Load language if not already loaded
     if (!this.translations[lang]) {
       const loaded = await this.loadLanguage(lang);
@@ -80,14 +74,10 @@ const i18n = {
     // Update active button
     this.updateActiveButton(lang);
     
-    console.log(`✅ Language changed successfully: ${lang.toUpperCase()}`);
     return true;
   },
   
   updatePageContent() {
-    console.log('📝 Updating page content...');
-    let updatedCount = 0;
-    
     // Find and update all elements with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
@@ -101,8 +91,6 @@ const i18n = {
       else {
         element.textContent = translation;
       }
-      
-      updatedCount++;
     });
     
     // Update title
@@ -114,8 +102,6 @@ const i18n = {
         document.title = titleTranslation;
       }
     }
-    
-    console.log(`✅ ${updatedCount} elements updated`);
   },
   
   updateActiveButton(lang) {
@@ -132,11 +118,8 @@ const i18n = {
   },
   
   async init(defaultLang = 'tr') {
-    console.log('🚀 Initializing i18n system...');
-    
     // Get saved language from localStorage
     const savedLang = localStorage.getItem('language') || defaultLang;
-    console.log(`💾 Saved language: ${savedLang}`);
     
     // Load language file
     const loaded = await this.loadLanguage(savedLang);
@@ -154,8 +137,6 @@ const i18n = {
       
       // Mark active button
       this.updateActiveButton(savedLang);
-      
-      console.log(`✅ i18n ready! Active language: ${savedLang.toUpperCase()}`);
     } else {
       console.error('❌ i18n initialization failed!');
     }
@@ -169,11 +150,9 @@ if (typeof window !== 'undefined') {
   // Initialize when page loads
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('📄 DOM loaded, initializing i18n...');
       i18n.init('tr');
     });
   } else {
-    console.log('📄 DOM already loaded, initializing i18n...');
     i18n.init('tr');
   }
 }
@@ -182,5 +161,3 @@ if (typeof window !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = i18n;
 }
-
-console.log('✅ i18n.js loaded');
