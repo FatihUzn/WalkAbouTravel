@@ -1,199 +1,137 @@
-// Tours.js - WalkAbout Travel Tour Display Component
-// galleries.json ile entegre çalışır
-
-class TourManager {
-    constructor() {
-        this.tours = [];
-        this.galleries = {};
-        this.currentLang = localStorage.getItem('language') || 'tr';
-        this.filteredCategory = 'all';
-        this.init();
-    }
-
-    async init() {
-        await this.loadGalleries();
-        this.convertGalleriesToTours();
-        this.setupEventListeners();
-        this.displayTours();
-    }
-
-    async loadGalleries() {
-        try {
-            // Önce galleries.json'ı dene (mevcut sistem)
-            let response = await fetch('data/galleries.json');
-            if (response.ok) {
-                this.galleries = await response.json();
-                console.log(`✅ ${Object.keys(this.galleries).length} galeri yüklendi (galleries.json)`);
-                return;
-            }
-            
-            // Yoksa tours.json'ı dene (yeni sistem)
-            response = await fetch('data/tours.json');
-            if (response.ok) {
-                this.tours = await response.json();
-                console.log(`✅ ${this.tours.length} tur yüklendi (tours.json)`);
-                return;
-            }
-            
-            throw new Error('Ne galleries.json ne de tours.json bulunamadı');
-        } catch (error) {
-            console.error('❌ Turlar yüklenemedi:', error);
-            this.tours = this.getSampleTours();
-        }
-    }
-
-    convertGalleriesToTours() {
-        // Eğer galleries varsa, onları tour formatına çevir
-        if (Object.keys(this.galleries).length > 0) {
-            this.tours = [];
-            for (const [id, gallery] of Object.entries(this.galleries)) {
-                this.tours.push({
-                    id: id,
-                    title: gallery.title,
-                    title_en: gallery.title, // İngilizce yoksa aynısını kullan
-                    price: gallery.price,
-                    duration: gallery.price.split(',')[0] || 'N/A', // "5 Gün / 4 Gece" kısmı
-                    location: gallery.location,
-                    area: gallery.area,
-                    category: this.getCategoryFromId(id),
-                    description: gallery.desc,
-                    description_en: gallery.desc,
-                    image: gallery.images && gallery.images[0] ? gallery.images[0] : 'assets/placeholder.jpg',
-                    images: gallery.images || [],
-                    content: gallery.desc,
-                    content_en: gallery.desc
-                });
-            }
-            console.log(`✅ ${this.tours.length} galeri tura dönüştürüldü`);
-        }
-    }
-
-    getCategoryFromId(id) {
-        if (id.includes('TR')) return 'Türkiye';
-        if (id.includes('D-ISPANYA')) return 'Avrupa';
-        if (id.includes('D-RUSYA')) return 'Avrupa';
-        if (id.includes('D-BREZILYA')) return 'Amerika';
-        if (id.includes('D-AMERIKA')) return 'Amerika';
-        return 'Genel';
-    }
-
-    setupEventListeners() {
-        // Kategori filtreleri
-        document.querySelectorAll('.tour-category-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const category = e.target.dataset.category;
-                this.filterByCategory(category);
-            });
-        });
-
-        // Dil değişimi
-        document.addEventListener('languageChanged', (e) => {
-            this.currentLang = e.detail.lang;
-            this.displayTours();
-        });
-    }
-
-    filterByCategory(category) {
-        this.filteredCategory = category;
-        
-        // Aktif butonu güncelle
-        document.querySelectorAll('.tour-category-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        const activeBtn = document.querySelector(`[data-category="${category}"]`);
-        if (activeBtn) {
-            activeBtn.classList.add('active');
-        }
-        
-        this.displayTours();
-    }
-
-    displayTours() {
-        const container = document.querySelector('.tours-grid');
-        if (!container) return;
-
-        // Filtreleme
-        let filtered = this.tours;
-        if (this.filteredCategory !== 'all') {
-            filtered = this.tours.filter(tour => tour.category === this.filteredCategory);
-        }
-
-        // Temizle
-        container.innerHTML = '';
-
-        if (filtered.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;">Henüz tur bulunmuyor.</p>';
-            return;
-        }
-
-        // Turları göster
-        filtered.forEach(tour => {
-            const card = this.createTourCard(tour);
-            container.appendChild(card);
-        });
-
-        // Sayı güncelle
-        const countElement = document.querySelector('.tour-count');
-        if (countElement) {
-            countElement.textContent = filtered.length;
-        }
-    }
-
-    createTourCard(tour) {
-        const card = document.createElement('div');
-        card.className = 'tour-card';
-        card.dataset.category = tour.category;
-
-        const title = tour.title || 'Tur Başlığı';
-        const description = tour.description || tour.desc || '';
-
-        card.innerHTML = `
-            <div class="tour-image">
-                <img src="${tour.image}" alt="${title}" loading="lazy" 
-                     onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
-                <div class="tour-badge">${tour.category || 'Tur'}</div>
-            </div>
-            <div class="tour-content">
-                <h3>${title}</h3>
-                <p>${description.substring(0, 120)}...</p>
-                <div class="tour-features">
-                    ${tour.price ? `<span class="feature-tag"><i class="fas fa-tag"></i> ${tour.price}</span>` : ''}
-                    ${tour.duration ? `<span class="feature-tag"><i class="fas fa-clock"></i> ${tour.duration}</span>` : ''}
-                    ${tour.location ? `<span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>` : ''}
-                </div>
-                <a href="tour-detail.html?id=${tour.id}" class="tour-link">
-                    <span>${this.currentLang === 'tr' ? 'Detayları Gör' : 'View Details'}</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        `;
-
-        return card;
-    }
-
-    getSampleTours() {
-        return [
-            {
-                id: 'SAMPLE-1',
-                title: 'Örnek Tur - Kapadokya',
-                title_en: 'Sample Tour - Cappadocia',
-                price: '9.800 TL',
-                duration: '4 Gün / 3 Gece',
-                location: 'Göreme',
-                area: 'İç Anadolu',
-                category: 'Kültür',
-                description: 'Kapadokya\'nın büyülü atmosferinde sıcak hava balonu deneyimi.',
-                description_en: 'Hot air balloon experience in Cappadocia\'s magical atmosphere.',
-                image: 'assets/kapadokya-balon-turu-1.webp',
-                content: 'Detaylı içerik...',
-                content_en: 'Detailed content...'
-            }
-        ];
-    }
-}
-
-// Initialize
-let tourManager;
-document.addEventListener('DOMContentLoaded', () => {
-    tourManager = new TourManager();
-});
+[
+  {
+    "id": "TUR-TR-MARDIN",
+    "title": "Mardin Kültür ve Tarih Turu",
+    "title_en": "Mardin Culture and History Tour",
+    "price": "7.500 TL",
+    "duration": "4 Gün / 3 Gece",
+    "location": "Mardin, Midyat, Dara",
+    "area": "Güneydoğu Anadolu",
+    "category": "Türkiye",
+    "description": "Mezopotamya'nın kadim şehri Mardin'de tarihi taş evler, antik manastırlar ve geleneksel el sanatları keşfi.",
+    "description_en": "Discover historical stone houses, ancient monasteries and traditional handicrafts in Mardin, the ancient city of Mesopotamia.",
+    "image": "assets/mardin-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Mardin Kalesi ve tarihi sokakları</li><li>Deyrulzafaran Manastırı</li><li>Midyat gümüş zanaatı</li><li>Dara Antik Kenti</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Mardin Castle and historic streets</li><li>Deyrulzafaran Monastery</li><li>Midyat silverware crafts</li><li>Dara Ancient City</li></ul>"
+  },
+  {
+    "id": "TUR-TR-ANTALYA",
+    "title": "Antalya Koy Gezisi",
+    "title_en": "Antalya Bay Tour",
+    "price": "5.200 TL",
+    "duration": "3 Gün / 2 Gece",
+    "location": "Antalya, Kaleiçi, Kemer",
+    "area": "Akdeniz",
+    "category": "Türkiye",
+    "description": "Turkuaz mavisi sularıyla ünlü Antalya koyları, antik limanlar ve gizli plajlar keşif turu.",
+    "description_en": "Explore Antalya's bays famous for their turquoise waters, ancient harbors and hidden beaches.",
+    "image": "assets/antalya-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Kaleiçi tarihi liman</li><li>Düden Şelalesi</li><li>Kemer marina</li><li>Özel koy gezisi</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Kaleiçi historical port</li><li>Duden Waterfall</li><li>Kemer marina</li><li>Private bay cruise</li></ul>"
+  },
+  {
+    "id": "TUR-TR-KAPADOKYA",
+    "title": "Kapadokya - Balon ve Peribacaları Turu",
+    "title_en": "Cappadocia - Balloon & Fairy Chimneys Tour",
+    "price": "9.800 TL",
+    "duration": "4 Gün / 3 Gece",
+    "location": "Göreme, Uçhisar, Avanos",
+    "area": "İç Anadolu",
+    "category": "Türkiye",
+    "description": "Sıcak hava balonuyla gün doğumunda Kapadokya'nın büyülü manzarası, yeraltı şehirleri ve peribacaları keşfi.",
+    "description_en": "Hot air balloon ride at sunrise over Cappadocia's magical landscape, underground cities and fairy chimneys exploration.",
+    "image": "assets/kapadokya-balon-turu-1.webp",
+    "content": "<h3>Tur Programı</h3><ul><li>Sıcak hava balonu turu (gün doğumu)</li><li>Göreme Açık Hava Müzesi</li><li>Derinkuyu Yeraltı Şehri</li><li>Avanos çömlekçilik</li><li>Uçhisar Kalesi panorama</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Hot air balloon tour (sunrise)</li><li>Goreme Open Air Museum</li><li>Derinkuyu Underground City</li><li>Avanos pottery</li><li>Uchisar Castle panorama</li></ul>"
+  },
+  {
+    "id": "TUR-TR-FETHIYE",
+    "title": "Fethiye - Ölüdeniz ve Saklıkent",
+    "title_en": "Fethiye - Oludeniz and Saklikent",
+    "price": "6.500 TL",
+    "duration": "5 Gün / 4 Gece",
+    "location": "Fethiye, Ölüdeniz, Saklıkent",
+    "area": "Akdeniz",
+    "category": "Türkiye",
+    "description": "Dünyaca ünlü Ölüdeniz plajı, yamaç paraşütü, antik Likya yolu ve Saklıkent kanyonu macerası.",
+    "description_en": "World-famous Oludeniz beach, paragliding, ancient Lycian Way and Saklikent canyon adventure.",
+    "image": "assets/fethiye-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Ölüdeniz mavi lagün</li><li>Babadağ yamaç paraşütü (opsiyonel)</li><li>12 Adalar tekne turu</li><li>Saklıkent Kanyonu yürüyüşü</li><li>Kayaköy eski Rum köyü</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Oludeniz blue lagoon</li><li>Babadag paragliding (optional)</li><li>12 Islands boat tour</li><li>Saklikent Canyon hike</li><li>Kayakoy old Greek village</li></ul>"
+  },
+  {
+    "id": "TUR-TR-PAMUKKALE",
+    "title": "Pamukkale - Beyaz Cennet Turu",
+    "title_en": "Pamukkale - White Paradise Tour",
+    "price": "4.800 TL",
+    "duration": "2 Gün / 1 Gece",
+    "location": "Pamukkale, Denizli",
+    "area": "Ege",
+    "category": "Türkiye",
+    "description": "Beyaz travertenler, antik Hierapolis şehri ve termal havuzlarda unutulmaz bir deneyim.",
+    "description_en": "White travertines, ancient city of Hierapolis and an unforgettable experience in thermal pools.",
+    "image": "assets/pamukkale-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Pamukkale travertenleri</li><li>Hierapolis Antik Kenti</li><li>Kleopatra Havuzu</li><li>Termal spa deneyimi</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Pamukkale travertines</li><li>Hierapolis Ancient City</li><li>Cleopatra Pool</li><li>Thermal spa experience</li></ul>"
+  },
+  {
+    "id": "TUR-D-ISPANYA",
+    "title": "İspanya - Barcelona ve Madrid Turu",
+    "title_en": "Spain - Barcelona and Madrid Tour",
+    "price": "45.000 TL",
+    "duration": "8 Gün / 7 Gece",
+    "location": "Barcelona, Madrid, Sevilla",
+    "area": "Avrupa",
+    "category": "Avrupa",
+    "description": "Gaudi'nin şaheserleri, flamenko gösterileri, tapaslar ve İspanya'nın eşsiz kültürel zenginliği.",
+    "description_en": "Gaudi's masterpieces, flamenco shows, tapas and Spain's unique cultural richness.",
+    "image": "assets/ispanya-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Sagrada Familia ve Park Güell (Barcelona)</li><li>La Rambla ve Gotik Mahalle</li><li>Prado Müzesi (Madrid)</li><li>Kraliyet Sarayı</li><li>Sevilla Katedral ve Alcazar</li><li>Flamenko gösterisi</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Sagrada Familia and Park Guell (Barcelona)</li><li>La Rambla and Gothic Quarter</li><li>Prado Museum (Madrid)</li><li>Royal Palace</li><li>Seville Cathedral and Alcazar</li><li>Flamenco show</li></ul>"
+  },
+  {
+    "id": "TUR-D-RUSYA-KIS",
+    "title": "Rusya Kış Masalı - Moskova ve St. Petersburg",
+    "title_en": "Russia Winter Tale - Moscow and St. Petersburg",
+    "price": "52.000 TL",
+    "duration": "7 Gün / 6 Gece",
+    "location": "Moskova, St. Petersburg",
+    "area": "Avrupa",
+    "category": "Avrupa",
+    "description": "Karlı Kızıl Meydan, Hermitage Müzesi ve çarlık dönemi saraylarında kış masalı.",
+    "description_en": "Winter fairy tale in snowy Red Square, Hermitage Museum and Tsarist palaces.",
+    "image": "assets/rusya-kis-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Kızıl Meydan ve Kremlim</li><li>Bolşoy Tiyatrosu bale gösterisi</li><li>Hızlı tren ile St. Petersburg</li><li>Hermitage Müzesi</li><li>Peterhof Sarayı</li><li>Kanal gezisi</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Red Square and Kremlin</li><li>Bolshoi Theatre ballet show</li><li>High-speed train to St. Petersburg</li><li>Hermitage Museum</li><li>Peterhof Palace</li><li>Canal cruise</li></ul>"
+  },
+  {
+    "id": "TUR-D-BREZILYA",
+    "title": "Brezilya Karnavalı - Rio de Janeiro",
+    "title_en": "Brazil Carnival - Rio de Janeiro",
+    "price": "68.000 TL",
+    "duration": "10 Gün / 9 Gece",
+    "location": "Rio de Janeiro, São Paulo",
+    "area": "Güney Amerika",
+    "category": "Amerika",
+    "description": "Dünyanın en büyük karnavalı, Cristo Redentor, Copacabana plajı ve samba ritimleri.",
+    "description_en": "World's biggest carnival, Cristo Redentor, Copacabana beach and samba rhythms.",
+    "image": "assets/brezilya-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Rio Karnaval geçit töreni (tribün biletleri)</li><li>Cristo Redentor heykeli</li><li>Şekerloaf Dağı teleferik</li><li>Copacabana ve Ipanema plajları</li><li>Samba okulu ziyareti</li><li>Amazon ormanları (opsiyonel)</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Rio Carnival parade (grandstand tickets)</li><li>Cristo Redentor statue</li><li>Sugarloaf Mountain cable car</li><li>Copacabana and Ipanema beaches</li><li>Samba school visit</li><li>Amazon rainforest (optional)</li></ul>"
+  },
+  {
+    "id": "TUR-D-AMERIKA",
+    "title": "ABD Batı Kıyısı - Los Angeles, Las Vegas, San Francisco",
+    "title_en": "USA West Coast - Los Angeles, Las Vegas, San Francisco",
+    "price": "75.000 TL",
+    "duration": "12 Gün / 11 Gece",
+    "location": "Los Angeles, Las Vegas, San Francisco",
+    "area": "Kuzey Amerika",
+    "category": "Amerika",
+    "description": "Hollywood yıldızları, Grand Canyon, Las Vegas kumarhaneleri ve Golden Gate Köprüsü ile Amerika rüyası.",
+    "description_en": "American dream with Hollywood stars, Grand Canyon, Las Vegas casinos and Golden Gate Bridge.",
+    "image": "assets/amerika-1.jpg",
+    "content": "<h3>Tur Programı</h3><ul><li>Hollywood Walk of Fame ve Beverly Hills</li><li>Universal Studios</li><li>Las Vegas şovları (Cirque du Soleil)</li><li>Grand Canyon helikopter turu</li><li>Golden Gate Köprüsü</li><li>Alcatraz Adası</li><li>Silicon Valley</li></ul>",
+    "content_en": "<h3>Tour Program</h3><ul><li>Hollywood Walk of Fame and Beverly Hills</li><li>Universal Studios</li><li>Las Vegas shows (Cirque du Soleil)</li><li>Grand Canyon helicopter tour</li><li>Golden Gate Bridge</li><li>Alcatraz Island</li><li>Silicon Valley</li></ul>"
+  }
+]
