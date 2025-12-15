@@ -1,13 +1,17 @@
 /* ==========================================
    WALKABOUT TRAVEL - ADMIN PANEL SCRIPT
+   Blog + Tur Yönetimi
    ========================================== */
 
 // Global değişkenler
 let blogPosts = [];
 let tours = [];
 let currentBlogId = null;
-let currentImageData = null;
-let currentImageName = null;
+let currentTourId = null;
+let currentBlogImageData = null;
+let currentBlogImageName = null;
+let currentTourImageData = null;
+let currentTourImageName = null;
 
 /* ==========================================
    SAYFA YÜKLENİNCE
@@ -19,13 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateStats();
     renderBlogList();
+    renderTourList();
 });
 
 /* ==========================================
    VERİ YÜKLEME
    ========================================== */
 function loadAllData() {
-    // LocalStorage'dan yükle
     const savedBlogs = localStorage.getItem('walkabout_blog_posts');
     const savedTours = localStorage.getItem('walkabout_tours');
     
@@ -69,28 +73,30 @@ function setupEventListeners() {
         blogForm.addEventListener('submit', handleBlogSubmit);
     }
     
+    // Tur formu
+    const tourForm = document.getElementById('tour-form');
+    if (tourForm) {
+        tourForm.addEventListener('submit', handleTourSubmit);
+    }
+    
     // Görsel yükleme
-    setupImageUpload();
+    setupBlogImageUpload();
+    setupTourImageUpload();
 }
 
-function setupImageUpload() {
+function setupBlogImageUpload() {
     const uploadZone = document.getElementById('blog-upload-zone');
     const imageInput = document.getElementById('blog-image');
     
     if (!uploadZone || !imageInput) return;
     
-    // Tıklama ile yükleme
-    uploadZone.addEventListener('click', () => {
-        imageInput.click();
-    });
+    uploadZone.addEventListener('click', () => imageInput.click());
     
-    // Dosya seçildiğinde
     imageInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
-        if (file) handleImageFile(file);
+        if (file) handleBlogImageFile(file);
     });
     
-    // Drag & Drop
     uploadZone.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadZone.classList.add('dragover');
@@ -106,15 +112,45 @@ function setupImageUpload() {
         
         const file = e.dataTransfer.files[0];
         if (file && file.type.startsWith('image/')) {
-            handleImageFile(file);
-        } else {
-            showToast('Lütfen geçerli bir resim dosyası seçin!', 'error');
+            handleBlogImageFile(file);
         }
     });
 }
 
-function handleImageFile(file) {
-    // Dosya boyutu kontrolü (max 5MB)
+function setupTourImageUpload() {
+    const uploadZone = document.getElementById('tour-upload-zone');
+    const imageInput = document.getElementById('tour-image');
+    
+    if (!uploadZone || !imageInput) return;
+    
+    uploadZone.addEventListener('click', () => imageInput.click());
+    
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) handleTourImageFile(file);
+    });
+    
+    uploadZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+    });
+    
+    uploadZone.addEventListener('dragleave', () => {
+        uploadZone.classList.remove('dragover');
+    });
+    
+    uploadZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            handleTourImageFile(file);
+        }
+    });
+}
+
+function handleBlogImageFile(file) {
     if (file.size > 5 * 1024 * 1024) {
         showToast('Dosya boyutu 5MB\'dan küçük olmalı!', 'error');
         return;
@@ -122,12 +158,31 @@ function handleImageFile(file) {
     
     const reader = new FileReader();
     reader.onload = (e) => {
-        currentImageData = e.target.result;
-        currentImageName = `blog-${Date.now()}.${file.name.split('.').pop()}`;
+        currentBlogImageData = e.target.result;
+        currentBlogImageName = `blog-${Date.now()}.${file.name.split('.').pop()}`;
         
-        // Önizleme göster
         const preview = document.getElementById('blog-preview');
-        preview.innerHTML = `<img src="${currentImageData}" alt="Preview">`;
+        preview.innerHTML = `<img src="${currentBlogImageData}" alt="Preview">`;
+        preview.classList.add('show');
+        
+        showToast('Görsel yüklendi!', 'success');
+    };
+    reader.readAsDataURL(file);
+}
+
+function handleTourImageFile(file) {
+    if (file.size > 5 * 1024 * 1024) {
+        showToast('Dosya boyutu 5MB\'dan küçük olmalı!', 'error');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        currentTourImageData = e.target.result;
+        currentTourImageName = `tour-${Date.now()}.${file.name.split('.').pop()}`;
+        
+        const preview = document.getElementById('tour-preview');
+        preview.innerHTML = `<img src="${currentTourImageData}" alt="Preview">`;
         preview.classList.add('show');
         
         showToast('Görsel yüklendi!', 'success');
@@ -139,18 +194,15 @@ function handleImageFile(file) {
    SAYFA NAVİGASYONU
    ========================================== */
 function showPage(pageName) {
-    // Tüm sayfaları gizle
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
     
-    // Seçili sayfayı göster
     const targetPage = document.getElementById(`page-${pageName}`);
     if (targetPage) {
         targetPage.classList.add('active');
     }
     
-    // Menü aktif durumu
     document.querySelectorAll('.menu-item').forEach(item => {
         item.classList.remove('active');
     });
@@ -160,7 +212,6 @@ function showPage(pageName) {
         activeMenuItem.classList.add('active');
     }
     
-    // Sayfa başlığı
     const titles = {
         'dashboard': 'Dashboard',
         'blog': 'Blog Yazıları',
@@ -188,30 +239,27 @@ function showBlogForm() {
     document.getElementById('blog-preview').classList.remove('show');
     document.getElementById('blog-form-title').textContent = 'Yeni Blog Yazısı';
     currentBlogId = null;
-    currentImageData = null;
-    currentImageName = null;
+    currentBlogImageData = null;
+    currentBlogImageName = null;
     
-    // Forma scroll
     document.getElementById('blog-form-container').scrollIntoView({ behavior: 'smooth' });
 }
 
 function closeBlogForm() {
     document.getElementById('blog-form-container').style.display = 'none';
     currentBlogId = null;
-    currentImageData = null;
-    currentImageName = null;
+    currentBlogImageData = null;
+    currentBlogImageName = null;
 }
 
 function handleBlogSubmit(e) {
     e.preventDefault();
     
-    // Görsel kontrolü
-    if (!currentImageData && !currentBlogId) {
+    if (!currentBlogImageData && !currentBlogId) {
         showToast('Lütfen bir görsel yükleyin!', 'error');
         return;
     }
     
-    // Form verilerini al
     const blogData = {
         id: currentBlogId || Date.now(),
         title: document.getElementById('blog-title-tr').value.trim(),
@@ -222,44 +270,31 @@ function handleBlogSubmit(e) {
         fullContent: document.getElementById('blog-content-tr').value.trim(),
         content_en: document.getElementById('blog-content-en').value.trim(),
         date: new Date().toISOString().split('T')[0],
-        image: currentImageName ? `assets/${currentImageName}` : (blogPosts.find(b => b.id === currentBlogId)?.image || 'assets/placeholder.jpg')
+        image: currentBlogImageName ? `assets/${currentBlogImageName}` : (blogPosts.find(b => b.id === currentBlogId)?.image || 'assets/placeholder.jpg')
     };
     
     if (currentBlogId) {
-        // Güncelleme
         const index = blogPosts.findIndex(b => b.id === currentBlogId);
         if (index !== -1) {
             blogPosts[index] = blogData;
             showToast('Blog yazısı güncellendi!', 'success');
         }
     } else {
-        // Yeni ekleme
         blogPosts.push(blogData);
         showToast('Blog yazısı eklendi!', 'success');
     }
     
-    // Kaydet
     saveBlogPosts();
-    
-    // Listeyi güncelle
     renderBlogList();
     updateStats();
     closeBlogForm();
     
-    // JSON dosyasını indir
     downloadJSON(blogPosts, 'blog-posts.json');
-    
     showToast('✅ blog-posts.json dosyasını data/ klasörüne yükleyin!', 'info');
 }
 
 function saveBlogPosts() {
-    try {
-        localStorage.setItem('walkabout_blog_posts', JSON.stringify(blogPosts));
-        console.log('✅ Blog verileri kaydedildi');
-    } catch (error) {
-        console.error('❌ Kaydetme hatası:', error);
-        showToast('Veriler kaydedilirken hata oluştu!', 'error');
-    }
+    localStorage.setItem('walkabout_blog_posts', JSON.stringify(blogPosts));
 }
 
 function renderBlogList() {
@@ -280,10 +315,7 @@ function renderBlogList() {
         return;
     }
     
-    // Tarihe göre sırala (yeniden eskiye)
-    const sortedBlogs = [...blogPosts].sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-    });
+    const sortedBlogs = [...blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
     
     container.innerHTML = sortedBlogs.map((blog) => `
         <div class="item-card">
@@ -297,14 +329,9 @@ function renderBlogList() {
                 <div class="item-meta">
                     <span><i class="fas fa-calendar"></i> ${blog.date}</span>
                     <span><i class="fas fa-tag"></i> ${blog.category}</span>
-                    <span><i class="fas fa-eye"></i> ${blog.description.substring(0, 50)}...</span>
                 </div>
             </div>
             <div class="item-actions">
-                <button class="btn btn-primary btn-small" onclick="editBlog(${blog.id})">
-                    <i class="fas fa-edit"></i>
-                    Düzenle
-                </button>
                 <button class="btn btn-danger btn-small" onclick="deleteBlog(${blog.id})">
                     <i class="fas fa-trash"></i>
                     Sil
@@ -312,36 +339,6 @@ function renderBlogList() {
             </div>
         </div>
     `).join('');
-}
-
-function editBlog(blogId) {
-    const blog = blogPosts.find(b => b.id === blogId);
-    if (!blog) return;
-    
-    currentBlogId = blogId;
-    
-    // Formu doldur
-    document.getElementById('blog-title-tr').value = blog.title;
-    document.getElementById('blog-title-en').value = blog.title_en || '';
-    document.getElementById('blog-category').value = blog.category;
-    document.getElementById('blog-summary-tr').value = blog.description;
-    document.getElementById('blog-summary-en').value = blog.description_en || '';
-    document.getElementById('blog-content-tr').value = blog.fullContent;
-    document.getElementById('blog-content-en').value = blog.content_en || '';
-    
-    // Mevcut görseli göster
-    if (blog.image) {
-        const preview = document.getElementById('blog-preview');
-        preview.innerHTML = `<img src="../${blog.image}" alt="${blog.title}">`;
-        preview.classList.add('show');
-        currentImageName = blog.image.split('/').pop();
-    }
-    
-    // Form başlığını değiştir
-    document.getElementById('blog-form-title').textContent = 'Blog Yazısını Düzenle';
-    
-    // Formu göster
-    showBlogForm();
 }
 
 function deleteBlog(blogId) {
@@ -355,6 +352,134 @@ function deleteBlog(blogId) {
         updateStats();
         downloadJSON(blogPosts, 'blog-posts.json');
         showToast('Blog yazısı silindi!', 'success');
+    }
+}
+
+/* ==========================================
+   TUR YÖNETİMİ
+   ========================================== */
+function showTourForm() {
+    document.getElementById('tour-form-container').style.display = 'block';
+    document.getElementById('tour-form').reset();
+    document.getElementById('tour-preview').innerHTML = '';
+    document.getElementById('tour-preview').classList.remove('show');
+    document.getElementById('tour-form-title').textContent = 'Yeni Tur Paketi';
+    currentTourId = null;
+    currentTourImageData = null;
+    currentTourImageName = null;
+    
+    document.getElementById('tour-form-container').scrollIntoView({ behavior: 'smooth' });
+}
+
+function closeTourForm() {
+    document.getElementById('tour-form-container').style.display = 'none';
+    currentTourId = null;
+    currentTourImageData = null;
+    currentTourImageName = null;
+}
+
+function handleTourSubmit(e) {
+    e.preventDefault();
+    
+    if (!currentTourImageData && !currentTourId) {
+        showToast('Lütfen bir görsel yükleyin!', 'error');
+        return;
+    }
+    
+    const tourData = {
+        id: currentTourId || `TUR-${Date.now()}`,
+        title: document.getElementById('tour-title-tr').value.trim(),
+        title_en: document.getElementById('tour-title-en').value.trim(),
+        price: document.getElementById('tour-price').value.trim(),
+        duration: document.getElementById('tour-duration').value.trim(),
+        location: document.getElementById('tour-location').value.trim(),
+        area: document.getElementById('tour-area').value.trim(),
+        category: document.getElementById('tour-category').value,
+        description: document.getElementById('tour-description-tr').value.trim(),
+        description_en: document.getElementById('tour-description-en').value.trim(),
+        content: document.getElementById('tour-content-tr').value.trim(),
+        content_en: document.getElementById('tour-content-en').value.trim(),
+        image: currentTourImageName ? `assets/${currentTourImageName}` : (tours.find(t => t.id === currentTourId)?.image || 'assets/placeholder.jpg')
+    };
+    
+    if (currentTourId) {
+        const index = tours.findIndex(t => t.id === currentTourId);
+        if (index !== -1) {
+            tours[index] = tourData;
+            showToast('Tur güncellendi!', 'success');
+        }
+    } else {
+        tours.push(tourData);
+        showToast('Tur eklendi!', 'success');
+    }
+    
+    saveTours();
+    renderTourList();
+    updateStats();
+    closeTourForm();
+    
+    downloadJSON(tours, 'tours.json');
+    showToast('✅ tours.json dosyasını data/ klasörüne yükleyin!', 'info');
+}
+
+function saveTours() {
+    localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+}
+
+function renderTourList() {
+    const container = document.getElementById('tour-list');
+    if (!container) return;
+    
+    if (tours.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px;">
+                <i class="fas fa-map-marked-alt" style="font-size: 64px; color: var(--gray-300); margin-bottom: 20px;"></i>
+                <p style="color: var(--gray-600); font-size: 18px;">Henüz tur yok</p>
+                <button class="btn btn-primary" onclick="showTourForm()" style="margin-top: 20px;">
+                    <i class="fas fa-plus"></i>
+                    İlk Turunuzu Ekleyin
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = tours.map((tour) => `
+        <div class="item-card">
+            <div class="item-image">
+                <img src="../${tour.image}" 
+                     alt="${tour.title}"
+                     onerror="this.src='https://placehold.co/120x80/38bdf8/FFF?text=Tour'">
+            </div>
+            <div class="item-content">
+                <div class="item-title">${tour.title}</div>
+                <div class="item-meta">
+                    <span><i class="fas fa-tag"></i> ${tour.price}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>
+                    <span><i class="fas fa-bookmark"></i> ${tour.category}</span>
+                </div>
+            </div>
+            <div class="item-actions">
+                <button class="btn btn-danger btn-small" onclick="deleteTour('${tour.id}')">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function deleteTour(tourId) {
+    const tour = tours.find(t => t.id === tourId);
+    if (!tour) return;
+    
+    if (confirm(`"${tour.title}" turunu silmek istediğinizden emin misiniz?`)) {
+        tours = tours.filter(t => t.id !== tourId);
+        saveTours();
+        renderTourList();
+        updateStats();
+        downloadJSON(tours, 'tours.json');
+        showToast('Tur silindi!', 'success');
     }
 }
 
@@ -406,7 +531,6 @@ function showToast(message, type = 'info') {
     
     container.appendChild(toast);
     
-    // 5 saniye sonra kaldır
     setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateX(100px)';
@@ -418,8 +542,10 @@ function showToast(message, type = 'info') {
 window.showPage = showPage;
 window.showBlogForm = showBlogForm;
 window.closeBlogForm = closeBlogForm;
-window.editBlog = editBlog;
 window.deleteBlog = deleteBlog;
+window.showTourForm = showTourForm;
+window.closeTourForm = closeTourForm;
+window.deleteTour = deleteTour;
 window.exportAllData = exportAllData;
 
 console.log('✅ Admin panel hazır!');
