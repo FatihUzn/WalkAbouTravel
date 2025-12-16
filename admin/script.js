@@ -1,6 +1,6 @@
 /* ==========================================
-   WALKABOUT TRAVEL - ADMIN PANEL SCRIPT (DÜZELTİLMİŞ)
-   Blog + Tur Yönetimi
+   WALKABOUT TRAVEL - ADMIN PANEL SCRIPT
+   Blog + Tur Yönetimi (DÜZELTİLMİŞ)
    ========================================== */
 
 // Global değişkenler
@@ -179,7 +179,7 @@ function handleBlogImageFile(file) {
             preview.classList.add('show');
         }
         
-        showToast('Görsel yüklendi!', 'success');
+        showToast('✅ Görsel yüklendi!', 'success');
     };
     reader.readAsDataURL(file);
 }
@@ -201,7 +201,7 @@ function handleTourImageFile(file) {
             preview.classList.add('show');
         }
         
-        showToast('Görsel yüklendi!', 'success');
+        showToast('✅ Görsel yüklendi!', 'success');
     };
     reader.readAsDataURL(file);
 }
@@ -296,8 +296,11 @@ function handleBlogSubmit(e) {
     }
     
     try {
+        // ID oluştur - STRING OLARAK (DÜZELTİLDİ)
+        const blogId = currentBlogId || `BLOG-${Date.now()}`;
+        
         const blogData = {
-            id: currentBlogId || Date.now(),
+            id: blogId,
             title: document.getElementById('blog-title-tr').value.trim(),
             title_en: document.getElementById('blog-title-en').value.trim(),
             category: document.getElementById('blog-category').value,
@@ -306,18 +309,21 @@ function handleBlogSubmit(e) {
             fullContent: document.getElementById('blog-content-tr').value.trim(),
             content_en: document.getElementById('blog-content-en').value.trim(),
             date: new Date().toISOString().split('T')[0],
-            image: currentBlogImageName ? `assets/${currentBlogImageName}` : (blogPosts.find(b => b.id === currentBlogId)?.image || 'assets/placeholder.jpg')
+            // Görsel path'i (DÜZELTİLDİ)
+            image: currentBlogImageName ? `assets/${currentBlogImageName}` : (blogPosts.find(b => b.id === currentBlogId)?.image || 'assets/placeholder.jpg'),
+            // Base64 görsel verisi (YENİ - Görseli kaydet)
+            imageData: currentBlogImageData || (blogPosts.find(b => b.id === currentBlogId)?.imageData || null)
         };
         
         if (currentBlogId) {
             const index = blogPosts.findIndex(b => b.id === currentBlogId);
             if (index !== -1) {
                 blogPosts[index] = blogData;
-                showToast('Blog yazısı güncellendi!', 'success');
+                showToast('✅ Blog yazısı güncellendi!', 'success');
             }
         } else {
             blogPosts.push(blogData);
-            showToast('Blog yazısı eklendi!', 'success');
+            showToast('✅ Blog yazısı eklendi!', 'success');
         }
         
         saveBlogPosts();
@@ -325,11 +331,20 @@ function handleBlogSubmit(e) {
         updateStats();
         closeBlogForm();
         
-        downloadJSON(blogPosts, 'blog-posts.json');
-        showToast('✅ blog-posts.json dosyasını data/ klasörüne yükleyin!', 'info');
+        // JSON'u indir (imageData HARİÇ - temiz JSON)
+        const cleanData = blogPosts.map(({ imageData, ...rest }) => rest);
+        downloadJSON(cleanData, 'blog-posts.json');
+        
+        // Görseli indir
+        if (currentBlogImageData && currentBlogImageName) {
+            downloadImage(currentBlogImageData, currentBlogImageName);
+            showToast(`📥 ${currentBlogImageName} dosyasını assets/ klasörüne yükleyin!`, 'info');
+        }
+        
+        showToast('📥 blog-posts.json dosyasını data/ klasörüne yükleyin!', 'info');
     } catch (error) {
         console.error('❌ Blog kayıt hatası:', error);
-        showToast('Blog kaydedilirken hata oluştu!', 'error');
+        showToast('❌ Blog kaydedilirken hata oluştu!', 'error');
     }
 }
 
@@ -339,7 +354,7 @@ function saveBlogPosts() {
         console.log(`✅ ${blogPosts.length} blog LocalStorage'a kaydedildi`);
     } catch (error) {
         console.error('❌ Blog kayıt hatası:', error);
-        showToast('Blog verileri kaydedilemedi!', 'error');
+        showToast('❌ Blog verileri kaydedilemedi!', 'error');
     }
 }
 
@@ -369,7 +384,7 @@ function renderBlogList() {
     container.innerHTML = sortedBlogs.map((blog) => `
         <div class="item-card">
             <div class="item-image">
-                <img src="../${blog.image}" 
+                <img src="${blog.imageData || '../' + blog.image}" 
                      alt="${blog.title}"
                      onerror="this.src='https://placehold.co/120x80/38bdf8/FFF?text=Blog'">
             </div>
@@ -381,7 +396,7 @@ function renderBlogList() {
                 </div>
             </div>
             <div class="item-actions">
-                <button class="btn btn-danger btn-small" onclick="deleteBlog(${blog.id})">
+                <button class="btn btn-danger btn-small" onclick="deleteBlog('${blog.id}')">
                     <i class="fas fa-trash"></i>
                     Sil
                 </button>
@@ -399,8 +414,10 @@ function deleteBlog(blogId) {
         saveBlogPosts();
         renderBlogList();
         updateStats();
-        downloadJSON(blogPosts, 'blog-posts.json');
-        showToast('Blog yazısı silindi!', 'success');
+        
+        const cleanData = blogPosts.map(({ imageData, ...rest }) => rest);
+        downloadJSON(cleanData, 'blog-posts.json');
+        showToast('✅ Blog yazısı silindi!', 'success');
     }
 }
 
@@ -447,8 +464,11 @@ function handleTourSubmit(e) {
     }
     
     try {
+        // ID oluştur - STRING OLARAK (DÜZELTİLDİ)
+        const tourId = currentTourId || `TUR-${Date.now()}`;
+        
         const tourData = {
-            id: currentTourId || `TUR-${Date.now()}`,
+            id: tourId,
             title: document.getElementById('tour-title-tr').value.trim(),
             title_en: document.getElementById('tour-title-en').value.trim(),
             price: document.getElementById('tour-price').value.trim(),
@@ -460,18 +480,21 @@ function handleTourSubmit(e) {
             description_en: document.getElementById('tour-description-en').value.trim(),
             content: document.getElementById('tour-content-tr').value.trim(),
             content_en: document.getElementById('tour-content-en').value.trim(),
-            image: currentTourImageName ? `assets/${currentTourImageName}` : (tours.find(t => t.id === currentTourId)?.image || 'assets/placeholder.jpg')
+            // Görsel path'i (DÜZELTİLDİ)
+            image: currentTourImageName ? `assets/${currentTourImageName}` : (tours.find(t => t.id === currentTourId)?.image || 'assets/placeholder.jpg'),
+            // Base64 görsel verisi (YENİ - Görseli kaydet)
+            imageData: currentTourImageData || (tours.find(t => t.id === currentTourId)?.imageData || null)
         };
         
         if (currentTourId) {
             const index = tours.findIndex(t => t.id === currentTourId);
             if (index !== -1) {
                 tours[index] = tourData;
-                showToast('Tur güncellendi!', 'success');
+                showToast('✅ Tur güncellendi!', 'success');
             }
         } else {
             tours.push(tourData);
-            showToast('Tur eklendi!', 'success');
+            showToast('✅ Tur eklendi!', 'success');
         }
         
         saveTours();
@@ -479,11 +502,20 @@ function handleTourSubmit(e) {
         updateStats();
         closeTourForm();
         
-        downloadJSON(tours, 'tours.json');
-        showToast('✅ tours.json dosyasını data/ klasörüne yükleyin!', 'info');
+        // JSON'u indir (imageData HARİÇ - temiz JSON)
+        const cleanData = tours.map(({ imageData, ...rest }) => rest);
+        downloadJSON(cleanData, 'tours.json');
+        
+        // Görseli indir
+        if (currentTourImageData && currentTourImageName) {
+            downloadImage(currentTourImageData, currentTourImageName);
+            showToast(`📥 ${currentTourImageName} dosyasını assets/ klasörüne yükleyin!`, 'info');
+        }
+        
+        showToast('📥 tours.json dosyasını data/ klasörüne yükleyin!', 'info');
     } catch (error) {
         console.error('❌ Tur kayıt hatası:', error);
-        showToast('Tur kaydedilirken hata oluştu!', 'error');
+        showToast('❌ Tur kaydedilirken hata oluştu!', 'error');
     }
 }
 
@@ -493,7 +525,7 @@ function saveTours() {
         console.log(`✅ ${tours.length} tur LocalStorage'a kaydedildi`);
     } catch (error) {
         console.error('❌ Tur kayıt hatası:', error);
-        showToast('Tur verileri kaydedilemedi!', 'error');
+        showToast('❌ Tur verileri kaydedilemedi!', 'error');
     }
 }
 
@@ -521,7 +553,7 @@ function renderTourList() {
     container.innerHTML = tours.map((tour) => `
         <div class="item-card">
             <div class="item-image">
-                <img src="../${tour.image}" 
+                <img src="${tour.imageData || '../' + tour.image}" 
                      alt="${tour.title}"
                      onerror="this.src='https://placehold.co/120x80/38bdf8/FFF?text=Tour'">
             </div>
@@ -552,8 +584,10 @@ function deleteTour(tourId) {
         saveTours();
         renderTourList();
         updateStats();
-        downloadJSON(tours, 'tours.json');
-        showToast('Tur silindi!', 'success');
+        
+        const cleanData = tours.map(({ imageData, ...rest }) => rest);
+        downloadJSON(cleanData, 'tours.json');
+        showToast('✅ Tur silindi!', 'success');
     }
 }
 
@@ -577,25 +611,42 @@ function downloadJSON(data, filename) {
         console.log(`✅ ${filename} indirildi`);
     } catch (error) {
         console.error('❌ JSON indirme hatası:', error);
-        showToast('Dosya indirilemedi!', 'error');
+        showToast('❌ Dosya indirilemedi!', 'error');
+    }
+}
+
+// YENİ: Görseli indir (base64 → dosya)
+function downloadImage(base64Data, filename) {
+    try {
+        const link = document.createElement('a');
+        link.href = base64Data;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        console.log(`✅ ${filename} indirildi`);
+    } catch (error) {
+        console.error('❌ Görsel indirme hatası:', error);
+        showToast('❌ Görsel indirilemedi!', 'error');
     }
 }
 
 function exportAllData() {
     try {
         const allData = {
-            blogs: blogPosts,
-            tours: tours,
+            blogs: blogPosts.map(({ imageData, ...rest }) => rest),
+            tours: tours.map(({ imageData, ...rest }) => rest),
             exportDate: new Date().toISOString(),
             version: '1.0'
         };
         
         const timestamp = new Date().toISOString().split('T')[0];
         downloadJSON(allData, `walkabout-backup-${timestamp}.json`);
-        showToast('Tüm veriler indirildi!', 'success');
+        showToast('✅ Tüm veriler indirildi!', 'success');
     } catch (error) {
         console.error('❌ Export hatası:', error);
-        showToast('Export başarısız!', 'error');
+        showToast('❌ Export başarısız!', 'error');
     }
 }
 
