@@ -185,3 +185,11 @@ if (typeof window !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = i18n;
 }
+// Sayfa yüklenince otomatik başlat
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.i18n.init('tr');
+    });
+} else {
+    window.i18n.init('tr');
+}
