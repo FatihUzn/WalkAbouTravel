@@ -1,4 +1,4 @@
-// i18n.js - Dil Çeviri Sistemi (BUTON TIKLANMA SORUNU ÇÖZÜLMÜŞ)
+// i18n.js - Dil Çeviri Sistemi (DÜZELTİLMİŞ - BUTONLAR ÇALIŞIYOR)
 // WalkAbout Travel - 2025
 
 const i18n = {
@@ -170,40 +170,6 @@ const i18n = {
     }
   },
   
-  async init(defaultLang = 'tr') {
-    console.log('🚀 i18n başlatılıyor...');
-    
-    // Get saved language from localStorage
-    const savedLang = localStorage.getItem('language') || defaultLang;
-    
-    console.log(`📌 Kaydedilmiş dil: ${savedLang}`);
-    
-    // Load language file
-    const loaded = await this.loadLanguage(savedLang);
-    
-    if (loaded) {
-      this.currentLang = savedLang;
-      this.updatePageContent();
-      document.documentElement.lang = savedLang;
-      
-      // RTL support
-      if (savedLang === 'ar') {
-        document.body.setAttribute('dir', 'rtl');
-        document.body.classList.add('rtl');
-      }
-      
-      // Mark active button
-      this.updateActiveButton(savedLang);
-      
-      console.log(`✅ i18n başlatıldı (${savedLang})`);
-      
-      // Setup language buttons after init
-      this.setupLanguageButtons();
-    } else {
-      console.error('❌ i18n başlatılamadı!');
-    }
-  },
-  
   setupLanguageButtons() {
     console.log('🔘 Dil butonları kuruluyor...');
     
@@ -236,6 +202,40 @@ const i18n = {
     }, true); // Use capture phase for priority
     
     console.log(`✅ Event delegation kuruldu (tüm .lang-btn için)`);
+  },
+  
+  async init(defaultLang = 'tr') {
+    console.log('🚀 i18n başlatılıyor...');
+    
+    // CRITICAL: Setup language buttons FIRST (event delegation)
+    this.setupLanguageButtons();
+    
+    // Get saved language from localStorage
+    const savedLang = localStorage.getItem('language') || defaultLang;
+    
+    console.log(`📌 Kaydedilmiş dil: ${savedLang}`);
+    
+    // Load language file
+    const loaded = await this.loadLanguage(savedLang);
+    
+    if (loaded) {
+      this.currentLang = savedLang;
+      this.updatePageContent();
+      document.documentElement.lang = savedLang;
+      
+      // RTL support
+      if (savedLang === 'ar') {
+        document.body.setAttribute('dir', 'rtl');
+        document.body.classList.add('rtl');
+      }
+      
+      // Mark active button
+      this.updateActiveButton(savedLang);
+      
+      console.log(`✅ i18n başlatıldı (${savedLang})`);
+    } else {
+      console.error('❌ i18n başlatılamadı!');
+    }
   },
   
   getLanguageName(lang) {
