@@ -1,6 +1,6 @@
 /* ================================================
    WALKABOUT TRAVEL - DİL DEĞİŞTİRME SİSTEMİ
-   FINAL VERSİYON - ÇALIŞIYOR
+   BÜYÜK/KÜÇÜK HARF UYUMLU - TÜM DİLLER ÇALIŞIYOR
    ================================================ */
 
 console.log('🚀 i18n.js yükleniyor...');
@@ -10,29 +10,62 @@ const i18n = {
   translations: {},
   isChanging: false,
   
-  // Dil dosyasını yükle
+  // Dil dosyasını yükle (büyük/küçük harf uyumlu)
   async loadLanguage(lang) {
     try {
       console.log(`📥 ${lang}.json yükleniyor...`);
       
-      // Önce data/ klasöründen dene
-      let response = await fetch(`data/${lang}.json`);
+      // Dosya ismi varyantları
+      const variants = [
+        lang.toLowerCase(),                                    // tr, en, es, ru, de
+        lang.toUpperCase(),                                    // TR, EN, ES, RU, DE
+        lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase()  // Tr, En, Es, Ru, De
+      ];
       
-      // Bulamazsan root'tan dene
-      if (!response.ok) {
-        console.log(`⚠️ data/${lang}.json bulunamadı, root deneniyor...`);
-        response = await fetch(`${lang}.json`);
+      let response = null;
+      let loadedFrom = '';
+      
+      // ÖNCE data/ klasöründe ara
+      for (const variant of variants) {
+        try {
+          response = await fetch(`data/${variant}.json`);
+          if (response.ok) {
+            loadedFrom = `data/${variant}.json`;
+            console.log(`✅ Bulundu: ${loadedFrom}`);
+            break;
+          }
+        } catch (e) {
+          // Sessizce devam
+        }
       }
       
-      if (!response.ok) {
-        throw new Error(`Dil dosyası bulunamadı: ${lang}.json`);
+      // Bulunamadıysa root'ta ara
+      if (!response || !response.ok) {
+        console.log(`⚠️ data/ klasöründe bulunamadı, root deneniyor...`);
+        for (const variant of variants) {
+          try {
+            response = await fetch(`${variant}.json`);
+            if (response.ok) {
+              loadedFrom = `${variant}.json`;
+              console.log(`✅ Bulundu: ${loadedFrom}`);
+              break;
+            }
+          } catch (e) {
+            // Sessizce devam
+          }
+        }
+      }
+      
+      // Hiçbir yerde bulunamadı
+      if (!response || !response.ok) {
+        throw new Error(`Dil dosyası bulunamadı: ${variants.join(', ')}.json`);
       }
       
       this.translations[lang] = await response.json();
-      console.log(`✅ ${lang} yüklendi (${Object.keys(this.translations[lang]).length} anahtar)`);
+      console.log(`✅ ${lang.toUpperCase()} yüklendi: ${loadedFrom} (${Object.keys(this.translations[lang]).length} anahtar)`);
       return true;
     } catch (error) {
-      console.error(`❌ ${lang} yüklenemedi:`, error);
+      console.error(`❌ ${lang.toUpperCase()} yüklenemedi:`, error);
       return false;
     }
   },
@@ -95,13 +128,13 @@ const i18n = {
         detail: { lang: lang } 
       }));
       
-      console.log(`✅ Dil değiştirildi: ${lang}`);
+      console.log(`✅ Dil değiştirildi: ${lang.toUpperCase()}`);
       this.showToast(`✓ ${this.getLanguageName(lang)}`, 'success');
       
       return true;
     } catch (error) {
       console.error('❌ Dil değiştirme hatası:', error);
-      this.showToast('❌ Hata!', 'error');
+      this.showToast(`❌ ${lang.toUpperCase()} yüklenemedi!`, 'error');
       return false;
     } finally {
       setTimeout(() => {
@@ -156,7 +189,7 @@ const i18n = {
         btn.classList.remove('active');
       }
     });
-    console.log(`✅ Aktif buton: ${lang}`);
+    console.log(`✅ Aktif buton: ${lang.toUpperCase()}`);
   },
   
   // Butonları başlat
@@ -233,7 +266,7 @@ const i18n = {
       this.updatePageContent();
       this.updateActiveButton(savedLang);
       
-      console.log(`✅ i18n başlatıldı (${savedLang})`);
+      console.log(`✅ i18n başlatıldı (${savedLang.toUpperCase()})`);
     } else {
       console.error('❌ i18n başlatılamadı!');
     }
@@ -319,7 +352,7 @@ if (typeof window !== 'undefined') {
   
   // Debug için
   window.testLanguage = function(lang) {
-    console.log(`🧪 Test: ${lang}`);
+    console.log(`🧪 Test: ${lang.toUpperCase()}`);
     if (window.i18n) {
       window.i18n.changeLanguage(lang);
     } else {
