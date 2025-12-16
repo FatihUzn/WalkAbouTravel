@@ -1420,3 +1420,115 @@ footer {
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
+
+/* ================================================
+   DİL BUTONLARI İÇİN EK CSS - style.css'in SONUNA EKLE
+   ================================================ */
+
+/* Dil değiştirici butonları - Z-index ve pointer-events düzeltmesi */
+.lang-switcher {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 100;
+}
+
+.lang-btn {
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--border-gray);
+    color: var(--deep-navy);
+    border-radius: 8px;
+    cursor: pointer !important;
+    font-size: 13px;
+    font-weight: 600;
+    transition: var(--transition-base);
+    position: relative;
+    z-index: 100;
+    pointer-events: auto !important; /* ÖNEMLİ: Kesinlikle tıklanabilir */
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lang-btn:hover {
+    background: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.lang-btn:active {
+    transform: translateY(0);
+    background: var(--ocean-dark);
+}
+
+.lang-btn.active {
+    background: var(--ocean-blue) !important;
+    border-color: var(--ocean-blue) !important;
+    color: white !important;
+}
+
+.lang-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: auto !important; /* Disabled olsa bile pointer-events korunur */
+}
+
+/* Toast bildirimleri */
+.language-toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: var(--ocean-blue);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    z-index: 99999 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-weight: 600;
+    pointer-events: none;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* Mobil responsive için */
+@media (max-width: 768px) {
+    .lang-switcher {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+    
+    .lang-btn {
+        min-width: 45px;
+        padding: 10px 16px;
+    }
+    
+    .language-toast {
+        right: 10px;
+        left: 10px;
+        text-align: center;
+    }
+}
