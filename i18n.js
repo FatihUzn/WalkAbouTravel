@@ -1,4 +1,4 @@
-// i18n.js - Dil Çeviri Sistemi
+// i18n.js - Dil Çeviri Sistemi (DÜZELTİLMİŞ)
 // WalkAbout Travel - 2025
 
 const i18n = {
@@ -7,11 +7,14 @@ const i18n = {
   
   async loadLanguage(lang) {
     try {
+      console.log(`📥 Yükleniyor: ${lang}.json`);
+      
       // Try data folder first
       let response = await fetch(`data/${lang}.json`);
       
       // If not found, try root
       if (!response.ok) {
+        console.log(`⚠️ data/${lang}.json bulunamadı, root dizininde deneniyor...`);
         response = await fetch(`${lang}.json`);
       }
       
@@ -20,17 +23,17 @@ const i18n = {
       }
       
       this.translations[lang] = await response.json();
-      console.log(`✅ Language loaded: ${lang}`);
+      console.log(`✅ Dil yüklendi: ${lang}`, Object.keys(this.translations[lang]).length, 'anahtar');
       return true;
     } catch (error) {
-      console.error(`❌ Language loading error (${lang}):`, error);
+      console.error(`❌ Dil yükleme hatası (${lang}):`, error);
       return false;
     }
   },
   
   t(key) {
     if (!this.translations[this.currentLang]) {
-      console.warn(`⚠️ Language not loaded: ${this.currentLang}`);
+      console.warn(`⚠️ Dil yüklenmemiş: ${this.currentLang}`);
       return key;
     }
     
@@ -50,7 +53,7 @@ const i18n = {
     }
     
     if (!translation) {
-      console.warn(`⚠️ Translation not found: ${key} (${this.currentLang})`);
+      console.warn(`⚠️ Çeviri bulunamadı: ${key} (${this.currentLang})`);
       return key;
     }
     
@@ -58,13 +61,14 @@ const i18n = {
   },
   
   async changeLanguage(lang) {
-    console.log(`🔄 Changing language to: ${lang}`);
+    console.log(`🔄 Dil değiştiriliyor: ${this.currentLang} → ${lang}`);
     
     // Load language if not already loaded
     if (!this.translations[lang]) {
       const loaded = await this.loadLanguage(lang);
       if (!loaded) {
-        console.error(`❌ Could not change language: ${lang}`);
+        console.error(`❌ Dil değiştirilemedi: ${lang}`);
+        alert(`Dil dosyası yüklenemedi: ${lang}`);
         return false;
       }
     }
@@ -91,11 +95,19 @@ const i18n = {
     // Update active button
     this.updateActiveButton(lang);
     
-    console.log(`✅ Language changed to: ${lang}`);
+    // Dispatch event for other components
+    window.dispatchEvent(new CustomEvent('languageChanged', { 
+      detail: { lang: lang } 
+    }));
+    
+    console.log(`✅ Dil başarıyla değiştirildi: ${lang}`);
     return true;
   },
   
   updatePageContent() {
+    console.log(`🔄 Sayfa içeriği güncelleniyor (${this.currentLang})...`);
+    let updateCount = 0;
+    
     // Find and update all elements with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
@@ -103,11 +115,17 @@ const i18n = {
       
       // Input and textarea placeholder
       if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-        element.placeholder = translation;
+        if (element.placeholder !== translation) {
+          element.placeholder = translation;
+          updateCount++;
+        }
       } 
       // Other elements textContent
       else {
-        element.textContent = translation;
+        if (element.textContent !== translation) {
+          element.textContent = translation;
+          updateCount++;
+        }
       }
     });
     
@@ -116,10 +134,13 @@ const i18n = {
     if (titleElement) {
       const titleKey = titleElement.getAttribute('data-i18n') || 'title';
       const titleTranslation = this.t(titleKey);
-      if (titleTranslation !== titleKey) {
+      if (titleTranslation !== titleKey && document.title !== titleTranslation) {
         document.title = titleTranslation;
+        updateCount++;
       }
     }
+    
+    console.log(`✅ ${updateCount} element güncellendi`);
   },
   
   updateActiveButton(lang) {
@@ -132,14 +153,19 @@ const i18n = {
     const activeBtn = document.querySelector(`.lang-btn[data-lang="${lang}"]`);
     if (activeBtn) {
       activeBtn.classList.add('active');
+      console.log(`✅ Aktif buton işaretlendi: ${lang}`);
+    } else {
+      console.warn(`⚠️ Buton bulunamadı: ${lang}`);
     }
   },
   
   async init(defaultLang = 'tr') {
+    console.log('🚀 i18n başlatılıyor...');
+    
     // Get saved language from localStorage
     const savedLang = localStorage.getItem('language') || defaultLang;
     
-    console.log(`🚀 Initializing i18n with language: ${savedLang}`);
+    console.log(`📌 Kaydedilmiş dil: ${savedLang}`);
     
     // Load language file
     const loaded = await this.loadLanguage(savedLang);
@@ -158,38 +184,106 @@ const i18n = {
       // Mark active button
       this.updateActiveButton(savedLang);
       
-      console.log(`✅ i18n initialized successfully with ${savedLang}`);
+      console.log(`✅ i18n başlatıldı (${savedLang})`);
+      
+      // Setup language buttons after init
+      this.setupLanguageButtons();
     } else {
-      console.error('❌ i18n initialization failed!');
+      console.error('❌ i18n başlatılamadı!');
     }
+  },
+  
+  setupLanguageButtons() {
+    console.log('🔘 Dil butonları kuruluyor...');
+    
+    document.querySelectorAll('.lang-btn').forEach(button => {
+      const lang = button.getAttribute('data-lang');
+      
+      if (!lang) {
+        console.warn('⚠️ data-lang özelliği eksik:', button);
+        return;
+      }
+      
+      // Remove old listeners by cloning
+      const newButton = button.cloneNode(true);
+      button.parentNode.replaceChild(newButton, button);
+      
+      // Add new listener
+      newButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        console.log(`🖱️ Dil butonu tıklandı: ${lang}`);
+        
+        // Disable button temporarily
+        newButton.disabled = true;
+        
+        try {
+          const success = await this.changeLanguage(lang);
+          
+          if (success) {
+            // Show success message
+            this.showToast(`✓ ${this.getLanguageName(lang)}`);
+          } else {
+            alert(`Dil değiştirilemedi: ${lang}`);
+          }
+        } catch (error) {
+          console.error('❌ Dil değiştirme hatası:', error);
+          alert('Dil değiştirirken bir hata oluştu!');
+        } finally {
+          // Re-enable button
+          newButton.disabled = false;
+        }
+      });
+      
+      console.log(`✅ Event listener eklendi: ${lang}`);
+    });
+  },
+  
+  getLanguageName(lang) {
+    const names = {
+      'tr': 'Türkçe',
+      'en': 'English',
+      'es': 'Español',
+      'ru': 'Русский',
+      'de': 'Deutsch',
+      'ar': 'العربية',
+      'zh': '中文'
+    };
+    return names[lang] || lang.toUpperCase();
+  },
+  
+  showToast(message) {
+    // Remove existing toast
+    const existingToast = document.querySelector('.language-toast');
+    if (existingToast) {
+      existingToast.remove();
+    }
+    
+    // Create new toast
+    const toast = document.createElement('div');
+    toast.className = 'language-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Show toast
+    setTimeout(() => toast.classList.add('show'), 10);
+    
+    // Hide and remove toast
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
   }
 };
 
 // Add to global window
 if (typeof window !== 'undefined') {
   window.i18n = i18n;
-  
-  console.log('📦 i18n module loaded');
-  
-  // Initialize when page loads
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      window.i18n.init('tr');
-    });
-  } else {
-    window.i18n.init('tr');
-  }
+  console.log('📦 i18n modülü yüklendi');
 }
 
 // Node.js compatibility
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = i18n;
-}
-// Sayfa yüklenince otomatik başlat
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        window.i18n.init('tr');
-    });
-} else {
-    window.i18n.init('tr');
 }

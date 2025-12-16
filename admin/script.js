@@ -1,5 +1,5 @@
 /* ==========================================
-   WALKABOUT TRAVEL - ADMIN PANEL SCRIPT
+   WALKABOUT TRAVEL - ADMIN PANEL SCRIPT (DÜZELTİLMİŞ)
    Blog + Tur Yönetimi
    ========================================== */
 
@@ -19,11 +19,17 @@ let currentTourImageName = null;
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Admin panel başlatılıyor...');
     
-    loadAllData();
-    setupEventListeners();
-    updateStats();
-    renderBlogList();
-    renderTourList();
+    try {
+        loadAllData();
+        setupEventListeners();
+        updateStats();
+        renderBlogList();
+        renderTourList();
+        console.log('✅ Admin panel başarıyla yüklendi!');
+    } catch (error) {
+        console.error('❌ Admin panel yükleme hatası:', error);
+        showToast('Admin panel başlatılamadı! Konsolu kontrol edin.', 'error');
+    }
 });
 
 /* ==========================================
@@ -88,7 +94,10 @@ function setupBlogImageUpload() {
     const uploadZone = document.getElementById('blog-upload-zone');
     const imageInput = document.getElementById('blog-image');
     
-    if (!uploadZone || !imageInput) return;
+    if (!uploadZone || !imageInput) {
+        console.warn('⚠️ Blog image upload elements bulunamadı');
+        return;
+    }
     
     uploadZone.addEventListener('click', () => imageInput.click());
     
@@ -121,7 +130,10 @@ function setupTourImageUpload() {
     const uploadZone = document.getElementById('tour-upload-zone');
     const imageInput = document.getElementById('tour-image');
     
-    if (!uploadZone || !imageInput) return;
+    if (!uploadZone || !imageInput) {
+        console.warn('⚠️ Tour image upload elements bulunamadı');
+        return;
+    }
     
     uploadZone.addEventListener('click', () => imageInput.click());
     
@@ -162,8 +174,10 @@ function handleBlogImageFile(file) {
         currentBlogImageName = `blog-${Date.now()}.${file.name.split('.').pop()}`;
         
         const preview = document.getElementById('blog-preview');
-        preview.innerHTML = `<img src="${currentBlogImageData}" alt="Preview">`;
-        preview.classList.add('show');
+        if (preview) {
+            preview.innerHTML = `<img src="${currentBlogImageData}" alt="Preview">`;
+            preview.classList.add('show');
+        }
         
         showToast('Görsel yüklendi!', 'success');
     };
@@ -182,8 +196,10 @@ function handleTourImageFile(file) {
         currentTourImageName = `tour-${Date.now()}.${file.name.split('.').pop()}`;
         
         const preview = document.getElementById('tour-preview');
-        preview.innerHTML = `<img src="${currentTourImageData}" alt="Preview">`;
-        preview.classList.add('show');
+        if (preview) {
+            preview.innerHTML = `<img src="${currentTourImageData}" alt="Preview">`;
+            preview.classList.add('show');
+        }
         
         showToast('Görsel yüklendi!', 'success');
     };
@@ -194,6 +210,8 @@ function handleTourImageFile(file) {
    SAYFA NAVİGASYONU
    ========================================== */
 function showPage(pageName) {
+    console.log(`📄 Sayfa değiştiriliyor: ${pageName}`);
+    
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
@@ -218,35 +236,52 @@ function showPage(pageName) {
         'tours': 'Tur Paketleri'
     };
     
-    document.getElementById('page-title').textContent = titles[pageName] || 'Admin Panel';
+    const pageTitle = document.getElementById('page-title');
+    if (pageTitle) {
+        pageTitle.textContent = titles[pageName] || 'Admin Panel';
+    }
 }
 
 /* ==========================================
    İSTATİSTİKLER
    ========================================== */
 function updateStats() {
-    document.getElementById('stat-blogs').textContent = blogPosts.length;
-    document.getElementById('stat-tours').textContent = tours.length;
+    const statBlogs = document.getElementById('stat-blogs');
+    const statTours = document.getElementById('stat-tours');
+    
+    if (statBlogs) statBlogs.textContent = blogPosts.length;
+    if (statTours) statTours.textContent = tours.length;
 }
 
 /* ==========================================
    BLOG YÖNETİMİ
    ========================================== */
 function showBlogForm() {
-    document.getElementById('blog-form-container').style.display = 'block';
-    document.getElementById('blog-form').reset();
-    document.getElementById('blog-preview').innerHTML = '';
-    document.getElementById('blog-preview').classList.remove('show');
-    document.getElementById('blog-form-title').textContent = 'Yeni Blog Yazısı';
-    currentBlogId = null;
-    currentBlogImageData = null;
-    currentBlogImageName = null;
-    
-    document.getElementById('blog-form-container').scrollIntoView({ behavior: 'smooth' });
+    const formContainer = document.getElementById('blog-form-container');
+    if (formContainer) {
+        formContainer.style.display = 'block';
+        document.getElementById('blog-form').reset();
+        
+        const preview = document.getElementById('blog-preview');
+        if (preview) {
+            preview.innerHTML = '';
+            preview.classList.remove('show');
+        }
+        
+        document.getElementById('blog-form-title').textContent = 'Yeni Blog Yazısı';
+        currentBlogId = null;
+        currentBlogImageData = null;
+        currentBlogImageName = null;
+        
+        formContainer.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 function closeBlogForm() {
-    document.getElementById('blog-form-container').style.display = 'none';
+    const formContainer = document.getElementById('blog-form-container');
+    if (formContainer) {
+        formContainer.style.display = 'none';
+    }
     currentBlogId = null;
     currentBlogImageData = null;
     currentBlogImageName = null;
@@ -260,46 +295,60 @@ function handleBlogSubmit(e) {
         return;
     }
     
-    const blogData = {
-        id: currentBlogId || Date.now(),
-        title: document.getElementById('blog-title-tr').value.trim(),
-        title_en: document.getElementById('blog-title-en').value.trim(),
-        category: document.getElementById('blog-category').value,
-        description: document.getElementById('blog-summary-tr').value.trim(),
-        description_en: document.getElementById('blog-summary-en').value.trim(),
-        fullContent: document.getElementById('blog-content-tr').value.trim(),
-        content_en: document.getElementById('blog-content-en').value.trim(),
-        date: new Date().toISOString().split('T')[0],
-        image: currentBlogImageName ? `assets/${currentBlogImageName}` : (blogPosts.find(b => b.id === currentBlogId)?.image || 'assets/placeholder.jpg')
-    };
-    
-    if (currentBlogId) {
-        const index = blogPosts.findIndex(b => b.id === currentBlogId);
-        if (index !== -1) {
-            blogPosts[index] = blogData;
-            showToast('Blog yazısı güncellendi!', 'success');
+    try {
+        const blogData = {
+            id: currentBlogId || Date.now(),
+            title: document.getElementById('blog-title-tr').value.trim(),
+            title_en: document.getElementById('blog-title-en').value.trim(),
+            category: document.getElementById('blog-category').value,
+            description: document.getElementById('blog-summary-tr').value.trim(),
+            description_en: document.getElementById('blog-summary-en').value.trim(),
+            fullContent: document.getElementById('blog-content-tr').value.trim(),
+            content_en: document.getElementById('blog-content-en').value.trim(),
+            date: new Date().toISOString().split('T')[0],
+            image: currentBlogImageName ? `assets/${currentBlogImageName}` : (blogPosts.find(b => b.id === currentBlogId)?.image || 'assets/placeholder.jpg')
+        };
+        
+        if (currentBlogId) {
+            const index = blogPosts.findIndex(b => b.id === currentBlogId);
+            if (index !== -1) {
+                blogPosts[index] = blogData;
+                showToast('Blog yazısı güncellendi!', 'success');
+            }
+        } else {
+            blogPosts.push(blogData);
+            showToast('Blog yazısı eklendi!', 'success');
         }
-    } else {
-        blogPosts.push(blogData);
-        showToast('Blog yazısı eklendi!', 'success');
+        
+        saveBlogPosts();
+        renderBlogList();
+        updateStats();
+        closeBlogForm();
+        
+        downloadJSON(blogPosts, 'blog-posts.json');
+        showToast('✅ blog-posts.json dosyasını data/ klasörüne yükleyin!', 'info');
+    } catch (error) {
+        console.error('❌ Blog kayıt hatası:', error);
+        showToast('Blog kaydedilirken hata oluştu!', 'error');
     }
-    
-    saveBlogPosts();
-    renderBlogList();
-    updateStats();
-    closeBlogForm();
-    
-    downloadJSON(blogPosts, 'blog-posts.json');
-    showToast('✅ blog-posts.json dosyasını data/ klasörüne yükleyin!', 'info');
 }
 
 function saveBlogPosts() {
-    localStorage.setItem('walkabout_blog_posts', JSON.stringify(blogPosts));
+    try {
+        localStorage.setItem('walkabout_blog_posts', JSON.stringify(blogPosts));
+        console.log(`✅ ${blogPosts.length} blog LocalStorage'a kaydedildi`);
+    } catch (error) {
+        console.error('❌ Blog kayıt hatası:', error);
+        showToast('Blog verileri kaydedilemedi!', 'error');
+    }
 }
 
 function renderBlogList() {
     const container = document.getElementById('blog-list');
-    if (!container) return;
+    if (!container) {
+        console.warn('⚠️ blog-list container bulunamadı');
+        return;
+    }
     
     if (blogPosts.length === 0) {
         container.innerHTML = `
@@ -359,20 +408,31 @@ function deleteBlog(blogId) {
    TUR YÖNETİMİ
    ========================================== */
 function showTourForm() {
-    document.getElementById('tour-form-container').style.display = 'block';
-    document.getElementById('tour-form').reset();
-    document.getElementById('tour-preview').innerHTML = '';
-    document.getElementById('tour-preview').classList.remove('show');
-    document.getElementById('tour-form-title').textContent = 'Yeni Tur Paketi';
-    currentTourId = null;
-    currentTourImageData = null;
-    currentTourImageName = null;
-    
-    document.getElementById('tour-form-container').scrollIntoView({ behavior: 'smooth' });
+    const formContainer = document.getElementById('tour-form-container');
+    if (formContainer) {
+        formContainer.style.display = 'block';
+        document.getElementById('tour-form').reset();
+        
+        const preview = document.getElementById('tour-preview');
+        if (preview) {
+            preview.innerHTML = '';
+            preview.classList.remove('show');
+        }
+        
+        document.getElementById('tour-form-title').textContent = 'Yeni Tur Paketi';
+        currentTourId = null;
+        currentTourImageData = null;
+        currentTourImageName = null;
+        
+        formContainer.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 function closeTourForm() {
-    document.getElementById('tour-form-container').style.display = 'none';
+    const formContainer = document.getElementById('tour-form-container');
+    if (formContainer) {
+        formContainer.style.display = 'none';
+    }
     currentTourId = null;
     currentTourImageData = null;
     currentTourImageName = null;
@@ -386,49 +446,63 @@ function handleTourSubmit(e) {
         return;
     }
     
-    const tourData = {
-        id: currentTourId || `TUR-${Date.now()}`,
-        title: document.getElementById('tour-title-tr').value.trim(),
-        title_en: document.getElementById('tour-title-en').value.trim(),
-        price: document.getElementById('tour-price').value.trim(),
-        duration: document.getElementById('tour-duration').value.trim(),
-        location: document.getElementById('tour-location').value.trim(),
-        area: document.getElementById('tour-area').value.trim(),
-        category: document.getElementById('tour-category').value,
-        description: document.getElementById('tour-description-tr').value.trim(),
-        description_en: document.getElementById('tour-description-en').value.trim(),
-        content: document.getElementById('tour-content-tr').value.trim(),
-        content_en: document.getElementById('tour-content-en').value.trim(),
-        image: currentTourImageName ? `assets/${currentTourImageName}` : (tours.find(t => t.id === currentTourId)?.image || 'assets/placeholder.jpg')
-    };
-    
-    if (currentTourId) {
-        const index = tours.findIndex(t => t.id === currentTourId);
-        if (index !== -1) {
-            tours[index] = tourData;
-            showToast('Tur güncellendi!', 'success');
+    try {
+        const tourData = {
+            id: currentTourId || `TUR-${Date.now()}`,
+            title: document.getElementById('tour-title-tr').value.trim(),
+            title_en: document.getElementById('tour-title-en').value.trim(),
+            price: document.getElementById('tour-price').value.trim(),
+            duration: document.getElementById('tour-duration').value.trim(),
+            location: document.getElementById('tour-location').value.trim(),
+            area: document.getElementById('tour-area').value.trim(),
+            category: document.getElementById('tour-category').value,
+            description: document.getElementById('tour-description-tr').value.trim(),
+            description_en: document.getElementById('tour-description-en').value.trim(),
+            content: document.getElementById('tour-content-tr').value.trim(),
+            content_en: document.getElementById('tour-content-en').value.trim(),
+            image: currentTourImageName ? `assets/${currentTourImageName}` : (tours.find(t => t.id === currentTourId)?.image || 'assets/placeholder.jpg')
+        };
+        
+        if (currentTourId) {
+            const index = tours.findIndex(t => t.id === currentTourId);
+            if (index !== -1) {
+                tours[index] = tourData;
+                showToast('Tur güncellendi!', 'success');
+            }
+        } else {
+            tours.push(tourData);
+            showToast('Tur eklendi!', 'success');
         }
-    } else {
-        tours.push(tourData);
-        showToast('Tur eklendi!', 'success');
+        
+        saveTours();
+        renderTourList();
+        updateStats();
+        closeTourForm();
+        
+        downloadJSON(tours, 'tours.json');
+        showToast('✅ tours.json dosyasını data/ klasörüne yükleyin!', 'info');
+    } catch (error) {
+        console.error('❌ Tur kayıt hatası:', error);
+        showToast('Tur kaydedilirken hata oluştu!', 'error');
     }
-    
-    saveTours();
-    renderTourList();
-    updateStats();
-    closeTourForm();
-    
-    downloadJSON(tours, 'tours.json');
-    showToast('✅ tours.json dosyasını data/ klasörüne yükleyin!', 'info');
 }
 
 function saveTours() {
-    localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+    try {
+        localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+        console.log(`✅ ${tours.length} tur LocalStorage'a kaydedildi`);
+    } catch (error) {
+        console.error('❌ Tur kayıt hatası:', error);
+        showToast('Tur verileri kaydedilemedi!', 'error');
+    }
 }
 
 function renderTourList() {
     const container = document.getElementById('tour-list');
-    if (!container) return;
+    if (!container) {
+        console.warn('⚠️ tour-list container bulunamadı');
+        return;
+    }
     
     if (tours.length === 0) {
         container.innerHTML = `
@@ -487,34 +561,51 @@ function deleteTour(tourId) {
    YARDIMCI FONKSİYONLAR
    ========================================== */
 function downloadJSON(data, filename) {
-    const blob = new Blob([JSON.stringify(data, null, 2)], { 
-        type: 'application/json' 
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    try {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { 
+            type: 'application/json' 
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        console.log(`✅ ${filename} indirildi`);
+    } catch (error) {
+        console.error('❌ JSON indirme hatası:', error);
+        showToast('Dosya indirilemedi!', 'error');
+    }
 }
 
 function exportAllData() {
-    const allData = {
-        blogs: blogPosts,
-        tours: tours,
-        exportDate: new Date().toISOString(),
-        version: '1.0'
-    };
-    
-    const timestamp = new Date().toISOString().split('T')[0];
-    downloadJSON(allData, `walkabout-backup-${timestamp}.json`);
-    showToast('Tüm veriler indirildi!', 'success');
+    try {
+        const allData = {
+            blogs: blogPosts,
+            tours: tours,
+            exportDate: new Date().toISOString(),
+            version: '1.0'
+        };
+        
+        const timestamp = new Date().toISOString().split('T')[0];
+        downloadJSON(allData, `walkabout-backup-${timestamp}.json`);
+        showToast('Tüm veriler indirildi!', 'success');
+    } catch (error) {
+        console.error('❌ Export hatası:', error);
+        showToast('Export başarısız!', 'error');
+    }
 }
 
 function showToast(message, type = 'info') {
     const container = document.getElementById('toast-container');
+    if (!container) {
+        console.warn('⚠️ toast-container bulunamadı');
+        console.log(`Toast: [${type}] ${message}`);
+        return;
+    }
     
     const icons = {
         success: 'fa-check-circle',
