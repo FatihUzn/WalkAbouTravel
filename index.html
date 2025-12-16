@@ -598,12 +598,39 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- SCRIPTS - SIRALAMA ÇOK ÖNEMLİ! -->
+    <!-- ============================================
+         SCRIPTS - SIRALAMA ÇOK ÖNEMLİ!
+         ============================================ -->
+    
+    <!-- 1. İLK ÖNCE i18n.js YÜKLENİYOR -->
     <script src="i18n.js"></script>
+    
+    <!-- 2. SONRA i18n BAŞLATILIYOR - KRİTİK ADIM! -->
+    <script>
+        console.log('🎬 i18n başlatılıyor...');
+        
+        if (typeof i18n !== 'undefined') {
+            console.log('✅ i18n modülü bulundu');
+            
+            // i18n'i başlat
+            i18n.init('tr').then(() => {
+                console.log('✅ Dil sistemi başarıyla başlatıldı!');
+                console.log('📍 Aktif dil:', i18n.currentLang);
+                console.log('💡 Test için konsola yazın: testLanguage("en")');
+            }).catch(error => {
+                console.error('❌ i18n başlatma hatası:', error);
+            });
+        } else {
+            console.error('❌ HATA: i18n bulunamadı! i18n.js dosyası yüklenmedi mi?');
+        }
+    </script>
+    
+    <!-- 3. DİĞER SCRIPTLER -->
     <script src="Tours.js"></script>
     <script src="Blog.js"></script>
     <script src="app.js"></script>
     
+    <!-- 4. SAYFA FONKSİYONLARI -->
     <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
