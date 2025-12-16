@@ -1,9 +1,10 @@
-// i18n.js - Dil Çeviri Sistemi (DÜZELTİLMİŞ)
+// i18n.js - Dil Çeviri Sistemi (TAM DÜZELTİLMİŞ VERSİYON)
 // WalkAbout Travel - 2025
 
 const i18n = {
   currentLang: 'tr',
   translations: {},
+  isChanging: false, // Çift tıklama önleme
   
   async loadLanguage(lang) {
     try {
@@ -37,20 +38,7 @@ const i18n = {
       return key;
     }
     
-    // Hem noktalı hem alt çizgili anahtarları dene
-    let translation = this.translations[this.currentLang][key];
-    
-    // Noktalı anahtar yoksa, alt çizgiliye çevir (nav.home → nav_home)
-    if (!translation) {
-      const underscoreKey = key.replace(/\./g, '_');
-      translation = this.translations[this.currentLang][underscoreKey];
-    }
-    
-    // Alt çizgili yoksa, noktalıya çevir (nav_home → nav.home)
-    if (!translation) {
-      const dotKey = key.replace(/_/g, '.');
-      translation = this.translations[this.currentLang][dotKey];
-    }
+    const translation = this.translations[this.currentLang][key];
     
     if (!translation) {
       console.warn(`⚠️ Çeviri bulunamadı: ${key} (${this.currentLang})`);
@@ -61,47 +49,70 @@ const i18n = {
   },
   
   async changeLanguage(lang) {
-    console.log(`🔄 Dil değiştiriliyor: ${this.currentLang} → ${lang}`);
+    // Çift tıklama önleme
+    if (this.isChanging) {
+      console.log('⏳ Dil değişimi devam ediyor, lütfen bekleyin...');
+      return false;
+    }
     
-    // Load language if not already loaded
-    if (!this.translations[lang]) {
-      const loaded = await this.loadLanguage(lang);
-      if (!loaded) {
-        console.error(`❌ Dil değiştirilemedi: ${lang}`);
-        alert(`Dil dosyası yüklenemedi: ${lang}`);
-        return false;
+    this.isChanging = true;
+    
+    try {
+      console.log(`🔄 Dil değiştiriliyor: ${this.currentLang} → ${lang}`);
+      
+      // Load language if not already loaded
+      if (!this.translations[lang]) {
+        const loaded = await this.loadLanguage(lang);
+        if (!loaded) {
+          console.error(`❌ Dil değiştirilemedi: ${lang}`);
+          this.showToast(`❌ Dil dosyası yüklenemedi: ${lang}`, 'error');
+          return false;
+        }
       }
+      
+      // Change language
+      this.currentLang = lang;
+      localStorage.setItem('language', lang);
+      
+      // Update page
+      this.updatePageContent();
+      
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+      
+      // RTL support (Arabic)
+      if (lang === 'ar') {
+        document.body.setAttribute('dir', 'rtl');
+        document.body.classList.add('rtl');
+      } else {
+        document.body.setAttribute('dir', 'ltr');
+        document.body.classList.remove('rtl');
+      }
+      
+      // Update active button
+      this.updateActiveButton(lang);
+      
+      // Dispatch event for other components
+      window.dispatchEvent(new CustomEvent('languageChanged', { 
+        detail: { lang: lang } 
+      }));
+      
+      console.log(`✅ Dil başarıyla değiştirildi: ${lang}`);
+      
+      // Show success toast
+      this.showToast(`✓ ${this.getLanguageName(lang)}`, 'success');
+      
+      return true;
+    } catch (error) {
+      console.error('❌ Dil değiştirme hatası:', error);
+      this.showToast('❌ Dil değiştirme hatası!', 'error');
+      return false;
+    } finally {
+      // 500ms sonra tekrar tıklama izni ver
+      setTimeout(() => {
+        this.isChanging = false;
+      }, 500);
     }
-    
-    // Change language
-    this.currentLang = lang;
-    localStorage.setItem('language', lang);
-    
-    // Update page
-    this.updatePageContent();
-    
-    // Update HTML lang attribute
-    document.documentElement.lang = lang;
-    
-    // RTL support (Arabic)
-    if (lang === 'ar') {
-      document.body.setAttribute('dir', 'rtl');
-      document.body.classList.add('rtl');
-    } else {
-      document.body.setAttribute('dir', 'ltr');
-      document.body.classList.remove('rtl');
-    }
-    
-    // Update active button
-    this.updateActiveButton(lang);
-    
-    // Dispatch event for other components
-    window.dispatchEvent(new CustomEvent('languageChanged', { 
-      detail: { lang: lang } 
-    }));
-    
-    console.log(`✅ Dil başarıyla değiştirildi: ${lang}`);
-    return true;
   },
   
   updatePageContent() {
@@ -219,20 +230,12 @@ const i18n = {
         newButton.disabled = true;
         
         try {
-          const success = await this.changeLanguage(lang);
-          
-          if (success) {
-            // Show success message
-            this.showToast(`✓ ${this.getLanguageName(lang)}`);
-          } else {
-            alert(`Dil değiştirilemedi: ${lang}`);
-          }
-        } catch (error) {
-          console.error('❌ Dil değiştirme hatası:', error);
-          alert('Dil değiştirirken bir hata oluştu!');
+          await this.changeLanguage(lang);
         } finally {
           // Re-enable button
-          newButton.disabled = false;
+          setTimeout(() => {
+            newButton.disabled = false;
+          }, 500);
         }
       });
       
@@ -253,7 +256,7 @@ const i18n = {
     return names[lang] || lang.toUpperCase();
   },
   
-  showToast(message) {
+  showToast(message, type = 'success') {
     // Remove existing toast
     const existingToast = document.querySelector('.language-toast');
     if (existingToast) {
@@ -262,7 +265,7 @@ const i18n = {
     
     // Create new toast
     const toast = document.createElement('div');
-    toast.className = 'language-toast';
+    toast.className = `language-toast ${type}`;
     toast.textContent = message;
     document.body.appendChild(toast);
     
