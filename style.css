@@ -1532,3 +1532,70 @@ footer {
         text-align: center;
     }
 }
+/* ================================================
+   DİL BUTONU DÜZELTMELERİ - style.css'e ekleyin
+   ================================================ */
+
+.lang-switcher {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 100;
+}
+
+.lang-btn {
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--border-gray);
+    color: var(--deep-navy);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: var(--transition-base);
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+    user-select: none;
+    touch-action: manipulation; /* Mobil için */
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    background: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+    color: white;
+}
+
+.lang-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Toast mesajları için stil */
+.language-toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: #38bdf8;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.language-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.language-toast.error {
+    background: #ef4444;
+}
