@@ -429,6 +429,10 @@
                         <h3 id="categoryCount">0</h3>
                         <p>Kategori</p>
                     </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="refreshToursFromGitHub()">
+                        <h3><i class="fas fa-sync-alt"></i></h3>
+                        <p>GitHub'dan Yenile</p>
+                    </div>
                 </div>
 
                 <div id="tourAlert"></div>
@@ -638,6 +642,10 @@
                     <div class="stat-card">
                         <h3 id="blogCount">0</h3>
                         <p>Toplam Blog Yazısı</p>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="refreshBlogsFromGitHub()">
+                        <h3><i class="fas fa-sync-alt"></i></h3>
+                        <p>GitHub'dan Yenile</p>
                     </div>
                 </div>
 
@@ -1003,6 +1011,48 @@
             }
         }
 
+        // GITHUB'DAN MANUEL YENİLE (TURLAR)
+        async function refreshToursFromGitHub() {
+            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> GitHub\'dan yükleniyor...', 'info');
+            
+            try {
+                const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/tours.json';
+                const response = await fetch(githubUrl + '?t=' + Date.now()); // Cache bypass
+                
+                if (response.ok) {
+                    tours = await response.json();
+                    displayTours();
+                    updateTourStats();
+                    showAlert('tourAlert', `✅ ${tours.length} tur GitHub'dan güncellendi!`, 'success');
+                } else {
+                    showAlert('tourAlert', '❌ GitHub\'dan yüklenemedi! Bağlantıyı kontrol edin.', 'error');
+                }
+            } catch (error) {
+                showAlert('tourAlert', '❌ Hata: İnternet bağlantınızı kontrol edin.', 'error');
+            }
+        }
+
+        // GITHUB'DAN MANUEL YENİLE (BLOGLAR)
+        async function refreshBlogsFromGitHub() {
+            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> GitHub\'dan yükleniyor...', 'info');
+            
+            try {
+                const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/blog-posts.json';
+                const response = await fetch(githubUrl + '?t=' + Date.now()); // Cache bypass
+                
+                if (response.ok) {
+                    blogs = await response.json();
+                    displayBlogs();
+                    updateBlogStats();
+                    showAlert('blogAlert', `✅ ${blogs.length} blog yazısı GitHub'dan güncellendi!`, 'success');
+                } else {
+                    showAlert('blogAlert', '❌ GitHub\'dan yüklenemedi! Bağlantıyı kontrol edin.', 'error');
+                }
+            } catch (error) {
+                showAlert('blogAlert', '❌ Hata: İnternet bağlantınızı kontrol edin.', 'error');
+            }
+        }
+
         // SAYFA YÜKLENİNCE
         document.addEventListener('DOMContentLoaded', () => {
             loadTours();
@@ -1020,18 +1070,37 @@
             document.getElementById(tab + '-content').classList.add('active');
         }
 
-        // TURLARI YÜKLE
+        // TURLARI YÜKLE (GitHub'dan veya yerel)
         async function loadTours() {
             try {
-                const response = await fetch('data/tours.json');
-                if (response.ok) {
-                    tours = await response.json();
+                // Önce GitHub'dan dene
+                const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/tours.json';
+                const githubResponse = await fetch(githubUrl);
+                
+                if (githubResponse.ok) {
+                    tours = await githubResponse.json();
+                    console.log('✅ Turlar GitHub\'dan yüklendi:', tours.length);
+                    showAlert('tourAlert', `✅ ${tours.length} tur GitHub'dan yüklendi!`, 'success');
                 } else {
-                    tours = [];
+                    throw new Error('GitHub\'dan yüklenemedi');
                 }
             } catch (error) {
-                console.warn('tours.json bulunamadı, yeni liste oluşturuluyor');
-                tours = [];
+                console.warn('⚠️ GitHub\'dan yüklenemedi, yerel dosya deneniyor...');
+                
+                // GitHub yoksa yerel dosyadan dene
+                try {
+                    const response = await fetch('data/tours.json');
+                    if (response.ok) {
+                        tours = await response.json();
+                        console.log('✅ Turlar yerel dosyadan yüklendi:', tours.length);
+                    } else {
+                        tours = [];
+                        console.log('ℹ️ Henüz tur yok, yeni liste oluşturuldu');
+                    }
+                } catch (err) {
+                    tours = [];
+                    console.log('ℹ️ Henüz tur yok, yeni liste oluşturuldu');
+                }
             }
             
             displayTours();
@@ -1229,18 +1298,37 @@
             document.getElementById('tourImagePreview').style.display = 'none';
         }
 
-        // BLOGLARI YÜKLE
+        // BLOGLARI YÜKLE (GitHub'dan veya yerel)
         async function loadBlogs() {
             try {
-                const response = await fetch('data/blog-posts.json');
-                if (response.ok) {
-                    blogs = await response.json();
+                // Önce GitHub'dan dene
+                const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/blog-posts.json';
+                const githubResponse = await fetch(githubUrl);
+                
+                if (githubResponse.ok) {
+                    blogs = await githubResponse.json();
+                    console.log('✅ Blog yazıları GitHub\'dan yüklendi:', blogs.length);
+                    showAlert('blogAlert', `✅ ${blogs.length} blog yazısı GitHub'dan yüklendi!`, 'success');
                 } else {
-                    blogs = [];
+                    throw new Error('GitHub\'dan yüklenemedi');
                 }
             } catch (error) {
-                console.warn('blog-posts.json bulunamadı, yeni liste oluşturuluyor');
-                blogs = [];
+                console.warn('⚠️ GitHub\'dan yüklenemedi, yerel dosya deneniyor...');
+                
+                // GitHub yoksa yerel dosyadan dene
+                try {
+                    const response = await fetch('data/blog-posts.json');
+                    if (response.ok) {
+                        blogs = await response.json();
+                        console.log('✅ Blog yazıları yerel dosyadan yüklendi:', blogs.length);
+                    } else {
+                        blogs = [];
+                        console.log('ℹ️ Henüz blog yazısı yok, yeni liste oluşturuldu');
+                    }
+                } catch (err) {
+                    blogs = [];
+                    console.log('ℹ️ Henüz blog yazısı yok, yeni liste oluşturuldu');
+                }
             }
             
             displayBlogs();
