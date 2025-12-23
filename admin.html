@@ -412,10 +412,11 @@
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> Nasıl Kullanılır?</h3>
                     <ol>
-                        <li>Aşağıdaki formu doldurun</li>
+                        <li>Aşağıdaki formu Türkçe olarak doldurun</li>
+                        <li><strong>🌍 Otomatik Çeviri:</strong> "Otomatik Çevir" butonuna tıklayın (İngilizce alanlar otomatik dolacak)</li>
+                        <li><strong>✏️ Manuel Çeviri:</strong> İsterseniz İngilizce alanları kendiniz de yazabilirsiniz</li>
                         <li>"Turu Kaydet" butonuna tıklayın</li>
                         <li>Turlarınız otomatik olarak ana sayfada görünecek</li>
-                        <li>Düzenlemek için listedeki "Düzenle" butonuna tıklayın</li>
                     </ol>
                 </div>
 
@@ -445,9 +446,37 @@
                             <input type="text" id="tourTitle" required placeholder="Örnek: Kapadokya Balon Turu">
                         </div>
 
-                        <div class="form-group">
-                            <label>Tur Başlığı (İngilizce)</label>
-                            <input type="text" id="tourTitleEn" placeholder="Example: Cappadocia Balloon Tour">
+                        <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
+                            <label style="font-size: 16px; margin-bottom: 15px; display: block;">
+                                🌍 Diğer Dil Başlıkları (Otomatik doldurulacak)
+                            </label>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇬🇧 İngilizce</label>
+                                    <input type="text" id="tourTitleEn" placeholder="English Title">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇪🇸 İspanyolca</label>
+                                    <input type="text" id="tourTitleEs" placeholder="Título en español">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇷🇺 Rusça</label>
+                                    <input type="text" id="tourTitleRu" placeholder="Русский заголовок">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇩🇪 Almanca</label>
+                                    <input type="text" id="tourTitleDe" placeholder="Deutscher Titel">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇨🇳 Çince</label>
+                                    <input type="text" id="tourTitleZh" placeholder="中文标题">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇸🇦 Arapça</label>
+                                    <input type="text" id="tourTitleAr" placeholder="العنوان العربي">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -482,9 +511,49 @@
                             <textarea id="tourDescription" required placeholder="Tur hakkında kısa bir açıklama yazın..."></textarea>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label>Kısa Açıklama (İngilizce)</label>
-                            <textarea id="tourDescriptionEn" placeholder="Write a short description about the tour..."></textarea>
+                        <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
+                            <label style="font-size: 16px; margin-bottom: 15px; display: block;">
+                                🌍 Diğer Dil Açıklamaları (Otomatik doldurulacak)
+                            </label>
+                            
+                            <div style="display: grid; gap: 15px;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇬🇧 İngilizce</label>
+                                    <textarea id="tourDescriptionEn" placeholder="English description"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇪🇸 İspanyolca</label>
+                                    <textarea id="tourDescriptionEs" placeholder="Descripción en español"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇷🇺 Rusça</label>
+                                    <textarea id="tourDescriptionRu" placeholder="Русское описание"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇩🇪 Almanca</label>
+                                    <textarea id="tourDescriptionDe" placeholder="Deutsche Beschreibung"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇨🇳 Çince</label>
+                                    <textarea id="tourDescriptionZh" placeholder="中文描述"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇸🇦 Arapça</label>
+                                    <textarea id="tourDescriptionAr" placeholder="الوصف العربي"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width" style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
+                            <button type="button" class="btn btn-success" id="translateTourBtn" onclick="translateAllTourFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+                                <i class="fas fa-globe-americas"></i> TÜM DİLLERE OTOMATİK ÇEVİR (6 DİL)
+                            </button>
+                            <p style="margin-top: 15px; color: white; font-size: 14px; font-weight: 500;">
+                                ⚡ Türkçe alanları otomatik olarak 6 dile çevirir: İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça
+                            </p>
+                            <p style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 12px;">
+                                ⏱️ Tahmini süre: 10-15 saniye
+                            </p>
                         </div>
 
                         <div class="form-group full-width">
@@ -492,9 +561,37 @@
                             <textarea id="tourContent" style="min-height: 200px;" placeholder="Turun detaylı açıklaması, program, dahil olan hizmetler..."></textarea>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label>Detaylı İçerik (İngilizce)</label>
-                            <textarea id="tourContentEn" style="min-height: 200px;" placeholder="Detailed tour description, program, included services..."></textarea>
+                        <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
+                            <label style="font-size: 16px; margin-bottom: 15px; display: block;">
+                                🌍 Detaylı İçerik - Diğer Diller (Otomatik doldurulacak)
+                            </label>
+                            
+                            <div style="display: grid; gap: 15px;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇬🇧 İngilizce</label>
+                                    <textarea id="tourContentEn" style="min-height: 150px;" placeholder="Detailed English content"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇪🇸 İspanyolca</label>
+                                    <textarea id="tourContentEs" style="min-height: 150px;" placeholder="Contenido detallado en español"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇷🇺 Rusça</label>
+                                    <textarea id="tourContentRu" style="min-height: 150px;" placeholder="Подробное русское содержание"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇩🇪 Almanca</label>
+                                    <textarea id="tourContentDe" style="min-height: 150px;" placeholder="Detaillierter deutscher Inhalt"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇨🇳 Çince</label>
+                                    <textarea id="tourContentZh" style="min-height: 150px;" placeholder="详细的中文内容"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇸🇦 Arapça</label>
+                                    <textarea id="tourContentAr" style="min-height: 150px;" placeholder="المحتوى التفصيلي العربي"></textarea>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group full-width">
@@ -529,10 +626,11 @@
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> Blog Nasıl Eklenir?</h3>
                     <ol>
-                        <li>Blog başlığı ve içeriği yazın</li>
+                        <li>Blog başlığı ve içeriği Türkçe yazın</li>
+                        <li><strong>🌍 Otomatik Çeviri:</strong> "Otomatik Çevir" butonuna tıklayın</li>
+                        <li><strong>✏️ Manuel:</strong> İsterseniz İngilizce alanları kendiniz düzenleyin</li>
                         <li>Kapak resmi URL'si ekleyin</li>
                         <li>"Blog Yazısını Kaydet" butonuna tıklayın</li>
-                        <li>Yazınız otomatik olarak blog sayfasında yayınlanacak</li>
                     </ol>
                 </div>
 
@@ -558,9 +656,37 @@
                             <input type="text" id="blogTitle" required placeholder="Örnek: Kapadokya'nın Büyülü Perileri">
                         </div>
 
-                        <div class="form-group">
-                            <label>Blog Başlığı (İngilizce)</label>
-                            <input type="text" id="blogTitleEn" placeholder="Example: Magical Chimneys of Cappadocia">
+                        <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
+                            <label style="font-size: 16px; margin-bottom: 15px; display: block;">
+                                🌍 Diğer Dil Başlıkları (Otomatik doldurulacak)
+                            </label>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇬🇧 İngilizce</label>
+                                    <input type="text" id="blogTitleEn" placeholder="English Title">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇪🇸 İspanyolca</label>
+                                    <input type="text" id="blogTitleEs" placeholder="Título español">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇷🇺 Rusça</label>
+                                    <input type="text" id="blogTitleRu" placeholder="Русский">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇩🇪 Almanca</label>
+                                    <input type="text" id="blogTitleDe" placeholder="Deutsch">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇨🇳 Çince</label>
+                                    <input type="text" id="blogTitleZh" placeholder="中文">
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇸🇦 Arapça</label>
+                                    <input type="text" id="blogTitleAr" placeholder="العربية">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -584,9 +710,49 @@
                             <textarea id="blogExcerpt" required placeholder="Blog yazısının kısa özeti..."></textarea>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label>Kısa Özet (İngilizce)</label>
-                            <textarea id="blogExcerptEn" placeholder="Short summary of the blog post..."></textarea>
+                        <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
+                            <label style="font-size: 16px; margin-bottom: 15px; display: block;">
+                                🌍 Özet - Diğer Diller (Otomatik doldurulacak)
+                            </label>
+                            
+                            <div style="display: grid; gap: 15px;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇬🇧 İngilizce</label>
+                                    <textarea id="blogExcerptEn" placeholder="English excerpt"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇪🇸 İspanyolca</label>
+                                    <textarea id="blogExcerptEs" placeholder="Resumen español"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇷🇺 Rusça</label>
+                                    <textarea id="blogExcerptRu" placeholder="Русская выдержка"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇩🇪 Almanca</label>
+                                    <textarea id="blogExcerptDe" placeholder="Deutsche Zusammenfassung"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇨🇳 Çince</label>
+                                    <textarea id="blogExcerptZh" placeholder="中文摘要"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇸🇦 Arapça</label>
+                                    <textarea id="blogExcerptAr" placeholder="ملخص عربي"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width" style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
+                            <button type="button" class="btn btn-success" id="translateBlogBtn" onclick="translateAllBlogFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+                                <i class="fas fa-globe-americas"></i> TÜM DİLLERE OTOMATİK ÇEVİR (6 DİL)
+                            </button>
+                            <p style="margin-top: 15px; color: white; font-size: 14px; font-weight: 500;">
+                                ⚡ Türkçe alanları otomatik olarak 6 dile çevirir
+                            </p>
+                            <p style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 12px;">
+                                ⏱️ Tahmini süre: 10-15 saniye
+                            </p>
                         </div>
 
                         <div class="form-group full-width">
@@ -594,9 +760,37 @@
                             <textarea id="blogContent" required style="min-height: 250px;" placeholder="Blog yazısının tam içeriği..."></textarea>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label>Blog İçeriği (İngilizce)</label>
-                            <textarea id="blogContentEn" style="min-height: 250px;" placeholder="Full blog post content..."></textarea>
+                        <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
+                            <label style="font-size: 16px; margin-bottom: 15px; display: block;">
+                                🌍 İçerik - Diğer Diller (Otomatik doldurulacak)
+                            </label>
+                            
+                            <div style="display: grid; gap: 15px;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇬🇧 İngilizce</label>
+                                    <textarea id="blogContentEn" style="min-height: 200px;" placeholder="English content"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇪🇸 İspanyolca</label>
+                                    <textarea id="blogContentEs" style="min-height: 200px;" placeholder="Contenido español"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇷🇺 Rusça</label>
+                                    <textarea id="blogContentRu" style="min-height: 200px;" placeholder="Русский контент"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇩🇪 Almanca</label>
+                                    <textarea id="blogContentDe" style="min-height: 200px;" placeholder="Deutscher Inhalt"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇨🇳 Çince</label>
+                                    <textarea id="blogContentZh" style="min-height: 200px;" placeholder="中文内容"></textarea>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label>🇸🇦 Arapça</label>
+                                    <textarea id="blogContentAr" style="min-height: 200px;" placeholder="المحتوى العربي"></textarea>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group full-width">
@@ -628,12 +822,186 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@vitalets/google-translate-api@9.2.0/dist/index.min.js"></script>
+    
     <script>
         // GLOBAL DEĞİŞKENLER
         let tours = [];
         let blogs = [];
         let editingTourId = null;
         let editingBlogId = null;
+
+        // DİL KODLARI
+        const LANGUAGES = {
+            en: 'İngilizce',
+            es: 'İspanyolca', 
+            ru: 'Rusça',
+            de: 'Almanca',
+            zh: 'Çince',
+            ar: 'Arapça'
+        };
+
+        // ÇEVİRİ FONKSİYONU (Ücretsiz, limitli)
+        async function translateText(text, targetLang) {
+            if (!text) return '';
+            
+            try {
+                // Google Translate API kullanarak çeviri
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=tr&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data && data[0]) {
+                    return data[0].map(item => item[0]).join('');
+                }
+                return text;
+            } catch (error) {
+                console.error('Çeviri hatası:', error);
+                return text;
+            }
+        }
+
+        // BİRDEN FAZLA DİLE ÇEVİRİ
+        async function translateToMultipleLanguages(text, languages) {
+            const translations = {};
+            
+            for (const lang of languages) {
+                try {
+                    translations[lang] = await translateText(text, lang);
+                    // API rate limit'i aşmamak için küçük gecikme
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                } catch (error) {
+                    console.error(`${lang} çevirisi hatası:`, error);
+                    translations[lang] = text;
+                }
+            }
+            
+            return translations;
+        }
+
+        // TUR İÇİN ÇOK DİLLİ ÇEVİRİ
+        async function translateAllTourFields() {
+            const translateBtn = document.getElementById('translateTourBtn');
+            const originalText = translateBtn.innerHTML;
+            
+            // Türkçe alanları al
+            const titleTr = document.getElementById('tourTitle').value;
+            const descTr = document.getElementById('tourDescription').value;
+            const contentTr = document.getElementById('tourContent').value;
+
+            if (!titleTr && !descTr && !contentTr) {
+                showAlert('tourAlert', '⚠️ Lütfen önce Türkçe alanları doldurun!', 'error');
+                return;
+            }
+
+            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor... (Bu 10-15 saniye sürebilir)';
+            translateBtn.disabled = true;
+
+            try {
+                const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
+                let progress = 0;
+                const totalSteps = languages.length * 3; // 3 alan (başlık, açıklama, içerik)
+
+                for (const lang of languages) {
+                    // Başlık çevir
+                    if (titleTr) {
+                        const translated = await translateText(titleTr, lang);
+                        document.getElementById(`tourTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                        progress++;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                    }
+
+                    // Açıklama çevir
+                    if (descTr) {
+                        const translated = await translateText(descTr, lang);
+                        document.getElementById(`tourDescription${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                        progress++;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                    }
+
+                    // İçerik çevir
+                    if (contentTr) {
+                        const translated = await translateText(contentTr, lang);
+                        document.getElementById(`tourContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                        progress++;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                    }
+
+                    // API rate limit'i aşmamak için gecikme
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+
+                showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉 (İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça)', 'success');
+            } catch (error) {
+                showAlert('tourAlert', '❌ Çeviri hatası! İnternet bağlantınızı kontrol edin.', 'error');
+                console.error('Çeviri hatası:', error);
+            } finally {
+                translateBtn.innerHTML = originalText;
+                translateBtn.disabled = false;
+            }
+        }
+
+        // BLOG İÇİN ÇOK DİLLİ ÇEVİRİ
+        async function translateAllBlogFields() {
+            const translateBtn = document.getElementById('translateBlogBtn');
+            const originalText = translateBtn.innerHTML;
+            
+            // Türkçe alanları al
+            const titleTr = document.getElementById('blogTitle').value;
+            const excerptTr = document.getElementById('blogExcerpt').value;
+            const contentTr = document.getElementById('blogContent').value;
+
+            if (!titleTr && !excerptTr && !contentTr) {
+                showAlert('blogAlert', '⚠️ Lütfen önce Türkçe alanları doldurun!', 'error');
+                return;
+            }
+
+            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor... (Bu 10-15 saniye sürebilir)';
+            translateBtn.disabled = true;
+
+            try {
+                const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
+                let progress = 0;
+                const totalSteps = languages.length * 3;
+
+                for (const lang of languages) {
+                    // Başlık çevir
+                    if (titleTr) {
+                        const translated = await translateText(titleTr, lang);
+                        document.getElementById(`blogTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                        progress++;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                    }
+
+                    // Özet çevir
+                    if (excerptTr) {
+                        const translated = await translateText(excerptTr, lang);
+                        document.getElementById(`blogExcerpt${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                        progress++;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                    }
+
+                    // İçerik çevir
+                    if (contentTr) {
+                        const translated = await translateText(contentTr, lang);
+                        document.getElementById(`blogContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                        progress++;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                    }
+
+                    // API rate limit'i aşmamak için gecikme
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+
+                showAlert('blogAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉 (İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça)', 'success');
+            } catch (error) {
+                showAlert('blogAlert', '❌ Çeviri hatası! İnternet bağlantınızı kontrol edin.', 'error');
+                console.error('Çeviri hatası:', error);
+            } finally {
+                translateBtn.innerHTML = originalText;
+                translateBtn.disabled = false;
+            }
+        }
 
         // SAYFA YÜKLENİNCE
         document.addEventListener('DOMContentLoaded', () => {
@@ -743,14 +1111,29 @@
                 id: editingTourId || 'TUR-' + Date.now(),
                 title: document.getElementById('tourTitle').value,
                 title_en: document.getElementById('tourTitleEn').value || document.getElementById('tourTitle').value,
+                title_es: document.getElementById('tourTitleEs').value || document.getElementById('tourTitle').value,
+                title_ru: document.getElementById('tourTitleRu').value || document.getElementById('tourTitle').value,
+                title_de: document.getElementById('tourTitleDe').value || document.getElementById('tourTitle').value,
+                title_zh: document.getElementById('tourTitleZh').value || document.getElementById('tourTitle').value,
+                title_ar: document.getElementById('tourTitleAr').value || document.getElementById('tourTitle').value,
                 price: document.getElementById('tourPrice').value,
                 duration: document.getElementById('tourDuration').value,
                 location: document.getElementById('tourLocation').value,
                 category: document.getElementById('tourCategory').value,
                 description: document.getElementById('tourDescription').value,
                 description_en: document.getElementById('tourDescriptionEn').value || document.getElementById('tourDescription').value,
+                description_es: document.getElementById('tourDescriptionEs').value || document.getElementById('tourDescription').value,
+                description_ru: document.getElementById('tourDescriptionRu').value || document.getElementById('tourDescription').value,
+                description_de: document.getElementById('tourDescriptionDe').value || document.getElementById('tourDescription').value,
+                description_zh: document.getElementById('tourDescriptionZh').value || document.getElementById('tourDescription').value,
+                description_ar: document.getElementById('tourDescriptionAr').value || document.getElementById('tourDescription').value,
                 content: document.getElementById('tourContent').value || document.getElementById('tourDescription').value,
                 content_en: document.getElementById('tourContentEn').value || document.getElementById('tourDescriptionEn').value,
+                content_es: document.getElementById('tourContentEs').value || document.getElementById('tourDescriptionEs').value,
+                content_ru: document.getElementById('tourContentRu').value || document.getElementById('tourDescriptionRu').value,
+                content_de: document.getElementById('tourContentDe').value || document.getElementById('tourDescriptionDe').value,
+                content_zh: document.getElementById('tourContentZh').value || document.getElementById('tourDescriptionZh').value,
+                content_ar: document.getElementById('tourContentAr').value || document.getElementById('tourDescriptionAr').value,
                 image: document.getElementById('tourImage').value,
                 source: 'admin'
             };
@@ -758,10 +1141,10 @@
             if (editingTourId) {
                 const index = tours.findIndex(t => t.id === editingTourId);
                 tours[index] = tourData;
-                showAlert('tourAlert', 'Tur başarıyla güncellendi!', 'success');
+                showAlert('tourAlert', 'Tur başarıyla güncellendi! (7 dilde)', 'success');
             } else {
                 tours.push(tourData);
-                showAlert('tourAlert', 'Yeni tur başarıyla eklendi!', 'success');
+                showAlert('tourAlert', 'Yeni tur başarıyla eklendi! (7 dilde)', 'success');
             }
 
             await saveToursToFile();
@@ -795,14 +1178,29 @@
             document.getElementById('tourId').value = tour.id;
             document.getElementById('tourTitle').value = tour.title;
             document.getElementById('tourTitleEn').value = tour.title_en || '';
+            document.getElementById('tourTitleEs').value = tour.title_es || '';
+            document.getElementById('tourTitleRu').value = tour.title_ru || '';
+            document.getElementById('tourTitleDe').value = tour.title_de || '';
+            document.getElementById('tourTitleZh').value = tour.title_zh || '';
+            document.getElementById('tourTitleAr').value = tour.title_ar || '';
             document.getElementById('tourPrice').value = tour.price;
             document.getElementById('tourDuration').value = tour.duration || '';
             document.getElementById('tourLocation').value = tour.location;
             document.getElementById('tourCategory').value = tour.category;
             document.getElementById('tourDescription').value = tour.description;
             document.getElementById('tourDescriptionEn').value = tour.description_en || '';
+            document.getElementById('tourDescriptionEs').value = tour.description_es || '';
+            document.getElementById('tourDescriptionRu').value = tour.description_ru || '';
+            document.getElementById('tourDescriptionDe').value = tour.description_de || '';
+            document.getElementById('tourDescriptionZh').value = tour.description_zh || '';
+            document.getElementById('tourDescriptionAr').value = tour.description_ar || '';
             document.getElementById('tourContent').value = tour.content || '';
             document.getElementById('tourContentEn').value = tour.content_en || '';
+            document.getElementById('tourContentEs').value = tour.content_es || '';
+            document.getElementById('tourContentRu').value = tour.content_ru || '';
+            document.getElementById('tourContentDe').value = tour.content_de || '';
+            document.getElementById('tourContentZh').value = tour.content_zh || '';
+            document.getElementById('tourContentAr').value = tour.content_ar || '';
             document.getElementById('tourImage').value = tour.image;
             
             const preview = document.getElementById('tourImagePreview');
@@ -893,23 +1291,38 @@
                 id: editingBlogId || 'BLOG-' + Date.now(),
                 title: document.getElementById('blogTitle').value,
                 title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
+                title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
+                title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
+                title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
+                title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
+                title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
                 author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
                 category: document.getElementById('blogCategory').value,
                 date: today,
                 excerpt: document.getElementById('blogExcerpt').value,
                 excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
+                excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
+                excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
+                excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
+                excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
+                excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
                 content: document.getElementById('blogContent').value,
                 content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
+                content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
+                content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
+                content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
+                content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
+                content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
                 image: document.getElementById('blogImage').value
             };
 
             if (editingBlogId) {
                 const index = blogs.findIndex(b => b.id === editingBlogId);
                 blogs[index] = blogData;
-                showAlert('blogAlert', 'Blog yazısı güncellendi!', 'success');
+                showAlert('blogAlert', 'Blog yazısı güncellendi! (7 dilde)', 'success');
             } else {
                 blogs.push(blogData);
-                showAlert('blogAlert', 'Yeni blog yazısı eklendi!', 'success');
+                showAlert('blogAlert', 'Yeni blog yazısı eklendi! (7 dilde)', 'success');
             }
 
             await saveBlogsToFile();
@@ -943,12 +1356,27 @@
             document.getElementById('blogId').value = blog.id;
             document.getElementById('blogTitle').value = blog.title;
             document.getElementById('blogTitleEn').value = blog.title_en || '';
+            document.getElementById('blogTitleEs').value = blog.title_es || '';
+            document.getElementById('blogTitleRu').value = blog.title_ru || '';
+            document.getElementById('blogTitleDe').value = blog.title_de || '';
+            document.getElementById('blogTitleZh').value = blog.title_zh || '';
+            document.getElementById('blogTitleAr').value = blog.title_ar || '';
             document.getElementById('blogAuthor').value = blog.author || '';
             document.getElementById('blogCategory').value = blog.category;
             document.getElementById('blogExcerpt').value = blog.excerpt;
             document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
+            document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
+            document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
+            document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
+            document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
+            document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
             document.getElementById('blogContent').value = blog.content;
             document.getElementById('blogContentEn').value = blog.content_en || '';
+            document.getElementById('blogContentEs').value = blog.content_es || '';
+            document.getElementById('blogContentRu').value = blog.content_ru || '';
+            document.getElementById('blogContentDe').value = blog.content_de || '';
+            document.getElementById('blogContentZh').value = blog.content_zh || '';
+            document.getElementById('blogContentAr').value = blog.content_ar || '';
             document.getElementById('blogImage').value = blog.image;
             
             const preview = document.getElementById('blogImagePreview');
