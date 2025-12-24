@@ -1395,3 +1395,41 @@ footer {
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
+
+/* --- YOL HARİTASI KRİTİK DÜZELTMELER --- */
+
+/* 1. Reset: Sayfa kenarlarındaki boşlukları sıfırla [cite: 3] */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+html, body { 
+    margin: 0 !important; 
+    padding: 0 !important; 
+    overflow-x: hidden;
+}
+
+/* 2. Hero Bölümü: Videoyu en üstten başlat  */
+.hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    height: 100vh !important; /* Tam ekran yüksekliği [cite: 5] */
+    position: relative;
+    z-index: 1;
+}
+
+/* 3. Hero İçeriği: Videonun önüne getir [cite: 6] */
+.hero-content {
+    position: relative;
+    z-index: 10 !important; /* Videonun (z-index: 1) üstünde kalmalı */
+}
+
+/* 4. Buton Fix: Görünürlük ve renk [cite: 6] */
+.btn-hero-link {
+    display: inline-flex !important;
+    background: rgba(56, 189, 248, 0.95) !important;
+    color: white !important;
+    z-index: 100 !important;
+}
