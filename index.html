@@ -20,7 +20,26 @@
            YENİ EKLEMELER - BLACK TOMATO STYLE
            ======================================== */
         
-        /* PREMIUM HERO SECTION */
+        /* NAVBAR DÜZELTMESİ - TOP PADDING KALDIR */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav {
+            margin-top: 0 !important;
+        }
+        
+        .header-top-row {
+            display: none; /* Üst bar'ı gizle, daha temiz görünüm */
+        }
+        
+        /* HERO FULL-SCREEN FIX */
+        .hero {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        
         .hero-video {
             opacity: 0.85 !important;
             filter: brightness(0.8);
@@ -372,8 +391,8 @@
                 <a href="tel:+902125551923">
                     <i class="fas fa-phone"></i> +90 (212) 555 1923
                 </a>
-                <a href="mailto:info@walkaboutravel.com">
-                    <i class="fas fa-envelope"></i> info@walkaboutravel.com
+                <a href="/cdn-cgi/l/email-protection#eb82858d84ab9c8a87808a89849e9f998a9d8e87c5888486">
+                    <i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="620b0c040d2215030e0903000d1716100314070e4c010d0f">[email&#160;protected]</span>
                 </a>
             </div>
             <div class="top-bar-right">
@@ -394,11 +413,11 @@
             </a>
 
             <div class="nav-links" id="navLinks">
-                <a href="#home" data-i18n="nav_home">Home</a>
-                <a href="#popular-trips" data-i18n="nav_tours">Tours</a>
-                <a href="#why-us" data-i18n="nav_why_us">Why Us</a>
-                <a href="#blog" data-i18n="nav_blog">Blog</a>
-                <a href="#contact" data-i18n="nav_contact">Contact</a>
+                <a href="#home">Home</a>
+                <a href="#popular-trips">Tours</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
                 
                 <div class="lang-switcher">
                     <button class="lang-btn active" data-lang="tr">TR</button>
@@ -424,19 +443,19 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-badge" data-i18n="hero_since">SINCE 1997</span>
+            <span class="hero-badge">SINCE 1997</span>
             <h1>
-                <span data-i18n="hero_subtitle">Discover the Adventure</span> <br>
-                <span class="hero-gradient" data-i18n="hero_title">WalkAbouTravel</span>
+                <span>Discover the Adventure</span> <br>
+                <span class="hero-gradient">WalkAboutTravel</span>
             </h1>
-            <p data-i18n="hero_description">Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
+            <p>Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
             
             <div class="hero-links-container">
                 <a href="#travel-categories" class="btn-hero-link">
                     <i class="fas fa-compass"></i> <span>Explore Tours</span>
                 </a>
                 <a href="#blog" class="btn-hero-link">
-                    <i class="fas fa-blog"></i> <span data-i18n="nav_blog">Blog</span>
+                    <i class="fas fa-blog"></i> <span>Blog</span>
                 </a>
                 <a href="#contact" class="btn-hero-link">
                     <i class="fas fa-envelope"></i> <span>Contact Us</span>
@@ -601,7 +620,7 @@
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
                     <h4 data-i18n="contact_info_email_title">Email</h4>
-                    <p data-i18n="contact_info_email_p">info@walkaboutravel.com</p>
+                    <p data-i18n="contact_info_email_p"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfa6a1a9a08fb8aea3a4aeada0babbbdaeb9aaa3e1aca0a2">[email&#160;protected]</a></p>
                 </div>
             </div>
         </div>
@@ -669,7 +688,7 @@
     </a>
 
     <!-- SCRIPTS -->
-    <script src="i18n.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="i18n.js"></script>
     
     <script>
         console.log('🎬 i18n başlatılıyor...');
@@ -860,17 +879,3 @@
                         if (navLinks) {
                             navLinks.classList.remove('active');
                             const icon = menuToggle?.querySelector('i');
-                            if (icon) {
-                                icon.classList.remove('fa-times');
-                                icon.classList.add('fa-bars');
-                            }
-                        }
-                    }
-                }
-            });
-        });
-
-        console.log('✅ WalkAbout Travel - Tüm sistemler hazır!');
-    </script>
-</body>
-</html>
