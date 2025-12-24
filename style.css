@@ -1599,3 +1599,37 @@ footer {
 .language-toast.error {
     background: #ef4444;
 }
+.btn-hero-link {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 35px;
+    background: rgba(56, 189, 248, 0.95) !important;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.btn-hero-link:hover {
+    background: white !important;
+    color: #38bdf8 !important;
+    border-color: #38bdf8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+}
+
+.btn-hero-link span {
+    color: inherit !important;
+}
+
+.btn-hero-link i {
+    font-size: 18px;
+    color: inherit !important;
+}
