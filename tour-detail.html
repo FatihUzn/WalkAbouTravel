@@ -230,7 +230,7 @@
             font-weight: 600;
         }
         
-        /* TOUR DETAIL HERO - PREMIUM UPGRADE */
+        /* TOUR DETAIL HERO */
         .tour-detail-hero {
             position: relative;
             height: 70vh;
@@ -706,15 +706,36 @@
                 font-size: 16px;
             }
         }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION - LITHUANIA STYLE -->
+    <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/walkabou_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
+                <img src="assets/walkabou_travel_logo.jpg" alt="WalkAbout Travel Logo">
                 <div class="logo-text">
                     <span class="logo-title">WalkAbout Travel</span>
                     <span class="logo-subtitle">Tourism & Travel</span>
@@ -727,13 +748,13 @@
                 <li><a href="index.html#blog">Blog</a></li>
                 
                 <div class="lang-switcher">
-                    <button class="lang-btn active" onclick="setLanguage('tr')">TR</button>
-                    <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-                    <button class="lang-btn" onclick="setLanguage('es')">ES</button>
-                    <button class="lang-btn" onclick="setLanguage('ru')">RU</button>
-                    <button class="lang-btn" onclick="setLanguage('de')">DE</button>
-                    <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
-                    <button class="lang-btn" onclick="setLanguage('ar')">AR</button>
+                    <button class="lang-btn active" data-lang="tr" onclick="setLanguage('tr')">TR</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+                    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+                    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">DE</button>
+                    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
+                    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
                 </div>
             </ul>
 
@@ -771,7 +792,7 @@
         </div>
     </div>
 
-    <!-- TOUR DETAIL HERO -->
+    <!-- HERO -->
     <div class="tour-detail-hero">
         <img id="tourHeroImage" src="" alt="">
         <div class="tour-hero-content">
@@ -781,24 +802,21 @@
         </div>
     </div>
 
-    <!-- TOUR DETAIL CONTENT -->
+    <!-- CONTENT -->
     <div class="tour-detail-content">
         <div class="tour-grid-layout">
-            <!-- MAIN CONTENT -->
             <div class="tour-main">
                 <h2>Tur Açıklaması</h2>
                 <div id="tourDescription">
-                    <p>Yükleniyor...</p>
+                    <p>Veriler işleniyor...</p>
                 </div>
 
-                <!-- GALLERY -->
                 <div class="tour-gallery">
                     <h2>Fotoğraf Galerisi</h2>
                     <div class="gallery-grid" id="tourGallery"></div>
                 </div>
             </div>
 
-            <!-- SIDEBAR -->
             <div class="tour-sidebar">
                 <div class="tour-booking-card">
                     <div class="tour-price">
@@ -821,62 +839,9 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <img src="assets/walkabou_travel_logo.jpg" alt="Logo" onerror="this.style.display='none'">
-                    <div class="logo-text">
-                        <span class="logo-title">WalkAbout Travel</span>
-                        <span class="logo-subtitle">Tourism & Travel</span>
-                    </div>
-                </div>
-                <p>1997'den beri güvenle planlanan yolculuklar.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h4>Hızlı Linkler</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html#home">Ana Sayfa</a></li>
-                    <li><a href="index.html#popular-trips">Turlar</a></li>
-                    <li><a href="index.html#why-us">Neden Biz</a></li>
-                    <li><a href="index.html#blog">Blog</a></li>
-                    <li><a href="index.html#contact">İletişim</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Turlar</h4>
-                <ul class="footer-links">
-                    <li><a href="tour-detail.html?id=TUR-TR-MARDIN">Mardin Turu</a></li>
-                    <li><a href="tour-detail.html?id=TUR-TR-KAPADOKYA">Kapadokya Turu</a></li>
-                    <li><a href="tour-detail.html?id=TUR-TR-ANTALYA">Antalya Turu</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Hizmetler</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html#why-us">Vize Danışmanlığı</a></li>
-                    <li><a href="index.html#contact">Otel Rezervasyon</a></li>
-                    <li><a href="index.html#contact">Uçak Bileti</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 WalkAbout Travel. Tüm hakları saklıdır.</p>
-        </div>
-    </footer>
-
     <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <button class="lightbox-close">
-            <i class="fas fa-times"></i>
-        </button>
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
         <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">
             <i class="fas fa-chevron-left"></i>
         </button>
@@ -888,7 +853,7 @@
         </button>
     </div>
 
-    <!-- WhatsApp Float Button -->
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -896,159 +861,137 @@
     <!-- SCRIPTS -->
     <script src="i18n.js"></script>
     <script>
-/* ================================================
-   TUR DETAY SAYFASI - loadTourDetail
-   ================================================ */
+        let galleryImages = [];
+        let currentImageIndex = 0;
+        let currentTourId = "";
 
-let galleryImages = [];
-let currentImageIndex = 0;
+        async function loadTourDetail(tourId) {
+            try {
+                currentTourId = tourId;
+                // Verileri data/tours.json dosyasından alıyoruz
+                const response = await fetch('data/tours.json');
+                if (!response.ok) throw new Error('Veri dosyası bulunamadı');
+                
+                const tours = await response.json();
+                
+                // tours.json bir array olduğu için id ile eşleşen turu buluyoruz
+                const tour = tours.find(t => t.id === tourId);
+                
+                if (!tour) {
+                    document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Tur Bulunamadı!</h1><a href="index.html">Ana Sayfaya Dön</a></div>';
+                    return;
+                }
 
-async function loadTourDetail(tourId) {
-    try {
-        const response = await fetch('data/galleries.json');
-        if (!response.ok) throw new Error('Tur verileri yüklenemedi');
-        
-        const galleries = await response.json();
-        const tour = galleries[tourId];
-        
-        if (!tour) {
-            console.error('Tur bulunamadı:', tourId);
-            document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Tur bulunamadı!</h1></div>';
-            return;
+                // Mevcut dili belirle (i18n.js yüklü ise ondan al, yoksa butondan veya 'tr')
+                let currentLang = 'tr';
+                if (typeof i18n !== 'undefined' && i18n.language) {
+                    currentLang = i18n.language;
+                } else {
+                    const activeBtn = document.querySelector('.lang-btn.active');
+                    if (activeBtn) currentLang = activeBtn.getAttribute('data-lang');
+                }
+
+                // Çok dilli verileri seç (Eğer seçili dilde yoksa Türkçe'yi döndür)
+                const title = (tour.title && tour.title[currentLang]) ? tour.title[currentLang] : (tour.title ? tour.title['tr'] : tour.id);
+                const description = (tour.description && tour.description[currentLang]) ? tour.description[currentLang] : (tour.description ? tour.description['tr'] : '');
+
+                // Arayüzü Güncelle
+                document.getElementById('tourHeroImage').src = tour.image;
+                document.getElementById('tourBadge').textContent = tour.category || 'Tur';
+                document.getElementById('tourTitle').textContent = title;
+                document.getElementById('breadcrumbTitle').textContent = title;
+                
+                document.getElementById('tourMeta').innerHTML = `
+                    <div class="tour-meta-item"><i class="fas fa-clock"></i><span>${tour.duration}</span></div>
+                    <div class="tour-meta-item"><i class="fas fa-map-marker-alt"></i><span>${tour.location}</span></div>
+                    <div class="tour-meta-item"><i class="fas fa-tag"></i><span>${tour.price}</span></div>
+                `;
+                
+                document.getElementById('tourDescription').innerHTML = `<p>${description}</p>`;
+                document.getElementById('tourPrice').textContent = tour.price;
+                
+                document.getElementById('tourInfoList').innerHTML = `
+                    <li><span class="tour-info-label">Süre</span><span class="tour-info-value">${tour.duration}</span></li>
+                    <li><span class="tour-info-label">Lokasyon</span><span class="tour-info-value">${tour.location}</span></li>
+                    <li><span class="tour-info-label">Kategori</span><span class="tour-info-value">${tour.category}</span></li>
+                `;
+                
+                // Galeri
+                galleryImages = tour.images || [tour.image];
+                document.getElementById('tourGallery').innerHTML = galleryImages.map((img, index) => `
+                    <div class="gallery-item" onclick="openLightbox(${index})">
+                        <img src="${img}" alt="${title}" loading="lazy">
+                    </div>
+                `).join('');
+                
+                // Buton Linkleri
+                const emailSub = encodeURIComponent(`${title} Rezervasyon Talebi`);
+                document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}`;
+                
+                const waMsg = encodeURIComponent(`Merhaba, ${title} hakkında bilgi almak istiyorum.`);
+                document.getElementById('whatsappBtn').href = `https://wa.me/5491135870045?text=${waMsg}`;
+                
+                document.title = `${title} - WalkAbout Travel`;
+                
+            } catch (error) {
+                console.error('❌ Yükleme Hatası:', error);
+                document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Veriler yüklenirken bir hata oluştu.</h1><p>Lütfen daha sonra tekrar deneyin.</p></div>';
+            }
         }
-        
-        console.log('✅ Tur yüklendi:', tour.title);
-        
-        // Hero bölümü
-        document.getElementById('tourHeroImage').src = tour.image;
-        document.getElementById('tourBadge').textContent = tour.category || 'Tur';
-        document.getElementById('tourTitle').textContent = tour.title;
-        document.getElementById('breadcrumbTitle').textContent = tour.title;
-        
-        // Meta bilgileri
-        document.getElementById('tourMeta').innerHTML = `
-            <div class="tour-meta-item">
-                <i class="fas fa-clock"></i>
-                <span>${tour.duration || 'Belirtilmemiş'}</span>
-            </div>
-            <div class="tour-meta-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>${tour.location || 'Türkiye'}</span>
-            </div>
-            <div class="tour-meta-item">
-                <i class="fas fa-tag"></i>
-                <span>${tour.price || 'İletişime Geçin'}</span>
-            </div>
-        `;
-        
-        // Açıklama
-        document.getElementById('tourDescription').innerHTML = tour.description || '<p>Detaylı bilgi için bizimle iletişime geçin.</p>';
-        
-        // Fiyat
-        document.getElementById('tourPrice').textContent = tour.price || 'İletişime Geçin';
-        
-        // Bilgi listesi
-        document.getElementById('tourInfoList').innerHTML = `
-            <li>
-                <span class="tour-info-label">Süre</span>
-                <span class="tour-info-value">${tour.duration || 'Belirtilmemiş'}</span>
-            </li>
-            <li>
-                <span class="tour-info-label">Lokasyon</span>
-                <span class="tour-info-value">${tour.location || 'Türkiye'}</span>
-            </li>
-            <li>
-                <span class="tour-info-label">Kategori</span>
-                <span class="tour-info-value">${tour.category || 'Tur'}</span>
-            </li>
-        `;
-        
-        // Galeri
-        galleryImages = tour.images || [tour.image];
-        document.getElementById('tourGallery').innerHTML = galleryImages.map((img, index) => `
-            <div class="gallery-item" onclick="openLightbox(${index})">
-                <img src="${img}" alt="${tour.title}" loading="lazy">
-            </div>
-        `).join('');
-        
-        // Rezervasyon butonları
-        const emailSubject = encodeURIComponent(`${tour.title} Hakkında Bilgi`);
-        const emailBody = encodeURIComponent(`Merhaba,\n\n${tour.title} (${tour.price || 'Fiyat bilgisi'}) hakkında detaylı bilgi almak istiyorum.\n\nTeşekkürler.`);
-        document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSubject}&body=${emailBody}`;
-        
-        const whatsappText = encodeURIComponent(`Merhaba! ${tour.title} hakkında bilgi almak istiyorum.`);
-        document.getElementById('whatsappBtn').href = `https://wa.me/5491135870045?text=${whatsappText}`;
-        
-        document.title = `${tour.title} - WalkAbout Travel`;
-        
-    } catch (error) {
-        console.error('❌ Tur yükleme hatası:', error);
-        document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Bir hata oluştu!</h1></div>';
-    }
-}
 
-function openLightbox(index) {
-    currentImageIndex = index;
-    document.getElementById('lightboxImg').src = galleryImages[index];
-    document.getElementById('lightbox').classList.add('active');
-}
+        // Dil Değiştirme ve Yeniden Yükleme
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const targetBtn = document.querySelector(`.lang-btn[data-lang="${lang}"]`);
+            if (targetBtn) targetBtn.classList.add('active');
+            
+            if (typeof i18n !== 'undefined') {
+                i18n.changeLanguage(lang);
+            }
+            
+            // Verileri yeni dile göre tekrar render et
+            if (currentTourId) loadTourDetail(currentTourId);
+        }
 
-function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-}
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightboxImg').src = galleryImages[index];
+            document.getElementById('lightbox').classList.add('active');
+        }
 
-function changeImage(direction) {
-    currentImageIndex += direction;
-    if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
-    if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
-    document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
-}
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
 
-// Language switcher
-function setLanguage(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    if (typeof i18n !== 'undefined') {
-        i18n.changeLanguage(lang);
-    }
-}
+        function changeImage(dir) {
+            currentImageIndex += dir;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
+        }
 
-// Sayfa yüklenince
-document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const tourId = urlParams.get('id');
-    
-    if (tourId) {
-        loadTourDetail(tourId);
-    } else {
-        console.error('❌ Tur ID bulunamadı!');
-        document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Geçersiz tur!</h1></div>';
-    }
-    
-    // Mobile menu
-    const toggle = document.getElementById('menuToggle');
-    const links = document.getElementById('navLinks');
-    
-    if (toggle && links) {
-        toggle.addEventListener('click', () => {
-            links.classList.toggle('active');
-            const icon = toggle.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
+        // Başlangıç
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tourId = urlParams.get('id');
+            
+            if (tourId) {
+                loadTourDetail(tourId);
+            } else {
+                document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Geçersiz Tur Linki!</h1></div>';
+            }
+            
+            // Mobil Menü
+            const toggle = document.getElementById('menuToggle');
+            const links = document.getElementById('navLinks');
+            if (toggle && links) {
+                toggle.addEventListener('click', () => {
+                    links.classList.toggle('active');
+                    toggle.querySelector('i').classList.toggle('fa-bars');
+                    toggle.querySelector('i').classList.toggle('fa-times');
+                });
             }
         });
-    }
-    
-    // Navbar scroll
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (navbar) {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        }
-    });
-});
     </script>
-
 </body>
 </html>
