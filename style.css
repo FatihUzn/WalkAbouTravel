@@ -1,39 +1,45 @@
 :root {
     /* === ANA RENK PALETİ: MAVİ & BEYAZ === */
-    
-    /* Mavi Tonları */
-    --ocean-blue: #38bdf8;       /* Ana Mavi (Sky 400) */
-    --ocean-dark: #0ea5e9;       /* Koyu Mavi (Sky 500) */
-    --sky-blue: #e0f2fe;         /* Açık Mavi (Sky 100) */
-    --pale-blue: #f0f9ff;        /* En Açık Mavi (Sky 50) */
-    --blue-accent: #bae6fd;      /* Vurgu Mavisi (Sky 200) */
-    
-    /* Metin ve Zemin Renkleri */
-    --deep-navy: #0c4a6e;        /* Ana Metin: Koyu Mavi */
-    --heading-color: #075985;    /* Başlıklar: Orta Koyu Mavi */
-    --cloud-white: #ffffff;      /* Tam Beyaz */
-    --soft-gray: #64748b;        /* İkincil Metin: Mavimsi Gri */
-    --light-gray: #f1f5f9;       /* Açık Gri Zemin */
-    --border-gray: #e2e8f0;      /* Kenarlıklar */
-    
-    /* Gradientler */
+    --ocean-blue: #38bdf8;
+    --ocean-dark: #0ea5e9;
+    --sky-blue: #e0f2fe;
+    --pale-blue: #f0f9ff;
+    --blue-accent: #bae6fd;
+    --deep-navy: #0c4a6e;
+    --heading-color: #075985;
+    --cloud-white: #ffffff;
+    --soft-gray: #64748b;
+    --light-gray: #f1f5f9;
+    --border-gray: #e2e8f0;
     --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
     --gradient-light: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
     --gradient-blue: linear-gradient(135deg, #e0f2fe, #bae6fd);
-    
-    /* Gölgeler (Mavi tonlu - tutarlı) */
     --shadow-sm: 0 2px 8px rgba(56, 189, 248, 0.1);
     --shadow-md: 0 10px 40px rgba(56, 189, 248, 0.12);
     --shadow-lg: 0 20px 60px rgba(56, 189, 248, 0.18);
     --shadow-hover: 0 15px 50px rgba(56, 189, 248, 0.25);
-    
-    /* Geçişler */
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ================================================
+   GLOBAL RESET
+   ================================================ */
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
 html {
     scroll-behavior: smooth;
+}
+
+html, body { 
+    margin: 0 !important; 
+    padding: 0 !important; 
+    overflow-x: hidden;
 }
 
 body {
@@ -66,134 +72,169 @@ p {
 }
 
 /* ================================================
-   NAVIGATION
+   NAVIGATION - LITHUANIA TRAVEL STYLE - UPDATED!
    ================================================ */
 
 nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    padding: 20px 0;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    padding: 0 !important;
+    margin: 0 !important;
     transition: var(--transition-base);
-    box-shadow: 0 2px 20px rgba(56, 189, 248, 0.08);
-    border-bottom: 1px solid var(--border-gray);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.06) !important;
 }
 
 nav.scrolled {
-    padding: 15px 0;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md) !important;
 }
 
+/* Üst Bar - İnce (6px padding) */
+.header-top-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: #f8f9fa !important;
+    padding: 6px 40px !important;
+    font-size: 12px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.header-top-row a {
+    color: #64748b !important;
+    text-decoration: none !important;
+    margin-right: 15px !important;
+    font-size: 12px !important;
+    transition: color 0.3s !important;
+}
+
+.header-top-row a:hover {
+    color: #38bdf8 !important;
+}
+
+.header-top-row i {
+    margin-right: 5px !important;
+    color: #38bdf8 !important;
+}
+
+/* Main Nav Container */
 .nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 40px !important;
+    max-width: 100% !important;
+    margin: 0 !important;
 }
 
+/* Logo - Sol */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--deep-navy);
-    text-decoration: none;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-decoration: none !important;
 }
 
 .logo img {
-    height: 45px;
-    border-radius: 8px;
+    height: 35px !important;
+    border-radius: 8px !important;
 }
 
 .logo-text {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .logo-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ocean-blue);
+    font-family: 'Playfair Display', serif !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--ocean-blue) !important;
 }
 
 .logo-subtitle {
-    font-size: 11px;
-    color: var(--soft-gray);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 10px !important;
+    color: var(--soft-gray) !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
 }
 
+/* Nav Links - Orta */
 .nav-links {
-    display: flex;
-    gap: 40px;
-    align-items: center;
+    display: flex !important;
+    gap: 35px !important;
+    align-items: center !important;
+    flex: 1 !important;
+    justify-content: center !important;
 }
 
 .nav-links a {
-    color: var(--deep-navy);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    transition: var(--transition-base);
-    position: relative;
+    color: var(--deep-navy) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: var(--transition-base) !important;
+    position: relative !important;
 }
 
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--ocean-blue);
-    transition: var(--transition-base);
+    content: '' !important;
+    position: absolute !important;
+    bottom: -5px !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 2px !important;
+    background: var(--ocean-blue) !important;
+    transition: var(--transition-base) !important;
 }
 
 .nav-links a:hover {
-    color: var(--ocean-blue);
+    color: var(--ocean-blue) !important;
 }
 
 .nav-links a:hover::after {
-    width: 100%;
+    width: 100% !important;
 }
 
+/* Dil Butonları - Sağ */
 .lang-switcher {
-    display: flex;
-    gap: 10px;
+    display: flex !important;
+    gap: 8px !important;
+    margin-left: auto !important;
 }
 
 .lang-btn {
-    padding: 8px 14px;
-    background: transparent;
-    border: 1px solid var(--border-gray);
-    color: var(--deep-navy);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: var(--transition-base);
+    padding: 6px 12px !important;
+    background: transparent !important;
+    border: 1px solid var(--border-gray) !important;
+    color: var(--deep-navy) !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    transition: var(--transition-base) !important;
 }
 
 .lang-btn:hover,
 .lang-btn.active {
-    background: var(--ocean-blue);
-    border-color: var(--ocean-blue);
-    color: white;
+    background: var(--ocean-blue) !important;
+    border-color: var(--ocean-blue) !important;
+    color: white !important;
 }
 
+/* Mobile Menu Toggle */
 .menu-toggle {
-    display: none;
-    font-size: 28px;
-    color: var(--deep-navy);
-    background: none;
-    border: none;
-    cursor: pointer;
+    display: none !important;
+    font-size: 24px !important;
+    color: var(--deep-navy) !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
 }
 
 /* ================================================
@@ -252,101 +293,138 @@ nav.scrolled {
     transform: translateY(-2px);
 }
 
+/* Hero Buttons - ÖZEL */
+.btn-hero-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 16px 35px !important;
+    background: rgba(56, 189, 248, 0.95) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    border: 2px solid transparent !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3) !important;
+    cursor: pointer !important;
+    z-index: 100 !important;
+}
+
+.btn-hero-link:hover {
+    background: white !important;
+    color: #38bdf8 !important;
+    border-color: #38bdf8 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4) !important;
+}
+
+.btn-hero-link i {
+    font-size: 18px !important;
+    color: inherit !important;
+}
+
+.btn-hero-link span {
+    color: inherit !important;
+}
+
 /* ================================================
-   HERO SECTION - EFEKTSİZ VERSİYON
+   HERO SECTION
    ================================================ */
 
 .hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #0a0a0a;
+    position: relative !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: #0a0a0a !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
 .hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 1;
-    z-index: 1;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 0.85 !important;
+    filter: brightness(0.8) !important;
+    z-index: 1 !important;
 }
 
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: 2;
-    pointer-events: none;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(6, 78, 134, 0.25) 100%) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    color: white;
-    max-width: 900px;
-    padding: 0 20px;
-    animation: fadeInUp 1s ease;
+    position: relative !important;
+    z-index: 10 !important;
+    text-align: center !important;
+    color: white !important;
+    max-width: 900px !important;
+    padding: 0 20px !important;
+    animation: fadeInUp 1s ease !important;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-badge {
-    display: inline-block;
-    padding: 10px 24px;
-    background: rgba(56, 189, 248, 0.95);
-    border: 1px solid var(--ocean-blue);
-    border-radius: 30px;
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: inline-block !important;
+    padding: 10px 24px !important;
+    background: rgba(56, 189, 248, 0.95) !important;
+    border-radius: 30px !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 25px !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 .hero h1 {
-    font-size: 72px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 20px;
+    font-size: 72px !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    margin-bottom: 20px !important;
     color: white !important;
-    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5) !important;
 }
 
 .hero-gradient {
-    background: linear-gradient(to right, var(--ocean-blue), #2563eb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.4));
+    background: linear-gradient(to right, #38bdf8, #2563eb) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.4)) !important;
 }
 
 .hero p {
-    font-size: 22px;
+    font-size: 22px !important;
     color: rgba(255, 255, 255, 0.95) !important;
-    margin-bottom: 40px;
-    line-height: 1.6;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 40px !important;
+    line-height: 1.6 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.hero-links-container {
+    display: flex !important;
+    gap: 20px !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    margin-top: 40px !important;
 }
 
 .hero-buttons {
@@ -481,7 +559,6 @@ section {
     flex-wrap: wrap;
 }
 
-/* ========== GÜNCELLENMIŞ: DAHA BELİRGİN FEATURE TAGS ========== */
 .feature-tag {
     display: inline-flex;
     align-items: center;
@@ -889,12 +966,8 @@ footer {
 }
 
 @keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .whatsapp-float:hover {
@@ -923,10 +996,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.95) 100%
-    );
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.95) 100%);
     z-index: 1;
 }
 
@@ -969,7 +1039,6 @@ footer {
     color: var(--deep-navy);
 }
 
-/* ========== GÜNCELLENMIŞ: DAHA BELİRGİN META BİLGİLERİ ========== */
 .tour-meta-item {
     display: flex;
     align-items: center;
@@ -1179,7 +1248,6 @@ footer {
     transform: scale(1.1);
 }
 
-/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -1251,13 +1319,8 @@ footer {
     background: rgba(255, 255, 255, 0.25);
 }
 
-.lightbox-prev {
-    left: 20px;
-}
-
-.lightbox-next {
-    right: 20px;
-}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
 
 /* ================================================
    RESPONSIVE DESIGN
@@ -1265,146 +1328,61 @@ footer {
 
 @media (max-width: 992px) {
     .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 80%;
-        max-width: 350px;
-        background: white;
-        flex-direction: column;
-        padding: 100px 40px 40px;
-        transition: right 0.4s ease;
-        gap: 30px;
-        align-items: flex-start;
-        box-shadow: -5px 0 30px rgba(56, 189, 248, 0.15);
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        height: 100vh !important;
+        width: 80% !important;
+        max-width: 350px !important;
+        background: white !important;
+        flex-direction: column !important;
+        padding: 100px 40px 40px !important;
+        transition: right 0.4s ease !important;
+        gap: 30px !important;
+        align-items: flex-start !important;
+        box-shadow: -5px 0 30px rgba(56, 189, 248, 0.15) !important;
+        z-index: 999 !important;
     }
 
     .nav-links.active {
-        right: 0;
+        right: 0 !important;
     }
 
     .menu-toggle {
-        display: block;
+        display: block !important;
     }
 
-    .hero h1 {
-        font-size: 48px;
+    .lang-switcher {
+        margin-left: 0 !important;
+        margin-top: 20px !important;
+        flex-wrap: wrap !important;
     }
 
-    .hero p {
-        font-size: 18px;
-    }
-
-    .tours-grid,
-    .blog-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .contact-info {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    section {
-        padding: 80px 20px;
-    }
-
-    .nav-container {
-        padding: 0 20px;
-    }
-
-    .tour-grid-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .tour-sidebar {
-        position: static;
-    }
-
-    .tour-main {
-        padding: 30px 20px;
-    }
-
-    .tour-hero-content h1 {
-        font-size: 36px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Mobilde meta bilgiler için iyileştirmeler */
-    .tour-meta-item {
-        padding: 10px 20px;
-    }
-    
-    .tour-meta-item span {
-        font-size: 16px;
-    }
-    
-    .tour-meta-item i {
-        font-size: 22px;
-    }
-    
-    .feature-tag {
-        font-size: 13px;
-        padding: 7px 14px;
-    }
+    .hero h1 { font-size: 48px; }
+    .hero p { font-size: 18px; }
+    .tours-grid, .blog-grid { grid-template-columns: 1fr; gap: 30px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-info { grid-template-columns: 1fr; }
+    .footer-content { grid-template-columns: 1fr; gap: 40px; }
+    section { padding: 80px 20px; }
+    .nav-container { padding: 0 20px !important; }
+    .tour-grid-layout { grid-template-columns: 1fr; }
+    .tour-sidebar { position: static; }
+    .tour-main { padding: 30px 20px; }
+    .tour-hero-content h1 { font-size: 36px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 576px) {
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .section-header h2 {
-        font-size: 36px;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form {
-        padding: 30px 20px;
-    }
-
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
-        justify-content: center;
-    }
+    .hero h1 { font-size: 36px; }
+    .section-header h2 { font-size: 36px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .contact-form { padding: 30px 20px; }
+    .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .hero-buttons, .hero-links-container { flex-direction: column; width: 100%; }
+    .hero-buttons .btn, .btn-hero-link { width: 100%; justify-content: center; }
 }
-
-/* ================================================
-   UTILITY CLASSES
-   ================================================ */
 
 .container {
     max-width: 1400px;
@@ -1412,224 +1390,8 @@ footer {
     padding: 0 40px;
 }
 
-.text-center {
-    text-align: center;
-}
-
+.text-center { text-align: center; }
 .mt-20 { margin-top: 20px; }
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
-
-/* ================================================
-   DİL BUTONLARI İÇİN EK CSS - style.css'in SONUNA EKLE
-   ================================================ */
-
-/* Dil değiştirici butonları - Z-index ve pointer-events düzeltmesi */
-.lang-switcher {
-    display: flex;
-    gap: 10px;
-    position: relative;
-    z-index: 100;
-}
-
-.lang-btn {
-    padding: 8px 14px;
-    background: transparent;
-    border: 1px solid var(--border-gray);
-    color: var(--deep-navy);
-    border-radius: 8px;
-    cursor: pointer !important;
-    font-size: 13px;
-    font-weight: 600;
-    transition: var(--transition-base);
-    position: relative;
-    z-index: 100;
-    pointer-events: auto !important; /* ÖNEMLİ: Kesinlikle tıklanabilir */
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.lang-btn:hover {
-    background: var(--ocean-blue);
-    border-color: var(--ocean-blue);
-    color: white;
-    transform: translateY(-2px);
-}
-
-.lang-btn:active {
-    transform: translateY(0);
-    background: var(--ocean-dark);
-}
-
-.lang-btn.active {
-    background: var(--ocean-blue) !important;
-    border-color: var(--ocean-blue) !important;
-    color: white !important;
-}
-
-.lang-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed !important;
-    pointer-events: auto !important; /* Disabled olsa bile pointer-events korunur */
-}
-
-/* Toast bildirimleri */
-.language-toast {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    background: var(--ocean-blue);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    z-index: 99999 !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    font-weight: 600;
-    pointer-events: none;
-    animation: slideInRight 0.3s ease;
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutRight {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-}
-
-/* Mobil responsive için */
-@media (max-width: 768px) {
-    .lang-switcher {
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 20px;
-        width: 100%;
-    }
-    
-    .lang-btn {
-        min-width: 45px;
-        padding: 10px 16px;
-    }
-    
-    .language-toast {
-        right: 10px;
-        left: 10px;
-        text-align: center;
-    }
-}
-/* ================================================
-   DİL BUTONU DÜZELTMELERİ - style.css'e ekleyin
-   ================================================ */
-
-.lang-switcher {
-    display: flex;
-    gap: 10px;
-    position: relative;
-    z-index: 100;
-}
-
-.lang-btn {
-    padding: 8px 14px;
-    background: transparent;
-    border: 1px solid var(--border-gray);
-    color: var(--deep-navy);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: var(--transition-base);
-    position: relative;
-    z-index: 100;
-    pointer-events: auto;
-    user-select: none;
-    touch-action: manipulation; /* Mobil için */
-}
-
-.lang-btn:hover,
-.lang-btn.active {
-    background: var(--ocean-blue);
-    border-color: var(--ocean-blue);
-    color: white;
-}
-
-.lang-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* Toast mesajları için stil */
-.language-toast {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    background: #38bdf8;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    z-index: 10000;
-    opacity: 0;
-    transform: translateX(100px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.language-toast.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.language-toast.error {
-    background: #ef4444;
-}
-.btn-hero-link {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 35px;
-    background: rgba(56, 189, 248, 0.95) !important;
-    color: white !important;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 16px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-    cursor: pointer;
-    z-index: 100;
-}
-
-.btn-hero-link:hover {
-    background: white !important;
-    color: #38bdf8 !important;
-    border-color: #38bdf8;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
-}
-
-.btn-hero-link span {
-    color: inherit !important;
-}
-
-.btn-hero-link i {
-    font-size: 18px;
-    color: inherit !important;
-}
