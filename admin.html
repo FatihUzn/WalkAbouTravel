@@ -409,6 +409,158 @@
         <div class="content">
             <!-- TURLAR SEKMESİ -->
             <div id="tours-content" class="tab-content active">
+                <!-- Admin Panel'e eklenecek Featured Tours bölümü için kod -->
+
+<!-- Bu kodu admin.html'deki "TURLAR SEKMESİ" içinde, form'dan ÖNCE ekleyin -->
+
+<div class="featured-tours-section" style="background: #f0f9ff; padding: 30px; border-radius: 16px; margin-bottom: 40px; border: 2px solid #38bdf8;">
+    <h3 style="font-size: 24px; margin-bottom: 20px; color: #0c4a6e; display: flex; align-items: center; gap: 12px;">
+        <i class="fas fa-star" style="color: #38bdf8;"></i>
+        Öne Çıkan Turlar (Popular Trips)
+    </h3>
+    
+    <p style="color: #64748b; margin-bottom: 25px; line-height: 1.6;">
+        Ana sayfada "OUR MOST POPULAR TRIPS" bölümünde gösterilecek turları seçin. En fazla 3 tur öne çıkarılabilir.
+    </p>
+    
+    <div id="featuredToursList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px;">
+        <!-- JavaScript ile dolacak -->
+    </div>
+    
+    <div style="text-align: center; color: #94a3b8; font-size: 14px; margin-top: 20px;">
+        💡 İpucu: Bir turu "öne çıkan" yapmak için aşağıdaki tur listesinden ⭐ yıldız ikonuna tıklayın
+    </div>
+</div>
+
+<script>
+// Featured Tours Management
+function updateFeaturedTours() {
+    const featuredContainer = document.getElementById('featuredToursList');
+    if (!featuredContainer) return;
+    
+    const featuredTours = tours.filter(t => t.featured);
+    
+    if (featuredTours.length === 0) {
+        featuredContainer.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
+                <i class="fas fa-star" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
+                <p>Henüz öne çıkan tur seçilmemiş.</p>
+                <p style="font-size: 14px; margin-top: 10px;">Aşağıdaki tur listesinden yıldız ⭐ ikonuna tıklayarak öne çıkarabilirsiniz.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    featuredContainer.innerHTML = featuredTours.map(tour => `
+        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                <h4 style="margin: 0; color: #0c4a6e; font-size: 18px;">${tour.title}</h4>
+                <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                    ⭐ FEATURED
+                </span>
+            </div>
+            <p style="color: #64748b; font-size: 14px; margin: 8px 0;">${tour.location} • ${tour.price}</p>
+            <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
+                <i class="fas fa-star-half-alt"></i> Öne Çıkarmayı Kaldır
+            </button>
+        </div>
+    `).join('');
+}
+
+// Toggle featured status
+function toggleFeatured(tourId) {
+    const tour = tours.find(t => t.id === tourId);
+    if (!tour) return;
+    
+    const featuredCount = tours.filter(t => t.featured).length;
+    
+    // Eğer featured değilse ve limit doluysa
+    if (!tour.featured && featuredCount >= 3) {
+        showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir! Önce başka bir turu kaldırın.', 'error');
+        return;
+    }
+    
+    // Toggle featured status
+    tour.featured = !tour.featured;
+    
+    // Kaydet
+    saveToursToFile();
+    
+    // Güncel le
+    displayTours();
+    updateFeaturedTours();
+    
+    const message = tour.featured 
+        ? `✅ "${tour.title}" öne çıkarıldı! Ana sayfada gösterilecek.`
+        : `✓ "${tour.title}" öne çıkarmadan kaldırıldı.`;
+    
+    showAlert('tourAlert', message, 'success');
+}
+
+// displayTours fonksiyonunu güncelle - featured toggle butonu ekle
+function displayTours() {
+    const container = document.getElementById('toursList');
+    
+    if (tours.length === 0) {
+        container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz tur eklenmemiş. Yukarıdaki formu kullanarak ilk turunuzu ekleyin!</div>';
+        return;
+    }
+
+    container.innerHTML = tours.map(tour => `
+        <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
+            ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
+            <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+            <div class="item-info">
+                <h3>${tour.title}</h3>
+                <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
+                <p><i class="fas fa-folder"></i> ${tour.category}</p>
+            </div>
+            <div class="item-actions">
+                <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')" title="${tour.featured ? 'Öne çıkarmayı kaldır' : 'Öne çıkar'}">
+                    <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
+                </button>
+                <button class="btn btn-primary" onclick="editTour('${tour.id}')">
+                    <i class="fas fa-edit"></i> Düzenle
+                </button>
+                <button class="btn btn-danger" onclick="deleteTour('${tour.id}')">
+                    <i class="fas fa-trash"></i> Sil
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Sayfa yüklenince featured tours'u da göster
+document.addEventListener('DOMContentLoaded', () => {
+    // Mevcut kod...
+    
+    // Featured tours listesini de güncelle
+    setTimeout(() => {
+        updateFeaturedTours();
+    }, 500);
+});
+
+// loadTours fonksiyonuna ekle
+async function loadTours() {
+    // ... mevcut kod ...
+    
+    displayTours();
+    updateTourStats();
+    updateFeaturedTours(); // Bunu ekle
+}
+</script>
+
+<style>
+/* Featured star button */
+.btn.btn-success i.fa-star {
+    color: #fbbf24;
+    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.5));
+}
+
+.item-card {
+    position: relative;
+}
+</style>
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> Nasıl Kullanılır?</h3>
                     <ol>
