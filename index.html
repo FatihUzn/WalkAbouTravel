@@ -5,51 +5,315 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WalkAbout Travel - Discover the World</title>
     <link rel="icon" href="assets/walkabou_travel_logo.jpg">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
     
     <style>
         /* ========================================
-           YENİ EKLEMELER - BLACK TOMATO STYLE
+           CRITICAL FIXES - ÖNCE BUNLAR UYGULANIR
            ======================================== */
         
-        /* NAVBAR DÜZELTMESİ - TOP PADDING KALDIR */
-        body {
-            margin: 0;
-            padding: 0;
+        /* 1. GLOBAL RESET - HATA PAYINI SIFIRLA */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
         
+        html, body { 
+            margin: 0 !important; 
+            padding: 0 !important; 
+            overflow-x: hidden;
+        }
+        
+        /* 2. NAVBAR - LITHUANIA TRAVEL STYLE */
         nav {
-            margin-top: 0 !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(12px);
+            padding: 0 !important;
+            margin: 0 !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
         }
         
+        /* Üst Bar - İnce (6px padding) */
         .header-top-row {
-            display: none; /* Üst bar'ı gizle, daha temiz görünüm */
+            display: flex !important;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 6px 40px;
+            font-size: 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
-        /* HERO FULL-SCREEN FIX */
+        .header-top-row a {
+            color: #64748b;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+        
+        .header-top-row a:hover {
+            color: #38bdf8;
+        }
+        
+        .header-top-row i {
+            margin-right: 5px;
+            color: #38bdf8;
+        }
+        
+        /* Main Nav Container */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px !important;
+        }
+        
+        /* Logo - Sol */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 35px;
+            border-radius: 8px;
+        }
+        
+        .logo-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        
+        .logo-subtitle {
+            font-size: 10px;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        /* Nav Links - Orta */
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: #0c4a6e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #38bdf8;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Dil Butonları - Sağ (nav-links DIŞINDA!) */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+        
+        .lang-btn {
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            color: #0c4a6e;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: #38bdf8;
+            border-color: #38bdf8;
+            color: white;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: #0c4a6e;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* 3. HERO - TAM EKRAN FIX */
         .hero {
             margin-top: 0 !important;
             padding-top: 0 !important;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .hero-video {
-            opacity: 0.85 !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
             filter: brightness(0.8);
+            z-index: 1;
         }
         
         .hero-overlay {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(6, 78, 134, 0.25) 100%) !important;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(6, 78, 134, 0.25) 100%);
+            z-index: 2;
+            pointer-events: none;
         }
         
-        /* HOW DO YOU TRAVEL - CATEGORIES SECTION */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(56, 189, 248, 0.95);
+            border-radius: 30px;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: white !important;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(to right, #38bdf8, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.4));
+        }
+        
+        .hero p {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.95) !important;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* 4. HERO BUTTONS - KIRMIZI DAİRE SORUNU FİX */
+        .hero-links-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn-hero-link {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            background: rgba(56, 189, 248, 0.95) !important;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .btn-hero-link:hover {
+            background: white !important;
+            color: #38bdf8 !important;
+            border-color: #38bdf8;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+        }
+        
+        .btn-hero-link i {
+            font-size: 18px;
+            color: inherit !important;
+        }
+        
+        .btn-hero-link span {
+            color: inherit !important;
+        }
+        
+        /* ========================================
+           BLACK TOMATO SECTIONS
+           ======================================== */
+        
+        /* HOW DO YOU TRAVEL */
         .travel-categories-section {
             background: #f8f9fa;
             padding: 100px 20px;
@@ -63,7 +327,7 @@
         .travel-categories-header h2 {
             font-size: 52px;
             font-family: 'Playfair Display', serif;
-            color: var(--deep-navy);
+            color: #0c4a6e;
             margin-bottom: 30px;
             font-weight: 900;
         }
@@ -79,7 +343,7 @@
         .travel-tab {
             font-size: 18px;
             font-weight: 600;
-            color: var(--soft-gray);
+            color: #64748b;
             padding-bottom: 10px;
             border-bottom: 3px solid transparent;
             cursor: pointer;
@@ -89,12 +353,12 @@
         }
         
         .travel-tab:hover {
-            color: var(--ocean-blue);
+            color: #38bdf8;
         }
         
         .travel-tab.active {
-            color: var(--deep-navy);
-            border-bottom-color: var(--ocean-blue);
+            color: #0c4a6e;
+            border-bottom-color: #38bdf8;
         }
         
         .categories-grid {
@@ -153,7 +417,7 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         
-        /* OUR MOST POPULAR TRIPS - PREMIUM CARDS */
+        /* OUR MOST POPULAR TRIPS */
         .popular-trips-section {
             background: white;
             padding: 120px 20px;
@@ -167,14 +431,14 @@
         .popular-trips-header h2 {
             font-size: 52px;
             font-family: 'Playfair Display', serif;
-            color: var(--deep-navy);
+            color: #0c4a6e;
             margin-bottom: 20px;
             font-weight: 900;
         }
         
         .popular-trips-header p {
             font-size: 20px;
-            color: var(--soft-gray);
+            color: #64748b;
         }
         
         .popular-trips-grid {
@@ -227,7 +491,7 @@
             top: 25px;
             right: 25px;
             background: rgba(255,255,255,0.95);
-            color: var(--deep-navy);
+            color: #0c4a6e;
             padding: 10px 20px;
             border-radius: 25px;
             font-size: 14px;
@@ -245,8 +509,6 @@
             right: 0;
             padding: 40px;
             z-index: 2;
-            transform: translateY(0);
-            transition: transform 0.4s ease;
         }
         
         .trip-card-title {
@@ -293,7 +555,7 @@
             align-items: center;
             gap: 10px;
             padding: 14px 32px;
-            background: var(--ocean-blue);
+            background: #38bdf8;
             color: white;
             border-radius: 10px;
             font-weight: 600;
@@ -311,11 +573,10 @@
         
         .trip-card-button:hover {
             background: white;
-            color: var(--ocean-blue);
-            border-color: var(--ocean-blue);
+            color: #38bdf8;
+            border-color: #38bdf8;
         }
         
-        /* VIEW MORE BUTTON */
         .view-more-container {
             text-align: center;
             margin-top: 60px;
@@ -326,7 +587,7 @@
             align-items: center;
             gap: 10px;
             padding: 18px 50px;
-            background: var(--deep-navy);
+            background: #0c4a6e;
             color: white;
             border-radius: 12px;
             font-size: 18px;
@@ -336,12 +597,15 @@
         }
         
         .view-more-btn:hover {
-            background: var(--ocean-blue);
+            background: #38bdf8;
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3);
         }
         
-        /* RESPONSIVE */
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        
         @media (max-width: 1400px) {
             .categories-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -353,12 +617,51 @@
         }
         
         @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 350px;
+                background: white;
+                flex-direction: column;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                gap: 30px;
+                align-items: flex-start;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .lang-switcher {
+                margin-left: 0;
+                margin-top: 20px;
+                flex-wrap: wrap;
+            }
+            
             .categories-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
             .popular-trips-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero p {
+                font-size: 18px;
             }
             
             .travel-categories-header h2,
@@ -376,34 +679,47 @@
                 height: 300px;
             }
             
-            .travel-tabs {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-links-container {
                 flex-direction: column;
-                gap: 20px;
+                width: 100%;
+            }
+            
+            .btn-hero-link {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR - LITHUANIA TRAVEL STYLE -->
     <nav id="navbar">
+        <!-- Üst Bar - İnce -->
         <div class="header-top-row">
             <div class="top-bar-left">
                 <a href="tel:+902125551923">
                     <i class="fas fa-phone"></i> +90 (212) 555 1923
                 </a>
-                <a href="/cdn-cgi/l/email-protection#eb82858d84ab9c8a87808a89849e9f998a9d8e87c5888486">
-                    <i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="620b0c040d2215030e0903000d1716100314070e4c010d0f">[email&#160;protected]</span>
+                <a href="mailto:info@walkaboutravel.com">
+                    <i class="fas fa-envelope"></i> info@walkaboutravel.com
                 </a>
             </div>
             <div class="top-bar-right">
                 <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Istanbul" 
                    target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-map-marker-alt"></i> Yol Tarifi Al
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
                 </a>
             </div>
         </div>
         
+        <!-- Main Nav -->
         <div class="nav-container">
+            <!-- LOGO - SOL -->
             <a href="#home" class="logo">
                 <img src="assets/walkabou_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
@@ -412,31 +728,34 @@
                 </div>
             </a>
 
+            <!-- NAV LINKS - ORTA -->
             <div class="nav-links" id="navLinks">
                 <a href="#home">Home</a>
                 <a href="#popular-trips">Tours</a>
                 <a href="#why-us">Why Us</a>
                 <a href="#blog">Blog</a>
                 <a href="#contact">Contact</a>
-                
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="tr">TR</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="es">ES</button>
-                    <button class="lang-btn" data-lang="ru">RU</button>
-                    <button class="lang-btn" data-lang="de">DE</button>
-                    <button class="lang-btn" data-lang="zh">ZH</button>
-                    <button class="lang-btn" data-lang="ar">AR</button>
-                </div>
             </div>
 
+            <!-- DİL BUTONLARI - SAĞ (nav-links DIŞINDA!) -->
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="tr">TR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="zh">ZH</button>
+                <button class="lang-btn" data-lang="ar">AR</button>
+            </div>
+
+            <!-- MOBILE MENU TOGGLE -->
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION - TAM EKRAN -->
     <section id="home" class="hero">
         <video class="hero-video" autoplay muted loop playsinline preload="none">
             <source src="assets/hero_background.mp4" type="video/mp4">
@@ -445,26 +764,29 @@
         <div class="hero-content">
             <span class="hero-badge">SINCE 1997</span>
             <h1>
-                <span>Discover the Adventure</span> <br>
+                <span>Discover the Adventure</span><br>
                 <span class="hero-gradient">WalkAboutTravel</span>
             </h1>
             <p>Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
             
             <div class="hero-links-container">
                 <a href="#travel-categories" class="btn-hero-link">
-                    <i class="fas fa-compass"></i> <span>Explore Tours</span>
+                    <i class="fas fa-compass"></i>
+                    <span>Explore Tours</span>
                 </a>
                 <a href="#blog" class="btn-hero-link">
-                    <i class="fas fa-blog"></i> <span>Blog</span>
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
                 </a>
                 <a href="#contact" class="btn-hero-link">
-                    <i class="fas fa-envelope"></i> <span>Contact Us</span>
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- HOW DO YOU TRAVEL? - CATEGORIES SECTION -->
+    <!-- HOW DO YOU TRAVEL? -->
     <section id="travel-categories" class="travel-categories-section">
         <div class="travel-categories-header">
             <h2>HOW DO YOU TRAVEL?</h2>
@@ -476,9 +798,7 @@
             </div>
         </div>
 
-        <div class="categories-grid" id="categoriesGrid">
-            <!-- Kategori kartları JavaScript ile yüklenecek -->
-        </div>
+        <div class="categories-grid" id="categoriesGrid"></div>
         
         <div class="view-more-container">
             <a href="#popular-trips" class="view-more-btn">
@@ -488,7 +808,7 @@
         </div>
     </section>
 
-    <!-- OUR MOST POPULAR TRIPS SECTION -->
+    <!-- OUR MOST POPULAR TRIPS -->
     <section id="popular-trips" class="popular-trips-section">
         <div class="popular-trips-header">
             <span class="section-badge">FEATURED TOURS</span>
@@ -496,62 +816,46 @@
             <p>The trips our travellers are booking right now</p>
         </div>
 
-        <div class="popular-trips-grid" id="popularTripsGrid">
-            <!-- Popüler turlar JavaScript ile yüklenecek -->
-        </div>
+        <div class="popular-trips-grid" id="popularTripsGrid"></div>
     </section>
 
-    <!-- TURLAR SEKSİYONU (MEVCUT) -->
+    <!-- TURLAR SEKSİYONU -->
     <section id="tours" class="tours-section">
         <div class="section-header">
-            <span class="section-badge" data-i18n="projects_title_featured">ALL ROUTES</span>
-            <h2 data-i18n="projects_title_latest">Featured Tours</h2>
+            <span class="section-badge">ALL ROUTES</span>
+            <h2>Featured Tours</h2>
             <p>Discover our most preferred destinations</p>
         </div>
-
-        <div class="tours-grid">
-            <!-- Tours.js buraya turları yükleyecek -->
-        </div>
+        <div class="tours-grid"></div>
     </section>
 
     <!-- WHY US SECTION -->
     <section id="why-us" class="why-us-section">
         <div class="section-header">
-            <span class="section-badge" data-i18n="about_main_title">WHY WalkAbout Travel?</span>
-            <h2 data-i18n="about_tagline">Reasons to Choose Us</h2>
-            <p data-i18n="about_p1">Safe and unforgettable journeys with our 28 years of experience</p>
+            <span class="section-badge">WHY WalkAbout Travel?</span>
+            <h2>Reasons to Choose Us</h2>
+            <p>Safe and unforgettable journeys with our 28 years of experience</p>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 data-i18n="about_sub_title_2">Safe Travel</h3>
-                <p data-i18n="about_p4">Full security with TURSAB certified, insurance guaranteed and licensed guides.</p>
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Safe Travel</h3>
+                <p>Full security with TURSAB certified, insurance guaranteed and licensed guides.</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h3 data-i18n="hero_since">28 Years of Experience</h3>
-                <p data-i18n="about_p2">We have served thousands of happy customers since 1997.</p>
+                <div class="feature-icon"><i class="fas fa-star"></i></div>
+                <h3>28 Years of Experience</h3>
+                <p>We have served thousands of happy customers since 1997.</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
+                <div class="feature-icon"><i class="fas fa-headset"></i></div>
                 <h3>24/7 Support</h3>
                 <p>We are with you at every moment of your trip.</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <h3 data-i18n="about_mission_p">Best Price Guarantee</h3>
+                <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
+                <h3>Best Price Guarantee</h3>
                 <p>We offer quality service at the most affordable prices.</p>
             </div>
         </div>
@@ -560,67 +864,59 @@
     <!-- BLOG SECTION -->
     <section id="blog" class="blog-section">
         <div class="section-header">
-            <span class="section-badge" data-i18n="blog_title">TRAVEL DIARY</span>
-            <h2 data-i18n="blog_title">Blog & Travel Guide</h2>
+            <span class="section-badge">TRAVEL DIARY</span>
+            <h2>Blog & Travel Guide</h2>
             <p>Get inspired by our experiences</p>
         </div>
-
-        <div class="blog-grid" id="blogContainer">
-        </div>
+        <div class="blog-grid" id="blogContainer"></div>
     </section>
 
     <!-- CONTACT SECTION -->
     <section id="contact" class="contact-section">
         <div class="section-header">
-            <span class="section-badge" data-i18n="nav_contact">CONTACT US</span>
-            <h2 data-i18n="contact_form_title">Let's Plan Your Holiday</h2>
+            <span class="section-badge">CONTACT US</span>
+            <h2>Let's Plan Your Holiday</h2>
             <p>Our expert team is ready to help you</p>
         </div>
 
         <div class="contact-container">
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
-                    <label for="name" data-i18n="contact_label_name">Full Name *</label>
+                    <label for="name">Full Name *</label>
                     <input type="text" id="name" required placeholder="John Doe">
                 </div>
-
                 <div class="form-group">
-                    <label for="email" data-i18n="contact_label_email">Email Address *</label>
+                    <label for="email">Email Address *</label>
                     <input type="email" id="email" required placeholder="john@example.com">
                 </div>
-
                 <div class="form-group">
-                    <label for="phone" data-i18n="contact_info_phone_title">Phone Number</label>
+                    <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" placeholder="+90 555 123 45 67">
                 </div>
-
                 <div class="form-group">
-                    <label for="message" data-i18n="contact_label_message">Your Message *</label>
-                    <textarea id="message" required placeholder="Which tour are you interested in? What are your dates?"></textarea>
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" required placeholder="Which tour are you interested in?"></textarea>
                 </div>
-
                 <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> <span data-i18n="btn_send">Send</span>
+                    <i class="fas fa-paper-plane"></i> <span>Send</span>
                 </button>
             </form>
 
             <div class="contact-info">
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h4 data-i18n="contact_info_address_title">Our Address</h4>
-                    <p data-i18n="contact_info_address_p">Mimar Sinan St. No: 42/A<br>Istanbul, Turkey</p>
+                    <h4>Our Address</h4>
+                    <p>Mimar Sinan St. No: 42/A<br>Istanbul, Turkey</p>
                 </div>
-
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
-                    <h4 data-i18n="contact_info_phone_title">Phone</h4>
-                    <p data-i18n="contact_info_phone_p">+90 (212) 555 1923</p>
+                    <h4>Phone</h4>
+                    <p>+90 (212) 555 1923</p>
                 </div>
-
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
-                    <h4 data-i18n="contact_info_email_title">Email</h4>
-                    <p data-i18n="contact_info_email_p"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfa6a1a9a08fb8aea3a4aeada0babbbdaeb9aaa3e1aca0a2">[email&#160;protected]</a></p>
+                    <h4>Email</h4>
+                    <p>info@walkaboutravel.com</p>
                 </div>
             </div>
         </div>
@@ -633,11 +929,11 @@
                 <div class="footer-logo">
                     <img src="assets/walkabou_travel_logo.jpg" alt="Logo" onerror="this.style.display='none'">
                     <div class="logo-text">
-                        <span class="logo-title" data-i18n="brand_walkabou_travel">WalkAbout Travel</span>
-                        <span class="logo-subtitle" data-i18n="brand_Tourism">Tourism & Travel</span>
+                        <span class="logo-title">WalkAbout Travel</span>
+                        <span class="logo-subtitle">Tourism & Travel</span>
                     </div>
                 </div>
-                <p data-i18n="about_tagline">Journeys planned with confidence since 1997. We are with you for your dream holiday.</p>
+                <p>Journeys planned with confidence since 1997. We are with you for your dream holiday.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -647,18 +943,18 @@
             </div>
 
             <div class="footer-column">
-                <h4 data-i18n="footer_col_1_title">Quick Links</h4>
+                <h4>Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
-                    <li><a href="#popular-trips" data-i18n="nav_tours">Tours</a></li>
-                    <li><a href="#why-us" data-i18n="nav_why_us">Why Us</a></li>
-                    <li><a href="#blog" data-i18n="nav_blog">Blog</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#popular-trips">Tours</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
-                <h4 data-i18n="footer_col_4_title">Tours</h4>
+                <h4>Tours</h4>
                 <ul class="footer-links">
                     <li><a href="tour-detail.html?id=TUR-TR-MARDIN">Mardin Tour</a></li>
                     <li><a href="tour-detail.html?id=TUR-TR-KAPADOKYA">Cappadocia Tour</a></li>
@@ -668,7 +964,7 @@
             </div>
 
             <div class="footer-column">
-                <h4 data-i18n="footer_col_2_title">Services</h4>
+                <h4>Services</h4>
                 <ul class="footer-links">
                     <li><a href="#why-us">Visa Consultancy</a></li>
                     <li><a href="#contact">Hotel Reservation</a></li>
@@ -679,35 +975,24 @@
         </div>
 
         <div class="footer-bottom">
-            <p data-i18n="footer_copyright">© 2025 WalkAbout Travel. All rights reserved.</p>
+            <p>© 2025 WalkAbout Travel. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- SCRIPTS -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="i18n.js"></script>
+    <script src="i18n.js"></script>
     
     <script>
-        console.log('🎬 i18n başlatılıyor...');
-        
         if (typeof i18n !== 'undefined') {
-            console.log('✅ i18n modülü bulundu');
-            
-            i18n.init('tr').then(() => {
-                console.log('✅ Dil sistemi başarıyla başlatıldı!');
-                console.log('📍 Aktif dil:', i18n.currentLang);
-            }).catch(error => {
-                console.error('❌ i18n başlatma hatası:', error);
-            });
-        } else {
-            console.error('❌ HATA: i18n bulunamadı!');
+            i18n.init('tr').then(() => console.log('✅ i18n başlatıldı')).catch(e => console.error('❌ i18n hatası:', e));
         }
     </script>
     
-    <!-- YENİ SECTIONS İÇİN JAVASCRIPT -->
     <script>
         // CATEGORIES DATA
         const categoriesData = {
@@ -734,36 +1019,25 @@
             ]
         };
 
-        // POPULAR TRIPS DATA (tours.json'dan gelecek ama şimdilik örnek)
         let popularTripsData = [];
 
-        // Load categories
         function loadCategories(tab = 'traveller') {
             const grid = document.getElementById('categoriesGrid');
             const categories = categoriesData[tab];
-            
             grid.innerHTML = categories.map(cat => `
                 <div class="category-image-card" onclick="window.location.href='${cat.link}'">
                     <img src="${cat.image}" alt="${cat.name}" loading="lazy">
-                    <div class="category-overlay">
-                        <div class="category-name">${cat.name}</div>
-                    </div>
+                    <div class="category-overlay"><div class="category-name">${cat.name}</div></div>
                 </div>
             `).join('');
         }
 
-        // Load popular trips
         async function loadPopularTrips() {
             try {
                 const response = await fetch('data/tours.json');
                 const tours = await response.json();
-                
-                // Featured turları al veya ilk 3'ü
                 popularTripsData = tours.filter(t => t.featured).slice(0, 3);
-                if (popularTripsData.length === 0) {
-                    popularTripsData = tours.slice(0, 3);
-                }
-                
+                if (popularTripsData.length === 0) popularTripsData = tours.slice(0, 3);
                 displayPopularTrips();
             } catch (error) {
                 console.error('Popular trips yüklenemedi:', error);
@@ -772,12 +1046,10 @@
 
         function displayPopularTrips() {
             const grid = document.getElementById('popularTripsGrid');
-            
             grid.innerHTML = popularTripsData.map(tour => {
                 const title = tour.title?.tr || tour.title;
                 const description = tour.description?.tr || tour.description;
                 const duration = tour.duration || '7 Days';
-                
                 return `
                     <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
                         <img src="${tour.image}" alt="${title}" loading="lazy">
@@ -788,8 +1060,7 @@
                             <p class="trip-card-description">${description.substring(0, 100)}...</p>
                             <div class="trip-card-price">From ${tour.price}</div>
                             <a href="tour-detail.html?id=${tour.id}" class="trip-card-button">
-                                <span>EXPLORE TRIP</span>
-                                <i class="fas fa-arrow-right"></i>
+                                <span>EXPLORE TRIP</span><i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
@@ -797,7 +1068,6 @@
             }).join('');
         }
 
-        // Tab switching
         document.querySelectorAll('.travel-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 document.querySelectorAll('.travel-tab').forEach(t => t.classList.remove('active'));
@@ -806,7 +1076,6 @@
             });
         });
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadCategories('traveller');
             loadPopularTrips();
@@ -818,10 +1087,9 @@
     <script src="app.js"></script>
     
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-
         if (menuToggle) {
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
@@ -833,32 +1101,26 @@
             });
         }
 
-        // Navbar Scroll Effect
+        // Navbar Scroll
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (navbar) {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
             }
         });
 
-        // Contact Form Handler
+        // Contact Form
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const phone = document.getElementById('phone').value;
                 const message = document.getElementById('message').value;
-                
                 const whatsappMessage = `Hello! I am reaching out from your website.%0A%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0A%0AMessage:%0A${message}`;
                 window.open(`https://wa.me/5491135870045?text=${whatsappMessage}`, '_blank');
-                
                 contactForm.reset();
                 alert('Your message is being sent via WhatsApp...');
             });
@@ -872,10 +1134,21 @@
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         if (navLinks) {
                             navLinks.classList.remove('active');
                             const icon = menuToggle?.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('fa-times');
+                                icon.classList.add('fa-bars');
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        console.log('✅ WalkAbout Travel - Tüm sistemler hazır!');
+    </script>
+</body>
+</html>
