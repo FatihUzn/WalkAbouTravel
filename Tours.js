@@ -38,6 +38,8 @@ class TourManager {
                         image: gallery.images?.[0] || 'assets/placeholder.jpg',
                         content: gallery.desc,
                         content_en: gallery.desc,
+                        duration: gallery.duration || '7 Days',
+                        featured: false,
                         source: 'galleries'
                     });
                 }
@@ -105,7 +107,10 @@ class TourManager {
 
     displayTours() {
         const container = document.querySelector('.tours-grid');
-        if (!container) return;
+        if (!container) {
+            console.error('❌ .tours-grid elementi bulunamadı!');
+            return;
+        }
 
         let filtered = this.filteredCategory === 'all' 
             ? this.tours 
@@ -128,9 +133,13 @@ class TourManager {
     createTourCard(tour) {
         const card = document.createElement('div');
         card.className = 'tour-card';
+        card.style.cursor = 'pointer';
         
-        const title = this.currentLang === 'en' && tour.title_en ? tour.title_en : tour.title;
-        const description = this.currentLang === 'en' && tour.description_en ? tour.description_en : tour.description;
+        const title = this.currentLang === 'en' && tour.title_en ? tour.title_en : 
+                     (tour.title?.tr || tour.title);
+        const description = this.currentLang === 'en' && tour.description_en ? tour.description_en : 
+                           (tour.description?.tr || tour.description);
+        const shortDesc = description ? description.substring(0, 120) + '...' : 'Açıklama bulunmuyor.';
 
         card.innerHTML = `
             <div class="tour-image">
@@ -140,8 +149,9 @@ class TourManager {
             </div>
             <div class="tour-content">
                 <h3>${title}</h3>
-                <p>${description.substring(0, 120)}...</p>
+                <p>${shortDesc}</p>
                 <div class="tour-features">
+                    ${tour.duration ? `<span class="feature-tag"><i class="fas fa-clock"></i> ${tour.duration}</span>` : ''}
                     ${tour.price ? `<span class="feature-tag"><i class="fas fa-tag"></i> ${tour.price}</span>` : ''}
                     ${tour.location ? `<span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>` : ''}
                 </div>
@@ -152,12 +162,27 @@ class TourManager {
             </div>
         `;
 
+        // Kart tıklama eventi
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.tour-link')) {
+                window.location.href = `tour-detail.html?id=${tour.id}`;
+            }
+        });
+
         return card;
     }
 }
 
 // Başlat
 let tourManager;
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('📄 DOM hazır, TourManager başlatılıyor...');
+        tourManager = new TourManager();
+    });
+} else {
+    console.log('📄 DOM zaten hazır, TourManager başlatılıyor...');
     tourManager = new TourManager();
-});
+}
+
+console.log('✅ Tours.js yüklendi');
