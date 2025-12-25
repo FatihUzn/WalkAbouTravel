@@ -320,7 +320,7 @@
     </script>
     
     <script>
-        // CATEGORIES DATA
+        // ==================== CATEGORIES DATA ====================
         const categoriesData = {
             traveller: [
                 { name: 'FAMILY', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours' },
@@ -394,6 +394,7 @@
             }).join('');
         }
 
+        // ==================== TAB SWITCHING ====================
         document.querySelectorAll('.travel-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 document.querySelectorAll('.travel-tab').forEach(t => t.classList.remove('active'));
@@ -402,9 +403,107 @@
             });
         });
 
+        // ==================== MOBILE MENU ====================
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+
+            // Menü dışına tıklanınca kapat
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.nav-container')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        }
+
+        // ==================== NAVBAR SCROLL ====================
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // ==================== CONTACT FORM ====================
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('name')?.value || '';
+                const email = document.getElementById('email')?.value || '';
+                const phone = document.getElementById('phone')?.value || '';
+                const message = document.getElementById('message')?.value || '';
+                
+                const whatsappMessage = `Merhaba! Web sitenizden ulaşıyorum.%0A%0AAdım: ${name}%0AE-posta: ${email}%0ATelefon: ${phone}%0A%0AMesaj:%0A${message}`;
+                
+                window.open(`https://wa.me/5491135870045?text=${whatsappMessage}`, '_blank');
+                
+                contactForm.reset();
+                alert('✓ Mesajınız WhatsApp üzerinden gönderiliyor...');
+            });
+        }
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#' || href === '#!') {
+                    e.preventDefault();
+                    return;
+                }
+                
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    e.preventDefault();
+                    
+                    // Mobil menüyü kapat
+                    if (navLinks) {
+                        navLinks.classList.remove('active');
+                    }
+                    if (menuToggle) {
+                        const icon = menuToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                    
+                    // Smooth scroll
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', () => {
             loadCategories('traveller');
             loadPopularTrips();
+            console.log('✅ WalkAbout Travel - Tüm sistemler hazır!');
         });
     </script>
     
