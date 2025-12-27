@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="site_title">WalkAbout Travel - Discover the World</title>
-    <link rel="icon" href="assets/walkabou_travel_logo.jpg">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="WalkAbout Travel ile unutulmaz seyahatler. 1997'den beri güvenle planlanan yolculuklar.">
+    <meta name="keywords" content="tur, seyahat, tatil, gezi, walkabout travel">
+    <meta property="og:title" content="WalkAbout Travel - Discover the World">
+    <meta property="og:description" content="Profesyonel rehberlik eşliğinde dünyanın en güzel destinasyonlarına unutulmaz yolculuklar">
+    <meta property="og:image" content="assets/walkabout_travel_logo.jpg">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" href="assets/walkabout_travel_logo.jpg" type="image/jpeg">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +52,7 @@
         <div class="nav-container">
             <!-- Logo - Sol -->
             <a href="#home" class="logo">
-                <img src="assets/walkabou_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
+                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <span class="logo-title">WalkAbout Travel</span>
                     <span class="logo-subtitle" data-i18n="tagline">Tourism & Travel</span>
@@ -61,17 +70,17 @@
 
             <!-- Dil Butonları - Sağ -->
             <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="tr">TR</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="es">ES</button>
-                <button class="lang-btn" data-lang="ru">RU</button>
-                <button class="lang-btn" data-lang="de">DE</button>
-                <button class="lang-btn" data-lang="zh">ZH</button>
-                <button class="lang-btn" data-lang="ar">AR</button>
+                <button class="lang-btn active" data-lang="tr" aria-label="Türkçe">TR</button>
+                <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+                <button class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+                <button class="lang-btn" data-lang="ru" aria-label="Русский">RU</button>
+                <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+                <button class="lang-btn" data-lang="zh" aria-label="中文">ZH</button>
+                <button class="lang-btn" data-lang="ar" aria-label="العربية">AR</button>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -79,7 +88,7 @@
 
     <!-- HERO SECTION -->
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline preload="none">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
             <source src="assets/hero_background.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -249,7 +258,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="assets/walkabou_travel_logo.jpg" alt="Logo" onerror="this.style.display='none'">
+                    <img src="assets/walkabout_travel_logo.jpg" alt="Logo" onerror="this.style.display='none'">
                     <div class="logo-text">
                         <span class="logo-title">WalkAbout Travel</span>
                         <span class="logo-subtitle" data-i18n="tagline">Tourism & Travel</span>
@@ -302,22 +311,15 @@
     </footer>
 
     <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
+    <a href="https://wa.me/902125551923" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- SCRIPTS -->
     <script src="i18n.js"></script>
-    <script>
-        // i18n başlat
-        if (typeof i18n !== 'undefined') {
-            i18n.init('tr').then(() => {
-                console.log('✅ i18n başlatıldı');
-            }).catch(e => {
-                console.error('❌ i18n hatası:', e);
-            });
-        }
-    </script>
+    <script src="Tours.js"></script>
+    <script src="Blog.js"></script>
+    <script src="app.js"></script>
     
     <script>
         // ==================== CATEGORIES DATA ====================
@@ -361,21 +363,31 @@
         async function loadPopularTrips() {
             try {
                 const response = await fetch('data/tours.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const tours = await response.json();
                 popularTripsData = tours.filter(t => t.featured).slice(0, 3);
                 if (popularTripsData.length === 0) popularTripsData = tours.slice(0, 3);
                 displayPopularTrips();
             } catch (error) {
                 console.error('Popular trips yüklenemedi:', error);
+                const grid = document.getElementById('popularTripsGrid');
+                if (grid) {
+                    grid.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">Turlar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>';
+                }
             }
         }
 
         function displayPopularTrips() {
             const grid = document.getElementById('popularTripsGrid');
+            if (!grid) return;
+            
             grid.innerHTML = popularTripsData.map(tour => {
-                const title = tour.title?.tr || tour.title;
-                const description = tour.description?.tr || tour.description;
+                const title = tour.title?.tr || tour.title || 'Başlık Yok';
+                const description = tour.description?.tr || tour.description || '';
                 const duration = tour.duration || '7 Days';
+                const price = tour.price || 'Contact Us';
                 return `
                     <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
                         <img src="${tour.image}" alt="${title}" loading="lazy">
@@ -383,8 +395,8 @@
                         <div class="trip-nights-badge">${duration}</div>
                         <div class="trip-card-content">
                             <h3 class="trip-card-title">${title}</h3>
-                            <p class="trip-card-description">${description.substring(0, 100)}...</p>
-                            <div class="trip-card-price">From ${tour.price}</div>
+                            <p class="trip-card-description">${description.substring(0, 100)}${description.length > 100 ? '...' : ''}</p>
+                            <div class="trip-card-price">From ${price}</div>
                             <a href="tour-detail.html?id=${tour.id}" class="trip-card-button">
                                 <span>EXPLORE TRIP</span><i class="fas fa-arrow-right"></i>
                             </a>
@@ -456,7 +468,7 @@
                 
                 const whatsappMessage = `Merhaba! Web sitenizden ulaşıyorum.%0A%0AAdım: ${name}%0AE-posta: ${email}%0ATelefon: ${phone}%0A%0AMesaj:%0A${message}`;
                 
-                window.open(`https://wa.me/5491135870045?text=${whatsappMessage}`, '_blank');
+                window.open(`https://wa.me/902125551923?text=${whatsappMessage}`, '_blank');
                 
                 contactForm.reset();
                 alert('✓ Mesajınız WhatsApp üzerinden gönderiliyor...');
@@ -499,6 +511,15 @@
             });
         });
 
+        // ==================== i18n INITIALIZATION ====================
+        if (typeof i18n !== 'undefined') {
+            i18n.init('tr').then(() => {
+                console.log('✅ i18n başlatıldı');
+            }).catch(e => {
+                console.error('❌ i18n hatası:', e);
+            });
+        }
+
         // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', () => {
             loadCategories('traveller');
@@ -506,9 +527,5 @@
             console.log('✅ WalkAbout Travel - Tüm sistemler hazır!');
         });
     </script>
-    
-    <script src="Tours.js"></script>
-    <script src="Blog.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>
