@@ -110,4 +110,88 @@
     "footer_col_4_title": "Projeler",
     "footer_col_5_title": "Bize Ulaşın",
     "footer_copyright": "© 2025 WalkAbouTravel Kurumsal Seyahat. Tüm hakları saklıdır. | Tasarım ve İnovasyon Stüdyosu."
+{
+    "title": "WalkAbouTravel — Tourism & Travel",
+    "brand_walkabou_travel": "WalkAbouTravel",
+    "brand_Tourism": "Tourism & Travel",
+    "hero_since": "1997'DEN BERİ",
+    "hero_title": "WalkAbouTravel",
+    "hero_subtitle": "Hayatınızın Macerasını Keşfedin",
+    "site_title": "WalkAbout Travel - Dünyayı Keşfedin",
+    "tagline": "Turizm & Seyahat",
+    "phone": "+90 (212) 555 1923",
+    "email": "info@walkaboutravel.com",
+    "get_directions": "Yol Tarifi Al",
+    
+    "nav_home": "Anasayfa",
+    "nav_tours": "Turlar",
+    "nav_why_us": "Neden Biz",
+    "nav_blog": "Blog",
+    "nav_contact": "İletişim",
+    
+    "hero_badge": "1997'DEN BERİ",
+    "hero_title_1": "Macerayı Keşfedin",
+    "hero_explore": "Turları Keşfet",
+    "hero_contact": "Bize Ulaşın",
+    
+    "categories_title": "NASIL SEYAHAT EDERSİNİZ?",
+    "tab_traveller": "GEZGINE GÖRE",
+    "tab_destination": "DESTINASYONA GÖRE",
+    "tab_month": "AYA GÖRE",
+    "view_more": "DAHA FAZLA GÖSTER",
+    
+    "featured_badge": "ÖNE ÇIKAN TURLAR",
+    "popular_title": "EN POPÜLER TURLARIMIZ",
+    "popular_subtitle": "Gezginlerimizin şu anda rezervasyon yaptığı turlar",
+    
+    "all_routes_badge": "TÜM ROTALAR",
+    "tours_title": "Öne Çıkan Turlar",
+    "tours_subtitle": "En çok tercih edilen destinasyonlarımızı keşfedin",
+    
+    "why_us_badge": "NEDEN WalkAbout Travel?",
+    "why_us_title": "Bizi Tercih Etme Nedenleri",
+    "why_us_subtitle": "28 yıllık deneyimimizle güvenli ve unutulmaz yolculuklar",
+    
+    "feature_1_title": "Güvenli Seyahat",
+    "feature_1_desc": "TURSAB sertifikalı, sigorta garantili ve lisanslı rehberlerle tam güvenlik.",
+    "feature_2_title": "28 Yıllık Deneyim",
+    "feature_2_desc": "1997'den bu yana binlerce mutlu müşteriye hizmet verdik.",
+    "feature_3_title": "7/24 Destek",
+    "feature_3_desc": "Yolculuğunuzun her anında yanınızdayız.",
+    "feature_4_title": "En İyi Fiyat Garantisi",
+    "feature_4_desc": "En uygun fiyatlarla kaliteli hizmet sunuyoruz.",
+    
+    "blog_badge": "SEYAHAT GÜNLÜĞÜ",
+    "blog_title": "Blog & Seyahat Rehberi",
+    "blog_subtitle": "Deneyimlerimizden ilham alın",
+    
+    "contact_badge": "BİZE ULAŞIN",
+    "contact_title": "Tatil Planınızı Yapalım",
+    "contact_subtitle": "Uzman ekibimiz size yardımcı olmaya hazır",
+    
+    "form_name": "Ad Soyad *",
+    "form_email": "E-posta Adresi *",
+    "form_phone": "Telefon Numarası",
+    "form_message": "Mesajınız *",
+    "form_submit": "Gönder",
+    "form_name_placeholder": "Ahmet Yılmaz",
+    "form_email_placeholder": "ahmet@example.com",
+    "form_phone_placeholder": "+90 555 123 45 67",
+    "form_message_placeholder": "Hangi tur ile ilgileniyorsunuz?",
+    
+    "contact_address_title": "Adresimiz",
+    "contact_address": "Mimar Sinan Cd. No: 42/A<br>İstanbul, Türkiye",
+    "contact_phone_title": "Telefon",
+    "contact_email_title": "E-posta",
+    
+    "footer_quick_links": "Hızlı Linkler",
+    "footer_tours": "Turlar",
+    "footer_services": "Hizmetler",
+    "service_visa": "Vize Danışmanlığı",
+    "service_hotel": "Otel Rezervasyonu",
+    "service_flight": "Uçak Bileti",
+    "service_transfer": "Transfer Hizmeti",
+    "footer_desc": "1997'den bugüne güvenle planlanan yolculuklar. Hayalinizdeki tatil için yanınızdayız.",
+    "footer_copyright": "© 2025 WalkAbout Travel. Tüm hakları saklıdır."
+}
 }
