@@ -1,36 +1,57 @@
 /* ================================================
-   WALKABOUT TRAVEL - MODERN LIGHT THEME
-   Açık, Temiz, Okyanus Teması
+   WALKABOUT TRAVEL - FOREST GREEN THEME
+   Doğal, Premium, Eco-Friendly
+   + Dinamik Kategori Renkleri
    ================================================ */
 
 :root {
-    /* Açık Mavi-Yeşil-Beyaz Tema */
-    --primary-white: #ffffff;
-    --soft-blue: #e0f4ff;
-    --ocean-teal: #00bcd4;
-    --bright-cyan: #00e5ff;
-    --mint-green: #00d9b4;
-    --light-teal: #b2ebf2;
-    --text-dark: #263238;
-    --text-medium: #546e7a;
-    --text-light: #78909c;
-    --text-light-gray: #b0bec5;
+    /* ANA TEMA - FOREST GREEN */
+    --primary: #2d6a4f;
+    --secondary: #52b788;
+    --accent: #95d5b2;
+    --dark: #1b4332;
+    --light: #d8f3dc;
+    --text-dark: #1b4332;
+    --text-medium: #40916c;
+    --text-light: #74c69d;
+    --text-light-gray: #95d5b2;
     --text-white: #ffffff;
-    --border-light: #e3f2fd;
+    --border-light: #d8f3dc;
     
-    /* Ocean Blue */
-    --ocean-blue: #00bcd4;
-    --ocean-dark: #0097a7;
-    --sky-blue: #e0f7fa;
-    --pale-blue: #f0f9ff;
-    --deep-navy: #263238;
-    --heading-color: #00838f;
+    /* Ana Gradient */
+    --gradient-primary: linear-gradient(135deg, #2d6a4f, #52b788);
     
-    /* Shadows - Hafif */
-    --shadow-sm: 0 2px 8px rgba(0, 188, 212, 0.08);
-    --shadow-md: 0 8px 24px rgba(0, 188, 212, 0.12);
-    --shadow-lg: 0 16px 48px rgba(0, 188, 212, 0.15);
-    --shadow-hover: 0 12px 32px rgba(0, 188, 212, 0.2);
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(45, 106, 79, 0.08);
+    --shadow-md: 0 8px 24px rgba(45, 106, 79, 0.12);
+    --shadow-lg: 0 16px 48px rgba(45, 106, 79, 0.15);
+    --shadow-hover: 0 12px 32px rgba(45, 106, 79, 0.2);
+    
+    /* CATEGORY COLORS */
+    --family-primary: #ff8c42;
+    --family-secondary: #ffa566;
+    --family-gradient: linear-gradient(135deg, #ff8c42, #ffa566);
+    --family-shadow: 0 10px 40px rgba(255, 140, 66, 0.3);
+    
+    --couples-primary: #d946a6;
+    --couples-secondary: #e879c0;
+    --couples-gradient: linear-gradient(135deg, #d946a6, #e879c0);
+    --couples-shadow: 0 10px 40px rgba(217, 70, 166, 0.3);
+    
+    --groups-primary: #3b82f6;
+    --groups-secondary: #60a5fa;
+    --groups-gradient: linear-gradient(135deg, #3b82f6, #60a5fa);
+    --groups-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+    
+    --honeymoon-primary: #7c3aed;
+    --honeymoon-secondary: #a78bfa;
+    --honeymoon-gradient: linear-gradient(135deg, #7c3aed, #a78bfa);
+    --honeymoon-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
+    
+    --solo-primary: #14b8a6;
+    --solo-secondary: #2dd4bf;
+    --solo-gradient: linear-gradient(135deg, #14b8a6, #2dd4bf);
+    --solo-shadow: 0 10px 40px rgba(20, 184, 166, 0.3);
     
     /* Transitions */
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -95,7 +116,7 @@ p {
 }
 
 /* ================================================
-   NAVIGATION - AÇIK BEYAZ TEMA
+   NAVIGATION
    ================================================ */
 nav {
     position: fixed;
@@ -108,24 +129,23 @@ nav {
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 20px rgba(0, 188, 212, 0.1);
-    border-bottom: 1px solid rgba(0, 188, 212, 0.1);
+    box-shadow: 0 2px 20px rgba(45, 106, 79, 0.1);
+    border-bottom: 1px solid rgba(45, 106, 79, 0.1);
 }
 
 nav.scrolled {
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 4px 30px rgba(0, 188, 212, 0.15);
+    box-shadow: 0 4px 30px rgba(45, 106, 79, 0.15);
 }
 
-/* Üst Bar - Açık Mavi */
 .header-top-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+    background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
     padding: 8px 50px;
     font-size: 11px;
-    border-bottom: 1px solid rgba(0, 188, 212, 0.15);
+    border-bottom: 1px solid rgba(45, 106, 79, 0.15);
 }
 
 .top-bar-left,
@@ -135,7 +155,7 @@ nav.scrolled {
 }
 
 .header-top-row a {
-    color: #00838f;
+    color: var(--dark);
     text-decoration: none;
     font-size: 11px;
     font-weight: 600;
@@ -146,15 +166,14 @@ nav.scrolled {
 }
 
 .header-top-row a:hover {
-    color: #00bcd4;
+    color: var(--primary);
 }
 
 .header-top-row i {
-    color: #00bcd4;
+    color: var(--primary);
     font-size: 12px;
 }
 
-/* Main Nav Container */
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -164,7 +183,6 @@ nav.scrolled {
     position: relative;
 }
 
-/* Logo - Açık Tema */
 .logo {
     display: flex;
     align-items: center;
@@ -176,8 +194,8 @@ nav.scrolled {
 .logo img {
     height: 38px;
     border-radius: 8px;
-    border: 2px solid var(--ocean-teal);
-    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2);
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(45, 106, 79, 0.2);
 }
 
 .logo-text {
@@ -189,7 +207,7 @@ nav.scrolled {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: 800;
-    color: var(--ocean-teal);
+    color: var(--primary);
     letter-spacing: 0.5px;
 }
 
@@ -201,7 +219,6 @@ nav.scrolled {
     font-weight: 600;
 }
 
-/* Nav Links - Açık Tema */
 .nav-links {
     display: flex;
     gap: 40px;
@@ -231,19 +248,18 @@ nav.scrolled {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: var(--ocean-teal);
+    background: var(--primary);
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--ocean-teal);
+    color: var(--primary);
 }
 
 .nav-links a:hover::before {
     width: 100%;
 }
 
-/* Language Switcher - Açık Tema */
 .lang-switcher {
     display: flex;
     gap: 8px;
@@ -264,19 +280,18 @@ nav.scrolled {
 }
 
 .lang-btn:hover {
-    background: var(--soft-blue);
-    border-color: var(--ocean-teal);
-    color: var(--ocean-teal);
+    background: var(--light);
+    border-color: var(--primary);
+    color: var(--primary);
     transform: translateY(-2px);
 }
 
 .lang-btn.active {
-    background: var(--ocean-teal);
-    border-color: var(--ocean-teal);
+    background: var(--primary);
+    border-color: var(--primary);
     color: white;
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -288,7 +303,7 @@ nav.scrolled {
 }
 
 /* ================================================
-   HERO SECTION - BLACK TOMATO STYLE
+   HERO SECTION
    ================================================ */
 .hero {
     position: relative;
@@ -319,7 +334,7 @@ nav.scrolled {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(224, 247, 250, 0.3) 0%, rgba(178, 235, 242, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(216, 243, 220, 0.3) 0%, rgba(149, 213, 178, 0.2) 100%);
     z-index: 2;
 }
 
@@ -341,7 +356,7 @@ nav.scrolled {
 .hero-badge {
     display: inline-block;
     padding: 10px 24px;
-    background: linear-gradient(135deg, var(--ocean-teal), var(--bright-cyan));
+    background: var(--gradient-primary);
     border-radius: 30px;
     color: white;
     font-size: 11px;
@@ -349,7 +364,7 @@ nav.scrolled {
     letter-spacing: 2.5px;
     margin-bottom: 25px;
     text-transform: uppercase;
-    box-shadow: 0 4px 20px rgba(0, 188, 212, 0.4);
+    box-shadow: 0 4px 20px rgba(45, 106, 79, 0.4);
 }
 
 .hero h1 {
@@ -363,11 +378,11 @@ nav.scrolled {
 }
 
 .hero-gradient {
-    background: linear-gradient(to right, var(--ocean-teal), var(--mint-green));
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 4px 15px rgba(0, 188, 212, 0.5));
+    filter: drop-shadow(0 4px 15px rgba(45, 106, 79, 0.5));
 }
 
 .hero p {
@@ -392,7 +407,7 @@ nav.scrolled {
     align-items: center;
     gap: 10px;
     padding: 15px 35px;
-    background: linear-gradient(135deg, var(--ocean-teal), var(--bright-cyan));
+    background: var(--gradient-primary);
     color: white;
     text-decoration: none;
     border-radius: 12px;
@@ -402,16 +417,16 @@ nav.scrolled {
     text-transform: uppercase;
     border: 2px solid transparent;
     transition: all 0.4s ease;
-    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+    box-shadow: 0 8px 25px rgba(45, 106, 79, 0.4);
     cursor: pointer;
 }
 
 .btn-hero-link:hover {
     background: white;
-    color: var(--ocean-teal);
-    border-color: var(--ocean-teal);
+    color: var(--primary);
+    border-color: var(--primary);
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 188, 212, 0.5);
+    box-shadow: 0 15px 40px rgba(45, 106, 79, 0.5);
 }
 
 .btn-hero-link i {
@@ -434,10 +449,10 @@ section {
 .section-badge {
     display: inline-block;
     padding: 10px 24px;
-    background: linear-gradient(135deg, var(--soft-blue), var(--light-teal));
-    border: 1px solid var(--ocean-teal);
+    background: linear-gradient(135deg, var(--light), var(--accent));
+    border: 1px solid var(--primary);
     border-radius: 20px;
-    color: var(--ocean-teal);
+    color: var(--primary);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2.5px;
@@ -460,7 +475,7 @@ section {
 }
 
 /* ================================================
-   TRAVEL CATEGORIES - BLACK TOMATO STYLE
+   TRAVEL CATEGORIES
    ================================================ */
 .travel-categories-section {
     background: #fafafa;
@@ -502,12 +517,12 @@ section {
 }
 
 .travel-tab:hover {
-    color: var(--ocean-teal);
+    color: var(--primary);
 }
 
 .travel-tab.active {
     color: var(--text-dark);
-    border-bottom-color: var(--ocean-teal);
+    border-bottom-color: var(--primary);
 }
 
 .categories-grid {
@@ -521,7 +536,7 @@ section {
 .category-image-card {
     position: relative;
     height: 400px;
-    border-radius: 0;
+    border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s ease;
@@ -549,15 +564,51 @@ section {
 .category-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 188, 212, 0.3) 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(45, 106, 79, 0.3) 100%);
     display: flex;
     align-items: flex-end;
     padding: 30px;
     transition: background 0.5s ease;
 }
 
-.category-image-card:hover .category-overlay {
-    background: linear-gradient(to bottom, rgba(0, 229, 255, 0.2) 0%, rgba(0, 188, 212, 0.5) 100%);
+.category-image-card[data-category="family"] .category-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 140, 66, 0.3) 100%);
+}
+
+.category-image-card[data-category="family"]:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(255, 140, 66, 0.2) 0%, rgba(255, 140, 66, 0.6) 100%);
+}
+
+.category-image-card[data-category="couples"] .category-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(217, 70, 166, 0.3) 100%);
+}
+
+.category-image-card[data-category="couples"]:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(217, 70, 166, 0.2) 0%, rgba(217, 70, 166, 0.6) 100%);
+}
+
+.category-image-card[data-category="groups"] .category-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(59, 130, 246, 0.3) 100%);
+}
+
+.category-image-card[data-category="groups"]:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.6) 100%);
+}
+
+.category-image-card[data-category="honeymoon"] .category-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(124, 58, 237, 0.3) 100%);
+}
+
+.category-image-card[data-category="honeymoon"]:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(124, 58, 237, 0.2) 0%, rgba(124, 58, 237, 0.6) 100%);
+}
+
+.category-image-card[data-category="solo"] .category-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(20, 184, 166, 0.3) 100%);
+}
+
+.category-image-card[data-category="solo"]:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(20, 184, 166, 0.2) 0%, rgba(20, 184, 166, 0.6) 100%);
 }
 
 .category-name {
@@ -580,7 +631,7 @@ section {
     align-items: center;
     gap: 12px;
     padding: 16px 45px;
-    background: var(--ocean-teal);
+    background: var(--primary);
     color: white;
     border-radius: 12px;
     font-size: 13px;
@@ -589,22 +640,22 @@ section {
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease;
-    border: 2px solid var(--ocean-teal);
-    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3);
+    border: 2px solid var(--primary);
+    box-shadow: 0 8px 25px rgba(45, 106, 79, 0.3);
 }
 
 .view-more-btn:hover {
     background: white;
-    color: var(--ocean-teal);
+    color: var(--primary);
     transform: translateY(-5px);
-    box-shadow: 0 20px 50px rgba(0, 188, 212, 0.4);
+    box-shadow: 0 20px 50px rgba(45, 106, 79, 0.4);
 }
 
 /* ================================================
-   POPULAR TRIPS - AÇIK BEYAZ TEMA
+   POPULAR TRIPS
    ================================================ */
 .popular-trips-section {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f7fa 100%);
+    background: linear-gradient(135deg, #f0f9ff 0%, #d8f3dc 100%);
     padding: 120px 50px;
     position: relative;
 }
@@ -616,7 +667,7 @@ section {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--ocean-teal), transparent);
+    background: linear-gradient(to right, transparent, var(--primary), transparent);
 }
 
 .popular-trips-header {
@@ -628,9 +679,9 @@ section {
 }
 
 .popular-trips-header .section-badge {
-    background: linear-gradient(135deg, var(--soft-blue), var(--light-teal));
-    border-color: var(--ocean-teal);
-    color: var(--ocean-teal);
+    background: linear-gradient(135deg, var(--light), var(--accent));
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 .popular-trips-header h2 {
@@ -662,13 +713,13 @@ section {
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 15px 50px rgba(0, 188, 212, 0.2);
+    box-shadow: 0 15px 50px rgba(45, 106, 79, 0.2);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .popular-trip-card:hover {
     transform: translateY(-20px);
-    box-shadow: 0 35px 90px rgba(0, 188, 212, 0.3);
+    box-shadow: 0 35px 90px rgba(45, 106, 79, 0.3);
 }
 
 .popular-trip-card img {
@@ -687,12 +738,12 @@ section {
 .trip-card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 188, 212, 0.4) 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(45, 106, 79, 0.4) 100%);
     transition: background 0.5s ease;
 }
 
 .popular-trip-card:hover .trip-card-overlay {
-    background: linear-gradient(to bottom, rgba(0, 229, 255, 0.2) 0%, rgba(0, 188, 212, 0.6) 100%);
+    background: linear-gradient(to bottom, rgba(82, 183, 136, 0.2) 0%, rgba(45, 106, 79, 0.6) 100%);
 }
 
 .trip-nights-badge {
@@ -700,7 +751,7 @@ section {
     top: 25px;
     right: 25px;
     background: rgba(255, 255, 255, 0.95);
-    color: var(--ocean-teal);
+    color: var(--primary);
     padding: 10px 20px;
     border-radius: 20px;
     font-size: 11px;
@@ -708,8 +759,8 @@ section {
     text-transform: uppercase;
     letter-spacing: 1px;
     z-index: 3;
-    border: 2px solid var(--ocean-teal);
-    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(45, 106, 79, 0.3);
 }
 
 .trip-card-content {
@@ -747,7 +798,7 @@ section {
 }
 
 .trip-card-price {
-    color: var(--mint-green);
+    color: var(--accent);
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 25px;
@@ -769,7 +820,7 @@ section {
     gap: 10px;
     padding: 14px 32px;
     background: white;
-    color: var(--ocean-teal);
+    color: var(--primary);
     border: 2px solid white;
     border-radius: 12px;
     font-weight: 700;
@@ -788,13 +839,13 @@ section {
 }
 
 .trip-card-button:hover {
-    background: var(--ocean-teal);
+    background: var(--primary);
     color: white;
-    border-color: var(--ocean-teal);
+    border-color: var(--primary);
 }
 
 /* ================================================
-   TOUR CARDS - MODERN STYLE
+   TOUR CARDS
    ================================================ */
 .tours-section {
     background: white;
@@ -821,7 +872,7 @@ section {
 
 .tour-card:hover {
     transform: translateY(-12px);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 25px 70px rgba(45, 106, 79, 0.2);
 }
 
 .tour-image {
@@ -898,7 +949,7 @@ section {
 
 .feature-tag i {
     font-size: 14px;
-    color: var(--ocean-teal);
+    color: var(--primary);
 }
 
 .tour-link {
@@ -916,7 +967,7 @@ section {
 
 .tour-card:hover .tour-link {
     gap: 12px;
-    color: var(--ocean-teal);
+    color: var(--primary);
 }
 
 /* ================================================
@@ -946,22 +997,22 @@ section {
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    border-color: var(--ocean-teal);
+    box-shadow: 0 20px 60px rgba(45, 106, 79, 0.15);
+    border-color: var(--primary);
 }
 
 .feature-icon {
     width: 70px;
     height: 70px;
     margin: 0 auto 25px;
-    background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(0, 217, 180, 0.1));
-    color: var(--ocean-teal);
+    background: linear-gradient(135deg, rgba(45, 106, 79, 0.1), rgba(82, 183, 136, 0.1));
+    color: var(--primary);
     border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 32px;
-    border: 2px solid var(--ocean-teal);
+    border: 2px solid var(--primary);
 }
 
 .feature-card h3 {
@@ -1004,7 +1055,7 @@ section {
 
 .blog-card:hover {
     transform: translateY(-12px);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 25px 70px rgba(45, 106, 79, 0.2);
 }
 
 .blog-image {
@@ -1102,7 +1153,7 @@ section {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--ocean-teal);
+    border-color: var(--primary);
     background: white;
 }
 
@@ -1156,12 +1207,12 @@ section {
 
 .info-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 60px rgba(45, 106, 79, 0.15);
 }
 
 .info-item i {
     font-size: 32px;
-    color: var(--ocean-teal);
+    color: var(--primary);
     margin-bottom: 15px;
 }
 
@@ -1180,7 +1231,7 @@ section {
 }
 
 /* ================================================
-   FOOTER - DARK THEME
+   FOOTER
    ================================================ */
 footer {
     background: var(--text-dark);
@@ -1212,7 +1263,7 @@ footer {
 .footer-logo img {
     height: 50px;
     border-radius: 8px;
-    border: 2px solid var(--mint-green);
+    border: 2px solid var(--accent);
 }
 
 .footer-brand p {
@@ -1242,10 +1293,10 @@ footer {
 }
 
 .social-links a:hover {
-    background: var(--ocean-teal);
+    background: var(--primary);
     color: white;
     transform: translateY(-5px);
-    border-color: var(--ocean-teal);
+    border-color: var(--primary);
 }
 
 .footer-column h4 {
@@ -1273,7 +1324,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: var(--ocean-teal);
+    color: var(--primary);
     padding-left: 8px;
 }
 
@@ -1367,7 +1418,7 @@ footer {
 
 .tour-hero-content .tour-badge {
     margin-bottom: 15px;
-    background: var(--ocean-teal);
+    background: var(--primary);
     color: white;
     font-size: 11px;
 }
@@ -1400,7 +1451,7 @@ footer {
 
 .tour-meta-item i {
     font-size: 22px;
-    color: var(--mint-green);
+    color: var(--accent);
 }
 
 .tour-meta-item span {
@@ -1434,7 +1485,7 @@ footer {
     color: var(--text-dark);
     margin-bottom: 25px;
     padding-bottom: 20px;
-    border-bottom: 3px solid var(--ocean-teal);
+    border-bottom: 3px solid var(--primary);
     font-weight: 800;
 }
 
@@ -1464,7 +1515,7 @@ footer {
     padding: 30px;
     border-radius: 0;
     margin: 30px 0;
-    border-left: 4px solid var(--ocean-teal);
+    border-left: 4px solid var(--primary);
 }
 
 .tour-highlights h4 {
@@ -1487,7 +1538,7 @@ footer {
 }
 
 .tour-highlights li i {
-    color: var(--ocean-teal);
+    color: var(--primary);
     font-size: 18px;
 }
 
@@ -1501,7 +1552,7 @@ footer {
     background: white;
     padding: 40px;
     border-radius: 0;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 50px rgba(45, 106, 79, 0.15);
     margin-bottom: 30px;
     border: 1px solid #e0e0e0;
 }
@@ -1524,7 +1575,7 @@ footer {
 .tour-price .price-amount {
     font-size: 42px;
     font-weight: 900;
-    color: var(--ocean-teal);
+    color: var(--primary);
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -1580,9 +1631,9 @@ footer {
 }
 
 .btn-secondary:hover {
-    background: var(--ocean-teal);
+    background: var(--primary);
     color: white;
-    border-color: var(--ocean-teal);
+    border-color: var(--primary);
     transform: translateY(-3px);
 }
 
@@ -1617,7 +1668,6 @@ footer {
     font-weight: 700;
 }
 
-/* GALLERY */
 .tour-gallery {
     margin: 50px 0;
 }
@@ -1646,7 +1696,7 @@ footer {
 
 .gallery-item:hover {
     transform: scale(1.03);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 50px rgba(45, 106, 79, 0.2);
 }
 
 .gallery-item img {
@@ -1660,7 +1710,6 @@ footer {
     transform: scale(1.1);
 }
 
-/* LIGHTBOX */
 .lightbox {
     display: none;
     position: fixed;
@@ -1712,7 +1761,7 @@ footer {
 }
 
 .lightbox-close:hover {
-    background: rgba(0, 188, 212, 0.8);
+    background: rgba(45, 106, 79, 0.8);
 }
 
 .lightbox-nav {
@@ -1735,7 +1784,7 @@ footer {
 }
 
 .lightbox-nav:hover {
-    background: rgba(0, 188, 212, 0.8);
+    background: rgba(45, 106, 79, 0.8);
 }
 
 .lightbox-prev { left: 25px; }
@@ -1787,7 +1836,7 @@ footer {
     }
     
     .nav-links a::before {
-        background: var(--mint-green);
+        background: var(--accent);
     }
 
     .menu-toggle {
@@ -1802,7 +1851,7 @@ footer {
         bottom: 30px;
         left: 40px;
         right: auto;
-        background: rgba(38, 50, 56, 0.95);
+        background: rgba(27, 67, 50, 0.95);
         padding: 15px;
         border-radius: 12px;
         z-index: 1000;
