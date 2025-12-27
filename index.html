@@ -28,7 +28,7 @@
 </head>
 <body>
 
-    <!-- NAVBAR - LITHUANIA TRAVEL STYLE -->
+    <!-- NAVBAR -->
     <nav id="navbar">
         <!-- Üst Bar -->
         <div class="header-top-row">
@@ -322,115 +322,134 @@
     <script src="app.js"></script>
     
     <script>
-        // ==================== MOBILE MENU ====================
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+    // ==================== CATEGORIES DATA ====================
+    const categoriesData = {
+        traveller: [
+            { name: 'FAMILY', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'family' },
+            { name: 'COUPLES', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: '#tours', category: 'couples' },
+            { name: 'GROUPS', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours', category: 'groups' },
+            { name: 'HONEYMOON', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours', category: 'honeymoon' },
+            { name: 'SOLO', image: 'assets/mardin-tarihi-konak-dokusu-2.webp', link: '#tours', category: 'solo' }
+        ],
+        destination: [
+            { name: 'TÜRKİYE', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'turkiye' },
+            { name: 'EUROPE', image: 'assets/spain-1.webp', link: '#tours', category: 'europe' },
+            { name: 'AMERICA', image: 'assets/new-york-1.webp', link: '#tours', category: 'america' },
+            { name: 'RUSSIA', image: 'assets/rusya-1.webp', link: '#tours', category: 'russia' },
+            { name: 'BRAZIL', image: 'assets/brazil-1.webp', link: '#tours', category: 'brazil' }
+        ],
+        month: [
+            { name: 'SPRING', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'spring' },
+            { name: 'SUMMER', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: '#tours', category: 'summer' },
+            { name: 'AUTUMN', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours', category: 'autumn' },
+            { name: 'WINTER', image: 'assets/rusya-1.webp', link: '#tours', category: 'winter' },
+            { name: 'YEAR ROUND', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours', category: 'year-round' }
+        ]
+    };
+
+    let popularTripsData = [];
+
+    function loadCategories(tab = 'traveller') {
+        const grid = document.getElementById('categoriesGrid');
+        if (!grid) {
+            console.error('❌ categoriesGrid bulunamadı!');
+            return;
+        }
         
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                navLinks.classList.toggle('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
-                }
-            });
+        const categories = categoriesData[tab];
+        grid.innerHTML = categories.map(cat => `
+            <div class="category-image-card" data-category="${cat.category}" onclick="window.location.href='${cat.link}'">
+                <img src="${cat.image}" alt="${cat.name}" loading="lazy">
+                <div class="category-overlay">
+                    <div class="category-name">${cat.name}</div>
+                </div>
+            </div>
+        `).join('');
+        
+        console.log(`✅ ${categories.length} kategori yüklendi (${tab})`);
+    }
 
-            // Menü dışına tıklanınca kapat
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.nav-container')) {
-                    navLinks.classList.remove('active');
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            });
+    async function loadPopularTrips() {
+        try {
+            const response = await fetch('data/tours.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const tours = await response.json();
+            
+            // Featured turları al, yoksa ilk 3'ü
+            popularTripsData = tours.filter(t => t.featured).slice(0, 3);
+            if (popularTripsData.length === 0) {
+                popularTripsData = tours.slice(0, 3);
+            }
+            
+            displayPopularTrips();
+            console.log(`✅ ${popularTripsData.length} popular trip yüklendi`);
+        } catch (error) {
+            console.error('❌ Popular trips yüklenemedi:', error);
+            const grid = document.getElementById('popularTripsGrid');
+            if (grid) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">Turlar yüklenirken hata oluştu.</p>';
+            }
         }
+    }
 
-        // ==================== NAVBAR SCROLL ====================
-        const navbar = document.getElementById('navbar');
-        if (navbar) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
+    function displayPopularTrips() {
+        const grid = document.getElementById('popularTripsGrid');
+        if (!grid) {
+            console.error('❌ popularTripsGrid bulunamadı!');
+            return;
         }
-
-        // ==================== CONTACT FORM ====================
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const name = document.getElementById('name')?.value || '';
-                const email = document.getElementById('email')?.value || '';
-                const phone = document.getElementById('phone')?.value || '';
-                const message = document.getElementById('message')?.value || '';
-                
-                const whatsappMessage = `Merhaba! Web sitenizden ulaşıyorum.%0A%0AAdım: ${name}%0AE-posta: ${email}%0ATelefon: ${phone}%0A%0AMesaj:%0A${message}`;
-                
-                window.open(`https://wa.me/902125551923?text=${whatsappMessage}`, '_blank');
-                
-                contactForm.reset();
-                alert('✓ Mesajınız WhatsApp üzerinden gönderiliyor...');
-            });
+        
+        if (popularTripsData.length === 0) {
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Henüz tur bulunmuyor.</p>';
+            return;
         }
+        
+        grid.innerHTML = popularTripsData.map(tour => {
+            const title = tour.title?.tr || tour.title || 'Başlık Yok';
+            const description = tour.description?.tr || tour.description || '';
+            const shortDesc = description.substring(0, 100) + (description.length > 100 ? '...' : '');
+            const duration = tour.duration || '7 Gün';
+            const price = tour.price || 'İletişime Geçin';
+            
+            return `
+                <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
+                    <img src="${tour.image}" alt="${title}" loading="lazy" 
+                         onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
+                    <div class="trip-card-overlay"></div>
+                    <div class="trip-nights-badge">${duration}</div>
+                    <div class="trip-card-content">
+                        <h3 class="trip-card-title">${title}</h3>
+                        <p class="trip-card-description">${shortDesc}</p>
+                        <div class="trip-card-price">From ${price}</div>
+                        <a href="tour-detail.html?id=${tour.id}" class="trip-card-button" onclick="event.stopPropagation()">
+                            <span>EXPLORE TRIP</span><i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        console.log(`✅ ${popularTripsData.length} popular trip gösteriliyor`);
+    }
 
-        // ==================== SMOOTH SCROLL ====================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                
-                if (href === '#' || href === '#!') {
-                    e.preventDefault();
-                    return;
-                }
-                
-                const target = document.querySelector(href);
-                
-                if (target) {
-                    e.preventDefault();
-                    
-                    // Mobil menüyü kapat
-                    if (navLinks) {
-                        navLinks.classList.remove('active');
-                    }
-                    if (menuToggle) {
-                        const icon = menuToggle.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
-                    }
-                    
-                    // Smooth scroll
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    // ==================== TAB SWITCHING ====================
+    document.querySelectorAll('.travel-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.travel-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            loadCategories(this.dataset.tab);
         });
+    });
 
-        // ==================== i18n INITIALIZATION ====================
-        if (typeof i18n !== 'undefined') {
-            i18n.init('tr').then(() => {
-                console.log('✅ i18n başlatıldı');
-            }).catch(e => {
-                console.error('❌ i18n hatası:', e);
-            });
-        }
-
-        // ==================== INITIALIZATION ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('✅ WalkAbout Travel - Sayfa yüklendi!');
-        });
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 Ana sayfa başlatılıyor...');
+        loadCategories('traveller');
+        loadPopularTrips();
+        console.log('✅ Categories ve Popular Trips yüklendi!');
+    });
     </script>
 </body>
 </html>
