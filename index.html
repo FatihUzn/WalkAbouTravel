@@ -322,99 +322,6 @@
     <script src="app.js"></script>
     
     <script>
-        // ==================== CATEGORIES DATA ====================
-        const categoriesData = {
-            traveller: [
-                { name: 'FAMILY', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours' },
-                { name: 'COUPLES', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: '#tours' },
-                { name: 'GROUPS', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours' },
-                { name: 'HONEYMOON', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours' },
-                { name: 'SOLO', image: 'assets/mardin-tarihi-konak-dokusu-2.webp', link: '#tours' }
-            ],
-            destination: [
-                { name: 'TÜRKIYE', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours' },
-                { name: 'EUROPE', image: 'assets/spain-1.webp', link: '#tours' },
-                { name: 'AMERICA', image: 'assets/new-york-1.webp', link: '#tours' },
-                { name: 'RUSSIA', image: 'assets/rusya-1.webp', link: '#tours' },
-                { name: 'BRAZIL', image: 'assets/brazil-1.webp', link: '#tours' }
-            ],
-            month: [
-                { name: 'SPRING', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours' },
-                { name: 'SUMMER', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: '#tours' },
-                { name: 'AUTUMN', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours' },
-                { name: 'WINTER', image: 'assets/rusya-1.webp', link: '#tours' },
-                { name: 'YEAR ROUND', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours' }
-            ]
-        };
-
-        let popularTripsData = [];
-
-        function loadCategories(tab = 'traveller') {
-            const grid = document.getElementById('categoriesGrid');
-            const categories = categoriesData[tab];
-            grid.innerHTML = categories.map(cat => `
-                <div class="category-image-card" onclick="window.location.href='${cat.link}'">
-                    <img src="${cat.image}" alt="${cat.name}" loading="lazy">
-                    <div class="category-overlay"><div class="category-name">${cat.name}</div></div>
-                </div>
-            `).join('');
-        }
-
-        async function loadPopularTrips() {
-            try {
-                const response = await fetch('data/tours.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const tours = await response.json();
-                popularTripsData = tours.filter(t => t.featured).slice(0, 3);
-                if (popularTripsData.length === 0) popularTripsData = tours.slice(0, 3);
-                displayPopularTrips();
-            } catch (error) {
-                console.error('Popular trips yüklenemedi:', error);
-                const grid = document.getElementById('popularTripsGrid');
-                if (grid) {
-                    grid.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">Turlar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>';
-                }
-            }
-        }
-
-        function displayPopularTrips() {
-            const grid = document.getElementById('popularTripsGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = popularTripsData.map(tour => {
-                const title = tour.title?.tr || tour.title || 'Başlık Yok';
-                const description = tour.description?.tr || tour.description || '';
-                const duration = tour.duration || '7 Days';
-                const price = tour.price || 'Contact Us';
-                return `
-                    <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
-                        <img src="${tour.image}" alt="${title}" loading="lazy">
-                        <div class="trip-card-overlay"></div>
-                        <div class="trip-nights-badge">${duration}</div>
-                        <div class="trip-card-content">
-                            <h3 class="trip-card-title">${title}</h3>
-                            <p class="trip-card-description">${description.substring(0, 100)}${description.length > 100 ? '...' : ''}</p>
-                            <div class="trip-card-price">From ${price}</div>
-                            <a href="tour-detail.html?id=${tour.id}" class="trip-card-button">
-                                <span>EXPLORE TRIP</span><i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // ==================== TAB SWITCHING ====================
-        document.querySelectorAll('.travel-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.travel-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                loadCategories(this.dataset.tab);
-            });
-        });
-
         // ==================== MOBILE MENU ====================
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -522,9 +429,7 @@
 
         // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', () => {
-            loadCategories('traveller');
-            loadPopularTrips();
-            console.log('✅ WalkAbout Travel - Tüm sistemler hazır!');
+            console.log('✅ WalkAbout Travel - Sayfa yüklendi!');
         });
     </script>
 </body>
