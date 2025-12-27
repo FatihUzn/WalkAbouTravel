@@ -3,7 +3,14 @@
    NOT: Dil değiştirme sistemi i18n.js tarafından yönetiliyor
    ================================================ */
 
-console.log('🚀 app.js yükleniyor...');
+// Development mode kontrolü
+const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+function log(...args) {
+    if (isDev) console.log(...args);
+}
+
+log('🚀 app.js yükleniyor...');
 
 // ==================== MOBILE MENU ====================
 function initMobileMenu() {
@@ -14,19 +21,44 @@ function initMobileMenu() {
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            console.log('📱 Mobil menü toggle:', navLinks.classList.contains('active'));
+            
+            // Icon değiştirme
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+            
+            log('📱 Mobil menü toggle:', navLinks.classList.contains('active'));
         });
 
         // Menü dışına tıklanınca kapat
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.nav-container')) {
                 navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
+                
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             }
         });
 
-        console.log('✅ Mobil menü hazır');
+        // ESC tuşu ile kapat
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        log('✅ Mobil menü hazır');
     }
 }
 
@@ -35,14 +67,21 @@ function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     
     if (navbar) {
+        let lastScroll = 0;
+        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > 100) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
-        console.log('✅ Navbar scroll efekti hazır');
+            
+            lastScroll = currentScroll;
+        }, { passive: true }); // Performance optimization
+        
+        log('✅ Navbar scroll efekti hazır');
     }
 }
 
@@ -54,34 +93,79 @@ function initContactForm() {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('name')?.value || '';
-            const email = document.getElementById('email')?.value || '';
-            const phone = document.getElementById('phone')?.value || '';
-            const message = document.getElementById('message')?.value || '';
+            // Form elemanlarını al
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const messageInput = document.getElementById('message');
             
-            console.log('📧 Form gönderiliyor:', { name, email, phone });
+            // Değerleri al
+            const name = nameInput?.value.trim() || '';
+            const email = emailInput?.value.trim() || '';
+            const phone = phoneInput?.value.trim() || '';
+            const message = messageInput?.value.trim() || '';
             
-            const whatsappMessage = `Merhaba! Web sitenizden ulaşıyorum.%0A%0AAdım: ${name}%0AE-posta: ${email}%0ATelefon: ${phone}%0A%0AMesaj:%0A${message}`;
+            // Validation
+            if (!name) {
+                alert('❌ Lütfen adınızı girin.');
+                nameInput?.focus();
+                return;
+            }
             
-            window.open(`https://wa.me/5491135870045?text=${whatsappMessage}`, '_blank');
+            if (!email) {
+                alert('❌ Lütfen e-posta adresinizi girin.');
+                emailInput?.focus();
+                return;
+            }
             
+            // Email format kontrolü
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('❌ Lütfen geçerli bir e-posta adresi girin.');
+                emailInput?.focus();
+                return;
+            }
+            
+            if (!message) {
+                alert('❌ Lütfen mesajınızı yazın.');
+                messageInput?.focus();
+                return;
+            }
+            
+            log('📧 Form gönderiliyor:', { name, email, phone });
+            
+            // WhatsApp mesajı oluştur
+            const whatsappMessage = encodeURIComponent(
+                `Merhaba! Web sitenizden ulaşıyorum.\n\n` +
+                `Adım: ${name}\n` +
+                `E-posta: ${email}\n` +
+                `Telefon: ${phone}\n\n` +
+                `Mesaj:\n${message}`
+            );
+            
+            // WhatsApp'ı aç (Türkiye numarası)
+            const whatsappURL = `https://wa.me/902125551923?text=${whatsappMessage}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Formu temizle
             contactForm.reset();
-            alert('✓ Mesajınız WhatsApp üzerinden gönderiliyor...');
+            
+            // Başarı mesajı
+            alert('✅ Mesajınız WhatsApp üzerinden gönderiliyor...');
         });
         
-        console.log('✅ İletişim formu hazır');
+        log('✅ İletişim formu hazır');
     }
 }
 
 // ==================== SMOOTH SCROLL ====================
 function initSmoothScroll() {
-    // Sadece # ile başlayan linkleri yakala
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             
             // Boş # veya #! kontrolü
-            if (href === '#' || href === '#!') {
+            if (!href || href === '#' || href === '#!') {
                 e.preventDefault();
                 return;
             }
@@ -95,23 +179,32 @@ function initSmoothScroll() {
                 const navLinks = document.querySelector('.nav-links');
                 const menuToggle = document.querySelector('.menu-toggle');
                 
-                if (navLinks) {
+                if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                 }
+                
                 if (menuToggle) {
-                    menuToggle.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
                 
+                // Navbar yüksekliğini hesaba kat
+                const navbarHeight = document.getElementById('navbar')?.offsetHeight || 0;
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+                
                 // Smooth scroll
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
     
-    console.log('✅ Smooth scroll hazır');
+    log('✅ Smooth scroll hazır');
 }
 
 // ==================== LAZY LOADING ====================
@@ -123,39 +216,136 @@ function initLazyLoading() {
                     const img = entry.target;
                     if (img.dataset.src) {
                         img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
                         img.classList.remove('lazy');
                         imageObserver.unobserve(img);
+                        
+                        log('🖼️ Lazy loaded:', img.src);
                     }
                 }
             });
+        }, {
+            rootMargin: '50px' // 50px önden yüklemeye başla
         });
 
-        document.querySelectorAll('img.lazy').forEach(img => {
+        const lazyImages = document.querySelectorAll('img.lazy, img[data-src]');
+        lazyImages.forEach(img => {
             imageObserver.observe(img);
         });
         
-        console.log('✅ Lazy loading hazır');
+        log(`✅ Lazy loading hazır (${lazyImages.length} resim)`);
+    } else {
+        // Fallback eski tarayıcılar için
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+        
+        log('⚠️ IntersectionObserver desteklenmiyor, tüm resimler yüklendi');
     }
 }
 
-// ==================== INITIALIZATION ====================
-// DOM hazır olduğunda çalıştır
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('📄 DOM yüklendi, app.js başlatılıyor...');
-        initMobileMenu();
-        initNavbarScroll();
-        initContactForm();
-        initSmoothScroll();
-        initLazyLoading();
-        console.log('✅ app.js - Tüm sistemler hazır!');
+// ==================== SCROLL TO TOP BUTTON ====================
+function initScrollToTop() {
+    // Scroll to top butonu oluştur (opsiyonel)
+    const scrollBtn = document.createElement('button');
+    scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    scrollBtn.className = 'scroll-to-top';
+    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+    scrollBtn.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--ocean-teal);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+    `;
+    
+    document.body.appendChild(scrollBtn);
+    
+    // Scroll event
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollBtn.style.opacity = '1';
+            scrollBtn.style.visibility = 'visible';
+        } else {
+            scrollBtn.style.opacity = '0';
+            scrollBtn.style.visibility = 'hidden';
+        }
+    }, { passive: true });
+    
+    // Click event
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-} else {
-    console.log('📄 DOM zaten hazır, app.js başlatılıyor...');
+    
+    log('✅ Scroll to top butonu hazır');
+}
+
+// ==================== PERFORMANCE OPTIMIZATION ====================
+function optimizePerformance() {
+    // Preload kritik fontları
+    const fonts = [
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap'
+    ];
+    
+    fonts.forEach(font => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'style';
+        link.href = font;
+        document.head.appendChild(link);
+    });
+    
+    log('✅ Performance optimizasyonu yapıldı');
+}
+
+// ==================== INITIALIZATION ====================
+function initApp() {
+    log('📄 DOM yüklendi, app.js başlatılıyor...');
+    
     initMobileMenu();
     initNavbarScroll();
     initContactForm();
     initSmoothScroll();
     initLazyLoading();
-    console.log('✅ app.js - Tüm sistemler hazır!');
+    initScrollToTop();
+    optimizePerformance();
+    
+    log('✅ app.js - Tüm sistemler hazır!');
+}
+
+// DOM hazır olduğunda çalıştır
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
+
+// Export fonksiyonlar (diğer scriptler kullanabilsin)
+if (typeof window !== 'undefined') {
+    window.WalkAboutApp = {
+        initMobileMenu,
+        initNavbarScroll,
+        initContactForm,
+        initSmoothScroll,
+        initLazyLoading
+    };
 }
