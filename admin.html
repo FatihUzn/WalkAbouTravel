@@ -501,10 +501,10 @@
         </div>
 
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('tours')">
+            <button class="tab active" onclick="switchTab('tours', this)">
                 <i class="fas fa-map-marked-alt"></i> Turlar
             </button>
-            <button class="tab" onclick="switchTab('blogs')">
+            <button class="tab" onclick="switchTab('blogs', this)">
                 <i class="fas fa-blog"></i> Blog Yazıları
             </button>
         </div>
@@ -1434,13 +1434,18 @@
         });
 
         // SEKME DEĞİŞTİRME
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            event.target.classList.add('active');
-            document.getElementById(tab + '-content').classList.add('active');
-        }
+       // SEKME DEĞİŞTİRME (DÜZELTİLMİŞ)
+function switchTab(tab, element) {
+    // Tüm sekmelerin active class'ını kaldır
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    // Tıklanan sekmeyi aktif yap
+    element.classList.add('active');
+    
+    // İlgili içeriği göster
+    document.getElementById(tab + '-content').classList.add('active');
+}
 
         // TURLARI YÜKLE (GitHub'dan veya yerel)
         async function loadTours() {
