@@ -554,13 +554,23 @@ function loadSavedTheme() {
     });
 
     // ==================== INITIALIZATION ====================
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('🚀 Ana sayfa başlatılıyor...');
-        loadCategories('traveller');
-        loadPopularTrips();
-        console.log('✅ Categories ve Popular Trips yüklendi!');
-    });
+    // ==================== INITIALIZATION ====================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Ana sayfa başlatılıyor...');
+    
+    // Kayıtlı temayı yükle
+    loadSavedTheme();
+    
+    // Categories yükle
+    loadCategories('traveller');
+    
+    // Popular trips yükle
+    loadPopularTrips();
+    
+    console.log('✅ Categories ve Popular Trips yüklendi!');
+});
     </script>
 </body>
 </html>
+
 
