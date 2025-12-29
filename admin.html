@@ -476,6 +476,53 @@
             font-weight: 700;
         }
 
+        /* BULK SAVE SECTION */
+        .bulk-save-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .bulk-save-section h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .bulk-save-section p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .bulk-save-section .btn {
+            background: white;
+            color: #059669;
+            font-size: 20px;
+            padding: 18px 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .bulk-save-section .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .bulk-save-section small {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
         @media (max-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr;
@@ -536,17 +583,17 @@
                     <h3><i class="fas fa-info-circle"></i> Nasıl Kullanılır?</h3>
                     <ol>
                         <li>Aşağıdaki formu Türkçe olarak doldurun</li>
-                        <li><strong>🌍 Otomatik Çeviri:</strong> "Otomatik Çevir" butonuna tıklayın (İngilizce alanlar otomatik dolacak)</li>
-                        <li><strong>✏️ Manuel Çeviri:</strong> İsterseniz İngilizce alanları kendiniz de yazabilirsiniz</li>
-                        <li>"Turu Kaydet" butonuna tıklayın</li>
-                        <li>Turlarınız otomatik olarak ana sayfada görünecek</li>
+                        <li><strong>🌍 Otomatik Çeviri:</strong> "Otomatik Çevir" butonuna tıklayın</li>
+                        <li><strong>✏️ Çoklu Ekleme:</strong> İstediğiniz kadar tur ekleyin (bellekte tutulur)</li>
+                        <li><strong>💾 Toplu Kaydetme:</strong> En son "TÜMÜNÜ KAYDET" butonuna basın</li>
+                        <li>tours.json dosyasını GitHub'a yükleyin</li>
                     </ol>
                 </div>
 
                 <div class="stats">
                     <div class="stat-card">
                         <h3 id="tourCount">0</h3>
-                        <p>Toplam Tur</p>
+                        <p>Toplam Tur (Bellekte)</p>
                     </div>
                     <div class="stat-card">
                         <h3 id="categoryCount">0</h3>
@@ -622,7 +669,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Eski Kategori (Opsiyonel - Geriye dönük uyumluluk)</label>
+                            <label>Eski Kategori (Opsiyonel)</label>
                             <select id="tourCategory">
                                 <option value="">Kategori Seçin</option>
                                 <option value="Türkiye">Türkiye Turları</option>
@@ -633,16 +680,16 @@
                             </select>
                         </div>
 
-                        <!-- GELİŞMİŞ KATEGORİ SİSTEMİ -->
+                        <!-- KATEGORİLER -->
                         <div class="form-group full-width" style="background: #f0f9ff; padding: 30px; border-radius: 16px; border: 2px solid #3b82f6; margin-top: 30px;">
                             <h3 style="font-size: 20px; margin-bottom: 25px; color: #1e40af; display: flex; align-items: center; gap: 12px;">
                                 <i class="fas fa-tags"></i> Tur Kategorileri (3 Boyutlu Kategorizasyon)
                             </h3>
                             
-                            <!-- 1. YOLCU TİPİ -->
+                            <!-- YOLCU TİPİ -->
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label style="font-size: 16px; color: #1e40af; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-users"></i> 1️⃣ Yolcu Tipi (Traveller Type) *
+                                    <i class="fas fa-users"></i> 1️⃣ Yolcu Tipi *
                                 </label>
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px;">
                                     <label class="category-checkbox">
@@ -666,15 +713,12 @@
                                         <span><i class="fas fa-user"></i> Solo</span>
                                     </label>
                                 </div>
-                                <p style="font-size: 13px; color: #64748b; margin-top: 10px;">
-                                    💡 Birden fazla seçim yapabilirsiniz (örn: hem Family hem Couples)
-                                </p>
                             </div>
                             
-                            <!-- 2. DESTİNASYON -->
+                            <!-- DESTİNASYON -->
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label style="font-size: 16px; color: #1e40af; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-globe-americas"></i> 2️⃣ Destinasyon (Destination) *
+                                    <i class="fas fa-globe-americas"></i> 2️⃣ Destinasyon *
                                 </label>
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px;">
                                     <label class="category-checkbox">
@@ -700,55 +744,44 @@
                                 </div>
                             </div>
                             
-                            <!-- 3. SEZON -->
+                            <!-- SEZON -->
                             <div class="form-group">
                                 <label style="font-size: 16px; color: #1e40af; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-calendar-alt"></i> 3️⃣ Sezon (Month/Season) *
+                                    <i class="fas fa-calendar-alt"></i> 3️⃣ Sezon *
                                 </label>
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px;">
                                     <label class="category-checkbox">
                                         <input type="checkbox" id="cat_spring" value="spring">
-                                        <span><i class="fas fa-seedling"></i> Spring (İlkbahar)</span>
+                                        <span><i class="fas fa-seedling"></i> Spring</span>
                                     </label>
                                     <label class="category-checkbox">
                                         <input type="checkbox" id="cat_summer" value="summer">
-                                        <span><i class="fas fa-sun"></i> Summer (Yaz)</span>
+                                        <span><i class="fas fa-sun"></i> Summer</span>
                                     </label>
                                     <label class="category-checkbox">
                                         <input type="checkbox" id="cat_autumn" value="autumn">
-                                        <span><i class="fas fa-leaf"></i> Autumn (Sonbahar)</span>
+                                        <span><i class="fas fa-leaf"></i> Autumn</span>
                                     </label>
                                     <label class="category-checkbox">
                                         <input type="checkbox" id="cat_winter" value="winter">
-                                        <span><i class="fas fa-snowflake"></i> Winter (Kış)</span>
+                                        <span><i class="fas fa-snowflake"></i> Winter</span>
                                     </label>
                                     <label class="category-checkbox">
                                         <input type="checkbox" id="cat_year_round" value="year-round">
-                                        <span><i class="fas fa-calendar-check"></i> Year Round (Tüm Yıl)</span>
+                                        <span><i class="fas fa-calendar-check"></i> Year Round</span>
                                     </label>
                                 </div>
-                            </div>
-                            
-                            <div style="background: #dbeafe; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid #3b82f6;">
-                                <p style="color: #1e40af; font-weight: 600; margin-bottom: 8px;">
-                                    <i class="fas fa-info-circle"></i> Nasıl Çalışır?
-                                </p>
-                                <ul style="color: #1e40af; font-size: 14px; margin-left: 20px; line-height: 1.8;">
-                                    <li>Her turda <strong>en az 1 kategori</strong> seçilmelidir</li>
-                                    <li>Ana sayfada kullanıcılar bu kategorilere göre <strong>filtreleme</strong> yapabilir</li>
-                                    <li>Örnek: "Family + Türkiye + Summer" = Aile için yaz tatili turları</li>
-                                </ul>
                             </div>
                         </div>
 
                         <div class="form-group full-width">
                             <label>Kısa Açıklama (Türkçe) *</label>
-                            <textarea id="tourDescription" required placeholder="Tur hakkında kısa bir açıklama yazın..."></textarea>
+                            <textarea id="tourDescription" required placeholder="Tur hakkında kısa bir açıklama..."></textarea>
                         </div>
 
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label style="font-size: 16px; margin-bottom: 15px; display: block;">
-                                🌍 Diğer Dil Açıklamaları (Otomatik doldurulacak)
+                                🌍 Diğer Dil Açıklamaları
                             </label>
                             
                             <div style="display: grid; gap: 15px;">
@@ -758,131 +791,122 @@
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇪🇸 İspanyolca</label>
-                                    <textarea id="tourDescriptionEs" placeholder="Descripción en español"></textarea>
+                                    <textarea id="tourDescriptionEs" placeholder="Descripción"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇷🇺 Rusça</label>
-                                    <textarea id="tourDescriptionRu" placeholder="Русское описание"></textarea>
+                                    <textarea id="tourDescriptionRu" placeholder="Описание"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇩🇪 Almanca</label>
-                                    <textarea id="tourDescriptionDe" placeholder="Deutsche Beschreibung"></textarea>
+                                    <textarea id="tourDescriptionDe" placeholder="Beschreibung"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇨🇳 Çince</label>
-                                    <textarea id="tourDescriptionZh" placeholder="中文描述"></textarea>
+                                    <textarea id="tourDescriptionZh" placeholder="描述"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇸🇦 Arapça</label>
-                                    <textarea id="tourDescriptionAr" placeholder="الوصف العربي"></textarea>
+                                    <textarea id="tourDescriptionAr" placeholder="الوصف"></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group full-width" style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
-                            <button type="button" class="btn btn-success" id="translateTourBtn" onclick="translateAllTourFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
-                                <i class="fas fa-globe-americas"></i> TÜM DİLLERE OTOMATİK ÇEVİR (6 DİL)
+                            <button type="button" class="btn btn-success" onclick="translateAllTourFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea;">
+                                <i class="fas fa-globe-americas"></i> OTOMATİK ÇEVİR (6 DİL)
                             </button>
-                            <p style="margin-top: 15px; color: white; font-size: 14px; font-weight: 500;">
-                                ⚡ Türkçe alanları otomatik olarak 6 dile çevirir: İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça
-                            </p>
-                            <p style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 12px;">
-                                ⏱️ Tahmini süre: 10-15 saniye
+                            <p style="margin-top: 15px; color: white; font-size: 14px;">
+                                ⚡ Türkçe → İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça
                             </p>
                         </div>
 
                         <div class="form-group full-width">
                             <label>Detaylı İçerik (Türkçe)</label>
-                            <textarea id="tourContent" style="min-height: 200px;" placeholder="Turun detaylı açıklaması, program, dahil olan hizmetler..."></textarea>
+                            <textarea id="tourContent" style="min-height: 200px;" placeholder="Detaylı açıklama..."></textarea>
                         </div>
 
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label style="font-size: 16px; margin-bottom: 15px; display: block;">
-                                🌍 Detaylı İçerik - Diğer Diller (Otomatik doldurulacak)
+                                🌍 Detaylı İçerik - Diğer Diller
                             </label>
                             
                             <div style="display: grid; gap: 15px;">
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇬🇧 İngilizce</label>
-                                    <textarea id="tourContentEn" style="min-height: 150px;" placeholder="Detailed English content"></textarea>
+                                    <textarea id="tourContentEn" style="min-height: 150px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇪🇸 İspanyolca</label>
-                                    <textarea id="tourContentEs" style="min-height: 150px;" placeholder="Contenido detallado en español"></textarea>
+                                    <textarea id="tourContentEs" style="min-height: 150px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇷🇺 Rusça</label>
-                                    <textarea id="tourContentRu" style="min-height: 150px;" placeholder="Подробное русское содержание"></textarea>
+                                    <textarea id="tourContentRu" style="min-height: 150px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇩🇪 Almanca</label>
-                                    <textarea id="tourContentDe" style="min-height: 150px;" placeholder="Detaillierter deutscher Inhalt"></textarea>
+                                    <textarea id="tourContentDe" style="min-height: 150px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇨🇳 Çince</label>
-                                    <textarea id="tourContentZh" style="min-height: 150px;" placeholder="详细的中文内容"></textarea>
+                                    <textarea id="tourContentZh" style="min-height: 150px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇸🇦 Arapça</label>
-                                    <textarea id="tourContentAr" style="min-height: 150px;" placeholder="المحتوى التفصيلي العربي"></textarea>
+                                    <textarea id="tourContentAr" style="min-height: 150px;"></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group full-width">
                             <label>Tur Resmi (Ana Kapak) *</label>
-                            <input type="text" id="tourImage" placeholder="Resim URL'si girin (örnek: https://example.com/image.jpg)">
+                            <input type="text" id="tourImage" placeholder="Resim URL'si">
                             <div class="image-upload-area" style="margin-top: 10px;">
                                 <i class="fas fa-image"></i>
-                                <p>Resim URL'sini yukarıdaki alana yapıştırın</p>
+                                <p>Resim URL'sini yapıştırın</p>
                                 <img id="tourImagePreview" class="image-preview" style="display: none;">
                             </div>
                         </div>
 
-                        <!-- YENİ: ÇOK FOTOĞRAFLI GALERİ YÖNETİMİ -->
+                        <!-- GALERİ -->
                         <div class="form-group full-width" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 16px; border: 2px solid #22c55e; margin-top: 30px;">
                             <h3 style="font-size: 20px; margin-bottom: 20px; color: #15803d; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-images"></i> Tur Galerisi (Çoklu Fotoğraf)
+                                <i class="fas fa-images"></i> Tur Galerisi
                             </h3>
                             
-                            <p style="color: #16a34a; margin-bottom: 20px; line-height: 1.6;">
-                                📸 Tura <strong>sınırsız</strong> fotoğraf ekleyebilirsiniz. Tour detail sayfasında galeri olarak gösterilir.
+                            <p style="color: #16a34a; margin-bottom: 20px;">
+                                📸 Sınırsız fotoğraf ekle
                             </p>
                             
-                            <!-- Fotoğraf Ekleme Formu -->
                             <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-bottom: 20px;">
                                 <input 
                                     type="text" 
                                     id="newGalleryImage" 
-                                    placeholder="Fotoğraf URL'sini buraya yapıştırın..."
-                                    style="padding: 14px 18px; border: 2px solid #86efac; border-radius: 10px; font-size: 14px;"
+                                    placeholder="Fotoğraf URL'si..."
+                                    style="padding: 14px 18px; border: 2px solid #86efac; border-radius: 10px;"
                                 >
                                 <button 
                                     type="button" 
                                     onclick="addGalleryImage()" 
                                     class="btn btn-success"
-                                    style="white-space: nowrap; padding: 14px 30px;"
                                 >
                                     <i class="fas fa-plus"></i> Ekle
                                 </button>
                             </div>
                             
-                            <!-- Galeri Önizleme -->
-                            <div id="galleryPreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
-                                <!-- JavaScript ile dolacak -->
-                            </div>
+                            <div id="galleryPreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;"></div>
                             
                             <div id="galleryEmpty" style="text-align: center; padding: 40px; color: #86efac; border: 2px dashed #86efac; border-radius: 12px;">
-                                <i class="fas fa-images" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
-                                <p>Henüz galeri fotoğrafı eklenmemiş</p>
-                                <p style="font-size: 13px; margin-top: 8px;">Yukarıdaki alana URL yapıştırıp "Ekle" butonuna basın</p>
+                                <i class="fas fa-images" style="font-size: 48px; opacity: 0.5;"></i>
+                                <p>Henüz fotoğraf yok</p>
                             </div>
                         </div>
                     </div>
 
                     <div style="display: flex; gap: 15px; margin-top: 20px;">
                         <button type="submit" class="btn btn-success">
-                            <i class="fas fa-save"></i> Turu Kaydet
+                            <i class="fas fa-save"></i> Turu Listeye Ekle
                         </button>
                         <button type="button" class="btn btn-secondary" onclick="resetTourForm()">
                             <i class="fas fa-times"></i> İptal
@@ -890,20 +914,35 @@
                     </div>
                 </form>
 
+                <!-- TOPLU KAYDETME BÖLÜMÜ -->
+                <div class="bulk-save-section">
+                    <h3>
+                        <i class="fas fa-database"></i> Toplu Kaydetme
+                    </h3>
+                    <p>
+                        Bellekte <strong id="unsavedCount">0</strong> tur var. Tüm turları tek seferde JSON dosyası olarak indir ve GitHub'a yükle!
+                    </p>
+                    <button onclick="saveToursToFile()" class="btn">
+                        <i class="fas fa-download"></i> TÜMÜNÜ KAYDET (<span id="downloadCount">0</span> TUR)
+                    </button>
+                    <small>
+                        💡 İpucu: Önce tüm turları ekle, sonra bu butona bas!
+                    </small>
+                </div>
+
                 <div class="items-list">
-                    <h2 class="section-title">Mevcut Turlar</h2>
+                    <h2 class="section-title">Bellekteki Turlar (Kaydedilmemiş)</h2>
                     <div id="toursList"></div>
                 </div>
             </div>
 
-            <!-- BLOG SEKMESİ -->
+            <!-- BLOG SEKMESİ (Aynı kalıyor, sadece açıklama ekledim) -->
             <div id="blogs-content" class="tab-content">
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> Blog Nasıl Eklenir?</h3>
                     <ol>
                         <li>Blog başlığı ve içeriği Türkçe yazın</li>
-                        <li><strong>🌍 Otomatik Çeviri:</strong> "Otomatik Çevir" butonuna tıklayın</li>
-                        <li><strong>✏️ Manuel:</strong> İsterseniz İngilizce alanları kendiniz düzenleyin</li>
+                        <li>"Otomatik Çevir" butonuna tıklayın</li>
                         <li>Kapak resmi URL'si ekleyin</li>
                         <li>"Blog Yazısını Kaydet" butonuna tıklayın</li>
                     </ol>
@@ -912,7 +951,7 @@
                 <div class="stats">
                     <div class="stat-card">
                         <h3 id="blogCount">0</h3>
-                        <p>Toplam Blog Yazısı</p>
+                        <p>Toplam Blog</p>
                     </div>
                     <div class="stat-card" style="cursor: pointer;" onclick="refreshBlogsFromGitHub()">
                         <h3><i class="fas fa-sync-alt"></i></h3>
@@ -937,40 +976,40 @@
 
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label style="font-size: 16px; margin-bottom: 15px; display: block;">
-                                🌍 Diğer Dil Başlıkları (Otomatik doldurulacak)
+                                🌍 Diğer Dil Başlıkları
                             </label>
                             
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇬🇧 İngilizce</label>
-                                    <input type="text" id="blogTitleEn" placeholder="English Title">
+                                    <input type="text" id="blogTitleEn">
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇪🇸 İspanyolca</label>
-                                    <input type="text" id="blogTitleEs" placeholder="Título español">
+                                    <input type="text" id="blogTitleEs">
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇷🇺 Rusça</label>
-                                    <input type="text" id="blogTitleRu" placeholder="Русский">
+                                    <input type="text" id="blogTitleRu">
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇩🇪 Almanca</label>
-                                    <input type="text" id="blogTitleDe" placeholder="Deutsch">
+                                    <input type="text" id="blogTitleDe">
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇨🇳 Çince</label>
-                                    <input type="text" id="blogTitleZh" placeholder="中文">
+                                    <input type="text" id="blogTitleZh">
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇸🇦 Arapça</label>
-                                    <input type="text" id="blogTitleAr" placeholder="العربية">
+                                    <input type="text" id="blogTitleAr">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Yazar</label>
-                            <input type="text" id="blogAuthor" placeholder="Örnek: Ahmet Yılmaz">
+                            <input type="text" id="blogAuthor" placeholder="Ahmet Yılmaz">
                         </div>
 
                         <div class="form-group">
@@ -986,98 +1025,92 @@
 
                         <div class="form-group full-width">
                             <label>Kısa Özet (Türkçe) *</label>
-                            <textarea id="blogExcerpt" required placeholder="Blog yazısının kısa özeti..."></textarea>
+                            <textarea id="blogExcerpt" required></textarea>
                         </div>
 
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label style="font-size: 16px; margin-bottom: 15px; display: block;">
-                                🌍 Özet - Diğer Diller (Otomatik doldurulacak)
+                                🌍 Özet - Diğer Diller
                             </label>
                             
                             <div style="display: grid; gap: 15px;">
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇬🇧 İngilizce</label>
-                                    <textarea id="blogExcerptEn" placeholder="English excerpt"></textarea>
+                                    <textarea id="blogExcerptEn"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇪🇸 İspanyolca</label>
-                                    <textarea id="blogExcerptEs" placeholder="Resumen español"></textarea>
+                                    <textarea id="blogExcerptEs"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇷🇺 Rusça</label>
-                                    <textarea id="blogExcerptRu" placeholder="Русская выдержка"></textarea>
+                                    <textarea id="blogExcerptRu"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇩🇪 Almanca</label>
-                                    <textarea id="blogExcerptDe" placeholder="Deutsche Zusammenfassung"></textarea>
+                                    <textarea id="blogExcerptDe"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇨🇳 Çince</label>
-                                    <textarea id="blogExcerptZh" placeholder="中文摘要"></textarea>
+                                    <textarea id="blogExcerptZh"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇸🇦 Arapça</label>
-                                    <textarea id="blogExcerptAr" placeholder="ملخص عربي"></textarea>
+                                    <textarea id="blogExcerptAr"></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group full-width" style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
-                            <button type="button" class="btn btn-success" id="translateBlogBtn" onclick="translateAllBlogFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
-                                <i class="fas fa-globe-americas"></i> TÜM DİLLERE OTOMATİK ÇEVİR (6 DİL)
+                            <button type="button" class="btn btn-success" onclick="translateAllBlogFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea;">
+                                <i class="fas fa-globe-americas"></i> OTOMATİK ÇEVİR
                             </button>
-                            <p style="margin-top: 15px; color: white; font-size: 14px; font-weight: 500;">
-                                ⚡ Türkçe alanları otomatik olarak 6 dile çevirir
-                            </p>
-                            <p style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 12px;">
-                                ⏱️ Tahmini süre: 10-15 saniye
-                            </p>
                         </div>
 
                         <div class="form-group full-width">
                             <label>Blog İçeriği (Türkçe) *</label>
-                            <textarea id="blogContent" required style="min-height: 250px;" placeholder="Blog yazısının tam içeriği..."></textarea>
+                            <textarea id="blogContent" required style="min-height: 250px;"></textarea>
                         </div>
 
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label style="font-size: 16px; margin-bottom: 15px; display: block;">
-                                🌍 İçerik - Diğer Diller (Otomatik doldurulacak)
+                                🌍 İçerik - Diğer Diller
                             </label>
                             
                             <div style="display: grid; gap: 15px;">
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇬🇧 İngilizce</label>
-                                    <textarea id="blogContentEn" style="min-height: 200px;" placeholder="English content"></textarea>
+                                    <textarea id="blogContentEn" style="min-height: 200px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇪🇸 İspanyolca</label>
-                                    <textarea id="blogContentEs" style="min-height: 200px;" placeholder="Contenido español"></textarea>
+                                    <textarea id="blogContentEs" style="min-height: 200px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇷🇺 Rusça</label>
-                                    <textarea id="blogContentRu" style="min-height: 200px;" placeholder="Русский контент"></textarea>
+                                    <textarea id="blogContentRu" style="min-height: 200px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇩🇪 Almanca</label>
-                                    <textarea id="blogContentDe" style="min-height: 200px;" placeholder="Deutscher Inhalt"></textarea>
+                                    <textarea id="blogContentDe" style="min-height: 200px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇨🇳 Çince</label>
-                                    <textarea id="blogContentZh" style="min-height: 200px;" placeholder="中文内容"></textarea>
+                                    <textarea id="blogContentZh" style="min-height: 200px;"></textarea>
                                 </div>
                                 <div class="form-group" style="margin: 0;">
                                     <label>🇸🇦 Arapça</label>
-                                    <textarea id="blogContentAr" style="min-height: 200px;" placeholder="المحتوى العربي"></textarea>
+                                    <textarea id="blogContentAr" style="min-height: 200px;"></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group full-width">
                             <label>Kapak Resmi *</label>
-                            <input type="text" id="blogImage" required placeholder="Resim URL'si girin">
+                            <input type="text" id="blogImage" required>
                             <div class="image-upload-area" style="margin-top: 10px;">
                                 <i class="fas fa-image"></i>
-                                <p>Resim URL'sini yukarıdaki alana yapıştırın</p>
+                                <p>Resim URL'si</p>
                                 <img id="blogImagePreview" class="image-preview" style="display: none;">
                             </div>
                         </div>
@@ -1085,7 +1118,7 @@
 
                     <div style="display: flex; gap: 15px; margin-top: 20px;">
                         <button type="submit" class="btn btn-success">
-                            <i class="fas fa-save"></i> Blog Yazısını Kaydet
+                            <i class="fas fa-save"></i> Blog Kaydet
                         </button>
                         <button type="button" class="btn btn-secondary" onclick="resetBlogForm()">
                             <i class="fas fa-times"></i> İptal
@@ -1093,16 +1126,27 @@
                     </div>
                 </form>
 
+                <!-- BLOG İÇİN DE TOPLU KAYDETME -->
+                <div class="bulk-save-section">
+                    <h3>
+                        <i class="fas fa-database"></i> Toplu Blog Kaydetme
+                    </h3>
+                    <p>
+                        Bellekte <strong id="unsavedBlogCount">0</strong> blog var.
+                    </p>
+                    <button onclick="saveBlogsToFile()" class="btn">
+                        <i class="fas fa-download"></i> TÜMÜNÜ KAYDET (<span id="downloadBlogCount">0</span> BLOG)
+                    </button>
+                </div>
+
                 <div class="items-list">
-                    <h2 class="section-title">Mevcut Blog Yazıları</h2>
+                    <h2 class="section-title">Bellekteki Bloglar</h2>
                     <div id="blogsList"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@vitalets/google-translate-api@9.2.0/dist/index.min.js"></script>
-    
     <script>
         // GLOBAL DEĞİŞKENLER
         let tours = [];
@@ -1140,145 +1184,108 @@
             }
         }
 
-        // TUR İÇİN ÇOK DİLLİ ÇEVİRİ
+        // TUR ÇEVİRİSİ
         async function translateAllTourFields() {
-            const translateBtn = document.getElementById('translateTourBtn');
-            const originalText = translateBtn.innerHTML;
-            
             const titleTr = document.getElementById('tourTitle').value;
             const descTr = document.getElementById('tourDescription').value;
             const contentTr = document.getElementById('tourContent').value;
 
             if (!titleTr && !descTr && !contentTr) {
-                showAlert('tourAlert', '⚠️ Lütfen önce Türkçe alanları doldurun!', 'error');
+                showAlert('tourAlert', '⚠️ Türkçe alanları doldurun!', 'error');
                 return;
             }
 
-            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...';
-            translateBtn.disabled = true;
+            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...', 'info');
 
             try {
                 const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
-                let progress = 0;
-                const totalSteps = languages.length * 3;
 
                 for (const lang of languages) {
                     if (titleTr) {
                         const translated = await translateText(titleTr, lang);
                         document.getElementById(`tourTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                        progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
                     if (descTr) {
                         const translated = await translateText(descTr, lang);
                         document.getElementById(`tourDescription${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                        progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
                     if (contentTr) {
                         const translated = await translateText(contentTr, lang);
                         document.getElementById(`tourContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                        progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
                     await new Promise(resolve => setTimeout(resolve, 300));
                 }
 
-                showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉', 'success');
+                showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı!', 'success');
             } catch (error) {
                 showAlert('tourAlert', '❌ Çeviri hatası!', 'error');
-            } finally {
-                translateBtn.innerHTML = originalText;
-                translateBtn.disabled = false;
             }
         }
 
-        // BLOG İÇİN ÇOK DİLLİ ÇEVİRİ
+        // BLOG ÇEVİRİSİ
         async function translateAllBlogFields() {
-            const translateBtn = document.getElementById('translateBlogBtn');
-            const originalText = translateBtn.innerHTML;
-            
             const titleTr = document.getElementById('blogTitle').value;
             const excerptTr = document.getElementById('blogExcerpt').value;
             const contentTr = document.getElementById('blogContent').value;
 
             if (!titleTr && !excerptTr && !contentTr) {
-                showAlert('blogAlert', '⚠️ Lütfen önce Türkçe alanları doldurun!', 'error');
+                showAlert('blogAlert', '⚠️ Türkçe alanları doldurun!', 'error');
                 return;
             }
 
-            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...';
-            translateBtn.disabled = true;
+            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...', 'info');
 
             try {
                 const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
-                let progress = 0;
-                const totalSteps = languages.length * 3;
 
                 for (const lang of languages) {
                     if (titleTr) {
                         const translated = await translateText(titleTr, lang);
                         document.getElementById(`blogTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                        progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
                     if (excerptTr) {
                         const translated = await translateText(excerptTr, lang);
                         document.getElementById(`blogExcerpt${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                        progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
                     if (contentTr) {
                         const translated = await translateText(contentTr, lang);
                         document.getElementById(`blogContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                        progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
                     await new Promise(resolve => setTimeout(resolve, 300));
                 }
 
-                showAlert('blogAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉', 'success');
+                showAlert('blogAlert', '✅ Çeviri tamamlandı!', 'success');
             } catch (error) {
                 showAlert('blogAlert', '❌ Çeviri hatası!', 'error');
-            } finally {
-                translateBtn.innerHTML = originalText;
-                translateBtn.disabled = false;
             }
         }
 
-        // GALERİ YÖNETİMİ
+        // GALERİ FONKSİYONLARI
         function addGalleryImage() {
             const input = document.getElementById('newGalleryImage');
             const url = input.value.trim();
             
             if (!url) {
-                showAlert('tourAlert', '⚠️ Lütfen bir fotoğraf URL\'si girin!', 'error');
+                showAlert('tourAlert', '⚠️ URL girin!', 'error');
                 return;
-            }
-            
-            if (!url.match(/\.(jpeg|jpg|gif|png|webp)$/i) && !url.includes('unsplash') && !url.includes('pexels')) {
-                if (!confirm('Bu bir resim URL\'si gibi görünmüyor. Yine de eklemek istiyor musunuz?')) {
-                    return;
-                }
             }
             
             currentGallery.push(url);
             input.value = '';
             updateGalleryPreview();
-            showAlert('tourAlert', '✅ Fotoğraf galeriye eklendi!', 'success');
+            showAlert('tourAlert', '✅ Fotoğraf eklendi!', 'success');
         }
 
         function removeGalleryImage(index) {
-            if (confirm('Bu fotoğrafı galeriden kaldırmak istediğinizden emin misiniz?')) {
+            if (confirm('Kaldırmak istediğinizden emin misiniz?')) {
                 currentGallery.splice(index, 1);
                 updateGalleryPreview();
-                showAlert('tourAlert', '🗑️ Fotoğraf galeriden kaldırıldı', 'success');
             }
         }
 
@@ -1297,7 +1304,7 @@
             
             container.innerHTML = currentGallery.map((url, index) => `
                 <div class="gallery-item">
-                    <img src="${url}" alt="Gallery ${index + 1}" onerror="this.src='https://via.placeholder.com/150?text=Invalid+URL'">
+                    <img src="${url}" alt="Gallery ${index + 1}">
                     <button class="gallery-item-delete" onclick="removeGalleryImage(${index})" type="button">
                         <i class="fas fa-times"></i>
                     </button>
@@ -1306,7 +1313,7 @@
             `).join('');
         }
 
-        // KATEGORİ TOPLAMA
+        // KATEGORİ FONKSİYONLARI
         function getSelectedCategories() {
             const categories = {
                 traveller: [],
@@ -1335,7 +1342,6 @@
             return categories;
         }
 
-        // KATEGORİLERİ AYARLA
         function setSelectedCategories(categories) {
             if (!categories) return;
             
@@ -1361,7 +1367,7 @@
             }
         }
 
-        // GITHUB'DAN YENİLE
+        // GITHUB YENİLE
         async function refreshToursFromGitHub() {
             showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
             
@@ -1374,7 +1380,8 @@
                     displayTours();
                     updateTourStats();
                     updateFeaturedTours();
-                    showAlert('tourAlert', `✅ ${tours.length} tur güncellendi!`, 'success');
+                    updateBulkCounts();
+                    showAlert('tourAlert', `✅ ${tours.length} tur yüklendi!`, 'success');
                 } else {
                     showAlert('tourAlert', '❌ Yüklenemedi!', 'error');
                 }
@@ -1394,7 +1401,8 @@
                     blogs = await response.json();
                     displayBlogs();
                     updateBlogStats();
-                    showAlert('blogAlert', `✅ ${blogs.length} blog güncellendi!`, 'success');
+                    updateBulkCounts();
+                    showAlert('blogAlert', `✅ ${blogs.length} blog yüklendi!`, 'success');
                 } else {
                     showAlert('blogAlert', '❌ Yüklenemedi!', 'error');
                 }
@@ -1403,21 +1411,54 @@
             }
         }
 
+        // TOPLU SAYAÇLARI GÜNCELLE
+        function updateBulkCounts() {
+            document.getElementById('unsavedCount').textContent = tours.length;
+            document.getElementById('downloadCount').textContent = tours.length;
+            document.getElementById('unsavedBlogCount').textContent = blogs.length;
+            document.getElementById('downloadBlogCount').textContent = blogs.length;
+        }
+
         // SAYFA YÜKLENİNCE
         document.addEventListener('DOMContentLoaded', () => {
+            // localStorage'dan taslak yükle
+            const draftTours = localStorage.getItem('draftTours');
+            if (draftTours) {
+                const confirm = window.confirm('Kaydedilmemiş turlar bulundu! Geri yüklemek ister misin?');
+                if (confirm) {
+                    tours = JSON.parse(draftTours);
+                    displayTours();
+                    updateTourStats();
+                    updateBulkCounts();
+                    showAlert('tourAlert', `✅ ${tours.length} tur geri yüklendi!`, 'success');
+                }
+            }
+            
             loadTours();
             loadBlogs();
             setupImagePreviews();
             setupForms();
             updateGalleryPreview();
+            updateBulkCounts();
         });
 
-        // SEKME DEĞİŞTİRME (DÜZELTİLMİŞ - ESNEKLİK EKLENDİ)
+        // Otomatik taslak kaydetme (her 30 saniyede bir)
+        setInterval(() => {
+            if (tours.length > 0) {
+                localStorage.setItem('draftTours', JSON.stringify(tours));
+                console.log('💾 Taslak kaydedildi:', tours.length, 'tur');
+            }
+            if (blogs.length > 0) {
+                localStorage.setItem('draftBlogs', JSON.stringify(blogs));
+                console.log('💾 Taslak kaydedildi:', blogs.length, 'blog');
+            }
+        }, 30000);
+
+        // SEKME DEĞİŞTİRME
         function switchTab(tab, element) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             
-            // Eğer element verilmediyse, DOM'dan bul
             if (!element) {
                 element = document.querySelector(`.tab[onclick*="${tab}"]`);
             }
@@ -1436,27 +1477,20 @@
                 const githubResponse = await fetch(githubUrl);
                 
                 if (githubResponse.ok) {
-                    tours = await githubResponse.json();
-                    showAlert('tourAlert', `✅ ${tours.length} tur yüklendi!`, 'success');
-                } else {
-                    throw new Error('Yüklenemedi');
+                    const githubTours = await githubResponse.json();
+                    // Bellekteki turlar varsa birleştir
+                    if (tours.length === 0) {
+                        tours = githubTours;
+                    }
                 }
             } catch (error) {
-                try {
-                    const response = await fetch('data/tours.json');
-                    if (response.ok) {
-                        tours = await response.json();
-                    } else {
-                        tours = [];
-                    }
-                } catch (err) {
-                    tours = [];
-                }
+                console.log('GitHub yüklenemedi');
             }
             
             displayTours();
             updateTourStats();
             updateFeaturedTours();
+            updateBulkCounts();
         }
 
         // FEATURED TOURS
@@ -1469,7 +1503,7 @@
             if (featuredTours.length === 0) {
                 featuredContainer.innerHTML = `
                     <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
-                        <i class="fas fa-star" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
+                        <i class="fas fa-star" style="font-size: 48px; opacity: 0.3;"></i>
                         <p>Henüz öne çıkan tur yok.</p>
                     </div>
                 `;
@@ -1484,7 +1518,7 @@
                             ⭐ FEATURED
                         </span>
                     </div>
-                    <p style="color: #64748b; font-size: 14px; margin: 8px 0;">${tour.location} • ${tour.price}</p>
+                    <p style="color: #64748b; font-size: 14px;">${tour.location} • ${tour.price}</p>
                     <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
                         <i class="fas fa-star-half-alt"></i> Kaldır
                     </button>
@@ -1504,7 +1538,6 @@
             }
             
             tour.featured = !tour.featured;
-            saveToursToFile();
             displayTours();
             updateFeaturedTours();
             
@@ -1531,7 +1564,7 @@
                 return `
                 <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
                     ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
-                    <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+                    <img src="${tour.image}" alt="${tour.title}" class="item-image">
                     <div class="item-info">
                         <h3>${tour.title}</h3>
                         <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
@@ -1541,7 +1574,7 @@
                         </p>
                     </div>
                     <div class="item-actions">
-                        <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')" title="${tour.featured ? 'Kaldır' : 'Öne çıkar'}">
+                        <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')">
                             <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
                         </button>
                         <button class="btn btn-primary" onclick="editTour('${tour.id}')">
@@ -1595,7 +1628,7 @@
             });
         }
 
-        // TURU KAYDET
+        // TURU KAYDET (YENİ - TOPLU KAYDETME)
         async function saveTour(e) {
             e.preventDefault();
 
@@ -1643,20 +1676,29 @@
             if (editingTourId) {
                 const index = tours.findIndex(t => t.id === editingTourId);
                 tours[index] = tourData;
-                showAlert('tourAlert', `✅ Tur güncellendi!`, 'success');
+                showAlert('tourAlert', `✅ Tur güncellendi! (Toplam: ${tours.length})`, 'success');
             } else {
                 tours.push(tourData);
-                showAlert('tourAlert', `✅ Yeni tur eklendi!`, 'success');
+                showAlert('tourAlert', `✅ Tur eklendi! (Toplam: ${tours.length}) - "TÜMÜNÜ KAYDET" butonuna basın`, 'success');
             }
 
-            await saveToursToFile();
+            // ❌ ARTIK OTOMATİK KAYDETME YOK!
+            // await saveToursToFile();
+            
             displayTours();
             updateTourStats();
             updateFeaturedTours();
+            updateBulkCounts();
             resetTourForm();
         }
 
+        // TÜMÜNÜ KAYDET (YENİ)
         async function saveToursToFile() {
+            if (tours.length === 0) {
+                showAlert('tourAlert', '⚠️ Kaydedilecek tur yok!', 'error');
+                return;
+            }
+
             const json = JSON.stringify(tours, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -1666,7 +1708,10 @@
             a.download = 'tours.json';
             a.click();
             
-            showAlert('tourAlert', '✅ tours.json indirildi!', 'success');
+            // localStorage'ı temizle
+            localStorage.removeItem('draftTours');
+            
+            showAlert('tourAlert', `✅ ${tours.length} tur JSON olarak indirildi! GitHub'a yükle.`, 'success');
         }
 
         function editTour(id) {
@@ -1725,10 +1770,10 @@
             if (!confirm('Silmek istediğinizden emin misiniz?')) return;
             
             tours = tours.filter(t => t.id !== id);
-            saveToursToFile();
             displayTours();
             updateTourStats();
             updateFeaturedTours();
+            updateBulkCounts();
             showAlert('tourAlert', 'Tur silindi!', 'success');
         }
 
@@ -1756,26 +1801,18 @@
                 const githubResponse = await fetch(githubUrl);
                 
                 if (githubResponse.ok) {
-                    blogs = await githubResponse.json();
-                    showAlert('blogAlert', `✅ ${blogs.length} blog yüklendi!`, 'success');
-                } else {
-                    throw new Error('Yüklenemedi');
+                    const githubBlogs = await githubResponse.json();
+                    if (blogs.length === 0) {
+                        blogs = githubBlogs;
+                    }
                 }
             } catch (error) {
-                try {
-                    const response = await fetch('data/blog-posts.json');
-                    if (response.ok) {
-                        blogs = await response.json();
-                    } else {
-                        blogs = [];
-                    }
-                } catch (err) {
-                    blogs = [];
-                }
+                console.log('GitHub yüklenemedi');
             }
             
             displayBlogs();
             updateBlogStats();
+            updateBulkCounts();
         }
 
         function displayBlogs() {
@@ -1788,7 +1825,7 @@
 
             container.innerHTML = blogs.map(blog => `
                 <div class="item-card">
-                    <img src="${blog.image}" alt="${blog.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+                    <img src="${blog.image}" alt="${blog.title}" class="item-image">
                     <div class="item-info">
                         <h3>${blog.title}</h3>
                         <p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
@@ -1847,19 +1884,24 @@
             if (editingBlogId) {
                 const index = blogs.findIndex(b => b.id === editingBlogId);
                 blogs[index] = blogData;
-                showAlert('blogAlert', 'Blog güncellendi!', 'success');
+                showAlert('blogAlert', `✅ Blog güncellendi! (Toplam: ${blogs.length})`, 'success');
             } else {
                 blogs.push(blogData);
-                showAlert('blogAlert', 'Blog eklendi!', 'success');
+                showAlert('blogAlert', `✅ Blog eklendi! (Toplam: ${blogs.length})`, 'success');
             }
 
-            await saveBlogsToFile();
             displayBlogs();
             updateBlogStats();
+            updateBulkCounts();
             resetBlogForm();
         }
 
         async function saveBlogsToFile() {
+            if (blogs.length === 0) {
+                showAlert('blogAlert', '⚠️ Kaydedilecek blog yok!', 'error');
+                return;
+            }
+
             const json = JSON.stringify(blogs, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -1869,7 +1911,9 @@
             a.download = 'blog-posts.json';
             a.click();
             
-            showAlert('blogAlert', '✅ blog-posts.json indirildi!', 'success');
+            localStorage.removeItem('draftBlogs');
+            
+            showAlert('blogAlert', `✅ ${blogs.length} blog JSON olarak indirildi!`, 'success');
         }
 
         function editBlog(id) {
@@ -1908,7 +1952,6 @@
             preview.src = blog.image;
             preview.style.display = 'block';
 
-            // Blog sekmesine geç (element parametresi olmadan çağır)
             switchTab('blogs');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1917,9 +1960,9 @@
             if (!confirm('Silmek istediğinizden emin misiniz?')) return;
             
             blogs = blogs.filter(b => b.id !== id);
-            saveBlogsToFile();
             displayBlogs();
             updateBlogStats();
+            updateBulkCounts();
             showAlert('blogAlert', 'Blog silindi!', 'success');
         }
 
