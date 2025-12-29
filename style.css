@@ -2148,3 +2148,224 @@ body {
 .theme-indicator i {
     margin-right: 8px;
 }
+/* ================================================
+   DYNAMIC CATEGORY THEMES
+   ================================================ */
+
+/* FAMILY THEME - Warm Orange */
+body.theme-family {
+    --primary: #ff8c42;
+    --secondary: #ffa566;
+    --accent: #ffd4a3;
+    --gradient-primary: linear-gradient(135deg, #ff8c42, #ffa566);
+    --shadow-sm: 0 2px 8px rgba(255, 140, 66, 0.08);
+    --shadow-md: 0 8px 24px rgba(255, 140, 66, 0.12);
+    --shadow-lg: 0 16px 48px rgba(255, 140, 66, 0.15);
+}
+
+/* COUPLES THEME - Romantic Pink */
+body.theme-couples {
+    --primary: #d946a6;
+    --secondary: #e879c0;
+    --accent: #f5a3d6;
+    --gradient-primary: linear-gradient(135deg, #d946a6, #e879c0);
+    --shadow-sm: 0 2px 8px rgba(217, 70, 166, 0.08);
+    --shadow-md: 0 8px 24px rgba(217, 70, 166, 0.12);
+    --shadow-lg: 0 16px 48px rgba(217, 70, 166, 0.15);
+}
+
+/* GROUPS THEME - Energetic Blue */
+body.theme-groups {
+    --primary: #3b82f6;
+    --secondary: #60a5fa;
+    --accent: #93c5fd;
+    --gradient-primary: linear-gradient(135deg, #3b82f6, #60a5fa);
+    --shadow-sm: 0 2px 8px rgba(59, 130, 246, 0.08);
+    --shadow-md: 0 8px 24px rgba(59, 130, 246, 0.12);
+    --shadow-lg: 0 16px 48px rgba(59, 130, 246, 0.15);
+}
+
+/* HONEYMOON THEME - Deep Purple */
+body.theme-honeymoon {
+    --primary: #7c3aed;
+    --secondary: #a78bfa;
+    --accent: #c4b5fd;
+    --gradient-primary: linear-gradient(135deg, #7c3aed, #a78bfa);
+    --shadow-sm: 0 2px 8px rgba(124, 58, 237, 0.08);
+    --shadow-md: 0 8px 24px rgba(124, 58, 237, 0.12);
+    --shadow-lg: 0 16px 48px rgba(124, 58, 237, 0.15);
+}
+
+/* SOLO THEME - Cool Teal */
+body.theme-solo {
+    --primary: #14b8a6;
+    --secondary: #2dd4bf;
+    --accent: #5eead4;
+    --gradient-primary: linear-gradient(135deg, #14b8a6, #2dd4bf);
+    --shadow-sm: 0 2px 8px rgba(20, 184, 166, 0.08);
+    --shadow-md: 0 8px 24px rgba(20, 184, 166, 0.12);
+    --shadow-lg: 0 16px 48px rgba(20, 184, 166, 0.15);
+}
+
+/* Category page specific styles */
+.category-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    margin-top: 138px;
+}
+
+.category-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--primary);
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.category-hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.category-hero h1 {
+    font-size: 56px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.category-hero h1 i {
+    margin-right: 15px;
+}
+
+.category-hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    opacity: 0.95;
+    color: white;
+}
+
+.category-filters {
+    background: white;
+    padding: 30px 50px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 138px;
+    z-index: 100;
+}
+
+.filter-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    background: white;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.view-all-btn {
+    padding: 12px 30px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-all-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tours-count {
+    font-size: 14px;
+    color: var(--text-medium);
+    font-weight: 600;
+}
+
+.tours-count span {
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+@media (max-width: 992px) {
+    .category-hero {
+        height: 50vh;
+        min-height: 400px;
+        margin-top: 70px;
+    }
+    
+    .category-hero h1 {
+        font-size: 36px;
+    }
+    
+    .category-filters {
+        padding: 20px 30px;
+        top: 70px;
+    }
+    
+    .filter-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-hero h1 {
+        font-size: 28px;
+    }
+    
+    .category-filters {
+        padding: 20px;
+    }
+}
