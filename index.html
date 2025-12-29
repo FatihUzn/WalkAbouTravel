@@ -324,13 +324,16 @@
     <script>
     // ==================== CATEGORIES DATA ====================
     const categoriesData = {
-        traveller: [
-            { name: 'FAMILY', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'family' },
-            { name: 'COUPLES', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: '#tours', category: 'couples' },
-            { name: 'GROUPS', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours', category: 'groups' },
-            { name: 'HONEYMOON', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours', category: 'honeymoon' },
-            { name: 'SOLO', image: 'assets/mardin-tarihi-konak-dokusu-2.webp', link: '#tours', category: 'solo' }
-        ],
+        const categoriesData = {
+    traveller: [
+        { name: 'FAMILY', image: 'assets/kapadokya-balon-turu-3.webp', link: 'family.html', category: 'family' },
+        { name: 'COUPLES', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: 'couples.html', category: 'couples' },
+        { name: 'GROUPS', image: 'assets/pamukkale-traverten-dogal-1.webp', link: 'groups.html', category: 'groups' },
+        { name: 'HONEYMOON', image: 'assets/antalya-koy-gezisi-1.webp', link: 'honeymoon.html', category: 'honeymoon' },
+        { name: 'SOLO', image: 'assets/mardin-tarihi-konak-dokusu-2.webp', link: 'solo.html', category: 'solo' }
+    ],
+    // ... (destination ve month aynı kalacak)
+};
         destination: [
             { name: 'TÜRKİYE', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'turkiye' },
             { name: 'EUROPE', image: 'assets/spain-1.webp', link: '#tours', category: 'europe' },
@@ -572,5 +575,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
