@@ -3043,85 +3043,57 @@ body.theme-solo .header-top-row {
     }
 }
 /* ================================================
-   HERO OVERLAY FIX - Daha Az Yoğun Renkler
+   ULTRA LIGHT HERO OVERLAY
    ================================================ */
 
-/* Hero background'u daha soft yap */
+/* Tüm kategoriler için ultra soft */
 .category-hero {
-    background: rgba(255, 255, 255, 0.95) !important; /* Neredeyse beyaz */
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.75) 0%, 
+        rgba(255, 255, 255, 0.65) 100%) !important;
 }
 
-/* FAMILY - Soft Turuncu Overlay */
+.category-hero::before {
+    opacity: 0.5 !important; /* Fotoğraf net görünsün */
+    filter: brightness(1.1) !important; /* Fotoğrafı biraz aydınlat */
+}
+
+/* Renk tonları sadece gradient'te hafifçe */
 body.theme-family .category-hero {
     background: linear-gradient(135deg, 
-        rgba(249, 115, 22, 0.25) 0%, 
-        rgba(251, 146, 60, 0.20) 100%) !important;
+        rgba(249, 115, 22, 0.12) 0%, 
+        rgba(251, 146, 60, 0.08) 100%) !important;
 }
 
-body.theme-family .category-hero::before {
-    opacity: 0.35 !important; /* Fotoğraf daha çok görünsün */
-    mix-blend-mode: overlay !important;
-}
-
-/* COUPLES - Soft Pembe Overlay */
 body.theme-couples .category-hero {
     background: linear-gradient(135deg, 
-        rgba(236, 72, 153, 0.25) 0%, 
-        rgba(244, 114, 182, 0.20) 100%) !important;
+        rgba(236, 72, 153, 0.12) 0%, 
+        rgba(244, 114, 182, 0.08) 100%) !important;
 }
 
-body.theme-couples .category-hero::before {
-    opacity: 0.35 !important;
-    mix-blend-mode: overlay !important;
-}
-
-/* GROUPS - Soft Mavi Overlay */
 body.theme-groups .category-hero {
     background: linear-gradient(135deg, 
-        rgba(59, 130, 246, 0.25) 0%, 
-        rgba(96, 165, 250, 0.20) 100%) !important;
+        rgba(59, 130, 246, 0.12) 0%, 
+        rgba(96, 165, 250, 0.08) 100%) !important;
 }
 
-body.theme-groups .category-hero::before {
-    opacity: 0.35 !important;
-    mix-blend-mode: overlay !important;
-}
-
-/* HONEYMOON - Soft Mor Overlay */
 body.theme-honeymoon .category-hero {
     background: linear-gradient(135deg, 
-        rgba(139, 92, 246, 0.25) 0%, 
-        rgba(167, 139, 250, 0.20) 100%) !important;
+        rgba(139, 92, 246, 0.12) 0%, 
+        rgba(167, 139, 250, 0.08) 100%) !important;
 }
 
-body.theme-honeymoon .category-hero::before {
-    opacity: 0.35 !important;
-    mix-blend-mode: overlay !important;
-}
-
-/* SOLO - Soft Teal Overlay */
 body.theme-solo .category-hero {
     background: linear-gradient(135deg, 
-        rgba(20, 184, 166, 0.25) 0%, 
-        rgba(45, 212, 191, 0.20) 100%) !important;
+        rgba(20, 184, 166, 0.12) 0%, 
+        rgba(45, 212, 191, 0.08) 100%) !important;
 }
 
-body.theme-solo .category-hero::before {
-    opacity: 0.35 !important;
-    mix-blend-mode: overlay !important;
-}
-
-/* Text'leri daha koyu yap (arka plan açık olduğu için) */
+/* Text'leri güçlü tut */
 .category-hero h1,
 .category-hero p {
     color: white !important;
     text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.3),
-        0 4px 12px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* İkon için özel gölge */
-.category-hero h1 i {
-    text-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.4) !important;
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3) !important;
 }
