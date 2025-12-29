@@ -1109,7 +1109,7 @@
         let blogs = [];
         let editingTourId = null;
         let editingBlogId = null;
-        let currentGallery = []; // YENİ: Galeri yönetimi
+        let currentGallery = [];
 
         // DİL KODLARI
         const LANGUAGES = {
@@ -1121,12 +1121,11 @@
             ar: 'Arapça'
         };
 
-        // ÇEVİRİ FONKSİYONU (Ücretsiz, limitli)
+        // ÇEVİRİ FONKSİYONU
         async function translateText(text, targetLang) {
             if (!text) return '';
             
             try {
-                // Google Translate API kullanarak çeviri
                 const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=tr&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
                 const response = await fetch(url);
                 const data = await response.json();
@@ -1146,7 +1145,6 @@
             const translateBtn = document.getElementById('translateTourBtn');
             const originalText = translateBtn.innerHTML;
             
-            // Türkçe alanları al
             const titleTr = document.getElementById('tourTitle').value;
             const descTr = document.getElementById('tourDescription').value;
             const contentTr = document.getElementById('tourContent').value;
@@ -1156,47 +1154,42 @@
                 return;
             }
 
-            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor... (Bu 10-15 saniye sürebilir)';
+            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...';
             translateBtn.disabled = true;
 
             try {
                 const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
                 let progress = 0;
-                const totalSteps = languages.length * 3; // 3 alan (başlık, açıklama, içerik)
+                const totalSteps = languages.length * 3;
 
                 for (const lang of languages) {
-                    // Başlık çevir
                     if (titleTr) {
                         const translated = await translateText(titleTr, lang);
                         document.getElementById(`tourTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                         progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
-                    // Açıklama çevir
                     if (descTr) {
                         const translated = await translateText(descTr, lang);
                         document.getElementById(`tourDescription${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                         progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
-                    // İçerik çevir
                     if (contentTr) {
                         const translated = await translateText(contentTr, lang);
                         document.getElementById(`tourContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                         progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
-                    // API rate limit'i aşmamak için gecikme
                     await new Promise(resolve => setTimeout(resolve, 300));
                 }
 
-                showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉 (İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça)', 'success');
+                showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉', 'success');
             } catch (error) {
-                showAlert('tourAlert', '❌ Çeviri hatası! İnternet bağlantınızı kontrol edin.', 'error');
-                console.error('Çeviri hatası:', error);
+                showAlert('tourAlert', '❌ Çeviri hatası!', 'error');
             } finally {
                 translateBtn.innerHTML = originalText;
                 translateBtn.disabled = false;
@@ -1208,7 +1201,6 @@
             const translateBtn = document.getElementById('translateBlogBtn');
             const originalText = translateBtn.innerHTML;
             
-            // Türkçe alanları al
             const titleTr = document.getElementById('blogTitle').value;
             const excerptTr = document.getElementById('blogExcerpt').value;
             const contentTr = document.getElementById('blogContent').value;
@@ -1218,7 +1210,7 @@
                 return;
             }
 
-            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor... (Bu 10-15 saniye sürebilir)';
+            translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...';
             translateBtn.disabled = true;
 
             try {
@@ -1227,38 +1219,33 @@
                 const totalSteps = languages.length * 3;
 
                 for (const lang of languages) {
-                    // Başlık çevir
                     if (titleTr) {
                         const translated = await translateText(titleTr, lang);
                         document.getElementById(`blogTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                         progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
-                    // Özet çevir
                     if (excerptTr) {
                         const translated = await translateText(excerptTr, lang);
                         document.getElementById(`blogExcerpt${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                         progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
-                    // İçerik çevir
                     if (contentTr) {
                         const translated = await translateText(contentTr, lang);
                         document.getElementById(`blogContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                         progress++;
-                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}% - ${LANGUAGES[lang]} çevriliyor...`;
+                        translateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${Math.round((progress/totalSteps)*100)}%`;
                     }
 
-                    // API rate limit'i aşmamak için gecikme
                     await new Promise(resolve => setTimeout(resolve, 300));
                 }
 
-                showAlert('blogAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉 (İngilizce, İspanyolca, Rusça, Almanca, Çince, Arapça)', 'success');
+                showAlert('blogAlert', '✅ Tüm dillere çeviri tamamlandı! 🎉', 'success');
             } catch (error) {
-                showAlert('blogAlert', '❌ Çeviri hatası! İnternet bağlantınızı kontrol edin.', 'error');
-                console.error('Çeviri hatası:', error);
+                showAlert('blogAlert', '❌ Çeviri hatası!', 'error');
             } finally {
                 translateBtn.innerHTML = originalText;
                 translateBtn.disabled = false;
@@ -1275,7 +1262,6 @@
                 return;
             }
             
-            // URL validasyonu
             if (!url.match(/\.(jpeg|jpg|gif|png|webp)$/i) && !url.includes('unsplash') && !url.includes('pexels')) {
                 if (!confirm('Bu bir resim URL\'si gibi görünmüyor. Yine de eklemek istiyor musunuz?')) {
                     return;
@@ -1320,7 +1306,7 @@
             `).join('');
         }
 
-        // KATEGORİ TOPLAMA FONKSİYONU
+        // KATEGORİ TOPLAMA
         function getSelectedCategories() {
             const categories = {
                 traveller: [],
@@ -1328,21 +1314,18 @@
                 month: []
             };
             
-            // Traveller types
             ['family', 'couples', 'groups', 'honeymoon', 'solo'].forEach(cat => {
                 if (document.getElementById(`cat_${cat}`).checked) {
                     categories.traveller.push(cat);
                 }
             });
             
-            // Destinations
             ['turkiye', 'europe', 'america', 'russia', 'brazil'].forEach(cat => {
                 if (document.getElementById(`cat_${cat}`).checked) {
                     categories.destination.push(cat);
                 }
             });
             
-            // Months/Seasons
             ['spring', 'summer', 'autumn', 'winter', 'year-round'].forEach(cat => {
                 if (document.getElementById(`cat_${cat}`).checked) {
                     categories.month.push(cat);
@@ -1352,11 +1335,10 @@
             return categories;
         }
 
-        // KATEGORİLERİ AYARLA (Düzenleme için)
+        // KATEGORİLERİ AYARLA
         function setSelectedCategories(categories) {
             if (!categories) return;
             
-            // Traveller
             if (categories.traveller) {
                 categories.traveller.forEach(cat => {
                     const checkbox = document.getElementById(`cat_${cat}`);
@@ -1364,7 +1346,6 @@
                 });
             }
             
-            // Destination
             if (categories.destination) {
                 categories.destination.forEach(cat => {
                     const checkbox = document.getElementById(`cat_${cat}`);
@@ -1372,7 +1353,6 @@
                 });
             }
             
-            // Month
             if (categories.month) {
                 categories.month.forEach(cat => {
                     const checkbox = document.getElementById(`cat_${cat}`);
@@ -1381,46 +1361,45 @@
             }
         }
 
-        // GITHUB'DAN MANUEL YENİLE (TURLAR)
+        // GITHUB'DAN YENİLE
         async function refreshToursFromGitHub() {
-            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> GitHub\'dan yükleniyor...', 'info');
+            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
             
             try {
                 const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/tours.json';
-                const response = await fetch(githubUrl + '?t=' + Date.now()); // Cache bypass
+                const response = await fetch(githubUrl + '?t=' + Date.now());
                 
                 if (response.ok) {
                     tours = await response.json();
                     displayTours();
                     updateTourStats();
                     updateFeaturedTours();
-                    showAlert('tourAlert', `✅ ${tours.length} tur GitHub'dan güncellendi!`, 'success');
+                    showAlert('tourAlert', `✅ ${tours.length} tur güncellendi!`, 'success');
                 } else {
-                    showAlert('tourAlert', '❌ GitHub\'dan yüklenemedi! Bağlantıyı kontrol edin.', 'error');
+                    showAlert('tourAlert', '❌ Yüklenemedi!', 'error');
                 }
             } catch (error) {
-                showAlert('tourAlert', '❌ Hata: İnternet bağlantınızı kontrol edin.', 'error');
+                showAlert('tourAlert', '❌ Hata!', 'error');
             }
         }
 
-        // GITHUB'DAN MANUEL YENİLE (BLOGLAR)
         async function refreshBlogsFromGitHub() {
-            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> GitHub\'dan yükleniyor...', 'info');
+            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
             
             try {
                 const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/blog-posts.json';
-                const response = await fetch(githubUrl + '?t=' + Date.now()); // Cache bypass
+                const response = await fetch(githubUrl + '?t=' + Date.now());
                 
                 if (response.ok) {
                     blogs = await response.json();
                     displayBlogs();
                     updateBlogStats();
-                    showAlert('blogAlert', `✅ ${blogs.length} blog yazısı GitHub'dan güncellendi!`, 'success');
+                    showAlert('blogAlert', `✅ ${blogs.length} blog güncellendi!`, 'success');
                 } else {
-                    showAlert('blogAlert', '❌ GitHub\'dan yüklenemedi! Bağlantıyı kontrol edin.', 'error');
+                    showAlert('blogAlert', '❌ Yüklenemedi!', 'error');
                 }
             } catch (error) {
-                showAlert('blogAlert', '❌ Hata: İnternet bağlantınızı kontrol edin.', 'error');
+                showAlert('blogAlert', '❌ Hata!', 'error');
             }
         }
 
@@ -1430,53 +1409,48 @@
             loadBlogs();
             setupImagePreviews();
             setupForms();
-            updateGalleryPreview(); // Galeri önizlemesini başlat
+            updateGalleryPreview();
         });
 
-        // SEKME DEĞİŞTİRME
-       // SEKME DEĞİŞTİRME (DÜZELTİLMİŞ)
-function switchTab(tab, element) {
-    // Tüm sekmelerin active class'ını kaldır
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    
-    // Tıklanan sekmeyi aktif yap
-    element.classList.add('active');
-    
-    // İlgili içeriği göster
-    document.getElementById(tab + '-content').classList.add('active');
-}
+        // SEKME DEĞİŞTİRME (DÜZELTİLMİŞ - ESNEKLİK EKLENDİ)
+        function switchTab(tab, element) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Eğer element verilmediyse, DOM'dan bul
+            if (!element) {
+                element = document.querySelector(`.tab[onclick*="${tab}"]`);
+            }
+            
+            if (element) {
+                element.classList.add('active');
+            }
+            
+            document.getElementById(tab + '-content').classList.add('active');
+        }
 
-        // TURLARI YÜKLE (GitHub'dan veya yerel)
+        // TURLARI YÜKLE
         async function loadTours() {
             try {
-                // Önce GitHub'dan dene
                 const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/tours.json';
                 const githubResponse = await fetch(githubUrl);
                 
                 if (githubResponse.ok) {
                     tours = await githubResponse.json();
-                    console.log('✅ Turlar GitHub\'dan yüklendi:', tours.length);
-                    showAlert('tourAlert', `✅ ${tours.length} tur GitHub'dan yüklendi!`, 'success');
+                    showAlert('tourAlert', `✅ ${tours.length} tur yüklendi!`, 'success');
                 } else {
-                    throw new Error('GitHub\'dan yüklenemedi');
+                    throw new Error('Yüklenemedi');
                 }
             } catch (error) {
-                console.warn('⚠️ GitHub\'dan yüklenemedi, yerel dosya deneniyor...');
-                
-                // GitHub yoksa yerel dosyadan dene
                 try {
                     const response = await fetch('data/tours.json');
                     if (response.ok) {
                         tours = await response.json();
-                        console.log('✅ Turlar yerel dosyadan yüklendi:', tours.length);
                     } else {
                         tours = [];
-                        console.log('ℹ️ Henüz tur yok, yeni liste oluşturuldu');
                     }
                 } catch (err) {
                     tours = [];
-                    console.log('ℹ️ Henüz tur yok, yeni liste oluşturuldu');
                 }
             }
             
@@ -1485,7 +1459,7 @@ function switchTab(tab, element) {
             updateFeaturedTours();
         }
 
-        // Featured Tours Management
+        // FEATURED TOURS
         function updateFeaturedTours() {
             const featuredContainer = document.getElementById('featuredToursList');
             if (!featuredContainer) return;
@@ -1496,8 +1470,7 @@ function switchTab(tab, element) {
                 featuredContainer.innerHTML = `
                     <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
                         <i class="fas fa-star" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
-                        <p>Henüz öne çıkan tur seçilmemiş.</p>
-                        <p style="font-size: 14px; margin-top: 10px;">Aşağıdaki tur listesinden yıldız ⭐ ikonuna tıklayarak öne çıkarabilirsiniz.</p>
+                        <p>Henüz öne çıkan tur yok.</p>
                     </div>
                 `;
                 return;
@@ -1513,38 +1486,31 @@ function switchTab(tab, element) {
                     </div>
                     <p style="color: #64748b; font-size: 14px; margin: 8px 0;">${tour.location} • ${tour.price}</p>
                     <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
-                        <i class="fas fa-star-half-alt"></i> Öne Çıkarmayı Kaldır
+                        <i class="fas fa-star-half-alt"></i> Kaldır
                     </button>
                 </div>
             `).join('');
         }
 
-        // Toggle featured status
         function toggleFeatured(tourId) {
             const tour = tours.find(t => t.id === tourId);
             if (!tour) return;
             
             const featuredCount = tours.filter(t => t.featured).length;
             
-            // Eğer featured değilse ve limit doluysa
             if (!tour.featured && featuredCount >= 3) {
-                showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir! Önce başka bir turu kaldırın.', 'error');
+                showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir!', 'error');
                 return;
             }
             
-            // Toggle featured status
             tour.featured = !tour.featured;
-            
-            // Kaydet
             saveToursToFile();
-            
-            // Güncelle
             displayTours();
             updateFeaturedTours();
             
             const message = tour.featured 
-                ? `✅ "${tour.title}" öne çıkarıldı! Ana sayfada gösterilecek.`
-                : `✓ "${tour.title}" öne çıkarmadan kaldırıldı.`;
+                ? `✅ "${tour.title}" öne çıkarıldı!`
+                : `✓ "${tour.title}" kaldırıldı.`;
             
             showAlert('tourAlert', message, 'success');
         }
@@ -1554,7 +1520,7 @@ function switchTab(tab, element) {
             const container = document.getElementById('toursList');
             
             if (tours.length === 0) {
-                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz tur eklenmemiş. Yukarıdaki formu kullanarak ilk turunuzu ekleyin!</div>';
+                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz tur yok.</div>';
                 return;
             }
 
@@ -1575,14 +1541,14 @@ function switchTab(tab, element) {
                         </p>
                     </div>
                     <div class="item-actions">
-                        <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')" title="${tour.featured ? 'Öne çıkarmayı kaldır' : 'Öne çıkar'}">
+                        <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')" title="${tour.featured ? 'Kaldır' : 'Öne çıkar'}">
                             <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
                         </button>
                         <button class="btn btn-primary" onclick="editTour('${tour.id}')">
-                            <i class="fas fa-edit"></i> Düzenle
+                            <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn btn-danger" onclick="deleteTour('${tour.id}')">
-                            <i class="fas fa-trash"></i> Sil
+                            <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 </div>
@@ -1590,7 +1556,6 @@ function switchTab(tab, element) {
             }).join('');
         }
 
-        // TUR İSTATİSTİKLERİ
         function updateTourStats() {
             document.getElementById('tourCount').textContent = tours.length;
             const allCategories = tours.reduce((acc, t) => {
@@ -1603,13 +1568,11 @@ function switchTab(tab, element) {
             document.getElementById('categoryCount').textContent = uniqueCategories.length;
         }
 
-        // TUR FORMU AYARLARI
         function setupForms() {
             document.getElementById('tourForm').addEventListener('submit', saveTour);
             document.getElementById('blogForm').addEventListener('submit', saveBlog);
         }
 
-        // RESİM ÖNİZLEME
         function setupImagePreviews() {
             document.getElementById('tourImage').addEventListener('input', (e) => {
                 const preview = document.getElementById('tourImagePreview');
@@ -1632,16 +1595,14 @@ function switchTab(tab, element) {
             });
         }
 
-        // TURU KAYDET (GÜNCELLENMİŞ)
+        // TURU KAYDET
         async function saveTour(e) {
             e.preventDefault();
 
-            // Kategorileri al
             const categories = getSelectedCategories();
             
-            // En az bir kategori kontrolü
             if (categories.traveller.length === 0 || categories.destination.length === 0 || categories.month.length === 0) {
-                showAlert('tourAlert', '⚠️ Her kategori grubundan en az bir seçim yapmalısınız!', 'error');
+                showAlert('tourAlert', '⚠️ Her kategori grubundan en az bir seçim yapın!', 'error');
                 return;
             }
 
@@ -1657,13 +1618,8 @@ function switchTab(tab, element) {
                 price: document.getElementById('tourPrice').value,
                 duration: document.getElementById('tourDuration').value,
                 location: document.getElementById('tourLocation').value,
-                
-                // ESKİ category (geriye dönük uyumluluk)
                 category: document.getElementById('tourCategory') ? document.getElementById('tourCategory').value : 'Türkiye',
-                
-                // YENİ: 3 boyutlu kategori
                 categories: categories,
-                
                 description: document.getElementById('tourDescription').value,
                 description_en: document.getElementById('tourDescriptionEn').value || document.getElementById('tourDescription').value,
                 description_es: document.getElementById('tourDescriptionEs').value || document.getElementById('tourDescription').value,
@@ -1679,10 +1635,7 @@ function switchTab(tab, element) {
                 content_zh: document.getElementById('tourContentZh').value || document.getElementById('tourDescriptionZh').value,
                 content_ar: document.getElementById('tourContentAr').value || document.getElementById('tourDescriptionAr').value,
                 image: document.getElementById('tourImage').value,
-                
-                // YENİ: Galeri fotoğrafları
                 gallery: currentGallery.length > 0 ? currentGallery : [],
-                
                 featured: editingTourId ? tours.find(t => t.id === editingTourId)?.featured || false : false,
                 source: 'admin'
             };
@@ -1690,10 +1643,10 @@ function switchTab(tab, element) {
             if (editingTourId) {
                 const index = tours.findIndex(t => t.id === editingTourId);
                 tours[index] = tourData;
-                showAlert('tourAlert', `✅ Tur güncellendi! (${currentGallery.length} fotoğraf)`, 'success');
+                showAlert('tourAlert', `✅ Tur güncellendi!`, 'success');
             } else {
                 tours.push(tourData);
-                showAlert('tourAlert', `✅ Yeni tur eklendi! (${currentGallery.length} fotoğraf)`, 'success');
+                showAlert('tourAlert', `✅ Yeni tur eklendi!`, 'success');
             }
 
             await saveToursToFile();
@@ -1703,7 +1656,6 @@ function switchTab(tab, element) {
             resetTourForm();
         }
 
-        // DOSYAYA KAYDET
         async function saveToursToFile() {
             const json = JSON.stringify(tours, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
@@ -1714,10 +1666,9 @@ function switchTab(tab, element) {
             a.download = 'tours.json';
             a.click();
             
-            showAlert('tourAlert', '✅ tours.json dosyası indirildi! Lütfen bu dosyayı "data" klasörüne kopyalayın.', 'success');
+            showAlert('tourAlert', '✅ tours.json indirildi!', 'success');
         }
 
-        // TURU DÜZENLE (GÜNCELLENMİŞ)
         function editTour(id) {
             const tour = tours.find(t => t.id === id);
             if (!tour) return;
@@ -1725,7 +1676,6 @@ function switchTab(tab, element) {
             editingTourId = id;
             document.getElementById('tourFormTitle').textContent = 'Turu Düzenle';
             
-            document.getElementById('tourId').value = tour.id;
             document.getElementById('tourTitle').value = tour.title;
             document.getElementById('tourTitleEn').value = tour.title_en || '';
             document.getElementById('tourTitleEs').value = tour.title_es || '';
@@ -1737,12 +1687,10 @@ function switchTab(tab, element) {
             document.getElementById('tourDuration').value = tour.duration || '';
             document.getElementById('tourLocation').value = tour.location;
             
-            // Eski category varsa set et
             if (document.getElementById('tourCategory')) {
                 document.getElementById('tourCategory').value = tour.category || 'Türkiye';
             }
             
-            // Yeni categories varsa set et
             if (tour.categories) {
                 setSelectedCategories(tour.categories);
             }
@@ -1763,7 +1711,6 @@ function switchTab(tab, element) {
             document.getElementById('tourContentAr').value = tour.content_ar || '';
             document.getElementById('tourImage').value = tour.image;
             
-            // Galeriyi yükle
             currentGallery = tour.gallery || [];
             updateGalleryPreview();
             
@@ -1774,9 +1721,8 @@ function switchTab(tab, element) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // TURU SİL
         function deleteTour(id) {
-            if (!confirm('Bu turu silmek istediğinizden emin misiniz?')) return;
+            if (!confirm('Silmek istediğinizden emin misiniz?')) return;
             
             tours = tours.filter(t => t.id !== id);
             saveToursToFile();
@@ -1786,14 +1732,12 @@ function switchTab(tab, element) {
             showAlert('tourAlert', 'Tur silindi!', 'success');
         }
 
-        // TUR FORMUNU SIFIRLA (GÜNCELLENMİŞ)
         function resetTourForm() {
             editingTourId = null;
             document.getElementById('tourForm').reset();
             document.getElementById('tourFormTitle').textContent = 'Yeni Tur Ekle';
             document.getElementById('tourImagePreview').style.display = 'none';
             
-            // Kategorileri temizle
             ['family', 'couples', 'groups', 'honeymoon', 'solo',
              'turkiye', 'europe', 'america', 'russia', 'brazil',
              'spring', 'summer', 'autumn', 'winter', 'year-round'].forEach(cat => {
@@ -1801,41 +1745,32 @@ function switchTab(tab, element) {
                 if (checkbox) checkbox.checked = false;
             });
             
-            // Galeriyi temizle
             currentGallery = [];
             updateGalleryPreview();
         }
 
-        // BLOGLARI YÜKLE (GitHub'dan veya yerel)
+        // BLOGLARI YÜKLE
         async function loadBlogs() {
             try {
-                // Önce GitHub'dan dene
                 const githubUrl = 'https://raw.githubusercontent.com/FatihUzn/WalkAbouTravel/main/data/blog-posts.json';
                 const githubResponse = await fetch(githubUrl);
                 
                 if (githubResponse.ok) {
                     blogs = await githubResponse.json();
-                    console.log('✅ Blog yazıları GitHub\'dan yüklendi:', blogs.length);
-                    showAlert('blogAlert', `✅ ${blogs.length} blog yazısı GitHub'dan yüklendi!', 'success');
+                    showAlert('blogAlert', `✅ ${blogs.length} blog yüklendi!`, 'success');
                 } else {
-                    throw new Error('GitHub\'dan yüklenemedi');
+                    throw new Error('Yüklenemedi');
                 }
             } catch (error) {
-                console.warn('⚠️ GitHub\'dan yüklenemedi, yerel dosya deneniyor...');
-                
-                // GitHub yoksa yerel dosyadan dene
                 try {
                     const response = await fetch('data/blog-posts.json');
                     if (response.ok) {
                         blogs = await response.json();
-                        console.log('✅ Blog yazıları yerel dosyadan yüklendi:', blogs.length);
                     } else {
                         blogs = [];
-                        console.log('ℹ️ Henüz blog yazısı yok, yeni liste oluşturuldu');
                     }
                 } catch (err) {
                     blogs = [];
-                    console.log('ℹ️ Henüz blog yazısı yok, yeni liste oluşturuldu');
                 }
             }
             
@@ -1843,12 +1778,11 @@ function switchTab(tab, element) {
             updateBlogStats();
         }
 
-        // BLOGLARI GÖSTER
         function displayBlogs() {
             const container = document.getElementById('blogsList');
             
             if (blogs.length === 0) {
-                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz blog yazısı eklenmemiş.</div>';
+                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz blog yok.</div>';
                 return;
             }
 
@@ -1857,167 +1791,161 @@ function switchTab(tab, element) {
                     <img src="${blog.image}" alt="${blog.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
                     <div class="item-info">
                         <h3>${blog.title}</h3>
-<p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
-                    <p><i class="fas fa-calendar"></i> ${blog.date}</p>
+                        <p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
+                        <p><i class="fas fa-calendar"></i> ${blog.date}</p>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn btn-primary" onclick="editBlog('${blog.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteBlog('${blog.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="item-actions">
-                    <button class="btn btn-primary" onclick="editBlog('${blog.id}')">
-                        <i class="fas fa-edit"></i> Düzenle
-                    </button>
-                    <button class="btn btn-danger" onclick="deleteBlog('${blog.id}')">
-                        <i class="fas fa-trash"></i> Sil
-                    </button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // BLOG İSTATİSTİKLERİ
-    function updateBlogStats() {
-        document.getElementById('blogCount').textContent = blogs.length;
-    }
-
-    // BLOG KAYDET
-    async function saveBlog(e) {
-        e.preventDefault();
-
-        const today = new Date().toLocaleDateString('tr-TR');
-
-        const blogData = {
-            id: editingBlogId || 'BLOG-' + Date.now(),
-            title: document.getElementById('blogTitle').value,
-            title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
-            title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
-            title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
-            title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
-            title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
-            title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
-            author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
-            category: document.getElementById('blogCategory').value,
-            date: today,
-            excerpt: document.getElementById('blogExcerpt').value,
-            excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
-            excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
-            excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
-            excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
-            excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
-            excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
-            content: document.getElementById('blogContent').value,
-            content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
-            content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
-            content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
-            content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
-            content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
-            content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
-            image: document.getElementById('blogImage').value
-        };
-
-        if (editingBlogId) {
-            const index = blogs.findIndex(b => b.id === editingBlogId);
-            blogs[index] = blogData;
-            showAlert('blogAlert', 'Blog yazısı güncellendi! (7 dilde)', 'success');
-        } else {
-            blogs.push(blogData);
-            showAlert('blogAlert', 'Yeni blog yazısı eklendi! (7 dilde)', 'success');
+            `).join('');
         }
 
-        await saveBlogsToFile();
-        displayBlogs();
-        updateBlogStats();
-        resetBlogForm();
-    }
+        function updateBlogStats() {
+            document.getElementById('blogCount').textContent = blogs.length;
+        }
 
-    // BLOG DOSYASINA KAYDET
-    async function saveBlogsToFile() {
-        const json = JSON.stringify(blogs, null, 2);
-        const blob = new Blob([json], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'blog-posts.json';
-        a.click();
-        
-        showAlert('blogAlert', '✅ blog-posts.json dosyası indirildi! Lütfen bu dosyayı "data" klasörüne kopyalayın.', 'success');
-    }
+        async function saveBlog(e) {
+            e.preventDefault();
 
-    // BLOG DÜZENLE
-    function editBlog(id) {
-        const blog = blogs.find(b => b.id === id);
-        if (!blog) return;
+            const today = new Date().toLocaleDateString('tr-TR');
 
-        editingBlogId = id;
-        document.getElementById('blogFormTitle').textContent = 'Blog Yazısını Düzenle';
-        
-        document.getElementById('blogId').value = blog.id;
-        document.getElementById('blogTitle').value = blog.title;
-        document.getElementById('blogTitleEn').value = blog.title_en || '';
-        document.getElementById('blogTitleEs').value = blog.title_es || '';
-        document.getElementById('blogTitleRu').value = blog.title_ru || '';
-        document.getElementById('blogTitleDe').value = blog.title_de || '';
-        document.getElementById('blogTitleZh').value = blog.title_zh || '';
-        document.getElementById('blogTitleAr').value = blog.title_ar || '';
-        document.getElementById('blogAuthor').value = blog.author || '';
-        document.getElementById('blogCategory').value = blog.category;
-        document.getElementById('blogExcerpt').value = blog.excerpt;
-        document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
-        document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
-        document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
-        document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
-        document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
-        document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
-        document.getElementById('blogContent').value = blog.content;
-        document.getElementById('blogContentEn').value = blog.content_en || '';
-        document.getElementById('blogContentEs').value = blog.content_es || '';
-        document.getElementById('blogContentRu').value = blog.content_ru || '';
-        document.getElementById('blogContentDe').value = blog.content_de || '';
-        document.getElementById('blogContentZh').value = blog.content_zh || '';
-        document.getElementById('blogContentAr').value = blog.content_ar || '';
-        document.getElementById('blogImage').value = blog.image;
-        
-        const preview = document.getElementById('blogImagePreview');
-        preview.src = blog.image;
-        preview.style.display = 'block';
+            const blogData = {
+                id: editingBlogId || 'BLOG-' + Date.now(),
+                title: document.getElementById('blogTitle').value,
+                title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
+                title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
+                title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
+                title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
+                title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
+                title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
+                author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
+                category: document.getElementById('blogCategory').value,
+                date: today,
+                excerpt: document.getElementById('blogExcerpt').value,
+                excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
+                excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
+                excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
+                excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
+                excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
+                excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
+                content: document.getElementById('blogContent').value,
+                content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
+                content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
+                content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
+                content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
+                content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
+                content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
+                image: document.getElementById('blogImage').value
+            };
 
-        switchTab('blogs');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+            if (editingBlogId) {
+                const index = blogs.findIndex(b => b.id === editingBlogId);
+                blogs[index] = blogData;
+                showAlert('blogAlert', 'Blog güncellendi!', 'success');
+            } else {
+                blogs.push(blogData);
+                showAlert('blogAlert', 'Blog eklendi!', 'success');
+            }
 
-    // BLOG SİL
-    function deleteBlog(id) {
-        if (!confirm('Bu blog yazısını silmek istediğinizden emin misiniz?')) return;
-        
-        blogs = blogs.filter(b => b.id !== id);
-        saveBlogsToFile();
-        displayBlogs();
-        updateBlogStats();
-        showAlert('blogAlert', 'Blog yazısı silindi!', 'success');
-    }
+            await saveBlogsToFile();
+            displayBlogs();
+            updateBlogStats();
+            resetBlogForm();
+        }
 
-    // BLOG FORMUNU SIFIRLA
-    function resetBlogForm() {
-        editingBlogId = null;
-        document.getElementById('blogForm').reset();
-        document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
-        document.getElementById('blogImagePreview').style.display = 'none';
-    }
+        async function saveBlogsToFile() {
+            const json = JSON.stringify(blogs, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'blog-posts.json';
+            a.click();
+            
+            showAlert('blogAlert', '✅ blog-posts.json indirildi!', 'success');
+        }
 
-    // UYARI MESAJI GÖSTER
-    function showAlert(containerId, message, type) {
-        const container = document.getElementById(containerId);
-        const alertClass = type === 'success' ? 'alert-success' : (type === 'info' ? 'alert-info' : 'alert-error');
-        const icon = type === 'success' ? 'fa-check-circle' : (type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle');
-        
-        container.innerHTML = `
-            <div class="alert ${alertClass}">
-                <i class="fas ${icon}"></i>
-                ${message}
-            </div>
-        `;
+        function editBlog(id) {
+            const blog = blogs.find(b => b.id === id);
+            if (!blog) return;
 
-        setTimeout(() => {
-            container.innerHTML = '';
-        }, 5000);
-    }
-</script>
-                
+            editingBlogId = id;
+            document.getElementById('blogFormTitle').textContent = 'Blog Düzenle';
+            
+            document.getElementById('blogTitle').value = blog.title;
+            document.getElementById('blogTitleEn').value = blog.title_en || '';
+            document.getElementById('blogTitleEs').value = blog.title_es || '';
+            document.getElementById('blogTitleRu').value = blog.title_ru || '';
+            document.getElementById('blogTitleDe').value = blog.title_de || '';
+            document.getElementById('blogTitleZh').value = blog.title_zh || '';
+            document.getElementById('blogTitleAr').value = blog.title_ar || '';
+            document.getElementById('blogAuthor').value = blog.author || '';
+            document.getElementById('blogCategory').value = blog.category;
+            document.getElementById('blogExcerpt').value = blog.excerpt;
+            document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
+            document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
+            document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
+            document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
+            document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
+            document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
+            document.getElementById('blogContent').value = blog.content;
+            document.getElementById('blogContentEn').value = blog.content_en || '';
+            document.getElementById('blogContentEs').value = blog.content_es || '';
+            document.getElementById('blogContentRu').value = blog.content_ru || '';
+            document.getElementById('blogContentDe').value = blog.content_de || '';
+            document.getElementById('blogContentZh').value = blog.content_zh || '';
+            document.getElementById('blogContentAr').value = blog.content_ar || '';
+            document.getElementById('blogImage').value = blog.image;
+            
+            const preview = document.getElementById('blogImagePreview');
+            preview.src = blog.image;
+            preview.style.display = 'block';
+
+            // Blog sekmesine geç (element parametresi olmadan çağır)
+            switchTab('blogs');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteBlog(id) {
+            if (!confirm('Silmek istediğinizden emin misiniz?')) return;
+            
+            blogs = blogs.filter(b => b.id !== id);
+            saveBlogsToFile();
+            displayBlogs();
+            updateBlogStats();
+            showAlert('blogAlert', 'Blog silindi!', 'success');
+        }
+
+        function resetBlogForm() {
+            editingBlogId = null;
+            document.getElementById('blogForm').reset();
+            document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
+            document.getElementById('blogImagePreview').style.display = 'none';
+        }
+
+        function showAlert(containerId, message, type) {
+            const container = document.getElementById(containerId);
+            const alertClass = type === 'success' ? 'alert-success' : (type === 'info' ? 'alert-info' : 'alert-error');
+            const icon = type === 'success' ? 'fa-check-circle' : (type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle');
+            
+            container.innerHTML = `
+                <div class="alert ${alertClass}">
+                    <i class="fas ${icon}"></i>
+                    ${message}
+                </div>
+            `;
+
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
