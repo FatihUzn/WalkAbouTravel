@@ -1949,3 +1949,202 @@ footer {
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
+/* ================================================
+   DYNAMIC CATEGORY THEMES
+   ================================================ */
+
+/* Body'ye category class'ı eklendiğinde temayı değiştir */
+
+/* FAMILY THEME - Warm Orange */
+body.theme-family {
+    --primary: #ff8c42;
+    --secondary: #ffa566;
+    --accent: #ffd4a3;
+    --gradient-primary: linear-gradient(135deg, #ff8c42, #ffa566);
+}
+
+body.theme-family .hero-overlay {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.3) 0%, rgba(255, 165, 102, 0.2) 100%);
+}
+
+body.theme-family .hero-badge {
+    background: linear-gradient(135deg, #ff8c42, #ffa566);
+}
+
+/* COUPLES THEME - Romantic Pink */
+body.theme-couples {
+    --primary: #d946a6;
+    --secondary: #e879c0;
+    --accent: #f5a3d6;
+    --gradient-primary: linear-gradient(135deg, #d946a6, #e879c0);
+}
+
+body.theme-couples .hero-overlay {
+    background: linear-gradient(135deg, rgba(217, 70, 166, 0.3) 0%, rgba(232, 121, 192, 0.2) 100%);
+}
+
+body.theme-couples .hero-badge {
+    background: linear-gradient(135deg, #d946a6, #e879c0);
+}
+
+/* GROUPS THEME - Energetic Blue */
+body.theme-groups {
+    --primary: #3b82f6;
+    --secondary: #60a5fa;
+    --accent: #93c5fd;
+    --gradient-primary: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+body.theme-groups .hero-overlay {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(96, 165, 250, 0.2) 100%);
+}
+
+body.theme-groups .hero-badge {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+/* HONEYMOON THEME - Deep Purple */
+body.theme-honeymoon {
+    --primary: #7c3aed;
+    --secondary: #a78bfa;
+    --accent: #c4b5fd;
+    --gradient-primary: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+body.theme-honeymoon .hero-overlay {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(167, 139, 250, 0.2) 100%);
+}
+
+body.theme-honeymoon .hero-badge {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+/* SOLO THEME - Cool Teal */
+body.theme-solo {
+    --primary: #14b8a6;
+    --secondary: #2dd4bf;
+    --accent: #5eead4;
+    --gradient-primary: linear-gradient(135deg, #14b8a6, #2dd4bf);
+}
+
+body.theme-solo .hero-overlay {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.3) 0%, rgba(45, 212, 191, 0.2) 100%);
+}
+
+body.theme-solo .hero-badge {
+    background: linear-gradient(135deg, #14b8a6, #2dd4bf);
+}
+
+/* DESTINATION THEMES */
+body.theme-turkiye {
+    --primary: #e11d48;
+    --secondary: #f43f5e;
+    --accent: #fb7185;
+    --gradient-primary: linear-gradient(135deg, #e11d48, #f43f5e);
+}
+
+body.theme-europe {
+    --primary: #0ea5e9;
+    --secondary: #38bdf8;
+    --accent: #7dd3fc;
+    --gradient-primary: linear-gradient(135deg, #0ea5e9, #38bdf8);
+}
+
+body.theme-america {
+    --primary: #dc2626;
+    --secondary: #ef4444;
+    --accent: #f87171;
+    --gradient-primary: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+body.theme-russia {
+    --primary: #8b5cf6;
+    --secondary: #a78bfa;
+    --accent: #c4b5fd;
+    --gradient-primary: linear-gradient(135deg, #8b5cf6, #a78bfa);
+}
+
+body.theme-brazil {
+    --primary: #16a34a;
+    --secondary: #22c55e;
+    --accent: #4ade80;
+    --gradient-primary: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+/* SEASON THEMES */
+body.theme-spring {
+    --primary: #ec4899;
+    --secondary: #f472b6;
+    --accent: #f9a8d4;
+    --gradient-primary: linear-gradient(135deg, #ec4899, #f472b6);
+}
+
+body.theme-summer {
+    --primary: #f59e0b;
+    --secondary: #fbbf24;
+    --accent: #fcd34d;
+    --gradient-primary: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+body.theme-autumn {
+    --primary: #ea580c;
+    --secondary: #fb923c;
+    --accent: #fdba74;
+    --gradient-primary: linear-gradient(135deg, #ea580c, #fb923c);
+}
+
+body.theme-winter {
+    --primary: #0284c7;
+    --secondary: #0ea5e9;
+    --accent: #38bdf8;
+    --gradient-primary: linear-gradient(135deg, #0284c7, #0ea5e9);
+}
+
+body.theme-year-round {
+    --primary: #2d6a4f;
+    --secondary: #52b788;
+    --accent: #95d5b2;
+    --gradient-primary: linear-gradient(135deg, #2d6a4f, #52b788);
+}
+
+/* Tema değişiminde smooth transition */
+body {
+    transition: background-color 0.5s ease;
+}
+
+.hero-overlay,
+.hero-badge,
+.btn-hero-link,
+.lang-btn.active,
+.view-more-btn,
+.nav-links a::before {
+    transition: all 0.5s ease;
+}
+
+/* Theme indicator badge */
+.theme-indicator {
+    position: fixed;
+    top: 150px;
+    right: 20px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 9998;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.theme-indicator.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.theme-indicator i {
+    margin-right: 8px;
+}
