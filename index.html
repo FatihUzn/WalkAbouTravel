@@ -354,20 +354,20 @@
 
     function loadCategories(tab = 'traveller') {
     const grid = document.getElementById('categoriesGrid');
-    if (!grid) {
-        console.error('❌ categoriesGrid bulunamadı!');
-        return;
-    }
+    if (!grid) return;
     
     const categories = categoriesData[tab];
     grid.innerHTML = categories.map(cat => `
-        <div class="category-image-card" data-category="${cat.category}">
+        <div class="category-image-card" data-category="${cat.category}" onclick="window.location.href='${cat.link}'">
             <img src="${cat.image}" alt="${cat.name}" loading="lazy">
             <div class="category-overlay">
                 <div class="category-name">${cat.name}</div>
             </div>
         </div>
     `).join('');
+    
+    console.log(`✅ ${categories.length} kategori yüklendi`);
+}
     
     // Category click event ekle
     document.querySelectorAll('.category-image-card').forEach(card => {
@@ -575,6 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
 
