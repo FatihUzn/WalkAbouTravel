@@ -2369,3 +2369,448 @@ body.theme-solo {
         padding: 20px;
     }
 }
+/* ================================================
+   POWERFUL CATEGORY THEMES - FULL PAGE IMPACT
+   ================================================ */
+
+/* FAMILY THEME - Warm Orange */
+body.theme-family {
+    --primary: #ff8c42 !important;
+    --secondary: #ffa566 !important;
+    --accent: #ffd4a3 !important;
+    --dark: #cc5a00 !important;
+    --light: #fff5eb !important;
+    --text-dark: #cc5a00 !important;
+    --text-medium: #ff8c42 !important;
+    --gradient-primary: linear-gradient(135deg, #ff8c42, #ffa566) !important;
+}
+
+body.theme-family nav {
+    background: rgba(255, 245, 235, 0.98) !important;
+    border-bottom-color: rgba(255, 140, 66, 0.2) !important;
+}
+
+body.theme-family .header-top-row {
+    background: linear-gradient(135deg, #fff5eb 0%, #ffe5cc 100%) !important;
+}
+
+body.theme-family .header-top-row a,
+body.theme-family .header-top-row i {
+    color: #ff8c42 !important;
+}
+
+body.theme-family .logo-title {
+    color: #ff8c42 !important;
+}
+
+body.theme-family .lang-btn.active {
+    background: #ff8c42 !important;
+    border-color: #ff8c42 !important;
+}
+
+body.theme-family .lang-btn:hover {
+    background: #fff5eb !important;
+    border-color: #ff8c42 !important;
+    color: #ff8c42 !important;
+}
+
+body.theme-family .category-filters {
+    background: linear-gradient(to bottom, #fff5eb, white) !important;
+    border-bottom: 3px solid #ff8c42 !important;
+}
+
+body.theme-family .filter-btn {
+    border-color: #ff8c42 !important;
+    color: #ff8c42 !important;
+}
+
+body.theme-family .filter-btn.active,
+body.theme-family .filter-btn:hover {
+    background: #ff8c42 !important;
+    color: white !important;
+}
+
+body.theme-family .view-all-btn {
+    background: #ff8c42 !important;
+}
+
+body.theme-family .view-all-btn:hover {
+    background: #ffa566 !important;
+}
+
+body.theme-family .tour-badge {
+    background: #ff8c42 !important;
+}
+
+body.theme-family .feature-tag i {
+    color: #ff8c42 !important;
+}
+
+body.theme-family .tour-link {
+    color: #ff8c42 !important;
+}
+
+body.theme-family .whatsapp-float {
+    background: linear-gradient(135deg, #ff8c42, #ffa566) !important;
+}
+
+body.theme-family footer {
+    background: #cc5a00 !important;
+}
+
+/* COUPLES THEME - Romantic Pink */
+body.theme-couples {
+    --primary: #d946a6 !important;
+    --secondary: #e879c0 !important;
+    --accent: #f5a3d6 !important;
+    --dark: #b8007a !important;
+    --light: #fff0f8 !important;
+    --text-dark: #b8007a !important;
+    --text-medium: #d946a6 !important;
+    --gradient-primary: linear-gradient(135deg, #d946a6, #e879c0) !important;
+}
+
+body.theme-couples nav {
+    background: rgba(255, 240, 248, 0.98) !important;
+    border-bottom-color: rgba(217, 70, 166, 0.2) !important;
+}
+
+body.theme-couples .header-top-row {
+    background: linear-gradient(135deg, #fff0f8 0%, #ffe5f2 100%) !important;
+}
+
+body.theme-couples .header-top-row a,
+body.theme-couples .header-top-row i {
+    color: #d946a6 !important;
+}
+
+body.theme-couples .logo-title {
+    color: #d946a6 !important;
+}
+
+body.theme-couples .lang-btn.active {
+    background: #d946a6 !important;
+    border-color: #d946a6 !important;
+}
+
+body.theme-couples .lang-btn:hover {
+    background: #fff0f8 !important;
+    border-color: #d946a6 !important;
+    color: #d946a6 !important;
+}
+
+body.theme-couples .category-filters {
+    background: linear-gradient(to bottom, #fff0f8, white) !important;
+    border-bottom: 3px solid #d946a6 !important;
+}
+
+body.theme-couples .filter-btn {
+    border-color: #d946a6 !important;
+    color: #d946a6 !important;
+}
+
+body.theme-couples .filter-btn.active,
+body.theme-couples .filter-btn:hover {
+    background: #d946a6 !important;
+    color: white !important;
+}
+
+body.theme-couples .view-all-btn {
+    background: #d946a6 !important;
+}
+
+body.theme-couples .view-all-btn:hover {
+    background: #e879c0 !important;
+}
+
+body.theme-couples .tour-badge {
+    background: #d946a6 !important;
+}
+
+body.theme-couples .feature-tag i {
+    color: #d946a6 !important;
+}
+
+body.theme-couples .tour-link {
+    color: #d946a6 !important;
+}
+
+body.theme-couples .whatsapp-float {
+    background: linear-gradient(135deg, #d946a6, #e879c0) !important;
+}
+
+body.theme-couples footer {
+    background: #b8007a !important;
+}
+
+/* GROUPS THEME - Energetic Blue */
+body.theme-groups {
+    --primary: #3b82f6 !important;
+    --secondary: #60a5fa !important;
+    --accent: #93c5fd !important;
+    --dark: #1e40af !important;
+    --light: #eff6ff !important;
+    --text-dark: #1e40af !important;
+    --text-medium: #3b82f6 !important;
+    --gradient-primary: linear-gradient(135deg, #3b82f6, #60a5fa) !important;
+}
+
+body.theme-groups nav {
+    background: rgba(239, 246, 255, 0.98) !important;
+    border-bottom-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+body.theme-groups .header-top-row {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+}
+
+body.theme-groups .header-top-row a,
+body.theme-groups .header-top-row i {
+    color: #3b82f6 !important;
+}
+
+body.theme-groups .logo-title {
+    color: #3b82f6 !important;
+}
+
+body.theme-groups .lang-btn.active {
+    background: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+body.theme-groups .lang-btn:hover {
+    background: #eff6ff !important;
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+}
+
+body.theme-groups .category-filters {
+    background: linear-gradient(to bottom, #eff6ff, white) !important;
+    border-bottom: 3px solid #3b82f6 !important;
+}
+
+body.theme-groups .filter-btn {
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+}
+
+body.theme-groups .filter-btn.active,
+body.theme-groups .filter-btn:hover {
+    background: #3b82f6 !important;
+    color: white !important;
+}
+
+body.theme-groups .view-all-btn {
+    background: #3b82f6 !important;
+}
+
+body.theme-groups .view-all-btn:hover {
+    background: #60a5fa !important;
+}
+
+body.theme-groups .tour-badge {
+    background: #3b82f6 !important;
+}
+
+body.theme-groups .feature-tag i {
+    color: #3b82f6 !important;
+}
+
+body.theme-groups .tour-link {
+    color: #3b82f6 !important;
+}
+
+body.theme-groups .whatsapp-float {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa) !important;
+}
+
+body.theme-groups footer {
+    background: #1e40af !important;
+}
+
+/* HONEYMOON THEME - Deep Purple */
+body.theme-honeymoon {
+    --primary: #7c3aed !important;
+    --secondary: #a78bfa !important;
+    --accent: #c4b5fd !important;
+    --dark: #5b21b6 !important;
+    --light: #f5f3ff !important;
+    --text-dark: #5b21b6 !important;
+    --text-medium: #7c3aed !important;
+    --gradient-primary: linear-gradient(135deg, #7c3aed, #a78bfa) !important;
+}
+
+body.theme-honeymoon nav {
+    background: rgba(245, 243, 255, 0.98) !important;
+    border-bottom-color: rgba(124, 58, 237, 0.2) !important;
+}
+
+body.theme-honeymoon .header-top-row {
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%) !important;
+}
+
+body.theme-honeymoon .header-top-row a,
+body.theme-honeymoon .header-top-row i {
+    color: #7c3aed !important;
+}
+
+body.theme-honeymoon .logo-title {
+    color: #7c3aed !important;
+}
+
+body.theme-honeymoon .lang-btn.active {
+    background: #7c3aed !important;
+    border-color: #7c3aed !important;
+}
+
+body.theme-honeymoon .lang-btn:hover {
+    background: #f5f3ff !important;
+    border-color: #7c3aed !important;
+    color: #7c3aed !important;
+}
+
+body.theme-honeymoon .category-filters {
+    background: linear-gradient(to bottom, #f5f3ff, white) !important;
+    border-bottom: 3px solid #7c3aed !important;
+}
+
+body.theme-honeymoon .filter-btn {
+    border-color: #7c3aed !important;
+    color: #7c3aed !important;
+}
+
+body.theme-honeymoon .filter-btn.active,
+body.theme-honeymoon .filter-btn:hover {
+    background: #7c3aed !important;
+    color: white !important;
+}
+
+body.theme-honeymoon .view-all-btn {
+    background: #7c3aed !important;
+}
+
+body.theme-honeymoon .view-all-btn:hover {
+    background: #a78bfa !important;
+}
+
+body.theme-honeymoon .tour-badge {
+    background: #7c3aed !important;
+}
+
+body.theme-honeymoon .feature-tag i {
+    color: #7c3aed !important;
+}
+
+body.theme-honeymoon .tour-link {
+    color: #7c3aed !important;
+}
+
+body.theme-honeymoon .whatsapp-float {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa) !important;
+}
+
+body.theme-honeymoon footer {
+    background: #5b21b6 !important;
+}
+
+/* SOLO THEME - Cool Teal */
+body.theme-solo {
+    --primary: #14b8a6 !important;
+    --secondary: #2dd4bf !important;
+    --accent: #5eead4 !important;
+    --dark: #0f766e !important;
+    --light: #f0fdfa !important;
+    --text-dark: #0f766e !important;
+    --text-medium: #14b8a6 !important;
+    --gradient-primary: linear-gradient(135deg, #14b8a6, #2dd4bf) !important;
+}
+
+body.theme-solo nav {
+    background: rgba(240, 253, 250, 0.98) !important;
+    border-bottom-color: rgba(20, 184, 166, 0.2) !important;
+}
+
+body.theme-solo .header-top-row {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%) !important;
+}
+
+body.theme-solo .header-top-row a,
+body.theme-solo .header-top-row i {
+    color: #14b8a6 !important;
+}
+
+body.theme-solo .logo-title {
+    color: #14b8a6 !important;
+}
+
+body.theme-solo .lang-btn.active {
+    background: #14b8a6 !important;
+    border-color: #14b8a6 !important;
+}
+
+body.theme-solo .lang-btn:hover {
+    background: #f0fdfa !important;
+    border-color: #14b8a6 !important;
+    color: #14b8a6 !important;
+}
+
+body.theme-solo .category-filters {
+    background: linear-gradient(to bottom, #f0fdfa, white) !important;
+    border-bottom: 3px solid #14b8a6 !important;
+}
+
+body.theme-solo .filter-btn {
+    border-color: #14b8a6 !important;
+    color: #14b8a6 !important;
+}
+
+body.theme-solo .filter-btn.active,
+body.theme-solo .filter-btn:hover {
+    background: #14b8a6 !important;
+    color: white !important;
+}
+
+body.theme-solo .view-all-btn {
+    background: #14b8a6 !important;
+}
+
+body.theme-solo .view-all-btn:hover {
+    background: #2dd4bf !important;
+}
+
+body.theme-solo .tour-badge {
+    background: #14b8a6 !important;
+}
+
+body.theme-solo .feature-tag i {
+    color: #14b8a6 !important;
+}
+
+body.theme-solo .tour-link {
+    color: #14b8a6 !important;
+}
+
+body.theme-solo .whatsapp-float {
+    background: linear-gradient(135deg, #14b8a6, #2dd4bf) !important;
+}
+
+body.theme-solo footer {
+    background: #0f766e !important;
+}
+
+/* Smooth transitions for theme changes */
+body,
+nav,
+.header-top-row,
+.logo-title,
+.lang-btn,
+.category-filters,
+.filter-btn,
+.view-all-btn,
+.tour-badge,
+.feature-tag i,
+.tour-link,
+.whatsapp-float,
+footer {
+    transition: all 0.5s ease !important;
+}
