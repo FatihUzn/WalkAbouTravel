@@ -242,6 +242,7 @@
             align-items: center;
             gap: 20px;
             transition: all 0.3s;
+            position: relative;
         }
 
         .item-card:hover {
@@ -373,6 +374,108 @@
             to { transform: rotate(360deg); }
         }
 
+        /* CATEGORY CHECKBOXES */
+        .category-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .category-checkbox:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        .category-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .category-checkbox input[type="checkbox"]:checked + span {
+            color: #1e40af;
+        }
+
+        .category-checkbox span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+
+        .category-checkbox span i {
+            font-size: 16px;
+        }
+
+        /* GALLERY STYLES */
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item-delete {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-item-delete:hover {
+            background: rgba(220, 38, 38, 1);
+            transform: scale(1.1);
+        }
+
+        .gallery-item-number {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
         @media (max-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr;
@@ -409,158 +512,26 @@
         <div class="content">
             <!-- TURLAR SEKMESİ -->
             <div id="tours-content" class="tab-content active">
-                <!-- Admin Panel'e eklenecek Featured Tours bölümü için kod -->
+                <!-- FEATURED TOURS -->
+                <div class="featured-tours-section" style="background: #f0f9ff; padding: 30px; border-radius: 16px; margin-bottom: 40px; border: 2px solid #38bdf8;">
+                    <h3 style="font-size: 24px; margin-bottom: 20px; color: #0c4a6e; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-star" style="color: #38bdf8;"></i>
+                        Öne Çıkan Turlar (Popular Trips)
+                    </h3>
+                    
+                    <p style="color: #64748b; margin-bottom: 25px; line-height: 1.6;">
+                        Ana sayfada "OUR MOST POPULAR TRIPS" bölümünde gösterilecek turları seçin. En fazla 3 tur öne çıkarılabilir.
+                    </p>
+                    
+                    <div id="featuredToursList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px;">
+                        <!-- JavaScript ile dolacak -->
+                    </div>
+                    
+                    <div style="text-align: center; color: #94a3b8; font-size: 14px; margin-top: 20px;">
+                        💡 İpucu: Bir turu "öne çıkan" yapmak için aşağıdaki tur listesinden ⭐ yıldız ikonuna tıklayın
+                    </div>
+                </div>
 
-<!-- Bu kodu admin.html'deki "TURLAR SEKMESİ" içinde, form'dan ÖNCE ekleyin -->
-
-<div class="featured-tours-section" style="background: #f0f9ff; padding: 30px; border-radius: 16px; margin-bottom: 40px; border: 2px solid #38bdf8;">
-    <h3 style="font-size: 24px; margin-bottom: 20px; color: #0c4a6e; display: flex; align-items: center; gap: 12px;">
-        <i class="fas fa-star" style="color: #38bdf8;"></i>
-        Öne Çıkan Turlar (Popular Trips)
-    </h3>
-    
-    <p style="color: #64748b; margin-bottom: 25px; line-height: 1.6;">
-        Ana sayfada "OUR MOST POPULAR TRIPS" bölümünde gösterilecek turları seçin. En fazla 3 tur öne çıkarılabilir.
-    </p>
-    
-    <div id="featuredToursList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px;">
-        <!-- JavaScript ile dolacak -->
-    </div>
-    
-    <div style="text-align: center; color: #94a3b8; font-size: 14px; margin-top: 20px;">
-        💡 İpucu: Bir turu "öne çıkan" yapmak için aşağıdaki tur listesinden ⭐ yıldız ikonuna tıklayın
-    </div>
-</div>
-
-<script>
-// Featured Tours Management
-function updateFeaturedTours() {
-    const featuredContainer = document.getElementById('featuredToursList');
-    if (!featuredContainer) return;
-    
-    const featuredTours = tours.filter(t => t.featured);
-    
-    if (featuredTours.length === 0) {
-        featuredContainer.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
-                <i class="fas fa-star" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
-                <p>Henüz öne çıkan tur seçilmemiş.</p>
-                <p style="font-size: 14px; margin-top: 10px;">Aşağıdaki tur listesinden yıldız ⭐ ikonuna tıklayarak öne çıkarabilirsiniz.</p>
-            </div>
-        `;
-        return;
-    }
-    
-    featuredContainer.innerHTML = featuredTours.map(tour => `
-        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8;">
-            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-                <h4 style="margin: 0; color: #0c4a6e; font-size: 18px;">${tour.title}</h4>
-                <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
-                    ⭐ FEATURED
-                </span>
-            </div>
-            <p style="color: #64748b; font-size: 14px; margin: 8px 0;">${tour.location} • ${tour.price}</p>
-            <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
-                <i class="fas fa-star-half-alt"></i> Öne Çıkarmayı Kaldır
-            </button>
-        </div>
-    `).join('');
-}
-
-// Toggle featured status
-function toggleFeatured(tourId) {
-    const tour = tours.find(t => t.id === tourId);
-    if (!tour) return;
-    
-    const featuredCount = tours.filter(t => t.featured).length;
-    
-    // Eğer featured değilse ve limit doluysa
-    if (!tour.featured && featuredCount >= 3) {
-        showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir! Önce başka bir turu kaldırın.', 'error');
-        return;
-    }
-    
-    // Toggle featured status
-    tour.featured = !tour.featured;
-    
-    // Kaydet
-    saveToursToFile();
-    
-    // Güncel le
-    displayTours();
-    updateFeaturedTours();
-    
-    const message = tour.featured 
-        ? `✅ "${tour.title}" öne çıkarıldı! Ana sayfada gösterilecek.`
-        : `✓ "${tour.title}" öne çıkarmadan kaldırıldı.`;
-    
-    showAlert('tourAlert', message, 'success');
-}
-
-// displayTours fonksiyonunu güncelle - featured toggle butonu ekle
-function displayTours() {
-    const container = document.getElementById('toursList');
-    
-    if (tours.length === 0) {
-        container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz tur eklenmemiş. Yukarıdaki formu kullanarak ilk turunuzu ekleyin!</div>';
-        return;
-    }
-
-    container.innerHTML = tours.map(tour => `
-        <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
-            ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
-            <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
-            <div class="item-info">
-                <h3>${tour.title}</h3>
-                <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
-                <p><i class="fas fa-folder"></i> ${tour.category}</p>
-            </div>
-            <div class="item-actions">
-                <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')" title="${tour.featured ? 'Öne çıkarmayı kaldır' : 'Öne çıkar'}">
-                    <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
-                </button>
-                <button class="btn btn-primary" onclick="editTour('${tour.id}')">
-                    <i class="fas fa-edit"></i> Düzenle
-                </button>
-                <button class="btn btn-danger" onclick="deleteTour('${tour.id}')">
-                    <i class="fas fa-trash"></i> Sil
-                </button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Sayfa yüklenince featured tours'u da göster
-document.addEventListener('DOMContentLoaded', () => {
-    // Mevcut kod...
-    
-    // Featured tours listesini de güncelle
-    setTimeout(() => {
-        updateFeaturedTours();
-    }, 500);
-});
-
-// loadTours fonksiyonuna ekle
-async function loadTours() {
-    // ... mevcut kod ...
-    
-    displayTours();
-    updateTourStats();
-    updateFeaturedTours(); // Bunu ekle
-}
-</script>
-
-<style>
-/* Featured star button */
-.btn.btn-success i.fa-star {
-    color: #fbbf24;
-    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.5));
-}
-
-.item-card {
-    position: relative;
-}
-</style>
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> Nasıl Kullanılır?</h3>
                     <ol>
@@ -651,8 +622,8 @@ async function loadTours() {
                         </div>
 
                         <div class="form-group">
-                            <label>Kategori *</label>
-                            <select id="tourCategory" required>
+                            <label>Eski Kategori (Opsiyonel - Geriye dönük uyumluluk)</label>
+                            <select id="tourCategory">
                                 <option value="">Kategori Seçin</option>
                                 <option value="Türkiye">Türkiye Turları</option>
                                 <option value="Avrupa">Avrupa Turları</option>
@@ -660,6 +631,114 @@ async function loadTours() {
                                 <option value="Asya">Asya Turları</option>
                                 <option value="Afrika">Afrika Turları</option>
                             </select>
+                        </div>
+
+                        <!-- GELİŞMİŞ KATEGORİ SİSTEMİ -->
+                        <div class="form-group full-width" style="background: #f0f9ff; padding: 30px; border-radius: 16px; border: 2px solid #3b82f6; margin-top: 30px;">
+                            <h3 style="font-size: 20px; margin-bottom: 25px; color: #1e40af; display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-tags"></i> Tur Kategorileri (3 Boyutlu Kategorizasyon)
+                            </h3>
+                            
+                            <!-- 1. YOLCU TİPİ -->
+                            <div class="form-group" style="margin-bottom: 25px;">
+                                <label style="font-size: 16px; color: #1e40af; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-users"></i> 1️⃣ Yolcu Tipi (Traveller Type) *
+                                </label>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px;">
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_family" value="family">
+                                        <span><i class="fas fa-users"></i> Family</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_couples" value="couples">
+                                        <span><i class="fas fa-heart"></i> Couples</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_groups" value="groups">
+                                        <span><i class="fas fa-user-friends"></i> Groups</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_honeymoon" value="honeymoon">
+                                        <span><i class="fas fa-ring"></i> Honeymoon</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_solo" value="solo">
+                                        <span><i class="fas fa-user"></i> Solo</span>
+                                    </label>
+                                </div>
+                                <p style="font-size: 13px; color: #64748b; margin-top: 10px;">
+                                    💡 Birden fazla seçim yapabilirsiniz (örn: hem Family hem Couples)
+                                </p>
+                            </div>
+                            
+                            <!-- 2. DESTİNASYON -->
+                            <div class="form-group" style="margin-bottom: 25px;">
+                                <label style="font-size: 16px; color: #1e40af; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-globe-americas"></i> 2️⃣ Destinasyon (Destination) *
+                                </label>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px;">
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_turkiye" value="turkiye">
+                                        <span><i class="fas fa-flag"></i> Türkiye</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_europe" value="europe">
+                                        <span><i class="fas fa-landmark"></i> Europe</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_america" value="america">
+                                        <span><i class="fas fa-flag-usa"></i> America</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_russia" value="russia">
+                                        <span><i class="fas fa-church"></i> Russia</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_brazil" value="brazil">
+                                        <span><i class="fas fa-umbrella-beach"></i> Brazil</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- 3. SEZON -->
+                            <div class="form-group">
+                                <label style="font-size: 16px; color: #1e40af; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-calendar-alt"></i> 3️⃣ Sezon (Month/Season) *
+                                </label>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px;">
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_spring" value="spring">
+                                        <span><i class="fas fa-seedling"></i> Spring (İlkbahar)</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_summer" value="summer">
+                                        <span><i class="fas fa-sun"></i> Summer (Yaz)</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_autumn" value="autumn">
+                                        <span><i class="fas fa-leaf"></i> Autumn (Sonbahar)</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_winter" value="winter">
+                                        <span><i class="fas fa-snowflake"></i> Winter (Kış)</span>
+                                    </label>
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat_year_round" value="year-round">
+                                        <span><i class="fas fa-calendar-check"></i> Year Round (Tüm Yıl)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #dbeafe; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid #3b82f6;">
+                                <p style="color: #1e40af; font-weight: 600; margin-bottom: 8px;">
+                                    <i class="fas fa-info-circle"></i> Nasıl Çalışır?
+                                </p>
+                                <ul style="color: #1e40af; font-size: 14px; margin-left: 20px; line-height: 1.8;">
+                                    <li>Her turda <strong>en az 1 kategori</strong> seçilmelidir</li>
+                                    <li>Ana sayfada kullanıcılar bu kategorilere göre <strong>filtreleme</strong> yapabilir</li>
+                                    <li>Örnek: "Family + Türkiye + Summer" = Aile için yaz tatili turları</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="form-group full-width">
@@ -751,12 +830,52 @@ async function loadTours() {
                         </div>
 
                         <div class="form-group full-width">
-                            <label>Tur Resmi *</label>
+                            <label>Tur Resmi (Ana Kapak) *</label>
                             <input type="text" id="tourImage" placeholder="Resim URL'si girin (örnek: https://example.com/image.jpg)">
                             <div class="image-upload-area" style="margin-top: 10px;">
                                 <i class="fas fa-image"></i>
                                 <p>Resim URL'sini yukarıdaki alana yapıştırın</p>
                                 <img id="tourImagePreview" class="image-preview" style="display: none;">
+                            </div>
+                        </div>
+
+                        <!-- YENİ: ÇOK FOTOĞRAFLI GALERİ YÖNETİMİ -->
+                        <div class="form-group full-width" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 16px; border: 2px solid #22c55e; margin-top: 30px;">
+                            <h3 style="font-size: 20px; margin-bottom: 20px; color: #15803d; display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-images"></i> Tur Galerisi (Çoklu Fotoğraf)
+                            </h3>
+                            
+                            <p style="color: #16a34a; margin-bottom: 20px; line-height: 1.6;">
+                                📸 Tura <strong>sınırsız</strong> fotoğraf ekleyebilirsiniz. Tour detail sayfasında galeri olarak gösterilir.
+                            </p>
+                            
+                            <!-- Fotoğraf Ekleme Formu -->
+                            <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-bottom: 20px;">
+                                <input 
+                                    type="text" 
+                                    id="newGalleryImage" 
+                                    placeholder="Fotoğraf URL'sini buraya yapıştırın..."
+                                    style="padding: 14px 18px; border: 2px solid #86efac; border-radius: 10px; font-size: 14px;"
+                                >
+                                <button 
+                                    type="button" 
+                                    onclick="addGalleryImage()" 
+                                    class="btn btn-success"
+                                    style="white-space: nowrap; padding: 14px 30px;"
+                                >
+                                    <i class="fas fa-plus"></i> Ekle
+                                </button>
+                            </div>
+                            
+                            <!-- Galeri Önizleme -->
+                            <div id="galleryPreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                                <!-- JavaScript ile dolacak -->
+                            </div>
+                            
+                            <div id="galleryEmpty" style="text-align: center; padding: 40px; color: #86efac; border: 2px dashed #86efac; border-radius: 12px;">
+                                <i class="fas fa-images" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
+                                <p>Henüz galeri fotoğrafı eklenmemiş</p>
+                                <p style="font-size: 13px; margin-top: 8px;">Yukarıdaki alana URL yapıştırıp "Ekle" butonuna basın</p>
                             </div>
                         </div>
                     </div>
@@ -990,6 +1109,7 @@ async function loadTours() {
         let blogs = [];
         let editingTourId = null;
         let editingBlogId = null;
+        let currentGallery = []; // YENİ: Galeri yönetimi
 
         // DİL KODLARI
         const LANGUAGES = {
@@ -1019,24 +1139,6 @@ async function loadTours() {
                 console.error('Çeviri hatası:', error);
                 return text;
             }
-        }
-
-        // BİRDEN FAZLA DİLE ÇEVİRİ
-        async function translateToMultipleLanguages(text, languages) {
-            const translations = {};
-            
-            for (const lang of languages) {
-                try {
-                    translations[lang] = await translateText(text, lang);
-                    // API rate limit'i aşmamak için küçük gecikme
-                    await new Promise(resolve => setTimeout(resolve, 300));
-                } catch (error) {
-                    console.error(`${lang} çevirisi hatası:`, error);
-                    translations[lang] = text;
-                }
-            }
-            
-            return translations;
         }
 
         // TUR İÇİN ÇOK DİLLİ ÇEVİRİ
@@ -1163,6 +1265,122 @@ async function loadTours() {
             }
         }
 
+        // GALERİ YÖNETİMİ
+        function addGalleryImage() {
+            const input = document.getElementById('newGalleryImage');
+            const url = input.value.trim();
+            
+            if (!url) {
+                showAlert('tourAlert', '⚠️ Lütfen bir fotoğraf URL\'si girin!', 'error');
+                return;
+            }
+            
+            // URL validasyonu
+            if (!url.match(/\.(jpeg|jpg|gif|png|webp)$/i) && !url.includes('unsplash') && !url.includes('pexels')) {
+                if (!confirm('Bu bir resim URL\'si gibi görünmüyor. Yine de eklemek istiyor musunuz?')) {
+                    return;
+                }
+            }
+            
+            currentGallery.push(url);
+            input.value = '';
+            updateGalleryPreview();
+            showAlert('tourAlert', '✅ Fotoğraf galeriye eklendi!', 'success');
+        }
+
+        function removeGalleryImage(index) {
+            if (confirm('Bu fotoğrafı galeriden kaldırmak istediğinizden emin misiniz?')) {
+                currentGallery.splice(index, 1);
+                updateGalleryPreview();
+                showAlert('tourAlert', '🗑️ Fotoğraf galeriden kaldırıldı', 'success');
+            }
+        }
+
+        function updateGalleryPreview() {
+            const container = document.getElementById('galleryPreview');
+            const emptyState = document.getElementById('galleryEmpty');
+            
+            if (currentGallery.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            container.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            container.innerHTML = currentGallery.map((url, index) => `
+                <div class="gallery-item">
+                    <img src="${url}" alt="Gallery ${index + 1}" onerror="this.src='https://via.placeholder.com/150?text=Invalid+URL'">
+                    <button class="gallery-item-delete" onclick="removeGalleryImage(${index})" type="button">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <span class="gallery-item-number">#${index + 1}</span>
+                </div>
+            `).join('');
+        }
+
+        // KATEGORİ TOPLAMA FONKSİYONU
+        function getSelectedCategories() {
+            const categories = {
+                traveller: [],
+                destination: [],
+                month: []
+            };
+            
+            // Traveller types
+            ['family', 'couples', 'groups', 'honeymoon', 'solo'].forEach(cat => {
+                if (document.getElementById(`cat_${cat}`).checked) {
+                    categories.traveller.push(cat);
+                }
+            });
+            
+            // Destinations
+            ['turkiye', 'europe', 'america', 'russia', 'brazil'].forEach(cat => {
+                if (document.getElementById(`cat_${cat}`).checked) {
+                    categories.destination.push(cat);
+                }
+            });
+            
+            // Months/Seasons
+            ['spring', 'summer', 'autumn', 'winter', 'year-round'].forEach(cat => {
+                if (document.getElementById(`cat_${cat}`).checked) {
+                    categories.month.push(cat);
+                }
+            });
+            
+            return categories;
+        }
+
+        // KATEGORİLERİ AYARLA (Düzenleme için)
+        function setSelectedCategories(categories) {
+            if (!categories) return;
+            
+            // Traveller
+            if (categories.traveller) {
+                categories.traveller.forEach(cat => {
+                    const checkbox = document.getElementById(`cat_${cat}`);
+                    if (checkbox) checkbox.checked = true;
+                });
+            }
+            
+            // Destination
+            if (categories.destination) {
+                categories.destination.forEach(cat => {
+                    const checkbox = document.getElementById(`cat_${cat}`);
+                    if (checkbox) checkbox.checked = true;
+                });
+            }
+            
+            // Month
+            if (categories.month) {
+                categories.month.forEach(cat => {
+                    const checkbox = document.getElementById(`cat_${cat}`);
+                    if (checkbox) checkbox.checked = true;
+                });
+            }
+        }
+
         // GITHUB'DAN MANUEL YENİLE (TURLAR)
         async function refreshToursFromGitHub() {
             showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> GitHub\'dan yükleniyor...', 'info');
@@ -1175,6 +1393,7 @@ async function loadTours() {
                     tours = await response.json();
                     displayTours();
                     updateTourStats();
+                    updateFeaturedTours();
                     showAlert('tourAlert', `✅ ${tours.length} tur GitHub'dan güncellendi!`, 'success');
                 } else {
                     showAlert('tourAlert', '❌ GitHub\'dan yüklenemedi! Bağlantıyı kontrol edin.', 'error');
@@ -1211,6 +1430,7 @@ async function loadTours() {
             loadBlogs();
             setupImagePreviews();
             setupForms();
+            updateGalleryPreview(); // Galeri önizlemesini başlat
         });
 
         // SEKME DEĞİŞTİRME
@@ -1257,6 +1477,71 @@ async function loadTours() {
             
             displayTours();
             updateTourStats();
+            updateFeaturedTours();
+        }
+
+        // Featured Tours Management
+        function updateFeaturedTours() {
+            const featuredContainer = document.getElementById('featuredToursList');
+            if (!featuredContainer) return;
+            
+            const featuredTours = tours.filter(t => t.featured);
+            
+            if (featuredTours.length === 0) {
+                featuredContainer.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
+                        <i class="fas fa-star" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
+                        <p>Henüz öne çıkan tur seçilmemiş.</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Aşağıdaki tur listesinden yıldız ⭐ ikonuna tıklayarak öne çıkarabilirsiniz.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            featuredContainer.innerHTML = featuredTours.map(tour => `
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                        <h4 style="margin: 0; color: #0c4a6e; font-size: 18px;">${tour.title}</h4>
+                        <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                            ⭐ FEATURED
+                        </span>
+                    </div>
+                    <p style="color: #64748b; font-size: 14px; margin: 8px 0;">${tour.location} • ${tour.price}</p>
+                    <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
+                        <i class="fas fa-star-half-alt"></i> Öne Çıkarmayı Kaldır
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Toggle featured status
+        function toggleFeatured(tourId) {
+            const tour = tours.find(t => t.id === tourId);
+            if (!tour) return;
+            
+            const featuredCount = tours.filter(t => t.featured).length;
+            
+            // Eğer featured değilse ve limit doluysa
+            if (!tour.featured && featuredCount >= 3) {
+                showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir! Önce başka bir turu kaldırın.', 'error');
+                return;
+            }
+            
+            // Toggle featured status
+            tour.featured = !tour.featured;
+            
+            // Kaydet
+            saveToursToFile();
+            
+            // Güncelle
+            displayTours();
+            updateFeaturedTours();
+            
+            const message = tour.featured 
+                ? `✅ "${tour.title}" öne çıkarıldı! Ana sayfada gösterilecek.`
+                : `✓ "${tour.title}" öne çıkarmadan kaldırıldı.`;
+            
+            showAlert('tourAlert', message, 'success');
         }
 
         // TURLARI GÖSTER
@@ -1268,15 +1553,26 @@ async function loadTours() {
                 return;
             }
 
-            container.innerHTML = tours.map(tour => `
-                <div class="item-card">
+            container.innerHTML = tours.map(tour => {
+                const cats = tour.categories || { traveller: [], destination: [], month: [] };
+                const galleryCount = tour.gallery ? tour.gallery.length : 0;
+                
+                return `
+                <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
+                    ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
                     <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
                     <div class="item-info">
                         <h3>${tour.title}</h3>
                         <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
-                        <p><i class="fas fa-folder"></i> ${tour.category}</p>
+                        <p>
+                            <i class="fas fa-images"></i> ${galleryCount} fotoğraf
+                            ${cats.traveller.length > 0 ? `<br><i class="fas fa-users"></i> ${cats.traveller.join(', ')}` : ''}
+                        </p>
                     </div>
                     <div class="item-actions">
+                        <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')" title="${tour.featured ? 'Öne çıkarmayı kaldır' : 'Öne çıkar'}">
+                            <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
+                        </button>
                         <button class="btn btn-primary" onclick="editTour('${tour.id}')">
                             <i class="fas fa-edit"></i> Düzenle
                         </button>
@@ -1285,14 +1581,21 @@ async function loadTours() {
                         </button>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // TUR İSTATİSTİKLERİ
         function updateTourStats() {
             document.getElementById('tourCount').textContent = tours.length;
-            const categories = [...new Set(tours.map(t => t.category))];
-            document.getElementById('categoryCount').textContent = categories.length;
+            const allCategories = tours.reduce((acc, t) => {
+                if (t.categories) {
+                    acc.push(...t.categories.traveller, ...t.categories.destination, ...t.categories.month);
+                }
+                return acc;
+            }, []);
+            const uniqueCategories = [...new Set(allCategories)];
+            document.getElementById('categoryCount').textContent = uniqueCategories.length;
         }
 
         // TUR FORMU AYARLARI
@@ -1324,9 +1627,18 @@ async function loadTours() {
             });
         }
 
-        // TURU KAYDET
+        // TURU KAYDET (GÜNCELLENMİŞ)
         async function saveTour(e) {
             e.preventDefault();
+
+            // Kategorileri al
+            const categories = getSelectedCategories();
+            
+            // En az bir kategori kontrolü
+            if (categories.traveller.length === 0 || categories.destination.length === 0 || categories.month.length === 0) {
+                showAlert('tourAlert', '⚠️ Her kategori grubundan en az bir seçim yapmalısınız!', 'error');
+                return;
+            }
 
             const tourData = {
                 id: editingTourId || 'TUR-' + Date.now(),
@@ -1340,7 +1652,13 @@ async function loadTours() {
                 price: document.getElementById('tourPrice').value,
                 duration: document.getElementById('tourDuration').value,
                 location: document.getElementById('tourLocation').value,
-                category: document.getElementById('tourCategory').value,
+                
+                // ESKİ category (geriye dönük uyumluluk)
+                category: document.getElementById('tourCategory') ? document.getElementById('tourCategory').value : 'Türkiye',
+                
+                // YENİ: 3 boyutlu kategori
+                categories: categories,
+                
                 description: document.getElementById('tourDescription').value,
                 description_en: document.getElementById('tourDescriptionEn').value || document.getElementById('tourDescription').value,
                 description_es: document.getElementById('tourDescriptionEs').value || document.getElementById('tourDescription').value,
@@ -1356,21 +1674,27 @@ async function loadTours() {
                 content_zh: document.getElementById('tourContentZh').value || document.getElementById('tourDescriptionZh').value,
                 content_ar: document.getElementById('tourContentAr').value || document.getElementById('tourDescriptionAr').value,
                 image: document.getElementById('tourImage').value,
+                
+                // YENİ: Galeri fotoğrafları
+                gallery: currentGallery.length > 0 ? currentGallery : [],
+                
+                featured: editingTourId ? tours.find(t => t.id === editingTourId)?.featured || false : false,
                 source: 'admin'
             };
 
             if (editingTourId) {
                 const index = tours.findIndex(t => t.id === editingTourId);
                 tours[index] = tourData;
-                showAlert('tourAlert', 'Tur başarıyla güncellendi! (7 dilde)', 'success');
+                showAlert('tourAlert', `✅ Tur güncellendi! (${currentGallery.length} fotoğraf)`, 'success');
             } else {
                 tours.push(tourData);
-                showAlert('tourAlert', 'Yeni tur başarıyla eklendi! (7 dilde)', 'success');
+                showAlert('tourAlert', `✅ Yeni tur eklendi! (${currentGallery.length} fotoğraf)`, 'success');
             }
 
             await saveToursToFile();
             displayTours();
             updateTourStats();
+            updateFeaturedTours();
             resetTourForm();
         }
 
@@ -1388,7 +1712,7 @@ async function loadTours() {
             showAlert('tourAlert', '✅ tours.json dosyası indirildi! Lütfen bu dosyayı "data" klasörüne kopyalayın.', 'success');
         }
 
-        // TURU DÜZENLE
+        // TURU DÜZENLE (GÜNCELLENMİŞ)
         function editTour(id) {
             const tour = tours.find(t => t.id === id);
             if (!tour) return;
@@ -1407,7 +1731,17 @@ async function loadTours() {
             document.getElementById('tourPrice').value = tour.price;
             document.getElementById('tourDuration').value = tour.duration || '';
             document.getElementById('tourLocation').value = tour.location;
-            document.getElementById('tourCategory').value = tour.category;
+            
+            // Eski category varsa set et
+            if (document.getElementById('tourCategory')) {
+                document.getElementById('tourCategory').value = tour.category || 'Türkiye';
+            }
+            
+            // Yeni categories varsa set et
+            if (tour.categories) {
+                setSelectedCategories(tour.categories);
+            }
+            
             document.getElementById('tourDescription').value = tour.description;
             document.getElementById('tourDescriptionEn').value = tour.description_en || '';
             document.getElementById('tourDescriptionEs').value = tour.description_es || '';
@@ -1424,6 +1758,10 @@ async function loadTours() {
             document.getElementById('tourContentAr').value = tour.content_ar || '';
             document.getElementById('tourImage').value = tour.image;
             
+            // Galeriyi yükle
+            currentGallery = tour.gallery || [];
+            updateGalleryPreview();
+            
             const preview = document.getElementById('tourImagePreview');
             preview.src = tour.image;
             preview.style.display = 'block';
@@ -1439,15 +1777,28 @@ async function loadTours() {
             saveToursToFile();
             displayTours();
             updateTourStats();
+            updateFeaturedTours();
             showAlert('tourAlert', 'Tur silindi!', 'success');
         }
 
-        // TUR FORMUNU SIFIRLA
+        // TUR FORMUNU SIFIRLA (GÜNCELLENMİŞ)
         function resetTourForm() {
             editingTourId = null;
             document.getElementById('tourForm').reset();
             document.getElementById('tourFormTitle').textContent = 'Yeni Tur Ekle';
             document.getElementById('tourImagePreview').style.display = 'none';
+            
+            // Kategorileri temizle
+            ['family', 'couples', 'groups', 'honeymoon', 'solo',
+             'turkiye', 'europe', 'america', 'russia', 'brazil',
+             'spring', 'summer', 'autumn', 'winter', 'year-round'].forEach(cat => {
+                const checkbox = document.getElementById(`cat_${cat}`);
+                if (checkbox) checkbox.checked = false;
+            });
+            
+            // Galeriyi temizle
+            currentGallery = [];
+            updateGalleryPreview();
         }
 
         // BLOGLARI YÜKLE (GitHub'dan veya yerel)
@@ -1460,7 +1811,7 @@ async function loadTours() {
                 if (githubResponse.ok) {
                     blogs = await githubResponse.json();
                     console.log('✅ Blog yazıları GitHub\'dan yüklendi:', blogs.length);
-                    showAlert('blogAlert', `✅ ${blogs.length} blog yazısı GitHub'dan yüklendi!`, 'success');
+                    showAlert('blogAlert', `✅ ${blogs.length} blog yazısı GitHub'dan yüklendi!', 'success');
                 } else {
                     throw new Error('GitHub\'dan yüklenemedi');
                 }
@@ -1501,168 +1852,167 @@ async function loadTours() {
                     <img src="${blog.image}" alt="${blog.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
                     <div class="item-info">
                         <h3>${blog.title}</h3>
-                        <p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
-                        <p><i class="fas fa-calendar"></i> ${blog.date}</p>
-                    </div>
-                    <div class="item-actions">
-                        <button class="btn btn-primary" onclick="editBlog('${blog.id}')">
-                            <i class="fas fa-edit"></i> Düzenle
-                        </button>
-                        <button class="btn btn-danger" onclick="deleteBlog('${blog.id}')">
-                            <i class="fas fa-trash"></i> Sil
-                        </button>
-                    </div>
+<p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
+                    <p><i class="fas fa-calendar"></i> ${blog.date}</p>
                 </div>
-            `).join('');
-        }
-
-        // BLOG İSTATİSTİKLERİ
-        function updateBlogStats() {
-            document.getElementById('blogCount').textContent = blogs.length;
-        }
-
-        // BLOG KAYDET
-        async function saveBlog(e) {
-            e.preventDefault();
-
-            const today = new Date().toLocaleDateString('tr-TR');
-
-            const blogData = {
-                id: editingBlogId || 'BLOG-' + Date.now(),
-                title: document.getElementById('blogTitle').value,
-                title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
-                title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
-                title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
-                title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
-                title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
-                title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
-                author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
-                category: document.getElementById('blogCategory').value,
-                date: today,
-                excerpt: document.getElementById('blogExcerpt').value,
-                excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
-                excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
-                excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
-                excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
-                excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
-                excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
-                content: document.getElementById('blogContent').value,
-                content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
-                content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
-                content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
-                content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
-                content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
-                content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
-                image: document.getElementById('blogImage').value
-            };
-
-            if (editingBlogId) {
-                const index = blogs.findIndex(b => b.id === editingBlogId);
-                blogs[index] = blogData;
-                showAlert('blogAlert', 'Blog yazısı güncellendi! (7 dilde)', 'success');
-            } else {
-                blogs.push(blogData);
-                showAlert('blogAlert', 'Yeni blog yazısı eklendi! (7 dilde)', 'success');
-            }
-
-            await saveBlogsToFile();
-            displayBlogs();
-            updateBlogStats();
-            resetBlogForm();
-        }
-
-        // BLOG DOSYASINA KAYDET
-        async function saveBlogsToFile() {
-            const json = JSON.stringify(blogs, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'blog-posts.json';
-            a.click();
-            
-            showAlert('blogAlert', '✅ blog-posts.json dosyası indirildi! Lütfen bu dosyayı "data" klasörüne kopyalayın.', 'success');
-        }
-
-        // BLOG DÜZENLE
-        function editBlog(id) {
-            const blog = blogs.find(b => b.id === id);
-            if (!blog) return;
-
-            editingBlogId = id;
-            document.getElementById('blogFormTitle').textContent = 'Blog Yazısını Düzenle';
-            
-            document.getElementById('blogId').value = blog.id;
-            document.getElementById('blogTitle').value = blog.title;
-            document.getElementById('blogTitleEn').value = blog.title_en || '';
-            document.getElementById('blogTitleEs').value = blog.title_es || '';
-            document.getElementById('blogTitleRu').value = blog.title_ru || '';
-            document.getElementById('blogTitleDe').value = blog.title_de || '';
-            document.getElementById('blogTitleZh').value = blog.title_zh || '';
-            document.getElementById('blogTitleAr').value = blog.title_ar || '';
-            document.getElementById('blogAuthor').value = blog.author || '';
-            document.getElementById('blogCategory').value = blog.category;
-            document.getElementById('blogExcerpt').value = blog.excerpt;
-            document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
-            document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
-            document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
-            document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
-            document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
-            document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
-            document.getElementById('blogContent').value = blog.content;
-            document.getElementById('blogContentEn').value = blog.content_en || '';
-            document.getElementById('blogContentEs').value = blog.content_es || '';
-            document.getElementById('blogContentRu').value = blog.content_ru || '';
-            document.getElementById('blogContentDe').value = blog.content_de || '';
-            document.getElementById('blogContentZh').value = blog.content_zh || '';
-            document.getElementById('blogContentAr').value = blog.content_ar || '';
-            document.getElementById('blogImage').value = blog.image;
-            
-            const preview = document.getElementById('blogImagePreview');
-            preview.src = blog.image;
-            preview.style.display = 'block';
-
-            switchTab('blogs');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // BLOG SİL
-        function deleteBlog(id) {
-            if (!confirm('Bu blog yazısını silmek istediğinizden emin misiniz?')) return;
-            
-            blogs = blogs.filter(b => b.id !== id);
-            saveBlogsToFile();
-            displayBlogs();
-            updateBlogStats();
-            showAlert('blogAlert', 'Blog yazısı silindi!', 'success');
-        }
-
-        // BLOG FORMUNU SIFIRLA
-        function resetBlogForm() {
-            editingBlogId = null;
-            document.getElementById('blogForm').reset();
-            document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
-            document.getElementById('blogImagePreview').style.display = 'none';
-        }
-
-        // UYARI MESAJI GÖSTER
-        function showAlert(containerId, message, type) {
-            const container = document.getElementById(containerId);
-            const alertClass = type === 'success' ? 'alert-success' : 'alert-error';
-            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
-            
-            container.innerHTML = `
-                <div class="alert ${alertClass}">
-                    <i class="fas ${icon}"></i>
-                    ${message}
+                <div class="item-actions">
+                    <button class="btn btn-primary" onclick="editBlog('${blog.id}')">
+                        <i class="fas fa-edit"></i> Düzenle
+                    </button>
+                    <button class="btn btn-danger" onclick="deleteBlog('${blog.id}')">
+                        <i class="fas fa-trash"></i> Sil
+                    </button>
                 </div>
-            `;
+            </div>
+        `).join('');
+    }
 
-            setTimeout(() => {
-                container.innerHTML = '';
-            }, 5000);
+    // BLOG İSTATİSTİKLERİ
+    function updateBlogStats() {
+        document.getElementById('blogCount').textContent = blogs.length;
+    }
+
+    // BLOG KAYDET
+    async function saveBlog(e) {
+        e.preventDefault();
+
+        const today = new Date().toLocaleDateString('tr-TR');
+
+        const blogData = {
+            id: editingBlogId || 'BLOG-' + Date.now(),
+            title: document.getElementById('blogTitle').value,
+            title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
+            title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
+            title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
+            title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
+            title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
+            title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
+            author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
+            category: document.getElementById('blogCategory').value,
+            date: today,
+            excerpt: document.getElementById('blogExcerpt').value,
+            excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
+            excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
+            excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
+            excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
+            excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
+            excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
+            content: document.getElementById('blogContent').value,
+            content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
+            content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
+            content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
+            content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
+            content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
+            content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
+            image: document.getElementById('blogImage').value
+        };
+
+        if (editingBlogId) {
+            const index = blogs.findIndex(b => b.id === editingBlogId);
+            blogs[index] = blogData;
+            showAlert('blogAlert', 'Blog yazısı güncellendi! (7 dilde)', 'success');
+        } else {
+            blogs.push(blogData);
+            showAlert('blogAlert', 'Yeni blog yazısı eklendi! (7 dilde)', 'success');
         }
-    </script>
-</body>
-</html>
+
+        await saveBlogsToFile();
+        displayBlogs();
+        updateBlogStats();
+        resetBlogForm();
+    }
+
+    // BLOG DOSYASINA KAYDET
+    async function saveBlogsToFile() {
+        const json = JSON.stringify(blogs, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'blog-posts.json';
+        a.click();
+        
+        showAlert('blogAlert', '✅ blog-posts.json dosyası indirildi! Lütfen bu dosyayı "data" klasörüne kopyalayın.', 'success');
+    }
+
+    // BLOG DÜZENLE
+    function editBlog(id) {
+        const blog = blogs.find(b => b.id === id);
+        if (!blog) return;
+
+        editingBlogId = id;
+        document.getElementById('blogFormTitle').textContent = 'Blog Yazısını Düzenle';
+        
+        document.getElementById('blogId').value = blog.id;
+        document.getElementById('blogTitle').value = blog.title;
+        document.getElementById('blogTitleEn').value = blog.title_en || '';
+        document.getElementById('blogTitleEs').value = blog.title_es || '';
+        document.getElementById('blogTitleRu').value = blog.title_ru || '';
+        document.getElementById('blogTitleDe').value = blog.title_de || '';
+        document.getElementById('blogTitleZh').value = blog.title_zh || '';
+        document.getElementById('blogTitleAr').value = blog.title_ar || '';
+        document.getElementById('blogAuthor').value = blog.author || '';
+        document.getElementById('blogCategory').value = blog.category;
+        document.getElementById('blogExcerpt').value = blog.excerpt;
+        document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
+        document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
+        document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
+        document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
+        document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
+        document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
+        document.getElementById('blogContent').value = blog.content;
+        document.getElementById('blogContentEn').value = blog.content_en || '';
+        document.getElementById('blogContentEs').value = blog.content_es || '';
+        document.getElementById('blogContentRu').value = blog.content_ru || '';
+        document.getElementById('blogContentDe').value = blog.content_de || '';
+        document.getElementById('blogContentZh').value = blog.content_zh || '';
+        document.getElementById('blogContentAr').value = blog.content_ar || '';
+        document.getElementById('blogImage').value = blog.image;
+        
+        const preview = document.getElementById('blogImagePreview');
+        preview.src = blog.image;
+        preview.style.display = 'block';
+
+        switchTab('blogs');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // BLOG SİL
+    function deleteBlog(id) {
+        if (!confirm('Bu blog yazısını silmek istediğinizden emin misiniz?')) return;
+        
+        blogs = blogs.filter(b => b.id !== id);
+        saveBlogsToFile();
+        displayBlogs();
+        updateBlogStats();
+        showAlert('blogAlert', 'Blog yazısı silindi!', 'success');
+    }
+
+    // BLOG FORMUNU SIFIRLA
+    function resetBlogForm() {
+        editingBlogId = null;
+        document.getElementById('blogForm').reset();
+        document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
+        document.getElementById('blogImagePreview').style.display = 'none';
+    }
+
+    // UYARI MESAJI GÖSTER
+    function showAlert(containerId, message, type) {
+        const container = document.getElementById(containerId);
+        const alertClass = type === 'success' ? 'alert-success' : (type === 'info' ? 'alert-info' : 'alert-error');
+        const icon = type === 'success' ? 'fa-check-circle' : (type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle');
+        
+        container.innerHTML = `
+            <div class="alert ${alertClass}">
+                <i class="fas ${icon}"></i>
+                ${message}
+            </div>
+        `;
+
+        setTimeout(() => {
+            container.innerHTML = '';
+        }, 5000);
+    }
+</script>
+                
