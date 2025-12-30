@@ -192,53 +192,7 @@ const i18n = {
     console.log(`✅ Aktif buton: ${lang.toUpperCase()}`);
   },
   
-  // Butonları başlat
-  initButtons() {
-    console.log('🔘 Dil butonları başlatılıyor...');
-    
-    const buttons = document.querySelectorAll('.lang-btn');
-    console.log(`📍 ${buttons.length} dil butonu bulundu`);
-    
-    if (buttons.length === 0) {
-      console.error('❌ HİÇ DİL BUTONU BULUNAMADI!');
-      console.log('💡 HTML\'de şu yapıyı kontrol edin:');
-      console.log('   <button class="lang-btn" data-lang="tr">TR</button>');
-      return;
-    }
-    
-    // Her butona listener ekle
-    buttons.forEach((btn, index) => {
-      const lang = btn.getAttribute('data-lang');
-      
-      if (!lang) {
-        console.warn(`⚠️ Buton ${index + 1}: data-lang eksik!`);
-        return;
-      }
-      
-      // Eski listener'ları temizle (clone ile)
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-      
-      // Yeni listener ekle
-      newBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        console.log(`🖱️ BUTON TIKLANDI: ${lang.toUpperCase()}`);
-        
-        if (this.currentLang === lang) {
-          console.log('⚠️ Bu dil zaten aktif');
-          return;
-        }
-        
-        this.changeLanguage(lang);
-      });
-      
-      console.log(`✅ Buton ${index + 1} hazır: ${lang.toUpperCase()}`);
-    });
-    
-    console.log('✅ Tüm butonlar hazır!');
-  },
+  
   
   // Başlat
   async init(defaultLang = 'tr') {
@@ -271,20 +225,7 @@ const i18n = {
       console.error('❌ i18n başlatılamadı!');
     }
     
-    // Butonları başlat
-    console.log('⏳ Butonlar başlatılıyor...');
-    
-    // DOM hazır mı kontrol et
-    if (document.readyState === 'loading') {
-      console.log('⏳ DOM henüz hazır değil, bekleniyor...');
-      document.addEventListener('DOMContentLoaded', () => {
-        console.log('✅ DOM hazır!');
-        this.initButtons();
-      });
-    } else {
-      console.log('✅ DOM zaten hazır!');
-      this.initButtons();
-    }
+    // NOT: Butonlar artık index.html'den başlatılıyor!
   },
   
   // Dil ismi al
@@ -367,5 +308,6 @@ if (typeof window !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = i18n;
 }
+
 
 console.log('✅ i18n.js yükleme tamamlandı!');
