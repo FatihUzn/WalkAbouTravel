@@ -535,5 +535,83 @@
         console.log('✅ Categories ve Popular Trips yüklendi!');
     });
     </script>
+<!-- DİL DEĞİŞTİRME SİSTEMİ -->
+    <script>
+    console.log('🌍 Dil değiştirme sistemi başlatılıyor...');
+    
+    // i18n.js yüklenene kadar bekle
+    function waitForI18n() {
+        if (typeof window.i18n !== 'undefined') {
+            console.log('✅ i18n bulundu!');
+            initLanguageButtons();
+        } else {
+            console.log('⏳ i18n bekleniyor...');
+            setTimeout(waitForI18n, 100);
+        }
+    }
+    
+    function initLanguageButtons() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        console.log(`📍 ${langButtons.length} dil butonu bulundu`);
+        
+        if (langButtons.length === 0) {
+            console.error('❌ Dil butonları bulunamadı!');
+            return;
+        }
+        
+        langButtons.forEach((btn, index) => {
+            const lang = btn.getAttribute('data-lang');
+            
+            if (!lang) {
+                console.warn(`⚠️ Buton ${index + 1}: data-lang eksik!`);
+                return;
+            }
+            
+            // Tıklama olayı
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log(`🖱️ Buton tıklandı: ${lang.toUpperCase()}`);
+                
+                // Zaten aktifse çık
+                if (window.i18n.currentLang === lang) {
+                    console.log('⚠️ Bu dil zaten aktif');
+                    return;
+                }
+                
+                // Dili değiştir
+                window.i18n.changeLanguage(lang);
+            });
+            
+            console.log(`✅ Buton hazır: ${lang.toUpperCase()}`);
+        });
+        
+        console.log('✅ Tüm butonlar hazır!');
+        
+        // Başlangıç dilini ayarla
+        const savedLang = localStorage.getItem('language') || 'tr';
+        console.log(`💾 Kaydedilmiş dil: ${savedLang}`);
+        
+        // i18n'i başlat
+        if (window.i18n) {
+            window.i18n.init(savedLang);
+        }
+    }
+    
+    // Sayfa yüklendiğinde başlat
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', waitForI18n);
+    } else {
+        waitForI18n();
+    }
+    </script>
+
+    <!-- SCRIPTS -->
+    <script src="i18n.js"></script>
+    <script src="Tours.js"></script>
+    <script src="Blog.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
+
