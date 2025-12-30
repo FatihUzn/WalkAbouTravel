@@ -374,7 +374,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* CATEGORY CHECKBOXES */
         .category-checkbox {
             display: flex;
             align-items: center;
@@ -419,7 +418,6 @@
             font-size: 16px;
         }
 
-        /* GALLERY STYLES */
         .gallery-item {
             position: relative;
             border-radius: 12px;
@@ -476,7 +474,6 @@
             font-weight: 700;
         }
 
-        /* BULK SAVE SECTION */
         .bulk-save-section {
             margin-top: 40px;
             padding: 30px;
@@ -521,6 +518,34 @@
             color: rgba(255,255,255,0.8);
             margin-top: 15px;
             font-size: 13px;
+        }
+
+        .info-box {
+            background: #e0f2fe;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 2px solid #38bdf8;
+        }
+
+        .info-box h4 {
+            color: #0c4a6e;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-box ol {
+            color: #0369a1;
+            font-size: 14px;
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .info-box code {
+            background: #bae6fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
         }
 
         @media (max-width: 768px) {
@@ -584,9 +609,9 @@
                     <ol>
                         <li>Aşağıdaki formu Türkçe olarak doldurun</li>
                         <li><strong>🌍 Otomatik Çeviri:</strong> "Otomatik Çevir" butonuna tıklayın</li>
-                        <li><strong>✏️ Çoklu Ekleme:</strong> İstediğiniz kadar tur ekleyin (bellekte tutulur)</li>
-                        <li><strong>💾 Toplu Kaydetme:</strong> En son "TÜMÜNÜ KAYDET" butonuna basın</li>
-                        <li>tours.json dosyasını GitHub'a yükleyin</li>
+                        <li><strong>📸 Resim:</strong> Sadece dosya ismini yazın (örn: cappadocia.jpg)</li>
+                        <li><strong>📁 Yükleme:</strong> Resimleri cPanel → assets/ klasörüne yükleyin</li>
+                        <li><strong>💾 Kaydetme:</strong> "TÜMÜNÜ KAYDET" butonuna basıp JSON'u GitHub'a yükleyin</li>
                     </ol>
                 </div>
 
@@ -859,31 +884,51 @@
                             </div>
                         </div>
 
+                        <!-- YENİ RESİM SİSTEMİ -->
                         <div class="form-group full-width">
                             <label>Tur Resmi (Ana Kapak) *</label>
-                            <input type="text" id="tourImage" placeholder="Resim URL'si">
-                            <div class="image-upload-area" style="margin-top: 10px;">
+                            <input type="text" id="tourImage" placeholder="Örnek: cappadocia.jpg" required>
+                            
+                            <div class="info-box">
+                                <h4><i class="fas fa-info-circle"></i> Resim Nasıl Yüklenir?</h4>
+                                <ol>
+                                    <li>Resim dosyasını hazırla (örn: <code>cappadocia.jpg</code>)</li>
+                                    <li>Yukarıdaki alana sadece <strong>dosya ismini</strong> yaz</li>
+                                    <li>cPanel → File Manager → <code>assets/</code> klasörüne resmi yükle</li>
+                                    <li>Otomatik path: <code>assets/cappadocia.jpg</code></li>
+                                </ol>
+                                <p style="color: #0369a1; font-size: 13px; margin-top: 10px;">
+                                    💡 <strong>İpucu:</strong> Dosya isimlerinde Türkçe karakter kullanma (ç→c, ğ→g, ı→i, ö→o, ş→s, ü→u)
+                                </p>
+                            </div>
+                            
+                            <div class="image-upload-area" style="margin-top: 15px;">
                                 <i class="fas fa-image"></i>
-                                <p>Resim URL'sini yapıştırın</p>
+                                <p>Önizleme</p>
                                 <img id="tourImagePreview" class="image-preview" style="display: none;">
                             </div>
                         </div>
 
-                        <!-- GALERİ -->
+                        <!-- YENİ GALERİ SİSTEMİ -->
                         <div class="form-group full-width" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 16px; border: 2px solid #22c55e; margin-top: 30px;">
                             <h3 style="font-size: 20px; margin-bottom: 20px; color: #15803d; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-images"></i> Tur Galerisi
+                                <i class="fas fa-images"></i> Tur Galerisi (Çoklu Fotoğraf)
                             </h3>
                             
-                            <p style="color: #16a34a; margin-bottom: 20px;">
-                                📸 Sınırsız fotoğraf ekle
-                            </p>
+                            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 2px solid #86efac;">
+                                <p style="color: #15803d; font-size: 14px; margin-bottom: 10px;">
+                                    <i class="fas fa-info-circle"></i> <strong>Sadece dosya ismini yaz</strong> (örn: photo1.jpg, photo2.jpg)
+                                </p>
+                                <p style="color: #16a34a; font-size: 13px;">
+                                    Tüm resimleri <code>assets/</code> klasörüne yükle
+                                </p>
+                            </div>
                             
                             <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-bottom: 20px;">
                                 <input 
                                     type="text" 
                                     id="newGalleryImage" 
-                                    placeholder="Fotoğraf URL'si..."
+                                    placeholder="Örnek: photo1.jpg"
                                     style="padding: 14px 18px; border: 2px solid #86efac; border-radius: 10px;"
                                 >
                                 <button 
@@ -936,15 +981,16 @@
                 </div>
             </div>
 
-            <!-- BLOG SEKMESİ (Aynı kalıyor, sadece açıklama ekledim) -->
+            <!-- BLOG SEKMESİ -->
             <div id="blogs-content" class="tab-content">
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> Blog Nasıl Eklenir?</h3>
                     <ol>
                         <li>Blog başlığı ve içeriği Türkçe yazın</li>
                         <li>"Otomatik Çevir" butonuna tıklayın</li>
-                        <li>Kapak resmi URL'si ekleyin</li>
-                        <li>"Blog Yazısını Kaydet" butonuna tıklayın</li>
+                        <li>Kapak resmi için sadece dosya ismini yazın (örn: blog1.jpg)</li>
+                        <li>Resmi cPanel → assets/ klasörüne yükleyin</li>
+                        <li>"Blog Kaydet" butonuna tıklayın</li>
                     </ol>
                 </div>
 
@@ -1105,12 +1151,23 @@
                             </div>
                         </div>
 
+                        <!-- YENİ BLOG RESİM SİSTEMİ -->
                         <div class="form-group full-width">
                             <label>Kapak Resmi *</label>
-                            <input type="text" id="blogImage" required>
-                            <div class="image-upload-area" style="margin-top: 10px;">
+                            <input type="text" id="blogImage" placeholder="Örnek: blog-cappadocia.jpg" required>
+                            
+                            <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin-top: 15px; border: 2px solid #fbbf24;">
+                                <p style="color: #92400e; font-size: 14px;">
+                                    <i class="fas fa-image"></i> Sadece dosya ismini yaz (örn: <code>blog-istanbul.jpg</code>)
+                                </p>
+                                <p style="color: #92400e; font-size: 13px; margin-top: 8px;">
+                                    Resmi <code>assets/</code> klasörüne yükle
+                                </p>
+                            </div>
+                            
+                            <div class="image-upload-area" style="margin-top: 15px;">
                                 <i class="fas fa-image"></i>
-                                <p>Resim URL'si</p>
+                                <p>Önizleme</p>
                                 <img id="blogImagePreview" class="image-preview" style="display: none;">
                             </div>
                         </div>
@@ -1154,16 +1211,6 @@
         let editingTourId = null;
         let editingBlogId = null;
         let currentGallery = [];
-
-        // DİL KODLARI
-        const LANGUAGES = {
-            en: 'İngilizce',
-            es: 'İspanyolca', 
-            ru: 'Rusça',
-            de: 'Almanca',
-            zh: 'Çince',
-            ar: 'Arapça'
-        };
 
         // ÇEVİRİ FONKSİYONU
         async function translateText(text, targetLang) {
@@ -1269,14 +1316,14 @@
         // GALERİ FONKSİYONLARI
         function addGalleryImage() {
             const input = document.getElementById('newGalleryImage');
-            const url = input.value.trim();
+            const filename = input.value.trim();
             
-            if (!url) {
-                showAlert('tourAlert', '⚠️ URL girin!', 'error');
+            if (!filename) {
+                showAlert('tourAlert', '⚠️ Dosya ismi girin!', 'error');
                 return;
             }
             
-            currentGallery.push(url);
+            currentGallery.push(filename);
             input.value = '';
             updateGalleryPreview();
             showAlert('tourAlert', '✅ Fotoğraf eklendi!', 'success');
@@ -1302,15 +1349,18 @@
             container.style.display = 'grid';
             emptyState.style.display = 'none';
             
-            container.innerHTML = currentGallery.map((url, index) => `
-                <div class="gallery-item">
-                    <img src="${url}" alt="Gallery ${index + 1}">
-                    <button class="gallery-item-delete" onclick="removeGalleryImage(${index})" type="button">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <span class="gallery-item-number">#${index + 1}</span>
-                </div>
-            `).join('');
+            container.innerHTML = currentGallery.map((filename, index) => {
+                const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
+                return `
+                    <div class="gallery-item">
+                        <img src="${imagePath}" alt="Gallery ${index + 1}" onerror="this.src='https://via.placeholder.com/150?text=Resim+Yok'">
+                        <button class="gallery-item-delete" onclick="removeGalleryImage(${index})" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <span class="gallery-item-number">#${index + 1}</span>
+                    </div>
+                `;
+            }).join('');
         }
 
         // KATEGORİ FONKSİYONLARI
@@ -1421,11 +1471,10 @@
 
         // SAYFA YÜKLENİNCE
         document.addEventListener('DOMContentLoaded', () => {
-            // localStorage'dan taslak yükle
             const draftTours = localStorage.getItem('draftTours');
             if (draftTours) {
-                const confirm = window.confirm('Kaydedilmemiş turlar bulundu! Geri yüklemek ister misin?');
-                if (confirm) {
+                const confirmRestore = window.confirm('Kaydedilmemiş turlar bulundu! Geri yüklemek ister misin?');
+                if (confirmRestore) {
                     tours = JSON.parse(draftTours);
                     displayTours();
                     updateTourStats();
@@ -1442,15 +1491,13 @@
             updateBulkCounts();
         });
 
-        // Otomatik taslak kaydetme (her 30 saniyede bir)
+        // Otomatik taslak kaydetme
         setInterval(() => {
             if (tours.length > 0) {
                 localStorage.setItem('draftTours', JSON.stringify(tours));
-                console.log('💾 Taslak kaydedildi:', tours.length, 'tur');
             }
             if (blogs.length > 0) {
                 localStorage.setItem('draftBlogs', JSON.stringify(blogs));
-                console.log('💾 Taslak kaydedildi:', blogs.length, 'blog');
             }
         }, 30000);
 
@@ -1478,7 +1525,6 @@
                 
                 if (githubResponse.ok) {
                     const githubTours = await githubResponse.json();
-                    // Bellekteki turlar varsa birleştir
                     if (tours.length === 0) {
                         tours = githubTours;
                     }
@@ -1491,6 +1537,43 @@
             updateTourStats();
             updateFeaturedTours();
             updateBulkCounts();
+        }
+
+        // YENİ: RESİM ÖNİZLEME SİSTEMİ
+        function setupImagePreviews() {
+            // TUR RESMİ ÖNİZLEME
+            document.getElementById('tourImage').addEventListener('input', (e) => {
+                const preview = document.getElementById('tourImagePreview');
+                const filename = e.target.value.trim();
+                
+                if (filename) {
+                    const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
+                    preview.src = imagePath;
+                    preview.style.display = 'block';
+                    preview.onerror = function() {
+                        this.src = 'https://via.placeholder.com/300x200?text=Resim+Henuz+Yuklenmedi';
+                    };
+                } else {
+                    preview.style.display = 'none';
+                }
+            });
+
+            // BLOG RESMİ ÖNİZLEME
+            document.getElementById('blogImage').addEventListener('input', (e) => {
+                const preview = document.getElementById('blogImagePreview');
+                const filename = e.target.value.trim();
+                
+                if (filename) {
+                    const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
+                    preview.src = imagePath;
+                    preview.style.display = 'block';
+                    preview.onerror = function() {
+                        this.src = 'https://via.placeholder.com/300x200?text=Resim+Henuz+Yuklenmedi';
+                    };
+                } else {
+                    preview.style.display = 'none';
+                }
+            });
         }
 
         // FEATURED TOURS
@@ -1564,7 +1647,7 @@
                 return `
                 <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
                     ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
-                    <img src="${tour.image}" alt="${tour.title}" class="item-image">
+                    <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
                     <div class="item-info">
                         <h3>${tour.title}</h3>
                         <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
@@ -1606,29 +1689,7 @@
             document.getElementById('blogForm').addEventListener('submit', saveBlog);
         }
 
-        function setupImagePreviews() {
-            document.getElementById('tourImage').addEventListener('input', (e) => {
-                const preview = document.getElementById('tourImagePreview');
-                if (e.target.value) {
-                    preview.src = e.target.value;
-                    preview.style.display = 'block';
-                } else {
-                    preview.style.display = 'none';
-                }
-            });
-
-            document.getElementById('blogImage').addEventListener('input', (e) => {
-                const preview = document.getElementById('blogImagePreview');
-                if (e.target.value) {
-                    preview.src = e.target.value;
-                    preview.style.display = 'block';
-                } else {
-                    preview.style.display = 'none';
-                }
-            });
-        }
-
-        // TURU KAYDET (YENİ - TOPLU KAYDETME)
+        // YENİ: TURU KAYDET (OTOMATİK PATH EKLEME)
         async function saveTour(e) {
             e.preventDefault();
 
@@ -1638,6 +1699,10 @@
                 showAlert('tourAlert', '⚠️ Her kategori grubundan en az bir seçim yapın!', 'error');
                 return;
             }
+
+            // YENİ: Resim path'ini otomatik oluştur
+            const imageFilename = document.getElementById('tourImage').value.trim();
+            const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
 
             const tourData = {
                 id: editingTourId || 'TUR-' + Date.now(),
@@ -1651,7 +1716,7 @@
                 price: document.getElementById('tourPrice').value,
                 duration: document.getElementById('tourDuration').value,
                 location: document.getElementById('tourLocation').value,
-                category: document.getElementById('tourCategory') ? document.getElementById('tourCategory').value : 'Türkiye',
+                category: document.getElementById('tourCategory').value || 'Türkiye',
                 categories: categories,
                 description: document.getElementById('tourDescription').value,
                 description_en: document.getElementById('tourDescriptionEn').value || document.getElementById('tourDescription').value,
@@ -1667,8 +1732,10 @@
                 content_de: document.getElementById('tourContentDe').value || document.getElementById('tourDescriptionDe').value,
                 content_zh: document.getElementById('tourContentZh').value || document.getElementById('tourDescriptionZh').value,
                 content_ar: document.getElementById('tourContentAr').value || document.getElementById('tourDescriptionAr').value,
-                image: document.getElementById('tourImage').value,
-                gallery: currentGallery.length > 0 ? currentGallery : [],
+                image: imagePath, // YENİ: OTOMATİK PATH!
+                gallery: currentGallery.map(filename => 
+                    filename.startsWith('http') ? filename : `assets/${filename}`
+                ), // YENİ: GALERİ PATH'LERİ OTOMATİK!
                 featured: editingTourId ? tours.find(t => t.id === editingTourId)?.featured || false : false,
                 source: 'admin'
             };
@@ -1681,9 +1748,6 @@
                 tours.push(tourData);
                 showAlert('tourAlert', `✅ Tur eklendi! (Toplam: ${tours.length}) - "TÜMÜNÜ KAYDET" butonuna basın`, 'success');
             }
-
-            // ❌ ARTIK OTOMATİK KAYDETME YOK!
-            // await saveToursToFile();
             
             displayTours();
             updateTourStats();
@@ -1692,7 +1756,6 @@
             resetTourForm();
         }
 
-        // TÜMÜNÜ KAYDET (YENİ)
         async function saveToursToFile() {
             if (tours.length === 0) {
                 showAlert('tourAlert', '⚠️ Kaydedilecek tur yok!', 'error');
@@ -1708,12 +1771,12 @@
             a.download = 'tours.json';
             a.click();
             
-            // localStorage'ı temizle
             localStorage.removeItem('draftTours');
             
             showAlert('tourAlert', `✅ ${tours.length} tur JSON olarak indirildi! GitHub'a yükle.`, 'success');
         }
 
+        // YENİ: editTour (PATH'DEN DOSYA İSMİNİ AYIR)
         function editTour(id) {
             const tour = tours.find(t => t.id === id);
             if (!tour) return;
@@ -1754,9 +1817,13 @@
             document.getElementById('tourContentDe').value = tour.content_de || '';
             document.getElementById('tourContentZh').value = tour.content_zh || '';
             document.getElementById('tourContentAr').value = tour.content_ar || '';
-            document.getElementById('tourImage').value = tour.image;
             
-            currentGallery = tour.gallery || [];
+            // YENİ: RESİM PATH'İNDEN SADECE DOSYA İSMİNİ GÖSTER
+            const imageFilename = tour.image.replace('assets/', '');
+            document.getElementById('tourImage').value = imageFilename;
+            
+            // YENİ: GALERİDEN ASSETS/ PREFIXINI KALDIR
+            currentGallery = (tour.gallery || []).map(path => path.replace('assets/', ''));
             updateGalleryPreview();
             
             const preview = document.getElementById('tourImagePreview');
@@ -1825,7 +1892,7 @@
 
             container.innerHTML = blogs.map(blog => `
                 <div class="item-card">
-                    <img src="${blog.image}" alt="${blog.title}" class="item-image">
+                    <img src="${blog.image}" alt="${blog.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
                     <div class="item-info">
                         <h3>${blog.title}</h3>
                         <p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
@@ -1847,10 +1914,15 @@
             document.getElementById('blogCount').textContent = blogs.length;
         }
 
+        // YENİ: BLOG KAYDET (OTOMATİK PATH EKLEME)
         async function saveBlog(e) {
             e.preventDefault();
 
             const today = new Date().toLocaleDateString('tr-TR');
+
+            // YENİ: Resim path'ini otomatik oluştur
+            const imageFilename = document.getElementById('blogImage').value.trim();
+            const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
 
             const blogData = {
                 id: editingBlogId || 'BLOG-' + Date.now(),
@@ -1877,118 +1949,21 @@
                 content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
                 content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
                 content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
-                content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
-                image: document.getElementById('blogImage').value
-            };
-
-            if (editingBlogId) {
-                const index = blogs.findIndex(b => b.id === editingBlogId);
-                blogs[index] = blogData;
-                showAlert('blogAlert', `✅ Blog güncellendi! (Toplam: ${blogs.length})`, 'success');
-            } else {
-                blogs.push(blogData);
-                showAlert('blogAlert', `✅ Blog eklendi! (Toplam: ${blogs.length})`, 'success');
-            }
-
-            displayBlogs();
-            updateBlogStats();
-            updateBulkCounts();
-            resetBlogForm();
-        }
-
-        async function saveBlogsToFile() {
-            if (blogs.length === 0) {
-                showAlert('blogAlert', '⚠️ Kaydedilecek blog yok!', 'error');
-                return;
-            }
-
-            const json = JSON.stringify(blogs, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'blog-posts.json';
-            a.click();
-            
-            localStorage.removeItem('draftBlogs');
-            
-            showAlert('blogAlert', `✅ ${blogs.length} blog JSON olarak indirildi!`, 'success');
-        }
-
-        function editBlog(id) {
-            const blog = blogs.find(b => b.id === id);
-            if (!blog) return;
-
-            editingBlogId = id;
-            document.getElementById('blogFormTitle').textContent = 'Blog Düzenle';
-            
-            document.getElementById('blogTitle').value = blog.title;
-            document.getElementById('blogTitleEn').value = blog.title_en || '';
-            document.getElementById('blogTitleEs').value = blog.title_es || '';
-            document.getElementById('blogTitleRu').value = blog.title_ru || '';
-            document.getElementById('blogTitleDe').value = blog.title_de || '';
-            document.getElementById('blogTitleZh').value = blog.title_zh || '';
-            document.getElementById('blogTitleAr').value = blog.title_ar || '';
-            document.getElementById('blogAuthor').value = blog.author || '';
-            document.getElementById('blogCategory').value = blog.category;
-            document.getElementById('blogExcerpt').value = blog.excerpt;
-            document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
-            document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
-            document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
-            document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
-            document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
-            document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
-            document.getElementById('blogContent').value = blog.content;
-            document.getElementById('blogContentEn').value = blog.content_en || '';
-            document.getElementById('blogContentEs').value = blog.content_es || '';
-            document.getElementById('blogContentRu').value = blog.content_ru || '';
-            document.getElementById('blogContentDe').value = blog.content_de || '';
-            document.getElementById('blogContentZh').value = blog.content_zh || '';
-            document.getElementById('blogContentAr').value = blog.content_ar || '';
-            document.getElementById('blogImage').value = blog.image;
-            
-            const preview = document.getElementById('blogImagePreview');
-            preview.src = blog.image;
-            preview.style.display = 'block';
-
-            switchTab('blogs');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function deleteBlog(id) {
-            if (!confirm('Silmek istediğinizden emin misiniz?')) return;
-            
-            blogs = blogs.filter(b => b.id !== id);
-            displayBlogs();
-            updateBlogStats();
-            updateBulkCounts();
-            showAlert('blogAlert', 'Blog silindi!', 'success');
-        }
-
-        function resetBlogForm() {
-            editingBlogId = null;
-            document.getElementById('blogForm').reset();
-            document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
-            document.getElementById('blogImagePreview').style.display = 'none';
-        }
-
-        function showAlert(containerId, message, type) {
-            const container = document.getElementById(containerId);
-            const alertClass = type === 'success' ? 'alert-success' : (type === 'info' ? 'alert-info' : 'alert-error');
-            const icon = type === 'success' ? 'fa-check-circle' : (type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle');
-            
-            container.innerHTML = `
-                <div class="alert ${alertClass}">
-                    <i class="fas ${icon}"></i>
-                    ${message}
-                </div>
-            `;
-
-            setTimeout(() => {
-                container.innerHTML = '';
-            }, 5000);
-        }
-    </script>
-</body>
-</html>
+                {
+  "id": "TUR-1234567890",
+  "title": "Kapadokya Balon Turu",
+  "title_en": "Cappadocia Balloon Tour",
+  "price": "9.800 TL",
+  "location": "Kapadokya",
+  "image": "assets/cappadocia.jpg",
+  "gallery": [
+    "assets/photo1.jpg",
+    "assets/photo2.jpg",
+    "assets/photo3.jpg"
+  ],
+  "categories": {
+    "traveller": ["couples", "honeymoon"],
+    "destination": ["turkiye"],
+    "month": ["spring", "summer"]
+  }
+}
