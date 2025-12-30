@@ -1780,3 +1780,46 @@ footer {
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
+/* ===== ARAPÇA RTL DESTEĞI ===== */
+body[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+body[dir="rtl"] .nav-container {
+    flex-direction: row-reverse;
+}
+
+body[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}
+
+body[dir="rtl"] .lang-switcher {
+    order: -1;
+}
+
+body[dir="rtl"] .hero-content {
+    text-align: center;
+}
+
+body[dir="rtl"] .footer-content {
+    direction: rtl;
+}
+
+body[dir="rtl"] .contact-form input,
+body[dir="rtl"] .contact-form textarea {
+    text-align: right;
+}
+
+/* Mobil menü için RTL */
+@media (max-width: 992px) {
+    body[dir="rtl"] .nav-links {
+        right: auto;
+        left: -100%;
+    }
+    
+    body[dir="rtl"] .nav-links.active {
+        right: auto;
+        left: 0;
+    }
+}
