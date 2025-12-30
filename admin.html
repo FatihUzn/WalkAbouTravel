@@ -1724,37 +1724,46 @@
         }
 
         // SAYFA YÜKLENİNCE
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Sayfa yüklendi!');
-            
-            const draftTours = localStorage.getItem('draftTours');
-            if (draftTours) {
-                const confirmRestore = window.confirm('Kaydedilmemiş turlar bulundu! Geri yüklemek ister misin?');
-                if (confirmRestore) {
-                    tours = JSON.parse(draftTours);
-                    console.log('Taslak yüklendi:', tours.length, 'tur');
-                }
-            }
-            
-            loadTours();
-            loadBlogs();
-            setupImagePreviews();
-            setupForms();
-            updateGalleryPreview();
-            updateBulkCounts();
-            
-            console.log('Başlangıç tamamlandı, tur sayısı:', tours.length);
-        });
+        // SAYFA YÜKLENİNCE
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Sayfa yüklendi!');
+    
+    // LocalStorage kontrolü - HATA DÜZELTMESİ
+    try {
+        const draftTours = localStorage.getItem('draftTours');
+        if (draftTours) {
+            // Sessizce yükle, dialog gösterme
+            tours = JSON.parse(draftTours);
+            console.log('Taslak sessizce yüklendi:', tours.length, 'tur');
+        }
+    } catch (error) {
+        console.log('LocalStorage kullanılamıyor veya bozuk veri');
+    }
+    
+    loadTours();
+    loadBlogs();
+    setupImagePreviews();
+    setupForms();
+    updateGalleryPreview();
+    updateBulkCounts();
+    
+    console.log('Başlangıç tamamlandı, tur sayısı:', tours.length);
+});
 
         // Otomatik taslak kaydetme
-        setInterval(() => {
-            if (tours.length > 0) {
-                localStorage.setItem('draftTours', JSON.stringify(tours));
-            }
-            if (blogs.length > 0) {
-                localStorage.setItem('draftBlogs', JSON.stringify(blogs));
-            }
-        }, 30000);
+        // Otomatik taslak kaydetme - HATA DÜZELTMESİ
+setInterval(() => {
+    try {
+        if (tours.length > 0) {
+            localStorage.setItem('draftTours', JSON.stringify(tours));
+        }
+        if (blogs.length > 0) {
+            localStorage.setItem('draftBlogs', JSON.stringify(blogs));
+        }
+    } catch (error) {
+        console.log('LocalStorage kaydetme başarısız');
+    }
+}, 30000);
 
         // SEKME DEĞİŞTİRME - TAM ÇALIŞAN VERSİYON
         function switchTab(tabName) {
