@@ -434,5 +434,90 @@
         console.log('✅ Categories ve Popular Trips yüklendi!');
     });
     </script>
+<script>
+// ==================== MOBİL HAMBURGER MENU ====================
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (!menuToggle || !navLinks) {
+        console.error('❌ Menu toggle veya nav links bulunamadı!');
+        return;
+    }
+    // ==================== DİL SEÇİCİ MOBİL ====================
+if (window.innerWidth <= 992) {
+    const langSwitcher = document.querySelector('.lang-switcher');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (langSwitcher && navLinks) {
+        // Dil seçiciyi nav-links içine taşı
+        navLinks.appendChild(langSwitcher);
+        console.log('✅ Dil seçici mobil menüye taşındı');
+    }
+}
+    // Hamburger toggle
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        
+        // İkon değiştir
+        const icon = this.querySelector('i');
+        if (icon) {
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
+        console.log('📱 Menü toggle:', navLinks.classList.contains('active'));
+    });
+    
+    // Menü dışına tıklanınca kapat
+    document.addEventListener('click', function(e) {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+    
+    // Link'e tıklanınca menüyü kapat
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+    
+    // ESC tuşu ile kapat
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+    
+    console.log('✅ Mobil menü hazır!');
+});
+</script>
 </body>
 </html>
+
