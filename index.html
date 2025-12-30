@@ -36,7 +36,7 @@
             <div class="top-bar-right">
                 <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Istanbul" 
                    target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-map-marker-alt"></i> <span>Get Directions</span>
+                    <i class="fas fa-map-marker-alt"></i> <span data-i18n="nav_get_directions">Get Directions</span>
                 </a>
             </div>
         </div>
@@ -51,11 +51,11 @@
             </a>
 
             <div class="nav-links" id="navLinks">
-                <a href="#home">HOME</a>
-                <a href="#popular-trips">TOURS</a>
-                <a href="#why-us">WHY US</a>
-                <a href="#blog">BLOG</a>
-                <a href="#contact">CONTACT</a>
+                <a href="#home" data-i18n="nav_home">HOME</a>
+                <a href="#popular-trips" data-i18n="nav_tours">TOURS</a>
+                <a href="#why-us" data-i18n="nav_why_us">WHY US</a>
+                <a href="#blog" data-i18n="nav_blog">BLOG</a>
+                <a href="#contact" data-i18n="nav_contact">CONTACT</a>
             </div>
 
             <div class="lang-switcher">
@@ -81,22 +81,22 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-badge">SINCE 1997</span>
+            <span class="hero-badge" data-i18n="hero_badge">SINCE 1997</span>
             <h1>
-                Discover the Adventure<br>
+                <span data-i18n="hero_title">Discover the Adventure</span><br>
                 <span class="hero-gradient">WalkAboutTravel</span>
             </h1>
-            <p>Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
+            <p data-i18n="hero_description">Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
             
             <div class="hero-links-container">
                 <a href="#travel-categories" class="btn-hero-link">
-                    <i class="fas fa-compass"></i> Explore Tours
+                    <i class="fas fa-compass"></i> <span data-i18n="hero_explore">Explore Tours</span>
                 </a>
                 <a href="#blog" class="btn-hero-link">
-                    <i class="fas fa-blog"></i> Blog
+                    <i class="fas fa-blog"></i> <span data-i18n="hero_blog">Blog</span>
                 </a>
                 <a href="#contact" class="btn-hero-link">
-                    <i class="fas fa-envelope"></i> Contact Us
+                    <i class="fas fa-envelope"></i> <span data-i18n="hero_contact">Contact Us</span>
                 </a>
             </div>
         </div>
@@ -105,12 +105,12 @@
     <!-- HOW DO YOU TRAVEL -->
     <section id="travel-categories" class="travel-categories-section">
         <div class="travel-categories-header">
-            <h2>HOW DO YOU TRAVEL?</h2>
+            <h2 data-i18n="categories_title">HOW DO YOU TRAVEL?</h2>
             
             <div class="travel-tabs">
-                <div class="travel-tab active" data-tab="traveller">BY TRAVELLER</div>
-                <div class="travel-tab" data-tab="destination">BY DESTINATION</div>
-                <div class="travel-tab" data-tab="month">BY MONTH</div>
+                <div class="travel-tab active" data-tab="traveller" data-i18n="categories_tab_traveller">BY TRAVELLER</div>
+                <div class="travel-tab" data-tab="destination" data-i18n="categories_tab_destination">BY DESTINATION</div>
+                <div class="travel-tab" data-tab="month" data-i18n="categories_tab_month">BY MONTH</div>
             </div>
         </div>
 
@@ -118,7 +118,7 @@
         
         <div class="view-more-container">
             <a href="#popular-trips" class="view-more-btn">
-                VIEW MORE <i class="fas fa-arrow-down"></i>
+                <span data-i18n="categories_view_more">VIEW MORE</span> <i class="fas fa-arrow-down"></i>
             </a>
         </div>
     </section>
@@ -126,9 +126,9 @@
     <!-- POPULAR TRIPS -->
     <section id="popular-trips" class="popular-trips-section">
         <div class="popular-trips-header">
-            <span class="section-badge">FEATURED TOURS</span>
-            <h2>OUR MOST POPULAR TRIPS</h2>
-            <p>The trips our travellers are booking right now</p>
+            <span class="section-badge" data-i18n="popular_badge">FEATURED TOURS</span>
+            <h2 data-i18n="popular_title">OUR MOST POPULAR TRIPS</h2>
+            <p data-i18n="popular_subtitle">The trips our travellers are booking right now</p>
         </div>
 
         <div class="popular-trips-grid" id="popularTripsGrid"></div>
@@ -137,9 +137,9 @@
     <!-- TOURS -->
     <section id="tours" class="tours-section">
         <div class="section-header">
-            <span class="section-badge">ALL ROUTES</span>
-            <h2>Featured Tours</h2>
-            <p>Discover our most preferred destinations</p>
+            <span class="section-badge" data-i18n="tours_badge">ALL ROUTES</span>
+            <h2 data-i18n="tours_title">Featured Tours</h2>
+            <p data-i18n="tours_subtitle">Discover our most preferred destinations</p>
         </div>
         <div class="tours-grid"></div>
     </section>
@@ -147,31 +147,31 @@
     <!-- WHY US -->
     <section id="why-us" class="why-us-section">
         <div class="section-header">
-            <span class="section-badge">WHY WalkAbout Travel?</span>
-            <h2>Reasons to Choose Us</h2>
-            <p>Safe and unforgettable journeys with our 28 years of experience</p>
+            <span class="section-badge" data-i18n="why_badge">WHY WalkAbout Travel?</span>
+            <h2 data-i18n="why_title">Reasons to Choose Us</h2>
+            <p data-i18n="why_subtitle">Safe and unforgettable journeys with our 28 years of experience</p>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Safe Travel</h3>
-                <p>Full security with TURSAB certified, insurance guaranteed and licensed guides.</p>
+                <h3 data-i18n="why_feature1_title">Safe Travel</h3>
+                <p data-i18n="why_feature1_desc">Full security with TURSAB certified, insurance guaranteed and licensed guides.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-star"></i></div>
-                <h3>28 Years of Experience</h3>
-                <p>We have served thousands of happy customers since 1997.</p>
+                <h3 data-i18n="why_feature2_title">28 Years of Experience</h3>
+                <p data-i18n="why_feature2_desc">We have served thousands of happy customers since 1997.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-headset"></i></div>
-                <h3>24/7 Support</h3>
-                <p>We are with you at every moment of your trip.</p>
+                <h3 data-i18n="why_feature3_title">24/7 Support</h3>
+                <p data-i18n="why_feature3_desc">We are with you at every moment of your trip.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
-                <h3>Best Price Guarantee</h3>
-                <p>We offer quality service at the most affordable prices.</p>
+                <h3 data-i18n="why_feature4_title">Best Price Guarantee</h3>
+                <p data-i18n="why_feature4_desc">We offer quality service at the most affordable prices.</p>
             </div>
         </div>
     </section>
@@ -179,9 +179,9 @@
     <!-- BLOG -->
     <section id="blog" class="blog-section">
         <div class="section-header">
-            <span class="section-badge">TRAVEL DIARY</span>
-            <h2>Blog & Travel Guide</h2>
-            <p>Get inspired by our experiences</p>
+            <span class="section-badge" data-i18n="blog_badge">TRAVEL DIARY</span>
+            <h2 data-i18n="blog_title">Blog & Travel Guide</h2>
+            <p data-i18n="blog_subtitle">Get inspired by our experiences</p>
         </div>
         <div class="blog-grid" id="blogContainer"></div>
     </section>
@@ -189,48 +189,48 @@
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
         <div class="section-header">
-            <span class="section-badge">CONTACT US</span>
-            <h2>Let's Plan Your Holiday</h2>
-            <p>Our expert team is ready to help you</p>
+            <span class="section-badge" data-i18n="contact_badge">CONTACT US</span>
+            <h2 data-i18n="contact_title">Let's Plan Your Holiday</h2>
+            <p data-i18n="contact_subtitle">Our expert team is ready to help you</p>
         </div>
 
         <div class="contact-container">
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" required placeholder="John Doe">
+                    <label for="name" data-i18n="contact_name_label">Full Name *</label>
+                    <input type="text" id="name" required data-i18n="contact_name_placeholder" placeholder="John Doe">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" required placeholder="john@example.com">
+                    <label for="email" data-i18n="contact_email_label">Email Address *</label>
+                    <input type="email" id="email" required data-i18n="contact_email_placeholder" placeholder="john@example.com">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" placeholder="+90 555 123 45 67">
+                    <label for="phone" data-i18n="contact_phone_label">Phone Number</label>
+                    <input type="tel" id="phone" data-i18n="contact_phone_placeholder" placeholder="+90 555 123 45 67">
                 </div>
                 <div class="form-group">
-                    <label for="message">Your Message *</label>
-                    <textarea id="message" required placeholder="Which tour are you interested in?"></textarea>
+                    <label for="message" data-i18n="contact_message_label">Your Message *</label>
+                    <textarea id="message" required data-i18n="contact_message_placeholder" placeholder="Which tour are you interested in?"></textarea>
                 </div>
                 <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Send
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="contact_send_button">Send</span>
                 </button>
             </form>
 
             <div class="contact-info">
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h4>Our Address</h4>
-                    <p>Mimar Sinan St. No: 42/A<br>Istanbul, Turkey</p>
+                    <h4 data-i18n="contact_info_address_title">Our Address</h4>
+                    <p data-i18n="contact_info_address_text">Mimar Sinan St. No: 42/A<br>Istanbul, Turkey</p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
-                    <h4>Phone</h4>
+                    <h4 data-i18n="contact_info_phone_title">Phone</h4>
                     <p>+90 (212) 555 1923</p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
-                    <h4>Email</h4>
+                    <h4 data-i18n="contact_info_email_title">Email</h4>
                     <p>info@walkaboutravel.com</p>
                 </div>
             </div>
@@ -248,7 +248,7 @@
                         <span class="logo-subtitle">Tourism & Travel</span>
                     </div>
                 </div>
-                <p>Journeys planned with confidence since 1997.</p>
+                <p data-i18n="footer_tagline">Journeys planned with confidence since 1997.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -258,40 +258,40 @@
             </div>
 
             <div class="footer-column">
-                <h4>Quick Links</h4>
+                <h4 data-i18n="footer_quick_links">Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#popular-trips">Tours</a></li>
-                    <li><a href="#why-us">Why Us</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#popular-trips" data-i18n="nav_tours">Tours</a></li>
+                    <li><a href="#why-us" data-i18n="nav_why_us">Why Us</a></li>
+                    <li><a href="#blog" data-i18n="nav_blog">Blog</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
-                <h4>Categories</h4>
+                <h4 data-i18n="footer_categories">Categories</h4>
                 <ul class="footer-links">
-                    <li><a href="family.html">Family Tours</a></li>
-                    <li><a href="couples.html">Couples Tours</a></li>
-                    <li><a href="groups.html">Group Tours</a></li>
-                    <li><a href="honeymoon.html">Honeymoon Tours</a></li>
-                    <li><a href="solo.html">Solo Tours</a></li>
+                    <li><a href="family.html" data-i18n="footer_cat_family">Family Tours</a></li>
+                    <li><a href="couples.html" data-i18n="footer_cat_couples">Couples Tours</a></li>
+                    <li><a href="groups.html" data-i18n="footer_cat_groups">Group Tours</a></li>
+                    <li><a href="honeymoon.html" data-i18n="footer_cat_honeymoon">Honeymoon Tours</a></li>
+                    <li><a href="solo.html" data-i18n="footer_cat_solo">Solo Tours</a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
-                <h4>Services</h4>
+                <h4 data-i18n="footer_services">Services</h4>
                 <ul class="footer-links">
-                    <li><a href="#why-us">Visa Consultancy</a></li>
-                    <li><a href="#contact">Hotel Reservation</a></li>
-                    <li><a href="#contact">Flight Ticket</a></li>
-                    <li><a href="#contact">Transfer Service</a></li>
+                    <li><a href="#why-us" data-i18n="footer_service_visa">Visa Consultancy</a></li>
+                    <li><a href="#contact" data-i18n="footer_service_hotel">Hotel Reservation</a></li>
+                    <li><a href="#contact" data-i18n="footer_service_flight">Flight Ticket</a></li>
+                    <li><a href="#contact" data-i18n="footer_service_transfer">Transfer Service</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>© 2025 WalkAbout Travel. All rights reserved.</p>
+            <p data-i18n="footer_copyright">© 2025 WalkAbout Travel. All rights reserved.</p>
         </div>
     </footer>
 
@@ -399,6 +399,78 @@
         
         console.log('✅ Mobil menü hazır!');
     });
+    </script>
+
+    <!-- DİL DEĞİŞTİRME SİSTEMİ -->
+    <script>
+    console.log('🌍 Dil değiştirme sistemi başlatılıyor...');
+    
+    // i18n.js yüklenene kadar bekle
+    function waitForI18n() {
+        if (typeof window.i18n !== 'undefined') {
+            console.log('✅ i18n bulundu!');
+            initLanguageButtons();
+        } else {
+            console.log('⏳ i18n bekleniyor...');
+            setTimeout(waitForI18n, 100);
+        }
+    }
+    
+    function initLanguageButtons() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        console.log(`📍 ${langButtons.length} dil butonu bulundu`);
+        
+        if (langButtons.length === 0) {
+            console.error('❌ Dil butonları bulunamadı!');
+            return;
+        }
+        
+        langButtons.forEach((btn, index) => {
+            const lang = btn.getAttribute('data-lang');
+            
+            if (!lang) {
+                console.warn(`⚠️ Buton ${index + 1}: data-lang eksik!`);
+                return;
+            }
+            
+            // Tıklama olayı
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log(`🖱️ Buton tıklandı: ${lang.toUpperCase()}`);
+                
+                // Zaten aktifse çık
+                if (window.i18n.currentLang === lang) {
+                    console.log('⚠️ Bu dil zaten aktif');
+                    return;
+                }
+                
+                // Dili değiştir
+                window.i18n.changeLanguage(lang);
+            });
+            
+            console.log(`✅ Buton hazır: ${lang.toUpperCase()}`);
+        });
+        
+        console.log('✅ Tüm butonlar hazır!');
+        
+        // Başlangıç dilini ayarla
+        const savedLang = localStorage.getItem('language') || 'tr';
+        console.log(`💾 Kaydedilmiş dil: ${savedLang}`);
+        
+        // i18n'i başlat
+        if (window.i18n) {
+            window.i18n.init(savedLang);
+        }
+    }
+    
+    // Sayfa yüklendiğinde başlat
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', waitForI18n);
+    } else {
+        waitForI18n();
+    }
     </script>
 
     <!-- SCRIPTS -->
@@ -535,83 +607,5 @@
         console.log('✅ Categories ve Popular Trips yüklendi!');
     });
     </script>
-<!-- DİL DEĞİŞTİRME SİSTEMİ -->
-    <script>
-    console.log('🌍 Dil değiştirme sistemi başlatılıyor...');
-    
-    // i18n.js yüklenene kadar bekle
-    function waitForI18n() {
-        if (typeof window.i18n !== 'undefined') {
-            console.log('✅ i18n bulundu!');
-            initLanguageButtons();
-        } else {
-            console.log('⏳ i18n bekleniyor...');
-            setTimeout(waitForI18n, 100);
-        }
-    }
-    
-    function initLanguageButtons() {
-        const langButtons = document.querySelectorAll('.lang-btn');
-        console.log(`📍 ${langButtons.length} dil butonu bulundu`);
-        
-        if (langButtons.length === 0) {
-            console.error('❌ Dil butonları bulunamadı!');
-            return;
-        }
-        
-        langButtons.forEach((btn, index) => {
-            const lang = btn.getAttribute('data-lang');
-            
-            if (!lang) {
-                console.warn(`⚠️ Buton ${index + 1}: data-lang eksik!`);
-                return;
-            }
-            
-            // Tıklama olayı
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                console.log(`🖱️ Buton tıklandı: ${lang.toUpperCase()}`);
-                
-                // Zaten aktifse çık
-                if (window.i18n.currentLang === lang) {
-                    console.log('⚠️ Bu dil zaten aktif');
-                    return;
-                }
-                
-                // Dili değiştir
-                window.i18n.changeLanguage(lang);
-            });
-            
-            console.log(`✅ Buton hazır: ${lang.toUpperCase()}`);
-        });
-        
-        console.log('✅ Tüm butonlar hazır!');
-        
-        // Başlangıç dilini ayarla
-        const savedLang = localStorage.getItem('language') || 'tr';
-        console.log(`💾 Kaydedilmiş dil: ${savedLang}`);
-        
-        // i18n'i başlat
-        if (window.i18n) {
-            window.i18n.init(savedLang);
-        }
-    }
-    
-    // Sayfa yüklendiğinde başlat
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', waitForI18n);
-    } else {
-        waitForI18n();
-    }
-    </script>
-
-    <!-- SCRIPTS -->
-    <script src="i18n.js"></script>
-    <script src="Tours.js"></script>
-    <script src="Blog.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>
-
