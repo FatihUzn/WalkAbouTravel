@@ -161,12 +161,14 @@ const i18n = {
         }
       } 
       // Diğer elementler
-      else {
-        if (element.textContent !== translation) {
-          element.textContent = translation;
-          count++;
-        }
-      }
+else {
+  // İçeriği kontrol et - eğer sadece key ise değiştir
+  const currentText = element.textContent.trim();
+  if (currentText !== translation && (currentText === key || currentText.startsWith('nav_') || currentText.startsWith('hero_'))) {
+    element.textContent = translation;
+    count++;
+  }
+}
     });
     
     // Title güncelle
@@ -311,3 +313,4 @@ if (typeof module !== 'undefined' && module.exports) {
 
 
 console.log('✅ i18n.js yükleme tamamlandı!');
+
