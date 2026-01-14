@@ -137,8 +137,8 @@ html {
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #0a0f1e; /* Deep navy background */
-    color: #f1f5f9;
-    font-size: 15px;
+    color: #a1a1aa;
+    font-size: 17px;
     line-height: 1.6;
     overflow-x: hidden;
     transition: var(--transition-slow);
@@ -161,15 +161,19 @@ body::before {
    TYPOGRAPHY
    ================================================ */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', 'Montserrat', serif; /* ELITE SERIF */
+    font-family: 'Playfair Display', serif; /* ELITE SERIF */
     font-weight: 700;
     line-height: 1.2;
     color: var(--text-white);
 }
 
-h1 { font-size: 48px; }
+h1 { font-size: 56px; 
+     lette-spacing: 0px;
+   }
+
 h2 { 
-    font-size: 36px;
+    font-size: 42px;
+    margin-bottom: 60px;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -182,7 +186,9 @@ h2 {
     50% { background-position: 100% center; }
 }
 
-h3 { font-size: 20px; }
+h3 { font-size: 20px;
+     font-weight: 600;
+   }
 h4 { font-size: 16px; }
 
 p {
@@ -318,8 +324,8 @@ nav.scrolled {
     color: #e2e8f0; /* Light text */
     text-decoration: none;
     font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: var(--transition-base);
     position: relative;
@@ -507,21 +513,22 @@ nav.scrolled {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 15px 35px;
+    padding: 14px 30px;
     background: var(--gradient-gold);
     color: #0a0f1e;
     text-decoration: none;
-    border-radius: 12px;
-    font-weight: 800;
+    border-radius: 10px;
+    font-weight: 700;
     font-size: 14px;
     letter-spacing: 1px;
     text-transform: uppercase;
     border: 2px solid transparent;
     transition: var(--transition-base);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-gold);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(251, 191, 36, 0.4);
     cursor: pointer;
     position: relative;
     overflow: hidden;
+   font-family: 'Inter', sans-serif;
 }
 
 .btn-hero-link::before {
@@ -729,17 +736,18 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 15px 40px;
+    padding: 14px 30px;
     background: var(--gradient-primary);
     color: white;
     text-decoration: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: var(--transition-base);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 15px rgba(0,0,0,0,4), 0 0 15p rgba(251, 191, 36, 0.4);
+    font-family: 'Inter', sans-serif;
 }
 
 .view-more-btn:hover {
@@ -909,19 +917,20 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 14px 32px;
+    padding: 14px 30px;
     background: var(--gradient-gold);
     color: #0a0f1e;
     border: 2px solid var(--accent);
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.5s ease 0.3s;
+    font-family: 'Inter', sans-serif;
 }
 
 .popular-trip-card:hover .trip-card-button {
@@ -1275,12 +1284,12 @@ section {
 
 .submit-btn {
     width: 100%;
-    padding: 16px;
+    padding: 14px 30px;
     background: var(--gradient-gold);
     color: #0a0f1e;
     border: 2px solid var(--accent);
-    border-radius: 12px;
-    font-size: 13px;
+    border-radius: 10px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1290,7 +1299,8 @@ section {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: var(--shadow-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0,4), 0 0 15px rgba(251, 191, 36, 0.4)
+    font-family: 'Inter', sans-serif;
 }
 
 .submit-btn:hover {
