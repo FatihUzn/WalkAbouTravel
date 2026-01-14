@@ -4,42 +4,39 @@
    ================================================ */
 
 :root {
-    /* --- THEME: MIDNIGHT ROYAL (Elite) --- */
+    /* --- THEME: GOLDEN RIVIERA (Aydınlık & Ferah) --- */
     
-    /* ZEMİN: Düz siyah değil, çok derin, asil bir okyanus laciverti */
-    --bg: #020617; 
-    --dark: #0f172a; 
+    /* ZEMİN: Bembeyaz ve Kırık Beyaz tonları */
+    --bg: #ffffff; 
+    --section-bg: #f8fafc; /* Bölümleri ayırmak için çok hafif gri */
+    --dark: #ffffff; /* Kartların zemin rengi artık beyaz */
     
-    /* ANA RENK: Diplomat Mavisi (Cırtlak değil) */
-    --primary: #1e293b; 
-    --secondary: #334155; 
+    /* ANA RENK: Logondaki Mavi (Vurgular için az miktarda) */
+    --primary: #1e40af; 
     
-    /* VURGU RENGİ: Şampanya Altını (Lego sarısı değil) */
-    --accent: #C5A059; 
+    /* VURGU RENGİ: Şampanya Altını (Lüks hissi veren asıl renk) */
+    --accent: #d4af37; /* Daha doğal, metalik bir altın tonu */
     
-    /* YAZI RENKLERİ: Göz yormayan gümüşi gri */
-    --text-dark: #0f172a;
-    --text-medium: #64748b;
-    --text-light: #94a3b8; /* İnşaat sitesindeki elit gri */
-    --text-light-gray: #cbd5e1;
-    --text-white: #f8fafc;
+    /* YAZI RENKLERİ: Okunabilir Koyu Renkler (Simsiyah değil) */
+    --text-dark: #1e293b; /* Başlıklar için Koyu Lacivert/Gri */
+    --text-medium: #475569; /* Paragraflar için Orta Gri */
+    --text-light: #94a3b8; /* Daha silik yazılar için */
+    --text-white: #ffffff; /* Sadece resim üzerindeki yazılar için */
     
-    --border-light: rgba(197, 160, 89, 0.2); 
+    /* GRADIENTLER: Beyaz zeminde metalik altın çok şık durur */
+    --gradient-primary: linear-gradient(135deg, #1e40af, #3b82f6); 
+    --gradient-gold: linear-gradient(135deg, #d4af37, #c5a059, #b69246); 
     
-    /* GRADIENTLER: Metalik Geçişler */
-    --gradient-primary: linear-gradient(135deg, #0f172a, #1e293b); 
-    --gradient-gold: linear-gradient(135deg, #C5A059, #E5C585, #B69246); 
-    --gradient-overlay: linear-gradient(135deg, rgba(2, 6, 23, 0.8), rgba(15, 23, 42, 0.6));
-    
-    /* GÖLGELER: Mavi yerine Siyah ve Altın Işıltısı */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
-    --shadow-gold: 0 0 20px rgba(197, 160, 89, 0.3); 
-    --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.8);
+    /* Overlay: Resimlerin üzerini hafif karartmak için */
+    --gradient-overlay: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+
+    /* GÖLGELER: Yumuşak ve Kaliteli (Siyah gölge, beyaz zeminde çok sert durmasın diye opacity düşük) */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px -3px rgba(0, 0, 0, 0.08);
+    --shadow-gold: 0 0 15px rgba(212, 175, 55, 0.25); 
     
     /* Transitions */
-    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: all 0.3s ease;
 }
 
 /* ================================================
@@ -142,9 +139,9 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: #0a0f1e; /* Deep navy background */
-    color: #a1a1aa;
+    color: var(--text-medium);
     font-size: 17px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -171,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif; /* ELITE SERIF */
     font-weight: 700;
     line-height: 1.2;
-    color: var(--text-white);
+    color: var(--text-dark) !important;
 }
 
 h1 { 
@@ -218,12 +215,12 @@ nav {
     left: 0;
     right: 0;
     z-index: 9999;
-    background: rgba(15, 23, 42, 0.95); /* Dark navy with transparency */
+    background: rgba(255, 255, 255, 0.95) !important; 
     backdrop-filter: blur(20px);
     padding: 0;
     transition: var(--transition-base);
     box-shadow: var(--shadow-md);
-    border-bottom: 2px solid var(--primary);
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
 }
 
 nav.scrolled {
@@ -306,7 +303,8 @@ nav.scrolled {
     font-family: 'Playfair Display', serif;
     font-size: 18px;
     font-weight: 800;
-    background: var(--gradient-primary);
+    background: none !important; /* Gradyanı kaldır */
+    color: var(--primary) !important;
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -333,7 +331,7 @@ nav.scrolled {
 }
 
 .nav-links a {
-    color: #e2e8f0; /* Light text */
+    color: var(--text-dark) !important; /* Light text */
     text-decoration: none;
     font-weight: 600;
     font-size: 16px;
@@ -357,7 +355,7 @@ nav.scrolled {
 }
 
 .nav-links a:hover {
-    color: var(--accent);
+    color: var(--accent) !important;
     text-shadow: var(--shadow-gold);
 }
 
@@ -491,8 +489,8 @@ nav.scrolled {
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 20px;
-    color: white;
-    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    color: #ffffff !important;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
     letter-spacing: -1px;
 }
 
@@ -507,10 +505,10 @@ nav.scrolled {
 
 .hero p {
     font-size: 20px;
-    color: rgba(255, 255, 255, 0.95);
+    color: #ffffff !important;
     margin-bottom: 40px;
     line-height: 1.7;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 .hero-links-container {
@@ -822,15 +820,16 @@ section {
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(197, 160, 89, 0.2);
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    background: #ffffff !important;
 }
 
 .popular-trip-card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4), var(--shadow-gold);
-    border-color: var(--accent);
+    transform: translateY(-10px);
+    border-color: var(--accent) !important; /* Altın Çerçeve */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
 }
 
 .popular-trip-card img {
@@ -883,7 +882,7 @@ section {
 }
 
 .trip-card-title {
-    color: white;
+    color: var(--text-dark) !important;
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 15px;
@@ -894,7 +893,7 @@ section {
 }
 
 .trip-card-description {
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--text-medium) !important;
     font-size: 15px;
     line-height: 1.7;
     margin-bottom: 20px;
@@ -976,18 +975,18 @@ section {
     position: relative;
     border-radius: 16px;
     overflow: hidden;
-    background: rgba(30, 41, 59, 0.6);
+    background: #ffffff !important;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border: 1px solid rgba(197, 160, 89, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
 .tour-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--shadow-gold);
-    border-color: var(--accent);
+    transform: translateY(-10px);
+    border-color: var(--accent) !important; /* Altın Çerçeve */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
 }
 
 .tour-image {
@@ -1029,7 +1028,7 @@ section {
 
 .tour-content h3 {
     font-size: 24px;
-    color: white;
+    color: var(--text-dark) !important;
     margin-bottom: 18px;
     line-height: 1.3;
     font-weight: 700;
@@ -1037,7 +1036,7 @@ section {
 }
 
 .tour-content p {
-    color: var(--text-light-gray);
+    color: var(--text-medium) !important;
     line-height: 1.8;
     margin-bottom: 25px;
     font-size: 15px;
@@ -1104,11 +1103,11 @@ section {
 .feature-card {
     text-align: center;
     padding: 45px 30px;
-    background: rgba(30, 41, 59, 0.5);
+    background: #ffffff !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    border: 1px solid rgba(197, 160, 89, 0.2);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
     transition: var(--transition-base);
 }
 
@@ -1143,12 +1142,12 @@ section {
 .feature-card h3 {
     font-size: 18px;
     margin-bottom: 15px;
-    color: white;
+    color: var(--text-dark) !important;
     font-weight: 700;
 }
 
 .feature-card p {
-    color: var(--text-light-gray);
+    color: var(--text-medium) !important;
     line-height: 1.7;
     font-size: 14px;
 }
@@ -1170,20 +1169,20 @@ section {
 }
 
 .blog-card {
-    background: rgba(30, 41, 59, 0.6);
+    background: #ffffff !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
     transition: var(--transition-slow);
-    border: 1px solid rgba(197, 160, 89, 0.2);
+    border: 1px solid rgba(0,0,0,0.05) !important;
     cursor: pointer;
 }
 
 .blog-card:hover {
-    transform: translateY(-12px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--accent);
+    transform: translateY(-10px);
+    border-color: var(--accent) !important; /* Altın Çerçeve */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
 }
 
 .blog-image {
@@ -1218,7 +1217,7 @@ section {
 
 .blog-content h3 {
     font-size: 20px;
-    color: white;
+    color: var(--text-dark) !important;
     margin-bottom: 15px;
     line-height: 1.4;
     font-weight: 700;
@@ -1226,7 +1225,7 @@ section {
 }
 
 .blog-content p {
-    color: var(--text-light-gray);
+    color: var(--text-medium) !important;
     line-height: 1.8;
     margin-bottom: 20px;
     font-size: 14px;
@@ -1246,12 +1245,12 @@ section {
 }
 
 .contact-form {
-    background: rgba(30, 41, 59, 0.6);
+    background: #ffffff !important;
     backdrop-filter: blur(10px);
     padding: 50px;
     border-radius: 16px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(197, 160, 89, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
 }
 
 .form-group {
@@ -1262,7 +1261,7 @@ section {
     display: block;
     margin-bottom: 10px;
     font-weight: 700;
-    color: white;
+    color: var(--text-dark) !important;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1272,13 +1271,13 @@ section {
 .form-group textarea {
     width: 100%;
     padding: 14px 18px;
-    border: 2px solid rgba(197, 160, 89, 0.3);
+    border: 1px solid #e2e8f0 !important;
     border-radius: 8px;
     font-size: 14px;
     font-family: 'Inter', sans-serif;
     transition: var(--transition-base);
-    background: rgba(15, 23, 42, 0.5);
-    color: white;
+    background: #f8fafc !important; /* Açık gri zemin */
+    color: #333 !important;
 }
 
 .form-group input:focus,
@@ -1332,11 +1331,11 @@ section {
 .info-item {
     text-align: center;
     padding: 30px;
-    background: rgba(30, 41, 59, 0.5);
+    background: #ffffff !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(197, 160, 89, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
     transition: var(--transition-base);
 }
 
@@ -1591,10 +1590,10 @@ body.theme-solo .category-hero {
     font-size: 56px;
     font-weight: 900;
     margin-bottom: 20px;
-    color: white;
+    color: #ffffff !important;
     text-transform: capitalize;
     letter-spacing: -0.5px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
     font-family: 'Playfair Display', serif;
 }
 
@@ -1608,7 +1607,7 @@ body.theme-solo .category-hero {
     margin-bottom: 30px;
     opacity: 0.95;
     color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 .category-filters {
