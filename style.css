@@ -1738,6 +1738,8 @@ body.theme-solo .category-hero {
         position: fixed;
         top: 0;
         right: -100%;
+        left: auto; 
+        transform: none;
         height: 100vh;
         width: 85%;
         max-width: 350px;
