@@ -111,13 +111,7 @@
     <!-- HOW DO YOU TRAVEL -->
     <section id="travel-categories" class="travel-categories-section">
         <div class="travel-categories-header">
-            <h2 data-i18n="categories_title">HOW DO YOU TRAVEL?</h2>
-            
-            <div class="travel-tabs">
-                <div class="travel-tab active" data-tab="traveller" data-i18n="categories_tab_traveller">BY TRAVELLER</div>
-                <div class="travel-tab" data-tab="destination" data-i18n="categories_tab_destination">BY DESTINATION</div>
-                <div class="travel-tab" data-tab="month" data-i18n="categories_tab_month">BY MONTH</div>
-            </div>
+            <h2 data-i18n="categories_title">KEŞFETMEYE BAŞLAYIN</h2> 
         </div>
 
         <div class="categories-grid" id="categoriesGrid"></div>
@@ -407,38 +401,40 @@
     
     <script>
     // ==================== CATEGORIES DATA ====================
-    const categoriesData = {
-        traveller: [
-            { name: 'FAMILY', image: 'assets/kapadokya-balon-turu-3.webp', link: 'family.html', category: 'family' },
-            { name: 'COUPLES', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: 'couples.html', category: 'couples' },
-            { name: 'GROUPS', image: 'assets/pamukkale-traverten-dogal-1.webp', link: 'groups.html', category: 'groups' },
-            { name: 'HONEYMOON', image: 'assets/antalya-koy-gezisi-1.webp', link: 'honeymoon.html', category: 'honeymoon' },
-            { name: 'SOLO', image: 'assets/mardin-tarihi-konak-dokusu-2.webp', link: 'solo.html', category: 'solo' }
-        ],
-        destination: [
-            { name: 'TÜRKİYE', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'turkiye' },
-            { name: 'EUROPE', image: 'assets/spain-1.webp', link: '#tours', category: 'europe' },
-            { name: 'AMERICA', image: 'assets/new-york-1.webp', link: '#tours', category: 'america' },
-            { name: 'RUSSIA', image: 'assets/rusya-1.webp', link: '#tours', category: 'russia' },
-            { name: 'BRAZIL', image: 'assets/brazil-1.webp', link: '#tours', category: 'brazil' }
-        ],
-        month: [
-            { name: 'SPRING', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'spring' },
-            { name: 'SUMMER', image: 'assets/fethiye-oludeniz-manzarasi-14.webp', link: '#tours', category: 'summer' },
-            { name: 'AUTUMN', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours', category: 'autumn' },
-            { name: 'WINTER', image: 'assets/rusya-1.webp', link: '#tours', category: 'winter' },
-            { name: 'YEAR ROUND', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours', category: 'year-round' }
-        ]
-    };
+    // ==================== YENİ 4 ANA KATEGORİ VERİSİ ====================
+    const mainCategories = [
+        { 
+            name: 'TÜRKİYE TURU', 
+            image: 'assets/kapadokya-balon-turu-3.webp', // Buraya uygun bir Türkiye görseli
+            link: '#tours', 
+            category: 'turkey' 
+        },
+        { 
+            name: 'ULUSLARARASI', 
+            image: 'assets/spain-1.webp', // Buraya Japonya/Kore gibi bir görsel gelebilir
+            link: '#tours', 
+            category: 'international' 
+        },
+        { 
+            name: 'GÜNÜBİRLİK', 
+            image: 'assets/pamukkale-traverten-dogal-1.webp', // Sapanca vb. kısa tur görseli
+            link: '#tours', 
+            category: 'daily' 
+        },
+        { 
+            name: 'GRUP TURLARI', 
+            image: 'assets/antalya-koy-gezisi-1.webp', // Kalabalık/Paket tur görseli
+            link: '#tours', 
+            category: 'group' 
+        }
+    ];
 
-    let popularTripsData = [];
-
-    function loadCategories(tab = 'traveller') {
+    function loadCategories() {
         const grid = document.getElementById('categoriesGrid');
         if (!grid) return;
         
-        const categories = categoriesData[tab];
-        grid.innerHTML = categories.map(cat => `
+        // Yeni 4'lü dizimizi ekrana basıyoruz
+        grid.innerHTML = mainCategories.map(cat => `
             <div class="category-image-card" data-category="${cat.category}" onclick="window.location.href='${cat.link}'">
                 <img src="${cat.image}" alt="${cat.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
                 <div class="category-overlay">
