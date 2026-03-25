@@ -59,15 +59,20 @@
                 <a href="#contact" data-i18n="nav_contact">CONTACT</a>
             </div>
 
-            <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="tr">TR</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="es">ES</button>
-                <button class="lang-btn" data-lang="ru">RU</button>
-                <button class="lang-btn" data-lang="de">DE</button>
-                <button class="lang-btn" data-lang="zh">ZH</button>
-                <button class="lang-btn" data-lang="ar">AR</button>
-            </div>
+            <div class="lang-dropdown">
+    <button class="lang-dropdown-btn">
+        <i class="fas fa-globe"></i> <span class="current-lang-text">TR</span> <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="lang-dropdown-content">
+        <a href="#" data-lang="tr">Türkçe (TR)</a>
+        <a href="#" data-lang="en">English (EN)</a>
+        <a href="#" data-lang="es">Español (ES)</a>
+        <a href="#" data-lang="ru">Русский (RU)</a>
+        <a href="#" data-lang="de">Deutsch (DE)</a>
+        <a href="#" data-lang="zh">中文 (ZH)</a>
+        <a href="#" data-lang="ar">العربية (AR)</a>
+    </div>
+</div>
 
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
@@ -296,83 +301,49 @@
         </div>
     </footer>
 
-    <!-- WHATSAPP -->
-    <a href="https://wa.me/902125551923" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- MOBİL HAMBURGER MENU SCRIPT -->
     <script>
-    // ==================== MOBİL HAMBURGER MENU ====================
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🚀 Mobil menü script yükleniyor...');
-        
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         
-        if (!menuToggle || !navLinks) {
-            console.error('❌ Menu toggle veya nav links bulunamadı!');
-            return;
-        }
+        if (!menuToggle || !navLinks) return;
         
-        // Mobilde dil seçiciyi nav-links içine taşı
-        // Mobilde dil seçiciyi nav-links içine taşı (klonla, orjinali bırak)
-if (window.innerWidth <= 992) {
-    const langSwitcher = document.querySelector('.lang-switcher');
-    if (langSwitcher && navLinks) {
-        const clone = langSwitcher.cloneNode(true);
-        clone.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (window.i18n) {
-                    window.i18n.changeLanguage(this.getAttribute('data-lang'));
-                }
-            });
-        });
-        navLinks.appendChild(clone);
-    }
-}
+        // MOBİL İÇİN YENİ AÇILIR MENÜYÜ KLONLAMA
+        if (window.innerWidth <= 992) {
+            const langDropdown = document.querySelector('.lang-dropdown');
+            if (langDropdown && navLinks) {
+                const clone = langDropdown.cloneNode(true);
+                navLinks.appendChild(clone);
+            }
+        }
         
         // Hamburger toggle
         menuToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             navLinks.classList.toggle('active');
-            
-            // İkon değiştir
             const icon = this.querySelector('i');
             if (icon) {
-                if (icon.classList.contains('fa-bars')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             }
-            
-            console.log('📱 Menü toggle:', navLinks.classList.contains('active'));
         });
         
         // Menü dışına tıklanınca kapat
         document.addEventListener('click', function(e) {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
             }
         });
         
         // Link'e tıklanınca menüyü kapat
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(link => {
+        navLinks.querySelectorAll('a:not(.lang-dropdown-content a)').forEach(link => {
             link.addEventListener('click', function() {
                 navLinks.classList.remove('active');
-                
                 const icon = menuToggle.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
@@ -380,48 +351,52 @@ if (window.innerWidth <= 992) {
                 }
             });
         });
-        
-        // ESC tuşu ile kapat
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-        
-        // Ekran boyutu değiştiğinde
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 992) {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-        
-        console.log('✅ Mobil menü hazır!');
     });
     </script>
 
-   <!-- SCRIPTS -->
     <script src="i18n.js"></script>
     <script src="Blog.js"></script>
     <script src="app.js"></script>
+    
     <script>
+    // ANA BAŞLATMA VE DİL MENÜSÜ İŞLEMLERİ
     document.addEventListener('DOMContentLoaded', async function() {
         const savedLang = localStorage.getItem('language') || 'tr';
         await window.i18n.init(savedLang);
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                window.i18n.changeLanguage(this.getAttribute('data-lang'));
+        // Seçilen dili butona yazdırma fonksiyonu
+        const updateDropdownText = (lang) => {
+            const langNames = {'tr': 'TR', 'en': 'EN', 'es': 'ES', 'ru': 'RU', 'de': 'DE', 'zh': 'ZH', 'ar': 'AR'};
+            document.querySelectorAll('.current-lang-text').forEach(el => {
+                el.textContent = langNames[lang] || lang.toUpperCase();
+            });
+        };
+        updateDropdownText(savedLang);
+
+        // Açılır menü tıklama olayları
+        document.addEventListener('click', function(e) {
+            // Menüyü aç/kapat
+            const dropdownBtn = e.target.closest('.lang-dropdown-btn');
+            if (dropdownBtn) {
+                e.preventDefault();
+                dropdownBtn.closest('.lang-dropdown').classList.toggle('active');
+                return;
+            }
+
+            // Dile tıklandığında dili değiştir
+            const langOption = e.target.closest('.lang-dropdown-content a');
+            if (langOption) {
+                e.preventDefault();
+                const selectedLang = langOption.getAttribute('data-lang');
+                window.i18n.changeLanguage(selectedLang);
+                updateDropdownText(selectedLang);
+                langOption.closest('.lang-dropdown').classList.remove('active');
+                return;
+            }
+
+            // Boşluğa tıklanınca menüyü kapat
+            document.querySelectorAll('.lang-dropdown.active').forEach(dropdown => {
+                dropdown.classList.remove('active');
             });
         });
 
@@ -460,10 +435,7 @@ if (window.innerWidth <= 992) {
 
     function loadCategories(tab = 'traveller') {
         const grid = document.getElementById('categoriesGrid');
-        if (!grid) {
-            console.error('❌ categoriesGrid bulunamadı!');
-            return;
-        }
+        if (!grid) return;
         
         const categories = categoriesData[tab];
         grid.innerHTML = categories.map(cat => `
@@ -474,8 +446,6 @@ if (window.innerWidth <= 992) {
                 </div>
             </div>
         `).join('');
-        
-        console.log(`✅ ${categories.length} kategori yüklendi (${tab})`);
     }
 
     async function loadPopularTrips() {
@@ -489,24 +459,15 @@ if (window.innerWidth <= 992) {
             if (popularTripsData.length === 0) {
                 popularTripsData = tours.slice(0, 3);
             }
-            
             displayPopularTrips();
-            console.log(`✅ ${popularTripsData.length} popular trip yüklendi`);
         } catch (error) {
             console.error('❌ Popular trips yüklenemedi:', error);
-            const grid = document.getElementById('popularTripsGrid');
-            if (grid) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">Turlar yüklenirken hata oluştu.</p>';
-            }
         }
     }
 
     function displayPopularTrips() {
         const grid = document.getElementById('popularTripsGrid');
-        if (!grid) {
-            console.error('❌ popularTripsGrid bulunamadı!');
-            return;
-        }
+        if (!grid) return;
         
         if (popularTripsData.length === 0) {
             grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Henüz tur bulunmuyor.</p>';
@@ -522,8 +483,7 @@ if (window.innerWidth <= 992) {
             
             return `
                 <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
-                    <img src="${tour.image}" alt="${title}" loading="lazy" 
-                         onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
+                    <img src="${tour.image}" alt="${title}" loading="lazy">
                     <div class="trip-card-overlay"></div>
                     <div class="trip-nights-badge">${duration}</div>
                     <div class="trip-card-content">
@@ -537,11 +497,8 @@ if (window.innerWidth <= 992) {
                 </div>
             `;
         }).join('');
-        
-        console.log(`✅ ${popularTripsData.length} popular trip gösteriliyor`);
     }
 
-    // ==================== TAB SWITCHING ====================
     document.querySelectorAll('.travel-tab').forEach(tab => {
         tab.addEventListener('click', function() {
             document.querySelectorAll('.travel-tab').forEach(t => t.classList.remove('active'));
@@ -549,8 +506,6 @@ if (window.innerWidth <= 992) {
             loadCategories(this.dataset.tab);
         });
     });
-
-    
     </script>
 </body>
 </html>

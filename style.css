@@ -1968,3 +1968,73 @@ body[dir="rtl"] .contact-form textarea {
 .btn-hero-link:hover, .view-more-btn:hover, .trip-card-button:hover, .submit-btn:hover {
     transform: translateY(-3px) scale(1.05);
 }
+
+/* ================================================
+   LANGUAGE DROPDOWN
+   ================================================ */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+}
+
+.lang-dropdown-btn {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    color: #e2e8f0;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-base);
+}
+
+.lang-dropdown-btn:hover, .lang-dropdown.active .lang-dropdown-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+    color: white;
+}
+
+.lang-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: rgba(15, 23, 42, 0.98);
+    min-width: 140px;
+    border-radius: 8px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Aktif (tıklanmış) durumda menüyü göster */
+.lang-dropdown.active .lang-dropdown-content {
+    display: block;
+}
+
+.lang-dropdown-content a {
+    display: block;
+    color: #e2e8f0;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: var(--transition-base);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.lang-dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.lang-dropdown-content a:hover {
+    background: var(--primary);
+    color: white;
+    padding-left: 20px;
+}
