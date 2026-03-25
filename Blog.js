@@ -48,9 +48,10 @@ class BlogManager {
         });
 
         container.innerHTML = html;
-        this.attachClickEvents();
-        console.log(`✅ ${displayPosts.length} blog yazısı ekranda gösteriliyor`);
-    }
+if (!container.dataset.listenerAttached) {
+    this.attachClickEvents();
+    container.dataset.listenerAttached = 'true';
+}
 
     createBlogCard(post) {
         const imageUrl = post.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop';
@@ -76,15 +77,16 @@ class BlogManager {
     }
 
     attachClickEvents() {
-        document.querySelectorAll('.blog-card, .blog-read-more').forEach(element => {
-            element.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const postId = element.getAttribute('data-post-id');
-                this.openModal(postId);
-            });
-        });
-    }
+    const container = document.getElementById('blogContainer')
+                   || document.getElementById('blog-grid-display');
+    if (!container) return;
+
+    container.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = e.target.closest('[data-post-id]');
+        if (target) this.openModal(target.getAttribute('data-post-id'));
+    });
+}
 
     setupModal() {
         if (!document.getElementById('blogModal')) {

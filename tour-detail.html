@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tur Detayları - WalkAbout Travel</title>
-    <link rel="icon" href="assets/walkabou_travel_logo.jpg">
+    <link rel="icon" href="assets/walkabout_travel_logo.jpg">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -735,7 +735,7 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/walkabou_travel_logo.jpg" alt="WalkAbout Travel Logo">
+                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo">
                 <div class="logo-text">
                     <span class="logo-title">WalkAbout Travel</span>
                     <span class="logo-subtitle">Tourism & Travel</span>
@@ -784,9 +784,9 @@
     <!-- BREADCRUMB -->
     <div class="breadcrumb">
         <div class="breadcrumb-container">
-            <a href="index.html">Ana Sayfa</a>
+            <a href="index.html" id="breadcrumb-home">Ana Sayfa</a>
             <span class="breadcrumb-separator">›</span>
-            <a href="index.html#tours">Turlar</a>
+            <a href="index.html#tours" id="breadcrumb-tours">Turlar</a>
             <span class="breadcrumb-separator">›</span>
             <span class="breadcrumb-current" id="breadcrumbTitle">Tur Detayları</span>
         </div>
@@ -854,7 +854,7 @@
     </div>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/902125551923" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -884,8 +884,9 @@
 
                 // Mevcut dili belirle (i18n.js yüklü ise ondan al, yoksa butondan veya 'tr')
                 let currentLang = 'tr';
-                if (typeof i18n !== 'undefined' && i18n.language) {
-                    currentLang = i18n.language;
+                if (typeof i18n !== 'undefined' && i18n.currentLang) {
+                    currentLang = i18n.currentLang;
+                
                 } else {
                     const activeBtn = document.querySelector('.lang-btn.active');
                     if (activeBtn) currentLang = activeBtn.getAttribute('data-lang');
@@ -932,6 +933,23 @@
                 document.getElementById('whatsappBtn').href = `https://wa.me/5491135870045?text=${waMsg}`;
                 
                 document.title = `${title} - WalkAbout Travel`;
+                document.title = `${title} - WalkAbout Travel`;
+
+// Breadcrumb dil desteği
+const breadcrumbLabels = {
+    tr: { home: 'Ana Sayfa', tours: 'Turlar' },
+    en: { home: 'Home',      tours: 'Tours'  },
+    es: { home: 'Inicio',    tours: 'Tours'  },
+    ru: { home: 'Главная',   tours: 'Туры'   },
+    de: { home: 'Startseite',tours: 'Touren' },
+    zh: { home: '首页',      tours: '旅游'   },
+    ar: { home: 'الرئيسية', tours: 'جولات'  }
+};
+const bl = breadcrumbLabels[currentLang] || breadcrumbLabels.tr;
+const bHome = document.getElementById('breadcrumb-home');
+const bTours = document.getElementById('breadcrumb-tours');
+if (bHome) bHome.textContent = bl.home;
+if (bTours) bTours.textContent = bl.tours;
                 
             } catch (error) {
                 console.error('❌ Yükleme Hatası:', error);
@@ -991,6 +1009,9 @@
                     toggle.querySelector('i').classList.toggle('fa-times');
                 });
             }
+        document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});    
         });
     </script>
 </body>

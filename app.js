@@ -258,7 +258,7 @@ function initScrollToTop() {
         right: 30px;
         width: 50px;
         height: 50px;
-        background: var(--ocean-teal);
+        background: var(--primary);
         color: white;
         border: none;
         border-radius: 50%;

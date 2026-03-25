@@ -139,48 +139,28 @@ const i18n = {
     } finally {
       setTimeout(() => {
         this.isChanging = false;
-      }, 500);
     }
-  },
   
   // Sayfa içeriğini güncelle
   updatePageContent() {
-    console.log(`🔄 Sayfa güncelleniyor (${this.currentLang})...`);
-    let count = 0;
-    
-    // Tüm data-i18n elementleri
     document.querySelectorAll('[data-i18n]').forEach(element => {
-      const key = element.getAttribute('data-i18n');
-      const translation = this.t(key);
-      
-      // Input/Textarea placeholder
-      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-        if (element.placeholder !== translation) {
-          element.placeholder = translation;
-          count++;
+        const key = element.getAttribute('data-i18n');
+        const translation = this.t(key);
+        if (!translation || translation === key) return;
+
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = translation;
+        } else {
+            element.textContent = translation;
         }
-      } 
-      // Diğer elementler
-else {
-  // İçeriği kontrol et - eğer sadece key ise değiştir
-  const currentText = element.textContent.trim();
-  if (currentText !== translation && (currentText === key || currentText.startsWith('nav_') || currentText.startsWith('hero_'))) {
-    element.textContent = translation;
-    count++;
-  }
-}
     });
-    
-    // Title güncelle
+
     const titleElement = document.querySelector('title');
     if (titleElement) {
-      const titleKey = titleElement.getAttribute('data-i18n') || 'title';
-      document.title = this.t(titleKey);
-      count++;
+        const titleKey = titleElement.getAttribute('data-i18n') || 'title';
+        document.title = this.t(titleKey);
     }
-    
-    console.log(`✅ ${count} element güncellendi`);
-  },
+},
   
   // Aktif butonu işaretle
   updateActiveButton(lang) {

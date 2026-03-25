@@ -827,12 +827,12 @@
         </div>
 
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('tours')">
-                <i class="fas fa-map-marked-alt"></i> Turlar
-            </button>
-            <button class="tab" onclick="switchTab('blogs')">
-                <i class="fas fa-blog"></i> Blog Yazıları
-            </button>
+            <button class="tab active" onclick="switchTab('tours', this)">
+    <i class="fas fa-map-marked-alt"></i> Turlar
+</button>
+<button class="tab" onclick="switchTab('blogs', this)">
+    <i class="fas fa-blog"></i> Blog Yazıları
+</button>
         </div>
 
         <div class="content">
@@ -1502,23 +1502,25 @@
                 const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
 
                 for (const lang of languages) {
-                    if (titleTr) {
-                        const translated = await translateText(titleTr, lang);
-                        document.getElementById(`tourTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (descTr) {
-                        const translated = await translateText(descTr, lang);
-                        document.getElementById(`tourDescription${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (contentTr) {
-                        const translated = await translateText(contentTr, lang);
-                        document.getElementById(`tourContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    await new Promise(resolve => setTimeout(resolve, 300));
-                }
+    try {
+        const suffix = lang.charAt(0).toUpperCase() + lang.slice(1);
+        if (titleTr) {
+            const t = await translateText(titleTr, lang);
+            document.getElementById(`tourTitle${suffix}`).value = t;
+        }
+        if (descTr) {
+            const t = await translateText(descTr, lang);
+            document.getElementById(`tourDescription${suffix}`).value = t;
+        }
+        if (contentTr) {
+            const t = await translateText(contentTr, lang);
+            document.getElementById(`tourContent${suffix}`).value = t;
+        }
+    } catch (e) {
+        console.warn(`${lang} çevirisi başarısız:`, e);
+    }
+    await new Promise(resolve => setTimeout(resolve, 300));
+}
 
                 showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı!', 'success');
             } catch (error) {
@@ -1543,23 +1545,25 @@
                 const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
 
                 for (const lang of languages) {
-                    if (titleTr) {
-                        const translated = await translateText(titleTr, lang);
-                        document.getElementById(`blogTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (excerptTr) {
-                        const translated = await translateText(excerptTr, lang);
-                        document.getElementById(`blogExcerpt${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (contentTr) {
-                        const translated = await translateText(contentTr, lang);
-                        document.getElementById(`blogContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    await new Promise(resolve => setTimeout(resolve, 300));
-                }
+    try {
+        const suffix = lang.charAt(0).toUpperCase() + lang.slice(1);
+        if (titleTr) {
+            const t = await translateText(titleTr, lang);
+            document.getElementById(`tourTitle${suffix}`).value = t;
+        }
+        if (descTr) {
+            const t = await translateText(descTr, lang);
+            document.getElementById(`tourDescription${suffix}`).value = t;
+        }
+        if (contentTr) {
+            const t = await translateText(contentTr, lang);
+            document.getElementById(`tourContent${suffix}`).value = t;
+        }
+    } catch (e) {
+        console.warn(`${lang} çevirisi başarısız:`, e);
+    }
+    await new Promise(resolve => setTimeout(resolve, 300));
+}
 
                 showAlert('blogAlert', '✅ Çeviri tamamlandı!', 'success');
             } catch (error) {
@@ -1752,50 +1756,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Otomatik taslak kaydetme
         // Otomatik taslak kaydetme - HATA DÜZELTMESİ
-setInterval(() => {
+const autoSaveInterval = setInterval(() => {
     try {
-        if (tours.length > 0) {
-            localStorage.setItem('draftTours', JSON.stringify(tours));
-        }
-        if (blogs.length > 0) {
-            localStorage.setItem('draftBlogs', JSON.stringify(blogs));
-        }
+        if (tours.length > 0) localStorage.setItem('draftTours', JSON.stringify(tours));
+        if (blogs.length > 0) localStorage.setItem('draftBlogs', JSON.stringify(blogs));
     } catch (error) {
         console.log('LocalStorage kaydetme başarısız');
     }
 }, 30000);
 
+window.addEventListener('beforeunload', () => {
+    clearInterval(autoSaveInterval);
+});
+
         // SEKME DEĞİŞTİRME - TAM ÇALIŞAN VERSİYON
-        function switchTab(tabName) {
-            console.log('switchTab çağrıldı:', tabName);
-            
-            // Tüm tab butonlarının active class'ını kaldır
-            document.querySelectorAll('.tab').forEach(function(t) {
-                t.classList.remove('active');
-            });
-            
-            // Tüm içeriklerin active class'ını kaldır
-            document.querySelectorAll('.tab-content').forEach(function(c) {
-                c.classList.remove('active');
-            });
-            
-            // Tıklanan butonu aktif yap
-            if (window.event && window.event.target) {
-                const clickedButton = window.event.target.closest('.tab');
-                if (clickedButton) {
-                    clickedButton.classList.add('active');
-                }
-            }
-            
-            // İçeriği göster
-            const content = document.getElementById(tabName + '-content');
-            if (content) {
-                content.classList.add('active');
-                console.log('İçerik gösterildi:', tabName);
-            } else {
-                console.error('İçerik bulunamadı:', tabName + '-content');
-            }
-        }
+        function switchTab(tabName, clickedBtn) {
+    document.querySelectorAll('.tab').forEach(function(t) {
+        t.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-content').forEach(function(c) {
+        c.classList.remove('active');
+    });
+    if (clickedBtn) clickedBtn.classList.add('active');
+    const content = document.getElementById(tabName + '-content');
+    if (content) content.classList.add('active');
+}
 
         // TURLARI YÜKLE
         async function loadTours() {
@@ -1996,7 +1981,9 @@ setInterval(() => {
             }
 
             const imageFilename = document.getElementById('tourImage').value.trim();
-            const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
+            const imagePath = imageFilename.startsWith('http') ? imageFilename
+    : imageFilename.startsWith('assets/') ? imageFilename
+    : `assets/${imageFilename}`;
 
             const tourData = {
                 id: editingTourId || 'TUR-' + Date.now(),
@@ -2071,11 +2058,19 @@ setInterval(() => {
         }
 
         function editTour(id) {
-            const tour = tours.find(t => t.id === id);
-            if (!tour) return;
+    const tour = tours.find(t => t.id === id);
+    if (!tour) return;
 
-            editingTourId = id;
-            document.getElementById('tourFormTitle').textContent = 'Turu Düzenle';
+    // Önce tüm checkbox'ları temizle
+    ['family','couples','groups','honeymoon','solo',
+     'turkiye','europe','america','russia','brazil',
+     'spring','summer','autumn','winter','year-round'].forEach(cat => {
+        const cb = document.getElementById(`cat_${cat}`);
+        if (cb) cb.checked = false;
+    });
+
+    editingTourId = id;
+    document.getElementById('tourFormTitle').textContent = 'Turu Düzenle';
             
             document.getElementById('tourTitle').value = tour.title;
             document.getElementById('tourTitleEn').value = tour.title_en || '';
@@ -2111,7 +2106,9 @@ setInterval(() => {
             document.getElementById('tourContentZh').value = tour.content_zh || '';
             document.getElementById('tourContentAr').value = tour.content_ar || '';
             
-            const imageFilename = tour.image.replace('assets/', '');
+            const imageFilename = tour.image.startsWith('assets/')
+    ? tour.image.replace('assets/', '')
+    : tour.image;
             document.getElementById('tourImage').value = imageFilename;
             
             currentGallery = (tour.gallery || []).map(path => path.replace('assets/', ''));
@@ -2211,7 +2208,9 @@ setInterval(() => {
             const today = new Date().toLocaleDateString('tr-TR');
 
             const imageFilename = document.getElementById('blogImage').value.trim();
-            const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
+            const imagePath = imageFilename.startsWith('http') ? imageFilename
+    : imageFilename.startsWith('assets/') ? imageFilename
+    : `assets/${imageFilename}`;
 
             const blogData = {
                 id: editingBlogId || 'BLOG-' + Date.now(),
@@ -2308,7 +2307,9 @@ setInterval(() => {
             document.getElementById('blogContentZh').value = blog.content_zh || '';
             document.getElementById('blogContentAr').value = blog.content_ar || '';
             
-            const imageFilename = blog.image.replace('assets/', '');
+            const imageFilename = blog.image.startsWith('assets/')
+    ? blog.image.replace('assets/', '')
+    : blog.image;
             document.getElementById('blogImage').value = imageFilename;
             
             const preview = document.getElementById('blogImagePreview');
