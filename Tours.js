@@ -16,38 +16,20 @@ class TourManager {
     }
 
     async loadAllTours() {
-        const allTours = [];
-
-        // 1. galleries.json'dan yükle (eski sistem)
-        try {
-            const galResponse = await fetch('data/galleries.json');
-            if (galResponse.ok) {
-                const galleries = await galResponse.json();
-                
-                for (const [id, gallery] of Object.entries(galleries)) {
-                    allTours.push({
-                        id: id,
-                        title: gallery.title,
-                        title_en: gallery.title,
-                        price: gallery.price,
-                        location: gallery.location,
-                        area: gallery.area,
-                        category: this.getCategoryFromId(id),
-                        description: gallery.desc,
-                        description_en: gallery.desc,
-                        image: gallery.images?.[0] || 'assets/placeholder.jpg',
-                        content: gallery.desc,
-                        content_en: gallery.desc,
-                        duration: gallery.duration || '7 Days',
-                        featured: false,
-                        source: 'galleries'
-                    });
-                }
-                console.log(`✅ ${allTours.length} tur yüklendi (galleries.json)`);
-            }
-        } catch (error) {
-            console.warn('⚠️ galleries.json yüklenemedi:', error.message);
+    try {
+        const response = await fetch('data/tours.json');
+        if (response.ok) {
+            this.tours = await response.json();
+            console.log(`✅ ${this.tours.length} tur yüklendi`);
+        } else {
+            console.warn('tours.json yüklenemedi');
+            this.tours = [];
         }
+    } catch (error) {
+        console.warn('Yükleme hatası:', error.message);
+        this.tours = [];
+    }
+}
 
         // 2. tours.json'dan yükle (yeni sistem)
         try {
@@ -69,17 +51,6 @@ class TourManager {
         } catch (error) {
             console.warn('⚠️ tours.json yüklenemedi:', error.message);
         }
-
-        this.tours = allTours;
-        console.log(`🎯 TOPLAM ${this.tours.length} tur hazır`);
-    }
-
-    getCategoryFromId(id) {
-        if (id.includes('TR')) return 'Türkiye';
-        if (id.includes('D-ISPANYA') || id.includes('D-RUSYA')) return 'Avrupa';
-        if (id.includes('D-BREZILYA') || id.includes('D-AMERIKA')) return 'Amerika';
-        return 'Genel';
-    }
 
     setupEventListeners() {
         document.querySelectorAll('.tour-category-btn')?.forEach(btn => {
@@ -131,15 +102,33 @@ class TourManager {
     }
 
     createTourCard(tour) {
-        const card = document.createElement('div');
-        card.className = 'tour-card';
-        card.style.cursor = 'pointer';
-        
-        const title = this.currentLang === 'en' && tour.title_en ? tour.title_en : 
-                     (tour.title?.tr || tour.title);
-        const description = this.currentLang === 'en' && tour.description_en ? tour.description_en : 
-                           (tour.description?.tr || tour.description);
-        const shortDesc = description ? description.substring(0, 120) + '...' : 'Açıklama bulunmuyor.';
+    const card = document.createElement('div');
+    card.className = 'tour-card';
+    card.style.cursor = 'pointer';
+
+    const lang = this.currentLang;
+
+    const title = (tour.title && tour.title[lang])
+        ? tour.title[lang]
+        : (tour.title?.tr || tour.title || '');
+
+    const description = (tour.description && tour.description[lang])
+        ? tour.description[lang]
+        : (tour.description?.tr || tour.description || '');
+
+    const shortDesc = description
+        ? description.substring(0, 120) + '...'
+        : 'Açıklama bulunmuyor.';
+
+    const linkText = {
+        tr: 'Detayları Gör',
+        en: 'View Details',
+        es: 'Ver Detalles',
+        ru: 'Подробнее',
+        de: 'Details ansehen',
+        zh: '查看详情',
+        ar: 'عرض التفاصيل'
+    }[lang] || 'Detayları Gör';
 
         card.innerHTML = `
             <div class="tour-image">
@@ -156,7 +145,7 @@ class TourManager {
                     ${tour.location ? `<span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>` : ''}
                 </div>
                 <a href="tour-detail.html?id=${tour.id}" class="tour-link">
-                    <span>${this.currentLang === 'tr' ? 'Detayları Gör' : 'View Details'}</span>
+                    <span>${linkText}</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
