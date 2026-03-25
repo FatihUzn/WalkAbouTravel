@@ -139,7 +139,9 @@ const i18n = {
     } finally {
       setTimeout(() => {
         this.isChanging = false;
-    }
+      }, 300); // 1. EKSİK: setTimeout'u kapattık
+    } // 2. EKSİK: finally bloğunu kapattık
+  }, // 3. EKSİK: changeLanguage fonksiyonunu kapattık
   
   // Sayfa içeriğini güncelle
   updatePageContent() {
