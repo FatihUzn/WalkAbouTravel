@@ -1,328 +1,479 @@
 [
-  {
-    "id": "TUR-TR-MARDIN",
-    "title": {
-      "tr": "Mardin Kültür ve Tarih Turu",
-      "en": "Mardin Culture and History Tour",
-      "es": "Recorrido por la cultura y la historia de Mardin",
-      "ru": "Культурно-историческая экскурсия по Мардину",
-      "de": "Kultur- und Geschichtstour im Mardin",
-      "ar": "جولة في ماردين للثقافة والتاريخ",
-      "zh": "马尔丁文化和历史之旅"
+    {
+        "id": "TUR-TR-MARDIN",
+        "title": {
+            "tr": "Mardin Kültür ve Tarih Turu",
+            "en": "Mardin Culture and History Tour",
+            "es": "Recorrido por la cultura y la historia de Mardin",
+            "ru": "Культурно-историческая экскурсия по Мардину",
+            "de": "Kultur- und Geschichtstour im Mardin",
+            "ar": "جولة في ماردين للثقافة والتاريخ",
+            "zh": "马尔丁文化和历史之旅"
+        },
+        "description": {
+            "tr": "Mezopotamya'nın kadim şehri Mardin'de tarihi taş evler, antik manastırlar ve geleneksel el sanatları keşfi.",
+            "en": "Exploration of historical stone houses, ancient monasteries and traditional crafts in Mardin, the ancient city of Mesopotamia.",
+            "es": "Exploración de casas históricas de piedra, antiguos monasterios y artesanías tradicionales en Mardin, la antigua ciudad de Mesopotamia.",
+            "ru": "Изучение исторических каменных домов, древних монастырей и традиционных ремесел в Мардине, древнем городе Месопотамии.",
+            "de": "Erkundung historischer Steinhäuser, antiker Klöster und traditioneller Handwerkskunst in Mardin, der antiken Stadt Mesopotamiens.",
+            "ar": "استكشاف المنازل الحجرية التاريخية والأديرة القديمة والحرف التقليدية في ماردين، مدينة بلاد ما بين النهرين القديمة.",
+            "zh": "探索美索不达米亚古城马尔丁的历史悠久的石屋、古老的修道院和传统工艺品。"
+        },
+        "price": "5.000 TL",
+        "duration": "4 Gün / 3 Gece",
+        "location": "Mardin, Midyat, Dara",
+        "area": "Güneydoğu Anadolu",
+        "category": "Türkiye",
+        "image": "assets/mardin-tarihi-konak-dokusu-1.webp",
+        "images": [
+            "assets/mardin-tarihi-konak-dokusu-1.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-23T10:46:42.571Z",
+        "featured": false
     },
-    "description": {
-      "tr": "Mezopotamya'nın kadim şehri Mardin'de tarihi taş evler, antik manastırlar ve geleneksel el sanatları keşfi.",
-      "en": "Exploration of historical stone houses, ancient monasteries and traditional crafts in Mardin, the ancient city of Mesopotamia.",
-      "es": "Exploración de casas históricas de piedra, antiguos monasterios y artesanías tradicionales en Mardin, la antigua ciudad de Mesopotamia.",
-      "ru": "Изучение исторических каменных домов, древних монастырей и традиционных ремесел в Мардине, древнем городе Месопотамии.",
-      "de": "Erkundung historischer Steinhäuser, antiker Klöster und traditioneller Handwerkskunst in Mardin, der antiken Stadt Mesopotamiens.",
-      "ar": "استكشاف المنازل الحجرية التاريخية والأديرة القديمة والحرف التقليدية في ماردين، مدينة بلاد ما بين النهرين القديمة.",
-      "zh": "探索美索不达米亚古城马尔丁的历史悠久的石屋、古老的修道院和传统工艺品。"
+    {
+        "id": "TUR-TR-ANTALYA",
+        "title": {
+            "tr": "Antalya Koy Gezisi",
+            "en": "Antalya Bay Tour",
+            "es": "Tour por la Bahía de Antalya",
+            "ru": "Тур по заливу Анталии",
+            "de": "Antalya-Buchttour",
+            "ar": "جولة خليج أنطاليا",
+            "zh": "安塔利亚海湾之旅"
+        },
+        "description": {
+            "tr": "Turkuaz mavisi sularıyla ünlü Antalya koyları, antik limanlar ve gizli plajlar keşif turu.",
+            "en": "Explore Antalya's bays famous for their turquoise waters, ancient harbors and hidden beaches.",
+            "es": "Explore las bahías de Antalya famosas por sus aguas turquesas, puertos antiguos y playas ocultas.",
+            "ru": "Исследуйте заливы Анталии, известные своими бирюзовыми водами, древними гаванями и скрытыми пляжами.",
+            "de": "Entdecken Sie die Buchten von Antalya, die für ihr türkisfarbenes Wasser, antike Häfen und versteckte Strände bekannt sind.",
+            "ar": "استكشف خلجان أنطاليا الشهيرة بمياهها الفирозية وموانئها القديمة وشواطئها المخفية.",
+            "zh": "探索以碧绿海水、古老港口和隐藏海滩而闻名的安塔利亚海湾。"
+        },
+        "price": "5.200 TL",
+        "duration": "3 Gün / 2 Gece",
+        "location": "Antalya, Kaleiçi, Kemer",
+        "area": "Akdeniz",
+        "category": "Türkiye",
+        "image": "assets/antalya-koy-gezisi-1.webp",
+        "images": [
+            "assets/antalya-koy-gezisi-1.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": false
     },
-    "price": "5.000 TL",
-    "duration": "4 Gün / 3 Gece",
-    "location": "Mardin, Midyat, Dara",
-    "area": "Güneydoğu Anadolu",
-    "category": "Türkiye",
-    "image": "assets/mardin-tarihi-konak-dokusu-1.webp",
-    "images": [
-      "assets/mardin-tarihi-konak-dokusu-1.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-23T10:46:42.571Z",
-    "featured": false
-  },
-  {
-    "id": "TUR-TR-ANTALYA",
-    "title": {
-      "tr": "Antalya Koy Gezisi",
-      "en": "Antalya Bay Tour",
-      "es": "Tour por la Bahía de Antalya",
-      "ru": "Тур по заливу Анталии",
-      "de": "Antalya-Buchttour",
-      "ar": "جولة خليج أنطاليا",
-      "zh": "安塔利亚海湾之旅"
+    {
+        "id": "TUR-TR-KAPADOKYA",
+        "title": {
+            "tr": "Kapadokya - Balon ve Peribacaları Turu",
+            "en": "Cappadocia - Balloon & Fairy Chimneys Tour",
+            "es": "Capadocia - Tour de globos y chimeneas de hadas",
+            "ru": "Каппадокия - Тур на воздушном шаре и сказочные дымоходы",
+            "de": "Kappadokien - Ballon- und Feenkamintour",
+            "ar": "كابادوكيا - جولة البالون والمداخن الخيالية",
+            "zh": "卡帕多西亚 - 热气球和仙女烟囱之旅"
+        },
+        "description": {
+            "tr": "Sıcak hava balonuyla gün doğumunda Kapadokya'nın büyülü manzarası, yeraltı şehirleri ve peribacaları keşfi.",
+            "en": "Hot air balloon ride at sunrise over Cappadocia's magical landscape, underground cities and fairy chimneys exploration.",
+            "es": "Paseo en globo aerostático al amanecer sobre el paisaje mágico de Capadocia, exploración de ciudades subterráneas y chimeneas de hadas.",
+            "ru": "Полет на воздушном шаре на рассвете над волшебным пейзажем Каппадокии, исследование подземных городов и сказочных дымоходов.",
+            "de": "Heißluftballonfahrt bei Sonnenaufgang über Kappadokiens magische Landschaft, Erkundung unterirdischer Städte und Feenkamine.",
+            "ar": "رحلة منطاد الهواء الساخن عند شروق الشمس فوق المناظر الطبيعية السحرية لكابادوكيا، واستكشاف المدن تحت الأرض والمداخن الخيالية.",
+            "zh": "日出时分乘坐热气球飞越卡帕多西亚的神奇景观，探索地下城市和仙女烟囱。"
+        },
+        "price": "9.800 TL",
+        "duration": "4 Gün / 3 Gece",
+        "location": "Göreme, Uçhisar, Avanos",
+        "area": "İç Anadolu",
+        "category": "Türkiye",
+        "image": "assets/kapadokya-balon-turu-1.webp",
+        "images": [
+            "assets/kapadokya-balon-turu-1.webp",
+            "assets/kapadokya-balon-turu-2.webp",
+            "assets/kapadokya-balon-turu-3.webp",
+            "assets/kapadokya-balon-turu-4.webp",
+            "assets/kapadokya-balon-turu-5.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": true
     },
-    "description": {
-      "tr": "Turkuaz mavisi sularıyla ünlü Antalya koyları, antik limanlar ve gizli plajlar keşif turu.",
-      "en": "Explore Antalya's bays famous for their turquoise waters, ancient harbors and hidden beaches.",
-      "es": "Explore las bahías de Antalya famosas por sus aguas turquesas, puertos antiguos y playas ocultas.",
-      "ru": "Исследуйте заливы Анталии, известные своими бирюзовыми водами, древними гаванями и скрытыми пляжами.",
-      "de": "Entdecken Sie die Buchten von Antalya, die für ihr türkisfarbenes Wasser, antike Häfen und versteckte Strände bekannt sind.",
-      "ar": "استكشف خلجان أنطاليا الشهيرة بمياهها الفирозية وموانئها القديمة وشواطئها المخفية.",
-      "zh": "探索以碧绿海水、古老港口和隐藏海滩而闻名的安塔利亚海湾。"
+    {
+        "id": "TUR-TR-FETHIYE",
+        "title": {
+            "tr": "Fethiye - Ölüdeniz ve Saklıkent",
+            "en": "Fethiye - Oludeniz and Saklikent",
+            "es": "Fethiye - Oludeniz y Saklikent",
+            "ru": "Фетхие - Олюдениз и Саклыкент",
+            "de": "Fethiye - Oludeniz und Saklikent",
+            "ar": "فتحية - أولودينيز وساكليكنت",
+            "zh": "费特希耶 - 奥卢德尼兹和萨克利肯特"
+        },
+        "description": {
+            "tr": "Dünyaca ünlü Ölüdeniz plajı, yamaç paraşütü, antik Likya yolu ve Saklıkent kanyonu macerası.",
+            "en": "World-famous Oludeniz beach, paragliding, ancient Lycian Way and Saklikent canyon adventure.",
+            "es": "Playa de Oludeniz mundialmente famosa, parapente, antigua Vía Licia y aventura en el cañón de Saklikent.",
+            "ru": "Всемирно известный пляж Олюдениз, параглайдинг, древний Ликийский путь и приключения в каньоне Саклыкент.",
+            "de": "Weltberühmter Strand von Oludeniz, Paragliding, antiker Lykischer Weg und Abenteuer in der Saklikent-Schlucht.",
+            "ar": "شاطئ أولودينيز الشهير عالميًا، والطيران الشراعي، وطريق ليقيا القديم، ومغامرة وادي ساكليكنت.",
+            "zh": "世界著名的奥卢德尼兹海滩、滑翔伞、古老的利西亚之路和萨克利肯特峡谷探险。"
+        },
+        "price": "6.500 TL",
+        "duration": "5 Gün / 4 Gece",
+        "location": "Fethiye, Ölüdeniz, Saklıkent",
+        "area": "Akdeniz",
+        "category": "Türkiye",
+        "image": "assets/fethiye-oludeniz-manzarasi-14.webp",
+        "images": [
+            "assets/fethiye-oludeniz-manzarasi-14.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": false
     },
-    "price": "5.200 TL",
-    "duration": "3 Gün / 2 Gece",
-    "location": "Antalya, Kaleiçi, Kemer",
-    "area": "Akdeniz",
-    "category": "Türkiye",
-    "image": "assets/antalya-koy-gezisi-1.webp",
-    "images": [
-      "assets/antalya-koy-gezisi-1.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": false
-  },
-  {
-    "id": "TUR-TR-KAPADOKYA",
-    "title": {
-      "tr": "Kapadokya - Balon ve Peribacaları Turu",
-      "en": "Cappadocia - Balloon & Fairy Chimneys Tour",
-      "es": "Capadocia - Tour de globos y chimeneas de hadas",
-      "ru": "Каппадокия - Тур на воздушном шаре и сказочные дымоходы",
-      "de": "Kappadokien - Ballon- und Feenkamintour",
-      "ar": "كابادوكيا - جولة البالون والمداخن الخيالية",
-      "zh": "卡帕多西亚 - 热气球和仙女烟囱之旅"
+    {
+        "id": "TUR-TR-PAMUKKALE",
+        "title": {
+            "tr": "Pamukkale - Beyaz Cennet Turu",
+            "en": "Pamukkale - White Paradise Tour",
+            "es": "Pamukkale - Tour del Paraíso Blanco",
+            "ru": "Памуккале - Тур Белый Рай",
+            "de": "Pamukkale - Weißes Paradies-Tour",
+            "ar": "باموكالي - جولة الجنة البيضاء",
+            "zh": "帕姆卡莱 - 白色天堂之旅"
+        },
+        "description": {
+            "tr": "Beyaz travertenler, antik Hierapolis şehri ve termal havuzlarda unutulmaz bir deneyim.",
+            "en": "White travertines, ancient city of Hierapolis and an unforgettable experience in thermal pools.",
+            "es": "Travertinos blancos, antigua ciudad de Hierápolis y una experiencia inolvidable en piscinas termales.",
+            "ru": "Белые травертины, древний город Иераполис и незабываемые впечатления в термальных бассейнах.",
+            "de": "Weiße Travertine, antike Stadt Hierapolis und ein unvergessliches Erlebnis in Thermalbecken.",
+            "ar": "الترافرتين الأبيض، ومدينة هيرابوليس القديمة، وتجربة لا تُنسى في حمامات السباحة الحرارية.",
+            "zh": "白色钙华、古城希拉波利斯和温泉池中的难忘体验。"
+        },
+        "price": "4.800 TL",
+        "duration": "2 Gün / 1 Gece",
+        "location": "Pamukkale, Denizli",
+        "area": "Ege",
+        "category": "Türkiye",
+        "image": "assets/pamukkale-traverten-dogal-1.webp",
+        "images": [
+            "assets/pamukkale-traverten-dogal-1.webp",
+            "assets/pamukkale-traverten-dogal-2.webp",
+            "assets/pamukkale-traverten-dogal-3.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": false
     },
-    "description": {
-      "tr": "Sıcak hava balonuyla gün doğumunda Kapadokya'nın büyülü manzarası, yeraltı şehirleri ve peribacaları keşfi.",
-      "en": "Hot air balloon ride at sunrise over Cappadocia's magical landscape, underground cities and fairy chimneys exploration.",
-      "es": "Paseo en globo aerostático al amanecer sobre el paisaje mágico de Capadocia, exploración de ciudades subterráneas y chimeneas de hadas.",
-      "ru": "Полет на воздушном шаре на рассвете над волшебным пейзажем Каппадокии, исследование подземных городов и сказочных дымоходов.",
-      "de": "Heißluftballonfahrt bei Sonnenaufgang über Kappadokiens magische Landschaft, Erkundung unterirdischer Städte und Feenkamine.",
-      "ar": "رحلة منطاد الهواء الساخن عند شروق الشمس فوق المناظر الطبيعية السحرية لكابادوكيا، واستكشاف المدن تحت الأرض والمداخن الخيالية.",
-      "zh": "日出时分乘坐热气球飞越卡帕多西亚的神奇景观，探索地下城市和仙女烟囱。"
+    {
+        "id": "TUR-D-ISPANYA",
+        "title": {
+            "tr": "İspanya - Barcelona ve Madrid Turu",
+            "en": "Spain - Barcelona and Madrid Tour",
+            "es": "España - Tour de Barcelona y Madrid",
+            "ru": "Испания - Тур по Барселоне и Мадриду",
+            "de": "Spanien - Barcelona und Madrid Tour",
+            "ar": "إسبانيا - جولة برشلونة ومدريد",
+            "zh": "西班牙 - 巴塞罗那和马德里之旅"
+        },
+        "description": {
+            "tr": "Gaudi'nin şaheserleri, flamenko gösterileri, tapaslar ve İspanya'nın eşsiz kültürel zenginliği.",
+            "en": "Gaudi's masterpieces, flamenco shows, tapas and Spain's unique cultural richness.",
+            "es": "Las obras maestras de Gaudí, espectáculos de flamenco, tapas y la riqueza cultural única de España.",
+            "ru": "Шедевры Гауди, шоу фламенко, тапас и уникальное культурное богатство Испании.",
+            "de": "Gaudis Meisterwerke, Flamenco-Shows, Tapas und Spaniens einzigartiger kultureller Reichtum.",
+            "ar": "روائع غاودي، وعروض الفلامنكو، والتاباس، والثراء الثقافي الفريد لإسبانيا.",
+            "zh": "高迪的杰作、弗拉明戈表演、塔帕斯和西班牙独特的文化财富。"
+        },
+        "price": "45.000 TL",
+        "duration": "8 Gün / 7 Gece",
+        "location": "Barcelona, Madrid, Sevilla",
+        "area": "Avrupa",
+        "category": "Avrupa",
+        "image": "assets/spain-1.webp",
+        "images": [
+            "assets/spain-1.webp",
+            "assets/spain-2.webp",
+            "assets/spain-3.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": true
     },
-    "price": "9.800 TL",
-    "duration": "4 Gün / 3 Gece",
-    "location": "Göreme, Uçhisar, Avanos",
-    "area": "İç Anadolu",
-    "category": "Türkiye",
-    "image": "assets/kapadokya-balon-turu-1.webp",
-    "images": [
-      "assets/kapadokya-balon-turu-1.webp",
-      "assets/kapadokya-balon-turu-2.webp",
-      "assets/kapadokya-balon-turu-3.webp",
-      "assets/kapadokya-balon-turu-4.webp",
-      "assets/kapadokya-balon-turu-5.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": true
-  },
-  {
-    "id": "TUR-TR-FETHIYE",
-    "title": {
-      "tr": "Fethiye - Ölüdeniz ve Saklıkent",
-      "en": "Fethiye - Oludeniz and Saklikent",
-      "es": "Fethiye - Oludeniz y Saklikent",
-      "ru": "Фетхие - Олюдениз и Саклыкент",
-      "de": "Fethiye - Oludeniz und Saklikent",
-      "ar": "فتحية - أولودينيز وساكليكنت",
-      "zh": "费特希耶 - 奥卢德尼兹和萨克利肯特"
+    {
+        "id": "TUR-D-RUSYA-KIS",
+        "title": {
+            "tr": "Rusya Kış Masalı - Moskova ve St. Petersburg",
+            "en": "Russia Winter Tale - Moscow and St. Petersburg",
+            "es": "Cuento de Invierno de Rusia - Moscú y San Petersburgo",
+            "ru": "Русская зимняя сказка - Москва и Санкт-Петербург",
+            "de": "Russisches Wintermärchen - Moskau und St. Petersburg",
+            "ar": "حكاية الشتاء الروسية - موسكو وسانت بطرسبرغ",
+            "zh": "俄罗斯冬季童话 - 莫斯科和圣彼得堡"
+        },
+        "description": {
+            "tr": "Karlı Kızıl Meydan, Hermitage Müzesi ve çarlık dönemi saraylarında kış masalı.",
+            "en": "Winter fairy tale in snowy Red Square, Hermitage Museum and Tsarist palaces.",
+            "es": "Cuento de hadas de invierno en la nevada Plaza Roja, el Museo del Hermitage y los palacios zaristas.",
+            "ru": "Зимняя сказка на заснеженной Красной площади, в Эрмитаже и царских дворцах.",
+            "de": "Wintermärchen auf dem verschneiten Roten Platz, in der Eremitage und den Zarenpalästen.",
+            "ar": "حكاية خيالية شتوية في الساحة الحمراء الثلجية، ومتحف الهرميتاج، والقصور القيصرية.",
+            "zh": "在白雪皑皑的红场、埃尔米塔日博物馆和沙皇宫殿中度过冬季童话。"
+        },
+        "price": "52.000 TL",
+        "duration": "7 Gün / 6 Gece",
+        "location": "Moskova, St. Petersburg",
+        "area": "Avrupa",
+        "category": "Avrupa",
+        "image": "assets/rusya-1.webp",
+        "images": [
+            "assets/rusya-1.webp",
+            "assets/rusya-2.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": false
     },
-    "description": {
-      "tr": "Dünyaca ünlü Ölüdeniz plajı, yamaç paraşütü, antik Likya yolu ve Saklıkent kanyonu macerası.",
-      "en": "World-famous Oludeniz beach, paragliding, ancient Lycian Way and Saklikent canyon adventure.",
-      "es": "Playa de Oludeniz mundialmente famosa, parapente, antigua Vía Licia y aventura en el cañón de Saklikent.",
-      "ru": "Всемирно известный пляж Олюдениз, параглайдинг, древний Ликийский путь и приключения в каньоне Саклыкент.",
-      "de": "Weltberühmter Strand von Oludeniz, Paragliding, antiker Lykischer Weg und Abenteuer in der Saklikent-Schlucht.",
-      "ar": "شاطئ أولودينيز الشهير عالميًا، والطيران الشراعي، وطريق ليقيا القديم، ومغامرة وادي ساكليكنت.",
-      "zh": "世界著名的奥卢德尼兹海滩、滑翔伞、古老的利西亚之路和萨克利肯特峡谷探险。"
+    {
+        "id": "TUR-D-BREZILYA",
+        "title": {
+            "tr": "Brezilya Karnavalı - Rio de Janeiro",
+            "en": "Brazil Carnival - Rio de Janeiro",
+            "es": "Carnaval de Brasil - Río de Janeiro",
+            "ru": "Бразильский карнавал - Рио-де-Жанейро",
+            "de": "Brasilianischer Karneval - Rio de Janeiro",
+            "ar": "كرنفال البرازيل - ريو دي جانيرو",
+            "zh": "巴西狂欢节 - 里约热内卢"
+        },
+        "description": {
+            "tr": "Dünyanın en büyük karnavalı, Cristo Redentor, Copacabana plajı ve samba ritimleri.",
+            "en": "World's biggest carnival, Cristo Redentor, Copacabana beach and samba rhythms.",
+            "es": "El carnaval más grande del mundo, Cristo Redentor, playa de Copacabana y ritmos de samba.",
+            "ru": "Крупнейший в мире карнавал, Христос-Искупитель, пляж Копакабана и ритмы самбы.",
+            "de": "Weltgrößter Karneval, Cristo Redentor, Copacabana-Strand und Samba-Rhythmen.",
+            "ar": "أكبر كرنفال في العالم، وكريستو ريدنتور، وشاطئ كوباكابانا، وإيقاعات السامبا.",
+            "zh": "世界上最大的狂欢节、救世主基督像、科帕卡巴纳海滩和桑巴节奏。"
+        },
+        "price": "68.000 TL",
+        "duration": "10 Gün / 9 Gece",
+        "location": "Rio de Janeiro, São Paulo",
+        "area": "Güney Amerika",
+        "category": "Amerika",
+        "image": "assets/brazil-1.webp",
+        "images": [
+            "assets/brazil-1.webp",
+            "assets/brazil-2.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": false
     },
-    "price": "6.500 TL",
-    "duration": "5 Gün / 4 Gece",
-    "location": "Fethiye, Ölüdeniz, Saklıkent",
-    "area": "Akdeniz",
-    "category": "Türkiye",
-    "image": "assets/fethiye-oludeniz-manzarasi-14.webp",
-    "images": [
-      "assets/fethiye-oludeniz-manzarasi-14.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": false
-  },
-  {
-    "id": "TUR-TR-PAMUKKALE",
-    "title": {
-      "tr": "Pamukkale - Beyaz Cennet Turu",
-      "en": "Pamukkale - White Paradise Tour",
-      "es": "Pamukkale - Tour del Paraíso Blanco",
-      "ru": "Памуккале - Тур Белый Рай",
-      "de": "Pamukkale - Weißes Paradies-Tour",
-      "ar": "باموكالي - جولة الجنة البيضاء",
-      "zh": "帕姆卡莱 - 白色天堂之旅"
+    {
+        "id": "TUR-D-AMERIKA",
+        "title": {
+            "tr": "ABD Batı Kıyısı - Los Angeles, Las Vegas, San Francisco",
+            "en": "USA West Coast - Los Angeles, Las Vegas, San Francisco",
+            "es": "Costa Oeste de EE.UU. - Los Ángeles, Las Vegas, San Francisco",
+            "ru": "Западное побережье США - Лос-Анджелес, Лас-Вегас, Сан-Франциско",
+            "de": "US-Westküste - Los Angeles, Las Vegas, San Francisco",
+            "ar": "الساحل الغربي للولايات المتحدة - لوس أنجلوس، لاس فيغاس، سان فرانسيسكو",
+            "zh": "美国西海岸 - 洛杉矶、拉斯维加斯、旧金山"
+        },
+        "description": {
+            "tr": "Hollywood yıldızları, Grand Canyon, Las Vegas kumarhaneleri ve Golden Gate Köprüsü ile Amerika rüyası.",
+            "en": "American dream with Hollywood stars, Grand Canyon, Las Vegas casinos and Golden Gate Bridge.",
+            "es": "Sueño americano con estrellas de Hollywood, Gran Cañón, casinos de Las Vegas y puente Golden Gate.",
+            "ru": "Американская мечта со звездами Голливуда, Гранд-Каньоном, казино Лас-Вегаса и мостом Золотые Ворота.",
+            "de": "Amerikanischer Traum mit Hollywood-Stars, Grand Canyon, Las Vegas Casinos und Golden Gate Bridge.",
+            "ar": "الحلم الأمريكي مع نجوم هوليوود، وجراند كانيون، وكازينوهات لاس فيجاس، وجسر البوابة الذهبية.",
+            "zh": "美国梦，包括好莱坞明星、大峡谷、拉斯维加斯赌场和金门大桥。"
+        },
+        "price": "75.000 TL",
+        "duration": "12 Gün / 11 Gece",
+        "location": "Los Angeles, Las Vegas, San Francisco",
+        "area": "Kuzey Amerika",
+        "category": "Amerika",
+        "image": "assets/new-york-1.webp",
+        "images": [
+            "assets/new-york-1.webp",
+            "assets/new-york-2.webp"
+        ],
+        "highlights": [],
+        "included": [],
+        "itinerary": [],
+        "date": "2025-12-16T19:30:00.000Z",
+        "featured": false
     },
-    "description": {
-      "tr": "Beyaz travertenler, antik Hierapolis şehri ve termal havuzlarda unutulmaz bir deneyim.",
-      "en": "White travertines, ancient city of Hierapolis and an unforgettable experience in thermal pools.",
-      "es": "Travertinos blancos, antigua ciudad de Hierápolis y una experiencia inolvidable en piscinas termales.",
-      "ru": "Белые травертины, древний город Иераполис и незабываемые впечатления в термальных бассейнах.",
-      "de": "Weiße Travertine, antike Stadt Hierapolis und ein unvergessliches Erlebnis in Thermalbecken.",
-      "ar": "الترافرتين الأبيض، ومدينة هيرابوليس القديمة، وتجربة لا تُنسى في حمامات السباحة الحرارية.",
-      "zh": "白色钙华、古城希拉波利斯和温泉池中的难忘体验。"
+    {
+        "id": "TUR-1773842058343",
+        "title": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "title_en": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "title_es": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "title_ru": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "title_de": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "title_zh": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "title_ar": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (10 Gün)",
+        "price": "2850$",
+        "duration": "10 Gün / 9 Gece",
+        "location": "İstasanbul - kapadokya ",
+        "category": "Türkiye",
+        "categories": {
+            "traveller": [
+                "family",
+                "couples",
+                "groups",
+                "honeymoon",
+                "solo"
+            ],
+            "destination": [
+                "turkiye"
+            ],
+            "month": [
+                "year-round"
+            ]
+        },
+        "description": "kısa açıklama",
+        "description_en": "kısa açıklama",
+        "description_es": "kısa açıklama",
+        "description_ru": "kısa açıklama",
+        "description_de": "kısa açıklama",
+        "description_zh": "kısa açıklama",
+        "description_ar": "kısa açıklama",
+        "content": "detaylı içerik",
+        "content_en": "kısa açıklama",
+        "content_es": "kısa açıklama",
+        "content_ru": "kısa açıklama",
+        "content_de": "kısa açıklama",
+        "content_zh": "kısa açıklama",
+        "content_ar": "kısa açıklama",
+        "image": "assets/10 Gün.jpg",
+        "gallery": [],
+        "featured": false,
+        "source": "admin"
     },
-    "price": "4.800 TL",
-    "duration": "2 Gün / 1 Gece",
-    "location": "Pamukkale, Denizli",
-    "area": "Ege",
-    "category": "Türkiye",
-    "image": "assets/pamukkale-traverten-dogal-1.webp",
-    "images": [
-      "assets/pamukkale-traverten-dogal-1.webp",
-      "assets/pamukkale-traverten-dogal-2.webp",
-      "assets/pamukkale-traverten-dogal-3.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": false
-  },
-  {
-    "id": "TUR-D-ISPANYA",
-    "title": {
-      "tr": "İspanya - Barcelona ve Madrid Turu",
-      "en": "Spain - Barcelona and Madrid Tour",
-      "es": "España - Tour de Barcelona y Madrid",
-      "ru": "Испания - Тур по Барселоне и Мадриду",
-      "de": "Spanien - Barcelona und Madrid Tour",
-      "ar": "إسبانيا - جولة برشلونة ومدريد",
-      "zh": "西班牙 - 巴塞罗那和马德里之旅"
+    {
+        "id": "TUR-1773845441965",
+        "title": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "title_en": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "title_es": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "title_ru": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "title_de": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "title_zh": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "title_ar": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
+        "price": "3000$",
+        "duration": "8 Gün / 7 Gece",
+        "location": "İstasanbul - kapadokya - pamukkale",
+        "category": "Türkiye",
+        "categories": {
+            "traveller": [
+                "family",
+                "couples",
+                "groups",
+                "honeymoon",
+                "solo"
+            ],
+            "destination": [
+                "turkiye"
+            ],
+            "month": [
+                "spring",
+                "summer",
+                "autumn",
+                "winter",
+                "year-round"
+            ]
+        },
+        "description": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "description_en": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "description_es": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "description_ru": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "description_de": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "description_zh": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "description_ar": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "content": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.\n\n🌟 Tur Öne Çıkanları\nİki Kıta Arasında: Boğaz’da tekne turu ile Avrupa ve Asya’yı selamlama.\n\nOsmanlı’nın İzinde: Topkapı Sarayı ve Sultanahmet’in büyüleyici atmosferi.\n\nGökyüzünde Süzülüş: Kapadokya’da gün doğumunda sıcak hava balonu deneyimi.\n\nAntik Miras: Dünyanın yedi harikasından biri olan Artemis Tapınağı ve Efes.\n\nDoğal Terapi: Pamukkale’nin şifalı travertenlerinde yürüyüş.\n\n🗓️ Günlük Tur Programı\n1. Gün: İstanbul’a Merhaba\nİstanbul Havalimanı’nda karşılama ve otelinize transfer. İlk geceyi dünyanın kalbi İstanbul’da geçiriyoruz.\n\n2. Gün: İki Kıta, Bir Boğaz ve Baharat Kokuları\nBizans Surları: Şehri bin yıl koruyan devasa Roma surlarını keşfediyoruz.\n\nHaliç Turu: Otobüsle \"Altın Boynuz\" boyunca keyifli bir yolculuk.\n\nMısır Çarşısı: Egzotik baharatların, lokumların ve taze kuruyemişlerin arasında duyusal bir yolculuk.\n\nBoğaz’da Tekne Turu: Karadeniz ve Marmara’yı birbirine bağlayan, kıyıları yalılarla süslü Boğaz’da, kıtalar arasında süzülüyoruz.\n\n3. Gün: İmparatorlukların Başkenti (Eski Şehir)\nAyasofya: Hristiyanlığın en büyük kilisesinden görkemli bir camiye dönüşen mimari şaheser.\n\nSultanahmet Camii: 20 binden fazla mavi çiniyle süslü, zarif minareli \"Mavi Cami\".\n\nHipodrom: Bizans’ın sosyal ve sportif merkezi; Dikilitaş ve Yılanlı Sütun’un hikayeleri.\n\nTopkapı Sarayı: Üç kıtaya hükmeden Osmanlı padişahlarının evi, devasa hazine ve kutsal emanetler.\n\n4. Gün: Peribacalarının Diyarına Yolculuk\nUçuş sonrası Kapadokya’dayız!\n\nGöreme Açık Hava Müzesi: UNESCO mirası, kayalara oyulmuş binlerce yıllık kiliseler.\n\nHayal Vadisi (Devrent): Doğanın kendi elleriyle yaptığı ilginç kaya oluşumları.\n\nAvanos: Kızılırmak kenarında geleneksel çömlekçilik deneyimi.\n\n5. Gün: Gökyüzünde Dans ve Yerin Altındaki Sırlar\nSıcak Hava Balonu: Gün doğumunda Kapadokya’nın eşsiz manzarasını gökyüzünden izliyoruz (Dahil!).\n\nKızıl ve Güllüdere Vadisi: Doğanın renk oyunları arasında keyifli bir doğa yürüyüşü.\n\nYeraltı Şehri: Milattan önce 2000'li yıllara uzanan, 8 katlı devasa bir mühendislik harikası.\n\nUçhisar Kalesi: Bölgenin en yüksek noktasından panoramik fotoğraf molası.\n\n6. Gün: Antik Dünyanın Kapısı: Efes\nKuşadası’na varış ve antik çağın en zengin liman kenti Efes turu.\n\nCelsus Kütüphanesi: Antik dünyanın en görkemli yapılarından biri.\n\nMeryem Ana Evi: Hristiyanlar için kutsal hac merkezi.\n\nArtemis Tapınağı: Antik dünyanın yedi harikasından biri.\n\n7. Gün: Beyaz Mucize: Pamukkale\nPamukkale Travertenleri: Kalsiyum oksitli suların oluşturduğu bembeyaz teraslar ve termal havuzlar.\n\nHierapolis (Kutsal Şehir): Roma döneminden kalma devasa nekropol, tiyatro ve şifalı merkezler.\n\n8 - 10. Gün: İstanbul’a Dönüş ve Veda\nSekizinci gün İstanbul’a dönüyoruz. Dokuzuncu günü şehri kendi temponuzda keşfetmeniz için serbest bırakıyoruz. Onuncu gün kahvaltı sonrası havalimanı transferi ile bu rüya turu sonlandırıyoruz.\n\n💳 Tur Paketine Neler Dahil?\n✅ Konaklama: İstanbul (Butik Sultan Hamit Otel), Kapadokya (Empire Cave Otel), Kuşadası (Carina Otel).\n\n✅ Uçuşlar: İstanbul - Kapadokya / Kapadokya - İzmir / İzmir - İstanbul iç hat biletleri.\n\n✅ Özel Deneyim: Kapadokya Sıcak Hava Balonu turu!\n\n✅ Rehberlik: Profesyonel rehber eşliğinde butik turlar.\n\n✅ Transferler: Tüm havalimanı ve tur transferleri.",
+        "content_en": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "content_es": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "content_ru": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "content_de": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "content_zh": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "content_ar": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
+        "image": "assets/9 gün.jpg",
+        "gallery": [],
+        "featured": false,
+        "source": "admin"
     },
-    "description": {
-      "tr": "Gaudi'nin şaheserleri, flamenko gösterileri, tapaslar ve İspanya'nın eşsiz kültürel zenginliği.",
-      "en": "Gaudi's masterpieces, flamenco shows, tapas and Spain's unique cultural richness.",
-      "es": "Las obras maestras de Gaudí, espectáculos de flamenco, tapas y la riqueza cultural única de España.",
-      "ru": "Шедевры Гауди, шоу фламенко, тапас и уникальное культурное богатство Испании.",
-      "de": "Gaudis Meisterwerke, Flamenco-Shows, Tapas und Spaniens einzigartiger kultureller Reichtum.",
-      "ar": "روائع غاودي، وعروض الفلامنكو، والتاباس، والثراء الثقافي الفريد لإسبانيا.",
-      "zh": "高迪的杰作、弗拉明戈表演、塔帕斯和西班牙独特的文化财富。"
-    },
-    "price": "45.000 TL",
-    "duration": "8 Gün / 7 Gece",
-    "location": "Barcelona, Madrid, Sevilla",
-    "area": "Avrupa",
-    "category": "Avrupa",
-    "image": "assets/spain-1.webp",
-    "images": [
-      "assets/spain-1.webp",
-      "assets/spain-2.webp",
-      "assets/spain-3.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": true
-  },
-  {
-    "id": "TUR-D-RUSYA-KIS",
-    "title": {
-      "tr": "Rusya Kış Masalı - Moskova ve St. Petersburg",
-      "en": "Russia Winter Tale - Moscow and St. Petersburg",
-      "es": "Cuento de Invierno de Rusia - Moscú y San Petersburgo",
-      "ru": "Русская зимняя сказка - Москва и Санкт-Петербург",
-      "de": "Russisches Wintermärchen - Moskau und St. Petersburg",
-      "ar": "حكاية الشتاء الروسية - موسكو وسانت بطرسبرغ",
-      "zh": "俄罗斯冬季童话 - 莫斯科和圣彼得堡"
-    },
-    "description": {
-      "tr": "Karlı Kızıl Meydan, Hermitage Müzesi ve çarlık dönemi saraylarında kış masalı.",
-      "en": "Winter fairy tale in snowy Red Square, Hermitage Museum and Tsarist palaces.",
-      "es": "Cuento de hadas de invierno en la nevada Plaza Roja, el Museo del Hermitage y los palacios zaristas.",
-      "ru": "Зимняя сказка на заснеженной Красной площади, в Эрмитаже и царских дворцах.",
-      "de": "Wintermärchen auf dem verschneiten Roten Platz, in der Eremitage und den Zarenpalästen.",
-      "ar": "حكاية خيالية شتوية في الساحة الحمراء الثلجية، ومتحف الهرميتاج، والقصور القيصرية.",
-      "zh": "在白雪皑皑的红场、埃尔米塔日博物馆和沙皇宫殿中度过冬季童话。"
-    },
-    "price": "52.000 TL",
-    "duration": "7 Gün / 6 Gece",
-    "location": "Moskova, St. Petersburg",
-    "area": "Avrupa",
-    "category": "Avrupa",
-    "image": "assets/rusya-1.webp",
-    "images": [
-      "assets/rusya-1.webp",
-      "assets/rusya-2.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": false
-  },
-  {
-    "id": "TUR-D-BREZILYA",
-    "title": {
-      "tr": "Brezilya Karnavalı - Rio de Janeiro",
-      "en": "Brazil Carnival - Rio de Janeiro",
-      "es": "Carnaval de Brasil - Río de Janeiro",
-      "ru": "Бразильский карнавал - Рио-де-Жанейро",
-      "de": "Brasilianischer Karneval - Rio de Janeiro",
-      "ar": "كرنفال البرازيل - ريو دي جانيرو",
-      "zh": "巴西狂欢节 - 里约热内卢"
-    },
-    "description": {
-      "tr": "Dünyanın en büyük karnavalı, Cristo Redentor, Copacabana plajı ve samba ritimleri.",
-      "en": "World's biggest carnival, Cristo Redentor, Copacabana beach and samba rhythms.",
-      "es": "El carnaval más grande del mundo, Cristo Redentor, playa de Copacabana y ritmos de samba.",
-      "ru": "Крупнейший в мире карнавал, Христос-Искупитель, пляж Копакабана и ритмы самбы.",
-      "de": "Weltgrößter Karneval, Cristo Redentor, Copacabana-Strand und Samba-Rhythmen.",
-      "ar": "أكبر كرنفال في العالم، وكريستو ريدنتور، وشاطئ كوباكابانا، وإيقاعات السامبا.",
-      "zh": "世界上最大的狂欢节、救世主基督像、科帕卡巴纳海滩和桑巴节奏。"
-    },
-    "price": "68.000 TL",
-    "duration": "10 Gün / 9 Gece",
-    "location": "Rio de Janeiro, São Paulo",
-    "area": "Güney Amerika",
-    "category": "Amerika",
-    "image": "assets/brazil-1.webp",
-    "images": [
-      "assets/brazil-1.webp",
-      "assets/brazil-2.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": false
-  },
-  {
-    "id": "TUR-D-AMERIKA",
-    "title": {
-      "tr": "ABD Batı Kıyısı - Los Angeles, Las Vegas, San Francisco",
-      "en": "USA West Coast - Los Angeles, Las Vegas, San Francisco",
-      "es": "Costa Oeste de EE.UU. - Los Ángeles, Las Vegas, San Francisco",
-      "ru": "Западное побережье США - Лос-Анджелес, Лас-Вегас, Сан-Франциско",
-      "de": "US-Westküste - Los Angeles, Las Vegas, San Francisco",
-      "ar": "الساحل الغربي للولايات المتحدة - لوس أنجلوس، لاس فيغاس، سان فرانسيسكو",
-      "zh": "美国西海岸 - 洛杉矶、拉斯维加斯、旧金山"
-    },
-    "description": {
-      "tr": "Hollywood yıldızları, Grand Canyon, Las Vegas kumarhaneleri ve Golden Gate Köprüsü ile Amerika rüyası.",
-      "en": "American dream with Hollywood stars, Grand Canyon, Las Vegas casinos and Golden Gate Bridge.",
-      "es": "Sueño americano con estrellas de Hollywood, Gran Cañón, casinos de Las Vegas y puente Golden Gate.",
-      "ru": "Американская мечта со звездами Голливуда, Гранд-Каньоном, казино Лас-Вегаса и мостом Золотые Ворота.",
-      "de": "Amerikanischer Traum mit Hollywood-Stars, Grand Canyon, Las Vegas Casinos und Golden Gate Bridge.",
-      "ar": "الحلم الأمريكي مع نجوم هوليوود، وجراند كانيون، وكازينوهات لاس فيجاس، وجسر البوابة الذهبية.",
-      "zh": "美国梦，包括好莱坞明星、大峡谷、拉斯维加斯赌场和金门大桥。"
-    },
-    "price": "75.000 TL",
-    "duration": "12 Gün / 11 Gece",
-    "location": "Los Angeles, Las Vegas, San Francisco",
-    "area": "Kuzey Amerika",
-    "category": "Amerika",
-    "image": "assets/new-york-1.webp",
-    "images": [
-      "assets/new-york-1.webp",
-      "assets/new-york-2.webp"
-    ],
-    "highlights": [],
-    "included": [],
-    "itinerary": [],
-    "date": "2025-12-16T19:30:00.000Z",
-    "featured": false
-  }
+    {
+        "id": "TUR-1773848419116",
+        "title": "istanbul çıkışlı gelibolu turu",
+        "title_en": "istanbul çıkışlı gelibolu turu",
+        "title_es": "istanbul çıkışlı gelibolu turu",
+        "title_ru": "istanbul çıkışlı gelibolu turu",
+        "title_de": "istanbul çıkışlı gelibolu turu",
+        "title_zh": "istanbul çıkışlı gelibolu turu",
+        "title_ar": "istanbul çıkışlı gelibolu turu",
+        "price": "90 usd' den başlayan fiyatlarla",
+        "duration": "tüm gün",
+        "location": "Gelibolu",
+        "category": "Türkiye",
+        "categories": {
+            "traveller": [
+                "family",
+                "couples",
+                "groups",
+                "honeymoon",
+                "solo"
+            ],
+            "destination": [
+                "turkiye"
+            ],
+            "month": [
+                "spring",
+                "summer",
+                "autumn",
+                "winter",
+                "year-round"
+            ]
+        },
+        "description": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "description_en": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "description_es": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "description_ru": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "description_de": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "description_zh": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "description_ar": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "content": "Yolculuk Programı\n06:30 | İstanbul’dan Hareket\nLüks ve konforlu aracımızla İstanbul'daki otelinizden alınarak rotamıza başlıyoruz. Yol boyunca Tekirdağ üzerinden Marmara Denizi manzarası eşliğinde ilerliyoruz.\n\n11:00 | Gelibolu Yarımadası'na Giriş: Kilitbahir ve Tabyalar\n\"Denizin Kilidi\" anlamına gelen ve boğazın en dar noktasını koruyan kalp şeklindeki Kilitbahir Kalesi ile tarihe giriş yapıyoruz.\n\n12:30 | Alçıtepe Köyü’nde Yerel Öğle Yemeği\nSavaşın kalbinde yer alan bu huzurlu köyde, taze ve yerel malzemelerle hazırlanan geleneksel bir Türk öğle yemeği molası veriyoruz.\n\n13:30 | Anzak Koyu ve Kuzey Plajı\n25 Nisan 1915 sabahı Anzak askerlerinin ilk karaya çıktığı o ikonik sahil.\n\nAtatürk Anıtı: Dünyaca ünlü o satırların önünde duruyoruz: \"Uzak memleketlerden evlatlarını harbe gönderen analar! Gözyaşlarınızı dindiriniz; evlatlarınız bizim bağrımızdadır ve huzur içindedirler.\"\n\n14:45 | Saygı Duruşu: Lone Pine (Yalnız Çam) ve Johnston’s Jolly\nLone Pine: Avustralya’nın ana anıtı. Ege Denizi'ne bakan bu sessiz ve huzurlu noktada saygı duruşu.\n\nOrijinal Siperler: İki tarafın askerlerinin birbirine sadece birkaç metre uzaklıkta olduğu, korunmuş orijinal siperleri yerinde görme imkanı.\n\n16:15 | En Yüksek Nokta: Conkbayırı (Chunuk Bair)\nSavaşın en yüksek ve en kritik noktası.\n\nYeni Zelanda Ulusal Anıtı: Yeni Zelandalı askerlerin anısına dikilen görkemli anıt.\n\nAtatürk'ün Gözetleme Yeri: Atatürk'ün kalbinin üzerindeki saatinin parçalanarak hayatının kurtulduğu noktayı ziyaret.\n\n18:00 | Dönüş Yolculuğu\nDünyanın en uzun asma köprüsü olan 1915 Çanakkale Köprüsü üzerinden boğazı geçerek İstanbul'a dönüş yoluna geçiyoruz.\n\nℹ️ Gezginler İçin Notlar\nAtmosfer: Burası şehitlik ve mezarlık alanıdır. Misafirlerimizin saygılı bir tutum içinde olması rica olunur.\n\nKıyafet: Engebeli arazide yürüyüş yapılacağı için rahat yürüyüş ayakkabıları ve güneş kremi mutlaka önerilir.\n\nUlaşım: İstanbul - Gelibolu arası yaklaşık 4.5 saat sürmektedir. Bu süreyi konforlu VIP araçlarımızla en keyifli hale getiriyoruz.",
+        "content_en": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "content_es": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "content_ru": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "content_de": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "content_zh": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "content_ar": "Günübirlik istanbul çıkışlı Gelibolu turu",
+        "image": "assets/Gelibolu.jpg",
+        "gallery": [
+            "assets/9 Gün.jpg"
+        ],
+        "featured": false,
+        "source": "admin"
+    }
 ]
