@@ -410,31 +410,28 @@
     function getLocalizedData(item, field) {
         if(!item) return '';
         const lang = window.i18n ? window.i18n.currentLang : 'tr';
-        
-        // ESKİ SİSTEM: Veri bir obje formatındaysa (örn: {tr: "...", en: "..."})
         if (typeof item[field] === 'object' && item[field] !== null) {
             return item[field][lang] || item[field]['tr'] || '';
         }
-        
-        // YENİ SİSTEM: Veri admin panelinden gelen düz metin ise (örn: title_en)
         if (lang === 'tr') return item[field] || '';
         return item[`${field}_${lang}`] || item[field] || ''; 
     }
 
     // ==================== 2. KATEGORİLER (4'LÜ YAPI) ====================
     const mainCategories = [
-        { name: 'TÜRKİYE TURU', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'turkey' },
-        { name: 'ULUSLARARASI', image: 'assets/spain-1.webp', link: '#tours', category: 'international' },
-        { name: 'GÜNÜBİRLİK', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours', category: 'daily' },
-        { name: 'GRUP TURLARI', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours', category: 'group' }
+        { name: 'TÜRKİYE TURU', image: 'assets/kapadokya-balon-turu-3.webp', category: 'turkey' },
+        { name: 'ULUSLARARASI', image: 'assets/spain-1.webp', category: 'international' },
+        { name: 'GÜNÜBİRLİK', image: 'assets/pamukkale-traverten-dogal-1.webp', category: 'daily' },
+        { name: 'GRUP TURLARI', image: 'assets/antalya-koy-gezisi-1.webp', category: 'group' }
     ];
 
     function loadCategories() {
         const grid = document.getElementById('categoriesGrid');
         if (!grid) return;
         
+        // DİKKAT: Artık linke gitmek yerine filterTours() fonksiyonunu çağırıyoruz
         grid.innerHTML = mainCategories.map(cat => `
-            <div class="category-image-card" data-category="${cat.category}" onclick="window.location.href='${cat.link}'">
+            <div class="category-image-card" data-category="${cat.category}" onclick="filterTours('${cat.category}')">
                 <img src="${cat.image}" alt="${cat.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
                 <div class="category-overlay">
                     <div class="category-name" data-i18n="cat_${cat.category}">${cat.name}</div>
@@ -443,18 +440,75 @@
         `).join('');
     }
 
-    // ==================== 3. TURLARI YÜKLEME ====================
+    // ==================== 3. TURLARI YÜKLEME VE FİLTRELEME ====================
+    let allToursData = []; // Bütün turları hafızada tutacağımız global değişken
+
     async function loadTours() {
         try {
             const response = await fetch('data/tours.json');
             if (!response.ok) return;
             const tours = await response.json();
             
+            allToursData = tours; // Turları filtrelemek için hafızaya aldık
+            
             const popularTours = tours.filter(t => t.featured).slice(0, 3);
             displayPopularTrips(popularTours.length > 0 ? popularTours : tours.slice(0, 3));
-            displayAllTours(tours);
+            
+            displayAllTours(tours); // Başlangıçta hepsini göster
         } catch (error) {
             console.error('Turlar yüklenemedi:', error);
+        }
+    }
+
+    // YENİ: Akıllı Filtreleme Fonksiyonu
+    function filterTours(type) {
+        // 1. İlgili bölüme yumuşakça kaydır
+        document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
+        
+        // 2. Turları seçilen kategoriye göre süz
+        let filtered = [];
+        
+        if (type === 'turkey') {
+            // Sadece Türkiye turlarını al
+            filtered = allToursData.filter(t => t.category === 'Türkiye' || (t.categories && t.categories.destination && t.categories.destination.includes('turkiye')));
+        } 
+        else if (type === 'international') {
+            // Türkiye dışındaki (Avrupa, Amerika vb.) turları al
+            filtered = allToursData.filter(t => t.category && t.category !== 'Türkiye' && t.category !== 'Kategori Seçin');
+        } 
+        else if (type === 'daily') {
+            // Süresi günübirlik olanları al (Günübirlik, Tüm Gün, 1 Gün içerenler)
+            filtered = allToursData.filter(t => t.duration && (t.duration.toLowerCase().includes('günübirlik') || t.duration.toLowerCase().includes('tüm gün') || t.duration.toLowerCase().includes('1 gün')));
+        } 
+        else if (type === 'group') {
+            // Yolcu tipi "Grup (groups)" seçilenleri al
+            filtered = allToursData.filter(t => t.categories && t.categories.traveller && t.categories.traveller.includes('groups'));
+        } 
+        else if (type === 'all') {
+            // Hepsini göster
+            filtered = allToursData;
+        }
+
+        // 3. Süzülen turları ekrana bas
+        displayAllTours(filtered);
+
+        // 4. Başlığı ve Rozeti Güncelle
+        const sectionTitle = document.querySelector('#tours .section-header h2');
+        const sectionBadge = document.querySelector('#tours .section-badge');
+        
+        if (type === 'all') {
+            sectionBadge.innerHTML = 'TÜM ROTALAR';
+            sectionTitle.innerHTML = window.i18n ? window.i18n.t('tours_title') : 'Tüm Turlar';
+        } else {
+            // Filtre aktifse kırmızı renkte şık bir "Filtreyi Temizle" butonu ekle
+            sectionBadge.innerHTML = '<span style="cursor:pointer; color:#ef4444;" onclick="filterTours(\'all\')"><i class="fas fa-times"></i> FİLTREYİ TEMİZLE</span>';
+            const titles = {
+                'turkey': 'Türkiye Rotaları',
+                'international': 'Uluslararası Turlar',
+                'daily': 'Günübirlik Turlar',
+                'group': 'Grup Turları'
+            };
+            sectionTitle.innerHTML = titles[type];
         }
     }
 
@@ -488,6 +542,12 @@
     function displayAllTours(tours) {
         const grid = document.querySelector('.tours-grid');
         if (!grid) return;
+        
+        // Eğer filtrelenen kategoride hiç tur yoksa uyarı mesajı göster
+        if (tours.length === 0) {
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px; font-size: 18px; color: #94a3b8;"><i class="fas fa-search" style="font-size: 40px; margin-bottom: 15px; display:block;"></i> Bu kategoride henüz tur bulunmuyor.</div>';
+            return;
+        }
 
         grid.innerHTML = tours.map(tour => {
             const title = String(getLocalizedData(tour, 'title'));
