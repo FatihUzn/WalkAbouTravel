@@ -149,6 +149,10 @@
             </div>
         </div>
     </div>
+    
+    <a href="#" class="whatsapp-float" id="globalWaBtn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="i18n.js"></script>
     <script>
@@ -198,7 +202,12 @@
                 imgElement.style.display = 'block';
 
                 document.getElementById('blogContent').innerHTML = content;
-
+                
+                // Blog İçin Akıllı WhatsApp Mesajı
+                const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${title}" başlıklı yazınızı okudum ve bu konuyla ilgili detaylı bilgi almak istiyorum.`);
+                const globalWaBtn = document.getElementById('globalWaBtn');
+                if (globalWaBtn) globalWaBtn.href = `https://wa.me/902125551923?text=${waMsg}`;
+                
             } catch (error) {
                 console.error("Hata:", error);
                 document.getElementById('blogContent').innerHTML = '<div style="text-align:center;">Veriler yüklenirken bir hata oluştu.</div>';

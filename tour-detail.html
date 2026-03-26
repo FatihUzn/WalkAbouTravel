@@ -926,15 +926,17 @@
                     </div>
                 `).join('');
                 
-                // Buton Linkleri
+                // Akıllı Mail ve WhatsApp Buton Linkleri
                 const emailSub = encodeURIComponent(`${title} Rezervasyon Talebi`);
-                document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}`;
+                const emailBody = encodeURIComponent(`Merhaba, web sitenizdeki "${title}" isimli tur ile ilgileniyorum. Detaylar ve rezervasyon hakkında bana bilgi verebilir misiniz?`);
+                document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}&body=${emailBody}`;
                 
-                const waMsg = encodeURIComponent(`Merhaba, ${title} hakkında bilgi almak istiyorum.`);
-                document.getElementById('whatsappBtn').href = `https://wa.me/5491135870045?text=${waMsg}`;
+                const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${title}" (${tour.duration}) turu ile ilgileniyorum. Rezervasyon için bilgi alabilir miyim?`);
+                document.getElementById('whatsappBtn').href = `https://wa.me/902125551923?text=${waMsg}`;
                 
-                document.title = `${title} - WalkAbout Travel`;
-                document.title = `${title} - WalkAbout Travel`;
+                // Sağ alttaki yuvarlak butonu da akıllandırıyoruz
+                const globalWaBtn = document.querySelector('.whatsapp-float');
+                if (globalWaBtn) globalWaBtn.href = `https://wa.me/902125551923?text=${waMsg}`;
 
 // Breadcrumb dil desteği
 const breadcrumbLabels = {
