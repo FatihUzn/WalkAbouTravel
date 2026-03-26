@@ -2087,33 +2087,79 @@ body[dir="rtl"] .contact-form textarea {
 .lang-dropdown-content a:hover::before {
     opacity: 1;
 }
-/* SABİT VE ANİMASYONLU WHATSAPP BUTONU */
-.whatsapp-float {
+/* YUKARI ÇIK BUTONU TASARIMI */
+.scroll-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 110px; /* WhatsApp'ın hemen üstünde durması için mesafe */
     right: 30px;
-    background: #25d366;
+    background: #38bdf8;
     color: white;
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 38px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 9999;
-    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9998;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.3s ease;
-    animation: pulse-wa 2s infinite; /* Nabız animasyonu */
+    border: none;
 }
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background: #1ebe57;
-    color: white;
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
 }
-@keyframes pulse-wa {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+
+.scroll-to-top:hover {
+    background: #0284c7;
+    transform: translateY(-5px);
+}
+
+/* 📱 MOBİL VE YARIM EKRAN OPTİMİZASYONU (Sihir Burada) */
+@media (max-width: 768px) {
+    /* WhatsApp Mobilde Küçülür ve Köşeye Yanaşır */
+    .whatsapp-float {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        font-size: 30px !important;
+    }
+    /* Yukarı Çık Butonu Mobilde Küçülür ve WhatsApp'a Yaklaşır */
+    .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 80px; 
+        right: 25px;
+        font-size: 16px;
+    }
+}
+/* =========================================
+   📱 MOBİL OPTİMİZASYONU (SİHİRLİ KISIM)
+   ========================================= */
+@media (max-width: 768px) {
+    /* WhatsApp Butonu Mobilde Küçülür ve Köşeye Yapışır */
+    .whatsapp-float {
+        width: 48px !important;
+        height: 48px !important;
+        bottom: 20px !important;
+        right: 15px !important;
+        font-size: 28px !important;
+    }
+    
+    /* MEVCUT SCROLL BUTONUN KÜÇÜLÜR VE WHATSAPP'A YAKLAŞIR */
+    /* DİKKAT: '.senin-scroll-classin' yazan yeri kendi butonunun class veya id'si ile değiştir */
+    .senin-scroll-classin {
+        width: 42px !important;
+        height: 42px !important;
+        bottom: 75px !important; /* WhatsApp'ın tam üstünde durmasını sağlar */
+        right: 18px !important;
+        font-size: 18px !important;
+        padding: 0 !important; /* Eğer butonunda ekstra boşluk varsa sıfırlar */
+    }
 }
