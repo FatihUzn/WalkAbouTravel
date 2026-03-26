@@ -634,7 +634,25 @@
             
             displayTours(); updateTourStats(); updateFeaturedTours(); updateBulkCounts();
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
-            resetTourForm();
+           // Sunucuya (save.php) Otomatik Kayıt Gönder
+fetch('save.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        file: 'tours',
+        data: tours
+    })
+})
+.then(response => response.json())
+.then(result => {
+    if (result.success) {
+        showAlert('tourAlert', '✅ Sunucuyla senkronize edildi!', 'success');
+    } else {
+        console.error('Sunucu hatası:', result.error);
+    }
+})
+.catch(err => console.error('Bağlantı hatası:', err));
+           resetTourForm();
         }
 
         async function saveBlog(e) {
@@ -670,11 +688,42 @@
                 image: imagePath
             };
 
-            if (editingBlogId) { blogs[blogs.findIndex(b => b.id === editingBlogId)] = blogData; showAlert('blogAlert', `✅ Blog güncellendi!`, 'success'); } 
-            else { blogs.push(blogData); showAlert('blogAlert', `✅ Blog eklendi!`, 'success'); }
+            if (editingBlogId) { 
+                blogs[blogs.findIndex(b => b.id === editingBlogId)] = blogData; 
+            } else { 
+                blogs.push(blogData); 
+            }
 
-            displayBlogs(); updateBlogStats(); updateBulkCounts();
-            try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
+            displayBlogs(); 
+            updateBlogStats(); 
+            updateBulkCounts();
+            
+            try { 
+                localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); 
+            } catch(e) {}
+
+            // --- SUNUCUYA OTOMATİK KAYIT (SAVE.PHP BAĞLANTISI) ---
+            fetch('save.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    file: 'blogs',
+                    data: blogs
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showAlert('blogAlert', '✅ Bloglar sunucuya başarıyla kaydedildi!', 'success');
+                } else {
+                    showAlert('blogAlert', '❌ Sunucu hatası: ' + result.error, 'error');
+                }
+            })
+            .catch(err => {
+                console.error('Bağlantı hatası:', err);
+                showAlert('blogAlert', '❌ Sunucuya bağlanılamadı!', 'error');
+            });
+
             resetBlogForm();
         }
 
