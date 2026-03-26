@@ -733,54 +733,55 @@
 
     <!-- NAVIGATION -->
     <nav id="navbar">
+        <div class="header-top-row">
+            <div class="top-bar-left">
+                <a href="tel:+902125551923"><i class="fas fa-phone"></i> <span>+90 (212) 555 1923</span></a>
+                <a href="mailto:info@walkaboutravel.com"><i class="fas fa-envelope"></i> <span>info@walkaboutravel.com</span></a>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Istanbul" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-map-marker-alt"></i> <span data-i18n="nav_get_directions">Yol Tarifi Al</span>
+                </a>
+            </div>
+        </div>
+        
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo">
+                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <span class="logo-title">WalkAbout Travel</span>
-                    <span class="logo-subtitle">Tourism & Travel</span>
+                    <span class="logo-subtitle">TOURISM & TRAVEL</span>
                 </div>
             </a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#popular-trips">Tours</a></li>
-                <li><a href="index.html#why-us">Why Us</a></li>
-                <li><a href="index.html#blog">Blog</a></li>
-                
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="tr" onclick="setLanguage('tr')">TR</button>
-                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-                    <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
-                    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
-                    <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">DE</button>
-                    <button class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">ZH</button>
-                    <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
-                </div>
-            </ul>
-
-            <div class="nav-right">
-                <div class="utility-links">
-                    <a href="tel:+902125551923">
-                        <i class="fas fa-phone"></i> +90 (212) 555 1923
-                    </a>
-                    <a href="mailto:info@walkaboutravel.com">
-                        <i class="fas fa-envelope"></i> info@walkaboutravel.com
-                    </a>
-                </div>
-                
-                <div class="social-nav">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                
-                <button class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav_home">HOME</a>
+                <a href="index.html#popular-trips" data-i18n="nav_tours">TOURS</a>
+                <a href="index.html#why-us" data-i18n="nav_why_us">WHY US</a>
+                <a href="index.html#blog" data-i18n="nav_blog">BLOG</a>
+                <a href="index.html#contact" data-i18n="nav_contact">CONTACT</a>
             </div>
+
+            <div class="lang-dropdown">
+                <button class="lang-dropdown-btn">
+                    <i class="fas fa-globe"></i> <span class="current-lang-text">TR</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown-content">
+                    <a href="#" data-lang="tr">Türkçe (TR)</a>
+                    <a href="#" data-lang="en">English (EN)</a>
+                    <a href="#" data-lang="es">Español (ES)</a>
+                    <a href="#" data-lang="ru">Русский (RU)</a>
+                    <a href="#" data-lang="de">Deutsch (DE)</a>
+                    <a href="#" data-lang="zh">中文 (ZH)</a>
+                    <a href="#" data-lang="ar">العربية (AR)</a>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
-
     <!-- BREADCRUMB -->
     <div class="breadcrumb">
         <div class="breadcrumb-container">
