@@ -410,6 +410,13 @@
     function getLocalizedData(item, field) {
         if(!item) return '';
         const lang = window.i18n ? window.i18n.currentLang : 'tr';
+        
+        // ESKİ SİSTEM: Veri bir obje formatındaysa (örn: {tr: "...", en: "..."})
+        if (typeof item[field] === 'object' && item[field] !== null) {
+            return item[field][lang] || item[field]['tr'] || '';
+        }
+        
+        // YENİ SİSTEM: Veri admin panelinden gelen düz metin ise (örn: title_en)
         if (lang === 'tr') return item[field] || '';
         return item[`${field}_${lang}`] || item[field] || ''; 
     }
@@ -456,8 +463,8 @@
         if (!grid) return;
         
         grid.innerHTML = tours.map(tour => {
-            const title = getLocalizedData(tour, 'title');
-            const description = getLocalizedData(tour, 'description');
+            const title = String(getLocalizedData(tour, 'title'));
+            const description = String(getLocalizedData(tour, 'description') || '');
             const shortDesc = description.substring(0, 100) + (description.length > 100 ? '...' : '');
             
             return `
@@ -483,8 +490,8 @@
         if (!grid) return;
 
         grid.innerHTML = tours.map(tour => {
-            const title = getLocalizedData(tour, 'title');
-            const description = getLocalizedData(tour, 'description');
+            const title = String(getLocalizedData(tour, 'title'));
+            const description = String(getLocalizedData(tour, 'description') || '');
             const shortDesc = description.substring(0, 120) + (description.length > 120 ? '...' : '');
 
             return `
@@ -520,8 +527,8 @@
             if (!grid) return;
 
             grid.innerHTML = blogs.map(blog => {
-                const title = getLocalizedData(blog, 'title');
-                const excerpt = getLocalizedData(blog, 'excerpt');
+                const title = String(getLocalizedData(blog, 'title'));
+                const excerpt = String(getLocalizedData(blog, 'excerpt') || '');
                 const shortExcerpt = excerpt.substring(0, 100) + (excerpt.length > 100 ? '...' : '');
 
                 return `
