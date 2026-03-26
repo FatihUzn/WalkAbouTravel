@@ -353,12 +353,14 @@
     <script src="app.js"></script>
     
     <script>
-    // ANA BAŞLATMA VE DİL MENÜSÜ İŞLEMLERİ
+    // ==================== 1. BAŞLATMA VE DİL AYARLARI ====================
     document.addEventListener('DOMContentLoaded', async function() {
         const savedLang = localStorage.getItem('language') || 'tr';
-        await window.i18n.init(savedLang);
+        if(window.i18n) {
+            await window.i18n.init(savedLang);
+        }
 
-        // Seçilen dili butona yazdırma fonksiyonu
+        // Seçilen dili butona yazdırma fonksiyonu (Açılır menü için)
         const updateDropdownText = (lang) => {
             const langNames = {'tr': 'TR', 'en': 'EN', 'es': 'ES', 'ru': 'RU', 'de': 'DE', 'zh': 'ZH', 'ar': 'AR'};
             document.querySelectorAll('.current-lang-text').forEach(el => {
@@ -369,7 +371,6 @@
 
         // Açılır menü tıklama olayları
         document.addEventListener('click', function(e) {
-            // Menüyü aç/kapat
             const dropdownBtn = e.target.closest('.lang-dropdown-btn');
             if (dropdownBtn) {
                 e.preventDefault();
@@ -377,115 +378,97 @@
                 return;
             }
 
-            // Dile tıklandığında dili değiştir
             const langOption = e.target.closest('.lang-dropdown-content a');
             if (langOption) {
                 e.preventDefault();
                 const selectedLang = langOption.getAttribute('data-lang');
-                window.i18n.changeLanguage(selectedLang);
-                updateDropdownText(selectedLang);
+                if(window.i18n) {
+                    window.i18n.changeLanguage(selectedLang);
+                    updateDropdownText(selectedLang);
+                }
                 langOption.closest('.lang-dropdown').classList.remove('active');
                 return;
             }
 
-            // Boşluğa tıklanınca menüyü kapat
             document.querySelectorAll('.lang-dropdown.active').forEach(dropdown => {
                 dropdown.classList.remove('active');
             });
         });
 
-        loadCategories('traveller');
-        loadPopularTrips();
+        loadCategories();
+        loadTours();
+        loadBlogs();
     });
-    </script>
-    
-    <script>
-    // ==================== CATEGORIES DATA ====================
-    // ==================== YENİ 4 ANA KATEGORİ VERİSİ ====================
+
+    // Dil değiştiğinde içerikleri anında güncelle
+    window.addEventListener('languageChanged', () => {
+        loadTours();
+        loadBlogs();
+    });
+
+    // Admin paneliyle uyumlu "Çoklu Dil Okuyucu"
+    function getLocalizedData(item, field) {
+        if(!item) return '';
+        const lang = window.i18n ? window.i18n.currentLang : 'tr';
+        if (lang === 'tr') return item[field] || '';
+        return item[`${field}_${lang}`] || item[field] || ''; 
+    }
+
+    // ==================== 2. KATEGORİLER (4'LÜ YAPI) ====================
     const mainCategories = [
-        { 
-            name: 'TÜRKİYE TURU', 
-            image: 'assets/kapadokya-balon-turu-3.webp', // Buraya uygun bir Türkiye görseli
-            link: '#tours', 
-            category: 'turkey' 
-        },
-        { 
-            name: 'ULUSLARARASI', 
-            image: 'assets/spain-1.webp', // Buraya Japonya/Kore gibi bir görsel gelebilir
-            link: '#tours', 
-            category: 'international' 
-        },
-        { 
-            name: 'GÜNÜBİRLİK', 
-            image: 'assets/pamukkale-traverten-dogal-1.webp', // Sapanca vb. kısa tur görseli
-            link: '#tours', 
-            category: 'daily' 
-        },
-        { 
-            name: 'GRUP TURLARI', 
-            image: 'assets/antalya-koy-gezisi-1.webp', // Kalabalık/Paket tur görseli
-            link: '#tours', 
-            category: 'group' 
-        }
+        { name: 'TÜRKİYE TURU', image: 'assets/kapadokya-balon-turu-3.webp', link: '#tours', category: 'turkey' },
+        { name: 'ULUSLARARASI', image: 'assets/spain-1.webp', link: '#tours', category: 'international' },
+        { name: 'GÜNÜBİRLİK', image: 'assets/pamukkale-traverten-dogal-1.webp', link: '#tours', category: 'daily' },
+        { name: 'GRUP TURLARI', image: 'assets/antalya-koy-gezisi-1.webp', link: '#tours', category: 'group' }
     ];
 
     function loadCategories() {
         const grid = document.getElementById('categoriesGrid');
         if (!grid) return;
         
-        // Yeni 4'lü dizimizi ekrana basıyoruz
         grid.innerHTML = mainCategories.map(cat => `
             <div class="category-image-card" data-category="${cat.category}" onclick="window.location.href='${cat.link}'">
                 <img src="${cat.image}" alt="${cat.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
                 <div class="category-overlay">
-                    <div class="category-name">${cat.name}</div>
+                    <div class="category-name" data-i18n="cat_${cat.category}">${cat.name}</div>
                 </div>
             </div>
         `).join('');
     }
 
-    async function loadPopularTrips() {
+    // ==================== 3. TURLARI YÜKLEME ====================
+    async function loadTours() {
         try {
             const response = await fetch('data/tours.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            
+            if (!response.ok) return;
             const tours = await response.json();
-            popularTripsData = tours.filter(t => t.featured).slice(0, 3);
             
-            if (popularTripsData.length === 0) {
-                popularTripsData = tours.slice(0, 3);
-            }
-            displayPopularTrips();
+            const popularTours = tours.filter(t => t.featured).slice(0, 3);
+            displayPopularTrips(popularTours.length > 0 ? popularTours : tours.slice(0, 3));
+            displayAllTours(tours);
         } catch (error) {
-            console.error('❌ Popular trips yüklenemedi:', error);
+            console.error('Turlar yüklenemedi:', error);
         }
     }
 
-    function displayPopularTrips() {
+    function displayPopularTrips(tours) {
         const grid = document.getElementById('popularTripsGrid');
         if (!grid) return;
         
-        if (popularTripsData.length === 0) {
-            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Henüz tur bulunmuyor.</p>';
-            return;
-        }
-        
-        grid.innerHTML = popularTripsData.map(tour => {
-            const title = tour.title?.tr || tour.title || 'Başlık Yok';
-            const description = tour.description?.tr || tour.description || '';
+        grid.innerHTML = tours.map(tour => {
+            const title = getLocalizedData(tour, 'title');
+            const description = getLocalizedData(tour, 'description');
             const shortDesc = description.substring(0, 100) + (description.length > 100 ? '...' : '');
-            const duration = tour.duration || '7 Gün';
-            const price = tour.price || 'İletişime Geçin';
             
             return `
                 <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
                     <img src="${tour.image}" alt="${title}" loading="lazy">
                     <div class="trip-card-overlay"></div>
-                    <div class="trip-nights-badge">${duration}</div>
+                    <div class="trip-nights-badge">${tour.duration || '7 Gün'}</div>
                     <div class="trip-card-content">
                         <h3 class="trip-card-title">${title}</h3>
                         <p class="trip-card-description">${shortDesc}</p>
-                        <div class="trip-card-price">From ${price}</div>
+                        <div class="trip-card-price">From ${tour.price}</div>
                         <a href="tour-detail.html?id=${tour.id}" class="trip-card-button" onclick="event.stopPropagation()">
                             <span>EXPLORE TRIP</span><i class="fas fa-arrow-right"></i>
                         </a>
@@ -495,14 +478,73 @@
         }).join('');
     }
 
-    document.querySelectorAll('.travel-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.travel-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            loadCategories(this.dataset.tab);
-        });
-    });
+    function displayAllTours(tours) {
+        const grid = document.querySelector('.tours-grid');
+        if (!grid) return;
+
+        grid.innerHTML = tours.map(tour => {
+            const title = getLocalizedData(tour, 'title');
+            const description = getLocalizedData(tour, 'description');
+            const shortDesc = description.substring(0, 120) + (description.length > 120 ? '...' : '');
+
+            return `
+            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
+                <div class="tour-image">
+                    <img src="${tour.image}" alt="${title}" loading="lazy">
+                    <div class="tour-badge">${tour.duration || '7 Gün'}</div>
+                </div>
+                <div class="tour-content">
+                    <h3>${title}</h3>
+                    <p>${shortDesc}</p>
+                    <div class="tour-features">
+                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>
+                        <span class="feature-tag"><i class="fas fa-tag"></i> ${tour.price}</span>
+                    </div>
+                    <a href="tour-detail.html?id=${tour.id}" class="tour-link">
+                        <span>DETAYLARI İNCELE</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    // ==================== 4. BLOGLARI YÜKLEME ====================
+    async function loadBlogs() {
+        try {
+            const response = await fetch('data/blog-posts.json');
+            if (!response.ok) return;
+            const blogs = await response.json();
+            
+            const grid = document.getElementById('blogContainer');
+            if (!grid) return;
+
+            grid.innerHTML = blogs.map(blog => {
+                const title = getLocalizedData(blog, 'title');
+                const excerpt = getLocalizedData(blog, 'excerpt');
+                const shortExcerpt = excerpt.substring(0, 100) + (excerpt.length > 100 ? '...' : '');
+
+                return `
+                <div class="blog-card" onclick="window.location.href='blog-detail.html?id=${blog.id}'">
+                    <div class="blog-image">
+                        <img src="${blog.image}" alt="${title}" loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> ${blog.date}</span>
+                            <span><i class="fas fa-folder"></i> ${blog.category}</span>
+                        </div>
+                        <h3>${title}</h3>
+                        <p>${shortExcerpt}</p>
+                        <span class="tour-link">DEVAMINI OKU <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        } catch (error) {
+            console.error("Bloglar yüklenemedi:", error);
+        }
+    }
     </script>
 </body>
 </html>
-
