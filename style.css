@@ -2087,10 +2087,14 @@ body[dir="rtl"] .contact-form textarea {
 .lang-dropdown-content a:hover::before {
     opacity: 1;
 }
-/* YUKARI ÇIK BUTONU TASARIMI */
+/* =========================================
+   SABİT BUTONLAR VE MOBİL OPTİMİZASYON
+   ========================================= */
+
+/* Yukarı Çık Butonu (Masaüstü - Eğer senin kendi butonun varsa bu kısmı silebilirsin) */
 .scroll-to-top {
     position: fixed;
-    bottom: 110px; /* WhatsApp'ın hemen üstünde durması için mesafe */
+    bottom: 110px; 
     right: 30px;
     background: #38bdf8;
     color: white;
@@ -2110,40 +2114,13 @@ body[dir="rtl"] .contact-form textarea {
     border: none;
 }
 
-.scroll-to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
+.scroll-to-top.show { opacity: 1; visibility: visible; }
+.scroll-to-top:hover { background: #0284c7; transform: translateY(-5px); }
 
-.scroll-to-top:hover {
-    background: #0284c7;
-    transform: translateY(-5px);
-}
-
-/* 📱 MOBİL VE YARIM EKRAN OPTİMİZASYONU (Sihir Burada) */
+/* 📱 SİHİRLİ MOBİL UYUM (768px ve altı ekranlar) */
 @media (max-width: 768px) {
-    /* WhatsApp Mobilde Küçülür ve Köşeye Yanaşır */
-    .whatsapp-float {
-        width: 50px !important;
-        height: 50px !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        font-size: 30px !important;
-    }
-    /* Yukarı Çık Butonu Mobilde Küçülür ve WhatsApp'a Yaklaşır */
-    .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        bottom: 80px; 
-        right: 25px;
-        font-size: 16px;
-    }
-}
-/* =========================================
-   📱 MOBİL OPTİMİZASYONU (SİHİRLİ KISIM)
-   ========================================= */
-@media (max-width: 768px) {
-    /* WhatsApp Butonu Mobilde Küçülür ve Köşeye Yapışır */
+    
+    /* 1. WhatsApp Butonu Mobilde Küçülür ve Köşeye Yanaşır */
     .whatsapp-float {
         width: 48px !important;
         height: 48px !important;
@@ -2152,14 +2129,14 @@ body[dir="rtl"] .contact-form textarea {
         font-size: 28px !important;
     }
     
-    /* MEVCUT SCROLL BUTONUN KÜÇÜLÜR VE WHATSAPP'A YAKLAŞIR */
-    /* DİKKAT: '.senin-scroll-classin' yazan yeri kendi butonunun class veya id'si ile değiştir */
-    .senin-scroll-classin {
+    /* 2. Yukarı Çık Butonu Mobilde Küçülür ve WhatsApp'a Yaklaşır */
+    /* DİKKAT: Eğer kendi butonunu kullanıyorsan '.scroll-to-top' yazan yeri kendi butonunun class adıyla değiştir! */
+    .scroll-to-top {
         width: 42px !important;
         height: 42px !important;
-        bottom: 75px !important; /* WhatsApp'ın tam üstünde durmasını sağlar */
+        bottom: 75px !important; 
         right: 18px !important;
         font-size: 18px !important;
-        padding: 0 !important; /* Eğer butonunda ekstra boşluk varsa sıfırlar */
+        padding: 0 !important;
     }
 }
