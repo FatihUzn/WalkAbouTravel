@@ -1460,943 +1460,941 @@
 
     <script>
         // GLOBAL DEĞİŞKENLER
-        let tours = [];
-        let blogs = [];
-        let editingTourId = null;
-        let editingBlogId = null;
-        let currentGallery = [];
+    let tours = [];
+    let blogs = [];
+    let editingTourId = null;
+    let editingBlogId = null;
+    let currentGallery = [];
 
-        // ÇEVİRİ FONKSİYONU (Claude API kullanıyor - CORS sorunu yok)
-        const langNames = {
-            en: 'English', es: 'Spanish', ru: 'Russian',
-            de: 'German', zh: 'Chinese', ar: 'Arabic'
-        };
-
-        async function translateText(text, targetLang) {
-            if (!text) return '';
-            try {
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        model: 'claude-sonnet-4-20250514',
-                        max_tokens: 1000,
-                        messages: [{
-                            role: 'user',
-                            content: 'Translate the following Turkish text to ' + langNames[targetLang] + '. Return ONLY the translated text, nothing else, no explanations.\n\n' + text
-                        }]
-                    })
-                });
-                const data = await response.json();
-                if (data && data.content && data.content[0]) {
-                    return data.content[0].text.trim();
-                }
-                return text;
-            } catch (error) {
-                console.error('Çeviri hatası:', error);
-                return text;
+    // ESKİ TURLARI YENİ SİSTEME UYARLAYAN DÜZELTİCİ FONKSİYON
+    function normalizeTourData(serverTours) {
+        return serverTours.map(tour => {
+            if (typeof tour.title === 'object' && tour.title !== null) {
+                tour.title_en = tour.title.en || '';
+                tour.title_es = tour.title.es || '';
+                tour.title_ru = tour.title.ru || '';
+                tour.title_de = tour.title.de || '';
+                tour.title_zh = tour.title.zh || '';
+                tour.title_ar = tour.title.ar || '';
+                tour.title = tour.title.tr || 'İsimsiz Tur';
             }
-        }
-
-        // TUR ÇEVİRİSİ
-        async function translateAllTourFields() {
-            const titleTr = document.getElementById('tourTitle').value;
-            const descTr = document.getElementById('tourDescription').value;
-            const contentTr = document.getElementById('tourContent').value;
-
-            if (!titleTr && !descTr && !contentTr) {
-                showAlert('tourAlert', '⚠️ Türkçe alanları doldurun!', 'error');
-                return;
+            if (typeof tour.description === 'object' && tour.description !== null) {
+                tour.description_en = tour.description.en || '';
+                tour.description_es = tour.description.es || '';
+                tour.description_ru = tour.description.ru || '';
+                tour.description_de = tour.description.de || '';
+                tour.description_zh = tour.description.zh || '';
+                tour.description_ar = tour.description.ar || '';
+                tour.description = tour.description.tr || '';
             }
+            return tour;
+        });
+    }
 
-            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...', 'info');
+    // ÇEVİRİ FONKSİYONU
+    const langNames = {
+        en: 'English', es: 'Spanish', ru: 'Russian',
+        de: 'German', zh: 'Chinese', ar: 'Arabic'
+    };
 
-            try {
-                const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
-
-                for (const lang of languages) {
-                    if (titleTr) {
-                        const translated = await translateText(titleTr, lang);
-                        document.getElementById(`tourTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (descTr) {
-                        const translated = await translateText(descTr, lang);
-                        document.getElementById(`tourDescription${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (contentTr) {
-                        const translated = await translateText(contentTr, lang);
-                        document.getElementById(`tourContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    await new Promise(resolve => setTimeout(resolve, 300));
-                }
-
-                showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı!', 'success');
-            } catch (error) {
-                showAlert('tourAlert', '❌ Çeviri hatası!', 'error');
-            }
-        }
-
-        // BLOG ÇEVİRİSİ
-        async function translateAllBlogFields() {
-            const titleTr = document.getElementById('blogTitle').value;
-            const excerptTr = document.getElementById('blogExcerpt').value;
-            const contentTr = document.getElementById('blogContent').value;
-
-            if (!titleTr && !excerptTr && !contentTr) {
-                showAlert('blogAlert', '⚠️ Türkçe alanları doldurun!', 'error');
-                return;
-            }
-
-            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...', 'info');
-
-            try {
-                const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
-
-                for (const lang of languages) {
-                    if (titleTr) {
-                        const translated = await translateText(titleTr, lang);
-                        document.getElementById(`blogTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (excerptTr) {
-                        const translated = await translateText(excerptTr, lang);
-                        document.getElementById(`blogExcerpt${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    if (contentTr) {
-                        const translated = await translateText(contentTr, lang);
-                        document.getElementById(`blogContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
-                    }
-
-                    await new Promise(resolve => setTimeout(resolve, 300));
-                }
-
-                showAlert('blogAlert', '✅ Çeviri tamamlandı!', 'success');
-            } catch (error) {
-                showAlert('blogAlert', '❌ Çeviri hatası!', 'error');
-            }
-        }
-
-        // GALERİ FONKSİYONLARI
-        function addGalleryImage() {
-            const input = document.getElementById('newGalleryImage');
-            const filename = input.value.trim();
-            
-            if (!filename) {
-                showAlert('tourAlert', '⚠️ Dosya ismi girin!', 'error');
-                return;
-            }
-            
-            currentGallery.push(filename);
-            input.value = '';
-            updateGalleryPreview();
-            showAlert('tourAlert', '✅ Fotoğraf eklendi!', 'success');
-        }
-
-        function removeGalleryImage(index) {
-            if (confirm('Kaldırmak istediğinizden emin misiniz?')) {
-                currentGallery.splice(index, 1);
-                updateGalleryPreview();
-            }
-        }
-
-        function updateGalleryPreview() {
-            const container = document.getElementById('galleryPreview');
-            const emptyState = document.getElementById('galleryEmpty');
-            
-            if (currentGallery.length === 0) {
-                container.style.display = 'none';
-                emptyState.style.display = 'block';
-                return;
-            }
-            
-            container.style.display = 'grid';
-            emptyState.style.display = 'none';
-            
-            container.innerHTML = currentGallery.map((filename, index) => {
-                const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
-                return `
-                    <div class="gallery-item">
-                        <img src="${imagePath}" alt="Gallery ${index + 1}" onerror="this.src='https://via.placeholder.com/150?text=Resim+Yok'">
-                        <button class="gallery-item-delete" onclick="removeGalleryImage(${index})" type="button">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <span class="gallery-item-number">#${index + 1}</span>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // KATEGORİ FONKSİYONLARI
-        function getSelectedCategories() {
-            const categories = {
-                traveller: [],
-                destination: [],
-                month: []
-            };
-            
-            ['family', 'couples', 'groups', 'honeymoon', 'solo'].forEach(cat => {
-                if (document.getElementById(`cat_${cat}`).checked) {
-                    categories.traveller.push(cat);
-                }
+    async function translateText(text, targetLang) {
+        if (!text) return '';
+        try {
+            const response = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    model: 'claude-sonnet-4-20250514',
+                    max_tokens: 1000,
+                    messages: [{
+                        role: 'user',
+                        content: 'Translate the following Turkish text to ' + langNames[targetLang] + '. Return ONLY the translated text, nothing else, no explanations.\n\n' + text
+                    }]
+                })
             });
-            
-            ['turkiye', 'europe', 'america', 'russia', 'brazil'].forEach(cat => {
-                if (document.getElementById(`cat_${cat}`).checked) {
-                    categories.destination.push(cat);
+            const data = await response.json();
+            if (data && data.content && data.content[0]) {
+                return data.content[0].text.trim();
+            }
+            return text;
+        } catch (error) {
+            console.error('Çeviri hatası:', error);
+            return text;
+        }
+    }
+
+    // TUR ÇEVİRİSİ
+    async function translateAllTourFields() {
+        const titleTr = document.getElementById('tourTitle').value;
+        const descTr = document.getElementById('tourDescription').value;
+        const contentTr = document.getElementById('tourContent').value;
+
+        if (!titleTr && !descTr && !contentTr) {
+            showAlert('tourAlert', '⚠️ Türkçe alanları doldurun!', 'error');
+            return;
+        }
+
+        showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...', 'info');
+
+        try {
+            const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
+
+            for (const lang of languages) {
+                if (titleTr) {
+                    const translated = await translateText(titleTr, lang);
+                    document.getElementById(`tourTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                 }
-            });
-            
-            ['spring', 'summer', 'autumn', 'winter'].forEach(cat => {
-                if (document.getElementById(`cat_${cat}`).checked) {
-                    categories.month.push(cat);
+
+                if (descTr) {
+                    const translated = await translateText(descTr, lang);
+                    document.getElementById(`tourDescription${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                 }
-            });
-            // year-round için ayrı kontrol (ID'de tire yerine alt çizgi)
-            const yearRoundEl = document.getElementById('cat_year_round');
-            if (yearRoundEl && yearRoundEl.checked) {
-                categories.month.push('year-round');
-            }
-            
-            return categories;
-        }
 
-        function setSelectedCategories(categories) {
-            if (!categories) return;
-            
-            if (categories.traveller) {
-                categories.traveller.forEach(cat => {
-                    const checkbox = document.getElementById(`cat_${cat}`);
-                    if (checkbox) checkbox.checked = true;
-                });
-            }
-            
-            if (categories.destination) {
-                categories.destination.forEach(cat => {
-                    const checkbox = document.getElementById(`cat_${cat}`);
-                    if (checkbox) checkbox.checked = true;
-                });
-            }
-            
-            if (categories.month) {
-                categories.month.forEach(cat => {
-                    // year-round için ID'de alt çizgi kullanılıyor
-                    const id = cat === 'year-round' ? 'cat_year_round' : `cat_${cat}`;
-                    const checkbox = document.getElementById(id);
-                    if (checkbox) checkbox.checked = true;
-                });
-            }
-        }
-
-        // GITHUB YENİLE
-        async function refreshToursFromGitHub() {
-            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
-            try {
-                const response = await fetch('data/tours.json?t=' + Date.now());
-                if (response.ok) {
-                    tours = await response.json();
-                    displayTours();
-                    updateTourStats();
-                    updateFeaturedTours();
-                    updateBulkCounts();
-                    showAlert('tourAlert', `✅ ${tours.length} tur yüklendi!`, 'success');
-                } else {
-                    showAlert('tourAlert', '❌ Yüklenemedi!', 'error');
+                if (contentTr) {
+                    const translated = await translateText(contentTr, lang);
+                    document.getElementById(`tourContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                 }
-            } catch (error) {
-                showAlert('tourAlert', '❌ Hata!', 'error');
+
+                await new Promise(resolve => setTimeout(resolve, 300));
             }
+
+            showAlert('tourAlert', '✅ Tüm dillere çeviri tamamlandı!', 'success');
+        } catch (error) {
+            showAlert('tourAlert', '❌ Çeviri hatası!', 'error');
+        }
+    }
+
+    // BLOG ÇEVİRİSİ
+    async function translateAllBlogFields() {
+        const titleTr = document.getElementById('blogTitle').value;
+        const excerptTr = document.getElementById('blogExcerpt').value;
+        const contentTr = document.getElementById('blogContent').value;
+
+        if (!titleTr && !excerptTr && !contentTr) {
+            showAlert('blogAlert', '⚠️ Türkçe alanları doldurun!', 'error');
+            return;
         }
 
-        async function refreshBlogsFromGitHub() {
-            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
-            try {
-                const response = await fetch('data/blog-posts.json?t=' + Date.now());
-                if (response.ok) {
-                    blogs = await response.json();
-                    displayBlogs();
-                    updateBlogStats();
-                    updateBulkCounts();
-                    showAlert('blogAlert', `✅ ${blogs.length} blog yüklendi!`, 'success');
-                } else {
-                    showAlert('blogAlert', '❌ blog-posts.json yüklenemedi!', 'error');
+        showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Çeviriliyor...', 'info');
+
+        try {
+            const languages = ['en', 'es', 'ru', 'de', 'zh', 'ar'];
+
+            for (const lang of languages) {
+                if (titleTr) {
+                    const translated = await translateText(titleTr, lang);
+                    document.getElementById(`blogTitle${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
                 }
-            } catch (error) {
-                showAlert('blogAlert', '❌ Hata!', 'error');
+
+                if (excerptTr) {
+                    const translated = await translateText(excerptTr, lang);
+                    document.getElementById(`blogExcerpt${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                }
+
+                if (contentTr) {
+                    const translated = await translateText(contentTr, lang);
+                    document.getElementById(`blogContent${lang.charAt(0).toUpperCase() + lang.slice(1)}`).value = translated;
+                }
+
+                await new Promise(resolve => setTimeout(resolve, 300));
             }
+
+            showAlert('blogAlert', '✅ Çeviri tamamlandı!', 'success');
+        } catch (error) {
+            showAlert('blogAlert', '❌ Çeviri hatası!', 'error');
         }
+    }
 
-        // TOPLU SAYAÇLARI GÜNCELLE
-        function updateBulkCounts() {
-            document.getElementById('unsavedCount').textContent = tours.length;
-            document.getElementById('downloadCount').textContent = tours.length;
-            document.getElementById('unsavedBlogCount').textContent = blogs.length;
-            document.getElementById('downloadBlogCount').textContent = blogs.length;
-        }
-
-        // SAYFA YÜKLENİNCE
-        // SAYFA YÜKLENİNCE
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Sayfa yüklendi!');
-    
-    loadTours();
-    loadBlogs();
-    setupImagePreviews();
-    setupForms();
-    updateGalleryPreview();
-    updateBulkCounts();
-    
-    console.log('Başlangıç tamamlandı, tur sayısı:', tours.length);
-});
-
-        // Otomatik taslak kaydetme
+    // GALERİ FONKSİYONLARI
+    function addGalleryImage() {
+        const input = document.getElementById('newGalleryImage');
+        const filename = input.value.trim();
         
-
-        // SEKME DEĞİŞTİRME - DÜZELTİLMİŞ VERSİYON
-        function switchTab(tabName) {
-            // Tüm tab butonlarının active class'ını kaldır
-            document.querySelectorAll('.tab').forEach(function(t) {
-                t.classList.remove('active');
-            });
-            
-            // Tüm içeriklerin active class'ını kaldır
-            document.querySelectorAll('.tab-content').forEach(function(c) {
-                c.classList.remove('active');
-            });
-            
-            // İlgili tab butonunu aktif yap (data-tab attribute ile eşleştir)
-            document.querySelectorAll('.tab').forEach(function(t) {
-                if (t.getAttribute('data-tab') === tabName) {
-                    t.classList.add('active');
-                }
-            });
-            
-            // İçeriği göster
-            const tabContent = document.getElementById(tabName + '-content');
-            if (tabContent) {
-                tabContent.classList.add('active');
-            }
+        if (!filename) {
+            showAlert('tourAlert', '⚠️ Dosya ismi girin!', 'error');
+            return;
         }
+        
+        currentGallery.push(filename);
+        input.value = '';
+        updateGalleryPreview();
+        showAlert('tourAlert', '✅ Fotoğraf eklendi!', 'success');
+    }
 
-        // TURLARI YÜKLE
-        async function loadTours() {
-            // Önce localStorage'dan yükle (hem lokal hem sunucu modunda çalışır)
-            try {
-                const saved = localStorage.getItem('walkabout_tours');
-                if (saved) {
-                    tours = JSON.parse(saved);
-                    console.log('localStorage\'dan yüklendi:', tours.length, 'tur');
-                }
-            } catch(e) {}
-
-            // Sunucuda çalışıyorsa (http/https) JSON dosyasından da yükle
-            if (location.protocol !== 'file:') {
-                try {
-                    const response = await fetch('data/tours.json?t=' + Date.now());
-                    if (response.ok) {
-                        const serverTours = await response.json();
-                        // Sunucudaki veriler daha güncel kabul et
-                        if (serverTours.length > 0) {
-                            tours = serverTours;
-                            localStorage.setItem('walkabout_tours', JSON.stringify(tours));
-                        }
-                    }
-                } catch (error) {
-                    console.log('tours.json yüklenemedi, localStorage kullanılıyor.');
-                }
-            }
-
-            displayTours();
-            updateTourStats();
-            updateFeaturedTours();
-            updateBulkCounts();
+    function removeGalleryImage(index) {
+        if (confirm('Kaldırmak istediğinizden emin misiniz?')) {
+            currentGallery.splice(index, 1);
+            updateGalleryPreview();
         }
+    }
 
-        // RESİM ÖNİZLEME SİSTEMİ
-        function setupImagePreviews() {
-            // TUR RESMİ ÖNİZLEME
-            document.getElementById('tourImage').addEventListener('input', (e) => {
-                const preview = document.getElementById('tourImagePreview');
-                const filename = e.target.value.trim();
-                
-                if (filename) {
-                    const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
-                    preview.src = imagePath;
-                    preview.style.display = 'block';
-                    preview.onerror = function() {
-                        this.src = 'https://via.placeholder.com/300x200?text=Resim+Henuz+Yuklenmedi';
-                    };
-                } else {
-                    preview.style.display = 'none';
-                }
-            });
-
-            // BLOG RESMİ ÖNİZLEME
-            document.getElementById('blogImage').addEventListener('input', (e) => {
-                const preview = document.getElementById('blogImagePreview');
-                const filename = e.target.value.trim();
-                
-                if (filename) {
-                    const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
-                    preview.src = imagePath;
-                    preview.style.display = 'block';
-                    preview.onerror = function() {
-                        this.src = 'https://via.placeholder.com/300x200?text=Resim+Henuz+Yuklenmedi';
-                    };
-                } else {
-                    preview.style.display = 'none';
-                }
-            });
+    function updateGalleryPreview() {
+        const container = document.getElementById('galleryPreview');
+        const emptyState = document.getElementById('galleryEmpty');
+        
+        if (currentGallery.length === 0) {
+            container.style.display = 'none';
+            emptyState.style.display = 'block';
+            return;
         }
-
-        // FEATURED TOURS
-        function updateFeaturedTours() {
-            const featuredContainer = document.getElementById('featuredToursList');
-            if (!featuredContainer) return;
-            
-            const featuredTours = tours.filter(t => t.featured);
-            
-            if (featuredTours.length === 0) {
-                featuredContainer.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
-                        <i class="fas fa-star" style="font-size: 48px; opacity: 0.3;"></i>
-                        <p>Henüz öne çıkan tur yok.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            featuredContainer.innerHTML = featuredTours.map(tour => `
-                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-                        <h4 style="margin: 0; color: #0c4a6e; font-size: 18px;">${tour.title}</h4>
-                        <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
-                            ⭐ FEATURED
-                        </span>
-                    </div>
-                    <p style="color: #64748b; font-size: 14px;">${tour.location} • ${tour.price}</p>
-                    <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
-                        <i class="fas fa-star-half-alt"></i> Kaldır
+        
+        container.style.display = 'grid';
+        emptyState.style.display = 'none';
+        
+        container.innerHTML = currentGallery.map((filename, index) => {
+            const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
+            return `
+                <div class="gallery-item">
+                    <img src="${imagePath}" alt="Gallery ${index + 1}" onerror="this.src='https://via.placeholder.com/150?text=Resim+Yok'">
+                    <button class="gallery-item-delete" onclick="removeGalleryImage(${index})" type="button">
+                        <i class="fas fa-times"></i>
                     </button>
-                </div>
-            `).join('');
-        }
-
-        function toggleFeatured(tourId) {
-            const tour = tours.find(t => t.id === tourId);
-            if (!tour) return;
-            
-            const featuredCount = tours.filter(t => t.featured).length;
-            
-            if (!tour.featured && featuredCount >= 3) {
-                showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir!', 'error');
-                return;
-            }
-            
-            tour.featured = !tour.featured;
-            displayTours();
-            updateFeaturedTours();
-            
-            const message = tour.featured 
-                ? `✅ "${tour.title}" öne çıkarıldı!`
-                : `✓ "${tour.title}" kaldırıldı.`;
-            
-            showAlert('tourAlert', message, 'success');
-        }
-
-        // TURLARI GÖSTER
-        function displayTours() {
-            const container = document.getElementById('toursList');
-            
-            console.log('displayTours çalışıyor, tur sayısı:', tours.length);
-            
-            if (!container) {
-                console.error('toursList container bulunamadı!');
-                return;
-            }
-            
-            if (tours.length === 0) {
-                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz tur yok.</div>';
-                return;
-            }
-
-            container.innerHTML = tours.map(tour => {
-                const cats = tour.categories || { traveller: [], destination: [], month: [] };
-                const galleryCount = tour.gallery ? tour.gallery.length : 0;
-                
-                return `
-                <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
-                    ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
-                    <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
-                    <div class="item-info">
-                        <h3>${tour.title}</h3>
-                        <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
-                        <p>
-                            <i class="fas fa-images"></i> ${galleryCount} fotoğraf
-                            ${cats.traveller.length > 0 ? `<br><i class="fas fa-users"></i> ${cats.traveller.join(', ')}` : ''}
-                        </p>
-                    </div>
-                    <div class="item-actions">
-                        <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')">
-                            <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
-                        </button>
-                        <button class="btn btn-primary" onclick="editTour('${tour.id}')">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger" onclick="deleteTour('${tour.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                `;
-            }).join('');
-            
-            console.log('Turlar gösterildi!');
-        }
-
-        function updateTourStats() {
-            document.getElementById('tourCount').textContent = tours.length;
-            const allCategories = tours.reduce((acc, t) => {
-                if (t.categories) {
-                    acc.push(...t.categories.traveller, ...t.categories.destination, ...t.categories.month);
-                }
-                return acc;
-            }, []);
-            const uniqueCategories = [...new Set(allCategories)];
-            document.getElementById('categoryCount').textContent = uniqueCategories.length;
-        }
-
-        function setupForms() {
-            document.getElementById('tourForm').addEventListener('submit', saveTour);
-            document.getElementById('blogForm').addEventListener('submit', saveBlog);
-        }
-
-        // TURU KAYDET
-        async function saveTour(e) {
-            e.preventDefault();
-
-            const categories = getSelectedCategories();
-            
-            // Kategori seçimi opsiyonel - zorunlu değil
-
-            const imageFilename = document.getElementById('tourImage').value.trim();
-            const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
-
-            const tourData = {
-                id: editingTourId || 'TUR-' + Date.now(),
-                title: document.getElementById('tourTitle').value,
-                title_en: document.getElementById('tourTitleEn').value || document.getElementById('tourTitle').value,
-                title_es: document.getElementById('tourTitleEs').value || document.getElementById('tourTitle').value,
-                title_ru: document.getElementById('tourTitleRu').value || document.getElementById('tourTitle').value,
-                title_de: document.getElementById('tourTitleDe').value || document.getElementById('tourTitle').value,
-                title_zh: document.getElementById('tourTitleZh').value || document.getElementById('tourTitle').value,
-                title_ar: document.getElementById('tourTitleAr').value || document.getElementById('tourTitle').value,
-                price: document.getElementById('tourPrice').value,
-                duration: document.getElementById('tourDuration').value,
-                location: document.getElementById('tourLocation').value,
-                category: document.getElementById('tourCategory').value || 'Türkiye',
-                categories: categories,
-                description: document.getElementById('tourDescription').value,
-                description_en: document.getElementById('tourDescriptionEn').value || document.getElementById('tourDescription').value,
-                description_es: document.getElementById('tourDescriptionEs').value || document.getElementById('tourDescription').value,
-                description_ru: document.getElementById('tourDescriptionRu').value || document.getElementById('tourDescription').value,
-                description_de: document.getElementById('tourDescriptionDe').value || document.getElementById('tourDescription').value,
-                description_zh: document.getElementById('tourDescriptionZh').value || document.getElementById('tourDescription').value,
-                description_ar: document.getElementById('tourDescriptionAr').value || document.getElementById('tourDescription').value,
-                content: document.getElementById('tourContent').value || document.getElementById('tourDescription').value,
-                content_en: document.getElementById('tourContentEn').value || document.getElementById('tourDescriptionEn').value,
-                content_es: document.getElementById('tourContentEs').value || document.getElementById('tourDescriptionEs').value,
-                content_ru: document.getElementById('tourContentRu').value || document.getElementById('tourDescriptionRu').value,
-                content_de: document.getElementById('tourContentDe').value || document.getElementById('tourDescriptionDe').value,
-                content_zh: document.getElementById('tourContentZh').value || document.getElementById('tourDescriptionZh').value,
-                content_ar: document.getElementById('tourContentAr').value || document.getElementById('tourDescriptionAr').value,
-                image: imagePath,
-                gallery: currentGallery.map(filename => 
-                    filename.startsWith('http') ? filename : `assets/${filename}`
-                ),
-                featured: editingTourId ? tours.find(t => t.id === editingTourId)?.featured || false : false,
-                source: 'admin'
-            };
-
-            if (editingTourId) {
-                const index = tours.findIndex(t => t.id === editingTourId);
-                tours[index] = tourData;
-                showAlert('tourAlert', `✅ Tur güncellendi! (Toplam: ${tours.length})`, 'success');
-            } else {
-                tours.push(tourData);
-                showAlert('tourAlert', `✅ Tur eklendi! (Toplam: ${tours.length}) - "TÜMÜNÜ KAYDET" butonuna basın`, 'success');
-            }
-            
-            displayTours();
-            updateTourStats();
-            updateFeaturedTours();
-            updateBulkCounts();
-            // Her zaman localStorage'a kaydet (lokal + sunucu mod)
-            try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
-            resetTourForm();
-        }
-
-        async function saveToursToFile() {
-            if (tours.length === 0) {
-                showAlert('tourAlert', '⚠️ Kaydedilecek tur yok!', 'error');
-                return;
-            }
-
-            // Lokal modda (file://) → JSON olarak indir
-            if (location.protocol === 'file:') {
-                const json = JSON.stringify(tours, null, 2);
-                const blob = new Blob([json], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'tours.json';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                showAlert('tourAlert', `✅ ${tours.length} tur indirildi! Sunucuda data/ klasörüne yükle.`, 'success');
-                return;
-            }
-
-            // Sunucu modunda (http/https) → save.php'ye kaydet
-            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...', 'info');
-            try {
-                const response = await fetch('save.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ file: 'tours', data: tours })
-                });
-                const result = await response.json();
-                if (result.success) {
-                    localStorage.setItem('walkabout_tours', JSON.stringify(tours));
-                    showAlert('tourAlert', `✅ ${tours.length} tur sunucuya kaydedildi!`, 'success');
-                } else {
-                    showAlert('tourAlert', '❌ Kaydetme hatası: ' + (result.error || 'Bilinmeyen hata'), 'error');
-                }
-            } catch (error) {
-                showAlert('tourAlert', '❌ Sunucuya bağlanılamadı: ' + error.message, 'error');
-            }
-        }
-
-        function editTour(id) {
-            const tour = tours.find(t => t.id === id);
-            if (!tour) return;
-
-            editingTourId = id;
-            document.getElementById('tourFormTitle').textContent = 'Turu Düzenle';
-            
-            document.getElementById('tourTitle').value = tour.title;
-            document.getElementById('tourTitleEn').value = tour.title_en || '';
-            document.getElementById('tourTitleEs').value = tour.title_es || '';
-            document.getElementById('tourTitleRu').value = tour.title_ru || '';
-            document.getElementById('tourTitleDe').value = tour.title_de || '';
-            document.getElementById('tourTitleZh').value = tour.title_zh || '';
-            document.getElementById('tourTitleAr').value = tour.title_ar || '';
-            document.getElementById('tourPrice').value = tour.price;
-            document.getElementById('tourDuration').value = tour.duration || '';
-            document.getElementById('tourLocation').value = tour.location;
-            
-            if (document.getElementById('tourCategory')) {
-                document.getElementById('tourCategory').value = tour.category || 'Türkiye';
-            }
-            
-            if (tour.categories) {
-                setSelectedCategories(tour.categories);
-            }
-            
-            document.getElementById('tourDescription').value = tour.description;
-            document.getElementById('tourDescriptionEn').value = tour.description_en || '';
-            document.getElementById('tourDescriptionEs').value = tour.description_es || '';
-            document.getElementById('tourDescriptionRu').value = tour.description_ru || '';
-            document.getElementById('tourDescriptionDe').value = tour.description_de || '';
-            document.getElementById('tourDescriptionZh').value = tour.description_zh || '';
-            document.getElementById('tourDescriptionAr').value = tour.description_ar || '';
-            document.getElementById('tourContent').value = tour.content || '';
-            document.getElementById('tourContentEn').value = tour.content_en || '';
-            document.getElementById('tourContentEs').value = tour.content_es || '';
-            document.getElementById('tourContentRu').value = tour.content_ru || '';
-            document.getElementById('tourContentDe').value = tour.content_de || '';
-            document.getElementById('tourContentZh').value = tour.content_zh || '';
-            document.getElementById('tourContentAr').value = tour.content_ar || '';
-            
-            const imageFilename = tour.image.replace('assets/', '');
-            document.getElementById('tourImage').value = imageFilename;
-            
-            currentGallery = (tour.gallery || []).map(path => path.replace('assets/', ''));
-            updateGalleryPreview();
-            
-            const preview = document.getElementById('tourImagePreview');
-            preview.src = tour.image;
-            preview.style.display = 'block';
-
-            // Turu düzenleme sekmesine geç ve forma scroll et
-            switchTab('tours');
-            setTimeout(() => {
-                const formTitle = document.getElementById('tourFormTitle');
-                if (formTitle) formTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-        }
-
-        function deleteTour(id) {
-            if (!confirm('Silmek istediğinizden emin misiniz?')) return;
-            
-            tours = tours.filter(t => t.id !== id);
-            displayTours();
-            updateTourStats();
-            updateFeaturedTours();
-            updateBulkCounts();
-            showAlert('tourAlert', 'Tur silindi!', 'success');
-        }
-
-        function resetTourForm() {
-            editingTourId = null;
-            document.getElementById('tourForm').reset();
-            document.getElementById('tourFormTitle').textContent = 'Yeni Tur Ekle';
-            document.getElementById('tourImagePreview').style.display = 'none';
-            
-            ['family', 'couples', 'groups', 'honeymoon', 'solo',
-             'turkiye', 'europe', 'america', 'russia', 'brazil',
-             'spring', 'summer', 'autumn', 'winter', 'year_round'].forEach(cat => {
-                const checkbox = document.getElementById(`cat_${cat}`);
-                if (checkbox) checkbox.checked = false;
-            });
-            
-            currentGallery = [];
-            updateGalleryPreview();
-        }
-
-        // BLOGLARI YÜKLE
-        async function loadBlogs() {
-            try {
-                const saved = localStorage.getItem('walkabout_blogs');
-                if (saved) {
-                    blogs = JSON.parse(saved);
-                }
-            } catch(e) {}
-
-            if (location.protocol !== 'file:') {
-                try {
-                    const response = await fetch('data/blog-posts.json?t=' + Date.now());
-                    if (response.ok) {
-                        const serverBlogs = await response.json();
-                        if (serverBlogs.length > 0) {
-                            blogs = serverBlogs;
-                            localStorage.setItem('walkabout_blogs', JSON.stringify(blogs));
-                        }
-                    }
-                } catch (error) {
-                    console.log('blog-posts.json yüklenemedi, localStorage kullanılıyor.');
-                }
-            }
-
-            displayBlogs();
-            updateBlogStats();
-            updateBulkCounts();
-        }
-
-        function displayBlogs() {
-            const container = document.getElementById('blogsList');
-            
-            if (blogs.length === 0) {
-                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz blog yok.</div>';
-                return;
-            }
-
-            container.innerHTML = blogs.map(blog => `
-                <div class="item-card">
-                    <img src="${blog.image}" alt="${blog.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
-                    <div class="item-info">
-                        <h3>${blog.title}</h3>
-                        <p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
-                        <p><i class="fas fa-calendar"></i> ${blog.date}</p>
-                    </div>
-                    <div class="item-actions">
-                        <button class="btn btn-primary" onclick="editBlog('${blog.id}')">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger" onclick="deleteBlog('${blog.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function updateBlogStats() {
-            document.getElementById('blogCount').textContent = blogs.length;
-        }
-
-        async function saveBlog(e) {
-            e.preventDefault();
-
-            const today = new Date().toLocaleDateString('tr-TR');
-
-            const imageFilename = document.getElementById('blogImage').value.trim();
-            const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
-
-            const blogData = {
-                id: editingBlogId || 'BLOG-' + Date.now(),
-                title: document.getElementById('blogTitle').value,
-                title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
-                title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
-                title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
-                title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
-                title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
-                title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
-                author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
-                category: document.getElementById('blogCategory').value,
-                date: today,
-                excerpt: document.getElementById('blogExcerpt').value,
-                excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
-                excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
-                excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
-                excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
-                excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
-                excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
-                content: document.getElementById('blogContent').value,
-                content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
-                content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
-                content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
-                content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
-                content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
-                content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
-                image: imagePath
-            };
-
-            if (editingBlogId) {
-                const index = blogs.findIndex(b => b.id === editingBlogId);
-                blogs[index] = blogData;
-                showAlert('blogAlert', `✅ Blog güncellendi! (Toplam: ${blogs.length})`, 'success');
-            } else {
-                blogs.push(blogData);
-                showAlert('blogAlert', `✅ Blog eklendi! (Toplam: ${blogs.length})`, 'success');
-            }
-
-            displayBlogs();
-            updateBlogStats();
-            updateBulkCounts();
-            try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
-            resetBlogForm();
-        }
-
-        async function saveBlogsToFile() {
-            if (blogs.length === 0) {
-                showAlert('blogAlert', '⚠️ Kaydedilecek blog yok!', 'error');
-                return;
-            }
-
-            if (location.protocol === 'file:') {
-                const json = JSON.stringify(blogs, null, 2);
-                const blob = new Blob([json], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'blog-posts.json';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                showAlert('blogAlert', `✅ ${blogs.length} blog indirildi! Sunucuda data/ klasörüne yükle.`, 'success');
-                return;
-            }
-
-            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...', 'info');
-            try {
-                const response = await fetch('save.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ file: 'blogs', data: blogs })
-                });
-                const result = await response.json();
-                if (result.success) {
-                    localStorage.setItem('walkabout_blogs', JSON.stringify(blogs));
-                    showAlert('blogAlert', `✅ ${blogs.length} blog sunucuya kaydedildi!`, 'success');
-                } else {
-                    showAlert('blogAlert', '❌ Kaydetme hatası: ' + (result.error || 'Bilinmeyen hata'), 'error');
-                }
-            } catch (error) {
-                showAlert('blogAlert', '❌ Sunucuya bağlanılamadı: ' + error.message, 'error');
-            }
-        }
-
-        function editBlog(id) {
-            const blog = blogs.find(b => b.id === id);
-            if (!blog) return;
-
-            editingBlogId = id;
-            document.getElementById('blogFormTitle').textContent = 'Blog Düzenle';
-            
-            document.getElementById('blogTitle').value = blog.title;
-            document.getElementById('blogTitleEn').value = blog.title_en || '';
-            document.getElementById('blogTitleEs').value = blog.title_es || '';
-            document.getElementById('blogTitleRu').value = blog.title_ru || '';
-            document.getElementById('blogTitleDe').value = blog.title_de || '';
-            document.getElementById('blogTitleZh').value = blog.title_zh || '';
-            document.getElementById('blogTitleAr').value = blog.title_ar || '';
-            document.getElementById('blogAuthor').value = blog.author || '';
-            document.getElementById('blogCategory').value = blog.category;
-            document.getElementById('blogExcerpt').value = blog.excerpt;
-            document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
-            document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
-            document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
-            document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
-            document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
-            document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
-            document.getElementById('blogContent').value = blog.content;
-            document.getElementById('blogContentEn').value = blog.content_en || '';
-            document.getElementById('blogContentEs').value = blog.content_es || '';
-            document.getElementById('blogContentRu').value = blog.content_ru || '';
-            document.getElementById('blogContentDe').value = blog.content_de || '';
-            document.getElementById('blogContentZh').value = blog.content_zh || '';
-            document.getElementById('blogContentAr').value = blog.content_ar || '';
-            
-            const imageFilename = blog.image.replace('assets/', '');
-            document.getElementById('blogImage').value = imageFilename;
-            
-            const preview = document.getElementById('blogImagePreview');
-            preview.src = blog.image;
-            preview.style.display = 'block';
-
-            switchTab('blogs');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function deleteBlog(id) {
-            if (!confirm('Silmek istediğinizden emin misiniz?')) return;
-            
-            blogs = blogs.filter(b => b.id !== id);
-            displayBlogs();
-            updateBlogStats();
-            updateBulkCounts();
-            showAlert('blogAlert', 'Blog silindi!', 'success');
-        }
-
-        function resetBlogForm() {
-            editingBlogId = null;
-            document.getElementById('blogForm').reset();
-            document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
-            document.getElementById('blogImagePreview').style.display = 'none';
-        }
-
-        function showAlert(containerId, message, type) {
-            const container = document.getElementById(containerId);
-            const alertClass = type === 'success' ? 'alert-success' : (type === 'info' ? 'alert-info' : 'alert-error');
-            const icon = type === 'success' ? 'fa-check-circle' : (type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle');
-            
-            container.innerHTML = `
-                <div class="alert ${alertClass}">
-                    <i class="fas ${icon}"></i>
-                    ${message}
+                    <span class="gallery-item-number">#${index + 1}</span>
                 </div>
             `;
+        }).join('');
+    }
 
-            setTimeout(() => {
-                container.innerHTML = '';
-            }, 5000);
+    // KATEGORİ FONKSİYONLARI
+    function getSelectedCategories() {
+        const categories = {
+            traveller: [],
+            destination: [],
+            month: []
+        };
+        
+        ['family', 'couples', 'groups', 'honeymoon', 'solo'].forEach(cat => {
+            if (document.getElementById(`cat_${cat}`).checked) {
+                categories.traveller.push(cat);
+            }
+        });
+        
+        ['turkiye', 'europe', 'america', 'russia', 'brazil'].forEach(cat => {
+            if (document.getElementById(`cat_${cat}`).checked) {
+                categories.destination.push(cat);
+            }
+        });
+        
+        ['spring', 'summer', 'autumn', 'winter'].forEach(cat => {
+            if (document.getElementById(`cat_${cat}`).checked) {
+                categories.month.push(cat);
+            }
+        });
+        const yearRoundEl = document.getElementById('cat_year_round');
+        if (yearRoundEl && yearRoundEl.checked) {
+            categories.month.push('year-round');
         }
+        
+        return categories;
+    }
+
+    function setSelectedCategories(categories) {
+        if (!categories) return;
+        
+        if (categories.traveller) {
+            categories.traveller.forEach(cat => {
+                const checkbox = document.getElementById(`cat_${cat}`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+        
+        if (categories.destination) {
+            categories.destination.forEach(cat => {
+                const checkbox = document.getElementById(`cat_${cat}`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+        
+        if (categories.month) {
+            categories.month.forEach(cat => {
+                const id = cat === 'year-round' ? 'cat_year_round' : `cat_${cat}`;
+                const checkbox = document.getElementById(id);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    }
+
+    // GITHUB YENİLE
+    async function refreshToursFromGitHub() {
+        showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
+        try {
+            const response = await fetch('data/tours.json?t=' + Date.now());
+            if (response.ok) {
+                const serverTours = await response.json();
+                tours = normalizeTourData(serverTours); // Normalizasyon eklendi
+                localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+                displayTours();
+                updateTourStats();
+                updateFeaturedTours();
+                updateBulkCounts();
+                showAlert('tourAlert', `✅ ${tours.length} tur yüklendi!`, 'success');
+            } else {
+                showAlert('tourAlert', '❌ Yüklenemedi!', 'error');
+            }
+        } catch (error) {
+            showAlert('tourAlert', '❌ Hata!', 'error');
+        }
+    }
+
+    async function refreshBlogsFromGitHub() {
+        showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...', 'info');
+        try {
+            const response = await fetch('data/blog-posts.json?t=' + Date.now());
+            if (response.ok) {
+                blogs = await response.json();
+                displayBlogs();
+                updateBlogStats();
+                updateBulkCounts();
+                showAlert('blogAlert', `✅ ${blogs.length} blog yüklendi!`, 'success');
+            } else {
+                showAlert('blogAlert', '❌ blog-posts.json yüklenemedi!', 'error');
+            }
+        } catch (error) {
+            showAlert('blogAlert', '❌ Hata!', 'error');
+        }
+    }
+
+    // TOPLU SAYAÇLARI GÜNCELLE
+    function updateBulkCounts() {
+        document.getElementById('unsavedCount').textContent = tours.length;
+        document.getElementById('downloadCount').textContent = tours.length;
+        document.getElementById('unsavedBlogCount').textContent = blogs.length;
+        document.getElementById('downloadBlogCount').textContent = blogs.length;
+    }
+
+    // SAYFA YÜKLENİNCE
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Sayfa yüklendi!');
+        
+        loadTours();
+        loadBlogs();
+        setupImagePreviews();
+        setupForms();
+        updateGalleryPreview();
+        updateBulkCounts();
+        
+        console.log('Başlangıç tamamlandı, tur sayısı:', tours.length);
+    });
+
+    // SEKME DEĞİŞTİRME
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab').forEach(function(t) {
+            t.classList.remove('active');
+        });
+        
+        document.querySelectorAll('.tab-content').forEach(function(c) {
+            c.classList.remove('active');
+        });
+        
+        document.querySelectorAll('.tab').forEach(function(t) {
+            if (t.getAttribute('data-tab') === tabName) {
+                t.classList.add('active');
+            }
+        });
+        
+        const tabContent = document.getElementById(tabName + '-content');
+        if (tabContent) {
+            tabContent.classList.add('active');
+        }
+    }
+
+    // TURLARI YÜKLE
+    async function loadTours() {
+        try {
+            const saved = localStorage.getItem('walkabout_tours');
+            if (saved) {
+                tours = JSON.parse(saved);
+                console.log('localStorage\'dan yüklendi:', tours.length, 'tur');
+            }
+        } catch(e) {}
+
+        // Güvenlik kilidi kaldırıldı, her zaman veriyi çekmeyi deneyecek
+        try {
+            const response = await fetch('data/tours.json?t=' + Date.now());
+            if (response.ok) {
+                const serverTours = await response.json();
+                if (serverTours.length > 0) {
+                    tours = normalizeTourData(serverTours); // Eski yapı yeniye çevriliyor
+                    localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+                }
+            }
+        } catch (error) {
+            console.log('tours.json yüklenemedi, localStorage kullanılıyor.');
+        }
+
+        displayTours();
+        updateTourStats();
+        updateFeaturedTours();
+        updateBulkCounts();
+    }
+
+    // RESİM ÖNİZLEME SİSTEMİ
+    function setupImagePreviews() {
+        document.getElementById('tourImage').addEventListener('input', (e) => {
+            const preview = document.getElementById('tourImagePreview');
+            const filename = e.target.value.trim();
+            
+            if (filename) {
+                const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
+                preview.src = imagePath;
+                preview.style.display = 'block';
+                preview.onerror = function() {
+                    this.src = 'https://via.placeholder.com/300x200?text=Resim+Henuz+Yuklenmedi';
+                };
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        document.getElementById('blogImage').addEventListener('input', (e) => {
+            const preview = document.getElementById('blogImagePreview');
+            const filename = e.target.value.trim();
+            
+            if (filename) {
+                const imagePath = filename.startsWith('http') ? filename : `assets/${filename}`;
+                preview.src = imagePath;
+                preview.style.display = 'block';
+                preview.onerror = function() {
+                    this.src = 'https://via.placeholder.com/300x200?text=Resim+Henuz+Yuklenmedi';
+                };
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    }
+
+    // FEATURED TOURS
+    function updateFeaturedTours() {
+        const featuredContainer = document.getElementById('featuredToursList');
+        if (!featuredContainer) return;
+        
+        const featuredTours = tours.filter(t => t.featured);
+        
+        if (featuredTours.length === 0) {
+            featuredContainer.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">
+                    <i class="fas fa-star" style="font-size: 48px; opacity: 0.3;"></i>
+                    <p>Henüz öne çıkan tur yok.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        featuredContainer.innerHTML = featuredTours.map(tour => `
+            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: #0c4a6e; font-size: 18px;">${tour.title}</h4>
+                    <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                        ⭐ FEATURED
+                    </span>
+                </div>
+                <p style="color: #64748b; font-size: 14px;">${tour.location} • ${tour.price}</p>
+                <button onclick="toggleFeatured('${tour.id}')" class="btn btn-secondary" style="width: 100%; margin-top: 12px; font-size: 14px;">
+                    <i class="fas fa-star-half-alt"></i> Kaldır
+                </button>
+            </div>
+        `).join('');
+    }
+
+    function toggleFeatured(tourId) {
+        const tour = tours.find(t => t.id === tourId);
+        if (!tour) return;
+        
+        const featuredCount = tours.filter(t => t.featured).length;
+        
+        if (!tour.featured && featuredCount >= 3) {
+            showAlert('tourAlert', '⚠️ En fazla 3 tur öne çıkarılabilir!', 'error');
+            return;
+        }
+        
+        tour.featured = !tour.featured;
+        displayTours();
+        updateFeaturedTours();
+        
+        const message = tour.featured 
+            ? `✅ "${tour.title}" öne çıkarıldı!`
+            : `✓ "${tour.title}" kaldırıldı.`;
+        
+        showAlert('tourAlert', message, 'success');
+    }
+
+    // TURLARI GÖSTER
+    function displayTours() {
+        const container = document.getElementById('toursList');
+        
+        if (!container) {
+            console.error('toursList container bulunamadı!');
+            return;
+        }
+        
+        if (tours.length === 0) {
+            container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz tur yok.</div>';
+            return;
+        }
+
+        container.innerHTML = tours.map(tour => {
+            const cats = tour.categories || { traveller: [], destination: [], month: [] };
+            const galleryCount = tour.gallery ? tour.gallery.length : 0;
+            
+            return `
+            <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
+                ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ FEATURED</div>' : ''}
+                <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+                <div class="item-info">
+                    <h3>${tour.title}</h3>
+                    <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
+                    <p>
+                        <i class="fas fa-images"></i> ${galleryCount} fotoğraf
+                        ${(cats.traveller && cats.traveller.length > 0) ? `<br><i class="fas fa-users"></i> ${cats.traveller.join(', ')}` : ''}
+                    </p>
+                </div>
+                <div class="item-actions">
+                    <button class="btn ${tour.featured ? 'btn-success' : 'btn-secondary'}" onclick="toggleFeatured('${tour.id}')">
+                        <i class="fas fa-star${tour.featured ? '' : '-half-alt'}"></i>
+                    </button>
+                    <button class="btn btn-primary" onclick="editTour('${tour.id}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" onclick="deleteTour('${tour.id}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    function updateTourStats() {
+        document.getElementById('tourCount').textContent = tours.length;
+        const allCategories = tours.reduce((acc, t) => {
+            if (t.categories) {
+                acc.push(...(t.categories.traveller || []), ...(t.categories.destination || []), ...(t.categories.month || []));
+            }
+            return acc;
+        }, []);
+        const uniqueCategories = [...new Set(allCategories)];
+        document.getElementById('categoryCount').textContent = uniqueCategories.length;
+    }
+
+    function setupForms() {
+        document.getElementById('tourForm').addEventListener('submit', saveTour);
+        document.getElementById('blogForm').addEventListener('submit', saveBlog);
+    }
+
+    // TURU KAYDET
+    async function saveTour(e) {
+        e.preventDefault();
+
+        const categories = getSelectedCategories();
+        const imageFilename = document.getElementById('tourImage').value.trim();
+        const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
+
+        const tourData = {
+            id: editingTourId || 'TUR-' + Date.now(),
+            title: document.getElementById('tourTitle').value,
+            title_en: document.getElementById('tourTitleEn').value || document.getElementById('tourTitle').value,
+            title_es: document.getElementById('tourTitleEs').value || document.getElementById('tourTitle').value,
+            title_ru: document.getElementById('tourTitleRu').value || document.getElementById('tourTitle').value,
+            title_de: document.getElementById('tourTitleDe').value || document.getElementById('tourTitle').value,
+            title_zh: document.getElementById('tourTitleZh').value || document.getElementById('tourTitle').value,
+            title_ar: document.getElementById('tourTitleAr').value || document.getElementById('tourTitle').value,
+            price: document.getElementById('tourPrice').value,
+            duration: document.getElementById('tourDuration').value,
+            location: document.getElementById('tourLocation').value,
+            category: document.getElementById('tourCategory').value || 'Türkiye',
+            categories: categories,
+            description: document.getElementById('tourDescription').value,
+            description_en: document.getElementById('tourDescriptionEn').value || document.getElementById('tourDescription').value,
+            description_es: document.getElementById('tourDescriptionEs').value || document.getElementById('tourDescription').value,
+            description_ru: document.getElementById('tourDescriptionRu').value || document.getElementById('tourDescription').value,
+            description_de: document.getElementById('tourDescriptionDe').value || document.getElementById('tourDescription').value,
+            description_zh: document.getElementById('tourDescriptionZh').value || document.getElementById('tourDescription').value,
+            description_ar: document.getElementById('tourDescriptionAr').value || document.getElementById('tourDescription').value,
+            content: document.getElementById('tourContent').value || document.getElementById('tourDescription').value,
+            content_en: document.getElementById('tourContentEn').value || document.getElementById('tourDescriptionEn').value,
+            content_es: document.getElementById('tourContentEs').value || document.getElementById('tourDescriptionEs').value,
+            content_ru: document.getElementById('tourContentRu').value || document.getElementById('tourDescriptionRu').value,
+            content_de: document.getElementById('tourContentDe').value || document.getElementById('tourDescriptionDe').value,
+            content_zh: document.getElementById('tourContentZh').value || document.getElementById('tourDescriptionZh').value,
+            content_ar: document.getElementById('tourContentAr').value || document.getElementById('tourDescriptionAr').value,
+            image: imagePath,
+            gallery: currentGallery.map(filename => 
+                filename.startsWith('http') ? filename : `assets/${filename}`
+            ),
+            featured: editingTourId ? tours.find(t => t.id === editingTourId)?.featured || false : false,
+            source: 'admin'
+        };
+
+        if (editingTourId) {
+            const index = tours.findIndex(t => t.id === editingTourId);
+            tours[index] = tourData;
+            showAlert('tourAlert', `✅ Tur güncellendi! (Toplam: ${tours.length})`, 'success');
+        } else {
+            tours.push(tourData);
+            showAlert('tourAlert', `✅ Tur eklendi! (Toplam: ${tours.length}) - "TÜMÜNÜ KAYDET" butonuna basın`, 'success');
+        }
+        
+        displayTours();
+        updateTourStats();
+        updateFeaturedTours();
+        updateBulkCounts();
+        try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
+        resetTourForm();
+    }
+
+    async function saveToursToFile() {
+        if (tours.length === 0) {
+            showAlert('tourAlert', '⚠️ Kaydedilecek tur yok!', 'error');
+            return;
+        }
+
+        if (location.protocol === 'file:') {
+            const json = JSON.stringify(tours, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'tours.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showAlert('tourAlert', `✅ ${tours.length} tur indirildi! Sunucuda data/ klasörüne yükle.`, 'success');
+            return;
+        }
+
+        showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...', 'info');
+        try {
+            const response = await fetch('save.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ file: 'tours', data: tours })
+            });
+            const result = await response.json();
+            if (result.success) {
+                localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+                showAlert('tourAlert', `✅ ${tours.length} tur sunucuya kaydedildi!`, 'success');
+            } else {
+                showAlert('tourAlert', '❌ Kaydetme hatası: ' + (result.error || 'Bilinmeyen hata'), 'error');
+            }
+        } catch (error) {
+            showAlert('tourAlert', '❌ Sunucuya bağlanılamadı: ' + error.message, 'error');
+        }
+    }
+
+    function editTour(id) {
+        const tour = tours.find(t => t.id === id);
+        if (!tour) return;
+
+        editingTourId = id;
+        document.getElementById('tourFormTitle').textContent = 'Turu Düzenle';
+        
+        document.getElementById('tourTitle').value = tour.title;
+        document.getElementById('tourTitleEn').value = tour.title_en || '';
+        document.getElementById('tourTitleEs').value = tour.title_es || '';
+        document.getElementById('tourTitleRu').value = tour.title_ru || '';
+        document.getElementById('tourTitleDe').value = tour.title_de || '';
+        document.getElementById('tourTitleZh').value = tour.title_zh || '';
+        document.getElementById('tourTitleAr').value = tour.title_ar || '';
+        document.getElementById('tourPrice').value = tour.price;
+        document.getElementById('tourDuration').value = tour.duration || '';
+        document.getElementById('tourLocation').value = tour.location;
+        
+        if (document.getElementById('tourCategory')) {
+            document.getElementById('tourCategory').value = tour.category || 'Türkiye';
+        }
+        
+        if (tour.categories) {
+            setSelectedCategories(tour.categories);
+        }
+        
+        document.getElementById('tourDescription').value = tour.description;
+        document.getElementById('tourDescriptionEn').value = tour.description_en || '';
+        document.getElementById('tourDescriptionEs').value = tour.description_es || '';
+        document.getElementById('tourDescriptionRu').value = tour.description_ru || '';
+        document.getElementById('tourDescriptionDe').value = tour.description_de || '';
+        document.getElementById('tourDescriptionZh').value = tour.description_zh || '';
+        document.getElementById('tourDescriptionAr').value = tour.description_ar || '';
+        document.getElementById('tourContent').value = tour.content || '';
+        document.getElementById('tourContentEn').value = tour.content_en || '';
+        document.getElementById('tourContentEs').value = tour.content_es || '';
+        document.getElementById('tourContentRu').value = tour.content_ru || '';
+        document.getElementById('tourContentDe').value = tour.content_de || '';
+        document.getElementById('tourContentZh').value = tour.content_zh || '';
+        document.getElementById('tourContentAr').value = tour.content_ar || '';
+        
+        const imageFilename = tour.image.replace('assets/', '');
+        document.getElementById('tourImage').value = imageFilename;
+        
+        currentGallery = (tour.gallery || []).map(path => path.replace('assets/', ''));
+        updateGalleryPreview();
+        
+        const preview = document.getElementById('tourImagePreview');
+        preview.src = tour.image;
+        preview.style.display = 'block';
+
+        switchTab('tours');
+        setTimeout(() => {
+            const formTitle = document.getElementById('tourFormTitle');
+            if (formTitle) formTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+
+    function deleteTour(id) {
+        if (!confirm('Silmek istediğinizden emin misiniz?')) return;
+        
+        tours = tours.filter(t => t.id !== id);
+        displayTours();
+        updateTourStats();
+        updateFeaturedTours();
+        updateBulkCounts();
+        showAlert('tourAlert', 'Tur silindi!', 'success');
+    }
+
+    function resetTourForm() {
+        editingTourId = null;
+        document.getElementById('tourForm').reset();
+        document.getElementById('tourFormTitle').textContent = 'Yeni Tur Ekle';
+        document.getElementById('tourImagePreview').style.display = 'none';
+        
+        ['family', 'couples', 'groups', 'honeymoon', 'solo',
+         'turkiye', 'europe', 'america', 'russia', 'brazil',
+         'spring', 'summer', 'autumn', 'winter', 'year_round'].forEach(cat => {
+            const checkbox = document.getElementById(`cat_${cat}`);
+            if (checkbox) checkbox.checked = false;
+        });
+        
+        currentGallery = [];
+        updateGalleryPreview();
+    }
+
+    // BLOGLARI YÜKLE
+    async function loadBlogs() {
+        try {
+            const saved = localStorage.getItem('walkabout_blogs');
+            if (saved) {
+                blogs = JSON.parse(saved);
+            }
+        } catch(e) {}
+
+        try {
+            const response = await fetch('data/blog-posts.json?t=' + Date.now());
+            if (response.ok) {
+                const serverBlogs = await response.json();
+                if (serverBlogs.length > 0) {
+                    blogs = serverBlogs;
+                    localStorage.setItem('walkabout_blogs', JSON.stringify(blogs));
+                }
+            }
+        } catch (error) {
+            console.log('blog-posts.json yüklenemedi, localStorage kullanılıyor.');
+        }
+
+        displayBlogs();
+        updateBlogStats();
+        updateBulkCounts();
+    }
+
+    function displayBlogs() {
+        const container = document.getElementById('blogsList');
+        
+        if (blogs.length === 0) {
+            container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz blog yok.</div>';
+            return;
+        }
+
+        container.innerHTML = blogs.map(blog => `
+            <div class="item-card">
+                <img src="${blog.image}" alt="${blog.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+                <div class="item-info">
+                    <h3>${blog.title}</h3>
+                    <p><i class="fas fa-user"></i> ${blog.author || 'Anonim'} | <i class="fas fa-folder"></i> ${blog.category}</p>
+                    <p><i class="fas fa-calendar"></i> ${blog.date}</p>
+                </div>
+                <div class="item-actions">
+                    <button class="btn btn-primary" onclick="editBlog('${blog.id}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" onclick="deleteBlog('${blog.id}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function updateBlogStats() {
+        document.getElementById('blogCount').textContent = blogs.length;
+    }
+
+    async function saveBlog(e) {
+        e.preventDefault();
+
+        const today = new Date().toLocaleDateString('tr-TR');
+
+        const imageFilename = document.getElementById('blogImage').value.trim();
+        const imagePath = imageFilename.startsWith('http') ? imageFilename : `assets/${imageFilename}`;
+
+        const blogData = {
+            id: editingBlogId || 'BLOG-' + Date.now(),
+            title: document.getElementById('blogTitle').value,
+            title_en: document.getElementById('blogTitleEn').value || document.getElementById('blogTitle').value,
+            title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
+            title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
+            title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
+            title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
+            title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
+            author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
+            category: document.getElementById('blogCategory').value,
+            date: today,
+            excerpt: document.getElementById('blogExcerpt').value,
+            excerpt_en: document.getElementById('blogExcerptEn').value || document.getElementById('blogExcerpt').value,
+            excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
+            excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
+            excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
+            excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
+            excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
+            content: document.getElementById('blogContent').value,
+            content_en: document.getElementById('blogContentEn').value || document.getElementById('blogContent').value,
+            content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
+            content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
+            content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
+            content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
+            content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
+            image: imagePath
+        };
+
+        if (editingBlogId) {
+            const index = blogs.findIndex(b => b.id === editingBlogId);
+            blogs[index] = blogData;
+            showAlert('blogAlert', `✅ Blog güncellendi! (Toplam: ${blogs.length})`, 'success');
+        } else {
+            blogs.push(blogData);
+            showAlert('blogAlert', `✅ Blog eklendi! (Toplam: ${blogs.length})`, 'success');
+        }
+
+        displayBlogs();
+        updateBlogStats();
+        updateBulkCounts();
+        try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
+        resetBlogForm();
+    }
+
+    async function saveBlogsToFile() {
+        if (blogs.length === 0) {
+            showAlert('blogAlert', '⚠️ Kaydedilecek blog yok!', 'error');
+            return;
+        }
+
+        if (location.protocol === 'file:') {
+            const json = JSON.stringify(blogs, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'blog-posts.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showAlert('blogAlert', `✅ ${blogs.length} blog indirildi! Sunucuda data/ klasörüne yükle.`, 'success');
+            return;
+        }
+
+        showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...', 'info');
+        try {
+            const response = await fetch('save.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ file: 'blogs', data: blogs })
+            });
+            const result = await response.json();
+            if (result.success) {
+                localStorage.setItem('walkabout_blogs', JSON.stringify(blogs));
+                showAlert('blogAlert', `✅ ${blogs.length} blog sunucuya kaydedildi!`, 'success');
+            } else {
+                showAlert('blogAlert', '❌ Kaydetme hatası: ' + (result.error || 'Bilinmeyen hata'), 'error');
+            }
+        } catch (error) {
+            showAlert('blogAlert', '❌ Sunucuya bağlanılamadı: ' + error.message, 'error');
+        }
+    }
+
+    function editBlog(id) {
+        const blog = blogs.find(b => b.id === id);
+        if (!blog) return;
+
+        editingBlogId = id;
+        document.getElementById('blogFormTitle').textContent = 'Blog Düzenle';
+        
+        document.getElementById('blogTitle').value = blog.title;
+        document.getElementById('blogTitleEn').value = blog.title_en || '';
+        document.getElementById('blogTitleEs').value = blog.title_es || '';
+        document.getElementById('blogTitleRu').value = blog.title_ru || '';
+        document.getElementById('blogTitleDe').value = blog.title_de || '';
+        document.getElementById('blogTitleZh').value = blog.title_zh || '';
+        document.getElementById('blogTitleAr').value = blog.title_ar || '';
+        document.getElementById('blogAuthor').value = blog.author || '';
+        document.getElementById('blogCategory').value = blog.category;
+        document.getElementById('blogExcerpt').value = blog.excerpt;
+        document.getElementById('blogExcerptEn').value = blog.excerpt_en || '';
+        document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
+        document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
+        document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
+        document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
+        document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
+        document.getElementById('blogContent').value = blog.content;
+        document.getElementById('blogContentEn').value = blog.content_en || '';
+        document.getElementById('blogContentEs').value = blog.content_es || '';
+        document.getElementById('blogContentRu').value = blog.content_ru || '';
+        document.getElementById('blogContentDe').value = blog.content_de || '';
+        document.getElementById('blogContentZh').value = blog.content_zh || '';
+        document.getElementById('blogContentAr').value = blog.content_ar || '';
+        
+        const imageFilename = blog.image.replace('assets/', '');
+        document.getElementById('blogImage').value = imageFilename;
+        
+        const preview = document.getElementById('blogImagePreview');
+        preview.src = blog.image;
+        preview.style.display = 'block';
+
+        switchTab('blogs');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function deleteBlog(id) {
+        if (!confirm('Silmek istediğinizden emin misiniz?')) return;
+        
+        blogs = blogs.filter(b => b.id !== id);
+        displayBlogs();
+        updateBlogStats();
+        updateBulkCounts();
+        showAlert('blogAlert', 'Blog silindi!', 'success');
+    }
+
+    function resetBlogForm() {
+        editingBlogId = null;
+        document.getElementById('blogForm').reset();
+        document.getElementById('blogFormTitle').textContent = 'Yeni Blog Yazısı Ekle';
+        document.getElementById('blogImagePreview').style.display = 'none';
+    }
+
+    function showAlert(containerId, message, type) {
+        const container = document.getElementById(containerId);
+        const alertClass = type === 'success' ? 'alert-success' : (type === 'info' ? 'alert-info' : 'alert-error');
+        const icon = type === 'success' ? 'fa-check-circle' : (type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle');
+        
+        container.innerHTML = `
+            <div class="alert ${alertClass}">
+                <i class="fas ${icon}"></i>
+                ${message}
+            </div>
+        `;
+
+        setTimeout(() => {
+            container.innerHTML = '';
+        }, 5000);
+    }
     </script>
 </body>
 </html>
