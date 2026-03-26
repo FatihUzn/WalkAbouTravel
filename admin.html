@@ -412,15 +412,24 @@
         }
 
         const langNames = { en: 'English', es: 'Spanish', ru: 'Russian', de: 'German', zh: 'Chinese', ar: 'Arabic' };
+        // YENİ, ÜCRETSİZ VE SORUNSUZ ÇEVİRİ FONKSİYONU
         async function translateText(text, targetLang) {
             if (!text) return '';
             try {
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, messages: [{ role: 'user', content: 'Translate the following Turkish text to ' + langNames[targetLang] + '. Return ONLY the translated text.\n\n' + text }] })
-                });
-                const data = await response.json(); return (data && data.content && data.content[0]) ? data.content[0].text.trim() : text;
-            } catch (error) { return text; }
+                // API Key gerektirmeyen ücretsiz çeviri servisi (MyMemory)
+                const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=tr|${targetLang}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data && data.responseData && data.responseData.translatedText) {
+                    // API'nin döndürdüğü çeviriyi al
+                    return data.responseData.translatedText;
+                }
+                return text;
+            } catch (error) {
+                console.error('Çeviri hatası:', error);
+                return text; // Hata olursa orijinal metni geri döndür
+            }
         }
 
         async function translateAllTourFields() {
