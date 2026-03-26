@@ -1,298 +1,583 @@
-/* ================================================
-   WALKABOUT TRAVEL - DİL DEĞİŞTİRME SİSTEMİ
-   BÜYÜK/KÜÇÜK HARF UYUMLU - TÜM DİLLER ÇALIŞIYOR
-   ================================================ */
+// ========================================================
+// WALKABOUT TRAVEL - MULTILINGUAL (ÇOK DİLLİ) SİSTEMİ
+// Bütün kullanılmayan eski kelimeler temizlenmiş ve güncellenmiştir.
+// ========================================================
 
-console.log('🚀 i18n.js yükleniyor...');
+const translations = {
+    // 🇹🇷 TÜRKÇE (VARSAYILAN)
+    tr: {
+        // Navbar
+        nav_get_directions: "Yol Tarifi Al",
+        nav_home: "ANA SAYFA",
+        nav_tours: "TURLAR",
+        nav_why_us: "NEDEN BİZ?",
+        nav_blog: "BLOG",
+        nav_contact: "İLETİŞİM",
+        
+        // Hero Section
+        hero_badge: "1997'DEN BERİ GÜVENLE",
+        hero_title: "Macerayı<br>Keşfedin",
+        hero_description: "Dünyanın en güzel destinasyonlarına profesyonel rehberlik eşliğinde unutulmaz yolculuklar.",
+        hero_explore: "Turları Keşfet",
+        hero_blog: "Seyahat Günlüğü",
+        hero_contact: "Bize Ulaşın",
+        
+        // Kategoriler (YENİ 4'LÜ YAPI)
+        categories_title: "KEŞFETMEYE BAŞLAYIN",
+        cat_turkey: "TÜRKİYE TURU",
+        cat_international: "ULUSLARARASI",
+        cat_daily: "GÜNÜBİRLİK",
+        cat_group: "GRUP TURLARI",
+        categories_view_more: "TÜMÜNÜ GÖR",
+        
+        // Popüler ve Tüm Turlar
+        popular_badge: "ÖNE ÇIKANLAR",
+        popular_title: "EN POPÜLER ROTALARIMIZ",
+        popular_subtitle: "Gezginlerimizin şu an en çok tercih ettiği rotalar",
+        tours_badge: "TÜM ROTALAR",
+        tours_title: "Sizin İçin Seçtiklerimiz",
+        tours_subtitle: "Hayalinizdeki tatili bulmak için rotalarımızı inceleyin",
+        
+        // Neden Biz?
+        why_badge: "NEDEN WALKABOUT TRAVEL?",
+        why_title: "Bizi Seçmeniz İçin Nedenler",
+        why_subtitle: "28 yıllık tecrübemizle güvenli ve unutulmaz anılar biriktirin",
+        why_feature1_title: "Güvenli Seyahat",
+        why_feature1_desc: "TÜRSAB onaylı, sigorta garantili ve lisanslı rehberlerimizle tam güvenlik.",
+        why_feature2_title: "28 Yıllık Tecrübe",
+        why_feature2_desc: "1997'den bugüne binlerce mutlu müşteriye hizmet verdik.",
+        why_feature3_title: "7/24 Destek",
+        why_feature3_desc: "Seyahatinizin her anında, bir telefon uzağınızdayız.",
+        why_feature4_title: "En İyi Fiyat Garantisi",
+        why_feature4_desc: "Kaliteli hizmeti en uygun fiyat ve ödeme koşullarıyla sunuyoruz.",
+        
+        // Blog
+        blog_badge: "SEYAHAT GÜNLÜĞÜ",
+        blog_title: "Blog & Gezi Rehberi",
+        blog_subtitle: "Deneyimlerimizden ilham alarak kendi rotanızı çizin",
+        
+        // İletişim
+        contact_badge: "BİZE ULAŞIN",
+        contact_title: "Tatilinizi Beraber Planlayalım",
+        contact_subtitle: "Uzman ekibimiz size yardımcı olmak için hazır bekliyor",
+        contact_name_label: "Adınız Soyadınız *",
+        contact_name_placeholder: "Ahmet Yılmaz",
+        contact_email_label: "E-posta Adresiniz *",
+        contact_email_placeholder: "ornek@mail.com",
+        contact_phone_label: "Telefon Numaranız",
+        contact_phone_placeholder: "+90 555 123 45 67",
+        contact_message_label: "Mesajınız *",
+        contact_message_placeholder: "Hangi turumuzla ilgileniyorsunuz? Nasıl yardımcı olabiliriz?",
+        contact_send_button: "Mesajı Gönder",
+        contact_info_address_title: "Adresimiz",
+        contact_info_address_text: "Mimar Sinan Mah. No: 42/A<br>İstanbul, Türkiye",
+        contact_info_phone_title: "Telefon",
+        contact_info_email_title: "E-posta",
+        
+        // Footer
+        footer_tagline: "1997'den beri güvenle planlanan yolculuklar.",
+        footer_quick_links: "Hızlı Menü",
+        footer_categories: "Kategoriler",
+        footer_cat_family: "Aile Turları",
+        footer_cat_couples: "Çift Turları",
+        footer_cat_groups: "Grup Turları",
+        footer_cat_honeymoon: "Balayı Turları",
+        footer_cat_solo: "Tek Kişilik Turlar",
+        footer_services: "Hizmetlerimiz",
+        footer_service_visa: "Vize Danışmanlığı",
+        footer_service_hotel: "Otel Rezervasyonu",
+        footer_service_flight: "Uçak Bileti",
+        footer_service_transfer: "VIP Transfer",
+        footer_copyright: "© 2026 WalkAbout Travel. Tüm hakları saklıdır."
+    },
 
-const i18n = {
-  currentLang: 'tr',
-  translations: {},
-  isChanging: false,
-  
-  // Dil dosyasını yükle (büyük/küçük harf uyumlu)
-  async loadLanguage(lang) {
-    try {
-      console.log(`📥 ${lang}.json yükleniyor...`);
-      
-      // Dosya ismi varyantları
-      const variants = [
-        lang.toLowerCase(),                                    // tr, en, es, ru, de
-        lang.toUpperCase(),                                    // TR, EN, ES, RU, DE
-        lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase()  // Tr, En, Es, Ru, De
-      ];
-      
-      let response = null;
-      let loadedFrom = '';
-      
-      // ÖNCE data/ klasöründe ara
-      for (const variant of variants) {
-        try {
-          response = await fetch(`data/${variant}.json`);
-          if (response.ok) {
-            loadedFrom = `data/${variant}.json`;
-            console.log(`✅ Bulundu: ${loadedFrom}`);
-            break;
-          }
-        } catch (e) {
-          // Sessizce devam
-        }
-      }
-      
-      // Bulunamadıysa root'ta ara
-      if (!response || !response.ok) {
-        console.log(`⚠️ data/ klasöründe bulunamadı, root deneniyor...`);
-        for (const variant of variants) {
-          try {
-            response = await fetch(`${variant}.json`);
-            if (response.ok) {
-              loadedFrom = `${variant}.json`;
-              console.log(`✅ Bulundu: ${loadedFrom}`);
-              break;
-            }
-          } catch (e) {
-            // Sessizce devam
-          }
-        }
-      }
-      
-      // Hiçbir yerde bulunamadı
-      if (!response || !response.ok) {
-        throw new Error(`Dil dosyası bulunamadı: ${variants.join(', ')}.json`);
-      }
-      
-      this.translations[lang] = await response.json();
-      console.log(`✅ ${lang.toUpperCase()} yüklendi: ${loadedFrom} (${Object.keys(this.translations[lang]).length} anahtar)`);
-      return true;
-    } catch (error) {
-      console.error(`❌ ${lang.toUpperCase()} yüklenemedi:`, error);
-      return false;
-    }
-  },
-  
-  // Çeviri getir
-  t(key) {
-    if (!this.translations[this.currentLang]) {
-      console.warn(`⚠️ Dil yüklenmemiş: ${this.currentLang}`);
-      return key;
-    }
-    
-    const translation = this.translations[this.currentLang][key];
-    if (!translation) {
-      console.warn(`⚠️ Çeviri yok: ${key}`);
-      return key;
-    }
-    
-    return translation;
-  },
-  
-  // Dil değiştir
-  async changeLanguage(lang) {
-    if (this.isChanging) {
-      console.log('⏳ Dil değişimi devam ediyor...');
-      return false;
-    }
-    
-    this.isChanging = true;
-    console.log(`🔄 Dil değiştiriliyor: ${this.currentLang} → ${lang}`);
-    
-    try {
-      // Dil yüklü değilse yükle
-      if (!this.translations[lang]) {
-        const loaded = await this.loadLanguage(lang);
-        if (!loaded) {
-          throw new Error(`${lang} yüklenemedi`);
-        }
-      }
-      
-      // Dili değiştir
-      this.currentLang = lang;
-      localStorage.setItem('language', lang);
-      document.documentElement.lang = lang;
-      
-      // RTL desteği (Arapça)
-      if (lang === 'ar') {
-        document.body.setAttribute('dir', 'rtl');
-        document.body.classList.add('rtl');
-      } else {
-        document.body.setAttribute('dir', 'ltr');
-        document.body.classList.remove('rtl');
-      }
-      
-      // Sayfayı güncelle
-      this.updatePageContent();
-      this.updateActiveButton(lang);
-      
-      // Event gönder
-      window.dispatchEvent(new CustomEvent('languageChanged', { 
-        detail: { lang: lang } 
-      }));
-      
-      console.log(`✅ Dil değiştirildi: ${lang.toUpperCase()}`);
-      this.showToast(`✓ ${this.getLanguageName(lang)}`, 'success');
-      
-      return true;
-    } catch (error) {
-      console.error('❌ Dil değiştirme hatası:', error);
-      this.showToast(`❌ ${lang.toUpperCase()} yüklenemedi!`, 'error');
-      return false;
-    } finally {
-      setTimeout(() => {
-        this.isChanging = false;
-      }, 300); // 1. EKSİK: setTimeout'u kapattık
-    } // 2. EKSİK: finally bloğunu kapattık
-  }, // 3. EKSİK: changeLanguage fonksiyonunu kapattık
-  
-  // Sayfa içeriğini güncelle
-  updatePageContent() {
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        const translation = this.t(key);
-        if (!translation || translation === key) return;
+    // 🇬🇧 ENGLISH
+    en: {
+        nav_get_directions: "Get Directions",
+        nav_home: "HOME",
+        nav_tours: "TOURS",
+        nav_why_us: "WHY US?",
+        nav_blog: "BLOG",
+        nav_contact: "CONTACT",
+        hero_badge: "TRUSTED SINCE 1997",
+        hero_title: "Discover the<br>Adventure",
+        hero_description: "Unforgettable journeys to the world's most beautiful destinations with professional guidance.",
+        hero_explore: "Explore Tours",
+        hero_blog: "Travel Diary",
+        hero_contact: "Contact Us",
+        categories_title: "START EXPLORING",
+        cat_turkey: "TURKEY TOURS",
+        cat_international: "INTERNATIONAL",
+        cat_daily: "DAILY TOURS",
+        cat_group: "GROUP TOURS",
+        categories_view_more: "VIEW ALL",
+        popular_badge: "FEATURED",
+        popular_title: "OUR MOST POPULAR TRIPS",
+        popular_subtitle: "The trips our travellers are booking right now",
+        tours_badge: "ALL ROUTES",
+        tours_title: "Selected For You",
+        tours_subtitle: "Browse our routes to find your dream holiday",
+        why_badge: "WHY WALKABOUT TRAVEL?",
+        why_title: "Reasons to Choose Us",
+        why_subtitle: "Collect safe and unforgettable memories with our 28 years of experience",
+        why_feature1_title: "Safe Travel",
+        why_feature1_desc: "Full security with TURSAB certified, insurance guaranteed and licensed guides.",
+        why_feature2_title: "28 Years of Experience",
+        why_feature2_desc: "We have served thousands of happy customers since 1997.",
+        why_feature3_title: "24/7 Support",
+        why_feature3_desc: "We are with you at every moment of your trip.",
+        why_feature4_title: "Best Price Guarantee",
+        why_feature4_desc: "We offer quality service at the most affordable prices.",
+        blog_badge: "TRAVEL DIARY",
+        blog_title: "Blog & Travel Guide",
+        blog_subtitle: "Get inspired by our experiences",
+        contact_badge: "CONTACT US",
+        contact_title: "Let's Plan Your Holiday",
+        contact_subtitle: "Our expert team is ready to help you",
+        contact_name_label: "Full Name *",
+        contact_name_placeholder: "John Doe",
+        contact_email_label: "Email Address *",
+        contact_email_placeholder: "john@example.com",
+        contact_phone_label: "Phone Number",
+        contact_phone_placeholder: "+1 234 567 890",
+        contact_message_label: "Your Message *",
+        contact_message_placeholder: "Which tour are you interested in?",
+        contact_send_button: "Send Message",
+        contact_info_address_title: "Our Address",
+        contact_info_address_text: "Mimar Sinan St. No: 42/A<br>Istanbul, Turkey",
+        contact_info_phone_title: "Phone",
+        contact_info_email_title: "Email",
+        footer_tagline: "Journeys planned with confidence since 1997.",
+        footer_quick_links: "Quick Links",
+        footer_categories: "Categories",
+        footer_cat_family: "Family Tours",
+        footer_cat_couples: "Couples Tours",
+        footer_cat_groups: "Group Tours",
+        footer_cat_honeymoon: "Honeymoon Tours",
+        footer_cat_solo: "Solo Tours",
+        footer_services: "Services",
+        footer_service_visa: "Visa Consultancy",
+        footer_service_hotel: "Hotel Reservation",
+        footer_service_flight: "Flight Tickets",
+        footer_service_transfer: "VIP Transfer",
+        footer_copyright: "© 2026 WalkAbout Travel. All rights reserved."
+    },
 
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.placeholder = translation;
-        } else {
-            element.textContent = translation;
-        }
-    });
+    // 🇪🇸 SPANISH
+    es: {
+        nav_get_directions: "Cómo Llegar",
+        nav_home: "INICIO",
+        nav_tours: "TOURS",
+        nav_why_us: "¿POR QUÉ NOSOTROS?",
+        nav_blog: "BLOG",
+        nav_contact: "CONTACTO",
+        hero_badge: "CONFIANZA DESDE 1997",
+        hero_title: "Descubre la<br>Aventura",
+        hero_description: "Viajes inolvidables a los destinos más hermosos con guía profesional.",
+        hero_explore: "Explorar Tours",
+        hero_blog: "Diario de Viaje",
+        hero_contact: "Contáctenos",
+        categories_title: "COMIENZA A EXPLORAR",
+        cat_turkey: "TOURS EN TURQUÍA",
+        cat_international: "INTERNACIONAL",
+        cat_daily: "EXCURSIONES DE UN DÍA",
+        cat_group: "TOURS EN GRUPO",
+        categories_view_more: "VER TODO",
+        popular_badge: "DESTACADOS",
+        popular_title: "NUESTROS VIAJES MÁS POPULARES",
+        popular_subtitle: "Los viajes que nuestros viajeros están reservando ahora mismo",
+        tours_badge: "TODAS LAS RUTAS",
+        tours_title: "Seleccionado Para Ti",
+        tours_subtitle: "Explore nuestras rutas para encontrar las vacaciones de sus sueños",
+        why_badge: "¿POR QUÉ WALKABOUT TRAVEL?",
+        why_title: "Razones para Elegirnos",
+        why_subtitle: "Recopile recuerdos seguros e inolvidables con nuestros 28 años de experiencia",
+        why_feature1_title: "Viaje Seguro",
+        why_feature1_desc: "Total seguridad con certificación TURSAB, seguro garantizado y guías autorizados.",
+        why_feature2_title: "28 Años de Experiencia",
+        why_feature2_desc: "Hemos servido a miles de clientes satisfechos desde 1997.",
+        why_feature3_title: "Soporte 24/7",
+        why_feature3_desc: "Estamos contigo en cada momento de tu viaje.",
+        why_feature4_title: "Mejor Precio Garantizado",
+        why_feature4_desc: "Ofrecemos servicio de calidad a los precios más accesibles.",
+        blog_badge: "DIARIO DE VIAJE",
+        blog_title: "Blog y Guía de Viaje",
+        blog_subtitle: "Inspírate con nuestras experiencias",
+        contact_badge: "CONTÁCTENOS",
+        contact_title: "Planifiquemos sus Vacaciones",
+        contact_subtitle: "Nuestro equipo experto está listo para ayudarle",
+        contact_name_label: "Nombre Completo *",
+        contact_name_placeholder: "Juan Pérez",
+        contact_email_label: "Correo Electrónico *",
+        contact_email_placeholder: "juan@ejemplo.com",
+        contact_phone_label: "Número de Teléfono",
+        contact_phone_placeholder: "+34 600 000 000",
+        contact_message_label: "Su Mensaje *",
+        contact_message_placeholder: "¿En qué tour está interesado?",
+        contact_send_button: "Enviar Mensaje",
+        contact_info_address_title: "Nuestra Dirección",
+        contact_info_address_text: "Calle Mimar Sinan No: 42/A<br>Estambul, Turquía",
+        contact_info_phone_title: "Teléfono",
+        contact_info_email_title: "Email",
+        footer_tagline: "Viajes planificados con confianza desde 1997.",
+        footer_quick_links: "Enlaces Rápidos",
+        footer_categories: "Categorías",
+        footer_cat_family: "Tours Familiares",
+        footer_cat_couples: "Tours para Parejas",
+        footer_cat_groups: "Tours en Grupo",
+        footer_cat_honeymoon: "Lunas de Miel",
+        footer_cat_solo: "Tours Individuales",
+        footer_services: "Servicios",
+        footer_service_visa: "Asesoría de Visas",
+        footer_service_hotel: "Reserva de Hotel",
+        footer_service_flight: "Boletos de Avión",
+        footer_service_transfer: "Transferencia VIP",
+        footer_copyright: "© 2026 WalkAbout Travel. Todos los derechos reservados."
+    },
 
-    const titleElement = document.querySelector('title');
-    if (titleElement) {
-        const titleKey = titleElement.getAttribute('data-i18n') || 'title';
-        document.title = this.t(titleKey);
+    // 🇷🇺 RUSSIAN
+    ru: {
+        nav_get_directions: "Проложить маршрут",
+        nav_home: "ГЛАВНАЯ",
+        nav_tours: "ТУРЫ",
+        nav_why_us: "ПОЧЕМУ МЫ?",
+        nav_blog: "БЛОГ",
+        nav_contact: "КОНТАКТЫ",
+        hero_badge: "С НАМИ НАДЕЖНО С 1997 ГОДА",
+        hero_title: "Откройте для себя<br>Приключения",
+        hero_description: "Незабываемые путешествия в самые красивые уголки мира с профессиональными гидами.",
+        hero_explore: "Выбрать тур",
+        hero_blog: "Дневник путешествий",
+        hero_contact: "Связаться с нами",
+        categories_title: "НАЧНИТЕ ИССЛЕДОВАТЬ",
+        cat_turkey: "ТУРЫ ПО ТУРЦИИ",
+        cat_international: "МЕЖДУНАРОДНЫЕ ТУРЫ",
+        cat_daily: "ОДНОДНЕВНЫЕ ТУРЫ",
+        cat_group: "ГРУППОВЫЕ ТУРЫ",
+        categories_view_more: "ПОКАЗАТЬ ВСЕ",
+        popular_badge: "ПОПУЛЯРНЫЕ",
+        popular_title: "НАШИ САМЫЕ ПОПУЛЯРНЫЕ МАРШРУТЫ",
+        popular_subtitle: "Туры, которые наши путешественники выбирают прямо сейчас",
+        tours_badge: "ВСЕ МАРШРУТЫ",
+        tours_title: "Выбрано для вас",
+        tours_subtitle: "Изучите наши маршруты, чтобы найти отпуск своей мечты",
+        why_badge: "ПОЧЕМУ WALKABOUT TRAVEL?",
+        why_title: "Причины выбрать нас",
+        why_subtitle: "Собирайте безопасные и незабываемые воспоминания с нашим 28-летним опытом",
+        why_feature1_title: "Безопасное путешествие",
+        why_feature1_desc: "Полная безопасность с сертификатом TURSAB, гарантией страховки и лицензированными гидами.",
+        why_feature2_title: "28 лет опыта",
+        why_feature2_desc: "С 1997 года мы обслужили тысячи довольных клиентов.",
+        why_feature3_title: "Поддержка 24/7",
+        why_feature3_desc: "Мы с вами в каждый момент вашего путешествия.",
+        why_feature4_title: "Гарантия лучшей цены",
+        why_feature4_desc: "Мы предлагаем качественный сервис по самым доступным ценам.",
+        blog_badge: "ДНЕВНИК ПУТЕШЕСТВИЙ",
+        blog_title: "Блог и путеводитель",
+        blog_subtitle: "Вдохновляйтесь нашим опытом",
+        contact_badge: "КОНТАКТЫ",
+        contact_title: "Давайте спланируем ваш отпуск",
+        contact_subtitle: "Наша команда экспертов готова вам помочь",
+        contact_name_label: "Полное имя *",
+        contact_name_placeholder: "Иван Иванов",
+        contact_email_label: "Email адрес *",
+        contact_email_placeholder: "ivan@example.com",
+        contact_phone_label: "Номер телефона",
+        contact_phone_placeholder: "+7 900 000 00 00",
+        contact_message_label: "Ваше сообщение *",
+        contact_message_placeholder: "Какой тур вас интересует?",
+        contact_send_button: "Отправить сообщение",
+        contact_info_address_title: "Наш адрес",
+        contact_info_address_text: "ул. Мимар Синан, № 42/A<br>Стамбул, Турция",
+        contact_info_phone_title: "Телефон",
+        contact_info_email_title: "Email",
+        footer_tagline: "Путешествия, спланированные с уверенностью с 1997 года.",
+        footer_quick_links: "Быстрые ссылки",
+        footer_categories: "Категории",
+        footer_cat_family: "Семейные туры",
+        footer_cat_couples: "Туры для пар",
+        footer_cat_groups: "Групповые туры",
+        footer_cat_honeymoon: "Медовый месяц",
+        footer_cat_solo: "Индивидуальные туры",
+        footer_services: "Услуги",
+        footer_service_visa: "Визовая поддержка",
+        footer_service_hotel: "Бронирование отелей",
+        footer_service_flight: "Авиабилеты",
+        footer_service_transfer: "VIP Трансфер",
+        footer_copyright: "© 2026 WalkAbout Travel. Все права защищены."
+    },
+
+    // 🇩🇪 GERMAN
+    de: {
+        nav_get_directions: "Route planen",
+        nav_home: "STARTSEITE",
+        nav_tours: "TOUREN",
+        nav_why_us: "WARUM WIR?",
+        nav_blog: "BLOG",
+        nav_contact: "KONTAKT",
+        hero_badge: "VERTRAUEN SEIT 1997",
+        hero_title: "Entdecken Sie das<br>Abenteuer",
+        hero_description: "Unvergessliche Reisen zu den schönsten Zielen der Welt mit professioneller Führung.",
+        hero_explore: "Touren Entdecken",
+        hero_blog: "Reisetagebuch",
+        hero_contact: "Kontaktiere uns",
+        categories_title: "BEGINNEN ZU ERKUNDEN",
+        cat_turkey: "TÜRKEI TOUREN",
+        cat_international: "INTERNATIONAL",
+        cat_daily: "TAGESTOUREN",
+        cat_group: "GRUPPENTOUREN",
+        categories_view_more: "ALLE ANSEHEN",
+        popular_badge: "BELIEBT",
+        popular_title: "UNSERE BELIEBTESTEN REISEN",
+        popular_subtitle: "Die Reisen, die unsere Gäste gerade buchen",
+        tours_badge: "ALLE ROUTEN",
+        tours_title: "Für Sie ausgewählt",
+        tours_subtitle: "Durchsuchen Sie unsere Routen, um Ihren Traumurlaub zu finden",
+        why_badge: "WARUM WALKABOUT TRAVEL?",
+        why_title: "Gründe, uns zu wählen",
+        why_subtitle: "Sammeln Sie sichere und unvergessliche Erinnerungen mit unserer 28-jährigen Erfahrung",
+        why_feature1_title: "Sicheres Reisen",
+        why_feature1_desc: "Volle Sicherheit mit TURSAB-Zertifikat, garantierter Versicherung und lizenzierten Reiseleitern.",
+        why_feature2_title: "28 Jahre Erfahrung",
+        why_feature2_desc: "Seit 1997 haben wir Tausende von zufriedenen Kunden bedient.",
+        why_feature3_title: "24/7 Support",
+        why_feature3_desc: "Wir sind in jedem Moment Ihrer Reise für Sie da.",
+        why_feature4_title: "Beste Preisgarantie",
+        why_feature4_desc: "Wir bieten Qualitätsservice zu den günstigsten Preisen.",
+        blog_badge: "REISETAGEBUCH",
+        blog_title: "Blog & Reiseführer",
+        blog_subtitle: "Lassen Sie sich von unseren Erfahrungen inspirieren",
+        contact_badge: "KONTAKT",
+        contact_title: "Lassen Sie uns Ihren Urlaub planen",
+        contact_subtitle: "Unser Expertenteam hilft Ihnen gerne weiter",
+        contact_name_label: "Vollständiger Name *",
+        contact_name_placeholder: "Max Mustermann",
+        contact_email_label: "E-Mail Adresse *",
+        contact_email_placeholder: "max@beispiel.de",
+        contact_phone_label: "Telefonnummer",
+        contact_phone_placeholder: "+49 151 0000 0000",
+        contact_message_label: "Ihre Nachricht *",
+        contact_message_placeholder: "An welcher Tour sind Sie interessiert?",
+        contact_send_button: "Nachricht Senden",
+        contact_info_address_title: "Unsere Adresse",
+        contact_info_address_text: "Mimar Sinan Str. Nr: 42/A<br>Istanbul, Türkei",
+        contact_info_phone_title: "Telefon",
+        contact_info_email_title: "E-Mail",
+        footer_tagline: "Reisen, die seit 1997 mit Vertrauen geplant werden.",
+        footer_quick_links: "Schnelllinks",
+        footer_categories: "Kategorien",
+        footer_cat_family: "Familientouren",
+        footer_cat_couples: "Paartouren",
+        footer_cat_groups: "Gruppentouren",
+        footer_cat_honeymoon: "Flitterwochen",
+        footer_cat_solo: "Singletouren",
+        footer_services: "Dienstleistungen",
+        footer_service_visa: "Visum-Beratung",
+        footer_service_hotel: "Hotelreservierung",
+        footer_service_flight: "Flugtickets",
+        footer_service_transfer: "VIP-Transfer",
+        footer_copyright: "© 2026 WalkAbout Travel. Alle Rechte vorbehalten."
+    },
+
+    // 🇨🇳 CHINESE
+    zh: {
+        nav_get_directions: "获取路线",
+        nav_home: "主页",
+        nav_tours: "旅游",
+        nav_why_us: "为什么选择我们",
+        nav_blog: "博客",
+        nav_contact: "联系我们",
+        hero_badge: "始于1997年的信赖",
+        hero_title: "发现<br>冒险之旅",
+        hero_description: "在专业向导的带领下，前往世界上最美丽的目的地进行难忘的旅程。",
+        hero_explore: "探索旅游",
+        hero_blog: "旅行日记",
+        hero_contact: "联系我们",
+        categories_title: "开始探索",
+        cat_turkey: "土耳其旅游",
+        cat_international: "国际旅游",
+        cat_daily: "一日游",
+        cat_group: "跟团游",
+        categories_view_more: "查看全部",
+        popular_badge: "特色推荐",
+        popular_title: "最受欢迎的行程",
+        popular_subtitle: "我们的旅客正在预订的行程",
+        tours_badge: "所有路线",
+        tours_title: "为您精选",
+        tours_subtitle: "浏览我们的路线，寻找您的梦想假期",
+        why_badge: "为什么选择 WALKABOUT TRAVEL？",
+        why_title: "选择我们的理由",
+        why_subtitle: "凭借28年的经验，收集安全而难忘的回忆",
+        why_feature1_title: "安全旅行",
+        why_feature1_desc: "TURSAB认证，保险保障和持证导游，提供全面安全保障。",
+        why_feature2_title: "28年经验",
+        why_feature2_desc: "自1997年以来，我们已为数以千计的满意客户提供服务。",
+        why_feature3_title: "24/7 全天候支持",
+        why_feature3_desc: "在您旅途中的每一个时刻，我们与您同在。",
+        why_feature4_title: "最优价格保证",
+        why_feature4_desc: "我们以最实惠的价格提供优质的服务。",
+        blog_badge: "旅行日记",
+        blog_title: "博客与旅行指南",
+        blog_subtitle: "从我们的经验中获取灵感",
+        contact_badge: "联系我们",
+        contact_title: "让我们计划您的假期",
+        contact_subtitle: "我们的专家团队随时准备为您提供帮助",
+        contact_name_label: "全名 *",
+        contact_name_placeholder: "王小明",
+        contact_email_label: "电子邮件地址 *",
+        contact_email_placeholder: "wang@example.com",
+        contact_phone_label: "电话号码",
+        contact_phone_placeholder: "+86 138 0000 0000",
+        contact_message_label: "您的留言 *",
+        contact_message_placeholder: "您对哪个旅游项目感兴趣？",
+        contact_send_button: "发送留言",
+        contact_info_address_title: "我们的地址",
+        contact_info_address_text: "Mimar Sinan 街 42/A 号<br>土耳其，伊斯坦布尔",
+        contact_info_phone_title: "电话",
+        contact_info_email_title: "电子邮件",
+        footer_tagline: "自1997年起值得信赖的旅程规划。",
+        footer_quick_links: "快速链接",
+        footer_categories: "类别",
+        footer_cat_family: "家庭游",
+        footer_cat_couples: "情侣游",
+        footer_cat_groups: "跟团游",
+        footer_cat_honeymoon: "蜜月游",
+        footer_cat_solo: "自由行",
+        footer_services: "服务",
+        footer_service_visa: "签证咨询",
+        footer_service_hotel: "酒店预订",
+        footer_service_flight: "机票",
+        footer_service_transfer: "VIP 接送",
+        footer_copyright: "© 2026 WalkAbout Travel. 保留所有权利。"
+    },
+
+    // 🇸🇦 ARABIC (RTL)
+    ar: {
+        nav_get_directions: "احصل على الاتجاهات",
+        nav_home: "الرئيسية",
+        nav_tours: "جولاتنا",
+        nav_why_us: "لماذا نحن؟",
+        nav_blog: "المدونة",
+        nav_contact: "اتصل بنا",
+        hero_badge: "موثوقون منذ عام 1997",
+        hero_title: "اكتشف<br>المغامرة",
+        hero_description: "رحلات لا تُنسى إلى أجمل الوجهات في العالم مع إرشاد احترافي.",
+        hero_explore: "استكشف الجولات",
+        hero_blog: "يوميات السفر",
+        hero_contact: "اتصل بنا",
+        categories_title: "ابدأ الاستكشاف",
+        cat_turkey: "جولات تركيا",
+        cat_international: "دولية",
+        cat_daily: "جولات يومية",
+        cat_group: "جولات جماعية",
+        categories_view_more: "عرض الكل",
+        popular_badge: "مميز",
+        popular_title: "رحلاتنا الأكثر شهرة",
+        popular_subtitle: "الرحلات التي يحجزها مسافرونا الآن",
+        tours_badge: "جميع المسارات",
+        tours_title: "مختارة لك",
+        tours_subtitle: "تصفح مساراتنا للعثور على عطلة أحلامك",
+        why_badge: "لماذا WALKABOUT TRAVEL؟",
+        why_title: "أسباب لاختيارنا",
+        why_subtitle: "اجمع ذكريات آمنة ولا تُنسى مع خبرتنا التي تبلغ 28 عامًا",
+        why_feature1_title: "سفر آمن",
+        why_feature1_desc: "أمان كامل مع شهادة TURSAB، وتأمين مضمون، ومرشدين مرخصين.",
+        why_feature2_title: "28 عامًا من الخبرة",
+        why_feature2_desc: "لقد خدمنا الآلاف من العملاء السعداء منذ عام 1997.",
+        why_feature3_title: "دعم على مدار الساعة",
+        why_feature3_desc: "نحن معك في كل لحظة من رحلتك.",
+        why_feature4_title: "أفضل سعر مضمون",
+        why_feature4_desc: "نقدم خدمة عالية الجودة بأسعار معقولة.",
+        blog_badge: "يوميات السفر",
+        blog_title: "المدونة ودليل السفر",
+        blog_subtitle: "استلهم من تجاربنا",
+        contact_badge: "اتصل بنا",
+        contact_title: "دعنا نخطط لعطلتك",
+        contact_subtitle: "فريق الخبراء لدينا جاهز لمساعدتك",
+        contact_name_label: "الاسم الكامل *",
+        contact_name_placeholder: "أحمد محمد",
+        contact_email_label: "عنوان البريد الإلكتروني *",
+        contact_email_placeholder: "ahmet@example.com",
+        contact_phone_label: "رقم الهاتف",
+        contact_phone_placeholder: "+966 50 000 0000",
+        contact_message_label: "رسالتك *",
+        contact_message_placeholder: "بأي جولة أنت مهتم؟",
+        contact_send_button: "إرسال الرسالة",
+        contact_info_address_title: "عنواننا",
+        contact_info_address_text: "شارع معمار سنان رقم: 42/A<br>إسطنبول، تركيا",
+        contact_info_phone_title: "الهاتف",
+        contact_info_email_title: "البريد الإلكتروني",
+        footer_tagline: "رحلات مخطط لها بثقة منذ عام 1997.",
+        footer_quick_links: "روابط سريعة",
+        footer_categories: "الفئات",
+        footer_cat_family: "جولات عائلية",
+        footer_cat_couples: "جولات للأزواج",
+        footer_cat_groups: "جولات جماعية",
+        footer_cat_honeymoon: "شهر العسل",
+        footer_cat_solo: "جولات فردية",
+        footer_services: "خدماتنا",
+        footer_service_visa: "استشارات التأشيرة",
+        footer_service_hotel: "حجز فندقي",
+        footer_service_flight: "تذاكر الطيران",
+        footer_service_transfer: "نقل VIP",
+        footer_copyright: "© 2026 WalkAbout Travel. جميع الحقوق محفوظة."
     }
-},
-  
-  // Aktif butonu işaretle
-  updateActiveButton(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      if (btn.getAttribute('data-lang') === lang) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-    console.log(`✅ Aktif buton: ${lang.toUpperCase()}`);
-  },
-  
-  
-  
-  // Başlat
-  async init(defaultLang = 'tr') {
-    console.log('🚀 i18n başlatılıyor...');
-    console.log(`🌍 Varsayılan dil: ${defaultLang}`);
-    
-    // localStorage'dan kayıtlı dili al
-    const savedLang = localStorage.getItem('language') || defaultLang;
-    console.log(`💾 Kaydedilmiş dil: ${savedLang}`);
-    
-    // Dil dosyasını yükle
-    const loaded = await this.loadLanguage(savedLang);
-    
-    if (loaded) {
-      this.currentLang = savedLang;
-      document.documentElement.lang = savedLang;
-      
-      // RTL desteği
-      if (savedLang === 'ar') {
-        document.body.setAttribute('dir', 'rtl');
-        document.body.classList.add('rtl');
-      }
-      
-      // Sayfayı güncelle
-      this.updatePageContent();
-      this.updateActiveButton(savedLang);
-      
-      console.log(`✅ i18n başlatıldı (${savedLang.toUpperCase()})`);
-    } else {
-      console.error('❌ i18n başlatılamadı!');
-    }
-    
-    // NOT: Butonlar artık index.html'den başlatılıyor!
-  },
-  
-  // Dil ismi al
-  getLanguageName(lang) {
-    const names = {
-      'tr': 'Türkçe',
-      'en': 'English',
-      'es': 'Español',
-      'ru': 'Русский',
-      'de': 'Deutsch',
-      'ar': 'العربية',
-      'zh': '中文'
-    };
-    return names[lang] || lang.toUpperCase();
-  },
-  
-  // Toast bildirimi göster
-  showToast(message, type = 'success') {
-    // Eski toast'u kaldır
-    const existing = document.querySelector('.language-toast');
-    if (existing) existing.remove();
-    
-    // Yeni toast oluştur
-    const toast = document.createElement('div');
-    toast.className = `language-toast ${type}`;
-    toast.textContent = message;
-    toast.style.cssText = `
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      background: ${type === 'success' ? '#38bdf8' : '#ef4444'};
-      color: white;
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      z-index: 10000;
-      opacity: 0;
-      transform: translateX(100px);
-      transition: all 0.3s ease;
-      pointer-events: none;
-    `;
-    document.body.appendChild(toast);
-    
-    // Göster
-    setTimeout(() => {
-      toast.style.opacity = '1';
-      toast.style.transform = 'translateX(0)';
-    }, 10);
-    
-    // Gizle ve kaldır
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateX(100px)';
-      setTimeout(() => toast.remove(), 300);
-    }, 3000);
-  }
 };
 
-// Global olarak ekle
-if (typeof window !== 'undefined') {
-  window.i18n = i18n;
-  console.log('✅ i18n global olarak tanımlandı (window.i18n)');
-  
-  // Debug için
-  window.testLanguage = function(lang) {
-    console.log(`🧪 Test: ${lang.toUpperCase()}`);
-    if (window.i18n) {
-      window.i18n.changeLanguage(lang);
-    } else {
-      console.error('❌ i18n bulunamadı!');
+// ========================================================
+// İŞLETİM MANTIĞI (DOKUNMAYIN)
+// ========================================================
+
+window.i18n = {
+    translations,
+    currentLang: 'tr',
+    
+    async init(lang = 'tr') {
+        this.currentLang = lang;
+        this.applyRTL();
+        this.updateDOM();
+    },
+
+    changeLanguage(lang) {
+        if (!this.translations[lang]) return;
+        this.currentLang = lang;
+        localStorage.setItem('language', lang);
+        this.applyRTL();
+        this.updateDOM();
+        
+        // Sayfadaki dinamik içerikleri haberdar et
+        window.dispatchEvent(new Event('languageChanged'));
+    },
+
+    applyRTL() {
+        if (this.currentLang === 'ar') {
+            document.body.setAttribute('dir', 'rtl');
+            document.body.style.fontFamily = "'Tajawal', 'Inter', sans-serif";
+        } else {
+            document.body.removeAttribute('dir');
+            document.body.style.fontFamily = "'Inter', sans-serif";
+        }
+    },
+
+    updateDOM() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (this.translations[this.currentLang] && this.translations[this.currentLang][key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = this.translations[this.currentLang][key];
+                } else {
+                    el.innerHTML = this.translations[this.currentLang][key];
+                }
+            }
+        });
+        
+        document.documentElement.lang = this.currentLang;
+    },
+
+    // JavaScript içinden çeviri çağırmak için yardımcı fonksiyon
+    t(key) {
+        return (this.translations[this.currentLang] && this.translations[this.currentLang][key]) 
+               ? this.translations[this.currentLang][key] 
+               : key;
     }
-  };
-  
-  console.log('💡 Test için konsola yazın: testLanguage("en")');
-}
-
-// Node.js uyumluluğu
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = i18n;
-}
-
-
-console.log('✅ i18n.js yükleme tamamlandı!');
-
+};
