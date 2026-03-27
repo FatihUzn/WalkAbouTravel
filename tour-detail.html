@@ -6,745 +6,158 @@
     <title>Tur Detayları - WalkAbout Travel</title>
     <link rel="icon" href="assets/walkabout_travel_logo.jpg">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Main Styles -->
     <link rel="stylesheet" href="style.css">
     
     <style>
         /* ========================================
-           LITHUANIA STYLE NAVBAR FOR TOUR DETAIL
+           PREMIUM TOUR DETAIL STYLES
            ======================================== */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { margin: 0 !important; padding: 0 !important; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1e293b; }
         
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            color: #0c4a6e;
-        }
-        
-        /* NAVBAR - SAME AS INDEX */
-        nav {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 1000 !important;
-            background: rgba(255, 255, 255, 0.98) !important;
-            backdrop-filter: blur(10px) !important;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-        }
-        
+        /* NAVBAR (Ana sayfa ile aynı) */
+        nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; z-index: 1000 !important; background: rgba(255, 255, 255, 0.98) !important; backdrop-filter: blur(10px) !important; border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; }
         .header-top-row { display: none !important; }
-        
-        .nav-container {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            padding: 10px 40px !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-        }
-        
-        .logo {
-            display: flex !important;
-            align-items: center !important;
-            gap: 12px !important;
-            text-decoration: none !important;
-        }
-        
-        .logo img {
-            height: 40px !important;
-            border-radius: 8px !important;
-        }
-        
-        .logo-text {
-            display: flex !important;
-            flex-direction: column !important;
-        }
-        
-        .logo-title {
-            font-family: 'Playfair Display', serif !important;
-            font-size: 20px !important;
-            font-weight: 700 !important;
-            color: #0c4a6e !important;
-            line-height: 1 !important;
-        }
-        
-        .logo-subtitle {
-            font-size: 10px !important;
-            color: #64748b !important;
-            letter-spacing: 1.5px !important;
-            text-transform: uppercase !important;
-            margin-top: 2px !important;
-        }
-        
-        .nav-links {
-            display: flex !important;
-            gap: 40px !important;
-            align-items: center !important;
-            flex: 1 !important;
-            justify-content: center !important;
-            list-style: none !important;
-        }
-        
+        .nav-container { display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 10px 40px !important; max-width: 100% !important; margin: 0 !important; }
+        .logo { display: flex !important; align-items: center !important; gap: 12px !important; text-decoration: none !important; }
+        .logo img { height: 40px !important; border-radius: 8px !important; }
+        .logo-text { display: flex !important; flex-direction: column !important; }
+        .logo-title { font-family: 'Playfair Display', serif !important; font-size: 20px !important; font-weight: 700 !important; color: #0c4a6e !important; line-height: 1 !important; }
+        .logo-subtitle { font-size: 10px !important; color: #64748b !important; letter-spacing: 1.5px !important; text-transform: uppercase !important; margin-top: 2px !important; }
+        .nav-links { display: flex !important; gap: 40px !important; align-items: center !important; flex: 1 !important; justify-content: center !important; list-style: none !important; }
         .nav-links li { display: inline !important; }
-        
-        .nav-links a {
-            color: #0c4a6e !important;
-            text-decoration: none !important;
-            font-weight: 500 !important;
-            font-size: 15px !important;
-            transition: color 0.3s !important;
-            position: relative !important;
-            padding: 5px 0 !important;
-        }
-        
-        .nav-links a:hover {
-            color: #38bdf8 !important;
-        }
-        
-        .nav-right {
-            display: flex !important;
-            align-items: center !important;
-            gap: 25px !important;
-        }
-        
-        .utility-links {
-            display: flex !important;
-            align-items: center !important;
-            gap: 20px !important;
-            padding-right: 20px !important;
-            border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
-        }
-        
-        .utility-links a {
-            color: #64748b !important;
-            text-decoration: none !important;
-            font-size: 13px !important;
-            font-weight: 500 !important;
-            transition: color 0.3s !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 6px !important;
-        }
-        
-        .utility-links a i {
-            color: #38bdf8 !important;
-            font-size: 14px !important;
-        }
-        
-        .utility-links a:hover {
-            color: #38bdf8 !important;
-        }
-        
-        .social-nav {
-            display: flex !important;
-            align-items: center !important;
-            gap: 12px !important;
-        }
-        
-        .social-nav a {
-            color: #64748b !important;
-            font-size: 16px !important;
-            transition: color 0.3s !important;
-        }
-        
-        .social-nav a:hover {
-            color: #38bdf8 !important;
-        }
-        
-        .lang-switcher {
-            display: flex !important;
-            gap: 8px !important;
-        }
-        
-        .lang-btn {
-            padding: 6px 12px !important;
-            background: transparent !important;
-            border: 1px solid #e2e8f0 !important;
-            color: #0c4a6e !important;
-            border-radius: 8px !important;
-            cursor: pointer !important;
-            font-size: 12px !important;
-            font-weight: 600 !important;
-            transition: all 0.3s !important;
-        }
-        
-        .lang-btn:hover,
-        .lang-btn.active {
-            background: #38bdf8 !important;
-            border-color: #38bdf8 !important;
-            color: white !important;
-        }
-        
-        .menu-toggle {
-            display: none !important;
-            font-size: 24px !important;
-            color: #0c4a6e !important;
-            background: none !important;
-            border: none !important;
-            cursor: pointer !important;
-        }
+        .nav-links a { color: #0c4a6e !important; text-decoration: none !important; font-weight: 600 !important; font-size: 14px !important; transition: color 0.3s !important; text-transform: uppercase; }
+        .nav-links a:hover { color: #38bdf8 !important; }
+        .lang-dropdown-btn { background: transparent; border: 1px solid #cbd5e1; color: #0c4a6e; padding: 8px 15px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .menu-toggle { display: none !important; font-size: 24px !important; color: #0c4a6e !important; background: none !important; border: none !important; cursor: pointer !important; }
         
         /* BREADCRUMB */
-        .breadcrumb {
-            padding: 25px 40px;
-            background: #f8f9fa;
-            margin-top: 61px;
-            border-bottom: 1px solid #e2e8f0;
-        }
+        .breadcrumb { padding: 25px 40px; background: #f8fafc; margin-top: 61px; border-bottom: 1px solid #e2e8f0; }
+        .breadcrumb-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;}
+        .breadcrumb a { color: #64748b; text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: #38bdf8; }
+        .breadcrumb-separator { color: #cbd5e1; }
+        .breadcrumb-current { color: #0c4a6e; font-weight: 700; }
         
-        .breadcrumb-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-        }
+        /* HERO */
+        .tour-detail-hero { position: relative; height: 65vh; min-height: 500px; overflow: hidden; display: flex; align-items: flex-end; }
+        .tour-detail-hero img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .tour-detail-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%); z-index: 1; }
+        .tour-hero-content { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 60px 40px; width: 100%; color: white; }
+        .tour-badge { display: inline-block; padding: 8px 20px; background: #38bdf8; color: white; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .tour-hero-content h1 { font-size: 56px; font-weight: 900; margin-bottom: 30px; line-height: 1.1; font-family: 'Playfair Display', serif; text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6); }
         
-        .breadcrumb a {
-            color: #64748b;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .breadcrumb a:hover {
-            color: #38bdf8;
-        }
-        
-        .breadcrumb-separator {
-            color: #cbd5e1;
-        }
-        
-        .breadcrumb-current {
-            color: #0c4a6e;
-            font-weight: 600;
-        }
-        
-        /* TOUR DETAIL HERO */
-        .tour-detail-hero {
-            position: relative;
-            height: 70vh;
-            min-height: 600px;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-        }
-
-        .tour-detail-hero img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-
-        .tour-detail-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, 
-                rgba(0,0,0,0.1) 0%, 
-                rgba(0,0,0,0.4) 50%,
-                rgba(0,0,0,0.85) 100%
-            );
-            z-index: 1;
-        }
-
-        .tour-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            width: 100%;
-            color: white;
-        }
-
-        .tour-badge {
-            display: inline-block;
-            padding: 10px 24px;
-            background: rgba(56, 189, 248, 0.95);
-            color: white;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .tour-hero-content h1 {
-            font-size: 64px;
-            font-weight: 900;
-            margin-bottom: 30px;
-            line-height: 1.1;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
-            color: white;
-        }
-
-        .tour-meta {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-
-        .tour-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.98);
-            padding: 16px 32px;
-            border-radius: 35px;
-            border: 2px solid rgba(56, 189, 248, 0.5);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-        }
-
-        .tour-meta-item i {
-            font-size: 28px;
-            color: #38bdf8;
-            filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.5));
-        }
-
-        .tour-meta-item span {
-            font-size: 19px;
-            font-weight: 700;
-            color: #0c4a6e;
-            letter-spacing: 0.3px;
-        }
+        /* QUICK LOOK (META ICONS) */
+        .tour-quick-look { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 20px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.2); }
+        .quick-item { display: flex; flex-direction: column; gap: 8px; }
+        .quick-item i { font-size: 24px; color: #38bdf8; }
+        .quick-item span { font-size: 15px; font-weight: 600; color: #f8fafc; }
 
         /* CONTENT LAYOUT */
-        .tour-detail-content {
-            padding: 90px 0;
-            background: #ffffff;
-        }
+        .tour-detail-content { padding: 80px 0; background: #ffffff; }
+        .tour-grid-layout { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
+        
+        /* LEFT COLUMN (MAIN) */
+        .tour-main h2.section-heading { font-size: 32px; font-family: 'Playfair Display', serif; color: #0f172a; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #e2e8f0; font-weight: 800; }
+        .tour-overview { font-size: 16px; line-height: 1.8; color: #475569; margin-bottom: 50px; }
+        
+        /* ITINERARY (Gün Gün Program) */
+        .itinerary-item { margin-bottom: 40px; }
+        .itinerary-day-title { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 15px; display: flex; align-items: baseline; gap: 10px; }
+        .itinerary-day-title span.day-badge { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 900; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px; }
+        .itinerary-desc { font-size: 16px; line-height: 1.8; color: #475569; padding-left: 0; }
+        
+        /* DEPARTURE & RETURN TABLE */
+        .info-table { width: 100%; border-collapse: collapse; margin-bottom: 50px; border-top: 1px solid #e2e8f0; }
+        .info-table tr { border-bottom: 1px solid #e2e8f0; }
+        .info-table td { padding: 20px 0; font-size: 16px; color: #475569; }
+        .info-table td:first-child { font-weight: 700; color: #0f172a; width: 35%; }
 
-        .tour-grid-layout {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 70px;
-        }
+        /* INCLUDED / EXCLUDED */
+        .inc-exc-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .inc-exc-box h3 { font-size: 20px; font-weight: 800; margin-bottom: 25px; color: #0f172a; }
+        .inc-exc-list { list-style: none; }
+        .inc-exc-list li { display: flex; gap: 15px; margin-bottom: 15px; font-size: 15px; color: #475569; line-height: 1.5; align-items: flex-start; }
+        .inc-exc-list li i.fa-check { color: #10b981; font-size: 16px; margin-top: 3px; }
+        .inc-exc-list li i.fa-minus { color: #94a3b8; font-size: 16px; margin-top: 3px; }
 
-        .tour-main {
-            background: white;
-        }
+        /* PRICING TABLE */
+        .pricing-table-container { margin-bottom: 60px; overflow-x: auto; }
+        .pricing-table { width: 100%; border-collapse: collapse; border: 1px solid #e2e8f0; text-align: center; }
+        .pricing-table th { background: #f8fafc; padding: 20px; font-weight: 700; color: #0f172a; border: 1px solid #e2e8f0; }
+        .pricing-table td { padding: 20px; border: 1px solid #e2e8f0; font-size: 16px; color: #475569; }
+        .pricing-table td:first-child { font-weight: 700; color: #0f172a; text-align: left; }
+        .pricing-note { font-size: 13px; font-style: italic; color: #64748b; margin-top: 10px; }
 
-        .tour-main h2 {
-            font-size: 42px;
-            font-family: 'Playfair Display', serif;
-            color: #0c4a6e;
-            margin-bottom: 35px;
-            padding-bottom: 25px;
-            border-bottom: 3px solid #e0f2fe;
-        }
+        /* NOTES */
+        .notes-list { list-style: none; margin-bottom: 60px; }
+        .notes-list li { position: relative; padding-left: 25px; margin-bottom: 15px; font-size: 15px; color: #475569; line-height: 1.6; }
+        .notes-list li::before { content: '→'; position: absolute; left: 0; top: 0; color: #38bdf8; font-weight: bold; }
 
-        .tour-main p {
-            line-height: 2;
-            color: #64748b;
-            margin-bottom: 22px;
-            font-size: 17px;
-        }
+        /* MAP */
+        .map-container { width: 100%; height: 400px; border-radius: 16px; overflow: hidden; margin-bottom: 60px; border: 1px solid #e2e8f0; }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
 
-        /* SIDEBAR */
-        .tour-sidebar {
-            position: sticky;
-            top: 110px;
-            height: fit-content;
-        }
+        /* SIDEBAR (Rezervasyon Kartı) */
+        .tour-sidebar { position: sticky; top: 110px; height: fit-content; }
+        .tour-booking-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0; text-align: center; }
+        .price-label { font-size: 13px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .price-amount { font-size: 48px; font-weight: 900; color: #0f172a; font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: 30px; }
+        .booking-cta { display: flex; flex-direction: column; gap: 15px; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-primary { background: #38bdf8; color: white; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+        .btn-primary:hover { background: #0284c7; transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid #25d366; color: #25d366; }
+        .btn-outline:hover { background: #25d366; color: white; }
 
-        .tour-booking-card {
-            background: white;
-            padding: 50px;
-            border-radius: 28px;
-            box-shadow: 0 12px 45px rgba(0, 0, 0, 0.1);
-            border: 2px solid #e0f2fe;
-        }
+        /* GALLERY (Grid) */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .gallery-item { border-radius: 12px; overflow: hidden; cursor: pointer; aspect-ratio: 4/3; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
 
-        .tour-price {
-            text-align: center;
-            padding-bottom: 35px;
-            border-bottom: 3px solid #e0f2fe;
-            margin-bottom: 40px;
-        }
-
-        .price-label {
-            font-size: 15px;
-            color: #64748b;
-            margin-bottom: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .price-amount {
-            font-size: 52px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-        }
-
-        .tour-info-list {
-            list-style: none;
-            margin-bottom: 35px;
-        }
-
-        .tour-info-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 18px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .tour-info-list li:last-child {
-            border-bottom: none;
-        }
-
-        .tour-info-label {
-            color: #64748b;
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        .tour-info-value {
-            color: #0c4a6e;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .booking-cta {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 18px 28px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-            color: white;
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border-color: #38bdf8;
-            color: #38bdf8;
-        }
-
-        .btn-outline:hover {
-            background: #38bdf8;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* GALLERY */
-        .tour-gallery {
-            margin-top: 60px;
-        }
-
-        .tour-gallery h2 {
-            margin-bottom: 40px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 18px;
-            cursor: pointer;
-            aspect-ratio: 4/3;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.15);
-        }
-
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: white;
-            font-size: 26px;
-            cursor: pointer;
-            z-index: 10001;
-            transition: all 0.3s;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: rotate(90deg);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .lightbox-prev { left: 25px; }
-        .lightbox-next { right: 25px; }
+        /* LIGHTBOX */
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 10000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox-content img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+        .lightbox-close, .lightbox-nav { position: absolute; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
+        .lightbox-close { top: 20px; right: 20px; width: 50px; height: 50px; font-size: 24px; }
+        .lightbox-nav { top: 50%; transform: translateY(-50%); width: 50px; height: 50px; font-size: 20px; }
+        .lightbox-prev { left: 20px; } .lightbox-next { right: 20px; }
+        .lightbox-close:hover, .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
-            .nav-links {
-                position: fixed !important;
-                top: 0 !important;
-                right: -100% !important;
-                height: 100vh !important;
-                width: 80% !important;
-                max-width: 350px !important;
-                background: white !important;
-                flex-direction: column !important;
-                padding: 100px 40px 40px !important;
-                transition: right 0.4s ease !important;
-                gap: 30px !important;
-                align-items: flex-start !important;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15) !important;
-                z-index: 999 !important;
-            }
-            
-            .nav-links.active {
-                right: 0 !important;
-            }
-            
-            .menu-toggle {
-                display: block !important;
-            }
-            
-            .utility-links,
-            .social-nav {
-                display: none !important;
-            }
-            
-            .tour-grid-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .tour-sidebar {
-                position: static;
-            }
-
-            .tour-main {
-                padding: 0;
-            }
-
-            .tour-hero-content h1 {
-                font-size: 42px;
-            }
-
-            .tour-booking-card {
-                padding: 35px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .nav-links { position: fixed !important; top: 0 !important; right: -100% !important; height: 100vh !important; width: 80% !important; max-width: 350px !important; background: white !important; flex-direction: column !important; padding: 100px 40px !important; transition: right 0.4s ease !important; align-items: flex-start !important; box-shadow: -5px 0 30px rgba(0,0,0,0.15) !important; z-index: 999 !important; }
+            .nav-links.active { right: 0 !important; }
+            .menu-toggle { display: block !important; }
+            .tour-grid-layout { grid-template-columns: 1fr; gap: 40px; }
+            .tour-sidebar { position: static; }
+            .tour-hero-content h1 { font-size: 42px; }
+            .inc-exc-container { grid-template-columns: 1fr; gap: 20px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 576px) {
-            .breadcrumb {
-                padding: 20px;
-            }
-            
-            .tour-detail-hero {
-                height: 50vh;
-                min-height: 400px;
-            }
-            
-            .tour-hero-content {
-                padding: 40px 20px;
-            }
-            
-            .tour-hero-content h1 {
-                font-size: 32px;
-            }
-            
-            .tour-grid-layout {
-                padding: 0 20px;
-            }
-            
-            .tour-main h2 {
-                font-size: 32px;
-            }
-            
-            .price-amount {
-                font-size: 42px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .tour-booking-card {
-                padding: 30px 20px;
-            }
-            
-            .tour-meta {
-                gap: 15px;
-            }
-            
-            .tour-meta-item {
-                padding: 12px 24px;
-            }
-            
-            .tour-meta-item i {
-                font-size: 24px;
-            }
-            
-            .tour-meta-item span {
-                font-size: 16px;
-            }
+            .tour-detail-hero { height: auto; min-height: 400px; padding-top: 100px; }
+            .tour-hero-content h1 { font-size: 32px; margin-bottom: 15px; }
+            .tour-quick-look { gap: 20px; }
+            .tour-grid-layout { padding: 0 20px; }
+            .tour-main h2.section-heading { font-size: 26px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .info-table td { display: block; padding: 10px 0; }
+            .info-table td:first-child { padding-bottom: 0; color: #38bdf8; }
         }
-
-        /* WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 999;
-            text-decoration: none;
-            transition: transform 0.3s;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
     <nav id="navbar">
-        <div class="header-top-row">
-            <div class="top-bar-left">
-                <a href="tel:+902125551923"><i class="fas fa-phone"></i> <span>+90 (212) 555 1923</span></a>
-                <a href="mailto:info@walkaboutravel.com"><i class="fas fa-envelope"></i> <span>info@walkaboutravel.com</span></a>
-            </div>
-            <div class="top-bar-right">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Istanbul" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-map-marker-alt"></i> <span data-i18n="nav_get_directions">Yol Tarifi Al</span>
-                </a>
-            </div>
-        </div>
-        
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
@@ -753,227 +166,386 @@
                     <span class="logo-subtitle">TOURISM & TRAVEL</span>
                 </div>
             </a>
-
-            <div class="nav-links" id="navLinks">
-                <a href="index.html" data-i18n="nav_home">HOME</a>
-                <a href="index.html#popular-trips" data-i18n="nav_tours">TOURS</a>
-                <a href="index.html#why-us" data-i18n="nav_why_us">WHY US</a>
-                <a href="index.html#blog" data-i18n="nav_blog">BLOG</a>
-                <a href="index.html#contact" data-i18n="nav_contact">CONTACT</a>
-            </div>
-
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-i18n="nav_home">HOME</a></li>
+                <li><a href="index.html#popular-trips" data-i18n="nav_tours">TOURS</a></li>
+                <li><a href="index.html#why-us" data-i18n="nav_why_us">WHY US</a></li>
+                <li><a href="index.html#blog" data-i18n="nav_blog">BLOG</a></li>
+                <li><a href="index.html#contact" data-i18n="nav_contact">CONTACT</a></li>
+            </ul>
             <div class="lang-dropdown">
                 <button class="lang-dropdown-btn">
-                    <i class="fas fa-globe"></i> <span class="current-lang-text">TR</span> <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-globe"></i> <span class="current-lang-text">TR</span>
                 </button>
                 <div class="lang-dropdown-content">
-                    <a href="#" data-lang="tr">Türkçe (TR)</a>
-                    <a href="#" data-lang="en">English (EN)</a>
-                    <a href="#" data-lang="es">Español (ES)</a>
-                    <a href="#" data-lang="ru">Русский (RU)</a>
-                    <a href="#" data-lang="de">Deutsch (DE)</a>
-                    <a href="#" data-lang="zh">中文 (ZH)</a>
-                    <a href="#" data-lang="ar">العربية (AR)</a>
+                    <a href="#" data-lang="tr">Türkçe</a>
+                    <a href="#" data-lang="en">English</a>
+                    <a href="#" data-lang="es">Español</a>
+                    <a href="#" data-lang="ru">Русский</a>
+                    <a href="#" data-lang="de">Deutsch</a>
+                    <a href="#" data-lang="zh">中文</a>
+                    <a href="#" data-lang="ar">العربية</a>
                 </div>
             </div>
-
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
-    <!-- BREADCRUMB -->
+
     <div class="breadcrumb">
         <div class="breadcrumb-container">
-            <a href="index.html" id="breadcrumb-home">Ana Sayfa</a>
+            <a href="index.html" id="lblHome">Ana Sayfa</a>
             <span class="breadcrumb-separator">›</span>
-            <a href="index.html#tours" id="breadcrumb-tours">Turlar</a>
+            <a href="index.html#tours" id="lblTours">Turlar</a>
             <span class="breadcrumb-separator">›</span>
-            <span class="breadcrumb-current" id="breadcrumbTitle">Tur Detayları</span>
+            <span class="breadcrumb-current" id="breadcrumbTitle">...</span>
         </div>
     </div>
 
-    <!-- HERO -->
     <div class="tour-detail-hero">
         <img id="tourHeroImage" src="" alt="">
         <div class="tour-hero-content">
-            <span class="tour-badge" id="tourBadge">Tur</span>
-            <h1 id="tourTitle">Tur Yükleniyor...</h1>
-            <div class="tour-meta" id="tourMeta"></div>
+            <span class="tour-badge" id="tourBadge">TUR</span>
+            <h1 id="tourTitle">Yükleniyor...</h1>
+            
+            <div class="tour-quick-look" id="tourQuickLook"></div>
         </div>
     </div>
 
-    <!-- CONTENT -->
     <div class="tour-detail-content">
         <div class="tour-grid-layout">
+            
             <div class="tour-main">
-                <h2>Tur Açıklaması</h2>
-                <div id="tourDescription">
-                    <p>Veriler işleniyor...</p>
+                
+                <div id="tourOverviewContainer">
+                    <h2 class="section-heading" id="lblOverview">Tur Hakkında</h2>
+                    <div class="tour-overview" id="tourDescription"></div>
                 </div>
 
-                <div class="tour-gallery">
-                    <h2>Fotoğraf Galerisi</h2>
+                <div id="tourItineraryContainer" style="display:none;">
+                    <div id="tourItineraryList"></div>
+                </div>
+
+                <div id="tourDepartureContainer" style="display:none;">
+                    <table class="info-table" id="tourDepartureTable"></table>
+                </div>
+
+                <div class="inc-exc-container" id="tourIncExcContainer" style="display:none;">
+                    <div class="inc-exc-box">
+                        <h3 id="lblIncluded">Fiyata Dahil Olanlar</h3>
+                        <ul class="inc-exc-list" id="tourIncludedList"></ul>
+                    </div>
+                    <div class="inc-exc-box">
+                        <h3 id="lblExcluded">Fiyata Dahil Olmayanlar</h3>
+                        <ul class="inc-exc-list" id="tourExcludedList"></ul>
+                    </div>
+                </div>
+
+                <div class="pricing-table-container" id="tourPricingContainer" style="display:none;">
+                    <h2 class="section-heading" id="lblPricing">Başlangıç Fiyatları</h2>
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Otel Sınıfı</th>
+                                <th>Fiyat (Kişi Başı)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tourPricingTableBody"></tbody>
+                    </table>
+                    <p class="pricing-note" id="lblPricingNote">(*) Belirtilen fiyatlar başlangıç fiyatlarıdır. Kesin fiyat için lütfen iletişime geçin.</p>
+                </div>
+
+                <div id="tourNotesContainer" style="display:none;">
+                    <h2 class="section-heading" id="lblNotes">Önemli Notlar</h2>
+                    <ul class="notes-list" id="tourNotesList"></ul>
+                </div>
+
+                <div id="tourMapContainer" style="display:none;">
+                    <h2 class="section-heading" id="lblMap">Tur Rotası</h2>
+                    <div class="map-container">
+                        <iframe id="tourMapIframe" src="" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div id="tourGalleryContainer" style="display:none; margin-top: 50px;">
+                    <h2 class="section-heading" id="lblGallery">Fotoğraf Galerisi</h2>
                     <div class="gallery-grid" id="tourGallery"></div>
                 </div>
+
             </div>
 
             <div class="tour-sidebar">
                 <div class="tour-booking-card">
-                    <div class="tour-price">
-                        <div class="price-label">Tur Fiyatı</div>
-                        <div class="price-amount" id="tourPrice">---</div>
-                    </div>
-
-                    <ul class="tour-info-list" id="tourInfoList"></ul>
+                    <div class="price-label" id="lblPriceTitle">BAŞLANGIÇ FİYATI</div>
+                    <div class="price-amount" id="tourPriceSidebar">---</div>
 
                     <div class="booking-cta">
                         <a href="#" class="btn btn-primary" id="emailBtn">
-                            <i class="fas fa-envelope"></i> E-posta ile Rezervasyon
+                            <i class="fas fa-envelope"></i> <span id="lblEmailBtn">Hemen Bilgi Al</span>
                         </a>
                         <a href="#" class="btn btn-outline" id="whatsappBtn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp ile İletişim
+                            <i class="fab fa-whatsapp"></i> <span id="lblWaBtn">WhatsApp Rezervasyon</span>
                         </a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close"><i class="fas fa-times"></i></button>
-        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">
-            <i class="fas fa-chevron-left"></i>
-        </button>
+        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <img id="lightboxImg" src="" alt="">
         </div>
-        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeImage(1)">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeImage(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/902125551923" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/902125551923" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- SCRIPTS -->
     <script src="i18n.js"></script>
     <script>
         let galleryImages = [];
         let currentImageIndex = 0;
         let currentTourId = "";
 
+        const dict = {
+            tr: { home: 'Ana Sayfa', tours: 'Turlar', overview: 'Tur Hakkında', day: 'Gün', included: 'Fiyata Dahil Olanlar', excluded: 'Fiyata Dahil Olmayanlar', pricing: 'Başlangıç Fiyatları', notes: 'Önemli Notlar', map: 'Tur Rotası', gallery: 'Fotoğraf Galerisi', priceTitle: 'BAŞLANGIÇ FİYATI', emailBtn: 'Hemen Bilgi Al', waBtn: 'WhatsApp Rezervasyon', pricingNote: '(*) Belirtilen fiyatlar başlangıç fiyatlarıdır. Kesin fiyat için lütfen iletişime geçin.' },
+            en: { home: 'Home', tours: 'Tours', overview: 'Overview', day: 'Day', included: 'Included', excluded: 'Not Included', pricing: 'Starting Prices', notes: 'Notes', map: 'Maps', gallery: 'Gallery', priceTitle: 'STARTING FROM', emailBtn: 'Inquire Now', waBtn: 'Book via WhatsApp', pricingNote: '(*) Prices are starting prices. Contact us for exact pricing.' },
+            es: { home: 'Inicio', tours: 'Tours', overview: 'Visión General', day: 'Día', included: 'Incluido', excluded: 'No Incluido', pricing: 'Precios', notes: 'Notas', map: 'Mapa', gallery: 'Galería', priceTitle: 'DESDE', emailBtn: 'Consultar', waBtn: 'Reservar (WhatsApp)', pricingNote: '(*) Precios iniciales.' },
+            ru: { home: 'Главная', tours: 'Туры', overview: 'Обзор', day: 'День', included: 'Включено', excluded: 'Не Включено', pricing: 'Цены', notes: 'Заметки', map: 'Карта', gallery: 'Галерея', priceTitle: 'ОТ', emailBtn: 'Запросить', waBtn: 'WhatsApp', pricingNote: '(*) Начальные цены.' },
+            de: { home: 'Startseite', tours: 'Touren', overview: 'Überblick', day: 'Tag', included: 'Inbegriffen', excluded: 'Nicht Inbegriffen', pricing: 'Preise', notes: 'Notizen', map: 'Karte', gallery: 'Galerie', priceTitle: 'AB', emailBtn: 'Anfragen', waBtn: 'WhatsApp', pricingNote: '(*) Startpreise.' },
+            zh: { home: '首页', tours: '旅游', overview: '概述', day: '天', included: '包含', excluded: '不含', pricing: '价格', notes: '笔记', map: '地图', gallery: '画廊', priceTitle: '起价', emailBtn: '立即咨询', waBtn: 'WhatsApp', pricingNote: '(*) 起步价.' },
+            ar: { home: 'الرئيسية', tours: 'جولات', overview: 'ملخص', day: 'يوم', included: 'مشمول', excluded: 'غير مشمول', pricing: 'الأسعار', notes: 'ملاحظات', map: 'خريطة', gallery: 'صالة عرض', priceTitle: 'يبدأ من', emailBtn: 'استفسر الآن', waBtn: 'WhatsApp', pricingNote: '(*) أسعار مبدئية.' }
+        };
+
+        // YENİ VE ESKİ JSON YAPISINI BİRLİKTE OKUYABİLEN AKILLI ÇEVİRMEN
+        function getLangText(tour, field, lang) {
+            if (!tour || !tour[field]) return '';
+            
+            // 1. Yeni düz yapı kontrolü (örn: description_en)
+            if (lang !== 'tr' && tour[`${field}_${lang}`]) {
+                return tour[`${field}_${lang}`];
+            }
+            
+            // 2. Eski iç içe (nested) yapı kontrolü (örn: description.en)
+            if (typeof tour[field] === 'object') {
+                return tour[field][lang] || tour[field]['tr'] || '';
+            }
+            
+            // 3. Varsayılan (Eğer direkt string ise)
+            return typeof tour[field] === 'string' ? tour[field] : '';
+        }
+
         async function loadTourDetail(tourId) {
             try {
                 currentTourId = tourId;
-                // Verileri data/tours.json dosyasından alıyoruz
                 const response = await fetch('data/tours.json');
                 if (!response.ok) throw new Error('Veri dosyası bulunamadı');
                 
                 const tours = await response.json();
-                
-                // tours.json bir array olduğu için id ile eşleşen turu buluyoruz
                 const tour = tours.find(t => t.id === tourId);
                 
                 if (!tour) {
-                    document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Tur Bulunamadı!</h1><a href="index.html">Ana Sayfaya Dön</a></div>';
+                    document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Tur Bulunamadı!</h1></div>';
                     return;
                 }
 
-                // Mevcut dili belirle (i18n.js yüklü ise ondan al, yoksa butondan veya 'tr')
-                let currentLang = 'tr';
-                if (typeof i18n !== 'undefined' && i18n.currentLang) {
-                    currentLang = i18n.currentLang;
-                
-                } else {
-                    const activeBtn = document.querySelector('.lang-btn.active');
-                    if (activeBtn) currentLang = activeBtn.getAttribute('data-lang');
+                let lang = 'tr';
+                if (typeof i18n !== 'undefined' && i18n.currentLang) lang = i18n.currentLang;
+                else {
+                    const activeBtn = document.querySelector('.lang-dropdown-content a.active') || document.querySelector('.lang-dropdown-content a[data-lang="tr"]');
+                    if (activeBtn) lang = activeBtn.getAttribute('data-lang');
                 }
 
-                // Çok dilli verileri seç (Eğer seçili dilde yoksa Türkçe'yi döndür)
-                const title = (tour.title && tour.title[currentLang]) ? tour.title[currentLang] : (tour.title ? tour.title['tr'] : tour.id);
-                const description = (tour.description && tour.description[currentLang]) ? tour.description[currentLang] : (tour.description ? tour.description['tr'] : '');
+                const l = dict[lang] || dict.tr;
+                document.getElementById('lblHome').textContent = l.home;
+                document.getElementById('lblTours').textContent = l.tours;
+                document.getElementById('lblOverview').textContent = l.overview;
+                document.getElementById('lblIncluded').textContent = l.included;
+                document.getElementById('lblExcluded').textContent = l.excluded;
+                document.getElementById('lblPricing').textContent = l.pricing;
+                document.getElementById('lblNotes').textContent = l.notes;
+                document.getElementById('lblMap').textContent = l.map;
+                document.getElementById('lblGallery').textContent = l.gallery;
+                document.getElementById('lblPriceTitle').textContent = l.priceTitle;
+                document.getElementById('lblEmailBtn').textContent = l.emailBtn;
+                document.getElementById('lblWaBtn').textContent = l.waBtn;
+                document.getElementById('lblPricingNote').textContent = l.pricingNote;
 
-                // Arayüzü Güncelle
+                // Akıllı Çevirmen ile Verileri Çek
+                const title = getLangText(tour, 'title', lang) || tour.id;
+                let description = getLangText(tour, 'description', lang);
+                let content = getLangText(tour, 'content', lang);
+
+                // Eğer açıklama boşsa içerikten al
+                if (!description && content) {
+                    description = content;
+                    content = ''; // Aşağıda program listesinde tekrar etmemesi için
+                }
+
                 document.getElementById('tourHeroImage').src = tour.image;
-                document.getElementById('tourBadge').textContent = tour.category || 'Tur';
+                document.getElementById('tourBadge').textContent = tour.category || 'TUR';
                 document.getElementById('tourTitle').textContent = title;
                 document.getElementById('breadcrumbTitle').textContent = title;
-                
-                document.getElementById('tourMeta').innerHTML = `
-                    <div class="tour-meta-item"><i class="fas fa-clock"></i><span>${tour.duration}</span></div>
-                    <div class="tour-meta-item"><i class="fas fa-map-marker-alt"></i><span>${tour.location}</span></div>
-                    <div class="tour-meta-item"><i class="fas fa-tag"></i><span>${tour.price}</span></div>
-                `;
-                
+                document.getElementById('tourPriceSidebar').textContent = tour.price || '---';
+
+                // 1. HIZLI BAKIŞ
+                if (tour.meta) {
+                    let metaHtml = '';
+                    if(tour.meta.duration) metaHtml += `<div class="quick-item"><i class="fas fa-clock"></i><span>${tour.meta.duration}</span></div>`;
+                    if(tour.meta.languages) metaHtml += `<div class="quick-item"><i class="fas fa-globe"></i><span>${tour.meta.languages}</span></div>`;
+                    if(tour.meta.months) metaHtml += `<div class="quick-item"><i class="fas fa-calendar-check"></i><span>${tour.meta.months}</span></div>`;
+                    if(tour.meta.availability) metaHtml += `<div class="quick-item"><i class="fas fa-user-friends"></i><span>${tour.meta.availability}</span></div>`;
+                    document.getElementById('tourQuickLook').innerHTML = metaHtml;
+                } else {
+                    document.getElementById('tourQuickLook').innerHTML = `
+                        <div class="quick-item"><i class="fas fa-clock"></i><span>${tour.duration || '-'}</span></div>
+                        <div class="quick-item"><i class="fas fa-map-marker-alt"></i><span>${tour.location || '-'}</span></div>
+                    `;
+                }
+
+                // 2. AÇIKLAMA
                 document.getElementById('tourDescription').innerHTML = `<p>${description}</p>`;
-                document.getElementById('tourPrice').textContent = tour.price;
+
+                // 3. İTİNERARY (Gün Gün veya Eski İçerik)
+                if (tour.itinerary && tour.itinerary.length > 0) {
+                    const itiHtml = tour.itinerary.map(day => `
+                        <div class="itinerary-item">
+                            <h3 class="itinerary-day-title"><span class="day-badge">${l.day} ${day.day}:</span> ${day.title}</h3>
+                            <div class="itinerary-desc">${day.description.replace(/\n/g, '<br>')}</div>
+                        </div>
+                    `).join('');
+                    document.getElementById('tourItineraryList').innerHTML = itiHtml;
+                    document.getElementById('tourItineraryContainer').style.display = 'block';
+                } else if (content) {
+                    // Eski Turlar İçin İçerik
+                    document.getElementById('tourItineraryList').innerHTML = `
+                        <div class="itinerary-item">
+                            <div class="itinerary-desc">${content.replace(/\n/g, '<br>')}</div>
+                        </div>
+                    `;
+                    document.getElementById('tourItineraryContainer').style.display = 'block';
+                }
+
+                // 4. KALKIŞ DÖNÜŞ
+                if (tour.departureReturn && tour.departureReturn.length > 0) {
+                    const depHtml = tour.departureReturn.map(item => {
+                        const parts = item.split(':');
+                        if(parts.length > 1) return `<tr><td>${parts[0].trim()}</td><td>${parts.slice(1).join(':').trim()}</td></tr>`;
+                        return `<tr><td colspan="2">${item}</td></tr>`;
+                    }).join('');
+                    document.getElementById('tourDepartureTable').innerHTML = depHtml;
+                    document.getElementById('tourDepartureContainer').style.display = 'block';
+                }
+
+                // 5. DAHİL / HARİÇ
+                let showIncExc = false;
+                if (tour.included && tour.included.length > 0) {
+                    document.getElementById('tourIncludedList').innerHTML = tour.included.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
+                    showIncExc = true;
+                }
+                if (tour.excluded && tour.excluded.length > 0) {
+                    document.getElementById('tourExcludedList').innerHTML = tour.excluded.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
+                    showIncExc = true;
+                }
+                if (showIncExc) document.getElementById('tourIncExcContainer').style.display = 'grid';
+
+                // 6. FİYAT TABLOSU
+                if (tour.pricing && (tour.pricing.economy || tour.pricing.comfort || tour.pricing.luxury)) {
+                    let pRows = '';
+                    if(tour.pricing.economy) pRows += `<tr><td>Economy / Ekonomi</td><td>${tour.pricing.economy}</td></tr>`;
+                    if(tour.pricing.comfort) pRows += `<tr><td>Comfort / Konfor</td><td style="color:#1d4ed8;">${tour.pricing.comfort}</td></tr>`;
+                    if(tour.pricing.luxury) pRows += `<tr><td>Luxury / Lüks</td><td style="color:#a16207;">${tour.pricing.luxury}</td></tr>`;
+                    
+                    document.getElementById('tourPricingTableBody').innerHTML = pRows;
+                    document.getElementById('tourPricingContainer').style.display = 'block';
+                }
+
+                // 7. NOTLAR
+                if (tour.notes && tour.notes.length > 0) {
+                    document.getElementById('tourNotesList').innerHTML = tour.notes.map(n => `<li>${n}</li>`).join('');
+                    document.getElementById('tourNotesContainer').style.display = 'block';
+                }
+
+                // 8. HARİTA
+                if (tour.mapUrl && tour.mapUrl.trim() !== '') {
+                    document.getElementById('tourMapIframe').src = tour.mapUrl;
+                    document.getElementById('tourMapContainer').style.display = 'block';
+                }
+
+                // 9. GALERİ
+                galleryImages = tour.gallery && tour.gallery.length > 0 ? tour.gallery : (tour.images ? tour.images : [tour.image]);
+                if (galleryImages.length > 0) {
+                    document.getElementById('tourGallery').innerHTML = galleryImages.map((img, idx) => `
+                        <div class="gallery-item" onclick="openLightbox(${idx})">
+                            <img src="${img}" alt="${title}" loading="lazy">
+                        </div>
+                    `).join('');
+                    document.getElementById('tourGalleryContainer').style.display = 'block';
+                }
                 
-                document.getElementById('tourInfoList').innerHTML = `
-                    <li><span class="tour-info-label">Süre</span><span class="tour-info-value">${tour.duration}</span></li>
-                    <li><span class="tour-info-label">Lokasyon</span><span class="tour-info-value">${tour.location}</span></li>
-                    <li><span class="tour-info-label">Kategori</span><span class="tour-info-value">${tour.category}</span></li>
-                `;
+                const waMsg = encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
+                const emailSub = encodeURIComponent(`${title} Bilgi Talebi`);
                 
-                // Galeri
-                galleryImages = tour.images || [tour.image];
-                document.getElementById('tourGallery').innerHTML = galleryImages.map((img, index) => `
-                    <div class="gallery-item" onclick="openLightbox(${index})">
-                        <img src="${img}" alt="${title}" loading="lazy">
-                    </div>
-                `).join('');
-                
-                // Akıllı Mail ve WhatsApp Buton Linkleri
-                const emailSub = encodeURIComponent(`${title} Rezervasyon Talebi`);
-                const emailBody = encodeURIComponent(`Merhaba, web sitenizdeki "${title}" isimli tur ile ilgileniyorum. Detaylar ve rezervasyon hakkında bana bilgi verebilir misiniz?`);
-                document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}&body=${emailBody}`;
-                
-                const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${title}" (${tour.duration}) turu ile ilgileniyorum. Rezervasyon için bilgi alabilir miyim?`);
+                document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}`;
                 document.getElementById('whatsappBtn').href = `https://wa.me/902125551923?text=${waMsg}`;
-                
-                // Sağ alttaki yuvarlak butonu da akıllandırıyoruz
                 const globalWaBtn = document.querySelector('.whatsapp-float');
                 if (globalWaBtn) globalWaBtn.href = `https://wa.me/902125551923?text=${waMsg}`;
 
-// Breadcrumb dil desteği
-const breadcrumbLabels = {
-    tr: { home: 'Ana Sayfa', tours: 'Turlar' },
-    en: { home: 'Home',      tours: 'Tours'  },
-    es: { home: 'Inicio',    tours: 'Tours'  },
-    ru: { home: 'Главная',   tours: 'Туры'   },
-    de: { home: 'Startseite',tours: 'Touren' },
-    zh: { home: '首页',      tours: '旅游'   },
-    ar: { home: 'الرئيسية', tours: 'جولات'  }
-};
-const bl = breadcrumbLabels[currentLang] || breadcrumbLabels.tr;
-const bHome = document.getElementById('breadcrumb-home');
-const bTours = document.getElementById('breadcrumb-tours');
-if (bHome) bHome.textContent = bl.home;
-if (bTours) bTours.textContent = bl.tours;
-                
             } catch (error) {
-                console.error('❌ Yükleme Hatası:', error);
-                document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Veriler yüklenirken bir hata oluştu.</h1><p>Lütfen daha sonra tekrar deneyin.</p></div>';
+                console.error('Yükleme Hatası:', error);
+                document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Veriler yüklenemedi.</h1></div>';
             }
         }
 
-        // Dil Değiştirme ve Yeniden Yükleme
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            const targetBtn = document.querySelector(`.lang-btn[data-lang="${lang}"]`);
-            if (targetBtn) targetBtn.classList.add('active');
-            
-            if (typeof i18n !== 'undefined') {
-                i18n.changeLanguage(lang);
+        // Dil Seçimi Olayları (Düzeltilmiş Menü Kapatma)
+        document.addEventListener('click', function(e) {
+            const dropdownBtn = e.target.closest('.lang-dropdown-btn');
+            if (dropdownBtn) {
+                e.preventDefault();
+                dropdownBtn.closest('.lang-dropdown').classList.toggle('active');
+                return;
             }
-            
-            // Verileri yeni dile göre tekrar render et
-            if (currentTourId) loadTourDetail(currentTourId);
-        }
 
+            const langOption = e.target.closest('.lang-dropdown-content a');
+            if (langOption) {
+                e.preventDefault();
+                const selectedLang = langOption.getAttribute('data-lang');
+                document.querySelector('.current-lang-text').textContent = selectedLang.toUpperCase();
+                
+                if(window.i18n) window.i18n.changeLanguage(selectedLang);
+                if(currentTourId) loadTourDetail(currentTourId);
+                
+                langOption.closest('.lang-dropdown').classList.remove('active');
+                
+                // Mobilde dili seçince menüyü kapat
+                const navLinks = document.getElementById('navLinks');
+                const toggle = document.getElementById('menuToggle');
+                if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    if (toggle) {
+                        toggle.querySelector('i').classList.remove('fa-times');
+                        toggle.querySelector('i').classList.add('fa-bars');
+                    }
+                }
+                return;
+            }
+
+            document.querySelectorAll('.lang-dropdown.active').forEach(d => d.classList.remove('active'));
+        });
+
+        // Mobil Menü Olayları
+        document.getElementById('menuToggle').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const links = document.getElementById('navLinks');
+            const icon = document.getElementById('menuToggle').querySelector('i');
+            links.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Lightbox (Galeri) Fonksiyonları
         function openLightbox(index) {
             currentImageIndex = index;
             document.getElementById('lightboxImg').src = galleryImages[index];
@@ -991,30 +563,20 @@ if (bTours) bTours.textContent = bl.tours;
             document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
         }
 
-        // Başlangıç
+        // Başlangıç Ayarları
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const tourId = urlParams.get('id');
+            if (tourId) loadTourDetail(tourId);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight' && document.getElementById('lightbox').classList.contains('active')) changeImage(1);
+                if (e.key === 'ArrowLeft' && document.getElementById('lightbox').classList.contains('active')) changeImage(-1);
+            });
             
-            if (tourId) {
-                loadTourDetail(tourId);
-            } else {
-                document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h1>Geçersiz Tur Linki!</h1></div>';
-            }
-            
-            // Mobil Menü
-            const toggle = document.getElementById('menuToggle');
-            const links = document.getElementById('navLinks');
-            if (toggle && links) {
-                toggle.addEventListener('click', () => {
-                    links.classList.toggle('active');
-                    toggle.querySelector('i').classList.toggle('fa-bars');
-                    toggle.querySelector('i').classList.toggle('fa-times');
-                });
-            }
-        document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-});    
+            const savedLang = localStorage.getItem('language') || 'tr';
+            document.querySelector('.current-lang-text').textContent = savedLang.toUpperCase();
         });
     </script>
 </body>
