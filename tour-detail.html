@@ -66,11 +66,21 @@
         .tour-main h2.section-heading { font-size: 32px; font-family: 'Playfair Display', serif; color: #0f172a; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #e2e8f0; font-weight: 800; }
         .tour-overview { font-size: 16px; line-height: 1.8; color: #475569; margin-bottom: 50px; }
         
-        /* ITINERARY (Gün Gün Program) */
-        .itinerary-item { margin-bottom: 40px; }
-        .itinerary-day-title { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 15px; display: flex; align-items: baseline; gap: 10px; }
-        .itinerary-day-title span.day-badge { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 900; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px; }
-        .itinerary-desc { font-size: 16px; line-height: 1.8; color: #475569; padding-left: 0; }
+        /* ITINERARY (Açılır Kapanır Accordion) */
+        .itinerary-item { margin-bottom: 15px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .itinerary-day-title { font-size: 17px; font-weight: 700; color: #0f172a; margin: 0; padding: 20px; background: #f8fafc; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; user-select: none; }
+        .itinerary-day-title:hover { background: #f1f5f9; }
+        .itinerary-day-title .day-info { display: flex; align-items: center; gap: 15px; }
+        .itinerary-day-title span.day-badge { background: #38bdf8; color: white; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+        .itinerary-day-title i { color: #94a3b8; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px; }
+        
+        .itinerary-desc { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease; font-size: 15px; color: #475569; line-height: 1.8; background: white; padding: 0 20px; }
+        
+        /* Aktif (Açık) Durum Sınıfı */
+        .itinerary-item.active { border-color: #38bdf8; box-shadow: 0 5px 15px rgba(56, 189, 248, 0.1); }
+        .itinerary-item.active .itinerary-day-title { background: #f0f9ff; }
+        .itinerary-item.active .itinerary-desc { padding: 20px; max-height: 1000px; border-top: 1px solid #e0f2fe; }
+        .itinerary-item.active .itinerary-day-title i { transform: rotate(180deg); color: #38bdf8; }
         
         /* DEPARTURE & RETURN TABLE */
         .info-table { width: 100%; border-collapse: collapse; margin-bottom: 50px; border-top: 1px solid #e2e8f0; }
@@ -410,15 +420,22 @@
 
                 // 3. İTİNERARY (Gün Gün veya Eski İçerik)
                 if (tour.itinerary && tour.itinerary.length > 0) {
-                    const itiHtml = tour.itinerary.map(day => `
-                        <div class="itinerary-item">
-                            <h3 class="itinerary-day-title"><span class="day-badge">${l.day} ${day.day}:</span> ${day.title}</h3>
+                    const itiHtml = tour.itinerary.map((day, index) => `
+                        <div class="itinerary-item ${index === 0 ? 'active' : ''}">
+                            <h3 class="itinerary-day-title" onclick="this.parentElement.classList.toggle('active')">
+                                <div class="day-info">
+                                    <span class="day-badge">${l.day} ${day.day}</span>
+                                    ${day.title}
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </h3>
                             <div class="itinerary-desc">${day.description.replace(/\n/g, '<br>')}</div>
                         </div>
                     `).join('');
                     document.getElementById('tourItineraryList').innerHTML = itiHtml;
                     document.getElementById('tourItineraryContainer').style.display = 'block';
                 } else if (content) {
+                    
                     // Eski Turlar İçin İçerik
                     document.getElementById('tourItineraryList').innerHTML = `
                         <div class="itinerary-item">

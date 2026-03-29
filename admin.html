@@ -450,7 +450,32 @@
     <script>
         let tours = [], blogs = [], editingTourId = null, editingBlogId = null, currentGallery = [];
         let dayCounter = 0; // Dinamik gün sayacı
+        
+        // --- EKSİK OLAN 1: TAB DEĞİŞTİRME FONKSİYONU ---
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(tabId + '-content').classList.add('active');
+        document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+    }
 
+    // --- EKSİK OLAN 2: BİLDİRİM GÖSTERME FONKSİYONU ---
+    function showAlert(elementId, message, type = 'info') {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        
+        let icon = 'info-circle';
+        if (type === 'success') icon = 'check-circle';
+        if (type === 'error') icon = 'exclamation-circle';
+        
+        el.innerHTML = `<div class="alert alert-${type}"><i class="fas fa-${icon}"></i> ${message}</div>`;
+        
+        // 3 saniye sonra mesajı otomatik gizle
+        if (type === 'success' || type === 'error') {
+            setTimeout(() => { el.innerHTML = ''; }, 3000);
+        }
+    }
+    
         function normalizeTourData(serverTours) {
             return serverTours.map(tour => {
                 if (typeof tour.title === 'object' && tour.title !== null) {
