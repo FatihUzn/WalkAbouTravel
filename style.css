@@ -215,10 +215,7 @@ p {
 }
 
 /* ================================================
-   NAVIGATION - Dinamik & Şeffaf Premium Menü
-   ================================================ */
-/* ================================================
-   ELITE SLIM NAVIGATION - Hem PC Hem Mobil İçin
+   ELITE MINIMAL NAVIGATION - Hem PC Hem Mobil İçin
    ================================================ */
 nav {
     position: fixed;
@@ -226,20 +223,23 @@ nav {
     left: 0;
     right: 0;
     z-index: 9999;
-    /* Cam Efektini Güçlendiriyoruz */
-    background: rgba(255, 255, 255, 0.03) !important; 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* Adım 1: Tam Şeffaflık - Arka planda blok yok, buzlanma yok */
+    background: transparent !important; 
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     padding: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0); /* Başlangıçta çizgi yok */
 }
 
-/* Sayfa aşağı kaydırıldığında menü narinleşir */
+/* Sayfa aşağı kaydırıldığında menünün alacağı hal */
 nav.scrolled {
-    background: rgba(255, 255, 255, 0.95) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    /* Kaydırınca da blok oluşturmuyoruz, videonun üstünde süzülmeye devam ediyor */
+    background: rgba(0, 0, 0, 0.3) !important; /* Çok hafif bir karartma, yazılar okunsun diye */
+    backdrop-filter: blur(5px) !important; /* Çok hafif bir buzlanma, netliği bozmadan */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.6); /* Zarif Altın Çizgi Eklendi */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header-top-row {
@@ -247,20 +247,46 @@ nav.scrolled {
     justify-content: space-between;
     align-items: center;
     background: transparent;
-    padding: 5px 50px; /* Kalınlık 10'dan 5'e düştü */
+    padding: 5px 50px;
     font-size: 11px;
-    height: 30px; /* Sabit ince yükseklik */
     transition: all 0.4s ease;
+    height: 30px;
     overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Başlangıçta üst barın altında çok silik bir çizgi */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
+
+/* AŞAĞI İNİLDİĞİNDE ÜST SATIRI GİZLE */
+nav.scrolled .header-top-row {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    border: none;
+}
+
+.top-bar-left, .top-bar-right { display: flex; gap: 25px; }
+
+/* Videonun üzerinde parlayan saf beyaz yazılar */
+.header-top-row a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-top-row a:hover { color: var(--accent); }
+.header-top-row i { color: var(--accent); font-size: 12px; }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 50px; /* Menünün asıl "kaballığını" bu 20px'den 10px'e çekmek bitirir */
-    max-width: 1400px; /* İçeriği çok dağıtmıyoruz, derli toplu tutuyoruz */
+    padding: 10px 50px; /* Slim (ince) yapı korunuyor */
+    max-width: 1400px; /* Derli toplu içerik */
     margin: 0 auto;
     position: relative;
     transition: all 0.4s ease;
@@ -271,8 +297,13 @@ nav.scrolled .nav-container {
     padding: 5px 50px; 
 }
 
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; }
+
 .logo img {
-    height: 38px; /* Logoyu bir tık küçülterek kaba duruşu engelliyoruz */
+    height: 38px; /* İnce logo */
+    border-radius: 8px;
+    border: 2px solid rgba(197, 160, 89, 0.5); /* Altın çerçeve korunuyor */
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
     transition: all 0.4s ease;
 }
 
@@ -280,78 +311,27 @@ nav.scrolled .logo img {
     height: 32px;
 }
 
-.logo-title {
-    font-size: 17px !important; /* Yazı fontunu bir tık küçültüyoruz */
-    color: #ffffff;
-}
-
-nav.scrolled .logo-title {
-    color: var(--text-dark);
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px; /* Linkler arası boşluğu daraltıyoruz */
-    position: relative; /* Absolute ortalamadan vazgeçip narin bir akış sağlıyoruz */
-    left: auto;
-    transform: none;
-}
-
-.nav-links a {
-    font-size: 13px; /* Font büyüklüğü 15'ten 13'e çekildi */
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-}
-
-nav.scrolled .nav-links a {
-    color: var(--text-dark);
-}
-
-/* Dil Dropdown Butonu İnceltme */
-.lang-dropdown-btn {
-    padding: 6px 12px;
-    font-size: 12px;
-    background: transparent;
-}
-
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; }
-
-.logo img {
-    height: 48px;
-    border-radius: 8px;
-    border: 2px solid rgba(197, 160, 89, 0.5);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s ease;
-}
-
-/* AŞAĞI İNİLDİĞİNDE LOGOYU KÜÇÜLT */
-nav.scrolled .logo img {
-    height: 38px;
-    border-color: var(--primary);
-}
-
 .logo:hover img { box-shadow: 0 0 30px rgba(197, 160, 89, 0.7); transform: scale(1.05); }
-.logo-text { display: flex; flex-direction: column; transition: color 0.3s; }
+.logo-text { display: flex; flex-direction: column; }
 
-/* Başlangıçta marka ismi beyaz */
+/* Videonun üzerinde marka ismi beyaz */
 .logo-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
-    color: #ffffff;
+    color: #ffffff; /* Saf Beyaz */
     letter-spacing: 0.5px;
     transition: color 0.4s ease;
 }
 
-/* Menü beyaz olunca yazı koyu renge döner */
+/* Kaydırınca da beyaz kalıyor, çünkü blok oluşturmadık */
 nav.scrolled .logo-title {
-    color: var(--text-dark);
+    color: #ffffff;
 }
 
 .logo-subtitle {
     font-size: 10px;
-    color: var(--accent);
+    color: var(--accent); /* Altın detay korunuyor */
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
@@ -359,19 +339,18 @@ nav.scrolled .logo-title {
 
 .nav-links {
     display: flex;
-    gap: 40px;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    gap: 30px; /* Linkler derli toplu */
+    position: relative;
+    left: auto;
+    transform: none;
 }
 
-/* Başlangıçta menü linkleri beyaz */
+/* Videonun üzerinde linkler beyaz */
 .nav-links a {
-    color: #ffffff;
+    color: #ffffff; /* Saf Beyaz */
     text-decoration: none;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 13px; /* Narin font */
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: color 0.4s ease;
@@ -379,9 +358,9 @@ nav.scrolled .logo-title {
     padding: 8px 0;
 }
 
-/* Aşağı inildiğinde linkler koyulaşır */
+/* Kaydırınca da beyaz kalıyor */
 nav.scrolled .nav-links a {
-    color: var(--text-dark);
+    color: #ffffff;
 }
 
 .nav-links a::before {
@@ -392,25 +371,33 @@ nav.scrolled .nav-links a {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: var(--gradient-gold);
+    background: var(--gradient-gold); /* Hover'da altın çizgi */
     transition: var(--transition-base);
 }
 
 .nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-nav.scrolled .nav-links a:hover { color: var(--accent); text-shadow: none; }
 .nav-links a:hover::before { width: 100%; }
 
 .lang-switcher { display: flex; gap: 8px; margin-left: auto; }
 
-/* Dil butonu dinamik renk uyumu (Senin yeni dil menüne özel) */
-nav.scrolled .lang-dropdown-btn {
-    background: #f8fafc;
-    color: var(--text-dark);
-    border-color: #cbd5e1;
+/* Dil butonu dinamik renk uyumu */
+.lang-dropdown-btn {
+    background: transparent;
+    color: #ffffff; /* Saf Beyaz */
+    border-color: rgba(255, 255, 255, 0.4);
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 8px;
+    font-weight: 600;
 }
 
-nav.scrolled .lang-dropdown-btn:hover {
+nav.scrolled .lang-dropdown-btn {
+    border-color: rgba(197, 160, 89, 0.6); /* Kaydırınca altın çerçeve */
+}
+
+.lang-dropdown-btn:hover {
     border-color: var(--accent);
+    color: var(--accent);
 }
 
 .menu-toggle {
@@ -422,7 +409,6 @@ nav.scrolled .lang-dropdown-btn:hover {
     cursor: pointer;
     z-index: 10;
 }
-
 /* ================================================
    HERO SECTION - Premium Video Background
    ================================================ */
