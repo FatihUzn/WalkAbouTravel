@@ -406,7 +406,7 @@ nav.scrolled .lang-dropdown-btn {
     z-index: 10;
 }
 /* ================================================
-   HERO SECTION - Premium Video Background
+   HERO SECTION - Cinematic Minimalist Background
    ================================================ */
 .hero {
     position: relative;
@@ -426,25 +426,16 @@ nav.scrolled .lang-dropdown-btn {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7) contrast(1.1) saturate(1.3);
+    filter: brightness(0.8) contrast(1.05); /* Video biraz daha aydınlatıldı */
     z-index: 1;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(197, 160, 89, 0.2) 100%);
+    /* Kapkaranlık yapmak yerine çok hafif, zarif bir karartma */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
     z-index: 2;
-}
-
-/* Gold glow effect */
-.hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
-    z-index: 3;
-    pointer-events: none;
 }
 
 .hero-content {
@@ -452,122 +443,108 @@ nav.scrolled .lang-dropdown-btn {
     z-index: 10;
     text-align: center;
     color: white;
-    max-width: 900px;
+    max-width: 800px;
     padding: 0 20px;
     animation: fadeInUp 1.2s ease;
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Kalın altın rozet yerine incecik zarif bir çerçeve */
 .hero-badge {
     display: inline-block;
-    padding: 10px 24px;
-    background: var(--gradient-gold);
+    padding: 6px 18px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 30px;
-    color: #0a0f1e;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    box-shadow: var(--shadow-gold);
-    animation: badgePulse 2s ease infinite;
-}
-
-@keyframes badgePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
-}
-
-.hero h1 {
-    font-size: 64px;
-    font-weight: 900;
-    line-height: 1.1;
+    color: #ffffff;
+    font-size: 11px; /* Menüden bile küçük, çok kibar */
+    font-weight: 600;
+    letter-spacing: 3px;
     margin-bottom: 20px;
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    letter-spacing: -1px;
+    text-transform: uppercase;
 }
 
+/* Devasa 64px başlık 42px'e iniyor */
+.hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 15px;
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+/* O kaba mavi gradient yerine lüks, ince altın rengi */
 .hero-gradient {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 4px 15px rgba(197, 160, 89, 0.7));
-    display: inline-block;
+    background: none;
+    -webkit-text-fill-color: var(--accent);
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 38px;
+    letter-spacing: 0;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    display: block;
+    margin-top: 5px;
 }
 
+/* Açıklama metni menü boyutuna (15px) iniyor */
 .hero p {
-    font-size: 20px;
-    color: #ffffff !important;
-    margin-bottom: 40px;
-    line-height: 1.7;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 35px;
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-links-container {
     display: flex;
-    gap: 18px;
+    gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 35px;
 }
 
+/* Katı altın renkli kaba butonlar yerine arkasını gösteren Cam (Glass) Butonlar */
 .btn-hero-link {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 30px;
-    background: var(--gradient-gold);
-    color: #0a0f1e;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1); /* Yarı saydam */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 12px; /* Kibar font */
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    border: 2px solid transparent;
-    transition: var(--transition-base);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(251, 191, 36, 0.4);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-   font-family: 'Inter', sans-serif;
-}
-
-.btn-hero-link::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.btn-hero-link:hover::before {
-    opacity: 1;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-hero-link:hover {
-    color: white;
-    border-color: var(--primary);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(197, 160, 89, 0.5);
+    background: var(--accent);
+    color: #0a0f1e;
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .btn-hero-link i {
-    font-size: 18px;
-    position: relative;
-    z-index: 1;
-}
-
-.btn-hero-link span {
-    position: relative;
-    z-index: 1;
+    font-size: 14px;
 }
 
 /* ================================================
