@@ -217,26 +217,28 @@ p {
 /* ================================================
    NAVIGATION - Dinamik & Şeffaf Premium Menü
    ================================================ */
+/* ================================================
+   ELITE SLIM NAVIGATION - Hem PC Hem Mobil İçin
+   ================================================ */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    /* Başlangıç: Neredeyse tam şeffaf buzlu cam */
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    /* Cam Efektini Güçlendiriyoruz */
+    background: rgba(255, 255, 255, 0.03) !important; 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Sayfa aşağı kaydırıldığında menünün alacağı hal */
+/* Sayfa aşağı kaydırıldığında menü narinleşir */
 nav.scrolled {
-    background: rgba(255, 255, 255, 0.98); /* Tok beyaz */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -245,51 +247,72 @@ nav.scrolled {
     justify-content: space-between;
     align-items: center;
     background: transparent;
-    padding: 10px 50px;
+    padding: 5px 50px; /* Kalınlık 10'dan 5'e düştü */
     font-size: 11px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 36px;
+    height: 30px; /* Sabit ince yükseklik */
+    transition: all 0.4s ease;
     overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* AŞAĞI İNİLDİĞİNDE ÜST SATIRI GİZLE (Menü incelir) */
-nav.scrolled .header-top-row {
-    height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity: 0;
-    border: none;
-}
-
-.top-bar-left, .top-bar-right { display: flex; gap: 25px; }
-
-/* Başlangıçta üst yazılar videoda okunsun diye beyaz */
-.header-top-row a {
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition-base);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.header-top-row a:hover { color: var(--accent); }
-.header-top-row i { color: var(--accent); font-size: 12px; }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px; /* Başlangıç kalınlığı (ferah) */
+    padding: 10px 50px; /* Menünün asıl "kaballığını" bu 20px'den 10px'e çekmek bitirir */
+    max-width: 1400px; /* İçeriği çok dağıtmıyoruz, derli toplu tutuyoruz */
+    margin: 0 auto;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s ease;
 }
 
-/* AŞAĞI İNİLDİĞİNDE ANA MENÜYÜ DARALT */
+/* Daralma Efekti */
 nav.scrolled .nav-container {
-    padding: 10px 50px; /* İncecik oldu */
+    padding: 5px 50px; 
+}
+
+.logo img {
+    height: 38px; /* Logoyu bir tık küçülterek kaba duruşu engelliyoruz */
+    transition: all 0.4s ease;
+}
+
+nav.scrolled .logo img {
+    height: 32px;
+}
+
+.logo-title {
+    font-size: 17px !important; /* Yazı fontunu bir tık küçültüyoruz */
+    color: #ffffff;
+}
+
+nav.scrolled .logo-title {
+    color: var(--text-dark);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px; /* Linkler arası boşluğu daraltıyoruz */
+    position: relative; /* Absolute ortalamadan vazgeçip narin bir akış sağlıyoruz */
+    left: auto;
+    transform: none;
+}
+
+.nav-links a {
+    font-size: 13px; /* Font büyüklüğü 15'ten 13'e çekildi */
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+nav.scrolled .nav-links a {
+    color: var(--text-dark);
+}
+
+/* Dil Dropdown Butonu İnceltme */
+.lang-dropdown-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    background: transparent;
 }
 
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; }
