@@ -939,35 +939,43 @@ section {
 }
 
 /* ================================================
-   TOUR CARDS (BENTO GRID ASİMETRİK TASARIM)
+   TOUR CARDS (BENTO ZİG-ZAG LÜKS TASARIM)
    ================================================ */
 .tours-section {
     background: #ffffff;
-    padding: 80px 50px; /* Üst ve alt ferahlık payı */
+    padding: 70px 40px; /* Üst/alt boşluklar biraz daha ferahlatıldı */
 }
 
 .tours-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; /* 25px'ten 20px'e düştü: Kartlar birbirine daha derli toplu yaklaşacak */
-    max-width: 1300px; /* 1600px'den 1300px'e düştü: Ekrana yanlardan yayılmayıp tam merkeze oturacak */
+    gap: 15px; /* Kartlar arası boşluk 20px'ten 15px'e inerek sıkılaştı */
+    max-width: 1150px; /* KRİTİK: 1300px'den 1150px'e düştü. Kartlar artık çok daha kibar ve küçük! */
     margin: 0 auto;
 }
 
-/* --- ASİMETRİK BENTO DİZİLİMİ --- */
-.tour-card:nth-child(4n + 1) { grid-column: span 2; grid-row: span 2; } 
-.tour-card:nth-child(4n + 2) { grid-column: span 2; grid-row: span 1; } 
-.tour-card:nth-child(4n + 3) { grid-column: span 1; grid-row: span 1; } 
-.tour-card:nth-child(4n + 4) { grid-column: span 1; grid-row: span 1; } 
+/* --- ÇAPRAZ (ZİG-ZAG) BENTO DİZİLİMİ (Her 8 Turda Bir Başa Sarar) --- */
 
-/* --- KART İÇİ ESNEME --- */
+/* İlk 4'lü Grup: UZUN KART SOLDA */
+.tour-card:nth-child(8n + 1) { grid-column: span 2; grid-row: span 2; } 
+.tour-card:nth-child(8n + 2) { grid-column: span 2; grid-row: span 1; } 
+.tour-card:nth-child(8n + 3) { grid-column: span 1; grid-row: span 1; } 
+.tour-card:nth-child(8n + 4) { grid-column: span 1; grid-row: span 1; } 
+
+/* İkinci 4'lü Grup: UZUN KART SAĞDA (Senin Harika Fikrin!) */
+.tour-card:nth-child(8n + 5) { grid-column: span 2; grid-row: span 1; } 
+.tour-card:nth-child(8n + 6) { grid-column: span 2; grid-row: span 2; } 
+.tour-card:nth-child(8n + 7) { grid-column: span 1; grid-row: span 1; } 
+.tour-card:nth-child(8n + 8) { grid-column: span 1; grid-row: span 1; } 
+
+/* --- KART İÇİ ESNEME VE KÜÇÜLTME --- */
 .tour-card {
     position: relative;
-    border-radius: 16px;
+    border-radius: 12px; /* Köşeler 16px'ten 12px'e inerek daha elit oldu */
     overflow: hidden;
     background: #ffffff !important;
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.05) !important;
@@ -977,15 +985,15 @@ section {
 }
 
 .tour-card:hover {
-    transform: translateY(-8px); /* Havaya kalkma efekti daha kibar hale getirildi */
+    transform: translateY(-6px);
     border-color: var(--accent) !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
 }
 
 .tour-image {
     position: relative;
     flex: 1; 
-    min-height: 180px; /* 220px'den 180px'e düştü: Resimler aşağı doğru sarkmayacak */
+    min-height: 160px; /* 180px'den 160px'e düştü: Kartlar aşağı sarkmayacak */
     overflow: hidden;
 }
 
@@ -1006,13 +1014,13 @@ section {
 
 .tour-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 6px 12px; /* Rozet küçültüldü */
+    top: 12px;
+    right: 12px;
+    padding: 5px 10px;
     background: var(--gradient-gold);
     color: #0a0f1e;
     border-radius: 6px;
-    font-size: 9px;
+    font-size: 8px; /* Rozet iyice kibarlaştı */
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1021,15 +1029,15 @@ section {
 }
 
 .tour-content {
-    padding: 20px; /* 25px'ten 20px'e düştü: Gereksiz beyaz boşluklar kısıldı */
+    padding: 16px; /* 20px'ten 16px'e inerek içerideki boşluklar kısıldı */
     background: #ffffff; 
     z-index: 2;
 }
 
 .tour-content h3 {
-    font-size: 17px; /* Başlıklar bir tık inceldi */
+    font-size: 16px; /* Başlıklar narinleşti */
     color: var(--text-dark);
-    margin-bottom: 8px; /* Boşluk kısıldı */
+    margin-bottom: 6px; 
     line-height: 1.3;
     font-weight: 700;
     font-family: 'Playfair Display', serif;
@@ -1037,11 +1045,9 @@ section {
 
 .tour-content p {
     color: var(--text-medium);
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-size: 13px;
-    
-    /* EN KRİTİK KURAL: Kartları uzatmaması için metin tam 2 satırda (....) ile kesilecek */
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-size: 12px; /* Açıklama yazıları çok daha kibar */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1050,26 +1056,26 @@ section {
 
 .tour-features {
     display: flex;
-    gap: 8px;
-    margin: 15px 0;
+    gap: 6px;
+    margin: 12px 0;
     flex-wrap: wrap;
 }
 
 .feature-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
+    gap: 5px;
+    padding: 5px 8px;
     background: rgba(0, 0, 0, 0.04);
     border-radius: 6px;
     color: var(--text-medium);
-    font-size: 11px;
+    font-size: 10px; /* İkon yazıları küçüldü */
     font-weight: 600;
     border: 1px solid rgba(197, 160, 89, 0.3);
 }
 
 .feature-tag i {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--accent);
 }
 
@@ -1079,7 +1085,7 @@ section {
     gap: 6px;
     color: var(--accent);
     font-weight: 700;
-    font-size: 11px; /* Buton yazısı zarifleştirildi */
+    font-size: 10px;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
@@ -1803,9 +1809,9 @@ body.theme-solo .category-hero {
     
     .categories-grid { grid-template-columns: repeat(2, 1fr); }
     .popular-trips-grid { grid-template-columns: 1fr; }
-    .tours-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-    .tour-card:nth-child(n) { grid-column: span 1; grid-row: span 1; } /* Tablette 2'li sıra olsun */
-    .tour-card:nth-child(4n + 1) { grid-column: span 2; } /* Sadece 1. tur tablette tam genişlikte havalı dursun */
+    .tours-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .tour-card:nth-child(n) { grid-column: span 1; grid-row: span 1; } 
+    .tour-card:nth-child(4n + 1) { grid-column: span 2; }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .blog-grid { grid-template-columns: 1fr; gap: 30px; }
     .contact-info { grid-template-columns: 1fr; }
