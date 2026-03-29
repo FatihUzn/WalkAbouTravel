@@ -960,21 +960,28 @@ section {
 }
 
 /* ================================================
-   TOUR CARDS
+   TOUR CARDS (BENTO GRID ASİMETRİK TASARIM)
    ================================================ */
 .tours-section {
     background: #ffffff;
-    padding: 120px 50px;
+    padding: 80px 50px;
 }
 
 .tours-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr); /* 4 Sütunluk Izgara */
+    gap: 25px; 
     max-width: 1600px;
     margin: 0 auto;
 }
 
+/* --- ASİMETRİK BENTO DİZİLİMİ (Her 4 Turda Bir Tekrar Eder) --- */
+.tour-card:nth-child(4n + 1) { grid-column: span 2; grid-row: span 2; } /* 1. Tur: Sol Dev Kart */
+.tour-card:nth-child(4n + 2) { grid-column: span 2; grid-row: span 1; } /* 2. Tur: Sağ Üst Geniş Kart */
+.tour-card:nth-child(4n + 3) { grid-column: span 1; grid-row: span 1; } /* 3. Tur: Sağ Alt Sol Kare */
+.tour-card:nth-child(4n + 4) { grid-column: span 1; grid-row: span 1; } /* 4. Tur: Sağ Alt Sağ Kare */
+
+/* --- KART İÇİ ESNEME (Resimlerin Kutuyu Doldurması İçin) --- */
 .tour-card {
     position: relative;
     border-radius: 16px;
@@ -985,21 +992,28 @@ section {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    display: flex;
+    flex-direction: column; /* Yazıları alta iter */
+    height: 100%;
 }
 
 .tour-card:hover {
     transform: translateY(-10px);
-    border-color: var(--accent) !important; /* Altın Çerçeve */
+    border-color: var(--accent) !important;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
 }
 
 .tour-image {
     position: relative;
-    height: 220px;
+    flex: 1; /* Resmin esneyip üstteki boşluğu tam doldurmasını sağlar */
+    min-height: 220px;
     overflow: hidden;
 }
 
 .tour-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1024,16 +1038,19 @@ section {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: var(--shadow-gold);
+    z-index: 2;
 }
 
 .tour-content {
     padding: 25px;
+    background: #ffffff; /* Arka plan hep beyaz kalır */
+    z-index: 2;
 }
 
 .tour-content h3 {
     font-size: 19px;
     color: var(--text-dark);
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     line-height: 1.3;
     font-weight: 700;
     font-family: 'Playfair Display', serif;
@@ -1043,13 +1060,13 @@ section {
     color: var(--text-medium);
     line-height: 1.8;
     margin-bottom: 25px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .tour-features {
     display: flex;
     gap: 12px;
-    margin: 25px 0;
+    margin: 20px 0;
     flex-wrap: wrap;
 }
 
@@ -1057,17 +1074,17 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
-    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.04);
     border-radius: 8px;
-    color: var(--text-light-gray);
-    font-size: 13px;
+    color: var(--text-medium);
+    font-size: 12px;
     font-weight: 600;
     border: 1px solid rgba(197, 160, 89, 0.3);
 }
 
 .feature-tag i {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--accent);
 }
 
@@ -1801,7 +1818,9 @@ body.theme-solo .category-hero {
     
     .categories-grid { grid-template-columns: repeat(2, 1fr); }
     .popular-trips-grid { grid-template-columns: 1fr; }
-    .tours-grid { grid-template-columns: 1fr; gap: 30px; }
+    .tours-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .tour-card:nth-child(n) { grid-column: span 1; grid-row: span 1; } /* Tablette 2'li sıra olsun */
+    .tour-card:nth-child(4n + 1) { grid-column: span 2; } /* Sadece 1. tur tablette tam genişlikte havalı dursun */
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .blog-grid { grid-template-columns: 1fr; gap: 30px; }
     .contact-info { grid-template-columns: 1fr; }
@@ -1845,6 +1864,8 @@ body.theme-solo .category-hero {
     .hero h1 { font-size: 36px; }
     .section-header h2 { font-size: 28px; }
     .categories-grid { grid-template-columns: 1fr; }
+    .tours-grid { grid-template-columns: 1fr; }
+    .tour-card:nth-child(n) { grid-column: span 1; } /* Telefonda hepsi alt alta eşit dizilir */
     .category-image-card { height: 320px; }
     .features-grid { grid-template-columns: 1fr; }
     .contact-form { padding: 40px 25px; }
