@@ -330,19 +330,15 @@ nav.scrolled .logo-title {
 }
 
 .logo-subtitle {
-    font-size: 10px;
-    color: var(--accent); /* Altın detay korunuyor */
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
+    display: none !important; /* Alt yazıyı tamamen gizleyip sadeleştiriyoruz */
 }
 
 .nav-links {
     display: flex;
-    gap: 30px; /* Linkler derli toplu */
+    gap: 40px; /* Linkler arasına biraz daha nefes aldırıyoruz (30'dan 40'a çıktı) */
+    flex: 1; /* Logoyla dil butonu arasındaki tüm boşluğu kaplıyor */
+    justify-content: center; /* Ve linkleri ekranın tam İNCİ GİBİ ORTASINA hizalıyor */
     position: relative;
-    left: auto;
-    transform: none;
 }
 
 /* Videonun üzerinde linkler beyaz */
