@@ -1961,7 +1961,7 @@ body[dir="rtl"] .contact-form textarea {
 }
 
 /* ================================================
-   LANGUAGE DROPDOWN (PREMIUM ESTETİK)
+   LANGUAGE DROPDOWN (MINIMALIST GOLD THEME)
    ================================================ */
 .lang-dropdown {
     position: relative;
@@ -1969,38 +1969,46 @@ body[dir="rtl"] .contact-form textarea {
     margin-left: auto;
 }
 
-/* --- Butonun Kendisi --- */
+/* --- Butonun Kendisi (Kutu Görünümü Kaldırıldı) --- */
 .lang-dropdown-btn {
-    background: rgba(10, 15, 30, 0.4);
-    backdrop-filter: blur(10px); /* Cam efekti */
-    border: 1px solid rgba(212, 175, 55, 0.4); /* Şampanya Altını */
-    color: #f8fafc;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
+    background: transparent;
+    color: #ffffff; /* Saf Beyaz */
+    border: none; /* Kaba çerçeve tamamen iptal */
+    padding: 8px 0; /* Diğer linklerle aynı hizaya geldi */
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.5px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     transition: all 0.4s ease;
     font-family: 'Inter', sans-serif;
+}
+
+/* Küre İkonuna Lüks Altın Dokunuşu */
+.lang-dropdown-btn i.fa-globe {
+    color: var(--accent);
+    font-size: 15px;
+    transition: all 0.3s ease;
 }
 
 .lang-dropdown-btn i.fa-chevron-down {
     font-size: 10px;
     transition: transform 0.4s ease;
-    color: var(--accent);
+    opacity: 0.8;
 }
 
 /* --- Buton Hover & Aktif Durumu --- */
 .lang-dropdown-btn:hover, 
 .lang-dropdown.active .lang-dropdown-btn {
-    background: rgba(10, 15, 30, 0.8);
-    border-color: var(--accent);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); /* Altın parlama */
+    color: var(--accent);
     transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.lang-dropdown-btn:hover i.fa-globe {
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.6));
 }
 
 /* Menü açıldığında ok işaretini döndür */
@@ -2011,25 +2019,24 @@ body[dir="rtl"] .contact-form textarea {
 /* --- Açılır Menü (Kutu) --- */
 .lang-dropdown-content {
     position: absolute;
-    top: calc(100% + 15px); /* Butondan biraz daha aşağıda başlar */
+    top: calc(100% + 15px);
     right: 0;
-    background: rgba(10, 15, 30, 0.95);
-    backdrop-filter: blur(20px);
-    min-width: 160px;
+    background: rgba(0, 0, 0, 0.85); /* Siyaha yakın çok şık bir transparanlık */
+    backdrop-filter: blur(15px);
+    min-width: 150px;
     border-radius: 12px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(197, 160, 89, 0.3); /* Altın çerçeve */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
     z-index: 1000;
     overflow: hidden;
     
-    /* Animasyon için başlangıç değerleri (Gizli ve Yukarıda) */
+    /* Animasyon */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Daha pürüzsüz yaylanma */
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Menüyü Yumuşakça Göster --- */
 .lang-dropdown.active .lang-dropdown-content {
     opacity: 1;
     visibility: visible;
@@ -2041,11 +2048,11 @@ body[dir="rtl"] .contact-form textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #cbd5e1;
+    color: #e2e8f0;
     padding: 12px 20px;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     position: relative;
@@ -2057,12 +2064,11 @@ body[dir="rtl"] .contact-form textarea {
 
 /* --- Dil Seçenekleri Hover Efekti --- */
 .lang-dropdown-content a:hover {
-    background: linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%);
-    color: var(--accent);
-    padding-left: 28px; /* Sağa doğru zarifçe kayar */
+    background: linear-gradient(90deg, rgba(197, 160, 89, 0.15) 0%, transparent 100%);
+    color: #ffffff;
+    padding-left: 28px;
 }
 
-/* Hover anında sol tarafta beliren altın çizgi */
 .lang-dropdown-content a::before {
     content: '';
     position: absolute;
