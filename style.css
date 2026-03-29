@@ -406,7 +406,7 @@ nav.scrolled .lang-dropdown-btn {
     z-index: 10;
 }
 /* ================================================
-   HERO SECTION - Side-Aligned Cinematic Minimalism
+   HERO SECTION - Side-Aligned Cinematic Elegance (RIGHT)
    ================================================ */
 .hero {
     position: relative;
@@ -414,7 +414,7 @@ nav.scrolled .lang-dropdown-btn {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Kritik: İçeriği sola çeker */
+    justify-content: flex-end; /* CRITICAL: Content to the right */
     overflow: hidden;
     background: #0a0f1e;
 }
@@ -426,34 +426,35 @@ nav.scrolled .lang-dropdown-btn {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.9) contrast(1.02); /* Video daha aydınlık, gerçek renkler */
+    filter: brightness(0.9) contrast(1.02);
     z-index: 1;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* Kritik: Soldan sağa hafifleyen bir gölge. Yazılar solda süzülürken, sağ taraf temiz kalır. */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%);
+    /* CRITICAL: Subtle gradient from the right for readability. Islands on the left are clear. */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%);
     z-index: 2;
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
-    text-align: left; /* Kritik: Yazıları sola yaslar */
+    text-align: right; /* CRITICAL: Aligns text right */
     color: white;
-    max-width: 600px; /* Yazı sütunu daraltıldı: Videoya daha çok yer kalsın */
-    padding: 0 50px 0 100px; /* Kritik: Sol taraftan 100px boşluk bırakarak narin bir hizalama */
-    animation: fadeInLeft 1.2s ease;
+    max-width: 600px;
+    padding: 0 100px 0 50px; /* Swap padding: Right gets 100, Left gets 50 */
+    margin-left: auto; /* Position against the right edge */
+    margin-right: 0;
+    animation: fadeInRight 1.2s ease;
 }
 
-@keyframes fadeInLeft {
-    from { opacity: 0; transform: translateX(-40px); }
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
-/* Rozet sola hizalı */
 .hero-badge {
     display: inline-block;
     padding: 6px 16px;
@@ -461,16 +462,16 @@ nav.scrolled .lang-dropdown-btn {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 30px;
     color: #ffffff;
-    font-size: 10px; /* Çok kibar font */
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 2.5px;
     margin-bottom: 25px;
     text-transform: uppercase;
-    text-align: left;
-    margin-left: 0;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
 }
 
-/* Devasa 64px başlık 36px'e iniyor (Menüden biraz büyük, çok kibar) */
 .hero h1 {
     font-size: 36px;
     font-weight: 700;
@@ -481,22 +482,20 @@ nav.scrolled .lang-dropdown-btn {
     letter-spacing: 0.5px;
 }
 
-/* O kaba mavi gradient yerine asil, ince, el yazısı stilinde Altın */
 .hero-gradient {
     background: none;
     -webkit-text-fill-color: var(--accent);
     color: var(--accent);
     font-family: 'Playfair Display', serif;
-    font-style: italic; /* El yazısı havası */
+    font-style: italic;
     font-weight: 500;
-    font-size: 32px; /* Başlıkla uyumlu boyutta */
+    font-size: 32px;
     letter-spacing: -0.5px;
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-    display: inline-block; /* Yan yana süzülmesi için */
+    display: inline-block;
     margin-top: 5px;
 }
 
-/* Açıklama metni menü boyutuna (15px) iniyor */
 .hero p {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.85) !important;
@@ -505,31 +504,30 @@ nav.scrolled .lang-dropdown-btn {
     font-weight: 400;
     letter-spacing: 0.5px;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    max-width: 480px; /* Açıklamayı da sıkıştırarak videoyu açıyoruz */
-    margin-left: 0;
-    margin-right: auto;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .hero-links-container {
     display: flex;
     gap: 12px;
-    justify-content: flex-start; /* Kritik: Butonları sola yaslar */
+    justify-content: flex-end; /* CRITICAL: Aligns buttons to the right */
     flex-wrap: wrap;
 }
 
-/* Cam (Glass) Butonlar sola hizalı ve daha narin */
 .btn-hero-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px; /* Buton küçültüldü */
+    padding: 10px 20px;
     background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 11px; /* Çok kibar buton fontu */
+    font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     text-decoration: none;
