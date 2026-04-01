@@ -19,7 +19,7 @@
     @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     
     .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
-    .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></svg>'); opacity: 0.3; }
+    .header::before { display: none; }
     .header h1 { font-size: 48px; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; position: relative; z-index: 1; }
     .header p { font-size: 18px; opacity: 0.95; position: relative; z-index: 1; }
 
@@ -552,7 +552,7 @@
             const c = document.getElementById('galleryPreview'), e = document.getElementById('galleryEmpty');
             if (currentGallery.length === 0) { c.style.display = 'none'; e.style.display = 'block'; return; }
             c.style.display = 'grid'; e.style.display = 'none';
-            c.innerHTML = currentGallery.map((f, i) => `<div class="gallery-item"><img src="${f.startsWith('http') ? f : `assets/${f}`}" onerror="this.src='https://via.placeholder.com/150?text=Resim+Yok'"><button class="gallery-item-delete" onclick="removeGalleryImage(${i})" type="button"><i class="fas fa-times"></i></button><span class="gallery-item-number">#${i + 1}</span></div>`).join('');
+            c.innerHTML = currentGallery.map((f, i) => `<div class="gallery-item"><img src="${f.startsWith('http') ? f : `assets/${f}`}" onerror="this.style.display='none'"><button class="gallery-item-delete" onclick="removeGalleryImage(${i})" type="button"><i class="fas fa-times"></i></button><span class="gallery-item-number">#${i + 1}</span></div>`).join('');
         }
 
         // --- GÜN EKLEME SİSTEMİ (YENİ LÜKS YAPI) ---
@@ -922,7 +922,7 @@
             c.innerHTML = tours.map(tour => `
                 <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
                     ${tour.featured ? '<div style="position: absolute; top: 10px; right: 10px; background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700;">⭐ POPÜLER</div>' : ''}
-                    <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+                    <img src="${tour.image}" alt="${tour.title}" class="item-image" onerror="this.src='assets/walkabout_travel_logo.jpg'">
                     <div class="item-info">
                         <h3>${tour.title}</h3>
                         <p><i class="fas fa-tag"></i> ${tour.price} | <i class="fas fa-map-marker-alt"></i> ${tour.location}</p>
@@ -942,7 +942,7 @@
             if (blogs.length === 0) { c.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Henüz blog yok.</div>'; return; }
             c.innerHTML = blogs.map(b => `
                 <div class="item-card">
-                    <img src="${b.image}" alt="${b.title}" class="item-image" onerror="this.src='https://via.placeholder.com/120x80?text=No+Image'">
+                    <img src="${b.image}" alt="${b.title}" class="item-image" onerror="this.src='assets/walkabout_travel_logo.jpg'">
                     <div class="item-info">
                         <h3>${b.title}</h3>
                         <p><i class="fas fa-user"></i> ${b.author || 'Anonim'} | <i class="fas fa-folder"></i> ${b.category}</p>
