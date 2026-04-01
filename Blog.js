@@ -1,11 +1,13 @@
 /* ================================================
-   WALKABOUT TRAVEL - BLOG SYSTEM (JSON LOADING)
+   WALKABOUT TRAVEL - BLOG SYSTEM
+   Admin flat format ile uyumlu:
+   title_en, excerpt_en, content_en, vb.
    ================================================ */
 
 class BlogManager {
     constructor() {
         this.posts = [];
-        this.currentPost = null;
+        this.currentLang = localStorage.getItem('language') || 'tr';
         this.init();
     }
 
@@ -13,6 +15,7 @@ class BlogManager {
         await this.loadBlogPosts();
         this.setupModal();
         this.renderBlogGrid();
+        this.setupLangListener();
     }
 
     async loadBlogPosts() {
@@ -20,16 +23,39 @@ class BlogManager {
             const response = await fetch('data/blog-posts.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             this.posts = await response.json();
-            console.log(`✅ ${this.posts.length} blog yazısı JSON'dan yüklendi`);
+            console.log(`✅ ${this.posts.length} blog yazısı yüklendi`);
         } catch (error) {
             console.error('❌ Blog yükleme hatası:', error);
             this.posts = [];
         }
     }
 
+    // Admin flat formatını okur: title_en, excerpt_en, content_en vb.
+    // Nested formatı da destekler: { title: { tr: "...", en: "..." } } (geriye uyumluluk)
+    getField(post, field, lang) {
+        // 1. Nested obje formatı
+        if (post[field] && typeof post[field] === 'object') {
+            return post[field][lang] || post[field]['tr'] || '';
+        }
+        // 2. Flat format (admin kayıtları)
+        if (lang === 'tr') {
+            return post[field] || '';
+        }
+        return post[`${field}_${lang}`] || post[field] || '';
+    }
+
+    setupLangListener() {
+        document.addEventListener('languageChanged', (e) => {
+            this.currentLang = (e.detail && e.detail.lang)
+                ? e.detail.lang
+                : (e.detail || localStorage.getItem('language') || 'tr');
+            this.renderBlogGrid();
+        });
+    }
+
     renderBlogGrid() {
         const container = document.getElementById('blogContainer') || document.getElementById('blog-grid-display');
-        
+
         if (!container) {
             console.error('⚠️ Blog kutusu (div) bulunamadı!');
             return;
@@ -40,34 +66,40 @@ class BlogManager {
             return;
         }
 
-        const displayPosts = this.posts;
-
         let html = '';
-        displayPosts.forEach(post => {
+        this.posts.forEach(post => {
             html += this.createBlogCard(post);
         });
 
         container.innerHTML = html;
-if (!container.dataset.listenerAttached) {
-    this.attachClickEvents();
-    container.dataset.listenerAttached = 'true';
-}
+
+        if (!container.dataset.listenerAttached) {
+            this.attachClickEvents();
+            container.dataset.listenerAttached = 'true';
+        }
+    }
 
     createBlogCard(post) {
+        const lang = this.currentLang;
         const imageUrl = post.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop';
-        
+
+        // Admin flat format: title / title_en, excerpt / excerpt_en
+        const title = this.getField(post, 'title', lang);
+        const excerpt = this.getField(post, 'excerpt', lang)
+                     || this.getField(post, 'description', lang); // eski format desteği
+
         return `
             <div class="blog-card" data-post-id="${post.id}" style="cursor: pointer;">
                 <div class="blog-image">
-                    <img src="${imageUrl}" alt="${post.title}" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
+                    <img src="${imageUrl}" alt="${title}" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
                 </div>
                 <div class="blog-content" style="padding:20px;">
                     <div class="blog-meta" style="color:#666; font-size:0.9em; margin-bottom:10px;">
-                        <span><i class="far fa-calendar"></i> ${post.date}</span>
+                        <span><i class="far fa-calendar"></i> ${post.date || ''}</span>
                         ${post.category ? `<span style="margin-left:10px;"><i class="fas fa-tag"></i> ${post.category}</span>` : ''}
                     </div>
-                    <h3 style="margin-bottom:10px; color:#333;">${post.title}</h3>
-                    <p style="color:#666; font-size:0.95em; line-height:1.6;">${post.description}</p>
+                    <h3 style="margin-bottom:10px; color:#333;">${title}</h3>
+                    <p style="color:#666; font-size:0.95em; line-height:1.6;">${excerpt}</p>
                     <a href="#" class="blog-read-more" data-post-id="${post.id}" style="display:inline-block; margin-top:15px; color:#38bdf8; font-weight:600; text-decoration:none;">
                         Devamını Oku <i class="fas fa-arrow-right"></i>
                     </a>
@@ -77,16 +109,16 @@ if (!container.dataset.listenerAttached) {
     }
 
     attachClickEvents() {
-    const container = document.getElementById('blogContainer')
-                   || document.getElementById('blog-grid-display');
-    if (!container) return;
+        const container = document.getElementById('blogContainer')
+                       || document.getElementById('blog-grid-display');
+        if (!container) return;
 
-    container.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = e.target.closest('[data-post-id]');
-        if (target) this.openModal(target.getAttribute('data-post-id'));
-    });
-}
+        container.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = e.target.closest('[data-post-id]');
+            if (target) this.openModal(target.getAttribute('data-post-id'));
+        });
+    }
 
     setupModal() {
         if (!document.getElementById('blogModal')) {
@@ -131,10 +163,19 @@ if (!container.dataset.listenerAttached) {
     openModal(postId) {
         const post = this.posts.find(p => p.id == postId);
         if (!post) return;
-        
-        document.getElementById('blogModalImage').src = post.image;
-        document.getElementById('blogModalTitle').textContent = post.title;
-        document.getElementById('blogModalContent').innerHTML = post.fullContent || post.description;
+
+        const lang = this.currentLang;
+
+        // Admin flat format: content / content_en
+        // Eski format desteği: fullContent, description
+        const title = this.getField(post, 'title', lang);
+        const content = this.getField(post, 'content', lang)
+                     || this.getField(post, 'fullContent', lang)
+                     || this.getField(post, 'description', lang);
+
+        document.getElementById('blogModalImage').src = post.image || '';
+        document.getElementById('blogModalTitle').textContent = title;
+        document.getElementById('blogModalContent').innerHTML = content;
         document.getElementById('blogModal').classList.add('active');
     }
 

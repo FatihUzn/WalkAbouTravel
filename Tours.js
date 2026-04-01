@@ -1,5 +1,5 @@
 // Tours.js - WalkAbout Travel
-// Hem galleries.json hem de tours.json'dan okur ve birleştirir
+// Admin'in kaydettiği flat format ile uyumlu (title_en, description_en, vb.)
 
 class TourManager {
     constructor() {
@@ -16,41 +16,34 @@ class TourManager {
     }
 
     async loadAllTours() {
-    try {
-        const response = await fetch('data/tours.json');
-        if (response.ok) {
-            this.tours = await response.json();
-            console.log(`✅ ${this.tours.length} tur yüklendi`);
-        } else {
-            console.warn('tours.json yüklenemedi');
-            this.tours = [];
-        }
-    } catch (error) {
-        console.warn('Yükleme hatası:', error.message);
-        this.tours = [];
-    }
-}
-
-        // 2. tours.json'dan yükle (yeni sistem)
         try {
-            const toursResponse = await fetch('data/tours.json');
-            if (toursResponse.ok) {
-                const tours = await toursResponse.json();
-                
-                // Duplicate kontrolü - aynı ID varsa tours.json'daki öncelikli
-                tours.forEach(tour => {
-                    const existingIndex = allTours.findIndex(t => t.id === tour.id);
-                    if (existingIndex !== -1) {
-                        allTours[existingIndex] = { ...tour, source: 'tours' };
-                    } else {
-                        allTours.push({ ...tour, source: 'tours' });
-                    }
-                });
-                console.log(`✅ ${tours.length} tur yüklendi (tours.json)`);
+            const response = await fetch('data/tours.json');
+            if (response.ok) {
+                this.tours = await response.json();
+                console.log(`✅ ${this.tours.length} tur yüklendi`);
+            } else {
+                console.warn('tours.json yüklenemedi');
+                this.tours = [];
             }
         } catch (error) {
-            console.warn('⚠️ tours.json yüklenemedi:', error.message);
+            console.warn('Yükleme hatası:', error.message);
+            this.tours = [];
         }
+    }
+
+    // Admin flat formatını okur: title_en, title_es, description_en, vb.
+    // Nested formatı da destekler: { title: { tr: "...", en: "..." } } (geriye uyumluluk)
+    getField(tour, field, lang) {
+        // 1. Nested obje formatı
+        if (tour[field] && typeof tour[field] === 'object') {
+            return tour[field][lang] || tour[field]['tr'] || '';
+        }
+        // 2. Flat format (admin kayıtları)
+        if (lang === 'tr') {
+            return tour[field] || '';
+        }
+        return tour[`${field}_${lang}`] || tour[field] || '';
+    }
 
     setupEventListeners() {
         document.querySelectorAll('.tour-category-btn')?.forEach(btn => {
@@ -60,19 +53,21 @@ class TourManager {
         });
 
         document.addEventListener('languageChanged', (e) => {
-            this.currentLang = e.detail.lang;
+            this.currentLang = (e.detail && e.detail.lang)
+                ? e.detail.lang
+                : (e.detail || localStorage.getItem('language') || 'tr');
             this.displayTours();
         });
     }
 
     filterByCategory(category) {
         this.filteredCategory = category;
-        
+
         document.querySelectorAll('.tour-category-btn').forEach(btn => {
             btn.classList.remove('active');
         });
         document.querySelector(`[data-category="${category}"]`)?.classList.add('active');
-        
+
         this.displayTours();
     }
 
@@ -83,8 +78,8 @@ class TourManager {
             return;
         }
 
-        let filtered = this.filteredCategory === 'all' 
-            ? this.tours 
+        let filtered = this.filteredCategory === 'all'
+            ? this.tours
             : this.tours.filter(tour => tour.category === this.filteredCategory);
 
         container.innerHTML = '';
@@ -102,39 +97,33 @@ class TourManager {
     }
 
     createTourCard(tour) {
-    const card = document.createElement('div');
-    card.className = 'tour-card';
-    card.style.cursor = 'pointer';
+        const card = document.createElement('div');
+        card.className = 'tour-card';
+        card.style.cursor = 'pointer';
 
-    const lang = this.currentLang;
+        const lang = this.currentLang;
+        const title = this.getField(tour, 'title', lang);
+        const description = this.getField(tour, 'description', lang);
 
-    const title = (tour.title && tour.title[lang])
-        ? tour.title[lang]
-        : (tour.title?.tr || tour.title || '');
+        const shortDesc = description
+            ? description.substring(0, 120) + '...'
+            : 'Açıklama bulunmuyor.';
 
-    const description = (tour.description && tour.description[lang])
-        ? tour.description[lang]
-        : (tour.description?.tr || tour.description || '');
-
-    const shortDesc = description
-        ? description.substring(0, 120) + '...'
-        : 'Açıklama bulunmuyor.';
-
-    const linkText = {
-        tr: 'Detayları Gör',
-        en: 'View Details',
-        es: 'Ver Detalles',
-        ru: 'Подробнее',
-        de: 'Details ansehen',
-        zh: '查看详情',
-        ar: 'عرض التفاصيل'
-    }[lang] || 'Detayları Gör';
+        const linkText = {
+            tr: 'Detayları Gör',
+            en: 'View Details',
+            es: 'Ver Detalles',
+            ru: 'Подробнее',
+            de: 'Details ansehen',
+            zh: '查看详情',
+            ar: 'عرض التفاصيل'
+        }[lang] || 'Detayları Gör';
 
         card.innerHTML = `
             <div class="tour-image">
-                <img src="${tour.image}" alt="${title}" loading="lazy" 
+                <img src="${tour.image}" alt="${title}" loading="lazy"
                      onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
-                <div class="tour-badge">${tour.category}</div>
+                <div class="tour-badge">${tour.category || ''}</div>
             </div>
             <div class="tour-content">
                 <h3>${title}</h3>
@@ -151,7 +140,6 @@ class TourManager {
             </div>
         `;
 
-        // Kart tıklama eventi
         card.addEventListener('click', (e) => {
             if (!e.target.closest('.tour-link')) {
                 window.location.href = `tour-detail.html?id=${tour.id}`;

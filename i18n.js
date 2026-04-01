@@ -546,7 +546,7 @@ window.i18n = {
         this.updateDOM();
         
         // Sayfadaki dinamik içerikleri haberdar et
-        window.dispatchEvent(new Event('languageChanged'));
+        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: this.currentLang } }));
     },
 
     applyRTL() {
