@@ -714,13 +714,20 @@
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
             
             // save.php'ye gönder
-            fetch('save.php', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ file: 'tours', data: tours })
-            })
-            .then(r => r.json())
-            .then(res => { if (res.success) showAlert('tourAlert', '✅ Sunucuyla senkronize edildi!', 'success'); })
-            .catch(err => console.error('Bağlantı hatası:', err));
+            try {
+                const saveResp = await fetch('save.php', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file: 'tours', data: tours })
+                });
+                const saveRes = await saveResp.json();
+                if (saveRes.success) {
+                    showAlert('tourAlert', `✅ ${tours.length} tur sunucuya kaydedildi!`, 'success');
+                } else {
+                    showAlert('tourAlert', '⚠️ Sunucu hatası: ' + (saveRes.error || 'Bilinmeyen hata') + ' — Tur bellekte var ama sunucuya yazılamadı.', 'error');
+                }
+            } catch(err) {
+                showAlert('tourAlert', '⚠️ save.php bulunamadı: ' + err.message + ' — Tur bellekte var ama sunucuya yazılamadı.', 'error');
+            }
 
             resetTourForm();
         }
@@ -765,10 +772,16 @@
             displayBlogs(); updateBlogStats(); updateBulkCounts();
             try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
 
-            fetch('save.php', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ file: 'blogs', data: blogs })
-            })
+            try {
+                const bSaveResp = await fetch('save.php', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file: 'blogs', data: blogs })
+                });
+                const bSaveRes = await bSaveResp.json();
+                if (!bSaveRes.success) showAlert('blogAlert', '⚠️ Sunucu hatası: ' + (bSaveRes.error || '?'), 'error');
+            } catch(err) {
+                showAlert('blogAlert', '⚠️ save.php bulunamadı: ' + err.message, 'error');
+            }
             .then(r => r.json())
             .then(res => { if (res.success) showAlert('blogAlert', '✅ Bloglar sunucuya başarıyla kaydedildi!', 'success'); })
             .catch(err => console.error(err));
@@ -989,16 +1002,40 @@
 
         async function saveToursToFile() {
             if (tours.length === 0) return showAlert('tourAlert', '⚠️ Kaydedilecek tur yok!', 'error');
-            const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(tours, null, 2)], { type: 'application/json' })); a.download = 'tours.json';
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            showAlert('tourAlert', `✅ ${tours.length} tur indirildi!`, 'success');
+            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Sunucuya kaydediliyor...', 'info');
+            try {
+                const resp = await fetch('save.php', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file: 'tours', data: tours })
+                });
+                const res = await resp.json();
+                if (res.success) {
+                    showAlert('tourAlert', `✅ ${tours.length} tur sunucuya kaydedildi!`, 'success');
+                } else {
+                    showAlert('tourAlert', '❌ Hata: ' + (res.error || 'Bilinmeyen hata'), 'error');
+                }
+            } catch(err) {
+                showAlert('tourAlert', '❌ save.php bulunamadı veya erişilemiyor: ' + err.message, 'error');
+            }
         }
 
         async function saveBlogsToFile() {
             if (blogs.length === 0) return showAlert('blogAlert', '⚠️ Kaydedilecek blog yok!', 'error');
-            const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(blogs, null, 2)], { type: 'application/json' })); a.download = 'blog-posts.json';
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            showAlert('blogAlert', `✅ ${blogs.length} blog indirildi!`, 'success');
+            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Sunucuya kaydediliyor...', 'info');
+            try {
+                const resp = await fetch('save.php', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file: 'blogs', data: blogs })
+                });
+                const res = await resp.json();
+                if (res.success) {
+                    showAlert('blogAlert', `✅ ${blogs.length} blog sunucuya kaydedildi!`, 'success');
+                } else {
+                    showAlert('blogAlert', '❌ Hata: ' + (res.error || 'Bilinmeyen hata'), 'error');
+                }
+            } catch(err) {
+                showAlert('blogAlert', '❌ save.php bulunamadı veya erişilemiyor: ' + err.message, 'error');
+            }
         }
 
         function setupImagePreviews() {
