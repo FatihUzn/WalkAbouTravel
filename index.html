@@ -68,9 +68,7 @@
         <a href="#" data-lang="tr">Türkçe (TR)</a>
         <a href="#" data-lang="en">English (EN)</a>
         <a href="#" data-lang="es">Español (ES)</a>
-        <a href="#" data-lang="ru">Русский (RU)</a>
-        <a href="#" data-lang="de">Deutsch (DE)</a>
-        <a href="#" data-lang="zh">中文 (ZH)</a>
+        <a href="#" data-lang="pt">Português (PT)</a>
         <a href="#" data-lang="ar">العربية (AR)</a>
     </div>
 </div>
@@ -376,7 +374,7 @@
 
         // Seçilen dili butona yazdırma fonksiyonu (Açılır menü için)
         const updateDropdownText = (lang) => {
-            const langNames = {'tr': 'TR', 'en': 'EN', 'es': 'ES', 'ru': 'RU', 'de': 'DE', 'zh': 'ZH', 'ar': 'AR'};
+            const langNames = {'tr': 'TR', 'en': 'EN', 'es': 'ES', 'pt': 'PT', 'ar': 'AR'};
             document.querySelectorAll('.current-lang-text').forEach(el => {
                 el.textContent = langNames[lang] || lang.toUpperCase();
             });
