@@ -45,7 +45,7 @@ class BlogManager {
     }
 
     setupLangListener() {
-        document.addEventListener('languageChanged', (e) => {
+        window.addEventListener('languageChanged', (e) => {
             this.currentLang = (e.detail && e.detail.lang)
                 ? e.detail.lang
                 : (e.detail || localStorage.getItem('language') || 'tr');

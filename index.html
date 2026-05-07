@@ -397,6 +397,7 @@
                 if(window.i18n) {
                     window.i18n.changeLanguage(selectedLang);
                     updateDropdownText(selectedLang);
+                    window.dispatchEvent(new Event('languageChanged')); // ✅ Dil değişince blog & tur içeriğini güncelle
                 }
                 langOption.closest('.lang-dropdown').classList.remove('active');
                 return;
@@ -409,13 +410,11 @@
 
         loadCategories();
         loadTours();
-        loadBlogs();
     });
 
     // Dil değiştiğinde içerikleri anında güncelle
     window.addEventListener('languageChanged', () => {
         loadTours();
-        loadBlogs();
     });
 
     // Admin paneliyle uyumlu "Çoklu Dil Okuyucu"
@@ -588,42 +587,7 @@
         }).join('');
     }
 
-    // ==================== 4. BLOGLARI YÜKLEME ====================
-    async function loadBlogs() {
-        try {
-            const response = await fetch('data/blog-posts.json');
-            if (!response.ok) return;
-            const blogs = await response.json();
-            
-            const grid = document.getElementById('blogContainer');
-            if (!grid) return;
-
-            grid.innerHTML = blogs.map(blog => {
-                const title = String(getLocalizedData(blog, 'title'));
-                const excerpt = String(getLocalizedData(blog, 'excerpt') || '');
-                const shortExcerpt = excerpt.substring(0, 100) + (excerpt.length > 100 ? '...' : '');
-
-                return `
-                <div class="blog-card" onclick="window.location.href='blog-detail.html?id=${blog.id}'">
-                    <div class="blog-image">
-                        <img src="${blog.image}" alt="${title}" loading="lazy">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> ${blog.date}</span>
-                            <span><i class="fas fa-folder"></i> ${blog.category}</span>
-                        </div>
-                        <h3>${title}</h3>
-                        <p>${shortExcerpt}</p>
-                        <span class="tour-link">DEVAMINI OKU <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </div>
-                `;
-            }).join('');
-        } catch (error) {
-            console.error("Bloglar yüklenemedi:", error);
-        }
-    }
     </script>
+    <script src="Blog.js"></script>
 </body>
 </html>
