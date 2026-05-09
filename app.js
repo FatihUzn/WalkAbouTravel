@@ -317,10 +317,30 @@ function optimizePerformance() {
     log('✅ Performance optimizasyonu yapıldı');
 }
 
+// ==================== PRELOADER ====================
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.classList.add('hide');
+
+            // Geçiş bittikten sonra DOM'dan kaldır (performans)
+            preloader.addEventListener('transitionend', () => {
+                preloader.remove();
+            }, { once: true });
+        }, 3200);
+    });
+
+    log('✅ Preloader hazır');
+}
+
 // ==================== INITIALIZATION ====================
 function initApp() {
     log('📄 DOM yüklendi, app.js başlatılıyor...');
     
+    initPreloader();
     initMobileMenu();
     initNavbarScroll();
     initContactForm();
@@ -342,6 +362,7 @@ if (document.readyState === 'loading') {
 // Export fonksiyonlar (diğer scriptler kullanabilsin)
 if (typeof window !== 'undefined') {
     window.WalkAboutApp = {
+        initPreloader,
         initMobileMenu,
         initNavbarScroll,
         initContactForm,

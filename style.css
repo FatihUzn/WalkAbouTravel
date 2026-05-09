@@ -2147,3 +2147,151 @@ body[dir="rtl"] .contact-form textarea {
         padding: 0 !important;
     }
 }
+/* ==========================================
+   WALKABOUT PRELOADER
+   ========================================== */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #0f172a;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+#preloader.hide { transform: translateY(-100%); }
+
+/* Arka plan mavi parıltı */
+#preloader::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,64,175,0.18) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+}
+
+/* Üst küçük etiket */
+.pl-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 8px;
+    color: rgba(212, 175, 55, 0.5);
+    text-transform: uppercase;
+    opacity: 0;
+    margin-bottom: 24px;
+    animation: plFadeIn 0.8s ease 0.1s forwards;
+}
+
+/* Üst ince çizgi */
+.pl-line-top {
+    width: 0;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.3);
+    margin-bottom: 30px;
+    animation: plLineGrow 0.7s cubic-bezier(0.86, 0, 0.07, 1) 0.3s forwards;
+}
+
+/* WALKABOUT — harf harf */
+.pl-logo-wrap {
+    display: flex;
+    align-items: baseline;
+    overflow: visible;
+    margin-bottom: 6px;
+}
+.pl-logo-wrap .pl-char {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(32px);
+    display: inline-block;
+    animation: plCharUp 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.pl-logo-wrap .pl-char:nth-child(1) { animation-delay: 0.65s; }
+.pl-logo-wrap .pl-char:nth-child(2) { animation-delay: 0.74s; }
+.pl-logo-wrap .pl-char:nth-child(3) { animation-delay: 0.83s; }
+.pl-logo-wrap .pl-char:nth-child(4) { animation-delay: 0.92s; }
+.pl-logo-wrap .pl-char:nth-child(5) { animation-delay: 1.01s; }
+.pl-logo-wrap .pl-char:nth-child(6) { animation-delay: 1.10s; }
+.pl-logo-wrap .pl-char:nth-child(7) { animation-delay: 1.19s; }
+.pl-logo-wrap .pl-char:nth-child(8) { animation-delay: 1.28s; }
+.pl-logo-wrap .pl-char:nth-child(9) { animation-delay: 1.37s; }
+
+/* TRAVEL — altın italic */
+.pl-sub-wrap {
+    display: flex;
+    overflow: visible;
+    margin-bottom: 0;
+}
+.pl-sub-wrap .pl-sub-char {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 10px;
+    color: #d4af37;
+    opacity: 0;
+    transform: translateY(14px);
+    display: inline-block;
+    animation: plFadeUp 0.5s ease forwards;
+}
+.pl-sub-wrap .pl-sub-char:nth-child(1) { animation-delay: 1.55s; }
+.pl-sub-wrap .pl-sub-char:nth-child(2) { animation-delay: 1.62s; }
+.pl-sub-wrap .pl-sub-char:nth-child(3) { animation-delay: 1.69s; }
+.pl-sub-wrap .pl-sub-char:nth-child(4) { animation-delay: 1.76s; }
+.pl-sub-wrap .pl-sub-char:nth-child(5) { animation-delay: 1.83s; }
+.pl-sub-wrap .pl-sub-char:nth-child(6) { animation-delay: 1.90s; }
+
+/* Küçük nokta */
+.pl-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.5);
+    margin: 20px auto;
+    opacity: 0;
+    transform: scale(0);
+    animation: plDotPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.1s forwards;
+}
+
+/* Tagline */
+.pl-tagline {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 6px;
+    color: rgba(148, 163, 184, 0.6);
+    text-transform: uppercase;
+    opacity: 0;
+    margin-bottom: 28px;
+    animation: plFadeIn 0.8s ease 2.25s forwards;
+}
+
+/* Alt altın çizgi */
+.pl-line-bottom {
+    width: 0;
+    height: 1px;
+    background: #d4af37;
+    opacity: 0.4;
+    animation: plLineGold 1s cubic-bezier(0.86, 0, 0.07, 1) 2.4s forwards;
+}
+
+/* --- Keyframes --- */
+@keyframes plCharUp  { to { opacity: 1; transform: translateY(0); } }
+@keyframes plFadeUp  { to { opacity: 1; transform: translateY(0); } }
+@keyframes plFadeIn  { to { opacity: 1; } }
+@keyframes plDotPop  { to { opacity: 1; transform: scale(1); } }
+@keyframes plLineGrow { to { width: 100px; } }
+@keyframes plLineGold { 0% { width: 0; } 100% { width: 160px; } }

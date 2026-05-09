@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WalkAbout Travel - Discover the World</title>
@@ -13,7 +12,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,6 +22,38 @@
 </head>
 <body>
 
+    <div id="preloader">
+  <div class="preloader-content">
+    <div class="pl-eyebrow">Premium Travel Experience</div>
+    <div class="pl-line-top"></div>
+
+    <div class="pl-logo-wrap">
+      <span class="pl-char">W</span>
+      <span class="pl-char">A</span>
+      <span class="pl-char">L</span>
+      <span class="pl-char">K</span>
+      <span class="pl-char">A</span>
+      <span class="pl-char">B</span>
+      <span class="pl-char">O</span>
+      <span class="pl-char">U</span>
+      <span class="pl-char">T</span>
+    </div>
+
+    <div class="pl-sub-wrap">
+      <span class="pl-sub-char">T</span>
+      <span class="pl-sub-char">R</span>
+      <span class="pl-sub-char">A</span>
+      <span class="pl-sub-char">V</span>
+      <span class="pl-sub-char">E</span>
+      <span class="pl-sub-char">L</span>
+    </div>
+
+    <div class="pl-dot"></div>
+    <div class="pl-tagline">Discover · Explore · Experience</div>
+    <div class="pl-line-bottom"></div>
+  </div>
+</div>
+
     <!-- NAVBAR -->
     <nav id="navbar">
         <div class="header-top-row">
@@ -30,13 +61,12 @@
                 <a href="tel:+902125551923">
                     <i class="fas fa-phone"></i> <span>+90 (212) 555 1923</span>
                 </a>
-                <a href="mailto:info@walkaboutravel.com?
-                subject=Web%20Sitenizden%20Ula%C5%9F%C4%B1yorum&body=Merhaba%2C%20turlar%C4%B1n%C4%B1z%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">
-                    <i class="fas fa-envelope"></i> <span>info@walkaboutravel.com</span>
+                <a href="mailto:info@walkabouttravel.com.tr?subject=Web%20Sitenizden%20Ula%C5%9F%C4%B1yorum&body=Merhaba%2C%20turlar%C4%B1n%C4%B1z%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">
+                    <i class="fas fa-envelope"></i> <span>info@walkabouttravel.com.tr</span>
                 </a>
             </div>
             <div class="top-bar-right">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Mimar+Sinan+Cd.+No:+42/A,+Istanbul" 
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Kad%C4%B1rga+Liman%C4%B1+Cd.+138A%2C+34122+%C4%B0stanbul%2C+Fatih%2C+T%C3%BCrkiye" 
                    target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-map-marker-alt"></i> <span data-i18n="nav_get_directions">Get Directions</span>
                 </a>
@@ -194,7 +224,7 @@
         </div>
 
         <div class="contact-container">
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
                 <div class="form-group">
                     <label for="name" data-i18n="contact_name_label">Full Name *</label>
                     <input type="text" id="name" required data-i18n="contact_name_placeholder" placeholder="John Doe">
@@ -220,7 +250,7 @@
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <h4 data-i18n="contact_info_address_title">Our Address</h4>
-                    <p data-i18n="contact_info_address_text">Mimar Sinan St. No: 42/A<br>Istanbul, Turkey</p>
+                    <p data-i18n="contact_info_address_text">Kadırga Limanı Cd. 138A<br>34122 Fatih, İstanbul / Türkiye</p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
@@ -230,7 +260,7 @@
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
                     <h4 data-i18n="contact_info_email_title">Email</h4>
-                    <p>info@walkaboutravel.com</p>
+                    <p>info@walkabouttravel.com.tr</p>
                 </div>
             </div>
         </div>
@@ -585,6 +615,29 @@
             </div>
             `;
         }).join('');
+    }
+
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        const name    = document.getElementById('name').value.trim();
+        const email   = document.getElementById('email').value.trim();
+        const phone   = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        const subject = encodeURIComponent('Web Sitesi İletişim Formu - ' + name);
+        const body    = encodeURIComponent(
+            'Ad Soyad: ' + name + '\n' +
+            'E-posta: '  + email + '\n' +
+            'Telefon: '  + (phone || '-') + '\n\n' +
+            'Mesaj:\n'   + message
+        );
+        window.location.href = 'mailto:info@walkabouttravel.com.tr?subject=' + subject + '&body=' + body;
+
+        const btn = document.querySelector('#contactForm .submit-btn');
+        const origHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Gönderildi!';
+        btn.style.background = '#10b981';
+        setTimeout(() => { btn.innerHTML = origHTML; btn.style.background = ''; }, 3000);
     }
 
     </script>

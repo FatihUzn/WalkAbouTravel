@@ -26,7 +26,14 @@
     "category": "Türkiye",
     "image": "assets/mardin-tarihi-konak-dokusu-1.webp",
     "images": [
-      "assets/mardin-tarihi-konak-dokusu-1.webp"
+      "assets/mardin-tarihi-konak-dokusu-1.webp",
+      "assets/mardin-tarihi-konak-dokusu-2.webp",
+      "assets/mardin-tarihi-konak-dokusu-3.webp",
+      "assets/mardin-tarihi-konak-dokusu-4.webp",
+      "assets/mardin-tarihi-konak-dokusu-5.webp",
+      "assets/mardin-tarihi-konak-dokusu-6.webp",
+      "assets/mardin-tarihi-konak-dokusu-7.webp",
+      "assets/mardin-tarihi-konak-dokusu-8.webp"
     ],
     "highlights": [],
     "included": [],
@@ -61,7 +68,14 @@
     "category": "Türkiye",
     "image": "assets/antalya-koy-gezisi-1.webp",
     "images": [
-      "assets/antalya-koy-gezisi-1.webp"
+      "assets/antalya-koy-gezisi-1.webp",
+      "assets/antalya-koy-gezisi-2.webp",
+      "assets/antalya-koy-gezisi-3.webp",
+      "assets/antalya-koy-gezisi-4.webp",
+      "assets/antalya-koy-gezisi-5.webp",
+      "assets/antalya-koy-gezisi-6.webp",
+      "assets/antalya-koy-gezisi-7.webp",
+      "assets/antalya-koy-gezisi-8.webp"
     ],
     "highlights": [],
     "included": [],
@@ -135,7 +149,14 @@
     "category": "Türkiye",
     "image": "assets/fethiye-oludeniz-manzarasi-14.webp",
     "images": [
-      "assets/fethiye-oludeniz-manzarasi-14.webp"
+      "assets/fethiye-oludeniz-manzarasi-1.webp",
+      "assets/fethiye-oludeniz-manzarasi-2.webp",
+      "assets/fethiye-oludeniz-manzarasi-3.webp",
+      "assets/fethiye-oludeniz-manzarasi-4.webp",
+      "assets/fethiye-oludeniz-manzarasi-5.webp",
+      "assets/fethiye-oludeniz-manzarasi-6.webp",
+      "assets/fethiye-oludeniz-manzarasi-7.webp",
+      "assets/fethiye-oludeniz-manzarasi-8.webp"
     ],
     "highlights": [],
     "included": [],
@@ -367,8 +388,12 @@
     "content_de": "kısa açıklama",
     "content_zh": "kısa açıklama",
     "content_ar": "kısa açıklama",
-    "image": "assets/10 Gün.jpg",
-    "gallery": [],
+    "image": "assets/grand-turkey-turu-1.webp",
+    "gallery": [
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/best-of-turkey-turu-1.webp"
+    ],
     "featured": false,
     "source": "admin"
   },
@@ -382,7 +407,7 @@
     "title_zh": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
     "title_ar": "Büyük Türkiye Turu: Tarih, Doğa ve Gökyüzü (9 Gün)",
     "price": "3000$",
-    "duration": "8 Gün / 7 Gece",
+    "duration": "9 Gün / 8 Gece",
     "location": "İstasanbul - kapadokya - pamukkale",
     "category": "Türkiye",
     "categories": {
@@ -418,8 +443,13 @@
     "content_de": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
     "content_zh": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
     "content_ar": "İstanbul’un görkeminden Kapadokya’nın peri masallarına, Efes’in antik ruhundan Pamukkale’nin beyaz büyüsüne uzanan unutulmaz bir yolculuk.",
-    "image": "assets/9 gün.jpg",
-    "gallery": [],
+    "image": "assets/exciting-turkey-turu-1.webp",
+    "gallery": [
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/pamukkale-traverten-dogal-3.webp",
+      "assets/efes-antik-luks-1.webp"
+    ],
     "featured": false,
     "source": "admin"
   },
@@ -433,7 +463,7 @@
     "title_zh": "istanbul çıkışlı gelibolu turu",
     "title_ar": "istanbul çıkışlı gelibolu turu",
     "price": "90 usd' den başlayan fiyatlarla",
-    "duration": "tüm gün",
+    "duration": "1 Gün",
     "location": "Gelibolu",
     "category": "Türkiye",
     "categories": {
@@ -469,7 +499,7 @@
     "content_de": "Günübirlik istanbul çıkışlı Gelibolu turu",
     "content_zh": "Günübirlik istanbul çıkışlı Gelibolu turu",
     "content_ar": "Günübirlik istanbul çıkışlı Gelibolu turu",
-    "image": "assets/Gelibolu.jpg",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/9 Gün.jpg"
     ],
@@ -511,7 +541,8 @@
     "description_ar": "أكمل رحلتك إلى اسطنبول خالية من الإجهاد.",
     "image": "assets/sabiha-gokcen-transfer-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -588,7 +619,11 @@
     "description_ar": "اشعر بحرية السماء من خلال الارتفاع من جبل باباداغ.",
     "image": "assets/fethiye-yamac-parasut-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/fethiye-oludeniz-manzarasi-1.webp",
+      "assets/fethiye-oludeniz-manzarasi-2.webp",
+      "assets/fethiye-oludeniz-manzarasi-3.webp",
+      "assets/fethiye-oludeniz-manzarasi-4.webp",
+      "assets/fethiye-oludeniz-manzarasi-5.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -663,7 +698,10 @@
     "description_ar": "باقات سياحية شاملة تستمر لمدة 20 يوما فأكثر.",
     "image": "assets/turkiye-uzun-tur-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -739,7 +777,9 @@
     "description_ar": "ليلة تركية لا تنسى في انتظاركم على مضيق البوسفور.",
     "image": "assets/bogaz-turk-gecesi-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -789,7 +829,7 @@
     "title_zh": "土耳其深度游",
     "title_ar": "جولة تركيا التاريخية",
     "price": "550$",
-    "duration": "5 Gün",
+    "duration": "5 Gün / 4 Gece",
     "location": "İstanbul, Çanakkale",
     "category": "Grup Turları",
     "categories": {
@@ -816,7 +856,8 @@
     "description_ar": "إنه يجمع بين التراث الإمبراطوري لإسطنبول وساحات القتال في جاليبولي.",
     "image": "assets/istanbul-gelibolu-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -911,7 +952,11 @@
     "description_ar": "التحليق فوق المداخن الخيالية والوديان في كابادوكيا.",
     "image": "assets/kapadokya-balon-turu-2.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -985,7 +1030,10 @@
     "description_ar": "باقات سياحية قصيرة لمدة يومين أو 3 أيام.",
     "image": "assets/turkiye-kisa-tur-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1060,7 +1108,10 @@
     "description_ar": "جولة مرنة مصممة للاكتشاف حسب وتيرتك الخاصة.",
     "image": "assets/turkey-alacarte-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1110,7 +1161,7 @@
     "title_zh": "从费特希耶到奥林波斯的蓝色航游",
     "title_ar": "رحلة بحرية زرقاء من فتحية إلى أوليمبوس",
     "price": "350$",
-    "duration": "4 Gün",
+    "duration": "4 Gün / 3 Gece",
     "location": "Fethiye, Antalya",
     "category": "Grup Turları",
     "categories": {
@@ -1135,7 +1186,11 @@
     "description_ar": "أبحر من ميناء فتحية الرائع وانطلق في رحلة لا تُنسى لمدة 4 أيام.",
     "image": "assets/fethiye-olympos-mavi-yolculuk-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/fethiye-oludeniz-manzarasi-1.webp",
+      "assets/fethiye-oludeniz-manzarasi-2.webp",
+      "assets/fethiye-oludeniz-manzarasi-3.webp",
+      "assets/fethiye-oludeniz-manzarasi-4.webp",
+      "assets/fethiye-oludeniz-manzarasi-5.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1201,7 +1256,7 @@
     "title_zh": "土耳其西部之旅",
     "title_ar": "جولة في غرب تركيا",
     "price": "490$",
-    "duration": "4 Gün",
+    "duration": "4 Gün / 3 Gece",
     "location": "Çanakkale, İzmir, Denizli",
     "category": "Türkiye",
     "categories": {
@@ -1228,7 +1283,9 @@
     "description_ar": "تتيح لك هذه الجولة الشاملة اكتشاف الوجهات الأكثر إثارة للإعجاب في غرب تركيا.",
     "image": "assets/bati-turkiye-antik-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/efes-antik-luks-1.webp",
+      "assets/pamukkale-hierapolis-turu-1.webp",
+      "assets/efes-gunluk-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1317,7 +1374,10 @@
     "description_ar": "نحن نقدم أنشطة خاصة للجميع من الباحثين عن الأدرينالين إلى عشاق الثقافة.",
     "image": "assets/turkiye-aktivite-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1391,7 +1451,8 @@
     "description_ar": "نحن نقدم خدمة نقل ترحيبية خالية من الإجهاد من مطار اسطنبول إلى فندقك.",
     "image": "assets/istanbul-havalimani-transfer-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1465,7 +1526,8 @@
     "description_ar": "اكتشف مدينة طروادة القديمة، حيث تتشابك الأساطير والتاريخ.",
     "image": "assets/truva-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1541,7 +1603,9 @@
     "description_ar": "نقدم جولات يومية ممتعة لاستكشاف هذه المدينة الفريدة.",
     "image": "assets/istanbul-gunluk-tur-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1591,7 +1655,7 @@
     "title_zh": "加里波利和特洛伊 2 日游",
     "title_ar": "جولة لمدة يومين في جاليبولي وطروادة",
     "price": "190$",
-    "duration": "2 Gün",
+    "duration": "2 Gün / 1 Gece",
     "location": "Çanakkale",
     "category": "Türkiye",
     "categories": {
@@ -1616,7 +1680,8 @@
     "description_ar": "يسمح لك باكتشاف ساحات القتال في جاليبولي وآثار طروادة القديمة.",
     "image": "assets/gelibolu-truva-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1697,7 +1762,11 @@
     "description_ar": "استمتع بتجربة ركوب خيل لا تُنسى مصحوبة بمناظر خلابة.",
     "image": "assets/kapadokya-at-binme-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1747,7 +1816,7 @@
     "title_zh": "7 日土耳其游",
     "title_ar": "جولة في تركيا لمدة 7 أيام",
     "price": "1250$",
-    "duration": "7 Gün",
+    "duration": "7 Gün / 6 Gece",
     "location": "Çoklu Şehir",
     "category": "Türkiye",
     "categories": {
@@ -1774,7 +1843,10 @@
     "description_ar": "استكشاف أشهر أربع وجهات في تركيا في رحلة واحدة شاملة.",
     "image": "assets/turkiye-7-gun-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -1855,7 +1927,7 @@
     "title_zh": "亚拉拉特山徒步",
     "title_ar": "الرحلات في جبل أرارات",
     "price": "850$",
-    "duration": "4 Gün",
+    "duration": "4 Gün / 3 Gece",
     "location": "Ağrı",
     "category": "Grup Turları",
     "categories": {
@@ -1879,7 +1951,8 @@
     "description_ar": "يعد جبل أرارات، أعلى نقطة في تركيا، وجهة تسلق غامضة.",
     "image": "assets/agri-dagi-tirmanis-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/dogu-karadeniz-anadolu-turu-1.webp",
+      "assets/as-we-travel-turkey-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -1945,7 +2018,7 @@
     "title_zh": "从奥林波斯到费特希耶的蓝色航游",
     "title_ar": "رحلة بحرية زرقاء من أوليمبوس إلى فتحية",
     "price": "360$",
-    "duration": "4 Gün",
+    "duration": "4 Gün / 3 Gece",
     "location": "Antalya, Muğla",
     "category": "Grup Turları",
     "categories": {
@@ -1970,7 +2043,11 @@
     "description_ar": "انطلق من أوليمبوس في رحلة جوليت لا تُنسى لمدة 4 أيام.",
     "image": "assets/olympos-fethiye-mavi-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/fethiye-oludeniz-manzarasi-1.webp",
+      "assets/fethiye-oludeniz-manzarasi-2.webp",
+      "assets/fethiye-oludeniz-manzarasi-3.webp",
+      "assets/fethiye-oludeniz-manzarasi-4.webp",
+      "assets/fethiye-oludeniz-manzarasi-5.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2035,7 +2112,7 @@
     "title_zh": "土耳其日出之旅",
     "title_ar": "جولة شروق الشمس في تركيا",
     "price": "1450$",
-    "duration": "10 Gün",
+    "duration": "10 Gün / 9 Gece",
     "location": "Çoklu Şehir",
     "category": "Türkiye",
     "categories": {
@@ -2062,7 +2139,10 @@
     "description_ar": "تجمع هذه الجولة الشاملة بين أكثر الوجهات إثارة للإعجاب في تركيا.",
     "image": "assets/turkey-sunrise-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2132,7 +2212,7 @@
     "title_zh": "土耳其经典之旅",
     "title_ar": "جولة كلاسيكيات تركيا",
     "price": "980$",
-    "duration": "6 Gün",
+    "duration": "6 Gün / 5 Gece",
     "location": "İstanbul, Kapadokya, Efes",
     "category": "Türkiye",
     "categories": {
@@ -2156,7 +2236,10 @@
     "description_ar": "تجمع هذه الجولة الكلاسيكية بين الوجهات الأكثر إثارة للإعجاب في تركيا.",
     "image": "assets/turkey-classics-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -2257,7 +2340,10 @@
     "description_ar": "سيقوم فريق الخبراء لدينا بتصميم برنامج مخصص لك.",
     "image": "assets/ozel-tur-planlama-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2331,7 +2417,8 @@
     "description_ar": "قم بزيارة شبه جزيرة جاليبولي في يوم واحد من اسطنبول.",
     "image": "assets/gelibolu-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2406,7 +2493,7 @@
     "description_ar": "مجموعة واسعة من خيارات الجولات اليومية إلى وجهات تركيا الشهيرة.",
     "image": "assets/turkiye-gunluk-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/turkiye-gunluk-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2456,7 +2543,7 @@
     "title_zh": "土耳其 6 日游",
     "title_ar": "جولة تركيا لمدة 6 أيام",
     "price": "1150$",
-    "duration": "6 Gün",
+    "duration": "6 Gün / 5 Gece",
     "location": "Çoklu Şehir",
     "category": "Türkiye",
     "categories": {
@@ -2482,7 +2569,10 @@
     "description_ar": "تجمع هذه الجولة الشاملة التي تستغرق 6 أيام بين أكثر النقاط إثارة للإعجاب في التاريخ والطبيعة والحضارة.",
     "image": "assets/turkiye-6-gun-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2582,7 +2672,9 @@
     "description_ar": "اخطو على الأراضي الأوروبية والآسيوية في نفس اليوم في إسطنبول.",
     "image": "assets/bogaz-iki-kita-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2659,7 +2751,10 @@
     "description_ar": "نقدم خيارات مسارات مختلفة للإقامات من 8 إلى 12 يومًا.",
     "image": "assets/turkiye-paket-tur-8-12-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2709,7 +2804,7 @@
     "title_zh": "土耳其奇观之旅",
     "title_ar": "جولة عجائب تركيا",
     "price": "750$",
-    "duration": "5 Gün",
+    "duration": "5 Gün / 4 Gece",
     "location": "İstanbul, Efes, Pamukkale",
     "category": "Türkiye",
     "categories": {
@@ -2734,7 +2829,10 @@
     "description_ar": "جولة رائعة لمدة 5 أيام تقدم روعة إسطنبول الإمبراطورية.",
     "image": "assets/wonders-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2829,7 +2927,11 @@
     "description_ar": "اكتشف ترافرتين باموكالي ومدينة هيرابوليس في يوم واحد.",
     "image": "assets/pamukkale-hierapolis-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/pamukkale-traverten-dogal-2.webp",
+      "assets/pamukkale-traverten-dogal-3.webp",
+      "assets/pamukkale-traverten-dogal-4.webp",
+      "assets/pamukkale-traverten-dogal-5.webp",
+      "assets/pamukkale-traverten-dogal-6.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -2905,7 +3007,8 @@
     "description_ar": "نوفر وسيلة نقل مريحة من فندقك إلى مطار إسطنبول.",
     "image": "assets/istanbul-havalimani-kalkis-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -2979,7 +3082,9 @@
     "description_ar": "تتيح لك هذه الجولة التي تستغرق نصف يوم زيارة المواقع الأكثر شهرة في المدينة بشكل مريح.",
     "image": "assets/bogaz-otobüs-tekne-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3054,7 +3159,10 @@
     "description_ar": "نحن نقدم حزم جولات متعددة الأيام تغطي جميع الوجهات الرئيسية في تركيا.",
     "image": "assets/turkiye-cok-gunluk-tur-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3103,7 +3211,7 @@
     "title_zh": "卡帕多西亚",
     "title_ar": "كابادوكيا",
     "price": "220$",
-    "duration": "2 Gün",
+    "duration": "2 Gün / 1 Gece",
     "location": "Kapadokya",
     "category": "Türkiye",
     "categories": {
@@ -3128,7 +3236,11 @@
     "description_ar": "إنه يقدم تجربة فريدة مع مداخن الجنيات والمدن تحت الأرض.",
     "image": "assets/kapadokya-gezegen-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -3178,7 +3290,7 @@
     "title_zh": "卡帕多西亚 2 日游",
     "title_ar": "جولة كابادوكيا لمدة يومين",
     "price": "340$",
-    "duration": "2 Gün",
+    "duration": "2 Gün / 1 Gece",
     "location": "Kapadokya",
     "category": "Türkiye",
     "categories": {
@@ -3203,7 +3315,11 @@
     "description_ar": "شاهد كل وجوه كابادوكيا، من الوديان السحرية إلى المدينة الغامضة تحت الأرض.",
     "image": "assets/kapadokya-2-gun-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3259,7 +3375,7 @@
     "title_zh": "土耳其七教堂之旅",
     "title_ar": "جولة كنائس تركيا السبع",
     "price": "890$",
-    "duration": "5 Gün",
+    "duration": "5 Gün / 4 Gece",
     "location": "İzmir, Manisa, Denizli",
     "category": "Grup Turları",
     "categories": {
@@ -3285,7 +3401,9 @@
     "description_ar": "تقدم هذه الجولة الفريدة التي تغطي المدن القديمة حيث توجد الكنائس السبع رحلة عميقة.",
     "image": "assets/yedi-kiliseler-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/yedi-kiliseler-turu-1.webp",
+      "assets/efes-antik-luks-1.webp",
+      "assets/pamukkale-hierapolis-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3381,7 +3499,9 @@
     "description_ar": "اسطنبول هي مدينة فريدة تجمع بين تراث الإمبراطوريتين البيزنطية والعثمانية.",
     "image": "assets/istanbul-iki-kita-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -3456,7 +3576,8 @@
     "description_ar": "ابتعد عن ضجيج اسطنبول واكتشف جزر الأمراء الهادئة والخلابة.",
     "image": "assets/prens-adalari-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3532,7 +3653,8 @@
     "description_ar": "نقدم خدمة نقل ترحيبية مريحة وخالية من الإجهاد من مطار صبيحة كوكجن.",
     "image": "assets/sabiha-gokcen-karsılama-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3606,7 +3728,9 @@
     "description_ar": "اكتشف روعة دولمة بهجة الرائعة.",
     "image": "assets/dolmabahce-bogaz-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3683,7 +3807,9 @@
     "description_ar": "تتيح لك هذه الجولة ليوم كامل اكتشاف أهم هياكل كلتا الإمبراطوريتين معًا.",
     "image": "assets/bizans-osmanli-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp",
+      "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3758,7 +3884,11 @@
     "description_ar": "استقل رحلة صباحية من اسطنبول وادخل إلى عالم كابادوكيا السحري.",
     "image": "assets/istanbul-kapadokya-gunluk-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -3833,7 +3963,8 @@
     "description_ar": "احصل على ملاذ يومي إلى صبنجة ومعشوقية.",
     "image": "assets/sapanca-masukiye-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/sapanca-masukiye-turu-1.webp",
+      "assets/dogu-karadeniz-anadolu-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3908,7 +4039,8 @@
     "description_ar": "تعتبر قطط الشوارع في اسطنبول جزءًا لا يتجزأ من ثقافة هذه المدينة.",
     "image": "assets/istanbul-kedi-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -3959,7 +4091,7 @@
     "title_zh": "令人兴奋的土耳其之旅",
     "title_ar": "جولة تركيا المثيرة",
     "price": "1350$",
-    "duration": "9 Gün",
+    "duration": "9 Gün / 8 Gece",
     "location": "Çoklu Şehir",
     "category": "Türkiye",
     "categories": {
@@ -3986,7 +4118,10 @@
     "description_ar": "تجمع هذه الجولة الشاملة بين الوجهات الأكثر إثارة للإعجاب في تركيا في رحلة واحدة.",
     "image": "assets/exciting-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4102,7 +4237,9 @@
     "description_ar": "اكتشف الجو الرائع لمدينة أفسس القديمة في نفس اليوم.",
     "image": "assets/efes-gunluk-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/efes-antik-luks-1.webp",
+      "assets/efes-gunluk-turu-1.webp",
+      "assets/efes-pamukkale-luks-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4153,7 +4290,7 @@
     "title_zh": "土耳其深度游",
     "title_ar": "جولة بصيرة في تركيا",
     "price": "920$",
-    "duration": "5 Gün",
+    "duration": "5 Gün / 4 Gece",
     "location": "Kapadokya, Konya, Efes",
     "category": "Türkiye",
     "categories": {
@@ -4177,7 +4314,11 @@
     "description_ar": "يسمح لك باستكشاف الوديان الغامضة في كابادوكيا بعمق.",
     "image": "assets/turkey-insight-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4247,7 +4388,7 @@
     "title_zh": "土耳其亮点",
     "title_ar": "أبرز معالم تركيا",
     "price": "780$",
-    "duration": "4 Gün",
+    "duration": "4 Gün / 3 Gece",
     "location": "Kapadokya, Pamukkale, Efes",
     "category": "Türkiye",
     "categories": {
@@ -4272,7 +4413,10 @@
     "description_ar": "تجمع هذه الجولة القصيرة بين ألمع الوجهات في تركيا.",
     "image": "assets/highlights-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/kapadokya-balon-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4361,7 +4505,8 @@
     "description_ar": "تستضيف هذه المدينة التاريخية، المعروفة باسم \"بورصة الخضراء\"، أجمل النماذج المعمارية.",
     "image": "assets/bursa-gunluk-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/bursa-gunluk-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4439,7 +4584,10 @@
     "description_ar": "نقدم خيارات عروض جولات شاملة تتراوح من 13 إلى 19 يومًا.",
     "image": "assets/turkiye-paket-tur-13-19-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4490,7 +4638,7 @@
     "title_zh": "梦幻土耳其之旅",
     "title_ar": "جولة حلم تركيا",
     "price": "1800$",
-    "duration": "7 Gün",
+    "duration": "7 Gün / 6 Gece",
     "location": "İstanbul, Kapadokya, Efes, Pamukkale",
     "category": "Türkiye",
     "categories": {
@@ -4517,7 +4665,10 @@
     "description_ar": "تحول هذه المغامرة التي تستغرق 7 أيام الوجهات الشهيرة في تركيا إلى استكشاف فاخر.",
     "image": "assets/dream-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -4598,7 +4749,7 @@
     "title_zh": "经济型土耳其跟团游",
     "title_ar": "باقة جولة تركيا بميزانية محدودة",
     "price": "650$",
-    "duration": "5 Gün",
+    "duration": "5 Gün / 4 Gece",
     "location": "Kapadokya, Pamukkale, Efes",
     "category": "Türkiye",
     "categories": {
@@ -4623,7 +4774,10 @@
     "description_ar": "اكتشف تركيا من خلال هذه الرحلة التي تستغرق 5 أيام والمناسبة للميزانية.",
     "image": "assets/turkey-budget-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4693,7 +4847,7 @@
     "title_zh": "天鹅绒土耳其之旅",
     "title_ar": "جولة تركيا المخملية",
     "price": "3200$",
-    "duration": "14 Gün",
+    "duration": "14 Gün / 13 Gece",
     "location": "Çoklu Şehir ve Mavi Yolculuk",
     "category": "Türkiye",
     "categories": {
@@ -4717,7 +4871,10 @@
     "description_ar": "تجربة فاخرة لا تنسى بما في ذلك الرحلة الزرقاء.",
     "image": "assets/velvet-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4788,7 +4945,7 @@
     "title_zh": "土耳其日落之旅",
     "title_ar": "جولة غروب الشمس التركية",
     "price": "2400$",
-    "duration": "10 Gün",
+    "duration": "10 Gün / 9 Gece",
     "location": "Kapadokya, Efes, Pamukkale, Fethiye",
     "category": "Türkiye",
     "categories": {
@@ -4813,7 +4970,9 @@
     "description_ar": "مزيج مثالي من التاريخ والثقافة والطبيعة الخلابة.",
     "image": "assets/turkish-sunset-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/efes-antik-luks-1.webp",
+      "assets/pamukkale-hierapolis-turu-1.webp",
+      "assets/efes-gunluk-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -4878,7 +5037,7 @@
     "title_zh": "土耳其天堂之旅",
     "title_ar": "جولة جنة تركيا",
     "price": "1450$",
-    "duration": "7 Gün",
+    "duration": "7 Gün / 6 Gece",
     "location": "İstanbul, Çanakkale, İzmir, Pamukkale",
     "category": "Türkiye",
     "categories": {
@@ -4905,7 +5064,10 @@
     "description_ar": "رحلة حصرية مدتها 7 أيام تجمع بين روعة الماضي وعجائب الطبيعة الفريدة.",
     "image": "assets/turkey-paradise-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5010,7 +5172,11 @@
     "description_ar": "تدعوك باموكالي لاكتشاف فريد مع تراسات الترافرتين البيضاء.",
     "image": "assets/pamukkale-antik-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/pamukkale-traverten-dogal-2.webp",
+      "assets/pamukkale-traverten-dogal-3.webp",
+      "assets/pamukkale-traverten-dogal-4.webp",
+      "assets/pamukkale-traverten-dogal-5.webp",
+      "assets/pamukkale-traverten-dogal-6.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5059,7 +5225,7 @@
     "title_zh": "以弗所棉花堡 2 日游",
     "title_ar": "جولة لمدة يومين في أفسس وباموكالي",
     "price": "420$",
-    "duration": "2 Gün",
+    "duration": "2 Gün / 1 Gece",
     "location": "İzmir, Denizli",
     "category": "Türkiye",
     "categories": {
@@ -5084,7 +5250,11 @@
     "description_ar": "جرب أكثر العجائب القديمة والطبيعية روعة في تركيا في رفاهية وراحة.",
     "image": "assets/efes-pamukkale-luks-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/pamukkale-traverten-dogal-2.webp",
+      "assets/pamukkale-traverten-dogal-3.webp",
+      "assets/pamukkale-traverten-dogal-4.webp",
+      "assets/pamukkale-traverten-dogal-5.webp",
+      "assets/pamukkale-traverten-dogal-6.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5165,7 +5335,9 @@
     "description_ar": "تنتظرك مدينة أفسس القديمة المدرجة في قائمة التراث العالمي لليونسكو.",
     "image": "assets/efes-antik-luks-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/efes-antik-luks-1.webp",
+      "assets/efes-gunluk-turu-1.webp",
+      "assets/efes-pamukkale-luks-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5214,7 +5386,7 @@
     "title_zh": "土耳其五城之旅",
     "title_ar": "جولة في خمس مدن في تركيا",
     "price": "1950$",
-    "duration": "10 Gün",
+    "duration": "10 Gün / 9 Gece",
     "location": "İstanbul, Kapadokya, Antalya, Pamukkale, Efes",
     "category": "Türkiye",
     "categories": {
@@ -5241,7 +5413,10 @@
     "description_ar": "جولة فاخرة شاملة لمدة 10 أيام تغطي إسطنبول وكابادوكيا وأنطاليا وباموكالي وأفسس.",
     "image": "assets/turkiye-bes-sehir-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5336,7 +5511,7 @@
     "title_zh": "当我们畅游土耳其之旅",
     "title_ar": "جولة بينما نسافر في تركيا",
     "price": "1650$",
-    "duration": "8 Gün",
+    "duration": "8 Gün / 7 Gece",
     "location": "Çoklu Şehir",
     "category": "Türkiye",
     "categories": {
@@ -5362,7 +5537,10 @@
     "description_ar": "جولة خاصة مخططة بعناية لمدة 8 أيام.",
     "image": "assets/as-we-travel-turkey-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5447,7 +5625,7 @@
     "title_zh": "棉花堡和以弗所 2 日游",
     "title_ar": "جولة لمدة يومين في باموكالي وأفسس",
     "price": "430$",
-    "duration": "2 Gün",
+    "duration": "2 Gün / 1 Gece",
     "location": "Denizli, İzmir",
     "category": "Türkiye",
     "categories": {
@@ -5472,7 +5650,11 @@
     "description_ar": "رحلة فريدة تغطي ترافرتين باموكالي وأفسس.",
     "image": "assets/pamukkale-efes-2gun-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/pamukkale-traverten-dogal-2.webp",
+      "assets/pamukkale-traverten-dogal-3.webp",
+      "assets/pamukkale-traverten-dogal-4.webp",
+      "assets/pamukkale-traverten-dogal-5.webp",
+      "assets/pamukkale-traverten-dogal-6.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5527,7 +5709,7 @@
     "title_zh": "土耳其精华游",
     "title_ar": "أفضل ما في تركيا",
     "price": "950$",
-    "duration": "6 Gün",
+    "duration": "6 Gün / 5 Gece",
     "location": "Kapadokya, Efes, Pamukkale",
     "category": "Türkiye",
     "categories": {
@@ -5554,7 +5736,10 @@
     "description_ar": "جولة تغطي كابادوكيا وأفسس وباموكالي.",
     "image": "assets/best-of-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp",
+      "assets/kapadokya-balon-turu-1.webp"
     ],
     "featured": true,
     "source": "admin",
@@ -5629,7 +5814,7 @@
     "title_zh": "土耳其大巡游",
     "title_ar": "جولة تركيا الكبرى",
     "price": "3500$",
-    "duration": "20 Gün",
+    "duration": "20 Gün / 19 Gece",
     "location": "Tüm Türkiye ve Mavi Yolculuk",
     "category": "Türkiye",
     "categories": {
@@ -5653,7 +5838,9 @@
     "description_ar": "جولة فريدة من نوعها لمدة 20 يومًا تغطي وجهات تركيا الشهيرة.",
     "image": "assets/grand-turkey-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/fethiye-oludeniz-manzarasi-6.webp",
+      "assets/fethiye-oludeniz-manzarasi-7.webp",
+      "assets/antalya-koy-gezisi-3.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5723,7 +5910,7 @@
     "title_zh": "12日东黑海及东安纳托利亚探索之旅",
     "title_ar": "جولة اكتشاف البحر الأسود الشرقي وشرق الأناضول لمدة 12 يومًا",
     "price": "1800$",
-    "duration": "12 Gün",
+    "duration": "12 Gün / 11 Gece",
     "location": "Karadeniz ve Doğu Anadolu",
     "category": "Türkiye",
     "categories": {
@@ -5748,7 +5935,8 @@
     "description_ar": "جولة فريدة من جبال البحر الأسود إلى شرق الأناضول.",
     "image": "assets/dogu-karadeniz-anadolu-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/dogu-karadeniz-anadolu-turu-1.webp",
+      "assets/as-we-travel-turkey-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5818,7 +6006,7 @@
     "title_zh": "土耳其蓝色航游",
     "title_ar": "الرحلة الزرقاء في تركيا",
     "price": "650$",
-    "duration": "7 Gün",
+    "duration": "7 Gün / 6 Gece",
     "location": "Akdeniz & Ege Kıyıları",
     "category": "Grup Turları",
     "categories": {
@@ -5843,7 +6031,9 @@
     "description_ar": "رحلة فريدة تغطي سيمينا، كيكوفا، كاش ووادي الفراشات.",
     "image": "assets/turkiye-mavi-yolculuk-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/fethiye-oludeniz-manzarasi-6.webp",
+      "assets/fethiye-oludeniz-manzarasi-7.webp",
+      "assets/antalya-koy-gezisi-3.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5917,7 +6107,10 @@
     "description_ar": "باقات جولات فاخرة من 4 إلى 7 أيام.",
     "image": "assets/turkiye-luks-tur-4-7-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/grand-turkey-turu-1.webp",
+      "assets/highlights-turkey-turu-1.webp",
+      "assets/best-of-turkey-turu-1.webp",
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -5967,7 +6160,7 @@
     "title_zh": "土耳其度假之旅",
     "title_ar": "جولة الملاذ التركي",
     "price": "890$",
-    "duration": "5 Gün",
+    "duration": "5 Gün / 4 Gece",
     "location": "İstanbul, Kapadokya",
     "category": "Türkiye",
     "categories": {
@@ -5992,7 +6185,7 @@
     "description_ar": "ملاذ سريع لمدة 5 أيام في إسطنبول وكابادوكيا.",
     "image": "assets/turkish-getaway-turu-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/turkish-getaway-turu-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -6062,7 +6255,7 @@
     "title_zh": "卡帕多西亚和棉花堡 3 日游",
     "title_ar": "جولة كابادوكيا وباموكالي لمدة 3 أيام",
     "price": "490$",
-    "duration": "3 Gün",
+    "duration": "3 Gün / 2 Gece",
     "location": "Kapadokya, Denizli",
     "category": "Türkiye",
     "categories": {
@@ -6087,7 +6280,11 @@
     "description_ar": "جولة خاصة لمدة 3 أيام في كابادوكيا وباموكالي.",
     "image": "assets/kapadokya-pamukkale-3gun-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/kapadokya-balon-turu-3.webp",
+      "assets/kapadokya-balon-turu-4.webp",
+      "assets/kapadokya-balon-turu-5.webp",
+      "assets/kapadokya-balon-turu-6.webp",
+      "assets/kapadokya-balon-turu-7.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -6172,7 +6369,8 @@
     "description_ar": "استمتع بتجربة احتفال السما التابع للتراث العالمي لليونسكو.",
     "image": "assets/sema-govsteri-1.webp",
     "gallery": [
-      "assets/paris-5.webp"
+      "assets/sema-govsteri-1.webp",
+      "assets/istanbul-tarihi-bogaz-2.webp"
     ],
     "featured": false,
     "source": "admin",
