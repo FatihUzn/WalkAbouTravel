@@ -428,6 +428,8 @@ nav.scrolled .lang-dropdown-btn {
     object-fit: cover;
     filter: brightness(0.9) contrast(1.02);
     z-index: 1;
+    pointer-events: none;
+    -webkit-playsinline: true;
 }
 
 .hero-overlay {

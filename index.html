@@ -111,7 +111,7 @@
 
     <!-- HERO -->
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
             <source src="assets/hero_background.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -642,5 +642,40 @@
 
     </script>
     <script src="Blog.js"></script>
+
+<script>
+// Mobil cihazlarda hero video'yu zorla başlat
+(function() {
+    var video = document.querySelector('.hero-video');
+    if (!video) return;
+    video.muted = true;
+    video.playsInline = true;
+
+    function tryPlay() {
+        var p = video.play();
+        if (p !== undefined) {
+            p.catch(function() {
+                // Kullanıcı etkileşimi bekleniyor - ilk dokunuşta başlat
+                document.addEventListener('touchstart', function handler() {
+                    video.play();
+                    document.removeEventListener('touchstart', handler);
+                }, { once: true });
+            });
+        }
+    }
+
+    if (video.readyState >= 2) {
+        tryPlay();
+    } else {
+        video.addEventListener('loadeddata', tryPlay, { once: true });
+        video.addEventListener('canplay', tryPlay, { once: true });
+    }
+
+    // iOS Safari için ek güvence
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) video.play().catch(function(){});
+    });
+})();
+</script>
 </body>
 </html>
