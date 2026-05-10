@@ -147,7 +147,7 @@
     "location": "Fethiye, Ölüdeniz, Saklıkent",
     "area": "Akdeniz",
     "category": "Türkiye",
-    "image": "assets/fethiye-oludeniz-manzarasi-14.webp",
+    "image": "assets/fethiye-oludeniz-manzarasi-1.webp",
     "images": [
       "assets/fethiye-oludeniz-manzarasi-1.webp",
       "assets/fethiye-oludeniz-manzarasi-2.webp",
@@ -499,7 +499,7 @@
     "content_de": "Günübirlik istanbul çıkışlı Gelibolu turu",
     "content_zh": "Günübirlik istanbul çıkışlı Gelibolu turu",
     "content_ar": "Günübirlik istanbul çıkışlı Gelibolu turu",
-    "image": "assets/istanbul-tarihi-bogaz-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/9 Gün.jpg"
     ],
@@ -539,10 +539,10 @@
     "description_de": "Beenden Sie Ihre Istanbul-Reise stressfrei und komfortabel.",
     "description_zh": "轻松舒适地结束您的伊斯坦布尔之旅。",
     "description_ar": "أكمل رحلتك إلى اسطنبول خالية من الإجهاد.",
-    "image": "assets/sabiha-gokcen-transfer-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
-      "assets/istanbul-kapadokya-gunluk-1.webp"
+      "assets/istanbul-tarihi-bogaz-1.webp"
     ],
     "featured": false,
     "source": "admin",
@@ -617,7 +617,7 @@
     "description_de": "Spüren Sie die Freiheit des Himmels, wenn Sie sich vom Berg Babadag erheben.",
     "description_zh": "从巴巴达格山升起，感受天空的自由。",
     "description_ar": "اشعر بحرية السماء من خلال الارتفاع من جبل باباداغ.",
-    "image": "assets/fethiye-yamac-parasut-1.webp",
+    "image": "assets/fethiye-oludeniz-manzarasi-1.webp",
     "gallery": [
       "assets/fethiye-oludeniz-manzarasi-1.webp",
       "assets/fethiye-oludeniz-manzarasi-2.webp",
@@ -696,7 +696,7 @@
     "description_de": "Umfassende Reisepakete ab 20 Tagen.",
     "description_zh": "为期 20 天以上的综合旅游套餐。",
     "description_ar": "باقات سياحية شاملة تستمر لمدة 20 يوما فأكثر.",
-    "image": "assets/turkiye-uzun-tur-1.webp",
+    "image": "assets/grand-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -775,7 +775,7 @@
     "description_de": "Es erwartet Sie eine unvergessliche türkische Nacht auf dem Bosporus.",
     "description_zh": "难忘的土耳其之夜在博斯普鲁斯海峡等着您。",
     "description_ar": "ليلة تركية لا تنسى في انتظاركم على مضيق البوسفور.",
-    "image": "assets/bogaz-turk-gecesi-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -854,7 +854,7 @@
     "description_de": "Es vereint Istanbuls kaiserliches Erbe und die Schlachtfelder von Gallipoli.",
     "description_zh": "它汇集了伊斯坦布尔的帝国遗产和加里波利的战场。",
     "description_ar": "إنه يجمع بين التراث الإمبراطوري لإسطنبول وساحات القتال في جاليبولي.",
-    "image": "assets/istanbul-gelibolu-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -1028,7 +1028,7 @@
     "description_de": "Kurze 2- oder 3-tägige Reisepakete.",
     "description_zh": "短期 2 或 3 天的旅游套餐。",
     "description_ar": "باقات سياحية قصيرة لمدة يومين أو 3 أيام.",
-    "image": "assets/turkiye-kisa-tur-1.webp",
+    "image": "assets/kapadokya-balon-turu-3.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -1106,7 +1106,7 @@
     "description_de": "Flexible Tour für individuelle Entdeckungen.",
     "description_zh": "专为自由行设计的灵活行程。",
     "description_ar": "جولة مرنة مصممة للاكتشاف حسب وتيرتك الخاصة.",
-    "image": "assets/turkey-alacarte-turu-1.webp",
+    "image": "assets/highlights-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -1184,7 +1184,7 @@
     "description_de": "Setzen Sie die Segel vom Hafen von Fethiye und begeben Sie sich auf eine unvergessliche 4-tägige Gulet-Reise.",
     "description_zh": "从费特希耶港起航，踏上难忘的 4 天海岸之旅。",
     "description_ar": "أبحر من ميناء فتحية الرائع وانطلق في رحلة لا تُنسى لمدة 4 أيام.",
-    "image": "assets/fethiye-olympos-mavi-yolculuk-1.webp",
+    "image": "assets/fethiye-oludeniz-manzarasi-3.webp",
     "gallery": [
       "assets/fethiye-oludeniz-manzarasi-1.webp",
       "assets/fethiye-oludeniz-manzarasi-2.webp",
@@ -1281,7 +1281,7 @@
     "description_de": "Diese umfassende Tour ermöglicht es Ihnen, die beeindruckendsten Reiseziele der Westtürkei zu entdecken.",
     "description_zh": "这次全面的旅行让您探索土耳其西部最令人印象深刻的目的地。",
     "description_ar": "تتيح لك هذه الجولة الشاملة اكتشاف الوجهات الأكثر إثارة للإعجاب في غرب تركيا.",
-    "image": "assets/bati-turkiye-antik-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/efes-antik-luks-1.webp",
       "assets/pamukkale-hierapolis-turu-1.webp",
@@ -1372,7 +1372,7 @@
     "description_de": "Wir bieten besondere Aktivitäten für alle, vom Adrenalinsucher bis zum Kulturinteressierten.",
     "description_zh": "我们为从寻求刺激的人到文化爱好者等所有人提供特别活动。",
     "description_ar": "نحن نقدم أنشطة خاصة للجميع من الباحثين عن الأدرينالين إلى عشاق الثقافة.",
-    "image": "assets/turkiye-aktivite-1.webp",
+    "image": "assets/kapadokya-balon-turu-10.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -1449,7 +1449,7 @@
     "description_de": "Wir bieten einen stressfreien Willkommenstransfer vom Flughafen Istanbul zu Ihrem Hotel.",
     "description_zh": "我们提供从伊斯坦布尔机场到您的酒店的无压力接机服务。",
     "description_ar": "نحن نقدم خدمة نقل ترحيبية خالية من الإجهاد من مطار اسطنبول إلى فندقك.",
-    "image": "assets/istanbul-havalimani-transfer-1.webp",
+    "image": "assets/sabiha-gokcen-karsilama-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -1524,7 +1524,7 @@
     "description_de": "Entdecken Sie die antike Stadt Troja, in der sich Mythologie und Geschichte vermischen.",
     "description_zh": "从伊斯坦布尔出发，一日内探索神话与历史交织的特洛伊古城。",
     "description_ar": "اكتشف مدينة طروادة القديمة، حيث تتشابك الأساطير والتاريخ.",
-    "image": "assets/truva-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -1601,7 +1601,7 @@
     "description_de": "Wir bieten interessante Tagestouren an, um diese einzigartige Metropole zu erkunden.",
     "description_zh": "我们提供有趣的一日游来探索这座独特的跨洲大都市。",
     "description_ar": "نقدم جولات يومية ممتعة لاستكشاف هذه المدينة الفريدة.",
-    "image": "assets/istanbul-gunluk-tur-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -1678,7 +1678,7 @@
     "description_de": "Es ermöglicht Ihnen, die Schlachtfelder von Gallipoli und die antiken Ruinen von Troja zu entdecken.",
     "description_zh": "让您探索加里波利战场和特洛伊古遗址。",
     "description_ar": "يسمح لك باكتشاف ساحات القتال في جاليبولي وآثار طروادة القديمة.",
-    "image": "assets/gelibolu-truva-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -1760,7 +1760,7 @@
     "description_de": "Erleben Sie unvergessliche Ausritte mit atemberaubender Aussicht.",
     "description_zh": "远离人群，伴着令人惊叹的美景，体验难忘的骑马之旅。",
     "description_ar": "استمتع بتجربة ركوب خيل لا تُنسى مصحوبة بمناظر خلابة.",
-    "image": "assets/kapadokya-at-binme-1.webp",
+    "image": "assets/kapadokya-balon-turu-3.webp",
     "gallery": [
       "assets/kapadokya-balon-turu-3.webp",
       "assets/kapadokya-balon-turu-4.webp",
@@ -1841,7 +1841,7 @@
     "description_de": "Entdecken Sie die vier symbolträchtigsten Reiseziele der Türkei auf einer umfassenden Reise.",
     "description_zh": "在一次全面的旅程中探索土耳其四个最具标志性的目的地。",
     "description_ar": "استكشاف أشهر أربع وجهات في تركيا في رحلة واحدة شاملة.",
-    "image": "assets/turkiye-7-gun-turu-1.webp",
+    "image": "assets/dream-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -1949,7 +1949,7 @@
     "description_de": "Der Berg Ararat, der höchste Punkt der Türkei, ist ein mystisches Kletterziel.",
     "description_zh": "亚拉拉特山是土耳其的最高点，也是神秘的攀登目的地。",
     "description_ar": "يعد جبل أرارات، أعلى نقطة في تركيا، وجهة تسلق غامضة.",
-    "image": "assets/agri-dagi-tirmanis-1.webp",
+    "image": "assets/dogu-karadeniz-anadolu-turu-1.webp",
     "gallery": [
       "assets/dogu-karadeniz-anadolu-turu-1.webp",
       "assets/as-we-travel-turkey-1.webp"
@@ -2041,7 +2041,7 @@
     "description_de": "Brechen Sie von Olympos zu einer unvergesslichen 4-tägigen Gulet-Reise auf.",
     "description_zh": "从奥林波斯出发，踏上难忘的 4 天海岸之旅。",
     "description_ar": "انطلق من أوليمبوس في رحلة جوليت لا تُنسى لمدة 4 أيام.",
-    "image": "assets/olympos-fethiye-mavi-1.webp",
+    "image": "assets/fethiye-oludeniz-manzarasi-3.webp",
     "gallery": [
       "assets/fethiye-oludeniz-manzarasi-1.webp",
       "assets/fethiye-oludeniz-manzarasi-2.webp",
@@ -2137,7 +2137,7 @@
     "description_de": "Diese umfassende Tour vereint die beeindruckendsten Reiseziele der Türkei.",
     "description_zh": "这次全面的旅游汇集了土耳其最令人印象深刻的目的地。",
     "description_ar": "تجمع هذه الجولة الشاملة بين أكثر الوجهات إثارة للإعجاب في تركيا.",
-    "image": "assets/turkey-sunrise-turu-1.webp",
+    "image": "assets/as-we-travel-turkey-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -2234,7 +2234,7 @@
     "description_de": "Diese klassische Tour vereint die beeindruckendsten Reiseziele der Türkei.",
     "description_zh": "这次经典之旅汇集了土耳其最令人印象深刻的目的地。",
     "description_ar": "تجمع هذه الجولة الكلاسيكية بين الوجهات الأكثر إثارة للإعجاب في تركيا.",
-    "image": "assets/turkey-classics-turu-1.webp",
+    "image": "assets/kapadokya-balon-turu-3.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -2338,7 +2338,7 @@
     "description_de": "Unser Expertenteam entwirft für Sie ein individuelles Programm.",
     "description_zh": "我们的专家团队将为您设计定制计划。",
     "description_ar": "سيقوم فريق الخبراء لدينا بتصميم برنامج مخصص لك.",
-    "image": "assets/ozel-tur-planlama-1.webp",
+    "image": "assets/highlights-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -2415,7 +2415,7 @@
     "description_de": "Besuchen Sie die Halbinsel Gallipoli an einem einzigen Tag von Istanbul aus.",
     "description_zh": "从伊斯坦布尔出发，一日游览加里波利半岛。",
     "description_ar": "قم بزيارة شبه جزيرة جاليبولي في يوم واحد من اسطنبول.",
-    "image": "assets/gelibolu-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -2491,7 +2491,7 @@
     "description_de": "Eine große Auswahl an Tagestouren zu den Wahrzeichen der Türkei.",
     "description_zh": "前往土耳其标志性目的地的多种一日游选择。",
     "description_ar": "مجموعة واسعة من خيارات الجولات اليومية إلى وجهات تركيا الشهيرة.",
-    "image": "assets/turkiye-gunluk-turu-1.webp",
+    "image": "assets/istanbul-kapadokya-gunluk-1.webp",
     "gallery": [
       "assets/turkiye-gunluk-turu-1.webp"
     ],
@@ -2567,7 +2567,7 @@
     "description_de": "Diese umfassende 6-tägige Tour vereint die beeindruckendsten Punkte von Geschichte, Natur und Zivilisation.",
     "description_zh": "这个为期 6 天的综合旅游汇集了历史、自然和文明中最令人印象深刻的地点。",
     "description_ar": "تجمع هذه الجولة الشاملة التي تستغرق 6 أيام بين أكثر النقاط إثارة للإعجاب في التاريخ والطبيعة والحضارة.",
-    "image": "assets/turkiye-6-gun-turu-1.webp",
+    "image": "assets/best-of-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -2670,7 +2670,7 @@
     "description_de": "Betreten Sie an einem Tag in Istanbul sowohl europäisches als auch asiatisches Land.",
     "description_zh": "在世界上唯一的跨大陆城市伊斯坦布尔，同一天踏上欧洲和亚洲的土地。",
     "description_ar": "اخطو على الأراضي الأوروبية والآسيوية في نفس اليوم في إسطنبول.",
-    "image": "assets/bogaz-iki-kita-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -2749,7 +2749,7 @@
     "description_de": "Wir bieten verschiedene Routenoptionen für Aufenthalte von 8 bis 12 Tagen.",
     "description_zh": "我们提供 8 至 12 天的不同路线选择。",
     "description_ar": "نقدم خيارات مسارات مختلفة للإقامات من 8 إلى 12 يومًا.",
-    "image": "assets/turkiye-paket-tur-8-12-1.webp",
+    "image": "assets/dream-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -2827,7 +2827,7 @@
     "description_de": "Eine beeindruckende 5-tägige Tour mit Istanbuls kaiserlicher Pracht.",
     "description_zh": "令人印象深刻的 5 日游，带您领略伊斯坦布尔的帝国风采。",
     "description_ar": "جولة رائعة لمدة 5 أيام تقدم روعة إسطنبول الإمبراطورية.",
-    "image": "assets/wonders-turkey-turu-1.webp",
+    "image": "assets/best-of-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -3005,7 +3005,7 @@
     "description_de": "Wir bieten einen bequemen Transfer von Ihrem Hotel zum Flughafen Istanbul.",
     "description_zh": "我们提供从您的酒店到伊斯坦布尔机场的舒适交通。",
     "description_ar": "نوفر وسيلة نقل مريحة من فندقك إلى مطار إسطنبول.",
-    "image": "assets/istanbul-havalimani-kalkis-1.webp",
+    "image": "assets/sabiha-gokcen-karsilama-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -3080,7 +3080,7 @@
     "description_de": "Bei dieser halbtägigen Tour können Sie die berühmtesten Orte der Stadt bequem besuchen.",
     "description_zh": "这个半日游让您舒适地参观这座城市最具标志性的景点。",
     "description_ar": "تتيح لك هذه الجولة التي تستغرق نصف يوم زيارة المواقع الأكثر شهرة في المدينة بشكل مريح.",
-    "image": "assets/bogaz-otobüs-tekne-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -3157,7 +3157,7 @@
     "description_de": "Wir bieten mehrtägige Pauschalreisen zu allen wichtigen Zielen der Türkei an.",
     "description_zh": "我们提供涵盖土耳其所有主要目的地的多日游套餐。",
     "description_ar": "نحن نقدم حزم جولات متعددة الأيام تغطي جميع الوجهات الرئيسية في تركيا.",
-    "image": "assets/turkiye-cok-gunluk-tur-1.webp",
+    "image": "assets/highlights-turkey-turu-1.webp",
     "gallery": [
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
@@ -3234,7 +3234,7 @@
     "description_de": "Es bietet ein einzigartiges Erlebnis mit Feenkaminen und unterirdischen Städten.",
     "description_zh": "它通过仙女烟囱和地下城市提供独特的体验。",
     "description_ar": "إنه يقدم تجربة فريدة مع مداخن الجنيات والمدن تحت الأرض.",
-    "image": "assets/kapadokya-gezegen-1.webp",
+    "image": "assets/kapadokya-balon-turu-3.webp",
     "gallery": [
       "assets/kapadokya-balon-turu-3.webp",
       "assets/kapadokya-balon-turu-4.webp",
@@ -3497,7 +3497,7 @@
     "description_de": "Istanbul ist eine einzigartige Stadt, die das Erbe des Byzantinischen und Osmanischen Reiches vereint.",
     "description_zh": "伊斯坦布尔是一座独特的城市，融合了拜占庭和奥斯曼帝国的遗产。",
     "description_ar": "اسطنبول هي مدينة فريدة تجمع بين تراث الإمبراطوريتين البيزنطية والعثمانية.",
-    "image": "assets/istanbul-iki-kita-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-2.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -3651,7 +3651,7 @@
     "description_de": "Wir bieten einen stressfreien und bequemen Willkommenstransfer vom Flughafen Sabiha Gökcen.",
     "description_zh": "我们提供从萨比哈格克琴机场出发的无压力且舒适的接机服务。",
     "description_ar": "نقدم خدمة نقل ترحيبية مريحة وخالية من الإجهاد من مطار صبيحة كوكجن.",
-    "image": "assets/sabiha-gokcen-karsılama-1.webp",
+    "image": "assets/sabiha-gokcen-karsilama-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
@@ -3805,7 +3805,7 @@
     "description_de": "Bei dieser ganztägigen Tour können Sie die wichtigsten Bauwerke beider Reiche entdecken.",
     "description_zh": "这个全日游让您一起探索两个帝国最重要的建筑。",
     "description_ar": "تتيح لك هذه الجولة ليوم كامل اكتشاف أهم هياكل كلتا الإمبراطوريتين معًا.",
-    "image": "assets/bizans-osmanli-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -4037,7 +4037,7 @@
     "description_de": "Istanbuls Straßenkatzen sind ein fester Bestandteil der Kultur dieser Stadt.",
     "description_zh": "伊斯坦布尔的流浪猫是这座城市文化不可或缺的一部分。",
     "description_ar": "تعتبر قطط الشوارع في اسطنبول جزءًا لا يتجزأ من ثقافة هذه المدينة.",
-    "image": "assets/istanbul-kedi-turu-1.webp",
+    "image": "assets/istanbul-tarihi-bogaz-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp"
