@@ -52,7 +52,8 @@ class TourManager {
             });
         });
 
-        document.addEventListener('languageChanged', (e) => {
+        // DÜZELTME: i18n.js window üzerinden dispatch ediyor, document değil
+        window.addEventListener('languageChanged', (e) => {
             this.currentLang = (e.detail && e.detail.lang)
                 ? e.detail.lang
                 : (e.detail || localStorage.getItem('language') || 'tr');

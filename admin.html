@@ -70,7 +70,7 @@
     .alert-info { background: #dbeafe; color: #1e40af; border-color: #3b82f6; }
 
     .items-list { margin-top: 40px; }
-    .item-card { background: white; border: 2px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 24px; box-shadow: var(--shadow); transition: all 0.3s; }
+    .item-card { background: white; border: 2px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 24px; box-shadow: var(--shadow); transition: all 0.3s; position: relative; }
     .item-card:hover { transform: translateX(8px); border-color: var(--primary); }
     .item-image { width: 140px; height: 90px; object-fit: cover; border-radius: 12px; flex-shrink: 0; }
     .item-info { flex: 1; }
@@ -107,6 +107,10 @@
     .price-col h4 { color: #166534; margin-bottom: 15px; font-size: 16px; }
     .price-col input { text-align: center; font-weight: bold; color: #15803d; }
     .hint-text { font-size: 13px; color: #64748b; margin-top: 5px; display: block; }
+
+    /* DÜZELTME 1: Çeviri uyarısı banner */
+    .translate-warning { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 12px 18px; margin-bottom: 16px; color: #856404; font-weight: 600; display: none; font-size: 14px; }
+    .translate-warning.show { display: flex; align-items: center; gap: 10px; }
    </style>
 </head>
 <body>
@@ -140,7 +144,7 @@
                     <h3><i class="fas fa-info-circle"></i> How to Use?</h3>
                     <ol>
                         <li>Fill out the form in English and <strong>Select Category.</strong></li>
-                        <li><strong>Auto Translate:</strong> Translate instantly to 4 languages (TR, ES, PT, AR) with one click.</li>
+                        <li><strong>Auto Translate:</strong> Click the button to translate into TR, ES, PT, AR languages. <strong style="color:#dc2626;">This step is required before saving!</strong></li>
                         <li><strong>Image:</strong> Only type the image file name (e.g., cappadocia.jpg)</li>
                         <li><strong>Save:</strong> Click the "Add Tour to List" button to send to the server.</li>
                     </ol>
@@ -181,17 +185,19 @@
                                 </label>
                                 <select id="tourCategory" required style="border: 2px solid #3b82f6; font-weight: 700; color: #1e40af; background: #f0f9ff; cursor: pointer;">
                                     <option value="">-- Select Category --</option>
-                                    <option value="turkey">🇹🇷 Turkey Tour</option>
-                                    <option value="international">🌍 International Tours</option>
-                                    <option value="daily">☀️ Daily Tours</option>
-                                    <option value="group">👥 Group Tours</option>
+                                    <option value="Türkiye">🇹🇷 Turkey Tour</option>
+                                    <option value="Uluslararası">🌍 International Tours</option>
+                                    <option value="Günübirlik">☀️ Daily Tours</option>
+                                    <option value="Grup Turları">👥 Group Tours</option>
                                 </select>
                             </div>
 
+                            <!-- DÜZELTME 2: Sadece TR, ES, PT, AR — RU/DE/ZH kaldırıldı -->
                             <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                                 <label style="font-size: 16px; margin-bottom: 15px; display: block;">🌍 Other Language Titles</label>
+                                <div id="tourTitleTranslateWarning" class="translate-warning"><i class="fas fa-exclamation-triangle"></i> Please click AUTO TRANSLATE before saving, or fill in the fields manually.</div>
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                                    <div class="form-group" style="margin: 0;"><label>🇹🇷 Turkish</label><input type="text" id="tourTitleTr"></div>
+                                    <div class="form-group" style="margin: 0;"><label>🇹🇷 Turkish *</label><input type="text" id="tourTitleTr" placeholder="Türkçe başlık"></div>
                                     <div class="form-group" style="margin: 0;"><label>🇪🇸 Spanish</label><input type="text" id="tourTitleEs"></div>
                                     <div class="form-group" style="margin: 0;"><label>🇵🇹 Portuguese</label><input type="text" id="tourTitlePt"></div>
                                     <div class="form-group" style="margin: 0;"><label>🇸🇦 Arabic</label><input type="text" id="tourTitleAr"></div>
@@ -213,16 +219,14 @@
                                 <textarea id="tourDescription" required placeholder="A brief summary about the tour..."></textarea>
                             </div>
 
+                            <!-- DÜZELTME 2: Sadece TR, ES, PT, AR — RU/DE/ZH kaldırıldı -->
                             <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                                 <label style="font-size: 16px; margin-bottom: 15px; display: block;">🌍 Other Language Descriptions</label>
                                 <div style="display: grid; gap: 15px;">
-                                    <div class="form-group" style="margin: 0;"><label>🇹🇷 Turkish</label><textarea id="tourDescriptionTr"></textarea></div>
+                                    <div class="form-group" style="margin: 0;"><label>🇹🇷 Turkish *</label><textarea id="tourDescriptionTr" placeholder="Türkçe açıklama"></textarea></div>
                                     <div class="form-group" style="margin: 0;"><label>🇪🇸 Spanish</label><textarea id="tourDescriptionEs"></textarea></div>
                                     <div class="form-group" style="margin: 0;"><label>🇵🇹 Portuguese</label><textarea id="tourDescriptionPt"></textarea></div>
                                     <div class="form-group" style="margin: 0;"><label>🇸🇦 Arabic</label><textarea id="tourDescriptionAr"></textarea></div>
-                                    <div class="form-group" style="margin: 0;"><label>🇷🇺 Russian</label><textarea id="tourDescriptionRu"></textarea></div>
-                                    <div class="form-group" style="margin: 0;"><label>🇩🇪 German</label><textarea id="tourDescriptionDe"></textarea></div>
-                                    <div class="form-group" style="margin: 0;"><label>🇨🇳 Chinese</label><textarea id="tourDescriptionZh"></textarea></div>
                                 </div>
                             </div>
                         </div>
@@ -317,7 +321,7 @@
                     </div>
 
                     <div class="form-group full-width" style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
-                        <p style="color:white; margin-bottom:10px;">(This button translates the main English Title and Description into 4 languages)</p>
+                        <p style="color:white; margin-bottom:10px;">(Translates English Title and Description into TR, ES, PT, AR)</p>
                         <button type="button" class="btn btn-success" onclick="translateAllTourFields()" style="font-size: 20px; padding: 18px 50px; background: white; color: #667eea;">
                             <i class="fas fa-globe-americas"></i> AUTO TRANSLATE
                         </button>
@@ -341,12 +345,13 @@
                 </div>
             </div>
 
+            <!-- BLOG TAB -->
             <div id="blogs-content" class="tab-content">
                 <div class="instructions">
                     <h3><i class="fas fa-info-circle"></i> How to Add a Blog?</h3>
                     <ol>
                         <li>Write the blog title and content in English.</li>
-                        <li>Click the "Auto Translate" button.</li>
+                        <li>Click the "Auto Translate" button. <strong style="color:#dc2626;">Required before saving!</strong></li>
                         <li>Type the file name for the cover image (e.g., blog1.jpg).</li>
                         <li>Click "Save Blog".</li>
                     </ol>
@@ -371,16 +376,15 @@
                     <input type="hidden" id="blogId">
                     <div class="form-grid">
                         <div class="form-group"><label>Title (English) *</label><input type="text" id="blogTitle" required></div>
+                        <!-- DÜZELTME 2: Blog title — sadece TR, ES, PT, AR -->
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label>🌍 Other Language Titles</label>
+                            <div id="blogTitleTranslateWarning" class="translate-warning"><i class="fas fa-exclamation-triangle"></i> Please click AUTO TRANSLATE before saving.</div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                                <div class="form-group" style="margin: 0;"><label>🇹🇷 TR</label><input type="text" id="blogTitleTr"></div>
+                                <div class="form-group" style="margin: 0;"><label>🇹🇷 TR *</label><input type="text" id="blogTitleTr"></div>
                                 <div class="form-group" style="margin: 0;"><label>🇪🇸 ES</label><input type="text" id="blogTitleEs"></div>
                                 <div class="form-group" style="margin: 0;"><label>🇵🇹 PT</label><input type="text" id="blogTitlePt"></div>
                                 <div class="form-group" style="margin: 0;"><label>🇸🇦 AR</label><input type="text" id="blogTitleAr"></div>
-                                <div class="form-group" style="margin: 0;"><label>🇷🇺 RU</label><input type="text" id="blogTitleRu"></div>
-                                <div class="form-group" style="margin: 0;"><label>🇩🇪 DE</label><input type="text" id="blogTitleDe"></div>
-                                <div class="form-group" style="margin: 0;"><label>🇨🇳 ZH</label><input type="text" id="blogTitleZh"></div>
                             </div>
                         </div>
                         <div class="form-group"><label>Author</label><input type="text" id="blogAuthor" placeholder="e.g. John Doe"></div>
@@ -392,16 +396,14 @@
                             </select>
                         </div>
                         <div class="form-group full-width"><label>Short Excerpt (English) *</label><textarea id="blogExcerpt" required></textarea></div>
+                        <!-- DÜZELTME 2: Blog excerpt — sadece TR, ES, PT, AR -->
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label>🌍 Excerpts - Other Languages</label>
                             <div style="display: grid; gap: 15px;">
-                                <div class="form-group" style="margin: 0;"><label>🇹🇷 TR</label><textarea id="blogExcerptTr"></textarea></div>
+                                <div class="form-group" style="margin: 0;"><label>🇹🇷 TR *</label><textarea id="blogExcerptTr"></textarea></div>
                                 <div class="form-group" style="margin: 0;"><label>🇪🇸 ES</label><textarea id="blogExcerptEs"></textarea></div>
                                 <div class="form-group" style="margin: 0;"><label>🇵🇹 PT</label><textarea id="blogExcerptPt"></textarea></div>
                                 <div class="form-group" style="margin: 0;"><label>🇸🇦 AR</label><textarea id="blogExcerptAr"></textarea></div>
-                                <div class="form-group" style="margin: 0;"><label>🇷🇺 RU</label><textarea id="blogExcerptRu"></textarea></div>
-                                <div class="form-group" style="margin: 0;"><label>🇩🇪 DE</label><textarea id="blogExcerptDe"></textarea></div>
-                                <div class="form-group" style="margin: 0;"><label>🇨🇳 ZH</label><textarea id="blogExcerptZh"></textarea></div>
                             </div>
                         </div>
                         <div class="form-group full-width" style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
@@ -410,16 +412,14 @@
                             </button>
                         </div>
                         <div class="form-group full-width"><label>Blog Content (English) *</label><textarea id="blogContent" required style="min-height: 250px;"></textarea></div>
+                        <!-- DÜZELTME 2: Blog content — sadece TR, ES, PT, AR -->
                         <div class="form-group full-width" style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px solid #e0e0e0;">
                             <label>🌍 Content - Other Languages</label>
                             <div style="display: grid; gap: 15px;">
-                                <div class="form-group" style="margin: 0;"><label>🇹🇷 TR</label><textarea id="blogContentTr" style="min-height: 200px;"></textarea></div>
+                                <div class="form-group" style="margin: 0;"><label>🇹🇷 TR *</label><textarea id="blogContentTr" style="min-height: 200px;"></textarea></div>
                                 <div class="form-group" style="margin: 0;"><label>🇪🇸 ES</label><textarea id="blogContentEs" style="min-height: 200px;"></textarea></div>
                                 <div class="form-group" style="margin: 0;"><label>🇵🇹 PT</label><textarea id="blogContentPt" style="min-height: 200px;"></textarea></div>
                                 <div class="form-group" style="margin: 0;"><label>🇸🇦 AR</label><textarea id="blogContentAr" style="min-height: 200px;"></textarea></div>
-                                <div class="form-group" style="margin: 0;"><label>🇷🇺 RU</label><textarea id="blogContentRu" style="min-height: 200px;"></textarea></div>
-                                <div class="form-group" style="margin: 0;"><label>🇩🇪 DE</label><textarea id="blogContentDe" style="min-height: 200px;"></textarea></div>
-                                <div class="form-group" style="margin: 0;"><label>🇨🇳 ZH</label><textarea id="blogContentZh" style="min-height: 200px;"></textarea></div>
                             </div>
                         </div>
                         <div class="form-group full-width">
@@ -450,39 +450,43 @@
 
     <script>
         let tours = [], blogs = [], editingTourId = null, editingBlogId = null, currentGallery = [];
-        let dayCounter = 0; 
-        
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.getElementById(tabId + '-content').classList.add('active');
-        document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
-    }
+        let dayCounter = 0;
+        // DÜZELTME 2: Sadece 5 aktif dil
+        const langsToTranslate = ['tr', 'es', 'pt', 'ar'];
 
-    function showAlert(elementId, message, type = 'info') {
-        const el = document.getElementById(elementId);
-        if (!el) return;
-        
-        let icon = 'info-circle';
-        if (type === 'success') icon = 'check-circle';
-        if (type === 'error') icon = 'exclamation-circle';
-        
-        el.innerHTML = `<div class="alert alert-${type}"><i class="fas fa-${icon}"></i> ${message}</div>`;
-        
-        if (type === 'success' || type === 'error') {
-            setTimeout(() => { el.innerHTML = ''; }, 3000);
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId + '-content').classList.add('active');
+            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
         }
-    }
-    
+
+        function showAlert(elementId, message, type = 'info') {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            let icon = 'info-circle';
+            if (type === 'success') icon = 'check-circle';
+            if (type === 'error') icon = 'exclamation-circle';
+            el.innerHTML = `<div class="alert alert-${type}"><i class="fas fa-${icon}"></i> ${message}</div>`;
+            if (type === 'success' || type === 'error') {
+                setTimeout(() => { el.innerHTML = ''; }, 3000);
+            }
+        }
+
+        // eski nested format → flat format dönüştürücü
         function normalizeTourData(serverTours) {
             return serverTours.map(tour => {
                 if (typeof tour.title === 'object' && tour.title !== null) {
-                    tour.title_en = tour.title.en || ''; tour.title_es = tour.title.es || ''; tour.title_pt = tour.title.pt || '';
+                    tour.title_en = tour.title.en || '';
+                    tour.title_es = tour.title.es || '';
+                    tour.title_pt = tour.title.pt || '';
                     tour.title_ar = tour.title.ar || '';
                     tour.title = tour.title.tr || 'Untitled Tour';
                 }
                 if (typeof tour.description === 'object' && tour.description !== null) {
-                    tour.description_en = tour.description.en || ''; tour.description_es = tour.description.es || ''; tour.description_pt = tour.description.pt || '';
+                    tour.description_en = tour.description.en || '';
+                    tour.description_es = tour.description.es || '';
+                    tour.description_pt = tour.description.pt || '';
                     tour.description_ar = tour.description.ar || '';
                     tour.description = tour.description.tr || '';
                 }
@@ -491,7 +495,6 @@
             });
         }
 
-        const langsToTranslate = ['tr', 'es', 'pt', 'ar', 'ru', 'de', 'zh'];
         async function translateText(text, targetLang) {
             if (!text) return '';
             try {
@@ -500,7 +503,7 @@
                 const data = await response.json();
                 if (data && data.responseData && data.responseData.translatedText) {
                     const translated = data.responseData.translatedText;
-                    if (translated === text) console.warn('⚠️ MyMemory: Çeviri başarısız olmuş olabilir, orijinal metin döndürüldü:', text);
+                    if (translated === text) console.warn('⚠️ MyMemory: çeviri başarısız olmuş olabilir:', text);
                     return translated;
                 }
                 return text;
@@ -511,21 +514,32 @@
         }
 
         async function translateAllTourFields() {
-            const t = document.getElementById('tourTitle').value, d = document.getElementById('tourDescription').value;
+            const t = document.getElementById('tourTitle').value;
+            const d = document.getElementById('tourDescription').value;
             if (!t && !d) return showAlert('tourAlert', '⚠️ Please fill out the English Title and Description fields!', 'error');
             showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Translating...', 'info');
             try {
                 for (const lang of langsToTranslate) {
                     const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
-                    if (t) document.getElementById(`tourTitle${cap}`) && (document.getElementById(`tourTitle${cap}`).value = await translateText(t, lang));
-                    if (d) document.getElementById(`tourDescription${cap}`) && (document.getElementById(`tourDescription${cap}`).value = await translateText(d, lang));
+                    if (t && document.getElementById(`tourTitle${cap}`)) {
+                        document.getElementById(`tourTitle${cap}`).value = await translateText(t, lang);
+                    }
+                    if (d && document.getElementById(`tourDescription${cap}`)) {
+                        document.getElementById(`tourDescription${cap}`).value = await translateText(d, lang);
+                    }
                 }
+                // Uyarıyı gizle
+                document.getElementById('tourTitleTranslateWarning').classList.remove('show');
                 showAlert('tourAlert', '✅ Translation completed for all languages!', 'success');
-            } catch (error) { showAlert('tourAlert', '❌ Translation failed!', 'error'); }
+            } catch (error) {
+                showAlert('tourAlert', '❌ Translation failed!', 'error');
+            }
         }
 
         async function translateAllBlogFields() {
-            const t = document.getElementById('blogTitle').value, e = document.getElementById('blogExcerpt').value, c = document.getElementById('blogContent').value;
+            const t = document.getElementById('blogTitle').value;
+            const e = document.getElementById('blogExcerpt').value;
+            const c = document.getElementById('blogContent').value;
             if (!t && !e && !c) return showAlert('blogAlert', '⚠️ Please fill out the English fields!', 'error');
             showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Translating...', 'info');
             try {
@@ -535,22 +549,40 @@
                     if (e) document.getElementById(`blogExcerpt${cap}`).value = await translateText(e, lang);
                     if (c) document.getElementById(`blogContent${cap}`).value = await translateText(c, lang);
                 }
+                document.getElementById('blogTitleTranslateWarning').classList.remove('show');
                 showAlert('blogAlert', '✅ Translation completed!', 'success');
-            } catch (error) { showAlert('blogAlert', '❌ Translation failed!', 'error'); }
+            } catch (error) {
+                showAlert('blogAlert', '❌ Translation failed!', 'error');
+            }
         }
 
         function addGalleryImage() {
             const f = document.getElementById('newGalleryImage').value.trim();
             if (!f) return showAlert('tourAlert', '⚠️ Please enter an image file name!', 'error');
-            currentGallery.push(f); document.getElementById('newGalleryImage').value = '';
-            updateGalleryPreview(); showAlert('tourAlert', '✅ Photo added!', 'success');
+            currentGallery.push(f);
+            document.getElementById('newGalleryImage').value = '';
+            updateGalleryPreview();
+            showAlert('tourAlert', '✅ Photo added!', 'success');
         }
-        function removeGalleryImage(index) { if (confirm('Are you sure you want to remove this?')) { currentGallery.splice(index, 1); updateGalleryPreview(); } }
+
+        function removeGalleryImage(index) {
+            if (confirm('Are you sure you want to remove this?')) {
+                currentGallery.splice(index, 1);
+                updateGalleryPreview();
+            }
+        }
+
         function updateGalleryPreview() {
-            const c = document.getElementById('galleryPreview'), e = document.getElementById('galleryEmpty');
+            const c = document.getElementById('galleryPreview');
+            const e = document.getElementById('galleryEmpty');
             if (currentGallery.length === 0) { c.style.display = 'none'; e.style.display = 'block'; return; }
             c.style.display = 'grid'; e.style.display = 'none';
-            c.innerHTML = currentGallery.map((f, i) => `<div class="gallery-item"><img src="${f.startsWith('http') ? f : `assets/${f}`}" onerror="this.style.display='none'"><button class="gallery-item-delete" onclick="removeGalleryImage(${i})" type="button"><i class="fas fa-times"></i></button><span class="gallery-item-number">#${i + 1}</span></div>`).join('');
+            c.innerHTML = currentGallery.map((f, i) => `
+                <div class="gallery-item">
+                    <img src="${f.startsWith('http') ? f : `assets/${f}`}" onerror="this.style.display='none'">
+                    <button class="gallery-item-delete" onclick="removeGalleryImage(${i})" type="button"><i class="fas fa-times"></i></button>
+                    <span class="gallery-item-number">#${i + 1}</span>
+                </div>`).join('');
         }
 
         function addItineraryDay(title = '', desc = '') {
@@ -570,8 +602,7 @@
                         <label>Day Description</label>
                         <textarea class="day-desc" required>${desc}</textarea>
                     </div>
-                </div>
-            `;
+                </div>`;
             container.insertAdjacentHTML('beforeend', dayHtml);
             recalculateDays();
         }
@@ -596,6 +627,7 @@
             if (!text) return [];
             return text.split('\n').map(item => item.trim()).filter(item => item !== '');
         }
+
         function arrayToText(arr) {
             if (!arr || !Array.isArray(arr)) return '';
             return arr.join('\n');
@@ -605,7 +637,13 @@
             try { const saved = localStorage.getItem('walkabout_tours'); if (saved) tours = JSON.parse(saved); } catch(e) {}
             try {
                 const response = await fetch('data/tours.json?t=' + Date.now());
-                if (response.ok) { const data = await response.json(); if (data.length > 0) { tours = normalizeTourData(data); localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } }
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.length > 0) {
+                        tours = normalizeTourData(data);
+                        localStorage.setItem('walkabout_tours', JSON.stringify(tours));
+                    }
+                }
             } catch (e) {}
             displayTours(); updateTourStats(); updateFeaturedTours(); updateBulkCounts();
         }
@@ -614,27 +652,36 @@
             try { const saved = localStorage.getItem('walkabout_blogs'); if (saved) blogs = JSON.parse(saved); } catch(e) {}
             try {
                 const response = await fetch('data/blog-posts.json?t=' + Date.now());
-                if (response.ok) { const data = await response.json(); if (data.length > 0) { blogs = data; localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } }
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.length > 0) {
+                        blogs = data;
+                        localStorage.setItem('walkabout_blogs', JSON.stringify(blogs));
+                    }
+                }
             } catch (e) {}
             displayBlogs(); updateBlogStats(); updateBulkCounts();
         }
 
-        async function refreshToursFromGitHub() { showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Loading...', 'info'); await loadTours(); showAlert('tourAlert', '✅ Tours updated!', 'success'); }
-        async function refreshBlogsFromGitHub() { showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Loading...', 'info'); await loadBlogs(); showAlert('blogAlert', '✅ Blogs updated!', 'success'); }
-
         async function saveTour(e) {
             e.preventDefault();
-            const imgFile = document.getElementById('tourImage').value.trim();
-            const imagePath = imgFile.startsWith('http') ? imgFile : `assets/${imgFile}`;
-            
-            const selectedCat = document.getElementById('tourCategory').value;
-            let categoryName = 'Türkiye';
-            const categoriesObj = { traveller: [], destination: [], month: [] };
-            let durationVal = document.getElementById('tourDuration').value || '';
-            if (selectedCat === 'turkey') { categoryName = 'Türkiye'; categoriesObj.destination.push('turkiye'); } 
-            else if (selectedCat === 'international') { categoryName = 'Uluslararası'; } 
-            else if (selectedCat === 'daily') { categoryName = 'Günübirlik'; if (!durationVal.toLowerCase().includes('gün') && !durationVal.toLowerCase().includes('day')) durationVal += ' (Günübirlik)'; } 
-            else if (selectedCat === 'group') { categoryName = 'Grup Turları'; categoriesObj.traveller.push('groups'); }
+
+            // DÜZELTME 1: Türkçe alan boşsa çeviri yapılmamış demektir — uyar ve engelle
+            const trTitle = document.getElementById('tourTitleTr').value.trim();
+            if (!trTitle) {
+                document.getElementById('tourTitleTranslateWarning').classList.add('show');
+                showAlert('tourAlert', '⚠️ Turkish title is empty! Please click AUTO TRANSLATE first, or fill in the Turkish title manually.', 'error');
+                document.getElementById('tourTitleTr').focus();
+                return;
+            }
+
+            const imagePath = (() => {
+                const v = document.getElementById('tourImage').value.trim();
+                return v.startsWith('http') ? v : `assets/${v}`;
+            })();
+
+            // DÜZELTME 4: Kategori artık select'ten direkt geliyor (Türkçe kategori adı)
+            const categoryName = document.getElementById('tourCategory').value;
 
             const itinerary = [];
             document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
@@ -647,34 +694,28 @@
 
             const tourData = {
                 id: editingTourId || 'TUR-' + Date.now(),
-                
-                title: document.getElementById('tourTitleTr').value || document.getElementById('tourTitle').value,
+
+                title: document.getElementById('tourTitleTr').value,
                 title_en: document.getElementById('tourTitle').value,
                 title_es: document.getElementById('tourTitleEs').value || document.getElementById('tourTitle').value,
                 title_pt: document.getElementById('tourTitlePt').value || document.getElementById('tourTitle').value,
                 title_ar: document.getElementById('tourTitleAr').value || document.getElementById('tourTitle').value,
-                title_ru: document.getElementById('tourTitleRu').value || document.getElementById('tourTitle').value,
-                title_de: document.getElementById('tourTitleDe').value || document.getElementById('tourTitle').value,
-                title_zh: document.getElementById('tourTitleZh').value || document.getElementById('tourTitle').value,
-                
+
                 price: document.getElementById('tourPrice').value,
-                duration: durationVal,
+                duration: document.getElementById('tourDuration').value || '',
                 location: document.getElementById('tourLocation').value,
                 category: categoryName,
-                categories: categoriesObj,
-                
+                categories: { traveller: [], destination: [], month: [] },
+
                 description: document.getElementById('tourDescriptionTr').value || document.getElementById('tourDescription').value,
                 description_en: document.getElementById('tourDescription').value,
                 description_es: document.getElementById('tourDescriptionEs').value || document.getElementById('tourDescription').value,
                 description_pt: document.getElementById('tourDescriptionPt').value || document.getElementById('tourDescription').value,
                 description_ar: document.getElementById('tourDescriptionAr').value || document.getElementById('tourDescription').value,
-                description_ru: document.getElementById('tourDescriptionRu').value || document.getElementById('tourDescription').value,
-                description_de: document.getElementById('tourDescriptionDe').value || document.getElementById('tourDescription').value,
-                description_zh: document.getElementById('tourDescriptionZh').value || document.getElementById('tourDescription').value,
-                
+
                 image: imagePath,
                 gallery: currentGallery.map(f => f.startsWith('http') ? f : `assets/${f}`),
-                featured: editingTourId ? tours.find(t => t.id === editingTourId)?.featured || false : false,
+                featured: editingTourId ? (tours.find(t => t.id === editingTourId)?.featured || false) : false,
                 source: 'admin',
 
                 meta: {
@@ -696,12 +737,17 @@
                 mapUrl: document.getElementById('tourMapUrl').value
             };
 
-            if (editingTourId) { tours[tours.findIndex(t => t.id === editingTourId)] = tourData; showAlert('tourAlert', `✅ Tour updated!`, 'success'); } 
-            else { tours.push(tourData); showAlert('tourAlert', `✅ Tour added!`, 'success'); }
-            
+            if (editingTourId) {
+                tours[tours.findIndex(t => t.id === editingTourId)] = tourData;
+                showAlert('tourAlert', `✅ Tour updated!`, 'success');
+            } else {
+                tours.push(tourData);
+                showAlert('tourAlert', `✅ Tour added!`, 'success');
+            }
+
             displayTours(); updateTourStats(); updateFeaturedTours(); updateBulkCounts();
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
-            
+
             try {
                 const saveResp = await fetch('save.php', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -722,8 +768,19 @@
 
         async function saveBlog(e) {
             e.preventDefault();
+
+            // DÜZELTME 1: Blog için de Türkçe kontrol
+            const trTitle = document.getElementById('blogTitleTr').value.trim();
+            if (!trTitle) {
+                document.getElementById('blogTitleTranslateWarning').classList.add('show');
+                showAlert('blogAlert', '⚠️ Turkish title is empty! Please click AUTO TRANSLATE first.', 'error');
+                document.getElementById('blogTitleTr').focus();
+                return;
+            }
+
             const imgFile = document.getElementById('blogImage').value.trim();
             const imagePath = imgFile.startsWith('http') ? imgFile : `assets/${imgFile}`;
+
             const blogData = {
                 id: editingBlogId || 'BLOG-' + Date.now(),
                 title: document.getElementById('blogTitleTr').value || document.getElementById('blogTitle').value,
@@ -731,37 +788,31 @@
                 title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
                 title_pt: document.getElementById('blogTitlePt').value || document.getElementById('blogTitle').value,
                 title_ar: document.getElementById('blogTitleAr').value || document.getElementById('blogTitle').value,
-                title_ru: document.getElementById('blogTitleRu').value || document.getElementById('blogTitle').value,
-                title_de: document.getElementById('blogTitleDe').value || document.getElementById('blogTitle').value,
-                title_zh: document.getElementById('blogTitleZh').value || document.getElementById('blogTitle').value,
-                
+
                 author: document.getElementById('blogAuthor').value || 'WalkAbout Travel',
                 category: document.getElementById('blogCategory').value,
                 date: new Date().toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.'),
-                
+
                 excerpt: document.getElementById('blogExcerptTr').value || document.getElementById('blogExcerpt').value,
                 excerpt_en: document.getElementById('blogExcerpt').value,
                 excerpt_es: document.getElementById('blogExcerptEs').value || document.getElementById('blogExcerpt').value,
                 excerpt_pt: document.getElementById('blogExcerptPt').value || document.getElementById('blogExcerpt').value,
                 excerpt_ar: document.getElementById('blogExcerptAr').value || document.getElementById('blogExcerpt').value,
-                excerpt_ru: document.getElementById('blogExcerptRu').value || document.getElementById('blogExcerpt').value,
-                excerpt_de: document.getElementById('blogExcerptDe').value || document.getElementById('blogExcerpt').value,
-                excerpt_zh: document.getElementById('blogExcerptZh').value || document.getElementById('blogExcerpt').value,
-                
+
                 content: document.getElementById('blogContentTr').value || document.getElementById('blogContent').value,
                 content_en: document.getElementById('blogContent').value,
                 content_es: document.getElementById('blogContentEs').value || document.getElementById('blogContent').value,
                 content_pt: document.getElementById('blogContentPt').value || document.getElementById('blogContent').value,
                 content_ar: document.getElementById('blogContentAr').value || document.getElementById('blogContent').value,
-                content_ru: document.getElementById('blogContentRu').value || document.getElementById('blogContent').value,
-                content_de: document.getElementById('blogContentDe').value || document.getElementById('blogContent').value,
-                content_zh: document.getElementById('blogContentZh').value || document.getElementById('blogContent').value,
-                
+
                 image: imagePath
             };
 
-            if (editingBlogId) { blogs[blogs.findIndex(b => b.id === editingBlogId)] = blogData; } 
-            else { blogs.push(blogData); }
+            if (editingBlogId) {
+                blogs[blogs.findIndex(b => b.id === editingBlogId)] = blogData;
+            } else {
+                blogs.push(blogData);
+            }
 
             displayBlogs(); updateBlogStats(); updateBulkCounts();
             try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
@@ -785,52 +836,46 @@
         }
 
         function editTour(id) {
-            const tour = tours.find(t => t.id === id); if (!tour) return;
+            const tour = tours.find(t => t.id === id);
+            if (!tour) return;
             editingTourId = id;
             document.getElementById('tourFormTitle').textContent = 'Edit Tour';
-            
-            document.getElementById('tourTitle').value = tour.title_en || tour.title || '';
+
+            document.getElementById('tourTitle').value = tour.title_en || (typeof tour.title === 'string' ? tour.title : '') || '';
             document.getElementById('tourTitleTr').value = tour.title || '';
             document.getElementById('tourTitleEs').value = tour.title_es || '';
             document.getElementById('tourTitlePt').value = tour.title_pt || '';
             document.getElementById('tourTitleAr').value = tour.title_ar || '';
-            document.getElementById('tourTitleRu') && (document.getElementById('tourTitleRu').value = tour.title_ru || '');
-            document.getElementById('tourTitleDe') && (document.getElementById('tourTitleDe').value = tour.title_de || '');
-            document.getElementById('tourTitleZh') && (document.getElementById('tourTitleZh').value = tour.title_zh || '');
-            
-            document.getElementById('tourPrice').value = tour.price;
-            document.getElementById('tourLocation').value = tour.location;
-            
-            let mainCat = '';
-            if (tour.categories && tour.categories.traveller && tour.categories.traveller.includes('groups')) mainCat = 'group';
-            else if (tour.duration && (tour.duration.toLowerCase().includes('günübirlik') || tour.duration.toLowerCase().includes('day'))) mainCat = 'daily';
-            else if (tour.category && tour.category !== 'Türkiye' && tour.category !== 'Turkey') mainCat = 'international';
-            else mainCat = 'turkey';
-            document.getElementById('tourCategory').value = mainCat;
 
-            document.getElementById('tourDescription').value = tour.description_en || tour.description || '';
+            document.getElementById('tourPrice').value = tour.price || '';
+            document.getElementById('tourLocation').value = tour.location || '';
+
+            // DÜZELTME 3: Kategori artık direkt değer olarak kaydediliyor
+            const catVal = tour.category || '';
+            document.getElementById('tourCategory').value = catVal;
+
+            document.getElementById('tourDescription').value = tour.description_en || (typeof tour.description === 'string' ? tour.description : '') || '';
             document.getElementById('tourDescriptionTr').value = tour.description || '';
             document.getElementById('tourDescriptionEs').value = tour.description_es || '';
             document.getElementById('tourDescriptionPt').value = tour.description_pt || '';
             document.getElementById('tourDescriptionAr').value = tour.description_ar || '';
-            document.getElementById('tourDescriptionRu') && (document.getElementById('tourDescriptionRu').value = tour.description_ru || '');
-            document.getElementById('tourDescriptionDe') && (document.getElementById('tourDescriptionDe').value = tour.description_de || '');
-            document.getElementById('tourDescriptionZh') && (document.getElementById('tourDescriptionZh').value = tour.description_zh || '');
-            
-            document.getElementById('tourImage').value = tour.image.replace('assets/', '');
+
+            document.getElementById('tourImage').value = (tour.image || '').replace('assets/', '');
             currentGallery = (tour.gallery || []).map(p => p.replace('assets/', ''));
             updateGalleryPreview();
-            document.getElementById('tourImagePreview').src = tour.image;
-            document.getElementById('tourImagePreview').style.display = 'block';
+            document.getElementById('tourImagePreview').src = tour.image || '';
+            document.getElementById('tourImagePreview').style.display = tour.image ? 'block' : 'none';
 
-            if(tour.meta) {
+            if (tour.meta) {
                 document.getElementById('tourDuration').value = tour.meta.duration || tour.duration || '';
                 document.getElementById('tourLanguages').value = tour.meta.languages || '';
                 document.getElementById('tourMonths').value = tour.meta.months || '';
                 document.getElementById('tourAvailability').value = tour.meta.availability || '';
+            } else {
+                document.getElementById('tourDuration').value = tour.duration || '';
             }
 
-            if(tour.pricing) {
+            if (tour.pricing) {
                 document.getElementById('priceEconomy').value = tour.pricing.economy || tour.price || '';
                 document.getElementById('priceComfort').value = tour.pricing.comfort || '';
                 document.getElementById('priceLuxury').value = tour.pricing.luxury || '';
@@ -850,7 +895,8 @@
                 addItineraryDay('General Tour Program', tour.content);
             }
 
-            switchTab('tours'); window.scrollTo(0,0);
+            switchTab('tours');
+            window.scrollTo(0, 0);
         }
 
         function deleteTour(id) {
@@ -863,53 +909,51 @@
         }
 
         function resetTourForm() {
-            editingTourId = null; document.getElementById('tourForm').reset();
+            editingTourId = null;
+            document.getElementById('tourForm').reset();
             document.getElementById('tourFormTitle').textContent = 'Add New Tour (Premium)';
             document.getElementById('tourImagePreview').style.display = 'none';
             document.getElementById('tourCategory').value = '';
             document.getElementById('itineraryList').innerHTML = '';
             dayCounter = 0;
-            currentGallery = []; updateGalleryPreview();
+            currentGallery = [];
+            updateGalleryPreview();
+            document.getElementById('tourTitleTranslateWarning').classList.remove('show');
         }
 
         function editBlog(id) {
-            const blog = blogs.find(b => b.id === id); if (!blog) return;
-            editingBlogId = id; document.getElementById('blogFormTitle').textContent = 'Edit Blog';
-            
+            const blog = blogs.find(b => b.id === id);
+            if (!blog) return;
+            editingBlogId = id;
+            document.getElementById('blogFormTitle').textContent = 'Edit Blog';
+
             document.getElementById('blogTitle').value = blog.title_en || blog.title || '';
             document.getElementById('blogTitleTr').value = blog.title || '';
             document.getElementById('blogTitleEs').value = blog.title_es || '';
             document.getElementById('blogTitlePt').value = blog.title_pt || '';
             document.getElementById('blogTitleAr').value = blog.title_ar || '';
-            document.getElementById('blogTitleRu').value = blog.title_ru || '';
-            document.getElementById('blogTitleDe').value = blog.title_de || '';
-            document.getElementById('blogTitleZh').value = blog.title_zh || '';
-            
+
             document.getElementById('blogAuthor').value = blog.author || '';
-            document.getElementById('blogCategory').value = blog.category;
-            
+            document.getElementById('blogCategory').value = blog.category || 'Travel';
+
             document.getElementById('blogExcerpt').value = blog.excerpt_en || blog.excerpt || '';
             document.getElementById('blogExcerptTr').value = blog.excerpt || '';
             document.getElementById('blogExcerptEs').value = blog.excerpt_es || '';
             document.getElementById('blogExcerptPt').value = blog.excerpt_pt || '';
             document.getElementById('blogExcerptAr').value = blog.excerpt_ar || '';
-            document.getElementById('blogExcerptRu').value = blog.excerpt_ru || '';
-            document.getElementById('blogExcerptDe').value = blog.excerpt_de || '';
-            document.getElementById('blogExcerptZh').value = blog.excerpt_zh || '';
-            
+
             document.getElementById('blogContent').value = blog.content_en || blog.content || '';
             document.getElementById('blogContentTr').value = blog.content || '';
             document.getElementById('blogContentEs').value = blog.content_es || '';
             document.getElementById('blogContentPt').value = blog.content_pt || '';
             document.getElementById('blogContentAr').value = blog.content_ar || '';
-            document.getElementById('blogContentRu').value = blog.content_ru || '';
-            document.getElementById('blogContentDe').value = blog.content_de || '';
-            document.getElementById('blogContentZh').value = blog.content_zh || '';
-            
-            document.getElementById('blogImage').value = blog.image.replace('assets/', '');
-            document.getElementById('blogImagePreview').src = blog.image;
-            document.getElementById('blogImagePreview').style.display = 'block';
-            switchTab('blogs'); window.scrollTo(0,0);
+
+            document.getElementById('blogImage').value = (blog.image || '').replace('assets/', '');
+            document.getElementById('blogImagePreview').src = blog.image || '';
+            document.getElementById('blogImagePreview').style.display = blog.image ? 'block' : 'none';
+
+            switchTab('blogs');
+            window.scrollTo(0, 0);
         }
 
         function deleteBlog(id) {
@@ -922,13 +966,16 @@
         }
 
         function resetBlogForm() {
-            editingBlogId = null; document.getElementById('blogForm').reset();
+            editingBlogId = null;
+            document.getElementById('blogForm').reset();
             document.getElementById('blogFormTitle').textContent = 'Add New Blog Post';
             document.getElementById('blogImagePreview').style.display = 'none';
+            document.getElementById('blogTitleTranslateWarning').classList.remove('show');
         }
 
         function displayTours() {
-            const c = document.getElementById('toursList'); if (!c) return;
+            const c = document.getElementById('toursList');
+            if (!c) return;
             if (tours.length === 0) { c.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> No tours found.</div>'; return; }
             c.innerHTML = tours.map(tour => `
                 <div class="item-card" style="${tour.featured ? 'border: 2px solid #38bdf8; background: #f0f9ff;' : ''}">
@@ -968,7 +1015,8 @@
         }
 
         function updateFeaturedTours() {
-            const fc = document.getElementById('featuredToursList'); if (!fc) return;
+            const fc = document.getElementById('featuredToursList');
+            if (!fc) return;
             const ft = tours.filter(t => t.featured);
             if (ft.length === 0) { fc.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: #94a3b8;"><p>No featured tours yet.</p></div>'; return; }
             fc.innerHTML = ft.map(t => `
@@ -980,9 +1028,11 @@
         }
 
         function toggleFeatured(id) {
-            const t = tours.find(x => x.id === id); if (!t) return;
+            const t = tours.find(x => x.id === id);
+            if (!t) return;
             if (!t.featured && tours.filter(x => x.featured).length >= 3) return showAlert('tourAlert', '⚠️ Maximum 3 tours can be featured!', 'error');
-            t.featured = !t.featured; displayTours(); updateFeaturedTours();
+            t.featured = !t.featured;
+            displayTours(); updateFeaturedTours();
             showAlert('tourAlert', t.featured ? `✅ "${t.title_en || t.title}" is now featured!` : `✓ "${t.title_en || t.title}" removed from featured.`, 'success');
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
             fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'tours', data: tours }) })
@@ -996,59 +1046,60 @@
         }
 
         function updateBlogStats() { document.getElementById('blogCount').textContent = blogs.length; }
+
         function updateBulkCounts() {
-            document.getElementById('unsavedCount').textContent = tours.length; document.getElementById('downloadCount').textContent = tours.length;
-            document.getElementById('unsavedBlogCount').textContent = blogs.length; document.getElementById('downloadBlogCount').textContent = blogs.length;
+            document.getElementById('unsavedCount').textContent = tours.length;
+            document.getElementById('downloadCount').textContent = tours.length;
+            document.getElementById('unsavedBlogCount').textContent = blogs.length;
+            document.getElementById('downloadBlogCount').textContent = blogs.length;
         }
 
         async function saveToursToFile() {
             if (tours.length === 0) return showAlert('tourAlert', '⚠️ No tours to save!', 'error');
             showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Saving to server...', 'info');
             try {
-                const resp = await fetch('save.php', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ file: 'tours', data: tours })
-                });
+                const resp = await fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'tours', data: tours }) });
                 const res = await resp.json();
-                if (res.success) {
-                    showAlert('tourAlert', `✅ ${tours.length} tours saved to server!`, 'success');
-                } else {
-                    showAlert('tourAlert', '❌ Error: ' + (res.error || 'Unknown'), 'error');
-                }
-            } catch(err) {
-                showAlert('tourAlert', '❌ save.php not found or inaccessible: ' + err.message, 'error');
-            }
+                if (res.success) { showAlert('tourAlert', `✅ ${tours.length} tours saved to server!`, 'success'); }
+                else { showAlert('tourAlert', '❌ Error: ' + (res.error || 'Unknown'), 'error'); }
+            } catch(err) { showAlert('tourAlert', '❌ save.php not found: ' + err.message, 'error'); }
         }
 
         async function saveBlogsToFile() {
             if (blogs.length === 0) return showAlert('blogAlert', '⚠️ No blogs to save!', 'error');
             showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Saving to server...', 'info');
             try {
-                const resp = await fetch('save.php', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ file: 'blogs', data: blogs })
-                });
+                const resp = await fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'blogs', data: blogs }) });
                 const res = await resp.json();
-                if (res.success) {
-                    showAlert('blogAlert', `✅ ${blogs.length} blogs saved to server!`, 'success');
-                } else {
-                    showAlert('blogAlert', '❌ Error: ' + (res.error || 'Unknown'), 'error');
-                }
-            } catch(err) {
-                showAlert('blogAlert', '❌ save.php not found or inaccessible: ' + err.message, 'error');
-            }
+                if (res.success) { showAlert('blogAlert', `✅ ${blogs.length} blogs saved to server!`, 'success'); }
+                else { showAlert('blogAlert', '❌ Error: ' + (res.error || 'Unknown'), 'error'); }
+            } catch(err) { showAlert('blogAlert', '❌ save.php not found: ' + err.message, 'error'); }
         }
 
         function setupImagePreviews() {
-            document.getElementById('tourImage').addEventListener('input', (e) => { const p = document.getElementById('tourImagePreview'), v = e.target.value.trim(); if(v) { p.src = v.startsWith('http') ? v : `assets/${v}`; p.style.display = 'block'; } else p.style.display = 'none'; });
-            document.getElementById('blogImage').addEventListener('input', (e) => { const p = document.getElementById('blogImagePreview'), v = e.target.value.trim(); if(v) { p.src = v.startsWith('http') ? v : `assets/${v}`; p.style.display = 'block'; } else p.style.display = 'none'; });
+            document.getElementById('tourImage').addEventListener('input', (e) => {
+                const p = document.getElementById('tourImagePreview'), v = e.target.value.trim();
+                if (v) { p.src = v.startsWith('http') ? v : `assets/${v}`; p.style.display = 'block'; }
+                else p.style.display = 'none';
+            });
+            document.getElementById('blogImage').addEventListener('input', (e) => {
+                const p = document.getElementById('blogImagePreview'), v = e.target.value.trim();
+                if (v) { p.src = v.startsWith('http') ? v : `assets/${v}`; p.style.display = 'block'; }
+                else p.style.display = 'none';
+            });
         }
+
+        // refreshFromGitHub stub — sunucu yenileme
+        function refreshToursFromGitHub() { loadTours(); showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Refreshing from server...', 'info'); }
+        function refreshBlogsFromGitHub() { loadBlogs(); showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Refreshing from server...', 'info'); }
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('tourForm').addEventListener('submit', saveTour);
             document.getElementById('blogForm').addEventListener('submit', saveBlog);
-            setupImagePreviews(); loadTours(); loadBlogs();
-        });   
+            setupImagePreviews();
+            loadTours();
+            loadBlogs();
+        });
     </script>
 </body>
 </html>

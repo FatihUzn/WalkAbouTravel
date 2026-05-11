@@ -22,8 +22,20 @@ class BlogManager {
         try {
             const response = await fetch('data/blog-posts.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            this.posts = await response.json();
-            console.log(`✅ ${this.posts.length} blog yazısı yüklendi`);
+            const raw = await response.json();
+
+            // DÜZELTME: Duplicate ID'leri otomatik temizle — her ID'den sadece ilkini al
+            const seen = new Set();
+            this.posts = raw.filter(post => {
+                if (seen.has(post.id)) {
+                    console.warn(`⚠️ Duplicate blog ID atlandı: ${post.id} - "${post.title}"`);
+                    return false;
+                }
+                seen.add(post.id);
+                return true;
+            });
+
+            console.log(`✅ ${this.posts.length} blog yazısı yüklendi (${raw.length - this.posts.length} duplicate atlandı)`);
         } catch (error) {
             console.error('❌ Blog yükleme hatası:', error);
             this.posts = [];
@@ -42,6 +54,26 @@ class BlogManager {
             return post[field] || '';
         }
         return post[`${field}_${lang}`] || post[field] || '';
+    }
+
+    // i18n sisteminden çeviri al, yoksa fallback kullan
+    getReadMore() {
+        const fallback = {
+            tr: 'Devamını Oku',
+            en: 'Read More',
+            es: 'Leer Más',
+            ru: 'Читать далее',
+            de: 'Weiterlesen',
+            zh: '阅读更多',
+            ar: 'اقرأ المزيد',
+            pt: 'Leia Mais'
+        };
+        if (window.i18n && window.i18n.t) {
+            const val = window.i18n.t('read_more');
+            // t() bulamazsa key'i döndürür, fallback daha iyi
+            if (val && val !== 'read_more') return val;
+        }
+        return fallback[this.currentLang] || fallback.tr;
     }
 
     setupLangListener() {
@@ -83,10 +115,12 @@ class BlogManager {
         const lang = this.currentLang;
         const imageUrl = post.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop';
 
-        // Admin flat format: title / title_en, excerpt / excerpt_en
         const title = this.getField(post, 'title', lang);
         const excerpt = this.getField(post, 'excerpt', lang)
-                     || this.getField(post, 'description', lang); // eski format desteği
+                     || this.getField(post, 'description', lang);
+
+        // DÜZELTME: "Devamını Oku" artık dile göre çevriliyor
+        const readMore = this.getReadMore();
 
         return `
             <div class="blog-card" data-post-id="${post.id}" style="cursor: pointer;">
@@ -101,7 +135,7 @@ class BlogManager {
                     <h3 style="margin-bottom:10px; color:#333;">${title}</h3>
                     <p style="color:#666; font-size:0.95em; line-height:1.6;">${excerpt}</p>
                     <a href="#" class="blog-read-more" data-post-id="${post.id}" style="display:inline-block; margin-top:15px; color:#38bdf8; font-weight:600; text-decoration:none;">
-                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                        ${readMore} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -166,8 +200,6 @@ class BlogManager {
 
         const lang = this.currentLang;
 
-        // Admin flat format: content / content_en
-        // Eski format desteği: fullContent, description
         const title = this.getField(post, 'title', lang);
         const content = this.getField(post, 'content', lang)
                      || this.getField(post, 'fullContent', lang)
@@ -175,7 +207,7 @@ class BlogManager {
 
         document.getElementById('blogModalImage').src = post.image || '';
         document.getElementById('blogModalTitle').textContent = title;
-        document.getElementById('blogModalContent').innerHTML = content;
+        document.getElementById('blogModalContent').innerHTML = content.replace(/\n/g, '<br>');
         document.getElementById('blogModal').classList.add('active');
     }
 
