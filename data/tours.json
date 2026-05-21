@@ -524,13 +524,13 @@
         "autumn"
       ]
     },
-    "description": "Kendinizi bir kuş gibi hayal edin: kanatlarınızı açıyor, havalanıyor ve yüzünüze çarpan rüzgarı hissediyorsunuz. Aşağıda turkuaz sular, bembeyaz plajlar; ufukta ise majestetik dağlar. Babadağ'ın zirvesinden Ölüdeniz üzerinde süzülmek, çoğu insanın ömür boyu deneyimleyemediği bir özgürlük hissi.",
-    "description_en": "Imagine yourself as a bird — wings spread wide, ascending into the open sky. Feel the air rush past your face, the wind in your hair. Below, turquoise waters shimmer against white sandy shores; on the horizon, mountains rise in silent grandeur. Soaring above Ölüdeniz from the summit of Babadağ is a freedom that most people never get to experience.",
-    "description_es": "Imagínese como un pájaro: alas extendidas, ascendiendo hacia el cielo abierto. Sienta el viento en su cara, el aire entre su cabello. Abajo brillan aguas turquesas junto a playas de arena blanca; en el horizonte, las montañas se alzan en silenciosa grandeza.",
-    "description_ru": "Представьте себя птицей — с распростёртыми крыльями, взмывающей в открытое небо. Почувствуйте, как воздух обдувает лицо, как ветер треплет волосы. Внизу сверкают бирюзовые воды у белых песчаных пляжей.",
-    "description_de": "Stellen Sie sich vor, Sie wären ein Vogel – die Flügel weit ausgebreitet, emporsteigend in den offenen Himmel. Spüren Sie den Wind in Ihrem Gesicht und in Ihren Haaren. Unten schimmert türkisfarbenes Wasser an weißen Sandstränden.",
-    "description_zh": "想象自己是一只鸟——展开翅膀，冲向开阔的天空。感受气流掠过脸庞，风吹过发梢。脚下是碧绿的海水与白色沙滩，远处群山巍然耸立。",
-    "description_ar": "تخيّل نفسك طائرًا تنشر جناحيك وتحلّق في السماء المفتوحة. اشعر بالهواء يتسلل إلى وجهك، والريح تعزف في شعرك. في الأسفل، مياه فيروزية تتلألأ قرب الشواطئ البيضاء، وفي الأفق تشامخ الجبال.",
+    "description": "Babadağ Dağı'ndan yükselerek gökyüzünün özgürlüğünü hissedin. Aşağıda turkuaz sular ve bembeyaz plajları izleyerek hayatınızın deneyimini yaşayın.",
+    "description_en": "Feel the freedom of the sky by rising from Mount Babadag. Experience the thrill of a lifetime watching turquoise waters.",
+    "description_es": "Siente la libertad del cielo elevándote desde el monte Babadag.",
+    "description_ru": "Почувствуйте свободу неба, поднявшись с горы Бабадаг.",
+    "description_de": "Spüren Sie die Freiheit des Himmels, wenn Sie sich vom Berg Babadag erheben.",
+    "description_zh": "从巴巴达格山升起，感受天空的自由。",
+    "description_ar": "اشعر بحرية السماء من خلال الارتفاع من جبل باباداغ.",
     "image": "assets/fethiye-oludeniz-manzarasi-1.webp",
     "gallery": [
       "assets/fethiye-oludeniz-manzarasi-1.webp",
@@ -550,23 +550,18 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Babadağ'dan Ölüdeniz'e Uçuş Deneyimi",
-        "description": "Uluslararası Sertifikalı Tandem Pilotlarımız eşliğinde Fethiye, Çalış Plajı veya Ovacık'taki otelinizden alınarak 1969 metre yüksekliğindeki Babadağ'a çıkıyorsunuz. Modern araçlarımızla tırmanan 40 dakikalık dağ yolculuğu başlı başına bir doğa safarisi niteliğinde. Zirveye varışta pilotunuz size kısa ama kapsamlı bir brifing sunacak; yapmanız ve yapmamanız gerekenleri öğrendikten sonra tam anlamıyla hazır hissedeceksiniz. Uçuş süresince pilotunuz mümkün olduğunca yanınızda kalarak sizi fotoğraflamasına veya video çekmesine olanak tanıyor. Ölüdeniz plajı ve efsanevi Mavi Lagün'ün nefes kesen manzarasını yaklaşık 20–30 dakika boyunca kuşbakışı izleyeceksiniz. Kıyıya inis yaparak unutulmaz bir anıyı dolu dolu yaşayacaksınız."
+        "title": "Uçuş Deneyimi",
+        "description": "Otelinizden alınarak modern araçlarımızla Babadağ'a safari yolculuğuna çıkacaksınız. Brifing sonrası Ölüdeniz plajı ve Mavi Lagün'ün inanılmaz manzarasını gökyüzünden izleyeceksiniz."
       }
     ],
     "included": [
-      "Uluslararası Sertifikalı Tandem Pilot",
-      "Fethiye, Çalış Plajı veya Ovacık otellerinden ulaşım",
-      "1969 m yüksekliğinden Babadağ paraşüt uçuşu",
-      "Yaklaşık 20–30 dakikalık tandem uçuş",
-      "Tam aktivite sigortası",
-      "Kask, bot ve gerektiğinde uçuş tulumu"
+      "Uluslararası Sertifikalı Pilot",
+      "Otel Transferi",
+      "Tam Sigorta"
     ],
     "excluded": [
-      "Teleferik bileti (yaklaşık 6 $)",
-      "Fotoğraf ve video çekimi (ek ücretle mevcut)",
-      "Kişisel harcamalar",
-      "Fethiye merkezinin dışından transferler (ek ücretle)"
+      "Fotoğraf ve Video Çekimi (Ekstra)",
+      "Kişisel Harcamalar"
     ],
     "pricing": {
       "economy": "120$",
@@ -578,10 +573,7 @@
       "Saat: 09:00 AM veya 14:00 PM"
     ],
     "notes": [
-      "Uçuş süresi ve program hava koşullarına bağlı olarak değişiklik gösterebilir.",
-      "Maksimum ağırlık limiti: 110 kg (242 lb).",
-      "Fethiye merkezi dışından ulaşım ek ücrete tabidir.",
-      "Teleferik ücreti yaklaşık 6 $ olup programa dahil değildir."
+      "Uçuş süresi hava şartlarına bağlı olarak 25-45 dakika sürer."
     ],
     "mapUrl": ""
   },
@@ -792,35 +784,78 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "İstanbul'a Varış",
-        "description": "Havalimanında karşılama ve otele transfer. Serbest zaman."
+        "title": {
+          "tr": "İstanbul'a Varış",
+          "en": "Arrival in Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'a varışınızda ekibimiz sizi karşılıyor ve otelinize transfer ediliyor. Günün geri kalanını dinlenerek ya da şehri keşfederek geçirebilirsiniz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "Upon your arrival in Istanbul, our team welcomes and transfers you to your hotel. The rest of the day is yours to relax or explore. Overnight in Istanbul."
+        }
       },
       {
         "day": 2,
-        "title": "Sultanahmet Turu",
-        "description": "Ayasofya, Mavi Camii, Hipodrom, Topkapı Sarayı ve Kapalıçarşı."
+        "title": {
+          "tr": "İstanbul Tarihi Yarımada Yürüyüş Turu",
+          "en": "Full Day Istanbul Old City Walking Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından Sultanahmet'te tam gün İstanbul Tarihi Yarımada turumuza başlıyoruz. Sultanahmet (Mavi) Camii, Ayasofya, Hipodrom, Dikilitaş, Yılanlı Sütun, Alman Çeşmesi, Kapalıçarşı, Topkapı Sarayı ve Ayairini Kilisesi günün öne çıkan noktaları. Turun sonunda otelinize dönüyorsunuz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "After breakfast, we pick you up for a full-day Istanbul Old City Walking Tour in Sultanahmet, visiting the Blue Mosque, Hagia Sophia, the Hippodrome, the Obelisk of Theodosius, the Serpent Column, the German Fountain, the Grand Bazaar, Topkapi Palace, and Hagia Eirene Church. Accompanied back to your hotel at the tour's end. Overnight in Istanbul."
+        }
       },
       {
         "day": 3,
-        "title": "Gelibolu",
-        "description": "Sabah 6:30'da hareket. ANZAC Koyu, Lone Pine, Conkbayırı. Çanakkale'de geceleme."
+        "title": {
+          "tr": "Tam Gün Gelibolu Turu",
+          "en": "Full Day Gallipoli Tour"
+        },
+        "description": {
+          "tr": "Sabah 06:30'da otelinizden alınarak yaklaşık 5 saatlik bir yolculukla Gelibolu Yarımadası'na ulaşıyorsunuz. Varışta geleneksel bir restoranda öğle yemeğinin ardından tarihin en derin izlerini taşıyan noktalara yöneliyoruz: Brighton Plajı, Beach Mezarlığı (John Simpson'ın mezarı), ANZAC Koyu, Arıburnu, Lone Pine Mezarlığı (Avustralya anıtı), Johnston's Jolly ANZAC siperleri, Şarapnel Vadisi, Türk Anıtı, The Nek, Walker's Ridge ve Conk Bayırı (Yeni Zelanda ana anıtı). Günün sonunda feribot ile Çanakkale'ye geçiyoruz. Geceyi Çanakkale'de geçiriyorsunuz.",
+          "en": "Picked up from your hotel at 06:30, we travel approximately five hours to the Gallipoli Peninsula. Following lunch at a traditional restaurant, we visit Brighton Beach, Beach Cemetery (John Simpson's Grave), ANZAC Cove, Arı Burnu, Lone Pine Cemetery (Australian Memorial), Johnston's Jolly trenches, Shrapnel Valley, the Turkish Memorial, The Nek, Walker's Ridge, and Chunuk Bair (New Zealand Memorial). At day's end, we take the ferry to Çanakkale. Overnight in Çanakkale."
+        }
       },
       {
         "day": 4,
-        "title": "Truva Antik Kenti",
-        "description": "Efsanevi Truva Antik Kenti turu. Akşam İstanbul'a dönüş."
+        "title": {
+          "tr": "Tam Gün Truva Turu – İstanbul'a Transfer",
+          "en": "Full Day Troy Tour – Transfer to Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından Truva'ya hareket ediyoruz. Efsanevi Truva Atı'nı görüyor ve MÖ 3500'e uzanan birbirinin üzerine kurulmuş yedi antik kenti adım adım keşfediyoruz: Apollon Tapınağı, tahkimatlı şehir surları, Hektor ile Achilles'in güç kavgasına sahne olan savaş alanı ve yarım daire biçimli Greco-Roma Senatosu. Turun sonunda İstanbul'daki otelinize transfer ediliyorsunuz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "After breakfast and check-out, we head to Troy. You come face-to-face with the legendary Trojan Horse and walk through seven ancient cities layered since 3500 BC — the Temple of Apollo, the fortified city walls, the battlefield where Hector and Achilles clashed, and the semicircular Greco-Roman Senate. At the tour's end, you are transferred back to your hotel in Istanbul. Overnight in Istanbul."
+        }
       },
       {
         "day": 5,
-        "title": "Veda",
-        "description": "Uluslararası uçuşunuz için havalimanına transfer."
+        "title": {
+          "tr": "İstanbul'dan Uğurlama",
+          "en": "Departure from Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından uluslararası uçuşunuz için havalimanına transfer ediliyorsunuz. İstanbul'un tarihi yarımadasını, Gelibolu'nun derin anılarını ve Truva'nın efsanevi sokaklarını kucaklayan bu yolculuk burada tamamlanıyor.",
+          "en": "Following breakfast and check-out, you are transferred to the international airport for your departure flight. Your journey through Istanbul's historic peninsula, the poignant memorials of Gallipoli, and the legendary streets of Troy comes to a close."
+        }
       }
     ],
-    "included": [
-      "4 Gece Konaklama",
-      "Müze Giriş Biletleri",
-      "Profesyonel Rehber"
-    ],
+    "included": {
+      "tr": [
+        "Tüm kara ulaşımları ve feribot bileti",
+        "4 gece konaklama",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle)",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "All local transportation and ferry ticket",
+        "4 nights hotel accommodation",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch)",
+        "All local taxes"
+      ]
+    },
     "excluded": [
       "Kişisel Harcamalar",
       "Öğle ve Akşam Yemekleri"
@@ -834,10 +869,67 @@
       "Kalkış: İstanbul",
       "Dönüş: İstanbul"
     ],
-    "notes": [
-      "Yürüyüş ayakkabısı getirmeniz önerilir."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Transfer ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "Exact time details are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "Ayasofya & Sultanahmet Camii – iki medeniyetin simgesi",
+        "Topkapı Sarayı – Osmanlı saray hayatının görkemli kapısı",
+        "ANZAC Koyu – I. Dünya Savaşı'nın en efsanevi çıkarma noktası",
+        "Lone Pine Mezarlığı – Avustralya'nın Gelibolu'daki kalıcı anıtı",
+        "Conk Bayırı – Yeni Zelanda kahramanlarının uğruna savaştığı topraklar",
+        "Truva Antik Kenti – MÖ 3500'den günümüze yedi uygarlık katmanı",
+        "Efsanevi Truva Atı – mitolojinin en tanınmış sembolü"
+      ],
+      "en": [
+        "Hagia Sophia & Blue Mosque – symbols of two great civilisations",
+        "Topkapi Palace – the magnificent gateway to Ottoman court life",
+        "ANZAC Cove – the most legendary WWI landing point",
+        "Lone Pine Cemetery – Australia's enduring memorial at Gallipoli",
+        "Chunuk Bair – the ground where New Zealand's heroes fought",
+        "Troy Ancient City – seven civilisations since 3500 BC",
+        "The legendary Trojan Horse – mythology's most iconic symbol"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "İçecekler (öğle yemeği dahil)",
+        "Kişisel harcamalar",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch",
+        "Items of a personal nature",
+        "Medical services"
+      ]
+    },
+    "prices": {
+      "economy": {
+        "single": "698$",
+        "double": "541$",
+        "triple": "520$"
+      },
+      "comfort": {
+        "single": "917$",
+        "double": "677$",
+        "triple": "663$"
+      },
+      "luxury": {
+        "single": "1.145$",
+        "double": "764$",
+        "triple": "741$"
+      },
+      "note": "Per person. Starting prices — contact us 24/7 with your tour date for exact pricing."
+    }
   },
   {
     "id": "TUR-1700000000006",
@@ -1017,7 +1109,7 @@
     "title_zh": "土耳其点菜式旅游",
     "title_ar": "جولة تركيا حسب الطلب",
     "price": "2100$",
-    "duration": "Özelleştirilebilir",
+    "duration": "12 Gün / 11 Gece",
     "location": "Tüm Türkiye",
     "category": "Uluslararası",
     "categories": {
@@ -1058,15 +1150,157 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Esnek Rota",
-        "description": "İstanbul'dan başlayarak Gelibolu, Truva, Bergama, Kuşadası, Efes, Pamukkale, Konya ve Kapadokya rotalarından dilediğinizi seçin."
+        "title": {
+          "tr": "İstanbul'a Varış",
+          "en": "Arrival in Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'a varışınızda ekibimiz sizi karşılıyor ve otelinize transfer ediliyor. Günün geri kalanını dinlenerek ya da şehri özgürce keşfederek geçirebilirsiniz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "Upon your arrival in Istanbul, our team welcomes and transfers you to your hotel. The rest of the day is entirely yours to relax or explore the city at your own pace. Overnight in Istanbul."
+        }
+      },
+      {
+        "day": 2,
+        "title": {
+          "tr": "İstanbul Tarihi Yarımada Yürüyüş Turu",
+          "en": "Istanbul Old City Walking Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından Sultanahmet'te tam gün İstanbul Tarihi Yarımada turumuza başlıyoruz. Sultanahmet (Mavi) Camii, Ayasofya, Hipodrom, Dikilitaş, Yılanlı Sütun, Alman Çeşmesi, Kapalıçarşı, Topkapı Sarayı ve Ayairini Kilisesi günün öne çıkan noktaları. Turun sonunda otelinize dönüyorsunuz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "After breakfast, we pick you up for a full-day Istanbul Old City Walking Tour in Sultanahmet, visiting the Blue Mosque, Hagia Sophia, the Hippodrome, the Obelisk of Theodosius, the Serpent Column, the German Fountain, the Grand Bazaar, Topkapi Palace, and Hagia Eirene Church. Accompanied back to your hotel at the tour's end. Overnight in Istanbul."
+        }
+      },
+      {
+        "day": 3,
+        "title": {
+          "tr": "Tam Gün Gelibolu Turu",
+          "en": "Full Day Gallipoli Tour"
+        },
+        "description": {
+          "tr": "Sabah 06:30'da otelinizden alınarak yaklaşık 5 saatlik bir yolculukla Gelibolu Yarımadası'na ulaşıyorsunuz. Varışta geleneksel bir restoranda öğle yemeğinin ardından tarihin en derin izlerini taşıyan noktalara yöneliyoruz: Brighton Plajı, Beach Mezarlığı (John Simpson'ın mezarı), ANZAC Koyu, Arıburnu, Lone Pine Mezarlığı, Johnston's Jolly siperleri, Şarapnel Vadisi, Türk Anıtı, The Nek, Walker's Ridge ve Conk Bayırı. Günün sonunda feribot ile Çanakkale'ye geçiyoruz.",
+          "en": "Picked up from your hotel at 06:30, we travel approximately five hours to Gallipoli. Following lunch at a traditional restaurant, we visit Brighton Beach, Beach Cemetery, ANZAC Cove, Arı Burnu, Lone Pine Cemetery (Australian Memorial), Johnston's Jolly (ANZAC trenches), Shrapnel Valley, the Turkish Memorial, The Nek, Walker's Ridge, and Chunuk Bair (New Zealand Memorial). At day's end, we cross by ferry to Çanakkale."
+        }
+      },
+      {
+        "day": 4,
+        "title": {
+          "tr": "Truva & Bergama Turu – Kuşadası'na Transfer",
+          "en": "Troy & Pergamum Tour – Transfer to Kuşadası"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından Truva'ya hareket ediyoruz. Efsanevi Truva Atı'nı görüyor ve MÖ 3500'e uzanan yedi antik kenti adım adım keşfediyoruz: Apollon Tapınağı, tahkimatlı şehir surları, Hektor ile Achilles'in savaştığı alan ve Greco-Roma Senatosu. Ardından Bergama'da öğle yemeği yiyor ve tarihte önemli kütüphanelerine ev sahipliği yapmış Bergama Antik Kenti'ni geziyoruz. Günü Kuşadası'nda tamamlıyoruz.",
+          "en": "After breakfast and check-out, we head to Troy. You come face-to-face with the legendary Trojan Horse and walk through seven ancient cities since 3500 BC — the Temple of Apollo, fortified walls, the battlefield of Hector and Achilles, and the Greco-Roman Senate. Following Troy, we drive to Pergamum for lunch and visit its celebrated ancient city, once home to one of antiquity's greatest libraries. The day ends with arrival in Kuşadası."
+        }
+      },
+      {
+        "day": 5,
+        "title": {
+          "tr": "Tam Gün Efes Turu",
+          "en": "Full Day Ephesus Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının hemen ardından tam gün Efes turumuz başlıyor. Artemis Tapınağı, Celsus Kütüphanesi, ihtişamlı Efes Antik Kenti, antik tiyatrolar, hamamlar, liman caddesi ve Meryem Ana Evi bu unutulmaz günün öne çıkan noktaları. Turun sonunda Kuşadası'ndaki otelinize dönüyorsunuz.",
+          "en": "Immediately after breakfast, the full-day Ephesus tour begins. Highlights include the Temple of Artemis, the Library of Celsus, the magnificent Ephesus Ancient City, ancient theatres, bathhouses, the harbour street, and the House of the Virgin Mary. At the tour's end, you transfer back to your hotel in Kuşadası."
+        }
+      },
+      {
+        "day": 6,
+        "title": {
+          "tr": "Kuşadası'nda Serbest Gün",
+          "en": "Free Day to Explore Kuşadası"
+        },
+        "description": {
+          "tr": "Bu gün tamamen size ait. Kuşadası şehrini keşfedebilir, plajlarda vakit geçirebilir ya da isteğe bağlı olarak Yunan Adası Sisam'a günübirlik gezi yapabilirsiniz. Öneri ve yönlendirme için her zaman yanınızdayız. Geceyi Kuşadası'nda geçiriyorsunuz.",
+          "en": "This day is entirely yours. Discover Kuşadası town, enjoy the beaches, or take an optional day trip to the Greek Island of Samos. We are always on hand for recommendations. Overnight in Kuşadası."
+        }
+      },
+      {
+        "day": 7,
+        "title": {
+          "tr": "Tam Gün Pamukkale & Hierapolis Turu",
+          "en": "Full Day Pamukkale & Hierapolis Tour"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Pamukkale ve Hierapolis turumuz başlıyor. Yaklaşık 200 metre yüksekliğindeki kayalıklardan fışkıran kalkerli sular, mineral ormanları, taşlaşmış şelaleler ve eşsiz teras havuzlarından oluşan bu coğrafyayı keşfediyoruz. UNESCO Dünya Mirası Hierapolis; antik şehri, Nekropolü ve Kleopatra Yüzme Havuzu ile tarihin içine sürüklüyor. Geceyi Pamukkale'de geçiriyorsunuz.",
+          "en": "After breakfast and check-out, the full-day Pamukkale and Hierapolis tour begins. Mineral-rich springs from cliffs nearly 200 metres high have sculpted an extraordinary landscape of terraced pools, petrified waterfalls, and mineral forests. UNESCO World Heritage Site Hierapolis draws you through its ancient city, Necropolis, and the legendary Cleopatra Swimming Pool. Overnight in Pamukkale."
+        }
+      },
+      {
+        "day": 8,
+        "title": {
+          "tr": "Konya Üzerinden Kapadokya'ya Transfer",
+          "en": "Transfer to Cappadocia via Konya"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından Kapadokya'ya hareket ediyoruz. Yolda İpek Yolu'nun önemli ticaret merkezlerinden biri olan ve Mevlana Rumi'nin ruhani yolculuğunun son durağı Konya'ya uğruyoruz. Mevlana Müzesi'nde Sema geleneğinin köklerine tanıklık ediyoruz. Not: Bu gün rehber eşliği ve öğle yemeği programa dahil değildir; sürücümüz güzergâh boyunca sizinle birlikte olacaktır.",
+          "en": "After breakfast and check-out, we depart for Cappadocia. En route we stop in Konya — once a vital Silk Road trading hub and the spiritual home of Rumi (Mevlana), founder of the Whirling Dervish tradition. We visit the Mevlana Museum. Note: No guide or included lunch on this day; our driver accompanies you throughout the journey."
+        }
+      },
+      {
+        "day": 9,
+        "title": {
+          "tr": "Kuzey Kapadokya (Kırmızı) Turu",
+          "en": "Full Day North Cappadocia (Red) Tour"
+        },
+        "description": {
+          "tr": "İsteğe bağlı sıcak hava balonu deneyiminin ardından tam gün Kuzey Kapadokya turumuza başlıyoruz. Göreme Açık Hava Müzesi, Paşabağ ve Devrent Vadisi peri bacaları, Ürgüp ve Avanos çömlekçilik atölyesi günün öne çıkan noktaları. Geceyi Kapadokya'da geçiriyorsunuz.",
+          "en": "Following an optional hot air balloon ride, the full-day North Cappadocia tour begins: the Göreme Open Air Museum, Paşabağ and Devrent Valley fairy chimneys, and the pottery workshop in Ürgüp and Avanos. Overnight in Cappadocia."
+        }
+      },
+      {
+        "day": 10,
+        "title": {
+          "tr": "Güney Kapadokya (Yeşil) Turu – İstanbul'a Uçuş",
+          "en": "Full Day South Cappadocia (Green) Tour – Flight to Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Güney Kapadokya turumuza başlıyoruz. Kızıl ve Gül Vadisi yürüyüşü, Çavuşin Köyü, Aşk Vadisi, Kaymakli Yeraltı Şehri, Güvercinlik Vadisi ve Uçhisar Kalesi günün öne çıkan noktaları. Turun sonunda havalimanına transfer edilerek İstanbul'a uçuyorsunuz. Varışta ekibimiz sizi karşılıyor ve otelinize götürüyor.",
+          "en": "After breakfast and check-out, the full-day South Cappadocia tour begins: Red and Rose Valley hike, cave-house village of Çavuşin, Love Valley, Kaymakli Underground City, Pigeon Valley, and Uçhisar Castle. At the tour's end you transfer to the airport for your flight to Istanbul, where our team meets and transfers you to your hotel."
+        }
+      },
+      {
+        "day": 11,
+        "title": {
+          "tr": "İstanbul'da Serbest Gün",
+          "en": "Free Day to Discover Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'u kendi temponuzda keşfetmek için tam bir gün önünüzde. Boğaz turu, tarihi hamam deneyimi, Adalar gezisi ya da yerel mahalle kafeleri — seçim tamamen size ait. Öneri ve yönlendirme için her zaman yanınızdayız. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "A full free day to explore Istanbul at your own pace. A Bosphorus cruise, a traditional hammam experience, a ferry trip to the Princes' Islands, or a stroll through local neighbourhoods — the choice is yours. We are always on hand for recommendations. Overnight in Istanbul."
+        }
+      },
+      {
+        "day": 12,
+        "title": {
+          "tr": "İstanbul'dan Uğurlama",
+          "en": "Departure from Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından uluslararası uçuşunuz için havalimanına transfer ediliyorsunuz. İstanbul'dan Gelibolu'ya, Truva'dan Efes'e, Pamukkale'den Kapadokya'ya uzanan bu kapsamlı yolculuk burada tamamlanıyor.",
+          "en": "Following breakfast and check-out, you are transferred to the international airport for your departure flight. Your comprehensive journey — from Istanbul and Gallipoli to Troy, Ephesus, Pamukkale, and Cappadocia — comes to a memorable close."
+        }
       }
     ],
-    "included": [
-      "Lüks Konaklama",
-      "VIP Transferler",
-      "Özel Rehber"
-    ],
+    "included": {
+      "tr": [
+        "Gidiş-dönüş iç hat uçuş biletleri",
+        "Tüm kara ulaşımları ve feribot bileti",
+        "11 gece konaklama",
+        "Profesyonel rehberlik hizmeti (8. gün hariç)",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle)",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "Domestic flight tickets",
+        "All overland transportation and ferry ticket",
+        "11 nights hotel accommodation",
+        "Professional guide service (except Day 8)",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch)",
+        "All local taxes"
+      ]
+    },
     "excluded": [
       "Uçak Biletleri",
       "Müze Biletleri"
@@ -1080,10 +1314,87 @@
       "Kalkış: Müşteri Tercihi",
       "Dönüş: Müşteri Tercihi"
     ],
-    "notes": [
-      "Rotanız rezervasyon sırasında tamamen tarafınızca belirlenir."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Topkapı Sarayı Salı günleri kapalıdır.",
+        "Ayasofya ve Sultanahmet Camii Cuma günleri ziyarete kapalıdır.",
+        "Kapalıçarşı Pazar günleri kapalıdır.",
+        "Efes Tarasa Evleri giriş ücreti yaklaşık 5$'dır.",
+        "Kleopatra Yüzme Havuzu giriş ücreti yaklaşık 8$'dır.",
+        "Transfer ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "Topkapi Palace is closed on Tuesdays.",
+        "Hagia Sophia and Blue Mosque are closed on Fridays.",
+        "Grand Bazaar is closed on Sundays.",
+        "Ephesus Terrace Houses entrance fee is approximately $5.",
+        "Cleopatra Swimming Pool entrance fee is approximately $8.",
+        "Exact time details are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "Ayasofya & Sultanahmet Camii – iki medeniyetin simgesi",
+        "Topkapı Sarayı – Osmanlı saray hayatının kapısı",
+        "ANZAC Koyu & Lone Pine – I. Dünya Savaşı'nın en dokunucu anıt alanları",
+        "Truva Antik Kenti – MÖ 3500'den günümüze yedi uygarlık katmanı",
+        "Efes Antik Kenti – Akdeniz'in en iyi korunmuş antik kenti",
+        "Pamukkale & Hierapolis – UNESCO Dünya Mirası",
+        "Mevlana Müzesi, Konya – Sema geleneğinin doğduğu yer",
+        "Göreme Açık Hava Müzesi & Kaymakli Yeraltı Şehri – Kapadokya'nın derinlikleri",
+        "Kuşadası'nda serbest gün – isteğe bağlı Sisam Adası gezisi"
+      ],
+      "en": [
+        "Hagia Sophia & Blue Mosque – symbols of two civilisations",
+        "Topkapi Palace – gateway to Ottoman court life",
+        "ANZAC Cove & Lone Pine – the most moving WWI memorial sites",
+        "Troy Ancient City – seven civilisations since 3500 BC",
+        "Ephesus Ancient City – best-preserved ancient city on the Mediterranean",
+        "Pamukkale & Hierapolis – UNESCO World Heritage Site",
+        "Mevlana Museum, Konya – birthplace of the Whirling Dervish",
+        "Göreme Open Air Museum & Kaymakli Underground City – Cappadocia's depths",
+        "Free day in Kuşadası – optional Samos Island day trip"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "İçecekler (öğle yemeği dahil)",
+        "Kişisel harcamalar",
+        "8. gün öğle yemeği",
+        "Efes Tarasa Evleri girişi (isteğe bağlı, ~5$)",
+        "Kleopatra Yüzme Havuzu girişi (isteğe bağlı, ~8$)",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch",
+        "Items of a personal nature",
+        "Lunch on Day 8",
+        "Optional entrance to Ephesus Terrace Houses (~$5)",
+        "Optional entrance to Cleopatra Swimming Pool (~$8)",
+        "Medical services"
+      ]
+    },
+    "prices": {
+      "economy": {
+        "single": "2.213$",
+        "double": "1.529$",
+        "triple": "1.516$"
+      },
+      "comfort": {
+        "single": "2.891$",
+        "double": "1.894$",
+        "triple": "1.881$"
+      },
+      "luxury": {
+        "single": "3.497$",
+        "double": "2.226$",
+        "triple": "2.213$"
+      },
+      "note": "Per person. Starting prices — contact us 24/7 with your tour date for exact pricing."
+    }
   },
   {
     "id": "TUR-1700000000009",
@@ -1246,30 +1557,67 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Gelibolu Turu",
-        "description": "Sabah 6:30'da hareket, Gelibolu tam gün turu. Akşam Çanakkale'de geceleme."
+        "title": {
+          "tr": "Tam Gün Gelibolu Turu – Çanakkale'ye Geçiş",
+          "en": "Full-Day Gallipoli Tour – Crossing to Çanakkale"
+        },
+        "description": {
+          "tr": "Sabah yaklaşık 06:30'da İstanbul'daki otelinizden alınarak Gelibolu'ya doğru yaklaşık 5 saatlik otobüs yolculuğuna çıkıyoruz (isteğe bağlı kahvaltı molası). Geleneksel bir restoranda öğle yemeğinin ardından Brighton Plajı ve Beach Cemetery'de (John Simpson'ın Mezarı) tarihin ağırlığını hissediyoruz. ANZAC Koyu'nda derin bir saygı duruşunun ardından ANZAC kuvvetlerinin ilk karaya çıktığı Ari Burnu'nu ziyaret ediyoruz. Lone Pine Şehitliği, Johnston's Jolly'de siper yürüyüşü, Şarapnel Vadisi, Türk Şehitliği, The Nek, Walker's Ridge ve Yeni Zelanda'nın ana anıt alanı Chunuk Bair rotayı tamamlıyor. Gün sonunda feribotle Çanakkale'ye geçiş. Çanakkale'de konaklama.",
+          "en": "You are picked up from your hotel in Istanbul at approximately 06:30 for the five-hour bus journey to Gallipoli, with an optional breakfast stop en route. After lunch at a traditional restaurant, tour highlights include Brighton Beach, Beach Cemetery (John Simpson's Grave), ANZAC Cove, Ari Burnu, Lone Pine Cemetery, Johnston's Jolly trench walk, Shrapnel Valley, the Turkish Memorial, The Nek, Walker's Ridge, and Chunuk Bair—the main New Zealand memorial. We cross to Çanakkale by ferry at the end of the day. Overnight in Çanakkale."
+        }
       },
       {
         "day": 2,
-        "title": "Truva ve Bergama",
-        "description": "Truva antik kenti gezisi, ardından Bergama harabeleri. Kuşadası'nda geceleme."
+        "title": {
+          "tr": "Tam Gün Truva & Bergama Turu – Kuşadası'na Transfer",
+          "en": "Full-Day Troy & Pergamum Tour – Transfer to Kuşadası"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından Truva Antik Kenti'ne geçiyoruz. Efsanevi Truva Atı'nın karşısında duruyor; MÖ 3500'e uzanan 7'den fazla uygarlık katmanını, Apollon Tapınağı'nı, tahkimli surları, Hektör ile Aşil'in efsanevi savaş alanını ve Roma Tiyatrosu'nu inceliyoruz. Ardından Bergama'ya geçerek öğle yemeği ve Bergama Antik Kenti ziyareti. Gün sonunda Kuşadası'na transfer. Kuşadası'nda konaklama.",
+          "en": "After breakfast and check-out, we head to ancient Troy. Standing before the legendary Trojan Horse, we explore over seven civilisational layers dating to 3500 BC—including the Temple of Apollo, fortified walls, the battlefield of Hector and Achilles, and the Roman Theatre. We then drive to Pergamum for lunch and a visit to Pergamum Ancient City—once home to one of the greatest libraries of antiquity. Transfer to Kuşadası at the end of the day. Overnight in Kuşadası."
+        }
       },
       {
         "day": 3,
-        "title": "Efes Antik Kenti",
-        "description": "Efes tam gün turu. Artemis Tapınağı ve Meryem Ana Evi ziyaretleri."
+        "title": {
+          "tr": "Tam Gün Efes Turu",
+          "en": "Full-Day Ephesus Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından otelinizden alınarak tam gün Efes turuna başlıyoruz. Antik Çağ'ın Yedi Harikası'ndan biri olan Artemis Tapınağı, Celsus Kütüphanesi, dünyanın en iyi korunmuş Yunan-Roma şehirlerinden biri olan Efes Antik Kenti ve Meryem Ana'nın son yıllarını geçirdiğine inanılan Meryem Ana Evi'ni ziyaret ediyoruz. Antik tiyatrolar, hamamlar ve liman caddesinden geçerek tarihin derinliklerine iniyoruz. Gün sonunda Kuşadası'ndaki otelinize dönüyorsunuz. Kuşadası'nda konaklama.",
+          "en": "Following breakfast, you are picked up for the full-day Ephesus tour. We visit the Temple of Artemis—one of the Seven Wonders of the Ancient World—the Library of Celsus, Ephesus Ancient City, and the House of Virgin Mary. We also pass through ancient theaters, baths, and the harbor street. Overnight in Kuşadası."
+        }
       },
       {
         "day": 4,
-        "title": "Pamukkale",
-        "description": "Pamukkale travertenleri ve Hierapolis. Denizli'den İstanbul'a uçuş."
+        "title": {
+          "tr": "Tam Gün Pamukkale & Hierapolis Turu – İzmir'den İstanbul'a Uçuş",
+          "en": "Full-Day Pamukkale & Hierapolis Tour – Flight from Izmir to Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Pamukkale & Hierapolis turuna başlıyoruz. Yaklaşık 200 metre yüksekliğinden akan kalsiyumca zengin termal sular, binlerce yıl içinde Pamukkale'nin beyaz travertenlerini, taşlaşmış şelalelerini ve basamaklı havuzlarını oluşturmuştur. UNESCO Dünya Mirası Listesi'ndeki Hierapolis'te Nekropolü ve isteğe bağlı Kleopatra Yüzme Havuzu'nu ziyaret ediyoruz. Turun sonunda Denizli Havalimanı'na transfer edilerek İstanbul uçuşunuza biniyorsunuz. Varışınızda ekibimiz sizi karşılar ve otelinize ulaştırır.",
+          "en": "After breakfast and check-out, the full-day Pamukkale and Hierapolis tour begins. Calcium-rich thermal springs flowing from cliffs nearly 200 metres high have formed Pamukkale's iconic white travertines, petrified waterfalls, and terraced pools over thousands of years. At UNESCO World Heritage Site Hierapolis, we visit the Necropolis and optionally the Cleopatra Swimming Pool. You are transferred to Denizli Airport for your Istanbul flight, where our team meets you and takes you to your hotel."
+        }
       }
     ],
-    "included": [
-      "3 Gece Otel Konaklaması",
-      "Müze Giriş Biletleri",
-      "Denizli - İstanbul Tek Yön Uçak Bileti"
-    ],
+    "included": {
+      "tr": [
+        "Tüm kara ulaşımları",
+        "Otel konaklaması",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle)",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "All local transportation",
+        "Hotel accommodation",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch)",
+        "All domestic taxes"
+      ]
+    },
     "excluded": [
       "Öğle ve Akşam Yemekleri",
       "Kleopatra Havuzu Yüzme Ücreti"
@@ -1279,14 +1627,61 @@
       "comfort": "650$",
       "luxury": "950$"
     },
-    "departureReturn": [
-      "Kalkış: İstanbul",
-      "Dönüş: İstanbul Havalimanı"
-    ],
-    "notes": [
-      "Pamukkale'de yürüyüş için terlik bulundurmanız tavsiye edilir."
-    ],
-    "mapUrl": ""
+    "departureReturn": {
+      "tr": [
+        "Kalkış: Oteliniz, İstanbul (yaklaşık 06:30)",
+        "Dönüş: Oteliniz, İstanbul (yaklaşık 20:30)"
+      ],
+      "en": [
+        "Departure: Your hotel in Istanbul (approximately 06:30 AM)",
+        "Return: Your hotel in Istanbul (approximately 8:30 PM)"
+      ]
+    },
+    "notes": {
+      "tr": [
+        "Efes Yamaç Evleri giriş ücreti yaklaşık 5$'dır (isteğe bağlı).",
+        "Kleopatra Yüzme Havuzu giriş ücreti yaklaşık 8$'dır (isteğe bağlı).",
+        "Alış-bırakış ve tur saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "Ephesus Terrace Houses entrance fee is approximately $5 (optional).",
+        "Cleopatra Swimming Pool entrance fee is approximately $8 (optional).",
+        "Exact pick-up, drop-off and tour times are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "Gelibolu – ANZAC Koyu, Lone Pine Şehitliği ve Chunuk Bair'de derin bir tarih yolculuğu",
+        "Truva – Truva Atı ve MÖ 3500'e uzanan 7 katmanlı antik medeniyetler",
+        "Bergama – antik dünyanın en büyük kütüphanelerine ev sahipliği yapan kadim şehir",
+        "Efes – Artemis Tapınağı, Celsus Kütüphanesi ve Meryem Ana Evi",
+        "Pamukkale travertenleri – UNESCO korumasındaki beyaz kireç taşı terасları ve Hierapolis"
+      ],
+      "en": [
+        "Gallipoli – ANZAC Cove, Lone Pine Cemetery & Chunuk Bair; a profoundly moving journey",
+        "Troy – the Trojan Horse and a 7-layered ancient city stretching back to 3500 BC",
+        "Pergamum – an ancient city that was once home to one of the world's greatest libraries",
+        "Ephesus – Temple of Artemis, Library of Celsus & House of Virgin Mary",
+        "Pamukkale Travertines – UNESCO-protected white limestone pools and ancient Hierapolis"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "Öğle yemeğinde içecekler",
+        "Kişisel harcamalar",
+        "Efes Yamaç Evleri isteğe bağlı girişi (~5$)",
+        "Kleopatra Yüzme Havuzu isteğe bağlı girişi (~8$)"
+      ],
+      "en": [
+        "Drinks during lunch",
+        "Items of a personal nature",
+        "Optional entrance to Ephesus Terrace Houses (~$5)",
+        "Optional entrance to Cleopatra Swimming Pool (~$8)"
+      ]
+    }
   },
   {
     "id": "TUR-1700000000011",
@@ -1390,13 +1785,13 @@
         "year-round"
       ]
     },
-    "description": "İstanbul'a varışınızı son derece kolay ve stressiz hale getiriyoruz. İstanbul Havalimanı'ndan (IST) otelinize ya da şehrin istediğiniz noktasına özel araçla güvenli, konforlu ve hızlı bir karşılama transferi sunuyoruz.",
-    "description_en": "Traveling to Istanbul has never been this seamless. We provide a guaranteed, stress-free private transfer from Istanbul International Airport (IST) directly to your hotel or any destination in the city — with instant confirmation upon booking.",
-    "description_es": "Viajar a Estambul nunca ha sido tan sencillo. Ofrecemos un traslado privado garantizado y sin estrés desde el aeropuerto de Estambul (IST) directamente a su hotel.",
-    "description_ru": "Путешествие в Стамбул стало проще, чем когда-либо. Мы предоставляем гарантированный частный трансфер без стресса из аэропорта Стамбула (IST) прямо в ваш отель.",
-    "description_de": "Reisen nach Istanbul war noch nie so unkompliziert. Wir bieten einen garantierten, stressfreien Privattransfer vom Flughafen Istanbul (IST) direkt zu Ihrem Hotel.",
-    "description_zh": "前往伊斯坦布尔的旅途从未如此顺畅。我们提供从伊斯坦布尔国际机场（IST）到您酒店的有保障的无压力私人接机服务。",
-    "description_ar": "السفر إلى إسطنبول لم يكن بهذه السهولة من قبل. نقدم خدمة نقل خاصة مضمونة وخالية من الضغط من مطار إسطنبول الدولي (IST) مباشرةً إلى فندقك.",
+    "description": "İstanbul Havalimanı'ndan (IST) otelinize ya da şehrin istediğiniz noktasına özel araçla stressiz bir karşılama transferi sunuyoruz.",
+    "description_en": "We offer a stress-free welcome transfer from Istanbul Airport (IST) to your hotel.",
+    "description_es": "Ofrecemos un traslado de bienvenida sin estrés desde el aeropuerto de Estambul a su hotel.",
+    "description_ru": "Мы предлагаем трансфер без стресса из аэропорта Стамбула в ваш отель.",
+    "description_de": "Wir bieten einen stressfreien Willkommenstransfer vom Flughafen Istanbul zu Ihrem Hotel.",
+    "description_zh": "我们提供从伊斯坦布尔机场到您的酒店的无压力接机服务。",
+    "description_ar": "نحن نقدم خدمة نقل ترحيبية خالية من الإجهاد من مطار اسطنبول إلى فندقك.",
     "image": "assets/dolmabahce-bogaz-turu-1.webp",
     "gallery": [
       "assets/dolmabahce-bogaz-turu-1.webp",
@@ -1413,20 +1808,17 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Havalimanı Karşılama ve Transfer",
-        "description": "Uçağınız indiğinde temsilcimiz, ismini taşıyan tabelayla varış katında sizi karşılıyor. Bagajlarınızla birlikte klimalı özel aracınıza yönlendirildikten sonra, deneyimli sürücümüz sizi doğrudan otelinize ya da belirttiğiniz adrese güvenle ulaştırıyor. İster tek başınıza, ister aile ya da büyük bir grupla seyahat edin; sedan, VIP minivan veya minibüs seçenekleriyle grubunuza en uygun araç garantilenmektedir. Yolunuzu planlamak ve konforlu bir başlangıç yapmak için rezervasyonunuzu önceden uçuş bilgilerinizle tamamlamanız yeterli."
+        "title": "Havalimanı Karşılama",
+        "description": "Temsilcimiz isminizin yazılı olduğu tabelayla havalimanı çıkışında sizi bekliyor olacak. Havalimanı çıkışında karşılandıktan sonra sizi doğrudan otelinize bırakıyoruz."
       }
     ],
     "included": [
-      "Klimalı özel araç (sedan, VIP minivan veya minibüs)",
-      "İstanbul Havalimanı (IST) karşılama hizmeti",
-      "Tüm otoyol ve köprü ücretleri",
-      "Bagaj yardımı",
-      "Tüm vergi ve hizmet bedelleri"
+      "Oto Yolu ve Köprü Ücretleri",
+      "Klimalı VIP Araç",
+      "Bagaj Yardımı"
     ],
     "excluded": [
-      "Kişisel harcamalar",
-      "Ekstra bekleme süresi ücretleri"
+      "Ekstra Bekleme Ücreti"
     ],
     "pricing": {
       "economy": "50$",
@@ -1438,9 +1830,7 @@
       "Dönüş: Belirtilen Otel/Adres"
     ],
     "notes": [
-      "Tek yönlü özel transfer; yalnızca Sultanahmet, Taksim, Beşiktaş, Laleli, Fatih, Sirkeci ve Zeytinburnu bölgelerindeki otellere hizmet verilmektedir.",
-      "Tekerlekli sandalye erişimine uygun değildir.",
-      "Araç seçeneği yolcu sayısına göre belirlenmektedir."
+      "Araç seçeneği yolcu sayısına göre minivan veya sedan olarak değişebilir."
     ],
     "mapUrl": ""
   },
@@ -2235,13 +2625,13 @@
         "summer"
       ]
     },
-    "description": "Olympos kıyılarından hareket ederek Akdeniz'in el değmemiş koylarında, antik kalıntıların gölgesinde ve kristal berraklığındaki sularda 4 gün boyunca süzülen bir gulet yolculuğuna davetlisiniz.",
-    "description_en": "Set sail from the ancient shores of Olympos on an immersive 4-day gulet voyage through the Mediterranean's most unspoiled coves, where Lycian ruins meet crystal-clear waters at every turn.",
-    "description_es": "Zarpe desde las antiguas orillas de Olympos en un inmersivo viaje de 4 días en goleta por las calas más vírgenes del Mediterráneo.",
-    "description_ru": "Отправьтесь с древних берегов Олимпоса в захватывающее 4-дневное путешествие на гулете по нетронутым бухтам Средиземноморья.",
-    "description_de": "Stechen Sie von den antiken Ufern von Olympos in See und erleben Sie eine fesselnde 4-tägige Gulet-Reise durch die unberührtesten Buchten des Mittelmeers.",
-    "description_zh": "从奥林波斯古老的海岸扬帆出发，踏上深度沉浸式的4天土耳其木船之旅，穿越地中海最原始的海湾。",
-    "description_ar": "انطلق من شواطئ أوليمبوس الأثرية في رحلة بحرية استثنائية لمدة 4 أيام على متن مركب الجوليت عبر أجمل خلجان البحر الأبيض المتوسط.",
+    "description": "Olympos'tan hareket ederek Akdeniz'in en büyüleyici koylarında, antik kalıntılar ve kristal sularda 4 günlük unutulmaz bir gulet yolculuğuna çıkın.",
+    "description_en": "Set out from Olympos on an unforgettable 4-day gulet journey through the Mediterranean's most fascinating bays.",
+    "description_es": "Embárquese desde Olympos en un viaje inolvidable de 4 días en goleta.",
+    "description_ru": "Отправьтесь из Олимпоса в незабываемое 4-дневное путешествие на гулете.",
+    "description_de": "Brechen Sie von Olympos zu einer unvergesslichen 4-tägigen Gulet-Reise auf.",
+    "description_zh": "从奥林波斯出发，踏上难忘的 4 天海岸之旅。",
+    "description_ar": "انطلق من أوليمبوس في رحلة جوليت لا تُنسى لمدة 4 أيام.",
     "image": "assets/fethiye-oludeniz-manzarasi-3.webp",
     "gallery": [
       "assets/fethiye-oludeniz-manzarasi-1.webp",
@@ -2261,39 +2651,33 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Olympos / Demre'den Kalkış – Kekova ve Gökkaya Koyu",
-        "description": "Sabah saat 10.00'da Olympos'taki otelinizden alınıyorsunuz; çevre bölgelerden gelen yolcular ise 10.30'da Olympos kavşağından, 12.00'de ise Demre Otobüs Terminali'nden araçlarımıza dahil oluyor. Tüm misafirler Demre Limanı'nda bir araya geliyor. Gulete yerleştikten ve kısa bir kalkış brifinginin ardından öğle yemeğiniz servis ediliyor. İlk durağımız, UNESCO güvencesindeki Kekova Batık Şehri: Likya-Roma dönemine ait bu korunan miras alanını guletimizden seyredecek, suyun altında kalan kalıntıların büyüsünü yaşayacaksınız. Ardından Simena Kalesi'nde demir atıyoruz; kısa bir yürüyüşün ötesinde sizi bekleyen koy manzarası nefes kesici. Günün son durağı kaplumbağa cenneti Gökkaya Koyu: dileyenler yakındaki Smuggler's Inn barında yıldızların altında dans ederken, dinginliği tercih edenler guletin güvertesinde Akdeniz rüzgârına teslim olabilir."
+        "title": "Olympos/Demre'den Kalkış",
+        "description": "Olympos'tan alınış, gulete biniş. Kekova, Simena Kalesi ve Gökkaya Koyu'nda geceleme."
       },
       {
         "day": 2,
-        "title": "Gökkaya Koyu'ndan Kaş'a – Akvaryum Koyu",
-        "description": "İkinci günün ilk rotası, sarmaşık sokaklarıyla büyüleyici bir balıkçı kasabası olan Kaş. Burada özgün takı atölyeleri, el dokuması tekstil dükkanları ve sürpriz derecede iyi kahve sunan kafeleri keşfedecek, alışveriş için yeterli zamanınız olacak. Sualtı tutkunları için isteğe bağlı bir dalış programı sunuyoruz: Güney Türkiye'nin en iyi dalış noktası olarak kabul edilen Kaş sularında mağara dalışı veya batık dalışı yapma fırsatını kaçırmayın. Kaş'tan ayrıldıktan sonra Kalkan kıyısını geçerek kristal berraklığındaki Akvaryum Koyu'na demir atıyor ve geceyi burada geçiriyoruz."
+        "title": "Kaş ve Sualtı Güzellikleri",
+        "description": "Kaş'ta alışveriş ve serbest zaman. Akvaryum Koyu'nda geceleme."
       },
       {
         "day": 3,
-        "title": "Kelebekler Vadisi, Ölüdeniz ve Aziz Nicholas Adası",
-        "description": "Sabah, yoğun mavilik içinde gözlerinizi açtığınızda kendinizi Kelebekler Vadisi'nde bulacaksınız. Kahvaltının ardından dileyenler ormana doğru uzanan şelaleye isteğe bağlı bir yürüyüşe çıkabilir; 105'ten fazla kelebek türüne ev sahipliği yapan bu ekoturizm cenneti sizi başka bir dünyaya taşıyacak. Bir sonraki durak, dünyanın en çok fotoğraflanan plajı olan Ölüdeniz: 2.000 metre yüksekliğindeki Babadağ'dan uçarak Mavi Lagün'ü kuş bakışı görmek isteyenler için yamaç paraşütü deneyimi seçeneği sunuyoruz. Günün son demir attığı yer ise Aziz Nicholas Adası'nda; antik kalıntılar arasında akşam yürüyüşü yapabileceğiniz ve günbatımını izleyebileceğiniz bu huzurlu köyde geceliyoruz."
+        "title": "Kelebekler Vadisi ve Ölüdeniz",
+        "description": "Kelebekler Vadisi ve dünyanın en çok fotoğraflanan plajı Ölüdeniz. Aziz Nicholas Adası'nda geceleme."
       },
       {
         "day": 4,
-        "title": "Fethiye Limanı'na Varış",
-        "description": "Son gün, Aziz Nicholas Adası'nın serinletici sularında bir sabah yüzüşüyle başlıyor. Kahvaltının ardından Fethiye yakınlarındaki koylardan birinde son öğle yemeğimizi yiyor ve bir veda yüzüşü yapıyoruz. Öğleden kısa bir süre sonra guletimiz Fethiye Limanı'na yanaşıyor. Yeni kazandığınız dostlarla ve sizi 4 gün boyunca misafirperverce ağırlayan mürettebatımızla sıcak bir vedanın zamanı geldi."
+        "title": "Fethiye'ye Varış",
+        "description": "Sabah yüzüşü sonrası Fethiye Limanı'na varış ve tura veda."
       }
     ],
     "included": [
-      "Ulaşım (Olympos / Demre bölgesindeki otelinizden kalkış)",
-      "En-suite (özel banyolu) kabinlerde konaklama",
-      "Tüm öğünler (K: Kahvaltı, Ö: Öğle Yemeği, A: Akşam Yemeği)",
-      "İkindi çayı ve atıştırmalıklar",
-      "Standart yatçılık ekipmanı ve çamaşır takımı",
-      "Tüm yerel vergiler"
+      "Gulette 3 Gece Konaklama",
+      "Sabah, Öğle ve Akşam Yemekleri",
+      "Mürettebat Hizmeti"
     ],
     "excluded": [
-      "Öğle ve akşam yemeklerinde içecekler",
-      "Banyo/plaj havluları",
-      "Kişisel harcamalar",
-      "Giriş ücretleri ve isteğe bağlı aktiviteler",
-      "Sağlık hizmetleri"
+      "Tüm İçecekler",
+      "Kara Turları ve Giriş Ücretleri"
     ],
     "pricing": {
       "economy": "360$",
@@ -2305,11 +2689,7 @@
       "Dönüş: Fethiye Limanı"
     ],
     "notes": [
-      "Bu kabin kiralama turu rehbersiz bir yolculuktur.",
-      "Olumsuz hava veya deniz koşullarında program değişebilir.",
-      "Tüm kabinlerde özel banyo ve duş mevcuttur.",
-      "Demre'den hareket: Demre Otobüs Terminali'nde buluşma saati öğle 12.00'dir.",
-      "Olympos'tan hareket: Olympos otellerinden alım mevcuttur. Çıralı veya Antalya'dan transferler için ek ücret uygulanır."
+      "Kabin paylaşımlı olabilir, detaylar için iletişime geçiniz."
     ],
     "mapUrl": ""
   },
@@ -2463,40 +2843,91 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "İstanbul'a Varış",
-        "description": "Havalimanında karşılama ve otele yerleşme."
+        "title": {
+          "tr": "İstanbul'a Varış",
+          "en": "Arrival in Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'a varışınızda ekibimiz sizi karşılıyor ve otelinize transfer ediliyor. Günün geri kalanını dinlenerek ya da şehrin eşsiz atmosferini keşfederek geçirebilirsiniz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "Upon your arrival in Istanbul, our team welcomes and transfers you to your hotel. The rest of the day is yours to relax or discover the city at your own pace. Overnight in Istanbul."
+        }
       },
       {
         "day": 2,
-        "title": "Sultanahmet İhtişamı",
-        "description": "Ayasofya, Mavi Camii, Topkapı Sarayı ve Kapalıçarşı tam gün turu."
+        "title": {
+          "tr": "İstanbul Tarihi Yarımada Yürüyüş Turu",
+          "en": "Istanbul Old City Walking Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından Sultanahmet'te tam gün İstanbul Tarihi Yarımada turumuza başlıyoruz. Sultanahmet (Mavi) Camii, Ayasofya, Hipodrom, Dikilitaş, Yılanlı Sütun, Alman Çeşmesi, Kapalıçarşı, Topkapı Sarayı ve Ayairini Kilisesi günün öne çıkan noktaları. Turun sonunda otelinize dönüyorsunuz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "After breakfast, we pick you up for a full-day Istanbul Old City Walking Tour in Sultanahmet, visiting the Blue Mosque, Hagia Sophia, the Hippodrome, the Obelisk of Theodosius, the Serpent Column, the German Fountain, the Grand Bazaar, Topkapi Palace, and Hagia Eirene Church. Accompanied back to your hotel at the tour's end. Overnight in Istanbul."
+        }
       },
       {
         "day": 3,
-        "title": "Kuzey Kapadokya",
-        "description": "Kapadokya'ya uçuş. Peri bacaları ve Göreme Açık Hava Müzesi turu."
+        "title": {
+          "tr": "İstanbul'dan Kapadokya'ya Uçuş – Kuzey Kapadokya (Kırmızı) Turu",
+          "en": "Flight from Istanbul to Cappadocia – Full Day North Cappadocia (Red) Tour"
+        },
+        "description": {
+          "tr": "Sabahın erken saatlerinde otelinizden havalimanına transfer edildikten sonra Kapadokya'ya uçuyorsunuz. Varışta ekibimiz sizi karşılıyor ve tam gün Kuzey Kapadokya turumuz başlıyor. Göreme Açık Hava Müzesi, Paşabağ ve Devrent Vadisi peri bacaları, Ürgüp ve Avanos çömlekçilik atölyesi günün öne çıkan noktaları. Geceyi Kapadokya'da geçiriyorsunuz.",
+          "en": "An early morning transfer takes you to the airport for your flight to Cappadocia. Our team welcomes you on arrival and a full-day North Cappadocia tour begins: the Göreme Open Air Museum with five Byzantine Orthodox churches, Paşabağ and Devrent Valley fairy chimneys, and the pottery workshop in Ürgüp and Avanos. Overnight in Cappadocia."
+        }
       },
       {
         "day": 4,
-        "title": "Güney Kapadokya",
-        "description": "Güney Kapadokya keşfi sonrası İzmir'e uçuş ve Kuşadası'na transfer."
+        "title": {
+          "tr": "Güney Kapadokya (Yeşil) Turu – İzmir'e Uçuş",
+          "en": "Full Day South Cappadocia (Green) Tour – Flight to Izmir"
+        },
+        "description": {
+          "tr": "İsteğe bağlı sıcak hava balonu deneyiminin ardından kahvaltı ve otelden çıkışla tam gün Güney Kapadokya turumuza başlıyoruz. Kızıl ve Gül Vadisi yürüyüşü, Çavuşin Köyü, Aşk Vadisi, Kaymakli Yeraltı Şehri, Güvercinlik Vadisi ve Uçhisar Kalesi günün öne çıkan noktaları. Turun sonunda havalimanına transfer edilerek İzmir'e uçuyor, Kuşadası'ndaki otelinize yerleşiyorsunuz.",
+          "en": "Following an optional hot air balloon ride, breakfast and check-out, the full-day South Cappadocia tour begins: Red and Rose Valley hike, cave-house village of Çavuşin, Love Valley, Kaymakli Underground City, Pigeon Valley, and Uçhisar Castle. At the tour's end you transfer to the airport for your flight to Izmir and check in at your hotel in the Kuşadası area."
+        }
       },
       {
         "day": 5,
-        "title": "Efes Antik Kenti",
-        "description": "Efes tam gün turu ve akşam İstanbul'a dönüş uçuşu."
+        "title": {
+          "tr": "Tam Gün Efes Turu – İzmir'den İstanbul'a Uçuş",
+          "en": "Full Day Ephesus Tour – Flight from Izmir to Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın hemen ardından tam gün Efes turumuza başlıyoruz. Artemis Tapınağı, Celsus Kütüphanesi, ihtişamlı Efes Antik Kenti, antik tiyatrolar, hamamlar, liman caddesi ve Meryem Ana Evi bu olağanüstü günün öne çıkan noktaları. Turun sonunda İzmir Havalimanı'na transfer edilerek İstanbul'a dönüyorsunuz. Varışta ekibimiz sizi karşılıyor ve otelinize götürüyor. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "Immediately after breakfast and check-out, the full-day Ephesus tour begins. Highlights include the Temple of Artemis — one of the Seven Wonders of the Ancient World — the Library of Celsus, the magnificent Ephesus Ancient City, ancient theatres, bathhouses, the harbour street, and the House of the Virgin Mary. At the tour's end, you transfer to Izmir Airport for your flight to Istanbul, where our team meets and transfers you to your hotel. Overnight in Istanbul."
+        }
       },
       {
         "day": 6,
-        "title": "Uluslararası Dönüş",
-        "description": "Otelden havalimanına transfer ve tura veda."
+        "title": {
+          "tr": "İstanbul'dan Uğurlama",
+          "en": "Departure from Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından uluslararası uçuşunuz için havalimanına transfer ediliyorsunuz. İstanbul'un tarihi yarımadasını, Kapadokya'nın peri masalı manzaralarını ve Efes'in antik ihtişamını kucaklayan bu yolculuk burada tamamlanıyor.",
+          "en": "Following breakfast and check-out, you are transferred to the international airport for your departure flight. Your classic journey through Istanbul's historic peninsula, Cappadocia's fairy-tale valleys, and Ephesus's ancient splendour comes to a memorable close."
+        }
       }
     ],
-    "included": [
-      "5 Gece Otel Konaklaması",
-      "Tüm İç Hat Uçuşları",
-      "Kahvaltılar ve Müze Girişleri"
-    ],
+    "included": {
+      "tr": [
+        "Gidiş-dönüş iç hat uçuş biletleri",
+        "Tüm kara ulaşımları",
+        "5 gece konaklama",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle)",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "Round-trip domestic flight tickets",
+        "All local transportation",
+        "5 nights hotel accommodation",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch)",
+        "All local taxes"
+      ]
+    },
     "excluded": [
       "Akşam Yemekleri",
       "Balon Turu"
@@ -2510,10 +2941,81 @@
       "Kalkış: İstanbul",
       "Dönüş: İstanbul"
     ],
-    "notes": [
-      "Bu tur kısa sürede en ikonik yerleri görmek isteyenler için idealdir."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Topkapı Sarayı Salı günleri kapalıdır.",
+        "Ayasofya ve Sultanahmet Camii Cuma günleri ziyarete kapalıdır.",
+        "Kapalıçarşı Pazar günleri kapalıdır.",
+        "Efes Tarasa Evleri giriş ücreti yaklaşık 5$'dır.",
+        "4. günde doğrudan uçuş bulunamaması halinde aktarmalı uçuş sağlanır.",
+        "Transfer ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "Topkapi Palace is closed on Tuesdays.",
+        "Hagia Sophia and Blue Mosque are closed on Fridays.",
+        "Grand Bazaar is closed on Sundays.",
+        "Ephesus Terrace Houses entrance fee is approximately $5.",
+        "If no direct flight is available on Day 4, a connecting flight will be provided.",
+        "Exact time details are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "Ayasofya & Sultanahmet Camii – iki medeniyetin simgesi",
+        "Topkapı Sarayı – Osmanlı saray hayatının görkemli kapısı",
+        "Göreme Açık Hava Müzesi – Kapadokya'nın eşsiz Bizans mirası",
+        "Kaymakli Yeraltı Şehri – tarihin derinliklerine büyüleyici bir yolculuk",
+        "Uçhisar Kalesi – Kapadokya'nın en yüksek noktasından nefes kesen panorama",
+        "Artemis Tapınağı – Antik Dünyanın Yedi Harikası'ndan biri",
+        "Efes Antik Kenti – Akdeniz'in en iyi korunmuş antik kenti",
+        "İsteğe bağlı: Kapadokya'da şafakta sıcak hava balonu"
+      ],
+      "en": [
+        "Hagia Sophia & Blue Mosque – symbols of two civilisations",
+        "Topkapi Palace – the magnificent gateway to Ottoman court life",
+        "Göreme Open Air Museum – Cappadocia's priceless Byzantine heritage",
+        "Kaymakli Underground City – a captivating descent into ancient depths",
+        "Uçhisar Castle – breathtaking panorama from Cappadocia's highest point",
+        "Temple of Artemis – one of the Seven Wonders of the Ancient World",
+        "Ephesus Ancient City – best-preserved ancient city on the Mediterranean",
+        "Optional: Hot air balloon at sunrise over Cappadocia"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "İçecekler (öğle yemeği dahil)",
+        "Kişisel harcamalar",
+        "Efes Tarasa Evleri girişi (isteğe bağlı, ~5$)",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch",
+        "Items of a personal nature",
+        "Optional entrance to Ephesus Terrace Houses (~$5)",
+        "Medical services"
+      ]
+    },
+    "prices": {
+      "economy": {
+        "single": "1.349$",
+        "double": "1.069$",
+        "triple": "1.056$"
+      },
+      "comfort": {
+        "single": "1.668$",
+        "double": "1.240$",
+        "triple": "1.227$"
+      },
+      "luxury": {
+        "single": "1.967$",
+        "double": "1.392$",
+        "triple": "1.379$"
+      },
+      "note": "Per person. Starting prices — contact us 24/7 with your tour date for exact pricing."
+    }
   },
   {
     "id": "TUR-1700000000022",
@@ -3280,35 +3782,80 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "İstanbul Varış",
-        "description": "İstanbul Havalimanı'nda karşılama ve otelinize transfer."
+        "title": {
+          "tr": "İstanbul'a Varış",
+          "en": "Arrival in Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'a varışınızda ekibimiz sizi karşılar ve otelinize transfer edilirsiniz. Günün geri kalanını serbestçe keşfetmek ya da dinlenmek için kullanabilirsiniz. İstanbul'da konaklama.",
+          "en": "Upon your arrival in Istanbul, our team welcomes you and you are transferred to your hotel. The rest of the day is free for exploration or relaxation. Overnight in Istanbul."
+        }
       },
       {
         "day": 2,
-        "title": "Sultanahmet Turu",
-        "description": "Ayasofya, Mavi Camii, Hipodrom, Topkapı Sarayı tam gün yürüyüş turu."
+        "title": {
+          "tr": "İstanbul Tarihi Yarımada Yürüyüş Turu",
+          "en": "Full-Day Istanbul Historic Peninsula Walking Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından Sultanahmet'te tam gün tarihi yarımada yürüyüş turuna başlıyoruz. Sultanahmet Camii, Ayasofya, Hipodrom, I. Theodosius Dikilitaşı, Yılanlı Sütun, Alman Çeşmesi, Kapalıçarşı, Topkapı Sarayı ve Aya İrini Kilisesi'ni ziyaret ediyoruz. İstanbul'da konaklama.",
+          "en": "Following breakfast, a full-day Istanbul Historic Peninsula Walking Tour in Sultanahmet. Highlights include the Blue Mosque, Hagia Sophia, the Hippodrome, the Obelisk of Theodosius, the Serpent Column, the German Fountain, the Grand Bazaar, Topkapi Palace, and Hagia Eirene Church. Overnight in Istanbul."
+        }
       },
       {
         "day": 3,
-        "title": "Efes Antik Kenti",
-        "description": "İzmir'e uçuş, Artemis Tapınağı ve Celsus Kütüphanesi turu. Kuşadası'nda geceleme."
+        "title": {
+          "tr": "İstanbul'dan İzmir'e Uçuş – Tam Gün Efes Turu",
+          "en": "Flight from Istanbul to Izmir – Full-Day Ephesus Tour"
+        },
+        "description": {
+          "tr": "Sabahın erken saatlerinde havalimanına transfer edilerek İzmir uçuşunuza biniyorsunuz. Varışınızda ekibimiz sizi karşılar ve tam gün Efes turu başlar. Antik Çağ'ın Yedi Harikası'ndan biri olan Artemis Tapınağı, bir Roma valisi olan Tiberius Julius Celsus Polemaeanus'un hem anısına hem de mezarına ev sahipliği yapan Celsus Kütüphanesi, dünyanın en iyi korunmuş Yunan-Roma şehirlerinden biri olan Efes Antik Kenti ve Meryem Ana'nın son yıllarını geçirdiğine inanılan Meryem Ana Evi'ni ziyaret ediyoruz. Antik tiyatrolar, hamamlar ve liman caddesinden geçerek tarihin derinliklerine iniyoruz. Gün sonunda Kuşadası'ndaki otelinize transfer ediliyorsunuz. Kuşadası'nda konaklama.",
+          "en": "An early morning transfer takes you to the airport for your Izmir flight. Our team meets you on arrival and the full-day Ephesus tour begins. We visit the Temple of Artemis—one of the Seven Wonders of the Ancient World—the Library of Celsus, which served both as a monument to and the mausoleum of Roman governor Tiberius Julius Celsus Polemaeanus, Ephesus Ancient City, and the House of Virgin Mary. We also pass through ancient theaters, baths, and the harbor street. You are transferred to your hotel in Kuşadası at the end of the day. Overnight in Kuşadası."
+        }
       },
       {
         "day": 4,
-        "title": "Pamukkale ve Dönüş",
-        "description": "Hierapolis ve bembeyaz travertenler gezisi. Denizli'den İstanbul'a akşam uçuşu."
+        "title": {
+          "tr": "Tam Gün Pamukkale & Hierapolis Turu – Denizli'den İstanbul'a Uçuş",
+          "en": "Full-Day Pamukkale & Hierapolis Tour – Flight from Denizli to Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Pamukkale & Hierapolis turuna başlıyoruz. Yaklaşık 200 metre yüksekliğinden akan kalsiyumca zengin termal sular, binlerce yıl içinde Pamukkale'nin ikonik beyaz travertenlerini, taşlaşmış şelalelerini ve basamaklı havuzlarını oluşturmuştur. UNESCO Dünya Mirası Listesi'ndeki Hierapolis'te Nekropolü ve isteğe bağlı Kleopatra Yüzme Havuzu'nu ziyaret ediyoruz. Turun sonunda Denizli Havalimanı'na transfer edilerek İstanbul uçuşunuza biniyorsunuz. Varışınızda otelinize ulaştırılıyorsunuz. İstanbul'da konaklama.",
+          "en": "After breakfast and check-out, the full-day Pamukkale and Hierapolis tour begins. Calcium-rich thermal springs flowing from cliffs nearly 200 metres high have formed Pamukkale's iconic white travertines over thousands of years. At UNESCO World Heritage Site Hierapolis, we visit the Necropolis and optionally the Cleopatra Swimming Pool. You are transferred to Denizli Airport for your Istanbul flight. Our team takes you to your hotel on arrival. Overnight in Istanbul."
+        }
       },
       {
         "day": 5,
-        "title": "Uluslararası Transfer",
-        "description": "Otelden ayrılarak uluslararası uçuşunuza transfer."
+        "title": {
+          "tr": "İstanbul'dan Uğurlama",
+          "en": "Departure from Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından uluslararası uçuş saatinize göre havalimanına transfer ediliyorsunuz. Unutulmaz yolculuğunuz burada sona eriyor.",
+          "en": "Following breakfast and check-out, you are transferred to the international airport in time for your departure flight. Your memorable journey comes to an end here."
+        }
       }
     ],
-    "included": [
-      "4 Gece Konaklama",
-      "İç Hat Uçuşları",
-      "Müze Giriş Ücretleri"
-    ],
+    "included": {
+      "tr": [
+        "İç hat uçuş biletleri",
+        "Tüm kara ulaşımları",
+        "Otel konaklaması",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle)",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "Domestic flight tickets",
+        "All local transportation",
+        "Hotel accommodation",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch)",
+        "All domestic taxes"
+      ]
+    },
     "excluded": [
       "Öğle ve Akşam Yemekleri",
       "Kişisel Harcamalar"
@@ -3322,10 +3869,59 @@
       "Kalkış: İstanbul",
       "Dönüş: İstanbul"
     ],
-    "notes": [
-      "Yürüyüşlerin kolay geçmesi için rahat spor ayakkabı tavsiye edilir."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Topkapı Sarayı Salı günleri kapalıdır.",
+        "Ayasofya ve Sultanahmet Camii Cuma günleri kapalıdır.",
+        "Kapalıçarşı Pazar günleri kapalıdır.",
+        "Efes Yamaç Evleri giriş ücreti yaklaşık 5$'dır (isteğe bağlı).",
+        "Kleopatra Yüzme Havuzu giriş ücreti yaklaşık 8$'dır (isteğe bağlı).",
+        "Alış-bırakış ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "Topkapi Palace is closed on Tuesdays.",
+        "Hagia Sophia and the Blue Mosque are closed on Fridays.",
+        "The Grand Bazaar is closed on Sundays.",
+        "Ephesus Terrace Houses entrance fee is approximately $5 (optional).",
+        "Cleopatra Swimming Pool entrance fee is approximately $8 (optional).",
+        "Exact pick-up, drop-off and flight times are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "İstanbul Tarihi Yarımada – Sultanahmet Camii, Ayasofya, Topkapı Sarayı ve Kapalıçarşı",
+        "Efes Antik Kenti – Artemis Tapınağı (Dünyanın Yedi Harikası), Celsus Kütüphanesi ve Meryem Ana Evi",
+        "Pamukkale travertenleri – UNESCO korumasındaki eşsiz beyaz kireç taşı terасları",
+        "Hierapolis – binlerce yıllık kutsal antik kentin Nekropolü",
+        "İsteğe bağlı: Kleopatra Yüzme Havuzu ve Efes Yamaç Evleri"
+      ],
+      "en": [
+        "Istanbul Historic Peninsula – Blue Mosque, Hagia Sophia, Topkapi Palace & Grand Bazaar",
+        "Ephesus Ancient City – Temple of Artemis (Seven Wonders), Library of Celsus & House of Virgin Mary",
+        "Pamukkale Travertines – UNESCO-protected unique white limestone terraced pools",
+        "Hierapolis – the Necropolis of the ancient sacred city with thousands of years of history",
+        "Optional: Cleopatra Swimming Pool & Ephesus Terrace Houses"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "Öğle yemeğinde içecekler",
+        "Kişisel harcamalar",
+        "Efes Yamaç Evleri isteğe bağlı girişi (~5$)",
+        "Kleopatra Yüzme Havuzu isteğe bağlı girişi (~8$)",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch",
+        "Items of a personal nature",
+        "Optional entrance to Ephesus Terrace Houses (~$5)",
+        "Optional entrance to Cleopatra Swimming Pool (~$8)",
+        "Medical services"
+      ]
+    }
   },
   {
     "id": "TUR-1700000000029",
@@ -4226,13 +4822,13 @@
         "autumn"
       ]
     },
-    "description": "İstanbul'un kalabalığından ve gürültüsünden kaçın; Marmara Denizi'nde yükselen, araba trafiğine kapalı, sakin ve pitoresk Prens Adaları'nı özgün bir deneyimle keşfedin. Bu tur, birden fazla adayı özel teknemizle ziyaret etme fırsatı sunan tek seçenektir.",
-    "description_en": "Escape the hustle and bustle of Istanbul and discover the serene, car-free Princes' Islands rising from the Sea of Marmara. This is the only tour that gives you the opportunity to visit more than one island — made possible exclusively aboard our private vessel.",
-    "description_es": "Escápese del bullicio de Estambul y descubra las tranquilas Islas de los Príncipes, libres de tráfico, que se elevan sobre el Mar de Mármara.",
-    "description_ru": "Сбегите от суеты Стамбула и откройте для себя безмятежные, свободные от автомобилей Принцевы острова на Мраморном море.",
-    "description_de": "Entfliehen Sie dem Trubel Istanbuls und entdecken Sie die ruhigen, autofreien Prinzeninseln im Marmarameer.",
-    "description_zh": "逃离伊斯坦布尔的喧嚣，探索马尔马拉海上宁静的无车王子群岛。这是唯一一个乘坐私人游船游览多个岛屿的旅游线路。",
-    "description_ar": "اهرب من صخب إسطنبول واكتشف جزر الأمراء الهادئة الخالية من حركة السيارات، الشامخة فوق بحر مرمرة.",
+    "description": "İstanbul'un gürültüsünden uzaklaşın; Marmara Denizi'nde yer alan, araba trafiğinin olmadığı, sakin ve pitoresk Prens Adaları'nı keşfedin[cite: 1].",
+    "description_en": "Get away from the noise of Istanbul; discover the quiet and picturesque Princes' Islands in the Sea of Marmara.",
+    "description_es": "Aléjate del ruido de Estambul y descubre las tranquilas y pintorescas Islas de los Príncipes.",
+    "description_ru": "Убегите от шума Стамбула и откройте для себя тихие и живописные Принцевы острова.",
+    "description_de": "Entfliehen Sie dem Lärm Istanbuls und entdecken Sie die ruhigen und malerischen Prinzeninseln.",
+    "description_zh": "远离伊斯坦布尔的喧嚣，探索宁静而风景如画的王子群岛。",
+    "description_ar": "ابتعد عن ضجيج اسطنبول واكتشف جزر الأمراء الهادئة والخلابة.",
     "image": "assets/prens-adalari-turu-1.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz-2.webp",
@@ -4249,23 +4845,19 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Heybeliada ve Büyükada Keşfi",
-        "description": "Sabah 8.30'da konforlu minibüslerimiz sizi otelinizden alarak Haliç İskelesi'ne taşıyor. Özel teknemizle önce Heybeliada'ya demir atıyoruz; profesyonel rehberimiz eşliğinde adanın pitoresk köşelerini ve tarihini keşfedeceksiniz. Ardından Büyükada'ya geçiyoruz: elektrikli araç turuyla Viktorya dönemi köşklerini, rengarenk ahşap evleri ve sessiz koy manzaralarını geziyor, Marmara'nın özgün atmosferini soluyorsunuz. Öğle yemeğiniz teknede servis edilmektedir: soğuk mezeler, tavuk şiş kebap, pilav ve salata eşliğinde deniz manzarası sizi karşılıyor. Yaklaşık saat 19.00'da otelinize dönüşle gün tamamlanıyor."
+        "title": "Adalar Keşfi",
+        "description": "Özel tekne ile Heybeliada ve Büyükada ziyareti. Viktorya dönemi köşkleri, sessiz sokaklar ve Marmara manzarası[cite: 1]. Öğle yemeği teknede (tavuk şiş, meze, pilav) servis edilir[cite: 1]."
       }
     ],
     "included": [
-      "Otel transferleri (alım ve bırakma)",
-      "Özel tekne ulaşımı",
-      "Profesyonel rehber hizmeti",
-      "Giriş ücretleri",
-      "Elektrikli araç turu",
-      "Öğle yemeği (tekne üzerinde)",
-      "Tüm yerel vergiler"
+      "Otel Transferi",
+      "Tekne Ulaşımı",
+      "Öğle Yemeği",
+      "Rehberlik"
     ],
     "excluded": [
-      "Öğle yemeğinde içecekler",
-      "Kişisel harcamalar",
-      "Sağlık hizmetleri"
+      "İçecekler",
+      "Elektrikli Araç Kiralama"
     ],
     "pricing": {
       "economy": "60$",
@@ -4277,8 +4869,7 @@
       "Dönüş: Otellere Bırakma"
     ],
     "notes": [
-      "Bu tur, birden fazla adayı ziyaret etme imkânı sunan tek seçenektir.",
-      "Marmara Denizi geçişi açık deniz koşullarından etkilenebileceğinden, olumsuz hava koşullarında kamu feribotu kullanılabilir. Bu durumda yalnızca Büyükada ziyaret edilir ve öğle yemeği bir restoranda ikram edilir."
+      "Açık deniz koşullarına bağlı olarak bazen kamu feribotu kullanılabilir; bu durumda yalnızca Büyükada ziyaret edilir[cite: 1]."
     ],
     "mapUrl": ""
   },
@@ -4308,13 +4899,13 @@
         "year-round"
       ]
     },
-    "description": "Sabiha Gökçen Havalimanı'ndan (SAW) otelinize ya da şehrin istediğiniz noktasına özel araçla stressiz, güvenilir ve konforlu bir karşılama transferi sunuyoruz. Rezervasyonunuz onaylanır onaylanmaz her şey hazır.",
-    "description_en": "Traveling to Istanbul via Sabiha Gokcen Airport has never been this effortless. We provide a guaranteed private transfer from Sabiha Gokcen Airport (SAW) directly to your hotel or any city destination — with instant confirmation and a professional meet-and-greet service.",
-    "description_es": "Viajar a Estambul a través del aeropuerto Sabiha Gokcen nunca ha sido tan fácil. Ofrecemos un traslado privado garantizado desde SAW directamente a su hotel.",
-    "description_ru": "Путешествие в Стамбул через аэропорт Сабиха Гёкчен теперь совершенно беспроблемно. Мы предлагаем гарантированный частный трансфер из SAW прямо в ваш отель.",
-    "description_de": "Reisen nach Istanbul über den Flughafen Sabiha Gökcen war noch nie so mühelos. Wir bieten einen garantierten Privattransfer von SAW direkt zu Ihrem Hotel.",
-    "description_zh": "经由萨比哈格克琴机场前往伊斯坦布尔从未如此轻松。我们提供从SAW机场到您酒店的有保障私人接机服务。",
-    "description_ar": "السفر إلى إسطنبول عبر مطار صبيحة كوكجن لم يكن بهذه السهولة من قبل. نقدم خدمة نقل خاصة مضمونة من SAW مباشرةً إلى فندقك.",
+    "description": "Sabiha Gökçen Havalimanı'ndan (SAW) otelinize ya da şehrin istediğiniz noktasına özel araçla stressiz ve konforlu bir karşılama transferi sunuyoruz[cite: 1].",
+    "description_en": "We offer a stress-free and comfortable welcome transfer from Sabiha Gokcen Airport (SAW) to your hotel.",
+    "description_es": "Ofrecemos un traslado de bienvenida cómodo y sin estrés desde el aeropuerto Sabiha Gokcen.",
+    "description_ru": "Мы предлагаем комфортный трансфер без стресса из аэропорта Сабиха Гекчен.",
+    "description_de": "Wir bieten einen stressfreien und bequemen Willkommenstransfer vom Flughafen Sabiha Gökcen.",
+    "description_zh": "我们提供从萨比哈格克琴机场出发的无压力且舒适的接机服务。",
+    "description_ar": "نقدم خدمة نقل ترحيبية مريحة وخالية من الإجهاد من مطار صبيحة كوكجن.",
     "image": "assets/istanbul-tarihi-bogaz.webp",
     "gallery": [
       "assets/istanbul-tarihi-bogaz.webp",
@@ -4331,20 +4922,17 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Havalimanı Karşılama ve Transfer",
-        "description": "Uçağınız indiğinde temsilcimiz, ismini taşıyan tabelayla varış katında sizi bekliyor. Bagajlarınızla birlikte klimalı özel aracınıza yönlendirildikten sonra, deneyimli sürücümüz sizi doğrudan otelinize ya da belirttiğiniz adrese güvenle ulaştırıyor. İster yalnız seyahat edin, ister aile veya büyük bir grupla; sedan, VIP minivan ya da minibüs seçenekleriyle grubunuza en uygun araç sağlanmaktadır. 7/24 aktif olan karşılama hizmetimizle uçuş saatiniz fark etmeksizin güvende olduğunuzu bilerek yolculuğunuzun tadını çıkarabilirsiniz."
+        "title": "Havalimanı Karşılama",
+        "description": "Uçuşunuz inince temsilcimiz isminizin yazılı olduğu tabelayla havalimanı çıkışında sizi bekliyor olacak[cite: 1]. Deneyimli sürücülerimiz sizi hedefinize ulaştırır."
       }
     ],
     "included": [
-      "7/24 havalimanı karşılama hizmeti",
-      "Klimalı VIP özel araç",
-      "Sabiha Gökçen Havalimanı (SAW) alım hizmeti",
-      "Tüm otoyol ve köprü ücretleri",
-      "Tüm vergi ve hizmet bedelleri"
+      "7/24 Karşılama Hizmeti",
+      "VIP Özel Araç",
+      "Oto Yolu ve Köprü Ücretleri"
     ],
     "excluded": [
-      "Kişisel harcamalar",
-      "Ekstra bekleme süresi ücretleri"
+      "Ekstra Bekleme Süresi Ücretleri"
     ],
     "pricing": {
       "economy": "55$",
@@ -4356,9 +4944,7 @@
       "Dönüş: Belirtilen Otel/Adres"
     ],
     "notes": [
-      "Tek yönlü özel transfer; yalnızca Sultanahmet, Taksim, Beşiktaş, Laleli, Fatih, Sirkeci ve Zeytinburnu bölgelerindeki otellere hizmet verilmektedir.",
-      "Tekerlekli sandalye erişimine uygun değildir.",
-      "Rezervasyonunuzu uçuş bilgilerinizle birlikte önceden tamamlamanızı öneririz."
+      "Rezervasyonunuzu önceden uçuş bilgilerinizle tamamlamayı unutmayın[cite: 1]."
     ],
     "mapUrl": ""
   },
@@ -5952,36 +6538,196 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "İstanbul Keşfi",
-        "description": "Sultanahmet turu (Ayasofya, Sultanahmet Camii, Topkapı Sarayı, Kapalı Çarşı), ardından İstanbul'da serbest gün[cite: 1]."
+        "title": {
+          "tr": "İstanbul'a Varış",
+          "en": "Arrival in Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'a varışınızda ekibimiz sizi karşılar ve otelinize transfer edilirsiniz. Günün geri kalanını serbestçe keşfetmek ya da dinlenmek için kullanabilirsiniz. İstanbul'da konaklama.",
+          "en": "Upon your arrival in Istanbul, our team welcomes you and you are transferred to your hotel. The rest of the day is free for exploration or relaxation. Overnight in Istanbul."
+        }
       },
       {
         "day": 2,
-        "title": "Kapadokya",
-        "description": "Kapadokya'ya uçuş. Kuzey ve Güney Kapadokya turları[cite: 1]."
+        "title": {
+          "tr": "İstanbul Tarihi Yarımada Yürüyüş Turu",
+          "en": "Full-Day Istanbul Historic Peninsula Walking Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından Sultanahmet'te tam gün tarihi yarımada yürüyüş turuna başlıyoruz. Sultanahmet Camii, Ayasofya, Hipodrom, I. Theodosius Dikilitaşı, Yılanlı Sütun, Alman Çeşmesi, Kapalıçarşı, Topkapı Sarayı ve Aya İrini Kilisesi'ni ziyaret ediyoruz. İstanbul'da konaklama.",
+          "en": "Following breakfast, a full-day Istanbul Historic Peninsula Walking Tour in Sultanahmet takes in the Blue Mosque, Hagia Sophia, the Hippodrome, the Obelisk of Theodosius, the Serpent Column, the German Fountain, the Grand Bazaar, Topkapi Palace, and Hagia Eirene Church. Overnight in Istanbul."
+        }
       },
       {
         "day": 3,
-        "title": "Konya ve Antalya",
-        "description": "Konya'ya geçiş (Mevlana Müzesi), ardından Antalya'ya. Perge, Aspendos ve Manavgat Şelalesi turu[cite: 1]."
+        "title": {
+          "tr": "İstanbul'da Serbest Gün",
+          "en": "Free Day to Discover Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından büyüleyici İstanbul'u kendi temponuzda keşfetmek için tüm gün serbestsiniz. Boğaz'da tekne turu, tarihi Kapalıçarşı'da alışveriş ya da geleneksel bir Türk hamamında ruhunuzu ve bedeninizi dinlendirmek—seçim tamamen size ait. İstanbul'da konaklama.",
+          "en": "Following breakfast, the day is entirely yours to explore Istanbul at your own pace. A Bosphorus cruise, a leisurely wander through the Grand Bazaar, or a revitalising session at a traditional Turkish bath are just a few possibilities. Our team is happy to offer recommendations. Overnight in Istanbul."
+        }
       },
       {
         "day": 4,
-        "title": "Mavi Yolculuk Başlangıcı",
-        "description": "Demre'ye transfer ve Mavi Yolculuk (Kekova, Kaş, Kalkan güzergahını kapsayan 3 gecelik gulet turu)[cite: 1]."
+        "title": {
+          "tr": "İstanbul'dan Kapadokya'ya Uçuş – Kuzey Kapadokya (Kırmızı) Turu",
+          "en": "Flight from Istanbul to Cappadocia – Full-Day North Cappadocia (Red) Tour"
+        },
+        "description": {
+          "tr": "Sabahın erken saatlerinde havalimanına transfer edilerek Kapadokya uçuşunuza biniyorsunuz. Varışınızda ekibimiz sizi karşılar ve Kuzey Kapadokya turuna başlıyoruz. Beş Bizans Ortodoks kilisesini barındıran Göreme Açık Hava Müzesi, hayvan ve masal figürlerine benzeyen kaya oluşumlarıyla Devrent Vadisi ve Paşabağ ile Ürgüp ve Avanos'u ziyaret ediyoruz; Avanos'ta çömlek atölyesinde bu kadim sanatı bizzat deneyimliyorsunuz. Kapadokya'da konaklama.",
+          "en": "An early morning transfer takes you to the airport for your Cappadocia flight. Our team meets you on arrival and the full-day North Cappadocia tour begins. We visit the Göreme Open Air Museum, Devrent Valley, Paşabağ, and the ancient towns of Ürgüp and Avanos—where you try your hand at traditional pottery. Overnight in Cappadocia."
+        }
       },
       {
         "day": 5,
-        "title": "Pamukkale ve Efes",
-        "description": "Fethiye'den Pamukkale'ye geçiş. Travertenler sonrası Kuşadası'na transfer. Efes turu ve İzmir'den İstanbul'a uçuş[cite: 1]."
+        "title": {
+          "tr": "Güney Kapadokya (Yeşil) Turu",
+          "en": "Full-Day South Cappadocia (Green) Tour"
+        },
+        "description": {
+          "tr": "Bu sabah isteğe bağlı sıcak hava balonu için erken kalkış fırsatı mevcut. Kahvaltının ardından Güney Kapadokya turuna başlıyoruz: Kızıl ve Gül Vadisi yürüyüşü, Çavuşin Köyü, Aşk Vadisi, Kaymakli Yeraltı Şehri, Güvercinlik Vadisi ve Uçhisar Kalesi. Gün sonunda otelinize dönüyorsunuz. Kapadokya'da konaklama.",
+          "en": "An optional hot air balloon ride is available this morning. Following breakfast, the full-day South Cappadocia tour covers the Red and Rose Valleys, Çavuşin Village, Love Valley, Kaymakli Underground City, Pigeon Valley, and Uçhisar Castle. Overnight in Cappadocia."
+        }
+      },
+      {
+        "day": 6,
+        "title": {
+          "tr": "Konya Üzerinden Antalya'ya Transfer – Mevlana Rümi Müzesi",
+          "en": "Transfer to Antalya via Konya – Mevlana Rumi Museum"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından Antalya'ya doğru yola çıkıyoruz. Yolumuz üzerindeki Konya, Hristiyan geleneğinin ilk kilise topluluklarına ev sahipliği yapmış; büyük sufi şair ve düşünür Mevlana Celaleddin Rümi'nin benimsediği şehir olarak tarihe geçmiştir. Tarihin en önemli ticaret güzergahlarından İpek Yolu'nun parlak bir durağı olan Konya'da Mevlana Rümi Müzesi'ni ziyaret ediyoruz. Not: Bu gün profesyonel rehber bulunmamaktadır; sürücümüz eşliğinizde olacaktır. Öğle yemeği programa dahil değildir—sürücümüz müze çevresindeki yerel lezzet mekanlarına yönlendirebilir. Antalya'da konaklama.",
+          "en": "After breakfast and check-out, we depart for Antalya. En route, we stop in Konya—home to some of the earliest Christian communities and sanctuaries, and the adopted home of the great Sufi mystic Mevlana Celaleddin Rumi, who founded the Whirling Dervish tradition here. Konya was also one of the most vital trading hubs on the historic Silk Road. We visit the Mevlana Rumi Museum. Note: A professional guide is not provided today; our driver accompanies you. Lunch is not included—our driver can recommend excellent local restaurants near the museum. Overnight in Antalya."
+        }
+      },
+      {
+        "day": 7,
+        "title": {
+          "tr": "Tam Gün Perge, Aspendos ve Manavgat Şelalesi Turu",
+          "en": "Full-Day Perge, Aspendos & Manavgat Waterfall Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından tam gün tura başlıyoruz. Helenistik dönemden kalma anıtsal yapılarıyla Pamfilya'nın önemli antik kentlerinden Perge'yi geziyoruz; rivayete göre Truva Savaşı'nın ardından Yunan yerleşimcilerce kurulan bu şehrin tarihi derinden etkileyici. Ardından Roma İmparatorluğu'nun ayakta kalan en etkileyici tiyatrolarından biri olan Aspendos'u ziyaret ediyoruz. Son durağımız, bölgenin en büyüleyici doğa güzelliklerinden Manavgat Şelalesi. Gün sonunda otelinize dönüyorsunuz. Antalya'da konaklama.",
+          "en": "Following breakfast, the full-day tour begins. We visit Perge, one of ancient Pamphylia's most important cities—believed to have been founded by Greek settlers after the Trojan War—where monumental Hellenistic structures still stand in impressive condition. We then head to Aspendos, home to one of the finest and best-preserved Roman theatres in the world. Our final stop is Manavgat Waterfall, one of the Antalya region's most spectacular natural attractions. Overnight in Antalya."
+        }
+      },
+      {
+        "day": 8,
+        "title": {
+          "tr": "Mavi Yolculuk Başlıyor: Kekova Batık Şehri, Simena ve Gökkaya Koyu",
+          "en": "Blue Cruise Begins: Kekova Sunken City, Simena & Gökkaya Bay"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından yerel otobüs terminaline transfer edilerek Demre'ye 3 saatlik otobüs yolculuğuna çıkıyoruz. Demre'ye varışınızda ekibimiz sizi karşılar ve Demre (Andriake) Limanı'ndan gületinize biniyor ve mavi yolculuğa çıkıyoruz. Hava koşullarına bağlı olarak efsanevi Korsanlar Mağarası'na uğruyoruz. Ardından UNESCO korumasındaki Kekova Batık Şehri'nin üzerinden geçerek suyun altında kalan Likya-Roma kalıntılarını seyrediyoruz (yüzme ve dalış yasak). Simena'da demirliyoruz; otomobil erişiminin olmadığı bu küçük kıyı kasabasında kısa bir yürüyüşle Bizans/Osmanlı kalesine çıkıyor ve körfez üzerindeki muhteşem manzaranın tadını çıkarıyorsunuz. Geceyi Gökkaya Koyu'nda demirliyor; Kaçakçının Meyhanesi'nde isteğe bağlı su sporları ve canlı gece atmosferinin ya da gület destesinde huzurlu bir dinlenmenin keyfini çıkarıyorsunuz.",
+          "en": "After breakfast, you are transferred to the local bus terminal for a 3-hour intercity bus journey to Demre. Our team meets you on arrival and you board your gulet at Demre (Andriake) Harbour to begin the blue cruise. Depending on sea conditions, we visit the legendary Pirates Cave. We then cruise over the protected UNESCO site of Kekova Sunken City, where submerged Lycian-Roman ruins are visible beneath the surface (swimming and diving are not permitted). We anchor at Simena—a small coastal village accessible only by boat—where a short walk up to the Byzantine/Ottoman castle rewards you with spectacular views over the bay. We spend the night anchored in Gökkaya Bay, where optional water sports and the legendary Smuggler's Inn await those who wish to party under the stars. The gulet's deck offers a peaceful alternative."
+        }
+      },
+      {
+        "day": 9,
+        "title": {
+          "tr": "Kaş ve Fırnaz Koyu",
+          "en": "Kaş and Firnaz Bay"
+        },
+        "description": {
+          "tr": "Kaş'a doğru yelken açıyor; bu sakin ve güzel balıkçı kasabasında yüzme molası veriyoruz. Öğle yemeğinin ardından Helenistik dönemde inşa edilerek MS 2. yüzyılda restore edilen antik Antiphellos Tiyatrosu'nu ziyaret edebilirsiniz. Sahne yapısı olmayan antik tiyatro tipleri arasında son derece önemli bir örnek olan Antiphellos, Likya Uygarlığı'nın en değerli anıtlarından biridir. Kalkan'a ulaşırken Akvaryum Koyu veya Fırnaz Koyu'nda demir atıyor; kristal suların ortasında eşsiz bir yüzme deneyimi yaşıyorsunuz.",
+          "en": "We sail into Kaş for a swimming stop in this charming and tranquil fishing town. After lunch, you may visit the ancient Antiphellos Theatre—built in the Hellenistic period and restored in the 2nd century AD. As one of the finest examples of an ancient theatre without a scene building, Antiphellos stands as one of the most significant monuments of the Lycian Civilisation. As we reach Kalkan, we anchor at Aquarium Bay or Firnaz Bay for a swim in remarkably clear turquoise waters."
+        }
+      },
+      {
+        "day": 10,
+        "title": {
+          "tr": "Kelebek Vadisi, Ölüdeniz ve St. Nicholas Adası",
+          "en": "Butterfly Valley, Blue Lagoon & St. Nicholas Island"
+        },
+        "description": {
+          "tr": "Şafak vakti Kelebek Vadisi'ne doğru yelken açıyoruz; deniz koşullarının izin verdiği ölçüde kahvaltı, yüzme ve vadide kısa bir keşif molası veriyoruz. 105 kelebek türüne ev sahipliği yapan bu eşsiz eko-turizm cenneti, zengin flora ve faunasıyla tarifsiz bir güzellik sunuyor. Ardından dünyanın en çok fotoğraflanan plajlarından Ölüdeniz'e uğruyoruz; Babadağ Dağı'ndan isteğe bağlı yamaç paraşütü bu güzergahın en heyecanlı deneyimlerinden biri. Son durağımız, antik kalıntıları ve muhteşem gün batımı manzarasıyla büyüleyen St. Nicholas Adası.",
+          "en": "Around sunrise, we set sail for Butterfly Valley—stopping as the sea permits for breakfast, swimming, and a brief exploration of this extraordinary eco-tourism sanctuary home to 105 butterfly species. Our next stop is Ölüdeniz (Blue Lagoon), one of the world's most photographed beaches, where optional paragliding from Babadağ Mountain offers an unforgettable aerial perspective. We conclude the day at St. Nicholas Island, where Byzantine ruins and a spectacular sunset provide a fitting finale to the day."
+        }
+      },
+      {
+        "day": 11,
+        "title": {
+          "tr": "Samanlık Koyu'ndan Fethiye'ye",
+          "en": "Samanlik Bay to Fethiye"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından masmavi denizin ve yemyeşil çam ormanlarının kusursuz uyumunu sunan Samanlık Koyu'na uğruyoruz. Ardından Fethiye Limanı'na yelken açıyor ve saat 15:00–16:00 arasında karaya çıkış yapıyoruz. Gületinizden ayrılarak Fethiye'deki otelinize transfer ediliyorsunuz. Fethiye'de konaklama.",
+          "en": "After breakfast, we stop at Samanlik Bay to savour the perfect harmony of turquoise sea and fragrant pine forests. We then sail into Fethiye Harbour, arriving between 3:00 and 4:00 PM. You disembark and are transferred to your hotel in Fethiye. Overnight in Fethiye."
+        }
+      },
+      {
+        "day": 12,
+        "title": {
+          "tr": "Fethiye'de Serbest Gün – Pamukkale'ye Otobüs",
+          "en": "Free Day in Fethiye – Bus to Pamukkale"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından gün Fethiye'yi keşfetmek için sizin. Fethiye Şehir Merkezi'nin canlı çarşılarında dolaşabilir, Ölüdeniz koyunda yüzebilir ya da sahil kafelerinde dinlenebilirsiniz. Günün sonunda yerel otobüs terminaline transfer edilerek Pamukkale'ye 4 saatlik otobüse biniyorsunuz. Varışınızda otelinize transfer ediliyorsunuz. Pamukkale'de konaklama.",
+          "en": "After breakfast and check-out, the day is yours to discover Fethiye's vibrant bazaars, swim at Ölüdeniz, or simply relax at a seafront café. In the late afternoon, you are transferred to the local bus terminal for the 4-hour bus journey to Pamukkale. Our team meets you on arrival and takes you to your hotel. Overnight in Pamukkale."
+        }
+      },
+      {
+        "day": 13,
+        "title": {
+          "tr": "Tam Gün Pamukkale & Hierapolis Turu – Kuşadası'na Transfer",
+          "en": "Full-Day Pamukkale & Hierapolis Tour – Transfer to Kuşadası"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Pamukkale & Hierapolis turuna başlıyoruz. Yaklaşık 200 metre yüksekliğinden akan kalsiyumca zengin termal sular, binlerce yılda Pamukkale'nin büyüleyici beyaz travertenlerini oluşturmuştur. UNESCO Dünya Mirası Listesi'ndeki Hierapolis'te Nekropolü ve isteğe bağlı Kleopatra Yüzme Havuzu'nu ziyaret ediyoruz. Gün sonunda Kuşadası'ndaki otelinize transfer ediliyorsunuz. Kuşadası'nda konaklama.",
+          "en": "After breakfast and check-out, the full-day Pamukkale and Hierapolis tour begins. Calcium-rich thermal springs from cliffs nearly 200 metres high have formed Pamukkale's iconic white travertines over thousands of years. At UNESCO World Heritage Site Hierapolis, we visit the Necropolis and optionally the Cleopatra Swimming Pool. At the end of the tour, you are transferred to your hotel in Kuşadası. Overnight in Kuşadası."
+        }
+      },
+      {
+        "day": 14,
+        "title": {
+          "tr": "Tam Gün Efes Turu – İzmir'den İstanbul'a Uçuş",
+          "en": "Full-Day Ephesus Tour – Flight from Izmir to Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Efes turu başlıyor. Artemis Tapınağı, Celsus Kütüphanesi, Efes Antik Kenti ve Meryem Ana Evi'ni ziyaret ediyor; antik tiyatrolar, hamamlar ve liman caddesini geçiyoruz. Turun sonunda İzmir Havalimanı'na transfer edilerek İstanbul uçuşunuza biniyorsunuz. Varışınızda ekibimiz sizi karşılar ve otelinize ulaştırır. İstanbul'da konaklama.",
+          "en": "After breakfast and check-out, the full-day Ephesus tour visits the Temple of Artemis, Library of Celsus, Ephesus Ancient City, and the House of Virgin Mary, passing through ancient theaters, baths, and the harbor street. You are transferred to Izmir Airport for your Istanbul flight. Our team takes you to your hotel on arrival. Overnight in Istanbul."
+        }
+      },
+      {
+        "day": 15,
+        "title": {
+          "tr": "İstanbul'dan Uğurlama",
+          "en": "Departure from Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından uluslararası uçuş saatinize göre havalimanına transfer ediliyorsunuz. Türkiye'nin büyüleyici güzelliklerine dolu dolu tanıklık ettiğiniz bu unutulmaz yolculuk burada sona eriyor.",
+          "en": "Following breakfast and check-out, you are transferred to the international airport in time for your international departure flight. Your rich and unforgettable journey through Turkey's timeless landscapes and ancient wonders comes to a close here."
+        }
       }
     ],
-    "included": [
-      "Gulet ve Lüks Otel Konaklamaları",
-      "İç Hat Uçuşları",
-      "Gulette Tam Pansiyon Yemekler",
-      "Rehberlik"
-    ],
+    "included": {
+      "tr": [
+        "İç hat uçuş biletleri",
+        "Tüm kara ulaşımları",
+        "Otel konaklaması",
+        "Tekne kabini (en suite)",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle, D: Akşam – mavi yolculukta)",
+        "Tekne gezisinde öğleden sonra çay ve atıştırmalıklar",
+        "Tekne gezisinde standart yat ekipmanı ve çarşaflar",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "Domestic flight tickets",
+        "All local transportation",
+        "Hotel accommodation",
+        "Boat cabin (en suite)",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch, D: Dinner – on the cruise)",
+        "Afternoon tea and snacks on the cruise",
+        "Standard yachting equipment and linens on the cruise",
+        "All domestic taxes"
+      ]
+    },
     "excluded": [
       "Uluslararası Uçuşlar",
       "Tüm İçecekler"
@@ -5995,10 +6741,73 @@
       "Kalkış: İstanbul",
       "Dönüş: İstanbul"
     ],
-    "notes": [
-      "Mavi yolculuk kısmı diğer turlarla birleştirilmiş lüks bir programdır."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Kabin chartı rehbersiz bir turdur.",
+        "Olumsuz hava ve deniz koşulları durumunda güzergâh değişebilir.",
+        "Tüm kabinlerin özel banyosu ve duşu bulunmaktadır.",
+        "Efes Yamaç Evleri giriş ücreti yaklaşık 5$'dır (isteğe bağlı).",
+        "Kleopatra Yüzme Havuzu giriş ücreti yaklaşık 8$'dır (isteğe bağlı).",
+        "Alış-bırakış ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "The cabin charter is a non-guided tour.",
+        "In case of poor weather and/or sea conditions, the schedule may change.",
+        "All cabins have private bathrooms and showers.",
+        "Ephesus Terrace Houses entrance fee is approximately $5 (optional).",
+        "Cleopatra Swimming Pool entrance fee is approximately $8 (optional).",
+        "Exact pick-up, drop-off and flight times are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "İstanbul Tarihi Yarımada – Sultanahmet Camii, Ayasofya, Topkapı Sarayı ve Kapalıçarşı",
+        "İstanbul serbest günü – Boğaz turu veya geleneksel Türk hamamı deneyimi",
+        "Kuzey & Güney Kapadokya – Göreme Açık Hava Müzesi, peribacaları ve Kaymakli Yeraltı Şehri",
+        "Konya – Mevlana Rümi Müzesi, İpek Yolu'nun gözde şehri",
+        "Antalya – Perge Antik Kenti, Aspendos Tiyatrosu ve Manavgat Şelalesi",
+        "Mavi Yolculuk (4 gece) – Kekova Batık Şehri, Simena Kalesi, Kaş, Kelebek Vadisi ve Ölüdeniz",
+        "Fethiye serbest günü – sahil keyfine göre özelleştirilebilir",
+        "Pamukkale travertenleri – UNESCO korumasındaki beyaz terасlar ve Hierapolis",
+        "Efes – Artemis Tapınağı, Celsus Kütüphanesi ve Meryem Ana Evi",
+        "İsteğe bağlı: Kapadokya'da şafakta sıcak hava balonu ve Babadağ'dan yamaç paraşütü"
+      ],
+      "en": [
+        "Istanbul Historic Peninsula – Blue Mosque, Hagia Sophia, Topkapi Palace & Grand Bazaar",
+        "Free day in Istanbul – Bosphorus cruise or a traditional Turkish bath",
+        "North & South Cappadocia – Göreme Open Air Museum, fairy chimneys & Kaymakli Underground City",
+        "Konya – Mevlana Rumi Museum, a jewel of the historic Silk Road",
+        "Antalya – Perge Ancient City, Aspendos Theatre & Manavgat Waterfall",
+        "Blue Cruise (4 nights) – Kekova Sunken City, Simena Castle, Kaş, Butterfly Valley & Ölüdeniz",
+        "Free day in Fethiye – leisure and exploration at your own pace",
+        "Pamukkale Travertines – UNESCO-protected white terraced pools and ancient Hierapolis",
+        "Ephesus – Temple of Artemis, Library of Celsus & House of Virgin Mary",
+        "Optional: Sunrise hot air balloon over Cappadocia & paragliding from Babadağ"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "Öğle ve akşam yemeklerinde içecekler",
+        "Tekne gezisinde banyo ve plaj havluları",
+        "Kişisel harcamalar",
+        "Efes Yamaç Evleri isteğe bağlı girişi (~5$)",
+        "Kleopatra Yüzme Havuzu isteğe bağlı girişi (~8$)",
+        "Tekne gezisinde giriş ücretleri ve isteğe bağlı aktiviteler",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch and dinner",
+        "Bath and beach towels on the cruise",
+        "Items of a personal nature",
+        "Optional entrance to Ephesus Terrace Houses (~$5)",
+        "Optional entrance to Cleopatra Swimming Pool (~$8)",
+        "Entrance fees and optional activities on the cruise",
+        "Medical services"
+      ]
+    }
   },
   {
     "id": "TUR-1700000000053",
@@ -6050,30 +6859,132 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "Kapadokya",
-        "description": "İstanbul'dan uçuş. İki gün boyunca Göreme, yeraltı şehri ve vadilerin keşfi[cite: 1]."
+        "title": {
+          "tr": "İstanbul'dan Kapadokya'ya Uçuş – Kuzey Kapadokya (Kırmızı) Turu",
+          "en": "Flight from Istanbul to Cappadocia – Full Day North Cappadocia (Red) Tour"
+        },
+        "description": {
+          "tr": "Sabahın erken saatlerinde otelinizden havalimanına transfer edildikten sonra Kapadokya'ya uçuyorsunuz. Varışta ekibimiz sizi karşılıyor ve tam gün Kuzey Kapadokya turumuz başlıyor. Göreme Açık Hava Müzesi, Paşabağ ve Devrent Vadisi peri bacaları, Ürgüp ve Avanos çömlekçilik atölyesi günün öne çıkan noktaları. Geceyi Kapadokya'da geçiriyorsunuz.",
+          "en": "An early morning transfer takes you to the airport for your flight to Cappadocia. Our team welcomes you on arrival and a full-day North Cappadocia tour begins: the Göreme Open Air Museum, Paşabağ and Devrent Valley fairy chimneys, and the pottery workshop in Ürgüp and Avanos. Overnight in Cappadocia."
+        }
       },
       {
         "day": 2,
-        "title": "Efes ve Pamukkale",
-        "description": "İzmir'e uçuş. Efes Antik Kenti ve ertesi gün Pamukkale travertenleri gezisi[cite: 1]."
+        "title": {
+          "tr": "Güney Kapadokya (Yeşil) Turu – İzmir'e Uçuş",
+          "en": "Full Day South Cappadocia (Green) Tour – Flight to Izmir"
+        },
+        "description": {
+          "tr": "İsteğe bağlı sıcak hava balonu deneyiminin ardından kahvaltı ve otelden çıkışla tam gün Güney Kapadokya turumuza başlıyoruz. Kızıl ve Gül Vadisi yürüyüşü, Çavuşin Köyü, Aşk Vadisi, Kaymakli Yeraltı Şehri, Güvercinlik Vadisi ve Uçhisar Kalesi rotayı oluşturuyor. Turun sonunda havalimanına transfer edilerek İzmir'e uçuyor, Kuşadası'ndaki otelinize yerleşiyorsunuz.",
+          "en": "Following an optional hot air balloon ride, breakfast and check-out, the full-day South Cappadocia tour begins: Red and Rose Valley hike, cave-house village of Çavuşin, Love Valley, Kaymakli Underground City, Pigeon Valley, and Uçhisar Castle. At the tour's end you transfer to the airport for your flight to Izmir, then check in at your hotel in Kuşadası."
+        }
       },
       {
         "day": 3,
-        "title": "Mavi Yolculuk (3 Gece)",
-        "description": "Fethiye'den hareketle Kelebekler Vadisi, Ölüdeniz, Kaş, Kekova Batık Şehri ve Demre güzergahında gulet yolculuğu[cite: 1]."
+        "title": {
+          "tr": "Tam Gün Efes Turu",
+          "en": "Full Day Ephesus Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının hemen ardından tam gün Efes turumuz başlıyor. Antik Dünyanın Yedi Harikası'ndan Artemis Tapınağı, Celsus Kütüphanesi, ihtişamlı Efes Antik Kenti, antik tiyatrolar, hamamlar, liman caddesi ve Meryem Ana Evi bu olağanüstü günün öne çıkan noktaları. Turun sonunda Kuşadası'ndaki otelinize dönüyorsunuz.",
+          "en": "Immediately after breakfast, the full-day Ephesus tour begins. Highlights include the Temple of Artemis — one of the Seven Wonders of the Ancient World — the Library of Celsus, the magnificent Ephesus Ancient City, ancient theatres, bathhouses, the harbour street, and the House of the Virgin Mary. At the tour's end, you transfer back to your hotel in Kuşadası."
+        }
       },
       {
         "day": 4,
-        "title": "İstanbul'a Dönüş",
-        "description": "Demre'den Antalya'ya transfer ve İstanbul'a uçuş[cite: 1]."
+        "title": {
+          "tr": "Tam Gün Pamukkale & Hierapolis Turu – Fethiye'ye Transfer",
+          "en": "Full Day Pamukkale & Hierapolis Tour – Transfer to Fethiye"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından tam gün Pamukkale ve Hierapolis turumuz başlıyor. Yaklaşık 200 metre yüksekliğindeki kayalıklardan fışkıran kalkerli sular, mineral ormanları, taşlaşmış şelaleler ve eşsiz teras havuzlarından oluşan bu coğrafyayı keşfediyoruz. UNESCO Dünya Mirası Hierapolis; antik şehri, Nekropolü ve efsanevi Kleopatra Yüzme Havuzu ile tarihin içine sürüklüyor. Turun sonunda Fethiye'deki otelinize transfer ediliyorsunuz. Geceyi Fethiye'de geçiriyorsunuz.",
+          "en": "After breakfast and check-out, the full-day Pamukkale and Hierapolis tour begins. Mineral-rich springs cascading from cliffs nearly 200 metres high have sculpted an extraordinary landscape of terraced pools, petrified waterfalls, and mineral forests. UNESCO World Heritage Site Hierapolis draws you through its ancient city, the Necropolis, and the legendary Cleopatra Swimming Pool. At the tour's end, you transfer to your hotel in Fethiye. Overnight in Fethiye."
+        }
+      },
+      {
+        "day": 5,
+        "title": {
+          "tr": "Fethiye'de Serbest Gün",
+          "en": "Free Day to Explore Fethiye"
+        },
+        "description": {
+          "tr": "Bu gün tamamen size ait. Fethiye şehir merkezini, dünyanın en çok fotoğraflanan plajlarından Ölüdeniz'i ya da kristal berraklığındaki koyları keşfedebilir, Likya uygarlığından kalma kaya mezarlarını ziyaret edebilirsiniz. Öneri ve yönlendirme için her zaman yanınızdayız. Geceyi Fethiye'de geçiriyorsunuz.",
+          "en": "This day is entirely yours. Explore Fethiye's charming town centre, discover Ölüdeniz — one of the world's most photographed beaches — swim in crystal-clear coves, or visit the ancient Lycian rock tombs. We are always on hand for recommendations. Overnight in Fethiye."
+        }
+      },
+      {
+        "day": 6,
+        "title": {
+          "tr": "Fethiye'den Aziz Nikolas Adası'na – Mavi Yolculuk Başlıyor",
+          "en": "Fethiye to St. Nicholas Island – Blue Cruise Night 1"
+        },
+        "description": {
+          "tr": "Sabah 10:00'da merkezde konumlanan otelinizden alınarak ofisimizde check-in yapıyor ve brifing sonrası gületinize geçiyorsunuz. Saat 11:00–12:00 arasında Fethiye limanından ayrılarak 105 kelebek türüyle ünlü doğal cennet Kelebek Vadisi'ne demirliyoruz; yüzme, öğle yemeği ve isteğe bağlı şelale yürüyüşü için zaman ayrılıyor. Ardından dünyanın en fotoğraflı plajı Ölüdeniz'i ziyaret ediyoruz. İsteğe bağlı olarak Babadağ'dan 2.000 metre yüksekten paraşütle atlayarak Ölüdeniz ve Mavi Lagün üzerinde süzülme deneyimi sunuluyor. Geceyi Aziz Nikolas Adası'nda, antik kalıntılar arasında ve günbatımının büyüsünde demir atarak geçiriyorsunuz.",
+          "en": "At 10:00 you are picked up from your centrally located hotel and check in at our office. Following the cruise briefing, you board your gulet and depart Fethiye harbour between 11:00 and 12:00. We anchor at Butterfly Valley — a natural paradise home to 105 butterfly species — for swimming, lunch, and an optional waterfall hike. We then visit Ölüdeniz, the world's most photographed beach. An optional paragliding jump from Babadağ Mountain at 2,000 metres offers breathtaking views over Ölüdeniz and the Blue Lagoon. The night is spent anchored at St. Nicholas Island, among ancient ruins at sunset. [Blue Cruise Night 1]"
+        }
+      },
+      {
+        "day": 7,
+        "title": {
+          "tr": "Aziz Nikolas'tan Kaş'a – Mavi Yolculuk 2. Gece",
+          "en": "St. Nicholas Island to Kas – Blue Cruise Night 2"
+        },
+        "description": {
+          "tr": "Kalkan açıklarında kahvaltı ve sabah yüzüşünün ardından balıkçı köyü Kaş'a yelken açıyoruz. Kaş; el yapımı mücevherat, tekstil ve sürpriz derecede kaliteli kahvecileriyle Türkiye'nin güneyi boyunca en özel alışveriş deneyimini sunuyor. İsteğe bağlı dalış etkinliğiyle Güney Türkiye'nin en iyi dalış noktalarında kristal berraklığındaki Akdeniz sularına dalıyorsunuz; mağara ve batık dalışları rotanın özel durağı. Geceyi Kaş ile Kekova arasındaki tenha bir körfezde geçiriyorsunuz. [Mavi Yolculuk 2. Gece]",
+          "en": "After breakfast and a morning swim off Kalkan, we sail on to Kaş — a charming fishing village offering some of the finest shopping on the Southern Turkish coast, with handcrafted jewellery, textiles, and excellent coffee. Optional scuba diving takes you into the crystal-clear waters of the Southern Mediterranean, with cave and wreck dive options at the best dive sites in southern Turkey. The night is spent anchored in an isolated bay between Kaş and Kekova. [Blue Cruise Night 2]"
+        }
+      },
+      {
+        "day": 8,
+        "title": {
+          "tr": "Kaş'tan Gökkaya Koyu'na – Kekova Batık Şehri – Mavi Yolculuk 3. Gece",
+          "en": "Kas to Gokkaya Bay – Kekova Sunken City – Blue Cruise Night 3"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından dünya mirası statüsündeki Kekova Batık Şehri üzerinden yavaşça ilerliyor, Likya-Roma dönemine ait bu arkeolojik hazineyi denizden seyrediyoruz (koruma altında olduğundan yüzme ve dalış yasak). Simena Kalesi'ne çıkarak koya hakim nefes kesen manzarayı izliyoruz. Geceyi Gökkaya Koyu'nda demirleyerek; isteğe bağlı olarak yakınındaki Kaçakçının Meyhanesi'nde yıldızlar altında gece deneyimi yaşıyorsunuz. [Mavi Yolculuk 3. Gece]",
+          "en": "After breakfast, we cruise slowly over the UNESCO-protected Kekova Sunken City — a breathtaking Lycian-Roman archaeological site viewed from the water (swimming and diving are prohibited in this protected zone). We anchor to visit Simena Castle, where a short walk rewards you with spectacular views over the bay. The night is spent anchored in Gökkaya Bay; optionally, the nearby Smuggler's Inn offers a lively evening of dancing under the stars. [Blue Cruise Night 3]"
+        }
+      },
+      {
+        "day": 9,
+        "title": {
+          "tr": "Gökkaya Koyu'ndan Antalya'ya – İstanbul'a Uçuş",
+          "en": "Gokkaya Bay to Antalya – Flight from Antalya to Istanbul"
+        },
+        "description": {
+          "tr": "Gület yolculuğunuzun son sabahında sabah yüzüşünün tadını çıkardıktan sonra Korsanlar Mağarası'ndan geçerek Demre Limanı'na (Andriake) doğru yol alıyoruz. Öğle öncesi yaklaşık 11:00'de iskeleye yanaşıyor, gület mürettebatınızla ve yeni arkadaşlarınızla vedalaşıyorsunuz. Antalya Havalimanı'na transfer edilerek İstanbul'a uçuyorsunuz. Varışta ekibimiz sizi karşılıyor ve otelinize götürüyor.",
+          "en": "On your final morning aboard, enjoy a morning swim before we sail past Pirates Cave on the way to Demre Harbour (Andriake), arriving around 11:00 for disembarkation. You say farewell to new friends and your gulet crew. Transferred to Antalya Airport, you board your flight to Istanbul, where our team welcomes and transfers you to your hotel."
+        }
       }
     ],
-    "included": [
-      "Gulet ve Otel Konaklamaları",
-      "İç Hat Uçuş Biletleri",
-      "Gulette Yemekler"
-    ],
+    "included": {
+      "tr": [
+        "Gidiş-dönüş iç hat uçuş biletleri",
+        "Tüm kara ulaşımları",
+        "3 gece otel konaklaması (Kapadokya, Kuşadası, Fethiye)",
+        "3 gece gület konaklaması (en suit kabin)",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle, A: Akşam Yemeği)",
+        "Gület için öğleden sonra çay ve atıştırmalıklar",
+        "Standart yelkencilik ekipmanları",
+        "Çarşaf ve nevresim takımı",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "Round-trip domestic flight tickets",
+        "All local transportation",
+        "3 nights hotel accommodation (Cappadocia, Kuşadası, Fethiye)",
+        "3 nights gulet accommodation (en suite cabin)",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch, D: Dinner)",
+        "Afternoon tea & snacks on the cruise",
+        "Standard yachting equipment",
+        "Linens",
+        "All local taxes"
+      ]
+    },
     "excluded": [
       "Kapadokya Balon Turu",
       "Kişisel Harcamalar"
@@ -6087,10 +6998,91 @@
       "Kalkış: İstanbul",
       "Dönüş: İstanbul"
     ],
-    "notes": [
-      "Gulet rotaları deniz ve hava koşullarına göre kaptan tarafından değiştirilebilir."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Kabin charter rehbersiz bir turdur.",
+        "Hava ve deniz koşullarına bağlı olarak program değişebilir.",
+        "Gületin tüm kabinlerinde özel banyo ve duş bulunmaktadır.",
+        "Efes Tarasa Evleri giriş ücreti yaklaşık 5$'dır.",
+        "Kleopatra Yüzme Havuzu giriş ücreti yaklaşık 8$'dır.",
+        "2. günde doğrudan uçuş bulunamaması halinde aktarmalı uçuş sağlanır.",
+        "Transfer ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "The cabin charter is a non-guided tour.",
+        "In case of poor weather and/or sea conditions, the schedule may change.",
+        "All cabins in the charter have private bathrooms and showers.",
+        "Ephesus Terrace Houses entrance fee is approximately $5.",
+        "Cleopatra Swimming Pool entrance fee is approximately $8.",
+        "If no direct flight is available on Day 2, a connecting flight will be provided.",
+        "Exact time details are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "Göreme Açık Hava Müzesi – Kapadokya'nın Bizans mirası",
+        "Kaymakli Yeraltı Şehri – tarihin derinliklerine yolculuk",
+        "Efes Antik Kenti – Akdeniz'in en iyi korunmuş antik kenti",
+        "Pamukkale travertenleri & Hierapolis – UNESCO Dünya Mirası",
+        "Ölüdeniz – dünyanın en çok fotoğraflanan plajı",
+        "Kelebek Vadisi – 105 kelebek türüyle doğal cennet",
+        "Kekova Batık Şehri – deniz altındaki Likya-Roma mirası",
+        "Simena Kalesi – Akdeniz kıyısında tarihi panorama",
+        "İsteğe bağlı: Kapadokya'da sıcak hava balonu & Babadağ'dan paragliding"
+      ],
+      "en": [
+        "Göreme Open Air Museum – Cappadocia's Byzantine heritage",
+        "Kaymakli Underground City – a journey into ancient depths",
+        "Ephesus Ancient City – best-preserved ancient city on the Mediterranean",
+        "Pamukkale Travertines & Hierapolis – UNESCO World Heritage Site",
+        "Ölüdeniz – the world's most photographed beach",
+        "Butterfly Valley – a natural paradise of 105 butterfly species",
+        "Kekova Sunken City – Lycian-Roman heritage beneath the sea",
+        "Simena Castle – historic panorama on the Mediterranean coast",
+        "Optional: Cappadocia balloon ride & Babadağ paragliding"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "Yemek ve akşam yemeği sırasındaki içecekler",
+        "Gület için banyo/plaj havluları",
+        "Kişisel harcamalar",
+        "Efes Tarasa Evleri girişi (isteğe bağlı, ~5$)",
+        "Kleopatra Yüzme Havuzu girişi (isteğe bağlı, ~8$)",
+        "Kruvaziyer sırasındaki isteğe bağlı aktiviteler ve ücretli girişler",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch/dinner",
+        "Bath/beach towels on the cruise",
+        "Items of a personal nature",
+        "Optional entrance to Ephesus Terrace Houses (~$5)",
+        "Optional entrance to Cleopatra Swimming Pool (~$8)",
+        "Entrance fees and optional activities on the cruise",
+        "Medical services"
+      ]
+    },
+    "prices": {
+      "economy": {
+        "single": "2.096$",
+        "double": "1.525$",
+        "triple": "1.512$"
+      },
+      "comfort": {
+        "single": "2.453$",
+        "double": "1.726$",
+        "triple": "1.713$"
+      },
+      "luxury": {
+        "single": "2.674$",
+        "double": "1.895$",
+        "triple": "1.882$"
+      },
+      "note": "Per person. Starting prices — contact us 24/7 with your tour date for exact pricing."
+    }
   },
   {
     "id": "TUR-1700000000054",
@@ -7753,35 +8745,80 @@
     "itinerary": [
       {
         "day": 1,
-        "title": "İstanbul'a Varış",
-        "description": "Varış ve otele transfer[cite: 1]."
+        "title": {
+          "tr": "İstanbul'a Varış",
+          "en": "Arrival in Istanbul"
+        },
+        "description": {
+          "tr": "İstanbul'a varışınızda ekibimiz sizi karşılıyor ve otelinize transfer ediliyor. Günün geri kalanını kendinize ayırabilir, şehrin eşsiz atmosferini ilk adımlarınızla keşfedebilirsiniz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "Upon your arrival in Istanbul, our team welcomes and transfers you to your hotel. The rest of the day is entirely yours — take your first steps into the city at your own pace. Overnight in Istanbul."
+        }
       },
       {
         "day": 2,
-        "title": "Tarihi İstanbul",
-        "description": "Ayasofya, Sultanahmet Camii, Topkapı Sarayı, Kapalıçarşı[cite: 1]."
+        "title": {
+          "tr": "İstanbul Tarihi Yarımada Yürüyüş Turu",
+          "en": "Istanbul Old City Walking Tour"
+        },
+        "description": {
+          "tr": "Kahvaltının ardından Sultanahmet'te tam gün İstanbul Tarihi Yarımada turumuza başlıyoruz. Sultanahmet (Mavi) Camii, Ayasofya, Hipodrom, Dikilitaş, Yılanlı Sütun, Alman Çeşmesi, Kapalıçarşı, Topkapı Sarayı ve Ayairini Kilisesi günün öne çıkan noktaları. Turun sonunda otelinize dönüyorsunuz. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "After breakfast, we pick you up for a full-day Istanbul Old City Walking Tour in Sultanahmet. Highlights include the Blue Mosque, Hagia Sophia, the Hippodrome, the Obelisk of Theodosius, the Serpent Column, the German Fountain, the Grand Bazaar, Topkapi Palace, and Hagia Eirene Church. You are accompanied back to your hotel at the tour's end. Overnight in Istanbul."
+        }
       },
       {
         "day": 3,
-        "title": "Kuzey Kapadokya",
-        "description": "Kapadokya'ya uçuş. Göreme Açık Hava Müzesi, Devrent, Paşabağ, Ürgüp, Avanos[cite: 1]."
+        "title": {
+          "tr": "İstanbul'dan Kapadokya'ya Uçuş – Kuzey Kapadokya (Kırmızı) Turu",
+          "en": "Flight from Istanbul to Cappadocia – Full Day North Cappadocia (Red) Tour"
+        },
+        "description": {
+          "tr": "Sabahın erken saatlerinde otelinizden havalimanına transfer edildikten sonra Kapadokya'ya uçuyorsunuz. Varışta ekibimiz sizi karşılıyor ve tam gün Kuzey Kapadokya turumuz başlıyor. Beş Bizans Ortodoks kilisesini barındıran Göreme Açık Hava Müzesi, hayvan ve masal figürü peri bacalarıyla büyüleyici Paşabağ ve Devrent Vadisi, kırmızı kil çömlekçiliğiyle ünlü Ürgüp ve Avanos rotayı oluşturuyor. Avanos'ta kısa bir gösterimin ardından geleneksel çömlekçiliği bizzat deneyimliyorsunuz. Geceyi Kapadokya'da geçiriyorsunuz.",
+          "en": "An early morning transfer takes you to the airport for your flight to Cappadocia. Our team welcomes you on arrival and a full-day North Cappadocia tour begins. We visit the Göreme Open Air Museum with five Byzantine Orthodox churches, the enchanting fairy chimney formations of Paşabağ and Devrent Valley, and the historic towns of Ürgüp and Avanos — famous for red-clay pottery with a hands-on workshop. Overnight in Cappadocia."
+        }
       },
       {
         "day": 4,
-        "title": "Güney Kapadokya",
-        "description": "Kızıl Vadi, Kaymaklı Yeraltı Şehri, Uçhisar Kalesi. Akşam İstanbul'a uçuş[cite: 1]."
+        "title": {
+          "tr": "Güney Kapadokya (Yeşil) Turu – İstanbul'a Uçuş",
+          "en": "Full Day South Cappadocia (Green) Tour – Flight to Istanbul"
+        },
+        "description": {
+          "tr": "İsteğe bağlı sıcak hava balonu deneyiminin ardından tam gün Güney Kapadokya turumuza başlıyoruz. Kızıl ve Gül Vadisi yürüyüşü, mağara evleriyle Çavuşin Köyü, Aşk Vadisi, Kaymakli Yeraltı Şehri, Güvercinlik Vadisi ve Uçhisar Kalesi günün öne çıkan noktaları. Turun sonunda havalimanına transfer edilerek İstanbul'a dönüyorsunuz. Varışta ekibimiz sizi karşılıyor ve otelinize götürüyor. Geceyi İstanbul'da geçiriyorsunuz.",
+          "en": "Following an optional hot air balloon ride, the full-day South Cappadocia tour begins. Highlights include the Red and Rose Valley hike, cave-house village of Çavuşin, Love Valley, Kaymakli Underground City, Pigeon Valley, and Uçhisar Castle. At the tour's end you transfer to the airport for your flight back to Istanbul, where our team meets and transfers you to your hotel. Overnight in Istanbul."
+        }
       },
       {
         "day": 5,
-        "title": "Dönüş",
-        "description": "Uluslararası uçuşa transfer[cite: 1]."
+        "title": {
+          "tr": "İstanbul'dan Uğurlama",
+          "en": "Departure from Istanbul"
+        },
+        "description": {
+          "tr": "Kahvaltı ve otelden çıkışın ardından uluslararası uçuşunuz için havalimanına transfer ediliyorsunuz. İstanbul'un tarihi dokusunu ve Kapadokya'nın peri masalı manzaralarını kucaklayan bu unutulmaz yolculuk burada tamamlanıyor.",
+          "en": "Following breakfast and check-out, you are transferred to the international airport for your departure flight. Your unforgettable journey through Istanbul's historic heart and Cappadocia's fairy-tale landscapes comes to a close."
+        }
       }
     ],
-    "included": [
-      "4 Gece Konaklama",
-      "İç Hat Uçuş Biletleri",
-      "Müze Giriş Ücretleri"
-    ],
+    "included": {
+      "tr": [
+        "Gidiş-dönüş iç hat uçuş biletleri",
+        "Tüm kara ulaşımları",
+        "4 gece konaklama",
+        "Profesyonel rehberlik hizmeti",
+        "Tüm müze ve sit alanı giriş ücretleri",
+        "Öğünler (K: Kahvaltı, L: Öğle)",
+        "Tüm yerel vergiler"
+      ],
+      "en": [
+        "Round-trip domestic flight tickets",
+        "All local transportation",
+        "4 nights hotel accommodation",
+        "Professional guide service",
+        "All museum and site entrance fees",
+        "Meals (B: Breakfast, L: Lunch)",
+        "All local taxes"
+      ]
+    },
     "excluded": [
       "Sıcak Hava Balonu (İsteğe Bağlı)",
       "Akşam Yemekleri"
@@ -7795,10 +8832,73 @@
       "Kalkış: İstanbul",
       "Dönüş: İstanbul"
     ],
-    "notes": [
-      "Balon turu için 3. günün erken rezervasyonu yapılması tavsiye edilir."
-    ],
-    "mapUrl": ""
+    "notes": {
+      "tr": [
+        "Topkapı Sarayı Salı günleri kapalıdır.",
+        "Ayasofya ve Sultanahmet Camii Cuma günleri ziyarete kapalıdır.",
+        "Kapalıçarşı Pazar günleri kapalıdır.",
+        "Transfer ve uçuş saatleri rezervasyonun ardından bildirilir.",
+        "Bu tur konaklama, süre ve isteğe bağlı aktiviteler açısından kişiselleştirilebilir."
+      ],
+      "en": [
+        "Topkapi Palace is closed on Tuesdays.",
+        "Hagia Sophia and Blue Mosque are closed on Fridays.",
+        "Grand Bazaar is closed on Sundays.",
+        "Exact time details are provided after booking.",
+        "This tour can be customised by accommodation, duration, and optional activities."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "Ayasofya & Sultanahmet Camii – iki medeniyetin simgesi, yüzyılların tanığı",
+        "Topkapı Sarayı – Osmanlı saray hayatının görkemli kapısı",
+        "Kapalıçarşı – yüzyıllardır İstanbul'un renk cümbüşü",
+        "Göreme Açık Hava Müzesi – Kapadokya'nın eşsiz Bizans mirası",
+        "Kaymakli Yeraltı Şehri – tarihin derinliklerine büyüleyici bir yolculuk",
+        "Uçhisar Kalesi – Kapadokya'nın en yüksek noktasından nefes kesen panorama",
+        "İsteğe bağlı: Kapadokya'da şafakta sıcak hava balonu deneyimi"
+      ],
+      "en": [
+        "Hagia Sophia & Blue Mosque – symbols of two great civilisations",
+        "Topkapi Palace – the magnificent gateway to Ottoman court life",
+        "Grand Bazaar – Istanbul's vibrant heart for centuries",
+        "Göreme Open Air Museum – Cappadocia's priceless Byzantine heritage",
+        "Kaymakli Underground City – a captivating descent into ancient depths",
+        "Uçhisar Castle – breathtaking panorama from Cappadocia's highest point",
+        "Optional: Hot air balloon ride at sunrise over Cappadocia"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "İçecekler (öğle yemeği dahil)",
+        "Kişisel harcamalar",
+        "Sağlık hizmetleri"
+      ],
+      "en": [
+        "Drinks during lunch",
+        "Items of a personal nature",
+        "Medical services"
+      ]
+    },
+    "prices": {
+      "economy": {
+        "single": "1.009$",
+        "double": "787$",
+        "triple": "775$"
+      },
+      "comfort": {
+        "single": "1.270$",
+        "double": "929$",
+        "triple": "917$"
+      },
+      "luxury": {
+        "single": "1.528$",
+        "double": "1.049$",
+        "triple": "1.036$"
+      },
+      "note": "Per person. Starting prices — contact us 24/7 with your tour date for exact pricing."
+    }
   },
   {
     "id": "TUR-1700000000067",
@@ -8026,22 +9126,34 @@
     "featured": false,
     "source": "admin",
     "meta": {
-      "duration": "Yaklaşık 1.5 Saat",
-      "languages": "Görsel ve İşitsel",
+      "duration": "2 Saat",
+      "min_age": "7+",
       "months": "Tüm Aylar",
-      "availability": "Etkinlik Kapasitesi"
+      "availability": "50 Kişi"
     },
     "itinerary": [
       {
         "day": 1,
-        "title": "Mistik Deneyim",
-        "description": "İnteraktif sergi ile dervişlerin hayatı, 10 dakikalık Sufi Müzik Konseri ve 45 dakikalık etkileyici Sema töreni gösterisi[cite: 1]."
+        "title": {
+          "tr": "Sema Töreni – Mistik Bir Yolculuk",
+          "en": "Sema Ceremony – A Mystical Journey"
+        },
+        "description": {
+          "tr": "Ayasofya'nın ve Topkapı Sarayı'nın hemen yanı başında, İstanbul'un kültürel dokusunun en zarif parçalarından biri olan Hodjapasha Kültür Merkezi, 15. yüzyıldan kalma tarihi bir hamamın yüksek kubbe tavanları altında UNESCO tarafından İnsanlığın Somut Olmayan Mirası olarak tescil edilen Mevlevi Sema Törenine ev sahipliği yapıyor. Gösteri 19:00'da başlamaktadır; lütfen 30 dakika öncesinde, 18:30'da salonda hazır bulununuz. Program 5 dakikalık tanıtım videosu, 10 dakikalık Sufi Müziği Konseri ve 45 dakikalık Sema Töreninden oluşmaktadır. Sergi bölümünde dervişlere ait giysiler, müzik aletleri, kitaplar ve kişisel eşyalar; interaktif Rumi şiirleri ve Sufi müziği örnekleri; hiperrealst üslupta derviş heykelleri ve video gösterileri sizi bekliyor. Gösteri yaklaşık 20:00'de sona ermektedir.",
+          "en": "Nestled beside the great Hagia Sophia and the magnificent Topkapi Palace, the Hodjapasha Cultural Centre—a beautifully converted 15th-century hammam—hosts the Mevlevi Sema Ceremony, declared a UNESCO Intangible Heritage of Humanity. The show begins at 7:00 PM; please be in the hall 30 minutes beforehand, at 6:30 PM. The programme comprises a 5-minute introduction video, a 10-minute Sufi Music Concert, and a 45-minute Sema Ceremony. The exhibition features dervish clothing, musical instruments, books, and personal objects; interactive Rumi poetry and Sufi music samples; hyperrealist dervish statues; and video presentations. The show concludes at approximately 8:00 PM."
+        }
       }
     ],
-    "included": [
-      "Gösteri Bileti",
-      "Sergi Giriş Bileti"
-    ],
+    "included": {
+      "tr": [
+        "Sergi girişi",
+        "Sema (Derviş) Gösterisi"
+      ],
+      "en": [
+        "Exhibition entrance",
+        "Whirling Dervishes Show"
+      ]
+    },
     "excluded": [
       "Otel Transferi",
       "İçecekler"
@@ -8051,13 +9163,50 @@
       "comfort": "50$",
       "luxury": "80$"
     },
-    "departureReturn": [
-      "Kalkış: Hodjapasha Kültür Merkezi",
-      "Dönüş: Kendi İmkanlarınızla"
-    ],
-    "notes": [
-      "Gösteri sırasında fotoğraf ve video çekimi kesinlikle yasaktır."
-    ],
-    "mapUrl": ""
+    "departureReturn": {
+      "tr": [
+        "Kalkış: Hodjapasha Kültür Merkezi, 19:00",
+        "Dönüş: Yaklaşık 20:00"
+      ],
+      "en": [
+        "Departure: Hodjapasha Cultural Centre, 7:00 PM",
+        "Return: Approximately 8:00 PM"
+      ]
+    },
+    "notes": {
+      "tr": [
+        "Gösteriden 30 dakika önce, 18:30'da salonda hazır olunuz.",
+        "Tekerlekli sandalye erişimi mevcut değildir."
+      ],
+      "en": [
+        "Please be ready in the hall 30 minutes before the show, at 6:30 PM.",
+        "Not wheelchair accessible."
+      ]
+    },
+    "mapUrl": "",
+    "highlights": {
+      "tr": [
+        "UNESCO İnsanlığın Somut Olmayan Mirası: Mevlevi Sema Töreni",
+        "Hodjapasha Kültür Merkezi – 15. yüzyıldan kalma tarihi bir hamamın muhteşem kubbe mimarisi",
+        "Sufi Müziği Konseri – ruhani bir müzik yolculuğunun kapıları açılıyor",
+        "Sema Töreni (45 dk) – insanın 'kemale erme' yolculuğunu sembolize eden mistik döngüsel dans",
+        "Dervişler Sergisi – giysiler, müzik aletleri, kitaplar ve Rumi şiirleri interaktif deneyim"
+      ],
+      "en": [
+        "UNESCO Intangible Cultural Heritage: the Mevlevi Sema Ceremony",
+        "Hodjapasha Cultural Centre – the magnificent domed architecture of a 15th-century converted hammam",
+        "Sufi Music Concert – a captivating musical prelude to the spiritual journey",
+        "Sema Ceremony (45 min) – the mystical whirling dance symbolising humanity's ascent to perfection",
+        "Dervishes Exhibition – costumes, instruments, books, interactive Rumi poetry and hyperrealist statues"
+      ]
+    },
+    "not_included": {
+      "tr": [
+        "Kişisel harcamalar"
+      ],
+      "en": [
+        "Items of a personal nature"
+      ]
+    }
   }
 ]
