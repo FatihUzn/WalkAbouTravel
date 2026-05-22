@@ -86,7 +86,8 @@ class TourManager {
         container.innerHTML = '';
 
         if (filtered.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;">Henüz tur bulunmuyor.</p>';
+            const noTours = (window.i18n && window.i18n.t) ? window.i18n.t('tours_empty') : 'Henüz tur bulunmuyor.';
+            container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;">${noTours}</p>`;
             return;
         }
 
@@ -106,19 +107,12 @@ class TourManager {
         const title = this.getField(tour, 'title', lang);
         const description = this.getField(tour, 'description', lang);
 
+        const noDesc = (window.i18n && window.i18n.t) ? window.i18n.t('tour_no_desc') : 'Açıklama bulunmuyor.';
         const shortDesc = description
             ? description.substring(0, 120) + '...'
-            : 'Açıklama bulunmuyor.';
+            : noDesc;
 
-        const linkText = {
-            tr: 'Detayları Gör',
-            en: 'View Details',
-            es: 'Ver Detalles',
-            ru: 'Подробнее',
-            de: 'Details ansehen',
-            zh: '查看详情',
-            ar: 'عرض التفاصيل'
-        }[lang] || 'Detayları Gör';
+        const linkText = (window.i18n && window.i18n.t) ? window.i18n.t('tour_detail_btn') : 'Detayları Gör';
 
         card.innerHTML = `
             <div class="tour-image">
