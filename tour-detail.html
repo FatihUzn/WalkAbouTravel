@@ -416,18 +416,21 @@
 
                 // 3. İTİNERARY (Gün Gün veya Eski İçerik)
                 if (tour.itinerary && tour.itinerary.length > 0) {
-                    const itiHtml = tour.itinerary.map((day, index) => `
+                    const itiHtml = tour.itinerary.map((day, index) => {
+                        const dayTitle = getLangText(day, 'title', lang) || day.title;
+                        const dayDesc = getLangText(day, 'description', lang) || day.description || '';
+                        return `
                         <div class="itinerary-item ${index === 0 ? 'active' : ''}">
                             <h3 class="itinerary-day-title" onclick="this.parentElement.classList.toggle('active')">
                                 <div class="day-info">
                                     <span class="day-badge">${l.day} ${day.day}</span>
-                                    ${day.title}
+                                    ${dayTitle}
                                 </div>
                                 <i class="fas fa-chevron-down"></i>
                             </h3>
-                            <div class="itinerary-desc">${day.description.replace(/\n/g, '<br>')}</div>
+                            <div class="itinerary-desc">${dayDesc.replace(/\n/g, '<br>')}</div>
                         </div>
-                    `).join('');
+                    `}).join('');
                     document.getElementById('tourItineraryList').innerHTML = itiHtml;
                     document.getElementById('tourItineraryContainer').style.display = 'block';
                 } else if (content) {
