@@ -449,17 +449,23 @@
         loadTours();
     });
 
-    // Admin paneliyle uyumlu "Çoklu Dil Okuyucu"
+    // JSON'daki flat key yapısıyla uyumlu çevirmen
+    // Öncelik: istenen dil → EN → TR (base field)
     function getLocalizedData(item, field) {
-        if(!item) return '';
+        if (!item) return '';
         const lang = window.i18n ? window.i18n.currentLang : 'tr';
-        if (typeof item[field] === 'object' && item[field] !== null) {
-            // Nested: istenen dil → EN → TR
+
+        // Nested obje: { title: { tr: '...', en: '...' } }
+        if (item[field] && typeof item[field] === 'object' && !Array.isArray(item[field])) {
             return item[field][lang] || item[field]['en'] || item[field]['tr'] || '';
         }
-        if (lang === 'tr') return item[field] || '';
-        // Flat: istenen dil → EN → TR
-        return item[`${field}_${lang}`] || item[`${field}_en`] || item[field] || '';
+
+        // Flat: title_en, title_es, title_ar  (title_pt YOK → EN fallback)
+        if (lang !== 'tr') {
+            if (item[`${field}_${lang}`]) return item[`${field}_${lang}`];
+            if (item[`${field}_en`])      return item[`${field}_en`];
+        }
+        return item[field] || '';   // TR base
     }
 
     // ==================== 2. KATEGORİLER (4'LÜ YAPI) ====================

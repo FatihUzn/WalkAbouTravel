@@ -40,16 +40,18 @@ class TourManager {
     }
 
     getField(tour, field, lang) {
-        // 1. Nested obje formatı
-        if (tour[field] && typeof tour[field] === 'object') {
+        // 1. Nested obje formatı: { title: { tr: "...", en: "..." } }
+        if (tour[field] && typeof tour[field] === 'object' && !Array.isArray(tour[field])) {
             return tour[field][lang] || tour[field]['en'] || tour[field]['tr'] || '';
         }
-        // 2. Flat format — istenen dil → EN → TR
+        // 2. Flat format — JSON'daki gerçek key sırası:
+        //    title_en, title_es, title_ar mevcut; title_pt YOK → EN'e düş
+        //    title (TR), description (TR) → base field
         if (lang !== 'tr') {
             if (tour[`${field}_${lang}`]) return tour[`${field}_${lang}`];
-            if (tour[`${field}_en`])      return tour[`${field}_en`];
+            if (tour[`${field}_en`])      return tour[`${field}_en`];   // pt gibi eksik diller için
         }
-        return tour[`${field}_tr`] || tour[field] || '';
+        return tour[field] || '';   // TR base field
     }
 
     setupEventListeners() {

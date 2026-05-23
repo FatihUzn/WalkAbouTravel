@@ -325,24 +325,23 @@
             ar: { home: 'الرئيسية', tours: 'جولات', overview: 'ملخص', day: 'يوم', included: 'مشمول', excluded: 'غير مشمول', pricing: 'الأسعار', notes: 'ملاحظات', map: 'خريطة', gallery: 'صالة عرض', priceTitle: 'يبدأ من', emailBtn: 'استفسر الآن', waBtn: 'WhatsApp', pricingNote: '(*) أسعار مبدئية.', pricingCol1: 'فئة الفندق', pricingCol2: 'السعر (للشخص)' }
         };
 
-        // YENİ VE ESKİ JSON YAPISINI BİRLİKTE OKUYABİLEN AKILLI ÇEVİRMEN
-        // Öncelik: istenen dil → İngilizce → Türkçe (asla boş dönmez)
+        // JSON flat key yapısıyla tam uyumlu çevirmen
+        // Öncelik: istenen dil → EN → base field (TR)
+        // Array alanlarını da destekler: included_en, not_included_es vb.
         function getLangText(obj, field, lang) {
-            if (!obj) return '';
+            if (!obj) return Array.isArray(obj) ? [] : '';
 
-            // 1. Nested obje formatı: { title: { tr: "...", en: "..." } }
-            if (obj[field] && typeof obj[field] === 'object') {
+            // 1. Nested obje: { title: { tr: "...", en: "..." } }
+            if (obj[field] && typeof obj[field] === 'object' && !Array.isArray(obj[field])) {
                 return obj[field][lang] || obj[field]['en'] || obj[field]['tr'] || '';
             }
 
-            // 2. Flat format: title_es, title_pt, title_en, title
+            // 2. Flat: field_lang → field_en → field (TR base)
             if (lang !== 'tr') {
-                if (obj[`${field}_${lang}`]) return obj[`${field}_${lang}`];
-                if (obj[`${field}_en`])     return obj[`${field}_en`];   // İngilizce'ye düş
+                if (obj[`${field}_${lang}`] !== undefined) return obj[`${field}_${lang}`];
+                if (obj[`${field}_en`] !== undefined)      return obj[`${field}_en`];
             }
-
-            // 3. Türkçe veya son çare
-            return (typeof obj[field] === 'string' ? obj[field] : '') || '';
+            return obj[field] !== undefined ? obj[field] : (Array.isArray(obj[field]) ? [] : '');
         }
 
         async function loadTourDetail(tourId) {
@@ -461,13 +460,18 @@
                 }
 
                 // 5. DAHİL / HARİÇ
+                // JSON'da: included (TR), included_en, included_es, included_ar, included_pt
+                //          not_included (TR), not_included_en, not_included_es, not_included_ar, not_included_pt
                 let showIncExc = false;
-                if (tour.included && tour.included.length > 0) {
-                    document.getElementById('tourIncludedList').innerHTML = tour.included.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
+                const includedList = getLangText(tour, 'included', lang);
+                const notIncludedList = getLangText(tour, 'not_included', lang);
+
+                if (Array.isArray(includedList) && includedList.length > 0) {
+                    document.getElementById('tourIncludedList').innerHTML = includedList.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
                     showIncExc = true;
                 }
-                if (tour.excluded && tour.excluded.length > 0) {
-                    document.getElementById('tourExcludedList').innerHTML = tour.excluded.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
+                if (Array.isArray(notIncludedList) && notIncludedList.length > 0) {
+                    document.getElementById('tourExcludedList').innerHTML = notIncludedList.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
                     showIncExc = true;
                 }
                 if (showIncExc) document.getElementById('tourIncExcContainer').style.display = 'grid';
@@ -484,8 +488,10 @@
                 }
 
                 // 7. NOTLAR
-                if (tour.notes && tour.notes.length > 0) {
-                    document.getElementById('tourNotesList').innerHTML = tour.notes.map(n => `<li>${n}</li>`).join('');
+                // JSON'da: notes (TR array), notes_en (EN array)
+                const notesList = getLangText(tour, 'notes', lang);
+                if (Array.isArray(notesList) && notesList.length > 0) {
+                    document.getElementById('tourNotesList').innerHTML = notesList.map(n => `<li>${n}</li>`).join('');
                     document.getElementById('tourNotesContainer').style.display = 'block';
                 }
 
