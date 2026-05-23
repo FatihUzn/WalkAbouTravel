@@ -12,6 +12,14 @@ class TourManager {
     async init() {
         await this.loadAllTours();
         this.setupEventListeners();
+
+        // i18n henüz başlatılmamış olabilir — biraz bekle
+        if (window.i18n && window.i18n.currentLang) {
+            this.currentLang = window.i18n.currentLang;
+        } else {
+            this.currentLang = localStorage.getItem('language') || 'tr';
+        }
+
         this.displayTours();
     }
 
@@ -31,18 +39,17 @@ class TourManager {
         }
     }
 
-    // Admin flat formatını okur: title_en, title_es, description_en, vb.
-    // Nested formatı da destekler: { title: { tr: "...", en: "..." } } (geriye uyumluluk)
     getField(tour, field, lang) {
         // 1. Nested obje formatı
         if (tour[field] && typeof tour[field] === 'object') {
-            return tour[field][lang] || tour[field]['tr'] || '';
+            return tour[field][lang] || tour[field]['en'] || tour[field]['tr'] || '';
         }
-        // 2. Flat format (admin kayıtları)
-        if (lang === 'tr') {
-            return tour[field] || '';
+        // 2. Flat format — önce istenen dil, sonra EN, sonra TR
+        if (lang !== 'tr') {
+            if (tour[`${field}_${lang}`]) return tour[`${field}_${lang}`];
+            if (tour[`${field}_en`])     return tour[`${field}_en`];
         }
-        return tour[`${field}_${lang}`] || tour[field] || '';
+        return tour[field] || '';
     }
 
     setupEventListeners() {
@@ -52,7 +59,6 @@ class TourManager {
             });
         });
 
-        // DÜZELTME: i18n.js window üzerinden dispatch ediyor, document değil
         window.addEventListener('languageChanged', (e) => {
             this.currentLang = (e.detail && e.detail.lang)
                 ? e.detail.lang
@@ -149,11 +155,9 @@ class TourManager {
 let tourManager;
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('📄 DOM hazır, TourManager başlatılıyor...');
         tourManager = new TourManager();
     });
 } else {
-    console.log('📄 DOM zaten hazır, TourManager başlatılıyor...');
     tourManager = new TourManager();
 }
 

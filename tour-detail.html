@@ -326,21 +326,23 @@
         };
 
         // YENİ VE ESKİ JSON YAPISINI BİRLİKTE OKUYABİLEN AKILLI ÇEVİRMEN
-        function getLangText(tour, field, lang) {
-            if (!tour || !tour[field]) return '';
-            
-            // 1. Yeni düz yapı kontrolü (örn: description_en)
-            if (lang !== 'tr' && tour[`${field}_${lang}`]) {
-                return tour[`${field}_${lang}`];
+        // Öncelik: istenen dil → İngilizce → Türkçe (asla boş dönmez)
+        function getLangText(obj, field, lang) {
+            if (!obj) return '';
+
+            // 1. Nested obje formatı: { title: { tr: "...", en: "..." } }
+            if (obj[field] && typeof obj[field] === 'object') {
+                return obj[field][lang] || obj[field]['en'] || obj[field]['tr'] || '';
             }
-            
-            // 2. Eski iç içe (nested) yapı kontrolü (örn: description.en)
-            if (typeof tour[field] === 'object') {
-                return tour[field][lang] || tour[field]['tr'] || '';
+
+            // 2. Flat format: title_es, title_pt, title_en, title
+            if (lang !== 'tr') {
+                if (obj[`${field}_${lang}`]) return obj[`${field}_${lang}`];
+                if (obj[`${field}_en`])     return obj[`${field}_en`];   // İngilizce'ye düş
             }
-            
-            // 3. Varsayılan (Eğer direkt string ise)
-            return typeof tour[field] === 'string' ? tour[field] : '';
+
+            // 3. Türkçe veya son çare
+            return (typeof obj[field] === 'string' ? obj[field] : '') || '';
         }
 
         async function loadTourDetail(tourId) {
@@ -357,11 +359,12 @@
                     return;
                 }
 
+                // Dil öncelik sırası: i18n > localStorage > 'tr'
                 let lang = 'tr';
-                if (typeof i18n !== 'undefined' && i18n.currentLang) lang = i18n.currentLang;
-                else {
-                    const activeBtn = document.querySelector('.lang-dropdown-content a.active') || document.querySelector('.lang-dropdown-content a[data-lang="tr"]');
-                    if (activeBtn) lang = activeBtn.getAttribute('data-lang');
+                if (typeof i18n !== 'undefined' && i18n.currentLang && i18n.currentLang !== 'tr') {
+                    lang = i18n.currentLang;
+                } else {
+                    lang = localStorage.getItem('language') || 'tr';
                 }
 
                 const l = dict[lang] || dict.tr;
@@ -445,10 +448,8 @@
                 }
 
                 // 4. KALKIŞ DÖNÜŞ
-                const depArr = (lang !== 'tr' && tour[`departureReturn_${lang}`] && tour[`departureReturn_${lang}`].length > 0)
-                    ? tour[`departureReturn_${lang}`] : (tour.departureReturn || []);
-                if (depArr.length > 0) {
-                    const depHtml = depArr.map(item => {
+                if (tour.departureReturn && tour.departureReturn.length > 0) {
+                    const depHtml = tour.departureReturn.map(item => {
                         const parts = item.split(':');
                         if(parts.length > 1) return `<tr><td>${parts[0].trim()}</td><td>${parts.slice(1).join(':').trim()}</td></tr>`;
                         return `<tr><td colspan="2">${item}</td></tr>`;
@@ -458,18 +459,13 @@
                 }
 
                 // 5. DAHİL / HARİÇ
-                const includedArr = (lang !== 'tr' && tour[`included_${lang}`] && tour[`included_${lang}`].length > 0)
-                    ? tour[`included_${lang}`] : (tour.included || []);
-                const excKey = (tour.excluded && tour.excluded.length > 0) ? 'excluded' : 'not_included';
-                const excludedArr = (lang !== 'tr' && tour[`${excKey}_${lang}`] && tour[`${excKey}_${lang}`].length > 0)
-                    ? tour[`${excKey}_${lang}`] : (tour[excKey] || []);
                 let showIncExc = false;
-                if (includedArr.length > 0) {
-                    document.getElementById('tourIncludedList').innerHTML = includedArr.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
+                if (tour.included && tour.included.length > 0) {
+                    document.getElementById('tourIncludedList').innerHTML = tour.included.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
                     showIncExc = true;
                 }
-                if (excludedArr.length > 0) {
-                    document.getElementById('tourExcludedList').innerHTML = excludedArr.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
+                if (tour.excluded && tour.excluded.length > 0) {
+                    document.getElementById('tourExcludedList').innerHTML = tour.excluded.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
                     showIncExc = true;
                 }
                 if (showIncExc) document.getElementById('tourIncExcContainer').style.display = 'grid';
@@ -486,10 +482,8 @@
                 }
 
                 // 7. NOTLAR
-                const notesArr = (lang !== 'tr' && tour[`notes_${lang}`] && tour[`notes_${lang}`].length > 0)
-                    ? tour[`notes_${lang}`] : (tour.notes || []);
-                if (notesArr.length > 0) {
-                    document.getElementById('tourNotesList').innerHTML = notesArr.map(n => `<li>${n}</li>`).join('');
+                if (tour.notes && tour.notes.length > 0) {
+                    document.getElementById('tourNotesList').innerHTML = tour.notes.map(n => `<li>${n}</li>`).join('');
                     document.getElementById('tourNotesContainer').style.display = 'block';
                 }
 
@@ -510,10 +504,8 @@
                     document.getElementById('tourGalleryContainer').style.display = 'block';
                 }
                 
-                const waMsg = (window.i18n && window.i18n.t('wa_tour_inquiry'))
-                    ? encodeURIComponent(window.i18n.t('wa_tour_inquiry').replace('{title}', title))
-                    : encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
-                const emailSub = encodeURIComponent(title);
+                const waMsg = encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
+                const emailSub = encodeURIComponent(`${title} Bilgi Talebi`);
                 
                 document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}`;
                 document.getElementById('whatsappBtn').href = `https://wa.me/902125551923?text=${waMsg}`;
@@ -591,7 +583,15 @@
         }
 
         // Başlangıç Ayarları
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            const savedLang = localStorage.getItem('language') || 'tr';
+            document.querySelector('.current-lang-text').textContent = savedLang.toUpperCase();
+
+            // ✅ i18n'i kayıtlı dille başlat — ÖNCE bu, sonra tur yükle
+            if (window.i18n) {
+                await window.i18n.init(savedLang);
+            }
+
             const urlParams = new URLSearchParams(window.location.search);
             const tourId = urlParams.get('id');
             if (tourId) loadTourDetail(tourId);
@@ -601,9 +601,6 @@
                 if (e.key === 'ArrowRight' && document.getElementById('lightbox').classList.contains('active')) changeImage(1);
                 if (e.key === 'ArrowLeft' && document.getElementById('lightbox').classList.contains('active')) changeImage(-1);
             });
-            
-            const savedLang = localStorage.getItem('language') || 'tr';
-            document.querySelector('.current-lang-text').textContent = savedLang.toUpperCase();
         });
     </script>
 </body>
