@@ -253,8 +253,8 @@
                     <table class="pricing-table">
                         <thead>
                             <tr>
-                                <th>Otel Sınıfı</th>
-                                <th>Fiyat (Kişi Başı)</th>
+                                <th id="lblPricingCol1">Otel Sınıfı</th>
+                                <th id="lblPricingCol2">Fiyat (Kişi Başı)</th>
                             </tr>
                         </thead>
                         <tbody id="tourPricingTableBody"></tbody>
@@ -318,11 +318,11 @@
         let currentTourId = "";
 
         const dict = {
-            tr: { home: 'Ana Sayfa', tours: 'Turlar', overview: 'Tur Hakkında', day: 'Gün', included: 'Fiyata Dahil Olanlar', excluded: 'Fiyata Dahil Olmayanlar', pricing: 'Başlangıç Fiyatları', notes: 'Önemli Notlar', map: 'Tur Rotası', gallery: 'Fotoğraf Galerisi', priceTitle: 'BAŞLANGIÇ FİYATI', emailBtn: 'Hemen Bilgi Al', waBtn: 'WhatsApp Rezervasyon', pricingNote: '(*) Belirtilen fiyatlar başlangıç fiyatlarıdır. Kesin fiyat için lütfen iletişime geçin.' },
-            en: { home: 'Home', tours: 'Tours', overview: 'Overview', day: 'Day', included: 'Included', excluded: 'Not Included', pricing: 'Starting Prices', notes: 'Notes', map: 'Maps', gallery: 'Gallery', priceTitle: 'STARTING FROM', emailBtn: 'Inquire Now', waBtn: 'Book via WhatsApp', pricingNote: '(*) Prices are starting prices. Contact us for exact pricing.' },
-            es: { home: 'Inicio', tours: 'Tours', overview: 'Visión General', day: 'Día', included: 'Incluido', excluded: 'No Incluido', pricing: 'Precios', notes: 'Notas', map: 'Mapa', gallery: 'Galería', priceTitle: 'DESDE', emailBtn: 'Consultar', waBtn: 'Reservar (WhatsApp)', pricingNote: '(*) Precios iniciales.' },
-            pt: { home: 'Início', tours: 'Passeios', overview: 'Visão Geral', day: 'Dia', included: 'Incluído', excluded: 'Não Incluído', pricing: 'Preços Iniciais', notes: 'Notas', map: 'Mapa', gallery: 'Galeria', priceTitle: 'A PARTIR DE', emailBtn: 'Consultar Agora', waBtn: 'Reservar via WhatsApp', pricingNote: '(*) Os preços são iniciais. Contate-nos para valores exatos.' },
-            ar: { home: 'الرئيسية', tours: 'جولات', overview: 'ملخص', day: 'يوم', included: 'مشمول', excluded: 'غير مشمول', pricing: 'الأسعار', notes: 'ملاحظات', map: 'خريطة', gallery: 'صالة عرض', priceTitle: 'يبدأ من', emailBtn: 'استفسر الآن', waBtn: 'WhatsApp', pricingNote: '(*) أسعار مبدئية.' }
+            tr: { home: 'Ana Sayfa', tours: 'Turlar', overview: 'Tur Hakkında', day: 'Gün', included: 'Fiyata Dahil Olanlar', excluded: 'Fiyata Dahil Olmayanlar', pricing: 'Başlangıç Fiyatları', notes: 'Önemli Notlar', map: 'Tur Rotası', gallery: 'Fotoğraf Galerisi', priceTitle: 'BAŞLANGIÇ FİYATI', emailBtn: 'Hemen Bilgi Al', waBtn: 'WhatsApp Rezervasyon', pricingNote: '(*) Belirtilen fiyatlar başlangıç fiyatlarıdır. Kesin fiyat için lütfen iletişime geçin.', pricingCol1: 'Otel Sınıfı', pricingCol2: 'Fiyat (Kişi Başı)' },
+            en: { home: 'Home', tours: 'Tours', overview: 'Overview', day: 'Day', included: 'Included', excluded: 'Not Included', pricing: 'Starting Prices', notes: 'Notes', map: 'Maps', gallery: 'Gallery', priceTitle: 'STARTING FROM', emailBtn: 'Inquire Now', waBtn: 'Book via WhatsApp', pricingNote: '(*) Prices are starting prices. Contact us for exact pricing.', pricingCol1: 'Hotel Class', pricingCol2: 'Price (per person)' },
+            es: { home: 'Inicio', tours: 'Tours', overview: 'Visión General', day: 'Día', included: 'Incluido', excluded: 'No Incluido', pricing: 'Precios', notes: 'Notas', map: 'Mapa', gallery: 'Galería', priceTitle: 'DESDE', emailBtn: 'Consultar', waBtn: 'Reservar (WhatsApp)', pricingNote: '(*) Precios iniciales.', pricingCol1: 'Clase de Hotel', pricingCol2: 'Precio (por persona)' },
+            pt: { home: 'Início', tours: 'Passeios', overview: 'Visão Geral', day: 'Dia', included: 'Incluído', excluded: 'Não Incluído', pricing: 'Preços Iniciais', notes: 'Notas', map: 'Mapa', gallery: 'Galeria', priceTitle: 'A PARTIR DE', emailBtn: 'Consultar Agora', waBtn: 'Reservar via WhatsApp', pricingNote: '(*) Os preços são iniciais. Contate-nos para valores exatos.', pricingCol1: 'Classe de Hotel', pricingCol2: 'Preço (por pessoa)' },
+            ar: { home: 'الرئيسية', tours: 'جولات', overview: 'ملخص', day: 'يوم', included: 'مشمول', excluded: 'غير مشمول', pricing: 'الأسعار', notes: 'ملاحظات', map: 'خريطة', gallery: 'صالة عرض', priceTitle: 'يبدأ من', emailBtn: 'استفسر الآن', waBtn: 'WhatsApp', pricingNote: '(*) أسعار مبدئية.', pricingCol1: 'فئة الفندق', pricingCol2: 'السعر (للشخص)' }
         };
 
         // YENİ VE ESKİ JSON YAPISINI BİRLİKTE OKUYABİLEN AKILLI ÇEVİRMEN
@@ -359,10 +359,10 @@
                     return;
                 }
 
-                // Dil öncelik sırası: i18n > localStorage > 'tr'
+                // Dil öncelik sırası: i18n.currentLang → localStorage → 'tr'
                 let lang = 'tr';
-                if (typeof i18n !== 'undefined' && i18n.currentLang && i18n.currentLang !== 'tr') {
-                    lang = i18n.currentLang;
+                if (window.i18n && window.i18n.currentLang) {
+                    lang = window.i18n.currentLang;
                 } else {
                     lang = localStorage.getItem('language') || 'tr';
                 }
@@ -381,6 +381,8 @@
                 document.getElementById('lblEmailBtn').textContent = l.emailBtn;
                 document.getElementById('lblWaBtn').textContent = l.waBtn;
                 document.getElementById('lblPricingNote').textContent = l.pricingNote;
+                document.getElementById('lblPricingCol1').textContent = l.pricingCol1;
+                document.getElementById('lblPricingCol2').textContent = l.pricingCol2;
 
                 // Akıllı Çevirmen ile Verileri Çek
                 const title = getLangText(tour, 'title', lang) || tour.id;

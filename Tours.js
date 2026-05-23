@@ -44,12 +44,12 @@ class TourManager {
         if (tour[field] && typeof tour[field] === 'object') {
             return tour[field][lang] || tour[field]['en'] || tour[field]['tr'] || '';
         }
-        // 2. Flat format — önce istenen dil, sonra EN, sonra TR
+        // 2. Flat format — istenen dil → EN → TR
         if (lang !== 'tr') {
             if (tour[`${field}_${lang}`]) return tour[`${field}_${lang}`];
-            if (tour[`${field}_en`])     return tour[`${field}_en`];
+            if (tour[`${field}_en`])      return tour[`${field}_en`];
         }
-        return tour[field] || '';
+        return tour[`${field}_tr`] || tour[field] || '';
     }
 
     setupEventListeners() {
@@ -60,9 +60,11 @@ class TourManager {
         });
 
         window.addEventListener('languageChanged', (e) => {
-            this.currentLang = (e.detail && e.detail.lang)
+            // detail.lang → detail (eski string format) → localStorage → 'tr'
+            const lang = (e.detail && e.detail.lang)
                 ? e.detail.lang
-                : (e.detail || localStorage.getItem('language') || 'tr');
+                : (typeof e.detail === 'string' && e.detail ? e.detail : null);
+            this.currentLang = lang || localStorage.getItem('language') || 'tr';
             this.displayTours();
         });
     }

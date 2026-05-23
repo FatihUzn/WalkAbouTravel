@@ -427,7 +427,8 @@
                 if(window.i18n) {
                     window.i18n.changeLanguage(selectedLang);
                     updateDropdownText(selectedLang);
-                    window.dispatchEvent(new Event('languageChanged')); // ✅ Dil değişince blog & tur içeriğini güncelle
+                    // NOT: i18n.changeLanguage içinde zaten CustomEvent({detail:{lang}}) dispatch ediliyor.
+                    // Buraya ikinci bir Event('languageChanged') EKLEMIYORUZ — detail'siz event Tours.js'i bozuyor.
                 }
                 langOption.closest('.lang-dropdown').classList.remove('active');
                 return;
@@ -444,6 +445,7 @@
 
     // Dil değiştiğinde içerikleri anında güncelle
     window.addEventListener('languageChanged', () => {
+        loadCategories();
         loadTours();
     });
 
@@ -452,10 +454,12 @@
         if(!item) return '';
         const lang = window.i18n ? window.i18n.currentLang : 'tr';
         if (typeof item[field] === 'object' && item[field] !== null) {
-            return item[field][lang] || item[field]['tr'] || '';
+            // Nested: istenen dil → EN → TR
+            return item[field][lang] || item[field]['en'] || item[field]['tr'] || '';
         }
         if (lang === 'tr') return item[field] || '';
-        return item[`${field}_${lang}`] || item[field] || ''; 
+        // Flat: istenen dil → EN → TR
+        return item[`${field}_${lang}`] || item[`${field}_en`] || item[field] || '';
     }
 
     // ==================== 2. KATEGORİLER (4'LÜ YAPI) ====================
@@ -470,12 +474,13 @@
         const grid = document.getElementById('categoriesGrid');
         if (!grid) return;
         
-        // DİKKAT: Artık linke gitmek yerine filterTours() fonksiyonunu çağırıyoruz
+        const t = (key, fallback) => (window.i18n && window.i18n.t) ? window.i18n.t(key) : fallback;
+
         grid.innerHTML = mainCategories.map(cat => `
             <div class="category-image-card" data-category="${cat.category}" onclick="filterTours('${cat.category}')">
                 <img src="${cat.image}" alt="${cat.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
                 <div class="category-overlay">
-                    <div class="category-name" data-i18n="cat_${cat.category}">${cat.name}</div>
+                    <div class="category-name">${t('cat_' + cat.category, cat.name)}</div>
                 </div>
             </div>
         `).join('');
@@ -572,7 +577,7 @@
                         <p class="trip-card-description">${shortDesc}</p>
                         <div class="trip-card-price">From ${tour.price}</div>
                         <a href="tour-detail.html?id=${tour.id}" class="trip-card-button" onclick="event.stopPropagation()">
-                            <span>EXPLORE TRIP</span><i class="fas fa-arrow-right"></i>
+                            <span>${window.i18n ? window.i18n.t('tour_detail_btn') : 'Detayları Gör'}</span><i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -586,7 +591,8 @@
         
         // Eğer filtrelenen kategoride hiç tur yoksa uyarı mesajı göster
         if (tours.length === 0) {
-            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px; font-size: 18px; color: #94a3b8;"><i class="fas fa-search" style="font-size: 40px; margin-bottom: 15px; display:block;"></i> Bu kategoride henüz tur bulunmuyor.</div>';
+            const msg = window.i18n ? window.i18n.t('tours_empty') : 'Bu kategoride henüz tur bulunmuyor.';
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px; font-size: 18px; color: #94a3b8;"><i class="fas fa-search" style="font-size: 40px; margin-bottom: 15px; display:block;"></i> ${msg}</div>`;
             return;
         }
 
@@ -609,7 +615,7 @@
                         <span class="feature-tag"><i class="fas fa-tag"></i> ${tour.price}</span>
                     </div>
                     <a href="tour-detail.html?id=${tour.id}" class="tour-link">
-                        <span>DETAYLARI İNCELE</span> <i class="fas fa-arrow-right"></i>
+                        <span>${window.i18n ? window.i18n.t('tour_detail_btn') : 'Detayları Gör'}</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
