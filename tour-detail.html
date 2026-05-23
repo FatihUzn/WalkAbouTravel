@@ -445,8 +445,11 @@
                 }
 
                 // 4. KALKIŞ DÖNÜŞ
-                if (tour.departureReturn && tour.departureReturn.length > 0) {
-                    const depHtml = tour.departureReturn.map(item => {
+                const depArr = (lang !== 'tr' && tour[`departureReturn_${lang}`] && tour[`departureReturn_${lang}`].length > 0)
+                    ? tour[`departureReturn_${lang}`]
+                    : (tour.departureReturn || []);
+                if (depArr.length > 0) {
+                    const depHtml = depArr.map(item => {
                         const parts = item.split(':');
                         if(parts.length > 1) return `<tr><td>${parts[0].trim()}</td><td>${parts.slice(1).join(':').trim()}</td></tr>`;
                         return `<tr><td colspan="2">${item}</td></tr>`;
@@ -456,13 +459,20 @@
                 }
 
                 // 5. DAHİL / HARİÇ
+                const includedArr = (lang !== 'tr' && tour[`included_${lang}`] && tour[`included_${lang}`].length > 0)
+                    ? tour[`included_${lang}`]
+                    : (tour.included || []);
+                const excludedKey = tour.excluded ? 'excluded' : 'not_included';
+                const excludedArr = (lang !== 'tr' && tour[`${excludedKey}_${lang}`] && tour[`${excludedKey}_${lang}`].length > 0)
+                    ? tour[`${excludedKey}_${lang}`]
+                    : (tour[excludedKey] || []);
                 let showIncExc = false;
-                if (tour.included && tour.included.length > 0) {
-                    document.getElementById('tourIncludedList').innerHTML = tour.included.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
+                if (includedArr.length > 0) {
+                    document.getElementById('tourIncludedList').innerHTML = includedArr.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
                     showIncExc = true;
                 }
-                if (tour.excluded && tour.excluded.length > 0) {
-                    document.getElementById('tourExcludedList').innerHTML = tour.excluded.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
+                if (excludedArr.length > 0) {
+                    document.getElementById('tourExcludedList').innerHTML = excludedArr.map(e => `<li><i class="fas fa-minus"></i> <span>${e}</span></li>`).join('');
                     showIncExc = true;
                 }
                 if (showIncExc) document.getElementById('tourIncExcContainer').style.display = 'grid';
@@ -479,8 +489,11 @@
                 }
 
                 // 7. NOTLAR
-                if (tour.notes && tour.notes.length > 0) {
-                    document.getElementById('tourNotesList').innerHTML = tour.notes.map(n => `<li>${n}</li>`).join('');
+                const notesArr = (lang !== 'tr' && tour[`notes_${lang}`] && tour[`notes_${lang}`].length > 0)
+                    ? tour[`notes_${lang}`]
+                    : (tour.notes || []);
+                if (notesArr.length > 0) {
+                    document.getElementById('tourNotesList').innerHTML = notesArr.map(n => `<li>${n}</li>`).join('');
                     document.getElementById('tourNotesContainer').style.display = 'block';
                 }
 
@@ -501,8 +514,8 @@
                     document.getElementById('tourGalleryContainer').style.display = 'block';
                 }
                 
-                const waMsg = encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
-                const emailSub = encodeURIComponent(`${title} Bilgi Talebi`);
+                const waMsg = window.i18n ? encodeURIComponent(window.i18n.t('wa_tour_inquiry').replace('{title}', title)) : encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
+                const emailSub = encodeURIComponent(`${title}`);
                 
                 document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}`;
                 document.getElementById('whatsappBtn').href = `https://wa.me/902125551923?text=${waMsg}`;
