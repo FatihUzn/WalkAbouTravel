@@ -126,7 +126,85 @@
     "title_ar": "ماردين: حضارة مكتوبة على الحجر",
     "description_es": "Exploración de casas de piedra históricas, antiguos monasterios y artesanías tradicionales en Mardin, la antigua ciudad de Mesopotamia.",
     "description_pt": "Exploração de casas de pedra históricas, antigos mosteiros e artesanato tradicional em Mardin, a antiga cidade da Mesopotâmia.",
-    "description_ar": "استكشاف المنازل الحجرية التاريخية والأديرة القديمة والحرف اليدوية التقليدية في ماردين، مدينة بلاد ما بين النهرين القديمة."
+    "description_ar": "استكشاف المنازل الحجرية التاريخية والأديرة القديمة والحرف اليدوية التقليدية في ماردين، مدينة بلاد ما بين النهرين القديمة.",
+    "highlights_es": [
+      "Legado siríaco en el Monasterio de Deyrü'z-Zafaran (Templo solar de 3000 años)",
+      "Madraza de Kasımiye: Obra de piedra del siglo XV con vistas a Mesopotamia",
+      "Zoco de plata de Midyat: Centro vivo de artesanía centenaria",
+      "Ciudad antigua de Dara: Profundas huellas romanas en Mesopotamia",
+      "Museo de Mardin: Artefactos invaluables desde la Edad del Bronce hasta el periodo otomano",
+      "Panorama de Mardin: Vistas impresionantes de casas de piedra y llanuras mesopotámicas"
+    ],
+    "highlights_pt": [
+      "Legado siríaco no Mosteiro de Deyrü'z-Zafaran (Templo solar de 3000 anos)",
+      "Madraça de Kasımiye: Obra em pedra do século XV com vista para a Mesopotâmia",
+      "Bazar de Prata de Midyat: Centro vivo do artesanato centenário",
+      "Cidade Antiga de Dara: Profundas marcas romanas na Mesopotâmia",
+      "Museu de Mardin: Artefatos inestimáveis da Idade do Bronze ao período otomano",
+      "Panorama de Mardin: Vistas deslumbrantes de casas de pedra e planícies mesopotâmicas"
+    ],
+    "highlights_ar": [
+      "تراث سرياني في دير الزعفران (معبد شمسي عمره 3000 عام)",
+      "مدرسة قاسمية: تحفة حجرية من القرن الخامس عشر تطل على بلاد ما بين النهرين",
+      "سوق الفضة في ميديا: مركز حي للحرف اليدوية التي تعود لقرون",
+      "مدينة دارا القديمة: آثار رومانية عميقة في بلاد ما بين النهرين",
+      "متحف ماردين: قطع أثرية لا تقدر بثمن من العصر البرونزي إلى العصر العثماني",
+      "بانوراما ماردين: مناظر خلابة للمنازل الحجرية وسهول بلاد ما بين النهرين"
+    ],
+    "itinerary_es": [
+      {
+        "day": 1,
+        "description": "Llegada a Mardin y primer contacto con su tejido histórico, una silueta única de casas de piedra, iglesias y mezquitas sobre Mesopotamia. Visita a la Madraza de Kasımiye."
+      },
+      {
+        "day": 2,
+        "description": "Visita al Monasterio de Deyrü'z-Zafaran, construido sobre un templo solar de 3000 años. Viaje a Midyat para descubrir el arte de la plata y monasterios históricos."
+      },
+      {
+        "day": 3,
+        "description": "Exploración de la Ciudad Antigua de Dara y el Museo de Mardin, recorriendo desde la Edad del Bronce hasta la época otomana."
+      },
+      {
+        "day": 4,
+        "description": "Traslado al aeropuerto o estación de autobuses. Fin del viaje."
+      }
+    ],
+    "itinerary_pt": [
+      {
+        "day": 1,
+        "description": "Chegada a Mardin e primeiro contato com o seu tecido histórico, uma silhueta única de casas de pedra, igrejas e mesquitas sobre a Mesopotâmia. Visita à Madraça de Kasımiye."
+      },
+      {
+        "day": 2,
+        "description": "Visita ao Mosteiro de Deyrü'z-Zafaran, construído sobre um templo solar de 3000 anos. Viagem a Midyat para descobrir a arte da prata e mosteiros históricos."
+      },
+      {
+        "day": 3,
+        "description": "Exploração da Cidade Antiga de Dara e do Museu de Mardin, percorrendo da Idade do Bronze ao período otomano."
+      },
+      {
+        "day": 4,
+        "description": "Traslado para o aeroporto ou estação de ônibus. Fim da viagem."
+      }
+    ],
+    "itinerary_ar": [
+      {
+        "day": 1,
+        "description": "الوصول إلى ماردين واستكشاف نسيجها التاريخي الفريد من المنازل الحجرية والكنائس والمساجد المطلة على بلاد ما بين النهرين. زيارة مدرسة قاسمية."
+      },
+      {
+        "day": 2,
+        "description": "زيارة دير الزعفران المبني فوق معبد شمسي عمره 3000 عام. التوجه إلى ميديا لاكتشاف فن الفضة والأديرة التاريخية."
+      },
+      {
+        "day": 3,
+        "description": "استكشاف مدينة دارا القديمة ومتحف ماردين، مروراً بالعصر البرونزي وصولاً إلى العصر العثماني."
+      },
+      {
+        "day": 4,
+        "description": "الانتقال إلى المطار أو محطة الحافلات. نهاية الرحلة."
+      }
+    ]
   },
   {
     "id": "TUR-TR-ANTALYA",
@@ -246,9 +324,75 @@
     "title_es": "Antalya: El Cuento de las Bahías Turquesas",
     "title_pt": "Antália: O Conto das Baías Turquesas",
     "title_ar": "أنطاليا: حكاية الخلجان الفيروزية",
-    "description_es": "Recorrido de exploración por las bahías de Antalya, famosas por sus aguas azul turquesa, puertos antiguos y playas escondidas.",
-    "description_pt": "Passeio de exploração pelas baías de Antália, famosas por suas águas azul-turquesa, portos antigos e praias escondidas.",
-    "description_ar": "جولة استكشافية في خلجان أنطاليا الشهيرة بمياهها الفيروزية وموانئها القديمة وشواطئها المخفية."
+    "description_es": "Un tour de descubrimiento por las bahías de Antalya, famosas por sus aguas azul turquesa, puertos antiguos y playas escondidas.",
+    "description_pt": "Um passeio de descoberta pelas baías de Antália, famosas pelas suas águas azul-turquesa, portos antigos e praias escondidas.",
+    "description_ar": "جولة استكشافية في خلجان أنطاليا الشهيرة بمياهها الفيروزية، وموانئها القديمة وشواطئها المخفية.",
+    "highlights_es": [
+      "Kaleiçi: Puerto histórico y callejones de piedra de la época romana a la otomana",
+      "Puerta de Adriano: Monumento romano majestuoso del siglo II d.C.",
+      "Minarete Yivli: Estructura símbolo de Antalya",
+      "Kemer: Bahías turquesas a los pies de las montañas Taurus",
+      "Crucero por la bahía de Antalya: Natación y snorkel en aguas cristalinas",
+      "Museo de Antalya: Artefactos invaluables de los periodos licio y romano"
+    ],
+    "highlights_pt": [
+      "Kaleiçi: Porto histórico e vielas de pedra do período romano ao otomano",
+      "Portão de Adriano: Majestoso monumento romano do século II d.C.",
+      "Minarete Yivli: Estrutura símbolo de Antália",
+      "Kemer: Baías turquesas aos pés das montanhas Taurus",
+      "Cruzeiro na baía de Antália: Natação e snorkel em águas cristalinas",
+      "Museu de Antália: Artefatos inestimáveis dos períodos lício e romano"
+    ],
+    "highlights_ar": [
+      "كاليجي: الميناء التاريخي والأزقة الحجرية من العصر الروماني إلى العصر العثماني",
+      "بوابة هادريان: نصب روماني مهيب من القرن الثاني الميلادي",
+      "المئذنة المخددة (Yivli Minare): رمز أنطاليا",
+      "كيمير: خلجان فيروزية عند سفح جبال طوروس",
+      "رحلة بحرية في خليج أنطاليا: السباحة والغوص في المياه الصافية",
+      "متحف أنطاليا: قطع أثرية لا تقدر بثمن من العصور الليقية والرومانية"
+    ],
+    "itinerary_es": [
+      {
+        "day": 1,
+        "description": "Llegada y exploración de Kaleiçi: la Puerta de Adriano, el puerto histórico y el Minarete Yivli."
+      },
+      {
+        "day": 2,
+        "description": "Visita a Kemer, rodeado de pinos y aguas turquesas. Crucero por la bahía de Antalya con paradas para nadar y hacer snorkel."
+      },
+      {
+        "day": 3,
+        "description": "Visita al Museo de Antalya, hogar de una de las colecciones arqueológicas más ricas de Turquía. Traslado final."
+      }
+    ],
+    "itinerary_pt": [
+      {
+        "day": 1,
+        "description": "Chegada e exploração de Kaleiçi: o Portão de Adriano, o porto histórico e o Minarete Yivli."
+      },
+      {
+        "day": 2,
+        "description": "Visita a Kemer, rodeado por pinheiros e águas turquesas. Cruzeiro pela baía de Antália com paradas para natação e snorkel."
+      },
+      {
+        "day": 3,
+        "description": "Visita ao Museu de Antália, lar de uma das coleções arqueológicas mais ricas da Turquia. Traslado final."
+      }
+    ],
+    "itinerary_ar": [
+      {
+        "day": 1,
+        "description": "الوصول واستكشاف كاليجي: بوابة هادريان والميناء التاريخي والمئذنة المخددة."
+      },
+      {
+        "day": 2,
+        "description": "زيارة كيمير المحاطة بأشجار الصنوبر والمياه الفيروزية. رحلة بحرية في خليج أنطاليا مع توقف للسباحة والغوص."
+      },
+      {
+        "day": 3,
+        "description": "زيارة متحف أنطاليا، الذي يضم واحدة من أغنى المجموعات الأثرية في تركيا. النقل النهائي."
+      }
+    ]
   },
   {
     "id": "TUR-TR-KAPADOKYA",
@@ -365,9 +509,75 @@
     "title_es": "Capadocia: Cielo y Cuento de Hadas",
     "title_pt": "Capadócia: Céu e Conto de Fadas",
     "title_ar": "كابادوكيا: السماء والقصة الخيالية",
-    "description_es": "Exploración del paisaje mágico de Capadocia al amanecer en un globo aerostático, ciudades subterráneas y chimeneas de hadas.",
-    "description_pt": "Exploração da paisagem mágica da Capadócia ao nascer do sol em um balão de ar quente, cidades subterrâneas e chaminés de fada.",
-    "description_ar": "استكشاف المناظر الطبيعية الساحرة لكابادوكيا عند شروق الشمس في منطاد الهواء الساخن، والمدن تحت الأرض ومداخن الجنيات."
+    "description_es": "Descubra el paisaje mágico de Capadocia al amanecer en globo, sus ciudades subterráneas y sus chimeneas de hadas.",
+    "description_pt": "Descubra a paisagem mágica da Capadócia ao nascer do sol de balão, suas cidades subterrâneas e chaminés de fadas.",
+    "description_ar": "اكتشف المناظر الطبيعية الساحرة لكابادوكيا عند شروق الشمس من المنطاد، ومدنها تحت الأرض ومداخن الجنيات.",
+    "highlights_es": [
+      "Museo al aire libre de Zelve: Cinco iglesias bizantinas juntas",
+      "Paşabağ: Chimeneas de hadas con figuras de animales y cuentos",
+      "Taller tradicional de cerámica en Avanos",
+      "Ciudad subterránea de Kaymakli: Un viaje a las profundidades de la historia",
+      "Castillo de Uçhisar: Vistas panorámicas de Capadocia",
+      "Opcional: Experiencia en globo aerostático al amanecer"
+    ],
+    "highlights_pt": [
+      "Museu ao ar livre de Zelve: Cinco igrejas bizantinas juntas",
+      "Paşabağ: Chaminés de fadas com figuras de animais e contos",
+      "Oficina tradicional de cerâmica em Avanos",
+      "Cidade subterrânea de Kaymakli: Uma viagem às profundezas da história",
+      "Castelo de Uçhisar: Vistas panorâmicas da Capadócia",
+      "Opcional: Experiência de balão de ar quente ao amanhecer"
+    ],
+    "highlights_ar": [
+      "متحف زلفي المفتوح: خمس كنائس بيزنطية معاً",
+      "باشاباغ: مداخن الجنيات ذات أشكال الحيوانات والحكايات",
+      "ورشة فخار تقليدية في أفانوس",
+      "مدينة كايماكلي تحت الأرض: رحلة إلى أعماق التاريخ",
+      "قلعة أوشيسار: إطلالات بانورامية على كابادوكيا",
+      "اختياري: تجربة المنطاد عند شروق الشمس"
+    ],
+    "itinerary_es": [
+      {
+        "day": 1,
+        "description": "Traslado desde Estambul. Inicio de la exploración con el Museo al aire libre de Zelve, Paşabağ y el taller de cerámica en Avanos."
+      },
+      {
+        "day": 2,
+        "description": "Tour por el sur: Senderismo en los valles, Ciudad subterránea de Kaymakli y vistas desde el Castillo de Uçhisar. Regreso a Estambul."
+      },
+      {
+        "day": 3,
+        "description": "Regreso final desde Capadocia."
+      }
+    ],
+    "itinerary_pt": [
+      {
+        "day": 1,
+        "description": "Traslado de Istambul. Início da exploração com o Museu ao ar livre de Zelve, Paşabağ e a oficina de cerâmica em Avanos."
+      },
+      {
+        "day": 2,
+        "description": "Tour pelo sul: Caminhada nos vales, Cidade subterrânea de Kaymakli e vistas do Castelo de Uçhisar. Retorno a Istambul."
+      },
+      {
+        "day": 3,
+        "description": "Retorno final da Capadócia."
+      }
+    ],
+    "itinerary_ar": [
+      {
+        "day": 1,
+        "description": "النقل من إسطنبول. بدء الاستكشاف بمتحف زلفي المفتوح، باشاباغ، وورشة الفخار في أفانوس."
+      },
+      {
+        "day": 2,
+        "description": "جولة جنوب كابادوكيا: المشي في الوديان، مدينة كايماكلي تحت الأرض، وإطلالات قلعة أوشيسار. العودة إلى إسطنبول."
+      },
+      {
+        "day": 3,
+        "description": "العودة النهائية من كابادوكيا."
+      }
+    ]
   },
   {
     "id": "TUR-TR-FETHIYE",
