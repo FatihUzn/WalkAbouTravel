@@ -446,8 +446,7 @@
 
                 // 4. KALKIŞ DÖNÜŞ
                 const depArr = (lang !== 'tr' && tour[`departureReturn_${lang}`] && tour[`departureReturn_${lang}`].length > 0)
-                    ? tour[`departureReturn_${lang}`]
-                    : (tour.departureReturn || []);
+                    ? tour[`departureReturn_${lang}`] : (tour.departureReturn || []);
                 if (depArr.length > 0) {
                     const depHtml = depArr.map(item => {
                         const parts = item.split(':');
@@ -460,12 +459,10 @@
 
                 // 5. DAHİL / HARİÇ
                 const includedArr = (lang !== 'tr' && tour[`included_${lang}`] && tour[`included_${lang}`].length > 0)
-                    ? tour[`included_${lang}`]
-                    : (tour.included || []);
-                const excludedKey = tour.excluded ? 'excluded' : 'not_included';
-                const excludedArr = (lang !== 'tr' && tour[`${excludedKey}_${lang}`] && tour[`${excludedKey}_${lang}`].length > 0)
-                    ? tour[`${excludedKey}_${lang}`]
-                    : (tour[excludedKey] || []);
+                    ? tour[`included_${lang}`] : (tour.included || []);
+                const excKey = (tour.excluded && tour.excluded.length > 0) ? 'excluded' : 'not_included';
+                const excludedArr = (lang !== 'tr' && tour[`${excKey}_${lang}`] && tour[`${excKey}_${lang}`].length > 0)
+                    ? tour[`${excKey}_${lang}`] : (tour[excKey] || []);
                 let showIncExc = false;
                 if (includedArr.length > 0) {
                     document.getElementById('tourIncludedList').innerHTML = includedArr.map(i => `<li><i class="fas fa-check"></i> <span>${i}</span></li>`).join('');
@@ -490,8 +487,7 @@
 
                 // 7. NOTLAR
                 const notesArr = (lang !== 'tr' && tour[`notes_${lang}`] && tour[`notes_${lang}`].length > 0)
-                    ? tour[`notes_${lang}`]
-                    : (tour.notes || []);
+                    ? tour[`notes_${lang}`] : (tour.notes || []);
                 if (notesArr.length > 0) {
                     document.getElementById('tourNotesList').innerHTML = notesArr.map(n => `<li>${n}</li>`).join('');
                     document.getElementById('tourNotesContainer').style.display = 'block';
@@ -514,8 +510,10 @@
                     document.getElementById('tourGalleryContainer').style.display = 'block';
                 }
                 
-                const waMsg = window.i18n ? encodeURIComponent(window.i18n.t('wa_tour_inquiry').replace('{title}', title)) : encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
-                const emailSub = encodeURIComponent(`${title}`);
+                const waMsg = (window.i18n && window.i18n.t('wa_tour_inquiry'))
+                    ? encodeURIComponent(window.i18n.t('wa_tour_inquiry').replace('{title}', title))
+                    : encodeURIComponent(`Merhaba, "${title}" turu hakkında bilgi almak istiyorum.`);
+                const emailSub = encodeURIComponent(title);
                 
                 document.getElementById('emailBtn').href = `mailto:info@walkaboutravel.com?subject=${emailSub}`;
                 document.getElementById('whatsappBtn').href = `https://wa.me/902125551923?text=${waMsg}`;

@@ -73,12 +73,54 @@
       "Kişisel harcamalar",
       "Sağlık hizmetleri"
     ],
-    "title_es": "Tour de Cultura e Historia de Mardin",
-    "description_es": "Exploración de casas históricas de piedra, monasterios antiguos y artesanías tradicionales en Mardin, la antigua ciudad de Mesopotamia.",
-    "title_ar": "جولة ماردين الثقافية والتاريخية",
-    "description_ar": "استكشاف البيوت الحجرية التاريخية والأديرة القديمة والحرف التقليدية في ماردين، مدينة بلاد ما بين النهرين العريقة.",
-    "title_pt": "Tour Cultural e Histórico de Mardin",
-    "description_pt": "Exploração de casas históricas de pedra, mosteiros antigos e artesanato tradicional em Mardin, a antiga cidade da Mesopotâmia."
+    "included_en": [
+      "3 nights accommodation",
+      "All land transfers",
+      "Professional guiding service",
+      "All museum and site entrance fees",
+      "All local taxes"
+    ],
+    "included_es": [
+      "3 noches de alojamiento",
+      "Todos los traslados terrestres",
+      "Servicio de guía profesional",
+      "Todas las entradas a museos y sitios",
+      "Todos los impuestos locales"
+    ],
+    "included_ar": [
+      "3 ليالٍ إقامة",
+      "جميع التنقلات البرية",
+      "خدمة الإرشاد المحترف",
+      "جميع رسوم دخول المتاحف والمواقع",
+      "جميع الضرائب المحلية"
+    ],
+    "included_pt": [
+      "3 noites de acomodação",
+      "Todos os traslados terrestres",
+      "Serviço de guia profissional",
+      "Todas as entradas em museus e sítios",
+      "Todos os impostos locais"
+    ],
+    "not_included_en": [
+      "Meals (unless otherwise stated)",
+      "Personal expenses",
+      "Medical services"
+    ],
+    "not_included_es": [
+      "Comidas (salvo indicación contraria)",
+      "Gastos personales",
+      "Servicios médicos"
+    ],
+    "not_included_ar": [
+      "الوجبات (ما لم يُذكر خلاف ذلك)",
+      "النفقات الشخصية",
+      "الخدمات الطبية"
+    ],
+    "not_included_pt": [
+      "Refeições (salvo indicação contrária)",
+      "Despesas pessoais",
+      "Serviços médicos"
+    ]
   },
   {
     "id": "TUR-TR-ANTALYA",
@@ -147,12 +189,54 @@
       "Kişisel harcamalar",
       "Sağlık hizmetleri"
     ],
-    "title_es": "Tour por las Bahías de Antalya",
-    "description_es": "Explora las bahías de Antalya famosas por sus aguas turquesas, puertos antiguos y playas escondidas.",
-    "title_ar": "جولة خلجان أنطاليا",
-    "description_ar": "استكشف خلجان أنطاليا الشهيرة بمياهها الفيروزية والموانئ الأثرية والشواطئ الخفية.",
-    "title_pt": "Tour pelas Baías de Antalya",
-    "description_pt": "Explore as baías de Antalya, famosas por suas águas turquesa, portos antigos e praias escondidas."
+    "included_en": [
+      "2 nights accommodation",
+      "All land and sea transfers",
+      "Professional guiding service",
+      "All museum and site entrance fees",
+      "All local taxes"
+    ],
+    "included_es": [
+      "2 noches de alojamiento",
+      "Todos los traslados terrestres y marítimos",
+      "Servicio de guía profesional",
+      "Todas las entradas a museos y sitios",
+      "Todos los impuestos locales"
+    ],
+    "included_ar": [
+      "ليلتان إقامة",
+      "جميع التنقلات البرية والبحرية",
+      "خدمة الإرشاد المحترف",
+      "جميع رسوم دخول المتاحف والمواقع",
+      "جميع الضرائب المحلية"
+    ],
+    "included_pt": [
+      "2 noites de acomodação",
+      "Todos os traslados terrestres e marítimos",
+      "Serviço de guia profissional",
+      "Todas as entradas em museus e sítios",
+      "Todos os impostos locais"
+    ],
+    "not_included_en": [
+      "Meals (unless otherwise stated)",
+      "Personal expenses",
+      "Medical services"
+    ],
+    "not_included_es": [
+      "Comidas (salvo indicación contraria)",
+      "Gastos personales",
+      "Servicios médicos"
+    ],
+    "not_included_ar": [
+      "الوجبات (ما لم يُذكر خلاف ذلك)",
+      "النفقات الشخصية",
+      "الخدمات الطبية"
+    ],
+    "not_included_pt": [
+      "Refeições (salvo indicação contrária)",
+      "Despesas pessoais",
+      "Serviços médicos"
+    ]
   },
   {
     "id": "TUR-TR-KAPADOKYA",
@@ -231,20 +315,41 @@
       "Optional: Hot air balloon ride at sunrise"
     ],
     "included_en": [
-      "Round-trip domestic flight tickets",
-      "All local transportation",
-      "1 night hotel accommodation",
-      "Professional guide service",
+      "Round-trip domestic flights",
+      "All land transfers",
+      "1 night accommodation",
+      "Professional guiding service",
       "All museum and site entrance fees",
       "Meals (B: Breakfast, L: Lunch)",
       "All local taxes"
     ],
-    "title_es": "Capadocia – Tour en Globo y Chimeneas de Hadas",
-    "description_es": "Vuelo en globo aerostático al amanecer sobre el mágico paisaje de Capadocia, ciudades subterráneas y chimeneas de hadas.",
-    "title_ar": "كابادوكيا – رحلة البالون والمداخن الجنية",
-    "description_ar": "رحلة بالمنطاد عند الفجر فوق المناظر الطبيعية الساحرة في كابادوكيا والمدن السفلية ومداخن الجنيات.",
-    "title_pt": "Capadócia – Tour de Balão e Chaminés de Fada",
-    "description_pt": "Passeio de balão de ar quente ao nascer do sol sobre a mágica paisagem da Capadócia, cidades subterrâneas e chaminés de fada."
+    "included_es": [
+      "Vuelos domésticos de ida y vuelta",
+      "Todos los traslados terrestres",
+      "1 noche de alojamiento",
+      "Servicio de guía profesional",
+      "Todas las entradas a museos y sitios",
+      "Comidas (D: Desayuno, A: Almuerzo)",
+      "Todos los impuestos locales"
+    ],
+    "included_ar": [
+      "تذاكر الرحلات المحلية ذهاباً وإياباً",
+      "جميع التنقلات البرية",
+      "ليلة إقامة واحدة",
+      "خدمة الإرشاد المحترف",
+      "جميع رسوم دخول المتاحف والمواقع",
+      "الوجبات (ف: الإفطار، غ: الغداء)",
+      "جميع الضرائب المحلية"
+    ],
+    "included_pt": [
+      "Voos domésticos de ida e volta",
+      "Todos os traslados terrestres",
+      "1 noite de acomodação",
+      "Serviço de guia profissional",
+      "Todas as entradas em museus e sítios",
+      "Refeições (C: Café da manhã, A: Almoço)",
+      "Todos os impostos locais"
+    ]
   },
   {
     "id": "TUR-TR-FETHIYE",
@@ -328,12 +433,58 @@
       "Kişisel harcamalar",
       "Sağlık hizmetleri"
     ],
-    "title_es": "Fethiye – Ölüdeniz y Saklıkent",
-    "description_es": "La famosa playa de Ölüdeniz, parapente, la antigua Ruta Licia y aventura en el cañón de Saklıkent.",
-    "title_ar": "فتحية – أولودينيز وساكليكنت",
-    "description_ar": "شاطئ أولودينيز الشهير عالمياً، والطيران الشراعي، ودرب ليقيا الأثري، ومغامرة كانيون ساكليكنت.",
-    "title_pt": "Fethiye – Ölüdeniz e Saklıkent",
-    "description_pt": "A mundialmente famosa praia de Ölüdeniz, parapente, a antiga Rota Lícia e aventura no cânion de Saklıkent."
+    "included_en": [
+      "4 nights accommodation",
+      "All land and sea transfers",
+      "Professional guiding service",
+      "All museum and site entrance fees",
+      "All local taxes"
+    ],
+    "included_es": [
+      "4 noches de alojamiento",
+      "Todos los traslados terrestres y marítimos",
+      "Servicio de guía profesional",
+      "Todas las entradas a museos y sitios",
+      "Todos los impuestos locales"
+    ],
+    "included_ar": [
+      "4 ليالٍ إقامة",
+      "جميع التنقلات البرية والبحرية",
+      "خدمة الإرشاد المحترف",
+      "جميع رسوم دخول المتاحف والمواقع",
+      "جميع الضرائب المحلية"
+    ],
+    "included_pt": [
+      "4 noites de acomodação",
+      "Todos os traslados terrestres e marítimos",
+      "Serviço de guia profissional",
+      "Todas as entradas em museus e sítios",
+      "Todos os impostos locais"
+    ],
+    "not_included_en": [
+      "Meals (unless otherwise stated)",
+      "Optional paragliding",
+      "Personal expenses",
+      "Medical services"
+    ],
+    "not_included_es": [
+      "Comidas (salvo indicación contraria)",
+      "Parapente opcional",
+      "Gastos personales",
+      "Servicios médicos"
+    ],
+    "not_included_ar": [
+      "الوجبات (ما لم يُذكر خلاف ذلك)",
+      "التزلج الهوائي الاختياري",
+      "النفقات الشخصية",
+      "الخدمات الطبية"
+    ],
+    "not_included_pt": [
+      "Refeições (salvo indicação contrária)",
+      "Parapente opcional",
+      "Despesas pessoais",
+      "Serviços médicos"
+    ]
   },
   {
     "id": "TUR-TR-PAMUKKALE",
@@ -390,12 +541,58 @@
       "Kişisel harcamalar",
       "Sağlık hizmetleri"
     ],
-    "title_es": "Pamukkale – Tour al Paraíso Blanco",
-    "description_es": "Travertinos blancos, la antigua ciudad de Hierápolis y una experiencia inolvidable en piscinas termales.",
-    "title_ar": "باموكالي – جولة الجنة البيضاء",
-    "description_ar": "التراسات الكلسية البيضاء ومدينة هيرابوليس الأثرية وتجربة لا تُنسى في البرك الحرارية.",
-    "title_pt": "Pamukkale – Tour ao Paraíso Branco",
-    "description_pt": "Travertinos brancos, a cidade antiga de Hierápolis e uma experiência inesquecível nas piscinas termais."
+    "included_en": [
+      "1 night accommodation",
+      "All land transfers",
+      "Professional guiding service",
+      "All museum and site entrance fees",
+      "All local taxes"
+    ],
+    "included_es": [
+      "1 noche de alojamiento",
+      "Todos los traslados terrestres",
+      "Servicio de guía profesional",
+      "Todas las entradas a museos y sitios",
+      "Todos los impuestos locales"
+    ],
+    "included_ar": [
+      "ليلة إقامة واحدة",
+      "جميع التنقلات البرية",
+      "خدمة الإرشاد المحترف",
+      "جميع رسوم دخول المتاحف والمواقع",
+      "جميع الضرائب المحلية"
+    ],
+    "included_pt": [
+      "1 noite de acomodação",
+      "Todos os traslados terrestres",
+      "Serviço de guia profissional",
+      "Todas as entradas em museus e sítios",
+      "Todos os impostos locais"
+    ],
+    "not_included_en": [
+      "Meals (unless otherwise stated)",
+      "Cleopatra Swimming Pool entrance (optional, ~$8)",
+      "Personal expenses",
+      "Medical services"
+    ],
+    "not_included_es": [
+      "Comidas (salvo indicación contraria)",
+      "Entrada a la Piscina de Cleopatra (opcional, ~$8)",
+      "Gastos personales",
+      "Servicios médicos"
+    ],
+    "not_included_ar": [
+      "الوجبات (ما لم يُذكر خلاف ذلك)",
+      "دخول حمام كليوباترا (اختياري، ~8$)",
+      "النفقات الشخصية",
+      "الخدمات الطبية"
+    ],
+    "not_included_pt": [
+      "Refeições (salvo indicação contrária)",
+      "Entrada na Piscina de Cleópatra (opcional, ~$8)",
+      "Despesas pessoais",
+      "Serviços médicos"
+    ]
   },
   {
     "id": "TUR-1773842058343",
@@ -552,9 +749,7 @@
       "assets/as-we-travel-turkey-1.webp",
       "assets/dream-turkey-turu-1.webp",
       "assets/turkey-insight-turu-1.webp"
-    ],
-    "title_pt": "Dez Dias na Anatólia: História, Natureza e Céu",
-    "description_pt": "Uma jornada inesquecível pela Anatólia descobrindo história, natureza e paisagens deslumbrantes."
+    ]
   },
   {
     "id": "TUR-1773845441965",
@@ -707,9 +902,7 @@
       "assets/best-of-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
       "assets/turkey-paradise-turu-1.webp"
-    ],
-    "title_pt": "Nove Dias na Anatólia: De Istambul a Éfeso",
-    "description_pt": "Uma viagem inesquecível da grandiosidade de Istambul aos contos de fadas da Capadócia, do espírito antigo de Éfeso à magia branca de Pamukkale."
+    ]
   },
   {
     "id": "TUR-1773848419116",
@@ -796,9 +989,7 @@
       "assets/istanbul-tarihi-bogaz-2.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/istanbulistanbul-tarihi-bogaz-1.webp"
-    ],
-    "title_pt": "Galípoli: Um Dia nos Campos da Bravura",
-    "description_pt": "Tour de um dia saindo de Istambul até a Península de Galípoli."
+    ]
   },
   {
     "id": "TUR-1700000000001",
@@ -888,9 +1079,7 @@
     "highlights": [],
     "images": [
       "assets/sabiha-gokcen-karsilama-1.webp"
-    ],
-    "title_pt": "Aeroporto SAW: Transfer VIP Privado de Partida",
-    "description_pt": "Conclua sua viagem a Istambul de forma tranquila e confortável com nosso serviço de transfer privado."
+    ]
   },
   {
     "id": "TUR-1700000000002",
@@ -989,9 +1178,7 @@
       "assets/fethiye-oludeniz-manzarasi-11.webp",
       "assets/fethiye-oludeniz-manzarasi-12.webp",
       "assets/fethiye.webp"
-    ],
-    "title_pt": "Fethiye: Liberdade no Céu a partir do Monte Babadağ",
-    "description_pt": "Sinta a liberdade do céu sobrevoando o Monte Babadağ. Viva a emoção de uma vida admirando as águas turquesa."
+    ]
   },
   {
     "id": "TUR-1700000000003",
@@ -1090,9 +1277,7 @@
       "assets/grand-turkey-turu-1.webp",
       "assets/best-of-turkey-turu-1.webp",
       "assets/turkey-insight-turu-1.webp"
-    ],
-    "title_pt": "Profundezas da Anatólia: Uma Grande Exploração de 20 Dias",
-    "description_pt": "Pacotes de viagem completos de 20 dias ou mais para quem deseja descobrir verdadeiramente a glória da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000004",
@@ -1184,9 +1369,7 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
-    ],
-    "title_pt": "Uma Noite de Música e Jantar no Bósforo",
-    "description_pt": "Uma noite turca inesquecível aguarda você no Bósforo."
+    ]
   },
   {
     "id": "TUR-1700000000005",
@@ -1357,9 +1540,7 @@
       "assets/istanbulistanbul-tarihi-bogaz-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Istambul e Galípoli: Duas Faces da História",
-    "description_pt": "Une o legado imperial de Istambul, os campos de batalha de Galípoli e as ruínas lendárias de Troia."
+    ]
   },
   {
     "id": "TUR-1700000000006",
@@ -1478,9 +1659,7 @@
       "assets/kapadokya-balon-turu-7.webp",
       "assets/kapadokya-balon-turu-8.webp",
       "assets/kapadokya-balon-turu-9.webp"
-    ],
-    "title_pt": "Capadócia: Passeio de Balão de Ar Quente ao Nascer do Sol",
-    "description_pt": "Um dos passeios mais deslumbrantes que a Turquia oferece, o voo de balão sobre a Capadócia ao nascer do sol é simplesmente mágico."
+    ]
   },
   {
     "id": "TUR-1700000000007",
@@ -1574,9 +1753,7 @@
       "assets/kapadokya-balon-turu-3.webp",
       "assets/fethiye-oludeniz-manzarasi-13.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
-    ],
-    "title_pt": "Escapada Rápida: Opções de 2 a 3 Dias na Turquia",
-    "description_pt": "Mesmo com tempo limitado, é possível explorar os destinos icônicos da Turquia. Pacotes curtos de 2 ou 3 dias."
+    ]
   },
   {
     "id": "TUR-1700000000008",
@@ -1822,9 +1999,7 @@
       "assets/turkey-paradise-turu-1.webp",
       "assets/as-we-travel-turkey-1.webp",
       "assets/exciting-turkey-turu-1.webp"
-    ],
-    "title_pt": "Crie Seu Roteiro pela Turquia: À La Carte",
-    "description_pt": "Tour flexível pensado para quem deseja descobrir os principais destinos da Turquia no próprio ritmo."
+    ]
   },
   {
     "id": "TUR-1700000000009",
@@ -1986,9 +2161,7 @@
       "assets/fethiye-oludeniz-manzarasi-14.webp",
       "assets/fethiye-oludeniz-manzarasi-15.webp",
       "assets/fethiye-oludeniz-manzarasi-16.webp"
-    ],
-    "title_pt": "Cruzeiro Azul: De Fethiye a Olympos",
-    "description_pt": "Parta do encantador porto de Fethiye e embarque em um inesquecível cruzeiro de quatro dias ao longo de uma das costas mais espetaculares do Mediterrâneo."
+    ]
   },
   {
     "id": "TUR-1700000000010",
@@ -2146,9 +2319,7 @@
       "assets/efes-gunluk-turu-1.webp",
       "assets/yedi-kiliseler-turu-1.webp",
       "assets/pamukkale-hierapolis-turu-1.webp"
-    ],
-    "title_pt": "Anatólia Ocidental: Nos Passos das Civilizações Antigas",
-    "description_pt": "Este tour abrangente permite descobrir os destinos mais impressionantes do oeste da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000011",
@@ -2239,9 +2410,7 @@
       "assets/dogu-karadeniz-anadolu-turu-1.webp",
       "assets/kapadokya-gezegen.webp",
       "assets/as-we-travel-turkey-1.webp"
-    ],
-    "title_pt": "Aventura e Cultura: Exploração Ativa na Turquia",
-    "description_pt": "Oferecemos atividades especiais para todos, de aventureiros a entusiastas da cultura."
+    ]
   },
   {
     "id": "TUR-1700000000012",
@@ -2331,9 +2500,7 @@
     "images": [
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/dolmabahce-bogaz-turu-1.webp"
-    ],
-    "title_pt": "Aeroporto IST: Transfer VIP Privado de Boas-Vindas",
-    "description_pt": "Oferecemos um transfer tranquilo do Aeroporto de Istambul (IST) até o seu hotel."
+    ]
   },
   {
     "id": "TUR-1700000000013",
@@ -2453,9 +2620,7 @@
       "assets/best-of-turkey-turu-1.webp",
       "assets/exciting-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp"
-    ],
-    "title_pt": "Troia: Uma Excursão à Cidade da Lenda",
-    "description_pt": "Descubra a antiga cidade de Troia, onde mitologia e história se entrelaçam, em um dia saindo de Istambul."
+    ]
   },
   {
     "id": "TUR-1700000000014",
@@ -2549,9 +2714,7 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/prens-adalari-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Istambul: Opções de Exploração Diária",
-    "description_pt": "Oferecemos tours diários interessantes para explorar esta metrópole única que conecta dois continentes."
+    ]
   },
   {
     "id": "TUR-1700000000015",
@@ -2671,9 +2834,7 @@
       "assets/highlights-turkey-turu-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
       "assets/best-of-turkey-turu-1.webp"
-    ],
-    "title_pt": "Galípoli e Troia: Duas Epopéias em Dois Dias",
-    "description_pt": "Permite descobrir os campos de batalha de Galípoli e as ruínas antigas de Troia."
+    ]
   },
   {
     "id": "TUR-1700000000016",
@@ -2782,9 +2943,7 @@
       "assets/kapadokya-balon-turu-4.webp",
       "assets/kapadokya-balon-turu-5.webp",
       "assets/kapadokya-balon-turu-11.webp"
-    ],
-    "title_pt": "Capadócia: Passeio a Cavalo entre as Chaminés de Fada",
-    "description_pt": "Explore os espetaculares vales da Capadócia a cavalo, percorrendo paisagens inacessíveis a veículos. Disponível em uma, duas ou quatro horas de imersão."
+    ]
   },
   {
     "id": "TUR-1700000000017",
@@ -2994,9 +3153,7 @@
       "assets/exciting-turkey-turu-1.webp",
       "assets/efes-gunluk-turu-1.webp",
       "assets/pamukkale-traverten-dogal-4.webp"
-    ],
-    "title_pt": "As Quatro Joias da Turquia: Roteiro Clássico de 7 Dias",
-    "description_pt": "Explorando os quatro destinos mais icônicos da Turquia em uma jornada completa, ideal para quem visita pela primeira vez."
+    ]
   },
   {
     "id": "TUR-1700000000018",
@@ -3136,9 +3293,7 @@
       "assets/antalya-koy-gezisi-9.webp",
       "assets/dogu-karadeniz-anadolu-turu-1.webp",
       "assets/grand-turkey-turu-1.webp"
-    ],
-    "title_pt": "Monte Ararat: Escalando o Cume da Turquia",
-    "description_pt": "Com 5.137 metros de altitude, o Monte Ararat é o ponto mais alto da Turquia e um dos cumes mais carregados de mito no mundo. Uma expedição guiada de quatro dias até o topo coberto de geleiras."
+    ]
   },
   {
     "id": "TUR-1700000000019",
@@ -3255,9 +3410,7 @@
       "assets/turkiye-mavi-yolculuk-1.webp",
       "assets/fethiye-oludeniz-manzarasi-17.webp",
       "assets/fethiye-oludeniz-manzarasi-18.webp"
-    ],
-    "title_pt": "Cruzeiro Azul: De Olympos a Fethiye",
-    "description_pt": "Parta de Olympos em uma inesquecível jornada de 4 dias a bordo de um gulet pelo Mediterrâneo mais fascinante."
+    ]
   },
   {
     "id": "TUR-1700000000020",
@@ -3381,9 +3534,7 @@
       "assets/as-we-travel-turkey-1.webp",
       "assets/turkey-insight-turu-1.webp",
       "assets/best-of-turkey-turu-1.webp"
-    ],
-    "title_pt": "Turquia: História e Natureza ao Amanhecer",
-    "description_pt": "Este tour abrangente reúne os destinos mais impressionantes da Turquia, de Galípoli à Capadócia."
+    ]
   },
   {
     "id": "TUR-1700000000021",
@@ -3577,9 +3728,7 @@
       "assets/exciting-turkey-turu-1.webp",
       "assets/grand-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp"
-    ],
-    "title_pt": "Clássicos da Turquia: Uma Jornada Atemporal",
-    "description_pt": "Abrangendo Istambul, Capadócia e Éfeso, este tour clássico reúne os destinos mais concisamente impressionantes da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000022",
@@ -3674,9 +3823,7 @@
       "assets/fethiye-oludeniz-manzarasi-5.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/pamukkale-traverten-dogal-5.webp"
-    ],
-    "title_pt": "Suas Férias Personalizadas na Turquia: Você Projeta, Nós Realizamos",
-    "description_pt": "Diga-nos quais cantos da Turquia deseja descobrir e nossa equipe especializada criará um programa personalizado para você."
+    ]
   },
   {
     "id": "TUR-1700000000023",
@@ -3806,9 +3953,7 @@
     "images": [
       "assets/turkish-sunset-turu-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp"
-    ],
-    "title_pt": "Galípoli: Uma Jornada de Dia Inteiro aos Campos da Bravura",
-    "description_pt": "Visite a Península de Galípoli, um dos campos de batalha mais importantes da 1ª Guerra Mundial, em um dia saindo de Istambul."
+    ]
   },
   {
     "id": "TUR-1700000000024",
@@ -3900,9 +4045,7 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
-    ],
-    "title_pt": "Uma Nova Descoberta a Cada Dia: Opções Diárias em Istambul",
-    "description_pt": "Uma ampla gama de opções de tours desde passeios curtos com base em Istambul até excursões de dia inteiro aos destinos icônicos da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000025",
@@ -4081,9 +4224,7 @@
       "assets/exciting-turkey-turu-1.webp",
       "assets/efes-gunluk-turu-1.webp",
       "assets/pamukkale-traverten-dogal-6.webp"
-    ],
-    "title_pt": "As Cinco Epopéias da Turquia: Roteiro de 6 Dias",
-    "description_pt": "Este abrangente tour de 6 dias reúne os pontos mais impressionantes da história, natureza e civilização."
+    ]
   },
   {
     "id": "TUR-1700000000026",
@@ -4212,9 +4353,7 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Istambul: Uma Jornada pelo Bósforo Conectando Dois Continentes",
-    "description_pt": "Pise em terras europeias e asiáticas no mesmo dia em Istambul, a única cidade transcontinental do mundo."
+    ]
   },
   {
     "id": "TUR-1700000000027",
@@ -4310,9 +4449,7 @@
       "assets/turkiye-paket-tur-13-19-1.webp",
       "assets/grand-turkey-turu-1.webp",
       "assets/exciting-turkey-turu-1.webp"
-    ],
-    "title_pt": "Pacotes Turquia: De 8 a 12 Dias",
-    "description_pt": "Oferecemos diferentes opções de roteiro para quem quer descobrir a Turquia de forma aprofundada entre 8 e 12 dias."
+    ]
   },
   {
     "id": "TUR-1700000000028",
@@ -4481,9 +4618,7 @@
       "assets/turkey-budget-turu-1.webp",
       "assets/best-of-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp"
-    ],
-    "title_pt": "Maravilhas da Turquia: Uma Jornada Cativante",
-    "description_pt": "Um tour impressionante de 5 dias que oferece o esplendor imperial de Istambul, a glória antiga de Éfeso e os travertinos brancos de Pamukkale."
+    ]
   },
   {
     "id": "TUR-1700000000029",
@@ -4618,9 +4753,7 @@
       "assets/pamukkale-traverten-dogal-7.webp",
       "assets/pamukkale-traverten-dogal-8.webp",
       "assets/pamukkale-antik-1.webp"
-    ],
-    "title_pt": "Pamukkale e Hierápolis: Travertinos Brancos e uma Cidade Antiga",
-    "description_pt": "Descubra a mais fascinante maravilha natural da Turquia, os travertinos de Pamukkale, e a cidade antiga de Hierápolis em um dia saindo de Istambul."
+    ]
   },
   {
     "id": "TUR-1700000000030",
@@ -4710,9 +4843,7 @@
     "images": [
       "assets/antalya-koy-gezisi-12.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Aeroporto IST: Transfer VIP Privado de Partida",
-    "description_pt": "Oferecemos transporte confortável e pontual do seu hotel até o Aeroporto de Istambul (IST) com veículo privativo."
+    ]
   },
   {
     "id": "TUR-1700000000031",
@@ -4835,9 +4966,7 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/prens-adalari-turu-1.webp"
-    ],
-    "title_pt": "Bósforo de Istambul: Dois Continentes de Barco e Ônibus",
-    "description_pt": "Experimentando a geografia única de Istambul tanto por terra quanto por mar, este tour de meio dia permite visitar confortavelmente os pontos mais icônicos da cidade."
+    ]
   },
   {
     "id": "TUR-1700000000032",
@@ -4929,9 +5058,7 @@
       "assets/turkish-getaway-turu-1.webp",
       "assets/turkey-budget-turu-1.webp",
       "assets/turkiye-luks-tur-4-7-1.webp"
-    ],
-    "title_pt": "Pacotes Turquia: Para Todo Orçamento, Toda Duração",
-    "description_pt": "Oferecemos tours de múltiplos dias cobrindo todos os principais destinos da Turquia, de 2 a 20 dias."
+    ]
   },
   {
     "id": "TUR-1700000000033",
@@ -5034,9 +5161,7 @@
       "assets/kapadokya-balon-turu-13.webp",
       "assets/kapadokya-balon-turu-14.webp",
       "assets/kapadokya-gezegen.webp"
-    ],
-    "title_pt": "Capadócia: Fora deste Mundo",
-    "description_pt": "Oferece uma experiência única com chaminés de fada, cidades subterrâneas, igrejas rupestres e balões coloridos."
+    ]
   },
   {
     "id": "TUR-1700000000034",
@@ -5140,9 +5265,7 @@
       "assets/kapadokya-2-gun-turu-1.webp",
       "assets/kapadokya-balon-turu-15.webp",
       "assets/kapadokya-balon-turu-16.webp"
-    ],
-    "title_pt": "Capadócia em Dois Dias: Uma Paisagem de Conto de Fadas",
-    "description_pt": "Veja todos os rostos da Capadócia, dos vales mágicos do norte à misteriosa cidade subterrânea do sul."
+    ]
   },
   {
     "id": "TUR-1700000000035",
@@ -5324,9 +5447,7 @@
       "assets/yedi-kiliseler-turu-1.webp",
       "assets/efes-antik-luks-1.webp",
       "assets/efes-gunluk-turu-1.webp"
-    ],
-    "title_pt": "Sete Igrejas: Uma Jornada Sagrada nos Passos do Apocalipse",
-    "description_pt": "Este tour único que cobre as antigas cidades onde estão localizadas as Sete Igrejas mencionadas no Apocalipse oferece uma profunda jornada espiritual."
+    ]
   },
   {
     "id": "TUR-1700000000036",
@@ -5419,9 +5540,7 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
       "assets/prens-adalari-turu-1.webp"
-    ],
-    "title_pt": "Istambul: A Única Cidade Intercontinental do Mundo",
-    "description_pt": "Istambul, a única metrópole transcontinental do mundo, é uma cidade única que reúne o patrimônio dos Impérios Bizantino e Otomano com a vida moderna."
+    ]
   },
   {
     "id": "TUR-1700000000037",
@@ -5517,9 +5636,7 @@
       "assets/antalya-koy-gezisi-15.webp",
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Ilhas dos Príncipes: O Santuário Sem Carros de Istambul",
-    "description_pt": "Fuja do barulho de Istambul; descubra as calmas e pitorescas Ilhas dos Príncipes no Mar de Mármara."
+    ]
   },
   {
     "id": "TUR-1700000000038",
@@ -5610,9 +5727,7 @@
     "images": [
       "assets/antalya-koy-gezisi-16.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Aeroporto SAW: Transfer VIP Privado de Boas-Vindas",
-    "description_pt": "Oferecemos um transfer tranquilo e confortável do Aeroporto Sabiha Gökçen (SAW) até o seu hotel."
+    ]
   },
   {
     "id": "TUR-1700000000039",
@@ -5775,9 +5890,7 @@
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/istanbul-tarihi-bogaz-2.webp",
       "assets/prens-adalari-turu-1.webp"
-    ],
-    "title_pt": "Dolmabahçe e Bósforo: Esplendor Otomano e o Skyline da Cidade",
-    "description_pt": "Entre na grandiosidade do Império Otomano visitando o Palácio Dolmabahçe e depois experiencie o lendário Estreito do Bósforo por terra e mar."
+    ]
   },
   {
     "id": "TUR-1700000000040",
@@ -5908,9 +6021,7 @@
       "assets/mardin-tarihi-konak-dokusu-10.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/dolmabahce-bogaz-turu-1.webp"
-    ],
-    "title_pt": "Istambul: Dois Impérios de Bizâncio aos Otomanos",
-    "description_pt": "Este tour de dia inteiro permite descobrir as estruturas mais importantes dos dois impérios juntas."
+    ]
   },
   {
     "id": "TUR-1700000000041",
@@ -6045,9 +6156,7 @@
       "assets/kapadokya-balon-turu-18.webp",
       "assets/kapadokya-balon-turu-19.webp",
       "assets/istanbul-kapadokya-gunluk-1.webp"
-    ],
-    "title_pt": "Capadócia em Um Dia: Voo a partir de Istambul",
-    "description_pt": "Pegue um voo matinal de Istambul e entre no mundo mágico da Capadócia no mesmo dia."
+    ]
   },
   {
     "id": "TUR-1700000000042",
@@ -6174,9 +6283,7 @@
     "images": [
       "assets/sapanca-masukiye-turu-1.webp",
       "assets/as-we-travel-turkey-1.webp"
-    ],
-    "title_pt": "Sapanca e Masukiye: Um Dia no Abraço da Natureza",
-    "description_pt": "Fuja da vida agitada de Istambul e faça uma escapada diária a Sapanca e Masukiye, uma das mais belas rotas naturais da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000043",
@@ -6270,9 +6377,7 @@
       "assets/mardin-tarihi-konak-dokusu-11.webp",
       "assets/prens-adalari-turu-1.webp",
       "assets/dolmabahce-bogaz-turu-1.webp"
-    ],
-    "title_pt": "Os Felinos de Istambul: Um Tour pela Cultura dos Gatos",
-    "description_pt": "Os gatos de rua de Istambul são parte integrante da cultura desta cidade. Conheça os adoráveis moradores da cidade."
+    ]
   },
   {
     "id": "TUR-1700000000044",
@@ -6476,9 +6581,7 @@
       "assets/exciting-turkey-turu-1.webp",
       "assets/best-of-turkey-turu-1.webp",
       "assets/turkey-paradise-turu-1.webp"
-    ],
-    "title_pt": "Turquia: Onde a Emoção Encontra a História",
-    "description_pt": "Do horizonte imperial de Istambul aos comoventes campos de batalha de Galípoli, das ruínas lendárias de Troia e Pérgamo aos terraços turquesa de Pamukkale, e das avenidas atemporais de Éfeso aos vales oníricos da Capadócia — esta jornada de nove dias reúne os destinos mais notáveis da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000045",
@@ -6612,9 +6715,7 @@
       "assets/efes-gunluk-turu-1.webp",
       "assets/efes-antik-luks-1.webp",
       "assets/yedi-kiliseler-turu-1.webp"
-    ],
-    "title_pt": "Éfeso: Uma Excursão ao Coração do Mundo Antigo",
-    "description_pt": "Descubra a fascinante atmosfera da Cidade Antiga de Éfeso no mesmo dia com um voo matinal saindo de Istambul."
+    ]
   },
   {
     "id": "TUR-1700000000046",
@@ -6736,9 +6837,7 @@
       "assets/kapadokya-balon-turu-20.webp",
       "assets/efes-antik-luks-1.webp",
       "assets/yedi-kiliseler-turu-1.webp"
-    ],
-    "title_pt": "Capadócia, Konya e Éfeso: Nas Profundezas da Turquia",
-    "description_pt": "Permite explorar profundamente os vales místicos da Capadócia, a cidade de Mevlana Konya, e Éfeso e Pamukkale."
+    ]
   },
   {
     "id": "TUR-1700000000047",
@@ -6888,9 +6987,7 @@
       "assets/best-of-turkey-turu-1.webp",
       "assets/turkey-paradise-turu-1.webp",
       "assets/grand-turkey-turu-1.webp"
-    ],
-    "title_pt": "Os Melhores Destaques da Turquia",
-    "description_pt": "Quatro dias, três dos destinos mais icônicos da Turquia. Da Capadócia a Pamukkale e Éfeso, uma introdução compacta e profundamente gratificante ao extraordinário patrimônio da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000048",
@@ -7016,9 +7113,7 @@
     "images": [
       "assets/bursa-gunluk-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp"
-    ],
-    "title_pt": "Bursa: Uma Excursão à Primeira Capital Otomana",
-    "description_pt": "Conhecida como 'Bursa Verde', esta cidade histórica abriga os mais belos exemplos arquitetônicos do período otomano inicial."
+    ]
   },
   {
     "id": "TUR-1700000000049",
@@ -7117,9 +7212,7 @@
       "assets/mardin-tarihi-konak-dokusu-14.webp",
       "assets/dream-turkey-turu-1.webp",
       "assets/grand-turkey-turu-1.webp"
-    ],
-    "title_pt": "Pacotes Longos na Turquia: 13 a 19 Dias",
-    "description_pt": "Oferecemos opções abrangentes de tours entre 13 e 19 dias para explorar a Turquia de oeste a leste."
+    ]
   },
   {
     "id": "TUR-1700000000050",
@@ -7290,9 +7383,7 @@
       "assets/velvet-turkey-turu-1.webp",
       "assets/turkiye-luks-tur-4-7-1.webp",
       "assets/efes-antik-luks-1.webp"
-    ],
-    "title_pt": "Sonho da Turquia: Exploração de Luxo no Coração da História",
-    "description_pt": "Concebida para quem deseja vivenciar os destinos mais icônicos da Turquia sem compromissos, esta jornada de sete dias leva você do esplendor imperial de Istambul às paisagens surreais da Capadócia, às ruínas de Éfeso e aos terraços brancos de Pamukkale."
+    ]
   },
   {
     "id": "TUR-1700000000051",
@@ -7414,9 +7505,7 @@
       "assets/mardin-tarihi-konak-dokusu-15.webp",
       "assets/turkish-getaway-turu-1.webp",
       "assets/exciting-turkey-turu-1.webp"
-    ],
-    "title_pt": "Turquia Acessível: Um Encantador Pacote Patrimonial",
-    "description_pt": "Descubra a Turquia com esta jornada econômica de 5 dias, das chaminés de fada da Capadócia a Pamukkale e Éfeso."
+    ]
   },
   {
     "id": "TUR-1700000000052",
@@ -7675,9 +7764,7 @@
       "assets/turkiye-luks-tur-4-7-1.webp",
       "assets/velvet-turkey-turu-1.webp",
       "assets/efes-pamukkale-luks-1.webp"
-    ],
-    "title_pt": "Turquia Veludo: Uma Distinta Jornada Anatólica",
-    "description_pt": "Uma experiência inesquecível e luxuosa onde o patrimônio antigo encontra o conforto contemporâneo, com cada momento cuidadosamente concebido, incluindo o Cruzeiro Azul."
+    ]
   },
   {
     "id": "TUR-1700000000053",
@@ -7911,9 +7998,7 @@
       "assets/fethiye-oludeniz-manzarasi-4.webp",
       "assets/turkish-sunset-turu-1.webp",
       "assets/fethiye-oludeniz-manzarasi-19.webp"
-    ],
-    "title_pt": "Pôr do Sol Turco: Anatólia à Luz Dourada",
-    "description_pt": "Uma combinação perfeita de história, cultura e natureza deslumbrante que se estende do coração da Turquia às suas costas únicas, incluindo uma experiência de luxo em gulet."
+    ]
   },
   {
     "id": "TUR-1700000000054",
@@ -8070,9 +8155,7 @@
       "assets/fethiye-oludeniz-manzarasi-5.webp",
       "assets/turkiye-mavi-yolculuk-1.webp",
       "assets/fethiye-oludeniz-manzarasi-6.webp"
-    ],
-    "title_pt": "Paraísos Escondidos da Turquia: Uma Exploração de Luxo",
-    "description_pt": "Uma jornada exclusiva de 7 dias que combina o esplendor do passado, as maravilhas únicas da natureza e o conforto da modernidade."
+    ]
   },
   {
     "id": "TUR-1700000000055",
@@ -8166,9 +8249,7 @@
       "assets/pamukkale-traverten-dogal-9.webp",
       "assets/pamukkale-traverten-dogal-10.webp",
       "assets/pamukkale-traverten-dogal-11.webp"
-    ],
-    "title_pt": "Pamukkale: Travertinos Brancos e Civilizações Antigas",
-    "description_pt": "Significando 'Castelo de Algodão', Pamukkale convida a uma descoberta única com seus terraços de travertino brancos como neve e ricas águas termais."
+    ]
   },
   {
     "id": "TUR-1700000000056",
@@ -8294,9 +8375,7 @@
       "assets/efes-gunluk-turu-1.webp",
       "assets/pamukkale-efes-2gun-1.webp",
       "assets/pamukkale-traverten-dogal-2.webp"
-    ],
-    "title_pt": "Éfeso e Pamukkale: Dois Dias na Antiguidade",
-    "description_pt": "Experiencie as maravilhas mais fascinantes, antigas e naturais da Turquia com luxo e conforto em dois dias."
+    ]
   },
   {
     "id": "TUR-1700000000057",
@@ -8387,9 +8466,7 @@
       "assets/mardin-tarihi-konak-dokusu-16.webp",
       "assets/efes-antik-luks-1.webp",
       "assets/efes-pamukkale-luks-1.webp"
-    ],
-    "title_pt": "Éfeso: A Maior Cidade do Mundo Antigo",
-    "description_pt": "A Cidade Antiga de Éfeso, na Lista do Patrimônio Mundial da UNESCO, aguarda você com uma experiência profissional e confortável acompanhada de guias especializados."
+    ]
   },
   {
     "id": "TUR-1700000000058",
@@ -8597,9 +8674,7 @@
       "assets/best-of-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
       "assets/efes-antik-luks-1.webp"
-    ],
-    "title_pt": "Cinco Cidades, Cinco Eras: As Profundezas da Turquia",
-    "description_pt": "Abrangendo dez dias e cinco dos destinos mais cativantes da Turquia, este tour abrangente leva você da grandiosidade imperial de Istambul às formações sobrenaturais da Capadócia, pelos teatros antigos do interior de Antalya, aos terraços brancos de Pamukkale e às ruínas majestosas de Éfeso."
+    ]
   },
   {
     "id": "TUR-1700000000059",
@@ -8820,9 +8895,7 @@
       "assets/antalya-koy-gezisi17.webp",
       "assets/dream-turkey-turu-1.webp",
       "assets/grand-turkey-turu-1.webp"
-    ],
-    "title_pt": "Jornada pela Anatólia: Maravilhas Atemporais",
-    "description_pt": "Um tour privado de 8 dias cuidadosamente planejado. Você ouvirá os sussurros da história, testemunhará os milagres da natureza e sentirá o espírito da Anatólia."
+    ]
   },
   {
     "id": "TUR-1700000000060",
@@ -8948,9 +9021,7 @@
       "assets/pamukkale-traverten-dogal-3.webp",
       "assets/efes-gunluk-turu-1.webp",
       "assets/efes-pamukkale-luks-1.webp"
-    ],
-    "title_pt": "Pamukkale e Éfeso: Dois Dias no Coração da Antiguidade",
-    "description_pt": "Uma jornada única cobrindo os travertinos de Pamukkale e a Cidade Antiga de Hierápolis, além da Biblioteca de Celso, do Templo de Ártemis e da Casa da Virgem Maria em Éfeso."
+    ]
   },
   {
     "id": "TUR-1700000000061",
@@ -9081,9 +9152,7 @@
       "assets/grand-turkey-turu-1.webp",
       "assets/best-of-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp"
-    ],
-    "title_pt": "O Melhor da Turquia: Um Roteiro Selecionado",
-    "description_pt": "Um tour cobrindo Capadócia, Éfeso e Pamukkale, concebido com conforto e elegância do início ao fim."
+    ]
   },
   {
     "id": "TUR-1700000000062",
@@ -9353,9 +9422,7 @@
       "assets/exciting-turkey-turu-1.webp",
       "assets/dream-turkey-turu-1.webp",
       "assets/turkey-insight-turu-1.webp"
-    ],
-    "title_pt": "Grande Turquia: Do Esplendor Antigo ao Azul do Egeu",
-    "description_pt": "A jornada turca definitiva. Ao longo de vinte dias, este tour abrangente conduz você por todos os capítulos marcantes da história e geografia da Turquia."
+    ]
   },
   {
     "id": "TUR-1700000000063",
@@ -9550,9 +9617,7 @@
       "assets/dogu-karadeniz-anadolu-turu-1.webp",
       "assets/dream-turkey-turu-1.webp",
       "assets/as-we-travel-turkey-1.webp"
-    ],
-    "title_pt": "Voz do Oriente: 12 Dias do Mar Negro à Anatólia",
-    "description_pt": "Um tour único que se estende das exuberantes montanhas do Mar Negro aos berços da civilização antiga da Anatólia Oriental."
+    ]
   },
   {
     "id": "TUR-1700000000064",
@@ -9688,9 +9753,7 @@
       "assets/turkiye-mavi-yolculuk-1.webp",
       "assets/fethiye-oludeniz-manzarasi-7.webp",
       "assets/fethiye-oludeniz-manzarasi-8.webp"
-    ],
-    "title_pt": "Sonho Azul: Uma Jornada pelas Baías Ocultas do Egeu",
-    "description_pt": "Uma jornada única cobrindo Simena, Kekova, Kaş e o Vale das Borboletas no conforto dos tradicionais gulets turcos."
+    ]
   },
   {
     "id": "TUR-1700000000065",
@@ -9785,9 +9848,7 @@
       "assets/velvet-turkey-turu-1.webp",
       "assets/efes-antik-luks-1.webp",
       "assets/efes-pamukkale-luks-1.webp"
-    ],
-    "title_pt": "Turquia de Luxo: Pacotes Premium de 4 a 7 Dias",
-    "description_pt": "Tours de luxo de 4 a 7 dias; opções que se estendem da costa do Egeu à Capadócia."
+    ]
   },
   {
     "id": "TUR-1700000000066",
@@ -9964,9 +10025,7 @@
       "assets/pamukkale-traverten-dogal-6.webp",
       "assets/turkey-budget-turu-1.webp",
       "assets/exciting-turkey-turu-1.webp"
-    ],
-    "title_pt": "Escapada Turca: Rápida e Profunda",
-    "description_pt": "Uma escapada rápida de 5 dias planejada com foco em seu conforto, cobrindo o esplendor imperial de Istambul e as chaminés de fada da Capadócia."
+    ]
   },
   {
     "id": "TUR-1700000000067",
@@ -10137,9 +10196,7 @@
       "assets/kapadokya-balon-turu-5.webp",
       "assets/pamukkale-traverten-dogal-4.webp",
       "assets/pamukkale-antik-1.webp"
-    ],
-    "title_pt": "Capadócia e Pamukkale: Duas Lendas em Três Dias",
-    "description_pt": "Um tour especial de 3 dias onde você vivenciará as duas joias icônicas da Turquia, Capadócia e Pamukkale, da forma mais prestigiosa e confortável."
+    ]
   },
   {
     "id": "TUR-1700000000068",
@@ -10253,8 +10310,6 @@
     "images": [
       "assets/sema-govsteri-1.webp",
       "assets/kapadokya-balon-turu-1.webp"
-    ],
-    "title_pt": "Sema: O Ritual Vivo do Patrimônio da UNESCO",
-    "description_pt": "Experiencie a cerimônia Sema (Dervixes Rodopiantes), patrimônio da UNESCO, em um banho otomano restaurado do século XV no coração histórico de Istambul."
+    ]
   }
 ]
