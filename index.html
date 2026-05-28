@@ -570,21 +570,30 @@
         
         grid.innerHTML = tours.map(tour => {
             const title = String(getLocalizedData(tour, 'title'));
-            const description = String(getLocalizedData(tour, 'description') || '');
-            const shortDesc = description.substring(0, 100) + (description.length > 100 ? '...' : '');
+            const location = tour.location || '';
+            const rating = tour.rating || '4.9';
+            const reviewCount = tour.reviewCount || '';
+            const ratingDisplay = reviewCount ? `${rating} (${reviewCount})` : rating;
             
             return `
                 <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
-                    <img src="${tour.image}" alt="${title}" loading="lazy">
-                    <div class="trip-card-overlay"></div>
-                    <div class="trip-nights-badge">${tour.duration || '7 Gün'}</div>
+                    <div class="card-image-wrap">
+                        <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
+                        <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
+                        <div class="trip-nights-badge">${tour.duration || '1 Gün'}</div>
+                    </div>
                     <div class="trip-card-content">
                         <h3 class="trip-card-title">${title}</h3>
-                        <p class="trip-card-description">${shortDesc}</p>
-                        <div class="trip-card-price">From ${tour.price}</div>
-                        <a href="tour-detail.html?id=${tour.id}" class="trip-card-button" onclick="event.stopPropagation()">
-                            <span>${window.i18n ? window.i18n.t('tour_detail_btn') : 'Detayları Gör'}</span><i class="fas fa-arrow-right"></i>
-                        </a>
+                        ${location ? `<div class="trip-card-meta"><i class="fas fa-map-marker-alt"></i> ${location}</div>` : ''}
+                        <div class="trip-card-footer">
+                            <div class="trip-card-price-block">
+                                <span class="trip-price-label">${window.i18n ? window.i18n.t('starting_from') || 'Starting Price' : 'Starting Price'}</span>
+                                <span class="trip-price-value">${tour.price}</span>
+                            </div>
+                            <a href="tour-detail.html?id=${tour.id}" class="trip-card-button" onclick="event.stopPropagation()">
+                                ${window.i18n ? window.i18n.t('tour_detail_btn') || 'Details' : 'Details'} <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             `;
@@ -595,7 +604,6 @@
         const grid = document.querySelector('.tours-grid');
         if (!grid) return;
         
-        // Eğer filtrelenen kategoride hiç tur yoksa uyarı mesajı göster
         if (tours.length === 0) {
             const msg = window.i18n ? window.i18n.t('tours_empty') : 'Bu kategoride henüz tur bulunmuyor.';
             grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px; font-size: 18px; color: #94a3b8;"><i class="fas fa-search" style="font-size: 40px; margin-bottom: 15px; display:block;"></i> ${msg}</div>`;
@@ -605,24 +613,31 @@
         grid.innerHTML = tours.map(tour => {
             const title = String(getLocalizedData(tour, 'title'));
             const description = String(getLocalizedData(tour, 'description') || '');
-            const shortDesc = description.substring(0, 120) + (description.length > 120 ? '...' : '');
+            const shortDesc = description.substring(0, 100) + (description.length > 100 ? '...' : '');
+            const rating = tour.rating || '4.9';
 
             return `
             <div class="tour-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
                 <div class="tour-image">
-                    <img src="${tour.image}" alt="${title}" loading="lazy">
-                    <div class="tour-badge">${tour.duration || '7 Gün'}</div>
+                    <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
+                    <div class="tour-badge">${tour.duration || '1 Gün'}</div>
                 </div>
                 <div class="tour-content">
                     <h3>${title}</h3>
                     <p>${shortDesc}</p>
                     <div class="tour-features">
-                        <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>
-                        <span class="feature-tag"><i class="fas fa-tag"></i> ${tour.price}</span>
+                        ${tour.location ? `<span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>` : ''}
+                        <span class="feature-tag"><i class="fas fa-star"></i> ${rating}</span>
                     </div>
-                    <a href="tour-detail.html?id=${tour.id}" class="tour-link">
-                        <span>${window.i18n ? window.i18n.t('tour_detail_btn') : 'Detayları Gör'}</span> <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="tour-card-footer">
+                        <div class="tour-price-block">
+                            <span class="tour-price-label">Starting Price</span>
+                            <span class="tour-price-value">${tour.price}</span>
+                        </div>
+                        <a href="tour-detail.html?id=${tour.id}" class="tour-link" onclick="event.stopPropagation()">
+                            ${window.i18n ? window.i18n.t('tour_detail_btn') || 'Details' : 'Details'} <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             `;

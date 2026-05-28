@@ -797,303 +797,374 @@ section {
     margin: 0 auto;
 }
 
+/* ================================================
+   POPULAR TRIP CARDS - Temiz Grid Kart Düzeni
+   (travel-cappadocia.com tarzı)
+   ================================================ */
 .popular-trip-card {
     position: relative;
-    height: 460px !important;
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0,0,0,0.05) !important;
-    background: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0,0,0,0.07);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
 }
 
 .popular-trip-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent) !important; /* Altın Çerçeve */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.13);
 }
 
-.popular-trip-card img {
+/* Kart görseli */
+.popular-trip-card .card-image-wrap {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.popular-trip-card .card-image-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: brightness(0.85) contrast(1.1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.93);
+    display: block;
 }
 
-.popular-trip-card:hover img {
-    transform: scale(1.12);
-    filter: brightness(0.7) contrast(1.2);
+.popular-trip-card:hover .card-image-wrap img {
+    transform: scale(1.07);
 }
 
-.trip-card-overlay {
+/* Puan rozeti (sol üst) */
+.trip-rating-badge {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
-    transition: background 0.5s ease;
+    top: 14px;
+    left: 14px;
+    background: #ffffff;
+    color: #1e293b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.popular-trip-card:hover .trip-card-overlay {
-    background: linear-gradient(to bottom, rgba(197, 160, 89, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+.trip-rating-badge i {
+    color: #f59e0b;
+    font-size: 11px;
 }
 
+/* Süre rozeti (sağ üst) */
 .trip-nights-badge {
     position: absolute;
-    top: 25px;
-    right: 25px;
-    background: var(--gradient-gold);
-    color: #0a0f1e;
-    padding: 10px 20px;
+    top: 14px;
+    right: 14px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 5px 12px;
     border-radius: 20px;
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     z-index: 3;
-    box-shadow: var(--shadow-gold);
 }
 
+/* Kart içerik alanı (beyaz) */
 .trip-card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    z-index: 2;
+    padding: 18px 20px 20px;
+    background: #ffffff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .trip-card-title {
-    color: var(--text-dark);
+    color: #0f172a;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+.trip-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.trip-card-meta i {
+    color: var(--accent);
+    font-size: 11px;
+}
+
+/* Fiyat + Buton satırı */
+.trip-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.trip-card-price-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-price-label {
+    font-size: 10px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.trip-price-value {
     font-size: 22px;
     font-weight: 800;
-    margin-bottom: 15px;
-    font-family: 'Playfair Display', serif;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-}
-
-.trip-card-description {
-    color: var(--text-medium);
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease 0.1s;
-}
-
-.popular-trip-card:hover .trip-card-description {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.trip-card-price {
-    color: var(--accent);
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 25px;
-    font-style: italic;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease 0.2s;
-    text-shadow: var(--shadow-gold);
-}
-
-.popular-trip-card:hover .trip-card-price {
-    opacity: 1;
-    transform: translateY(0);
+    color: var(--primary);
+    line-height: 1;
 }
 
 .trip-card-button {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 30px;
-    background: var(--gradient-gold);
-    color: #0a0f1e;
-    border: 2px solid var(--accent);
+    gap: 7px;
+    padding: 10px 18px;
+    background: var(--primary);
+    color: #ffffff;
     border-radius: 10px;
     font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 12px;
     text-transform: uppercase;
+    letter-spacing: 1px;
     text-decoration: none;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease 0.3s;
+    transition: all 0.25s ease;
     font-family: 'Inter', sans-serif;
-}
-
-.popular-trip-card:hover .trip-card-button {
-    opacity: 1;
-    transform: translateY(0);
+    border: none;
 }
 
 .trip-card-button:hover {
-    background: var(--gradient-primary);
-    color: white;
-    border-color: var(--primary);
+    background: var(--accent);
+    color: #0a0f1e;
+    transform: translateX(2px);
 }
 
+/* Eski overlay — artık kullanılmıyor, güvenle gizliyoruz */
+.trip-card-overlay { display: none; }
+.trip-card-description { display: none; }
+
 /* ================================================
-   TOUR CARDS (BENTO ZİG-ZAG LÜKS TASARIM)
+   TOUR CARDS - Temiz 4'lü Grid (Uniform Kart Düzeni)
    ================================================ */
 .tours-section {
-    background: #ffffff;
-    padding: 70px 40px; /* Üst/alt boşluklar biraz daha ferahlatıldı */
+    background: #f8fafc;
+    padding: 70px 40px;
 }
 
 .tours-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 15px; /* Kartlar arası boşluk 20px'ten 15px'e inerek sıkılaştı */
-    max-width: 1150px; /* KRİTİK: 1300px'den 1150px'e düştü. Kartlar artık çok daha kibar ve küçük! */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
-/* --- ÇAPRAZ (ZİG-ZAG) BENTO DİZİLİMİ (Her 8 Turda Bir Başa Sarar) --- */
+/* Bento zig-zag kaldırıldı — hepsi eşit */
+.tour-card:nth-child(8n + 1),
+.tour-card:nth-child(8n + 2),
+.tour-card:nth-child(8n + 3),
+.tour-card:nth-child(8n + 4),
+.tour-card:nth-child(8n + 5),
+.tour-card:nth-child(8n + 6),
+.tour-card:nth-child(8n + 7),
+.tour-card:nth-child(8n + 8) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
 
-/* İlk 4'lü Grup: UZUN KART SOLDA */
-.tour-card:nth-child(8n + 1) { grid-column: span 2; grid-row: span 2; } 
-.tour-card:nth-child(8n + 2) { grid-column: span 2; grid-row: span 1; } 
-.tour-card:nth-child(8n + 3) { grid-column: span 1; grid-row: span 1; } 
-.tour-card:nth-child(8n + 4) { grid-column: span 1; grid-row: span 1; } 
-
-/* İkinci 4'lü Grup: UZUN KART SAĞDA (Senin Harika Fikrin!) */
-.tour-card:nth-child(8n + 5) { grid-column: span 2; grid-row: span 1; } 
-.tour-card:nth-child(8n + 6) { grid-column: span 2; grid-row: span 2; } 
-.tour-card:nth-child(8n + 7) { grid-column: span 1; grid-row: span 1; } 
-.tour-card:nth-child(8n + 8) { grid-column: span 1; grid-row: span 1; } 
-
-/* --- KART İÇİ ESNEME VE KÜÇÜLTME --- */
 .tour-card {
     position: relative;
-    border-radius: 12px; /* Köşeler 16px'ten 12px'e inerek daha elit oldu */
+    border-radius: 14px;
     overflow: hidden;
-    background: #ffffff !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     height: 100%;
 }
 
 .tour-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--accent) !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+    transform: translateY(-7px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.11);
+    border-color: rgba(30, 64, 175, 0.2);
 }
 
 .tour-image {
     position: relative;
-    flex: 1; 
-    min-height: 160px; /* 180px'den 160px'e düştü: Kartlar aşağı sarkmayacak */
+    height: 200px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .tour-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s ease;
-    filter: brightness(0.85);
+    display: block;
+    transition: transform 0.6s ease;
+    filter: brightness(0.92);
 }
 
 .tour-card:hover .tour-image img {
-    transform: scale(1.12);
+    transform: scale(1.07);
 }
 
+/* Süre rozeti */
 .tour-badge {
     position: absolute;
     top: 12px;
-    right: 12px;
-    padding: 5px 10px;
-    background: var(--gradient-gold);
-    color: #0a0f1e;
-    border-radius: 6px;
-    font-size: 8px; /* Rozet iyice kibarlaştı */
-    font-weight: 800;
+    left: 12px;
+    padding: 5px 11px;
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: var(--shadow-gold);
+    letter-spacing: 0.5px;
     z-index: 2;
 }
 
+/* Kart beyaz içerik alanı */
 .tour-content {
-    padding: 16px; /* 20px'ten 16px'e inerek içerideki boşluklar kısıldı */
-    background: #ffffff; 
-    z-index: 2;
+    padding: 16px 18px 18px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
 }
 
 .tour-content h3 {
-    font-size: 16px; /* Başlıklar narinleşti */
-    color: var(--text-dark);
-    margin-bottom: 6px; 
-    line-height: 1.3;
+    font-size: 15px;
+    color: #0f172a;
+    line-height: 1.35;
     font-weight: 700;
     font-family: 'Playfair Display', serif;
-}
-
-.tour-content p {
-    color: var(--text-medium);
-    line-height: 1.5;
-    margin-bottom: 12px;
-    font-size: 12px; /* Açıklama yazıları çok daha kibar */
+    margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
+.tour-content p {
+    color: #64748b;
+    line-height: 1.55;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+}
+
 .tour-features {
     display: flex;
     gap: 6px;
-    margin: 12px 0;
     flex-wrap: wrap;
+    margin-top: 2px;
 }
 
 .feature-tag {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 5px 8px;
-    background: rgba(0, 0, 0, 0.04);
-    border-radius: 6px;
-    color: var(--text-medium);
-    font-size: 10px; /* İkon yazıları küçüldü */
+    gap: 4px;
+    padding: 4px 9px;
+    background: #f1f5f9;
+    border-radius: 20px;
+    color: #475569;
+    font-size: 10px;
     font-weight: 600;
-    border: 1px solid rgba(197, 160, 89, 0.3);
+    border: 1px solid #e2e8f0;
 }
 
 .feature-tag i {
-    font-size: 10px;
-    color: var(--accent);
+    font-size: 9px;
+    color: var(--primary);
+}
+
+/* Fiyat + link satırı */
+.tour-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.tour-price-block {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.tour-price-label {
+    font-size: 9px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.tour-price-value {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary);
 }
 
 .tour-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: var(--accent);
+    gap: 5px;
+    color: #ffffff;
+    background: var(--primary);
+    padding: 8px 14px;
+    border-radius: 8px;
     font-weight: 700;
     font-size: 10px;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     text-decoration: none;
-    transition: gap 0.3s ease;
+    transition: all 0.25s ease;
 }
 
-.tour-card:hover .tour-link {
-    gap: 10px;
+.tour-link:hover, .tour-card:hover .tour-link {
+    background: var(--accent);
+    color: #0a0f1e;
+    gap: 8px;
 }
 
 /* ================================================
@@ -1808,10 +1879,9 @@ body.theme-solo .category-hero {
     .section-header h2 { font-size: 32px; }
     
     .categories-grid { grid-template-columns: repeat(2, 1fr); }
-    .popular-trips-grid { grid-template-columns: 1fr; }
-    .tours-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .tour-card:nth-child(n) { grid-column: span 1; grid-row: span 1; } 
-    .tour-card:nth-child(4n + 1) { grid-column: span 2; }
+    .popular-trips-grid { grid-template-columns: repeat(2, 1fr); }
+    .tours-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .tour-card:nth-child(n) { grid-column: span 1; grid-row: span 1; }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .blog-grid { grid-template-columns: 1fr; gap: 30px; }
     .contact-info { grid-template-columns: 1fr; }
@@ -1856,7 +1926,7 @@ body.theme-solo .category-hero {
     .section-header h2 { font-size: 28px; }
     .categories-grid { grid-template-columns: 1fr; }
     .tours-grid { grid-template-columns: 1fr; }
-    .tour-card:nth-child(n) { grid-column: span 1; } /* Telefonda hepsi alt alta eşit dizilir */
+    .tour-card:nth-child(n) { grid-column: span 1; }
     .category-image-card { height: 320px; }
     .features-grid { grid-template-columns: 1fr; }
     .contact-form { padding: 40px 25px; }
