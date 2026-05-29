@@ -119,29 +119,35 @@ class TourManager {
 
         const noDesc = (window.i18n && window.i18n.t) ? window.i18n.t('tour_no_desc') : 'Açıklama bulunmuyor.';
         const shortDesc = description
-            ? description.substring(0, 120) + '...'
+            ? description.substring(0, 100) + '...'
             : noDesc;
 
-        const linkText = (window.i18n && window.i18n.t) ? window.i18n.t('tour_detail_btn') : 'Detayları Gör';
+        const linkText   = (window.i18n && window.i18n.t) ? window.i18n.t('tour_detail_btn')  : 'Detayları Gör';
+        const priceLabel = (window.i18n && window.i18n.t) ? window.i18n.t('starting_from')    : 'Starting Price';
+        const rating     = tour.rating || '4.9';
 
         card.innerHTML = `
             <div class="tour-image">
                 <img src="${tour.image}" alt="${title}" loading="lazy"
                      onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
-                <div class="tour-badge">${tour.category || ''}</div>
+                <div class="tour-badge">${tour.duration || ''}</div>
             </div>
             <div class="tour-content">
                 <h3>${title}</h3>
                 <p>${shortDesc}</p>
                 <div class="tour-features">
-                    ${tour.duration ? `<span class="feature-tag"><i class="fas fa-clock"></i> ${tour.duration}</span>` : ''}
-                    ${tour.price ? `<span class="feature-tag"><i class="fas fa-tag"></i> ${tour.price}</span>` : ''}
                     ${tour.location ? `<span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>` : ''}
+                    <span class="feature-tag"><i class="fas fa-star"></i> ${rating}</span>
                 </div>
-                <a href="tour-detail.html?id=${tour.id}" class="tour-link">
-                    <span>${linkText}</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+                <div class="tour-card-footer">
+                    <div class="tour-price-block">
+                        <span class="tour-price-label">${priceLabel}</span>
+                        <span class="tour-price-value">${tour.price || ''}</span>
+                    </div>
+                    <a href="tour-detail.html?id=${tour.id}" class="tour-link" onclick="event.stopPropagation()">
+                        ${linkText} <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         `;
 

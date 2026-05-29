@@ -631,7 +631,7 @@
                     </div>
                     <div class="tour-card-footer">
                         <div class="tour-price-block">
-                            <span class="tour-price-label">Starting Price</span>
+                            <span class="tour-price-label">${window.i18n ? window.i18n.t('starting_from') : 'Starting Price'}</span>
                             <span class="tour-price-value">${tour.price}</span>
                         </div>
                         <a href="tour-detail.html?id=${tour.id}" class="tour-link" onclick="event.stopPropagation()">
