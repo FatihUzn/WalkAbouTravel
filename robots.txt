@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
-Disallow: /assets/private/
-Disallow: /data/
 
-Sitemap: https://www.walkaboutravel.com/sitemap.xml
+# Gereksiz dosyaları tara
+Disallow: /admin
+Disallow: /data/
+Disallow: /save.php
+
+Sitemap: https://www.walkabouttravel.com/sitemap.xml

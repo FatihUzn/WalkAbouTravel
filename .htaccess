@@ -1,0 +1,47 @@
+# ============================================================
+#  .htaccess — WalkAbout Travel URL Yönlendirme
+#  Konum: site kök dizini (index.html ile aynı yerde)
+# ============================================================
+
+Options -Indexes
+RewriteEngine On
+
+# --- Sitemap ---
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# --- Statik dosyalar, PHP ve mevcut klasörler dokunma ---
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# --- Blog listesi: /blog/ ve /en/blog/ ---
+RewriteRule ^blog/?$ blog.php [L,QSA]
+RewriteRule ^(en|es|ar|pt)/blog/?$ blog.php [L,QSA]
+
+# --- Blog yazı detay: /blog/{slug}/ ve /en/blog/{slug}/ ---
+RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
+RewriteRule ^(en|es|ar|pt)/blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
+
+# --- Dil prefix'li tur URL'leri: /en/cappadocia-balloon-tour/ ---
+RewriteRule ^(en|es|ar|pt)/([a-z0-9-]+)/?$ tour.php [L,QSA]
+
+# --- Türkçe tur URL'leri: /kapadokya-balon-turu/ ---
+# admin.html, index.html, save.php, data/, assets/ gibi gerçek dosyalar hariç
+RewriteCond %{REQUEST_URI} !^/(admin|data|assets|css|js|images|fonts|uploads)/
+RewriteCond %{REQUEST_URI} !^/(index|admin|save|sitemap|tour|blog|404|robots)\.
+RewriteRule ^([a-z0-9-]+)/?$ tour.php [L,QSA]
+
+# --- Performans: statik dosya cache ---
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png  "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType text/css   "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# --- Gzip sıkıştırma ---
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>

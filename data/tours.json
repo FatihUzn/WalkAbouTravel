@@ -204,6 +204,21 @@
         "day": 4,
         "description": "الانتقال إلى المطار أو محطة الحافلات. نهاية الرحلة."
       }
+    ],
+    "slug": "mardin-tasa-yazili-uygarlik",
+    "slug_en": "mardin-culture-and-history-tour",
+    "slug_es": "mardin-civilizacin-escrita-en-piedra",
+    "slug_ar": "mardin-culture-and-history-tour-ar",
+    "slug_pt": "mardin-civilizaco-escrita-em-pedra",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 1 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 2 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 3 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 4 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 5 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 6 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 7 | Mardin Culture and History Tour",
+      "Mardin Tarihi Konak Dokusu Photo 8 | Mardin Culture and History Tour"
     ]
   },
   {
@@ -392,6 +407,21 @@
         "day": 3,
         "description": "زيارة متحف أنطاليا، الذي يضم واحدة من أغنى المجموعات الأثرية في تركيا. النقل النهائي."
       }
+    ],
+    "slug": "antalya-turkuaz-koylarin-masali",
+    "slug_en": "antalya-bay-tour",
+    "slug_es": "antalya-el-cuento-de-las-bahas-turquesas",
+    "slug_ar": "antalya-bay-tour-ar",
+    "slug_pt": "antlia-o-conto-das-baas-turquesas",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 1 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 2 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 3 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 4 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 5 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 6 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 7 | Antalya Bay Tour",
+      "Antalya Koy Gezisi Photo 8 | Antalya Bay Tour"
     ]
   },
   {
@@ -577,6 +607,18 @@
         "day": 3,
         "description": "العودة النهائية من كابادوكيا."
       }
+    ],
+    "slug": "kapadokya-gokyuzu-ve-peri-masali",
+    "slug_en": "cappadocia-balloon-fairy-chimneys-tour",
+    "slug_es": "capadocia-cielo-y-cuento-de-hadas",
+    "slug_ar": "cappadocia-balloon-fairy-chimneys-tour-ar",
+    "slug_pt": "capadcia-cu-e-conto-de-fadas",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 1 | Cappadocia - Balloon Fairy Chimneys",
+      "Kapadokya Balon Turu Photo 2 | Cappadocia - Balloon Fairy Chimneys",
+      "Kapadokya Balon Turu Photo 3 | Cappadocia - Balloon Fairy Chimneys",
+      "Kapadokya Balon Turu Photo 4 | Cappadocia - Balloon Fairy Chimneys",
+      "Kapadokya Balon Turu Photo 5 | Cappadocia - Balloon Fairy Chimneys"
     ]
   },
   {
@@ -653,7 +695,7 @@
     ],
     "date": "2025-12-16T19:30:00.000Z",
     "featured": false,
-    "title_en": "Fethiye - Oludeniz and Saklikent",
+    "title_en": "Fethiye, Ölüdeniz & Saklıkent Canyon Tour",
     "description_en": "World-famous Oludeniz beach, paragliding, ancient Lycian Way and Saklikent canyon adventure.",
     "not_included": [
       "Öğünler (ayrıca belirtilmemişse)",
@@ -718,7 +760,22 @@
     "title_ar": "فتحية: من أولودينيز إلى وادي ساكليكنت",
     "description_es": "Aventura en la mundialmente famosa playa de Ölüdeniz, parapente, la antigua Vía Licia y el cañón de Saklıkent.",
     "description_pt": "Aventura na mundialmente famosa praia de Ölüdeniz, parapente, a antiga Via Lícia e o cânion de Saklıkent.",
-    "description_ar": "مغامرة في شاطئ أولودينيز الشهير عالميًا، والطيران الشراعي، وطريق ليقيا القديم ووادي ساكليكنت."
+    "description_ar": "مغامرة في شاطئ أولودينيز الشهير عالميًا، والطيران الشراعي، وطريق ليقيا القديم ووادي ساكليكنت.",
+    "slug": "fethiye-oludenizden-saklikent-vadisine",
+    "slug_en": "fethiye-oludeniz-and-saklikent",
+    "slug_es": "fethiye-de-oludeniz-al-valle-de-saklikent",
+    "slug_ar": "fethiye-oludeniz-and-saklikent-ar",
+    "slug_pt": "fethiye-de-oludeniz-ao-vale-de-saklikent",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 1 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 2 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 3 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 4 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 5 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 6 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 7 | Fethiye, Ölüdeniz Saklıkent Canyon Tour",
+      "Fethiye Oludeniz Manzarasi Photo 8 | Fethiye, Ölüdeniz Saklıkent Canyon Tour"
+    ]
   },
   {
     "id": "TUR-TR-PAMUKKALE",
@@ -832,7 +889,17 @@
     "title_ar": "باموكالي: المعجزة البيضاء للمياه القديمة",
     "description_es": "Una experiencia inolvidable en los travertinos blancos, la antigua ciudad de Hierápolis y las piscinas termales.",
     "description_pt": "Uma experiência inesquecível nos travertinos brancos, a antiga cidade de Hierápolis e as piscinas termais.",
-    "description_ar": "تجربة لا تُنسى في الترافرتين الأبيض ومدينة هيرابوليس القديمة والمسابح الحرارية."
+    "description_ar": "تجربة لا تُنسى في الترافرتين الأبيض ومدينة هيرابوليس القديمة والمسابح الحرارية.",
+    "slug": "pamukkale-antik-suyun-beyaz-mucizesi",
+    "slug_en": "pamukkale-white-paradise-tour",
+    "slug_es": "pamukkale-el-milagro-blanco-del-agua-antigua",
+    "slug_ar": "pamukkale-white-paradise-tour-ar",
+    "slug_pt": "pamukkale-o-milagre-branco-da-gua-antiga",
+    "image_alts": [
+      "Pamukkale Traverten Dogal Photo 1 | Pamukkale - White Paradise Tour",
+      "Pamukkale Traverten Dogal Photo 2 | Pamukkale - White Paradise Tour",
+      "Pamukkale Traverten Dogal Photo 3 | Pamukkale - White Paradise Tour"
+    ]
   },
   {
     "id": "TUR-1773842058343",
@@ -991,7 +1058,18 @@
       "assets/turkey-insight-turu-1.webp"
     ],
     "title_pt": "Dez Dias na Anatólia: História, Natureza e Céu",
-    "description_pt": "Breve descrição"
+    "description_pt": "Breve descrição",
+    "slug": "anadolunun-on-gunu-tarih-doga-ve-gokyuzu",
+    "slug_en": "ten-days-in-anatolia-history-nature-sky",
+    "slug_es": "diez-das-en-anatolia-historia-naturaleza-y-cielo",
+    "slug_ar": "ten-days-in-anatolia-history-nature-sky-ar",
+    "slug_pt": "dez-dias-na-anatlia-histria-natureza-e-cu",
+    "image_alts": [
+      "Grand Turkey Turu Photo 1 | Ten Days in Anatolia History",
+      "As We Travel Turkey Photo 1 | Ten Days in Anatolia History",
+      "Dream Turkey Turu Photo 1 | Ten Days in Anatolia History",
+      "Turkey Insight Turu Photo 1 | Ten Days in Anatolia History"
+    ]
   },
   {
     "id": "TUR-1773845441965",
@@ -1146,7 +1224,18 @@
       "assets/turkey-paradise-turu-1.webp"
     ],
     "title_pt": "Nove Dias na Anatólia: De Istambul a Éfeso",
-    "description_pt": "Uma viagem inesquecível do esplendor de Istambul aos contos de fadas da Capadócia, do antigo espírito de Éfeso à magia branca de Pamukkale."
+    "description_pt": "Uma viagem inesquecível do esplendor de Istambul aos contos de fadas da Capadócia, do antigo espírito de Éfeso à magia branca de Pamukkale.",
+    "slug": "anadolunun-dokuz-gunu-istanbuldan-efese",
+    "slug_en": "nine-days-in-anatolia-from-istanbul-to-ephesus",
+    "slug_es": "nueve-das-en-anatolia-de-estambul-a-feso",
+    "slug_ar": "nine-days-in-anatolia-from-istanbul-to-ephesus-ar",
+    "slug_pt": "nove-dias-na-anatlia-de-istambul-a-feso",
+    "image_alts": [
+      "Exciting Turkey Turu Photo 1 | Nine Days in Anatolia From",
+      "Best Of Turkey Turu Photo 1 | Nine Days in Anatolia From",
+      "Highlights Turkey Turu Photo 1 | Nine Days in Anatolia From",
+      "Turkey Paradise Turu Photo 1 | Nine Days in Anatolia From"
+    ]
   },
   {
     "id": "TUR-1773848419116",
@@ -1235,7 +1324,17 @@
       "assets/istanbulistanbul-tarihi-bogaz-1.webp"
     ],
     "title_pt": "Galípoli: Um Dia nas Terras da Bravura",
-    "description_pt": "Excursão diária a Galípoli com partida de Istambul."
+    "description_pt": "Excursão diária a Galípoli com partida de Istambul.",
+    "slug": "gelibolu-kahramanligin-topraklarinda-bir-gun",
+    "slug_en": "gallipoli-a-day-on-the-grounds-of-gallantry",
+    "slug_es": "galpoli-un-da-en-las-tierras-de-la-valenta",
+    "slug_ar": "gallipoli-a-day-on-the-grounds-of-gallantry-ar",
+    "slug_pt": "galpoli-um-dia-nas-terras-da-bravura",
+    "image_alts": [
+      "Istanbul Tarihi Bogaz Photo 2 | Gallipoli A Day on the",
+      "Istanbul Tarihi Bogaz Photo 2 | Gallipoli A Day on the",
+      "Istanbulistanbul Tarihi Bogaz Photo 1 | Gallipoli A Day on the"
+    ]
   },
   {
     "id": "TUR-1700000000001",
@@ -1327,12 +1426,20 @@
       "assets/sabiha-gokcen-karsilama-1.webp"
     ],
     "title_pt": "Aeroporto SAW: Traslado Privado VIP de Partida",
-    "description_pt": "Complete sua viagem a Istambul sem estresse e com conforto com nosso serviço de traslado privado do hotel ao Aeroporto Sabiha Gökçen (SAW)."
+    "description_pt": "Complete sua viagem a Istambul sem estresse e com conforto com nosso serviço de traslado privado do hotel ao Aeroporto Sabiha Gökçen (SAW).",
+    "slug": "saw-havalimani-ozel-vip-kalkis-transferi",
+    "slug_en": "saw-airport-private-vip-departure-transfer",
+    "slug_es": "aeropuerto-saw-traslado-privado-vip-de-salida",
+    "slug_ar": "saw-airport-private-vip-departure-transfer-ar",
+    "slug_pt": "aeroporto-saw-traslado-privado-vip-de-partida",
+    "image_alts": [
+      "Sabiha Gokcen Karsilama | SAW Airport Private VIP Departure"
+    ]
   },
   {
     "id": "TUR-1700000000002",
     "title": "Fethiye: Babadağ'dan Gökyüzü Özgürlüğü",
-    "title_en": "Fethiye: Freedom in the Sky from Babadağ",
+    "title_en": "Fethiye Paragliding Tour from Babadağ Mountain",
     "title_es": "Fethiye: Libertad en el Cielo desde Babadağ",
     "title_ru": "Парапланеризм в Фетхие",
     "title_de": "Gleitschirmfliegen in Fethiye",
@@ -1428,7 +1535,19 @@
       "assets/fethiye.webp"
     ],
     "title_pt": "Fethiye: Liberdade no Céu de Babadağ",
-    "description_pt": "Sinta a liberdade do céu subindo da montanha Babadağ e viva a experiência da sua vida observando as águas turquesas lá de cima."
+    "description_pt": "Sinta a liberdade do céu subindo da montanha Babadağ e viva a experiência da sua vida observando as águas turquesas lá de cima.",
+    "slug": "fethiye-babadagdan-gokyuzu-ozgurlugu",
+    "slug_en": "fethiye-freedom-in-the-sky-from-babadag",
+    "slug_es": "fethiye-libertad-en-el-cielo-desde-babadag",
+    "slug_ar": "fethiye-freedom-in-the-sky-from-babadag-ar",
+    "slug_pt": "fethiye-liberdade-no-cu-de-babadag",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 9 | Fethiye Paragliding Tour from Babadağ",
+      "Fethiye Oludeniz Manzarasi Photo 10 | Fethiye Paragliding Tour from Babadağ",
+      "Fethiye Oludeniz Manzarasi Photo 11 | Fethiye Paragliding Tour from Babadağ",
+      "Fethiye Oludeniz Manzarasi Photo 12 | Fethiye Paragliding Tour from Babadağ",
+      "Fethiye Photo 5 | Fethiye Paragliding Tour from Babadağ"
+    ]
   },
   {
     "id": "TUR-1700000000003",
@@ -1529,7 +1648,18 @@
       "assets/turkey-insight-turu-1.webp"
     ],
     "title_pt": "Profundidade da Anatólia: Grande Exploração de 20 Dias",
-    "description_pt": "Nossos pacotes turísticos abrangentes de 20 dias ou mais para quem deseja descobrir verdadeiramente toda a glória da Turquia."
+    "description_pt": "Nossos pacotes turísticos abrangentes de 20 dias ou mais para quem deseja descobrir verdadeiramente toda a glória da Turquia.",
+    "slug": "anadolu-derinligi-20-gunluk-buyuk-kesif",
+    "slug_en": "anatolian-depths-a-20-day-grand-exploration",
+    "slug_es": "profundidad-de-anatolia-gran-exploracin-de-20-das",
+    "slug_ar": "anatolian-depths-a-20-day-grand-exploration-ar",
+    "slug_pt": "profundidade-da-anatlia-grande-exploraco-de-20-dias",
+    "image_alts": [
+      "Dream Turkey Turu Photo 1 | Anatolian Depths A 20-Day Grand",
+      "Grand Turkey Turu Photo 1 | Anatolian Depths A 20-Day Grand",
+      "Best Of Turkey Turu Photo 1 | Anatolian Depths A 20-Day Grand",
+      "Turkey Insight Turu Photo 1 | Anatolian Depths A 20-Day Grand"
+    ]
   },
   {
     "id": "TUR-1700000000004",
@@ -1623,12 +1753,22 @@
       "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "title_pt": "Noite de Música e Jantar no Bósforo",
-    "description_pt": "Uma noite turca inesquecível o espera acompanhada de um barco deslizando nas águas do Bósforo, no cenário mais romântico de Istambul."
+    "description_pt": "Uma noite turca inesquecível o espera acompanhada de um barco deslizando nas águas do Bósforo, no cenário mais romântico de Istambul.",
+    "slug": "istanbul-bogazinda-muzik-ve-yemek-gecesi",
+    "slug_en": "an-evening-of-music-dining-on-the-bosphorus",
+    "slug_es": "noche-de-msica-y-cena-en-el-bsforo",
+    "slug_ar": "an-evening-of-music-dining-on-the-bosphorus-ar",
+    "slug_pt": "noite-de-msica-e-jantar-no-bsforo",
+    "image_alts": [
+      "Dolmabahce Bogaz Turu Photo 1 | An Evening of Music Dining",
+      "Istanbul Tarihi Bogaz Photo 2 | An Evening of Music Dining",
+      "Istanbul Kapadokya Gunluk Photo 1 | An Evening of Music Dining"
+    ]
   },
   {
     "id": "TUR-1700000000005",
     "title": "İstanbul & Gelibolu: Tarihin İki Yüzü",
-    "title_en": "Istanbul & Gallipoli: Two Faces of History",
+    "title_en": "Istanbul & Gallipoli History Tour | 2 Destinations",
     "title_es": "Estambul y Galípoli: Dos Caras de la Historia",
     "title_ru": "Тур по Турции",
     "title_de": "Türkei-Kampagnentour",
@@ -1796,7 +1936,17 @@
       "assets/istanbul-tarihi-bogaz.webp"
     ],
     "title_pt": "Istambul e Galípoli: Duas Faces da História",
-    "description_pt": "Reúne o legado imperial de Istambul, os tristes campos de batalha de Galípoli e as ruínas lendárias de Tróia em uma jornada abrangente."
+    "description_pt": "Reúne o legado imperial de Istambul, os tristes campos de batalha de Galípoli e as ruínas lendárias de Tróia em uma jornada abrangente.",
+    "slug": "istanbul-gelibolu-tarihin-iki-yuzu",
+    "slug_en": "istanbul-gallipoli-two-faces-of-history",
+    "slug_es": "estambul-y-galpoli-dos-caras-de-la-historia",
+    "slug_ar": "istanbul-gallipoli-two-faces-of-history-ar",
+    "slug_pt": "istambul-e-galpoli-duas-faces-da-histria",
+    "image_alts": [
+      "Istanbulistanbul Tarihi Bogaz Photo 1 | Istanbul Gallipoli History Tour 2",
+      "Istanbul Tarihi Bogaz Photo 2 | Istanbul Gallipoli History Tour 2",
+      "Istanbul Tarihi Bogaz Photo 3 | Istanbul Gallipoli History Tour 2"
+    ]
   },
   {
     "id": "TUR-1700000000006",
@@ -1825,7 +1975,7 @@
       ]
     },
     "description": "Kapadokya'nın peri bacaları, vadileri ve eşsiz coğrafyası üzerinde, gün doğumunun altın ışığında süzülmek.",
-    "description_en": "Among the most breathtaking experiences Turkey has to offer, a hot air balloon flight over Cappadocia at sunrise is nothing short of magical. Drifting above the fairy chimneys, cave dwellings, vineyards, and ancient rock formations of this extraordinary landscape, with your pilot narrating the sights below and the colours of dawn slowly illuminating the valleys, is a memory that stays with you for a lifetime. This is an activity not to be missed.",
+    "description_en": "Float above Cappadocia's fairy chimneys at sunrise on a hot air balloon. Book with WalkAbout Travel for an unforgettable Turkey experience.",
     "description_es": "Flotando bajo la luz dorada del amanecer sobre las chimeneas de hadas, valles y la geografía única de Capadocia.",
     "description_ru": "Парение над сказочными дымоходами и долинами Каппадокии.",
     "description_de": "Schweben über den Feenkaminen und Tälern Kappadokiens.",
@@ -1917,7 +2067,19 @@
       "assets/kapadokya-balon-turu-9.webp"
     ],
     "title_pt": "Capadócia: Viagem de Balão ao Nascer do Sol",
-    "description_pt": "Flutuando na luz dourada do nascer do sol sobre as chaminés de fada, vales e geografia única da Capadócia."
+    "description_pt": "Flutuando na luz dourada do nascer do sol sobre as chaminés de fada, vales e geografia única da Capadócia.",
+    "slug": "kapadokya-gun-dogumunda-balon-yolculugu",
+    "slug_en": "cappadocia-hot-air-balloon-ride-at-sunrise",
+    "slug_es": "capadocia-viaje-en-globo-al-amanecer",
+    "slug_ar": "cappadocia-hot-air-balloon-ride-at-sunrise-ar",
+    "slug_pt": "capadcia-viagem-de-balo-ao-nascer-do-sol",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 2 | Cappadocia Hot Air Balloon Ride",
+      "Kapadokya Balon Turu Photo 6 | Cappadocia Hot Air Balloon Ride",
+      "Kapadokya Balon Turu Photo 7 | Cappadocia Hot Air Balloon Ride",
+      "Kapadokya Balon Turu Photo 8 | Cappadocia Hot Air Balloon Ride",
+      "Kapadokya Balon Turu Photo 9 | Cappadocia Hot Air Balloon Ride"
+    ]
   },
   {
     "id": "TUR-1700000000007",
@@ -2013,12 +2175,22 @@
       "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "title_pt": "Escapada Curta: Opções na Turquia de 2 a 3 Dias",
-    "description_pt": "Mesmo com tempo limitado, é possível explorar os destinos mais icônicos da Turquia. Nossos pacotes de passeios curtos de 2 ou 3 dias."
+    "description_pt": "Mesmo com tempo limitado, é possível explorar os destinos mais icônicos da Turquia. Nossos pacotes de passeios curtos de 2 ou 3 dias.",
+    "slug": "kisa-kacis-23-gunluk-turkiye-secenekleri",
+    "slug_en": "short-escape-23-day-turkey-options",
+    "slug_es": "escapada-corta-opciones-de-turqua-de-2-a-3-das",
+    "slug_ar": "short-escape-23-day-turkey-options-ar",
+    "slug_pt": "escapada-curta-opces-na-turquia-de-2-a-3-dias",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 3 | Short Escape 2–3 Day Turkey",
+      "Fethiye Oludeniz Manzarasi Photo 13 | Short Escape 2–3 Day Turkey",
+      "Istanbul Kapadokya Gunluk Photo 1 | Short Escape 2–3 Day Turkey"
+    ]
   },
   {
     "id": "TUR-1700000000008",
     "title": "Kendi Türkiye Rotanı Yaz: À La Carte",
-    "title_en": "Write Your Own Turkey Route: À La Carte",
+    "title_en": "Custom Turkey Tour: Build Your Own Itinerary",
     "title_es": "Escriba su Propia Ruta por Turquía: A la Carta",
     "title_ru": "Тур по Турции А ля Карт",
     "title_de": "Türkei-A-la-carte-Tour",
@@ -2261,7 +2433,17 @@
       "assets/exciting-turkey-turu-1.webp"
     ],
     "title_pt": "Escreva sua Própria Rota na Turquia: À La Carte",
-    "description_pt": "Passeio flexível elaborado para quem deseja explorar os destinos mais importantes da Turquia no seu próprio ritmo e de acordo com as suas preferências."
+    "description_pt": "Passeio flexível elaborado para quem deseja explorar os destinos mais importantes da Turquia no seu próprio ritmo e de acordo com as suas preferências.",
+    "slug": "kendi-turkiye-rotani-yaz-la-carte",
+    "slug_en": "write-your-own-turkey-route-la-carte",
+    "slug_es": "escriba-su-propia-ruta-por-turqua-a-la-carta",
+    "slug_ar": "write-your-own-turkey-route-la-carte-ar",
+    "slug_pt": "escreva-sua-prpria-rota-na-turquia-la-carte",
+    "image_alts": [
+      "Turkey Paradise Turu Photo 1 | Custom Turkey Tour Build Your",
+      "As We Travel Turkey Photo 1 | Custom Turkey Tour Build Your",
+      "Exciting Turkey Turu Photo 1 | Custom Turkey Tour Build Your"
+    ]
   },
   {
     "id": "TUR-1700000000009",
@@ -2290,7 +2472,7 @@
       ]
     },
     "description": "Fethiye'nin büyüleyici limanından yelken açarak Akdeniz'in en gözde koylarında, antik kalıntıların gölgesinde ve kristal berraklığındaki sularda unutulmaz 4 günlük bir gulet yolculuğuna çıkın.",
-    "description_en": "Set sail from the enchanting harbour of Fethiye and embark on an unforgettable four-day gulet cruise along one of the Mediterranean's most spectacular coastlines. From the butterfly-filled valleys of Ölüdeniz to the sunken ruins of Kekova, from the quiet fishing village of Kaş to the ancient harbour of Demre, this voyage offers an extraordinary blend of natural beauty, history, and adventure.",
+    "description_en": "Sail the Turkish coast on a 4-day gulet cruise from Fethiye to Olympos. Kekova ruins, Kaş, and crystal-clear Mediterranean waters await.",
     "description_es": "Zarpe desde el encantador puerto de Fethiye hacia un inolvidable viaje en goleta de 4 días en las bahías más populares del Mediterráneo, a la sombra de antiguas ruinas y en aguas cristalinas.",
     "description_ru": "Отправляйтесь в незабываемое 4-дневное путешествие на гулете из Фетхие.",
     "description_de": "Setzen Sie die Segel vom Hafen von Fethiye und begeben Sie sich auf eine unvergessliche 4-tägige Gulet-Reise.",
@@ -2425,12 +2607,23 @@
       "assets/fethiye-oludeniz-manzarasi-16.webp"
     ],
     "title_pt": "Cruzeiro Azul: De Fethiye a Olympos",
-    "description_pt": "Veleje a partir do encantador porto de Fethiye em uma inesquecível jornada de escuna de 4 dias pelas baías mais populares do Mediterrâneo, à sombra de ruínas antigas e em águas cristalinas."
+    "description_pt": "Veleje a partir do encantador porto de Fethiye em uma inesquecível jornada de escuna de 4 dias pelas baías mais populares do Mediterrâneo, à sombra de ruínas antigas e em águas cristalinas.",
+    "slug": "mavi-yolculuk-fethiyeden-olymposa",
+    "slug_en": "blue-cruise-from-fethiye-to-olympos",
+    "slug_es": "crucero-azul-de-fethiye-a-olimpos",
+    "slug_ar": "blue-cruise-from-fethiye-to-olympos-ar",
+    "slug_pt": "cruzeiro-azul-de-fethiye-a-olympos",
+    "image_alts": [
+      "Turkiye Mavi Yolculuk Photo 1 | Blue Cruise From Fethiye to",
+      "Fethiye Oludeniz Manzarasi Photo 14 | Blue Cruise From Fethiye to",
+      "Fethiye Oludeniz Manzarasi Photo 15 | Blue Cruise From Fethiye to",
+      "Fethiye Oludeniz Manzarasi Photo 16 | Blue Cruise From Fethiye to"
+    ]
   },
   {
     "id": "TUR-1700000000010",
     "title": "Batı Anadolu: Antik Medeniyetlerin İzinde",
-    "title_en": "Western Anatolia: In the Footsteps of Ancient Civilisations",
+    "title_en": "Western Anatolia Tour: Troy, Ephesus & Pamukkale",
     "title_es": "Anatolia Occidental: Tras las Huellas de Civilizaciones Antiguas",
     "title_ru": "Тур по Западной Турции",
     "title_de": "Westtürkei-Tour",
@@ -2585,12 +2778,23 @@
       "assets/pamukkale-hierapolis-turu-1.webp"
     ],
     "title_pt": "Anatólia Ocidental: Nos Passos das Civilizações Antigas",
-    "description_pt": "Este tour abrangente desde os campos de batalha de Galípoli até as muralhas de Tróia, desde a grande rua de Éfeso até os travertinos brancos de Pamukkale, permite descobrir os destinos mais impressionantes do oeste da Turquia."
+    "description_pt": "Este tour abrangente desde os campos de batalha de Galípoli até as muralhas de Tróia, desde a grande rua de Éfeso até os travertinos brancos de Pamukkale, permite descobrir os destinos mais impressionantes do oeste da Turquia.",
+    "slug": "bati-anadolu-antik-medeniyetlerin-izinde",
+    "slug_en": "western-anatolia-in-the-footsteps-of-ancient-civilisations",
+    "slug_es": "anatolia-occidental-tras-las-huellas-de-civilizaciones-antiguas",
+    "slug_ar": "western-anatolia-in-the-footsteps-of-ancient-civilisations-ar",
+    "slug_pt": "anatlia-ocidental-nos-passos-das-civilizaces-antigas",
+    "image_alts": [
+      "Efes Antik Luks Photo 1 | Western Anatolia Tour Troy, Ephesus",
+      "Efes Gunluk Turu Photo 1 | Western Anatolia Tour Troy, Ephesus",
+      "Yedi Kiliseler Turu Photo 1 | Western Anatolia Tour Troy, Ephesus",
+      "Pamukkale Hierapolis Turu Photo 1 | Western Anatolia Tour Troy, Ephesus"
+    ]
   },
   {
     "id": "TUR-1700000000011",
     "title": "Macera & Kültür: Türkiye'de Aktif Keşif",
-    "title_en": "Adventure & Culture: Active Exploration in Turkey",
+    "title_en": "Adventure & Culture Tour: Active Turkey Exploration",
     "title_es": "Aventura y Cultura: Exploración Activa en Turquía",
     "title_ru": "Развлечения в Турции",
     "title_de": "Aktivitäten in der Türkei",
@@ -2678,7 +2882,17 @@
       "assets/as-we-travel-turkey-1.webp"
     ],
     "title_pt": "Aventura e Cultura: Exploração Ativa na Turquia",
-    "description_pt": "Oferecemos atividades muito especiais para todos, desde caçadores de adrenalina até entusiastas da cultura, desde amantes da natureza até os que adoram o entretenimento noturno."
+    "description_pt": "Oferecemos atividades muito especiais para todos, desde caçadores de adrenalina até entusiastas da cultura, desde amantes da natureza até os que adoram o entretenimento noturno.",
+    "slug": "macera-kultur-turkiyede-aktif-kesif",
+    "slug_en": "adventure-culture-active-exploration-in-turkey",
+    "slug_es": "aventura-y-cultura-exploracin-activa-en-turqua",
+    "slug_ar": "adventure-culture-active-exploration-in-turkey-ar",
+    "slug_pt": "aventura-e-cultura-exploraco-ativa-na-turquia",
+    "image_alts": [
+      "Dogu Karadeniz Anadolu Turu Photo 1 | Adventure Culture Tour Active Turkey",
+      "Kapadokya Gezegen Photo 2 | Adventure Culture Tour Active Turkey",
+      "As We Travel Turkey Photo 1 | Adventure Culture Tour Active Turkey"
+    ]
   },
   {
     "id": "TUR-1700000000012",
@@ -2770,7 +2984,16 @@
       "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "title_pt": "Aeroporto IST: Traslado Privado de Recepção VIP",
-    "description_pt": "Oferecemos um traslado de boas-vindas sem estresse com veículo particular do Aeroporto de Istambul (IST) para o seu hotel ou qualquer ponto da cidade que você desejar."
+    "description_pt": "Oferecemos um traslado de boas-vindas sem estresse com veículo particular do Aeroporto de Istambul (IST) para o seu hotel ou qualquer ponto da cidade que você desejar.",
+    "slug": "ist-havalimani-ozel-vip-karsilama-transferi",
+    "slug_en": "ist-airport-private-vip-welcome-transfer",
+    "slug_es": "aeropuerto-ist-traslado-privado-de-bienvenida-vip",
+    "slug_ar": "ist-airport-private-vip-welcome-transfer-ar",
+    "slug_pt": "aeroporto-ist-traslado-privado-de-recepco-vip",
+    "image_alts": [
+      "Istanbul Tarihi Bogaz Photo 1 | IST Airport Private VIP Welcome",
+      "Dolmabahce Bogaz Turu Photo 1 | IST Airport Private VIP Welcome"
+    ]
   },
   {
     "id": "TUR-1700000000013",
@@ -2892,12 +3115,22 @@
       "assets/highlights-turkey-turu-1.webp"
     ],
     "title_pt": "Tróia: Viagem de um Dia à Cidade da Lenda",
-    "description_pt": "Descubra a antiga cidade de Tróia, onde a mitologia e a história se entrelaçam, em um único dia com partida de Istambul."
+    "description_pt": "Descubra a antiga cidade de Tróia, onde a mitologia e a história se entrelaçam, em um único dia com partida de Istambul.",
+    "slug": "truva-efsanenin-sehrine-gunubirlik-yolculuk",
+    "slug_en": "troy-a-day-trip-to-the-city-of-legend",
+    "slug_es": "troya-excursin-de-un-da-a-la-ciudad-de-leyenda",
+    "slug_ar": "troy-a-day-trip-to-the-city-of-legend-ar",
+    "slug_pt": "tria-viagem-de-um-dia-cidade-da-lenda",
+    "image_alts": [
+      "Best Of Turkey Turu Photo 1 | Troy A Day Trip to",
+      "Exciting Turkey Turu Photo 1 | Troy A Day Trip to",
+      "Highlights Turkey Turu Photo 1 | Troy A Day Trip to"
+    ]
   },
   {
     "id": "TUR-1700000000014",
     "title": "İstanbul: Günlük Keşif Seçenekleri",
-    "title_en": "Istanbul: Daily Exploration Options",
+    "title_en": "Istanbul Day Tour: Top Sights & Hidden Gems",
     "title_es": "Estambul: Opciones de Exploración Diaria",
     "title_ru": "Ежедневные туры по Стамбулу",
     "title_de": "Tägliche Istanbul-Touren",
@@ -2988,7 +3221,18 @@
       "assets/istanbul-tarihi-bogaz.webp"
     ],
     "title_pt": "Istambul: Opções de Exploração Diária",
-    "description_pt": "Oferecemos passeios diários interessantes para explorar esta metrópole única que une dois continentes com diferentes temas."
+    "description_pt": "Oferecemos passeios diários interessantes para explorar esta metrópole única que une dois continentes com diferentes temas.",
+    "slug": "istanbul-gunluk-kesif-secenekleri",
+    "slug_en": "istanbul-daily-exploration-options",
+    "slug_es": "estambul-opciones-de-exploracin-diaria",
+    "slug_ar": "istanbul-daily-exploration-options-ar",
+    "slug_pt": "istambul-opces-de-exploraco-diria",
+    "image_alts": [
+      "Istanbul Kapadokya Gunluk Photo 1 | Istanbul Day Tour Top Sights",
+      "Dolmabahce Bogaz Turu Photo 1 | Istanbul Day Tour Top Sights",
+      "Prens Adalari Turu Photo 1 | Istanbul Day Tour Top Sights",
+      "Istanbul Tarihi Bogaz Photo 4 | Istanbul Day Tour Top Sights"
+    ]
   },
   {
     "id": "TUR-1700000000015",
@@ -3110,12 +3354,22 @@
       "assets/best-of-turkey-turu-1.webp"
     ],
     "title_pt": "Galípoli e Tróia: Duas Epopeias em Dois Dias",
-    "description_pt": "Permite-lhe descobrir os heróicos e tristes campos de batalha de Galípoli e as antigas ruínas da cidade de Tróia, tema da mitologia."
+    "description_pt": "Permite-lhe descobrir os heróicos e tristes campos de batalha de Galípoli e as antigas ruínas da cidade de Tróia, tema da mitologia.",
+    "slug": "gelibolu-truva-iki-gunde-iki-destan",
+    "slug_en": "gallipoli-troy-two-epics-in-two-days",
+    "slug_es": "galpoli-y-troya-dos-epopeyas-en-dos-das",
+    "slug_ar": "gallipoli-troy-two-epics-in-two-days-ar",
+    "slug_pt": "galpoli-e-tria-duas-epopeias-em-dois-dias",
+    "image_alts": [
+      "Highlights Turkey Turu Photo 1 | Gallipoli Troy Two Epics in",
+      "Istanbul Tarihi Bogaz Photo 2 | Gallipoli Troy Two Epics in",
+      "Best Of Turkey Turu Photo 1 | Gallipoli Troy Two Epics in"
+    ]
   },
   {
     "id": "TUR-1700000000016",
     "title": "Kapadokya: Peri Bacaları Arasında At Üstünde",
-    "title_en": "Cappadocia: Horseback Riding Among the Fairy Chimneys",
+    "title_en": "Cappadocia Horseback Riding Tour Among Fairy Chimneys",
     "title_es": "Capadocia: A Caballo Entre las Chimeneas de Hadas",
     "title_ru": "Верховая езда в Каппадокии",
     "title_de": "Reiten in Kappadokien",
@@ -3139,7 +3393,7 @@
       ]
     },
     "description": "Kılıç Vadisi, Meskendir Vadisi ve Kırmızı Vadi'de kalabalıktan uzak, nefes kesen manzaralar eşliğinde unutulmaz bir at binme deneyimi yaşayın.",
-    "description_en": "Explore the spectacular valleys of Cappadocia on horseback, journeying through landscapes that no vehicle can reach. Far from the tourist crowds, this guided horse ride takes you through Sword Valley, Meskendir Valley, Red Valley, Rose Valley, and Çavuşin Valley—trails renowned for their dramatic rock formations, sweeping vistas, and profound sense of solitude. Available as a one-hour introduction, a two-hour exploration, or a four-hour immersive ride, this is an experience that brings Cappadocia's extraordinary landscape to life in a uniquely personal way.",
+    "description_en": "Ride through Cappadocia's hidden valleys on horseback — Red Valley, Rose Valley, and beyond. 1, 2 or 4-hour guided options available.",
     "description_es": "Disfrute de una inolvidable experiencia de equitación lejos de las multitudes en el Valle de la Espada, el Valle de Meskendir y el Valle Rojo, acompañada de impresionantes vistas.",
     "description_ru": "Незабываемая прогулка на лошадях в сопровождении захватывающих дух видов.",
     "description_de": "Erleben Sie unvergessliche Ausritte mit atemberaubender Aussicht.",
@@ -3221,7 +3475,18 @@
       "assets/kapadokya-balon-turu-11.webp"
     ],
     "title_pt": "Capadócia: A Cavalo Entre as Chaminés de Fada",
-    "description_pt": "Desfrute de uma experiência inesquecível de passeios a cavalo longe das multidões no Vale da Espada, Vale Meskendir e Vale Vermelho, acompanhada de vistas deslumbrantes."
+    "description_pt": "Desfrute de uma experiência inesquecível de passeios a cavalo longe das multidões no Vale da Espada, Vale Meskendir e Vale Vermelho, acompanhada de vistas deslumbrantes.",
+    "slug": "kapadokya-peri-bacalari-arasinda-at-ustunde",
+    "slug_en": "cappadocia-horseback-riding-among-the-fairy-chimneys",
+    "slug_es": "capadocia-a-caballo-entre-las-chimeneas-de-hadas",
+    "slug_ar": "cappadocia-horseback-riding-among-the-fairy-chimneys-ar",
+    "slug_pt": "capadcia-a-cavalo-entre-as-chamins-de-fada",
+    "image_alts": [
+      "Kapadokya Gezegen Photo 1 | Cappadocia Horseback Riding Tour Among",
+      "Kapadokya Balon Turu Photo 4 | Cappadocia Horseback Riding Tour Among",
+      "Kapadokya Balon Turu Photo 5 | Cappadocia Horseback Riding Tour Among",
+      "Kapadokya Balon Turu Photo 11 | Cappadocia Horseback Riding Tour Among"
+    ]
   },
   {
     "id": "TUR-1700000000017",
@@ -3433,7 +3698,18 @@
       "assets/pamukkale-traverten-dogal-4.webp"
     ],
     "title_pt": "As Quatro Pérolas da Turquia: Rota Clássica de 7 Dias",
-    "description_pt": "Explorando quatro dos destinos mais icônicos da Turquia em uma jornada abrangente, este passeio é o ponto de partida perfeito para quem visita pela primeira vez."
+    "description_pt": "Explorando quatro dos destinos mais icônicos da Turquia em uma jornada abrangente, este passeio é o ponto de partida perfeito para quem visita pela primeira vez.",
+    "slug": "turkiyenin-dort-incisi-7-gunluk-klasik-rota",
+    "slug_en": "turkeys-four-gems-7-day-classic-route",
+    "slug_es": "las-cuatro-perlas-de-turqua-ruta-clsica-de-7-das",
+    "slug_ar": "turkeys-four-gems-7-day-classic-route-ar",
+    "slug_pt": "as-quatro-prolas-da-turquia-rota-clssica-de-7-dias",
+    "image_alts": [
+      "Turkiye Bes Sehir Turu Photo 1 | Turkey's Four Gems 7-Day Classic",
+      "Exciting Turkey Turu Photo 1 | Turkey's Four Gems 7-Day Classic",
+      "Efes Gunluk Turu Photo 1 | Turkey's Four Gems 7-Day Classic",
+      "Pamukkale Traverten Dogal Photo 4 | Turkey's Four Gems 7-Day Classic"
+    ]
   },
   {
     "id": "TUR-1700000000018",
@@ -3461,7 +3737,7 @@
       ]
     },
     "description": "5.137 metre yüksekliğiyle Türkiye'nin en yüce noktası olan Ağrı Dağı, dört ülkeyi gören panoramik manzarasıyla dünyanın en mistik tırmanış destinasyonlarından biridir.",
-    "description_en": "Rising to 5,137 metres above sea level, Mount Ararat is Turkey's highest peak and one of the most mythically charged summits on earth—believed by many to be the resting place of Noah's Ark, and visible across four countries from its crown. This four-day guided expedition leads you from the ancient town of Doğubayazıt through a dramatic high-altitude landscape to the glacier-clad summit, where the panorama stretches across Turkey, Armenia, Iran, and Azerbaijan. An exceptional challenge for those seeking one of the world's most evocative mountain experiences.",
+    "description_en": "Climb Mount Ararat (5,137 m), Turkey's highest peak and Noah's Ark legend. 4-day guided expedition from Doğubayazıt with WalkAbout Travel.",
     "description_es": "Con 5.137 metros de altura, el Monte Ararat es el punto más alto de Turquía y uno de los destinos de escalada más místicos del mundo con su vista panorámica sobre cuatro países.",
     "description_ru": "Гора Арарат, самая высокая точка Турции, является мистическим местом для восхождения.",
     "description_de": "Der Berg Ararat, der höchste Punkt der Türkei, ist ein mystisches Kletterziel.",
@@ -3575,7 +3851,17 @@
       "assets/grand-turkey-turu-1.webp"
     ],
     "title_pt": "Monte Ararat: Subida ao Cume da Turquia",
-    "description_pt": "Com 5.137 metros de altura, o Monte Ararat é o ponto mais alto da Turquia e um dos destinos de escalada mais místicos do mundo com a sua vista panorâmica sobre quatro países."
+    "description_pt": "Com 5.137 metros de altura, o Monte Ararat é o ponto mais alto da Turquia e um dos destinos de escalada mais místicos do mundo com a sua vista panorâmica sobre quatro países.",
+    "slug": "agri-dagi-turkiyenin-zirvesine-tirmanis",
+    "slug_en": "mount-ararat-climbing-turkeys-summit",
+    "slug_es": "monte-ararat-ascenso-a-la-cumbre-de-turqua",
+    "slug_ar": "mount-ararat-climbing-turkeys-summit-ar",
+    "slug_pt": "monte-ararat-subida-ao-cume-da-turquia",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 9 | Mount Ararat Climbing Turkey's Summit",
+      "Dogu Karadeniz Anadolu Turu Photo 1 | Mount Ararat Climbing Turkey's Summit",
+      "Grand Turkey Turu Photo 1 | Mount Ararat Climbing Turkey's Summit"
+    ]
   },
   {
     "id": "TUR-1700000000019",
@@ -3694,12 +3980,23 @@
       "assets/fethiye-oludeniz-manzarasi-18.webp"
     ],
     "title_pt": "Cruzeiro Azul: De Olympos a Fethiye",
-    "description_pt": "Partindo de Olympos, embarque em uma viagem inesquecível de escuna de 4 dias pelas baías mais fascinantes do Mediterrâneo, ruínas antigas e águas cristalinas."
+    "description_pt": "Partindo de Olympos, embarque em uma viagem inesquecível de escuna de 4 dias pelas baías mais fascinantes do Mediterrâneo, ruínas antigas e águas cristalinas.",
+    "slug": "mavi-yolculuk-olympostan-fethiyeye",
+    "slug_en": "blue-cruise-from-olympos-to-fethiye",
+    "slug_es": "crucero-azul-de-olimpos-a-fethiye",
+    "slug_ar": "blue-cruise-from-olympos-to-fethiye-ar",
+    "slug_pt": "cruzeiro-azul-de-olympos-a-fethiye",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 3 | Blue Cruise From Olympos to",
+      "Turkiye Mavi Yolculuk Photo 1 | Blue Cruise From Olympos to",
+      "Fethiye Oludeniz Manzarasi Photo 17 | Blue Cruise From Olympos to",
+      "Fethiye Oludeniz Manzarasi Photo 18 | Blue Cruise From Olympos to"
+    ]
   },
   {
     "id": "TUR-1700000000020",
     "title": "Türkiye: Şafakta Tarih ve Doğa",
-    "title_en": "Turkey: History and Nature at Dawn",
+    "title_en": "Turkey History & Nature Tour: Highlights at Dawn",
     "title_es": "Turquía: Historia y Naturaleza al Amanecer",
     "title_ru": "Тур Рассвет Турции",
     "title_de": "Türkei Sonnenaufgang Tour",
@@ -3820,12 +4117,22 @@
       "assets/best-of-turkey-turu-1.webp"
     ],
     "title_pt": "Turquia: História e Natureza ao Amanhecer",
-    "description_pt": "Este passeio abrangente, desde os tristes campos de batalha de Galípoli até aos vales de contos de fadas da Capadócia, reúne os destinos mais impressionantes da Turquia."
+    "description_pt": "Este passeio abrangente, desde os tristes campos de batalha de Galípoli até aos vales de contos de fadas da Capadócia, reúne os destinos mais impressionantes da Turquia.",
+    "slug": "turkiye-safakta-tarih-ve-doga",
+    "slug_en": "turkey-history-and-nature-at-dawn",
+    "slug_es": "turqua-historia-y-naturaleza-al-amanecer",
+    "slug_ar": "turkey-history-and-nature-at-dawn-ar",
+    "slug_pt": "turquia-histria-e-natureza-ao-amanhecer",
+    "image_alts": [
+      "As We Travel Turkey Photo 1 | Turkey History Nature Tour Highlights",
+      "Turkey Insight Turu Photo 1 | Turkey History Nature Tour Highlights",
+      "Best Of Turkey Turu Photo 1 | Turkey History Nature Tour Highlights"
+    ]
   },
   {
     "id": "TUR-1700000000021",
     "title": "Türkiye Klasikleri: Zamansız Güzergah",
-    "title_en": "Turkey Classics: A Timeless Journey",
+    "title_en": "Turkey Classics Tour: Istanbul, Cappadocia & Ephesus",
     "title_es": "Clásicos de Turquía: Ruta Atemporal",
     "title_ru": "Тур Классика Турции",
     "title_de": "Türkei Klassiker Tour",
@@ -4016,7 +4323,18 @@
       "assets/highlights-turkey-turu-1.webp"
     ],
     "title_pt": "Clássicos da Turquia: Rota Intemporal",
-    "description_pt": "Este passeio clássico, que cobre Istambul, Capadócia e Éfeso, reúne os destinos mais concisos e impressionantes da Turquia com luxo e conforto."
+    "description_pt": "Este passeio clássico, que cobre Istambul, Capadócia e Éfeso, reúne os destinos mais concisos e impressionantes da Turquia com luxo e conforto.",
+    "slug": "turkiye-klasikleri-zamansiz-guzergah",
+    "slug_en": "turkey-classics-a-timeless-journey",
+    "slug_es": "clsicos-de-turqua-ruta-atemporal",
+    "slug_ar": "turkey-classics-a-timeless-journey-ar",
+    "slug_pt": "clssicos-da-turquia-rota-intemporal",
+    "image_alts": [
+      "Turkey Insight Turu Photo 1 | Turkey Classics Tour Istanbul, Cappadocia",
+      "Exciting Turkey Turu Photo 1 | Turkey Classics Tour Istanbul, Cappadocia",
+      "Grand Turkey Turu Photo 1 | Turkey Classics Tour Istanbul, Cappadocia",
+      "Highlights Turkey Turu Photo 1 | Turkey Classics Tour Istanbul, Cappadocia"
+    ]
   },
   {
     "id": "TUR-1700000000022",
@@ -4113,7 +4431,18 @@
       "assets/pamukkale-traverten-dogal-5.webp"
     ],
     "title_pt": "As Tuas Férias Pessoais na Turquia: Tu Desenhas, Nós Realizamos",
-    "description_pt": "Diga-nos que canto da Turquia gostaria de descobrir, quanto tempo tem e o seu orçamento — a nossa equipa de especialistas desenhará um programa personalizado para si."
+    "description_pt": "Diga-nos que canto da Turquia gostaria de descobrir, quanto tempo tem e o seu orçamento — a nossa equipa de especialistas desenhará um programa personalizado para si.",
+    "slug": "kisisel-turkiye-tatili-sen-tasarla-biz-hayata-gecirelim",
+    "slug_en": "your-personal-turkey-holiday-you-design-we-deliver",
+    "slug_es": "tus-vacaciones-personales-en-turqua-t-diseas-nosotros-lo-hacemos-realidad",
+    "slug_ar": "your-personal-turkey-holiday-you-design-we-deliver-ar",
+    "slug_pt": "as-tuas-frias-pessoais-na-turquia-tu-desenhas-ns-realizamos",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 9 | Your Personal Turkey Holiday You",
+      "Fethiye Oludeniz Manzarasi Photo 5 | Your Personal Turkey Holiday You",
+      "Istanbul Tarihi Bogaz Photo 3 | Your Personal Turkey Holiday You",
+      "Pamukkale Traverten Dogal Photo 5 | Your Personal Turkey Holiday You"
+    ]
   },
   {
     "id": "TUR-1700000000023",
@@ -4245,7 +4574,16 @@
       "assets/istanbul-tarihi-bogaz-2.webp"
     ],
     "title_pt": "Galípoli: Viagem de um Dia às Terras do Heroísmo",
-    "description_pt": "Visite a Península de Galípoli, um dos campos de batalha mais importantes da Primeira Guerra Mundial, num único dia partindo de Istambul."
+    "description_pt": "Visite a Península de Galípoli, um dos campos de batalha mais importantes da Primeira Guerra Mundial, num único dia partindo de Istambul.",
+    "slug": "gelibolu-kahramanlik-topraklarina-gunubirlik",
+    "slug_en": "gallipoli-a-full-day-journey-to-the-grounds-of-gallantry",
+    "slug_es": "galpoli-excursin-de-un-da-a-las-tierras-del-herosmo",
+    "slug_ar": "gallipoli-a-full-day-journey-to-the-grounds-of-gallantry-ar",
+    "slug_pt": "galpoli-viagem-de-um-dia-s-terras-do-herosmo",
+    "image_alts": [
+      "Turkish Sunset Turu Photo 1 | Gallipoli A Full-Day Journey to",
+      "Istanbul Tarihi Bogaz Photo 2 | Gallipoli A Full-Day Journey to"
+    ]
   },
   {
     "id": "TUR-1700000000024",
@@ -4339,7 +4677,18 @@
       "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "title_pt": "Uma Descoberta a Cada Dia: Opções Diárias em Istambul",
-    "description_pt": "Uma ampla gama de opções de passeios, desde viagens curtas com base em Istambul até excursões diárias aos destinos mais icónicos da Turquia."
+    "description_pt": "Uma ampla gama de opções de passeios, desde viagens curtas com base em Istambul até excursões diárias aos destinos mais icónicos da Turquia.",
+    "slug": "her-gune-bir-kesif-istanbul-gunluk-secenekleri",
+    "slug_en": "a-new-discovery-every-day-istanbul-daily-options",
+    "slug_es": "un-descubrimiento-cada-da-opciones-diarias-en-estambul",
+    "slug_ar": "a-new-discovery-every-day-istanbul-daily-options-ar",
+    "slug_pt": "uma-descoberta-a-cada-dia-opces-dirias-em-istambul",
+    "image_alts": [
+      "Prens Adalari Turu Photo 1 | A New Discovery Every Day",
+      "Dolmabahce Bogaz Turu Photo 1 | A New Discovery Every Day",
+      "Istanbul Tarihi Bogaz Photo 3 | A New Discovery Every Day",
+      "Istanbul Kapadokya Gunluk Photo 1 | A New Discovery Every Day"
+    ]
   },
   {
     "id": "TUR-1700000000025",
@@ -4520,12 +4869,23 @@
       "assets/pamukkale-traverten-dogal-6.webp"
     ],
     "title_pt": "As Cinco Epopeias da Turquia: Rota de 6 Dias",
-    "description_pt": "Ao explorar os cinco destinos mais importantes da Turquia em seis dias, este passeio abrangente reúne os pontos mais impressionantes da história, natureza e civilização."
+    "description_pt": "Ao explorar os cinco destinos mais importantes da Turquia em seis dias, este passeio abrangente reúne os pontos mais impressionantes da história, natureza e civilização.",
+    "slug": "turkiyenin-bes-destani-6-gunluk-rota",
+    "slug_en": "turkeys-five-epics-6-day-route",
+    "slug_es": "las-cinco-epopeyas-de-turqua-ruta-de-6-das",
+    "slug_ar": "turkeys-five-epics-6-day-route-ar",
+    "slug_pt": "as-cinco-epopeias-da-turquia-rota-de-6-dias",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 10 | Turkey's Five Epics 6-Day Route",
+      "Exciting Turkey Turu Photo 1 | Turkey's Five Epics 6-Day Route",
+      "Efes Gunluk Turu Photo 1 | Turkey's Five Epics 6-Day Route",
+      "Pamukkale Traverten Dogal Photo 6 | Turkey's Five Epics 6-Day Route"
+    ]
   },
   {
     "id": "TUR-1700000000026",
     "title": "İstanbul: İki Kıtayı Birleştiren Boğaz Yolculuğu",
-    "title_en": "Istanbul: A Bosphorus Journey Connecting Two Continents",
+    "title_en": "Istanbul Bosphorus Cruise: Two Continents by Boat",
     "title_es": "Estambul: Un Viaje por el Bósforo que Conecta Dos Continentes",
     "title_ru": "Тур по Босфору и двум континентам",
     "title_de": "Bosporus und zwei Kontinente Tour",
@@ -4651,7 +5011,18 @@
       "assets/istanbul-tarihi-bogaz.webp"
     ],
     "title_pt": "Istambul: Uma Viagem pelo Bósforo que Conecta Dois Continentes",
-    "description_pt": "Em Istambul, a única cidade bicontinental do mundo, é possível pisar terras europeias e asiáticas no mesmo dia. Muralhas da cidade, Bazar das Especiarias e cruzeiro no Bósforo, tudo em um."
+    "description_pt": "Em Istambul, a única cidade bicontinental do mundo, é possível pisar terras europeias e asiáticas no mesmo dia. Muralhas da cidade, Bazar das Especiarias e cruzeiro no Bósforo, tudo em um.",
+    "slug": "istanbul-iki-kitayi-birlestiren-bogaz-yolculugu",
+    "slug_en": "istanbul-a-bosphorus-journey-connecting-two-continents",
+    "slug_es": "estambul-un-viaje-por-el-bsforo-que-conecta-dos-continentes",
+    "slug_ar": "istanbul-a-bosphorus-journey-connecting-two-continents-ar",
+    "slug_pt": "istambul-uma-viagem-pelo-bsforo-que-conecta-dois-continentes",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 11 | Istanbul Bosphorus Cruise Two Continents",
+      "Dolmabahce Bogaz Turu Photo 1 | Istanbul Bosphorus Cruise Two Continents",
+      "Istanbul Tarihi Bogaz Photo 2 | Istanbul Bosphorus Cruise Two Continents",
+      "Istanbul Tarihi Bogaz Photo 4 | Istanbul Bosphorus Cruise Two Continents"
+    ]
   },
   {
     "id": "TUR-1700000000027",
@@ -4749,12 +5120,22 @@
       "assets/exciting-turkey-turu-1.webp"
     ],
     "title_pt": "Opções de Pacotes na Turquia: De 8 a 12 Dias",
-    "description_pt": "Oferecemos várias opções de rotas para aqueles que desejam explorar a Turquia a fundo entre 8 e 12 dias."
+    "description_pt": "Oferecemos várias opções de rotas para aqueles que desejam explorar a Turquia a fundo entre 8 e 12 dias.",
+    "slug": "turkiye-paket-secenekleri-8-ila-12-gun",
+    "slug_en": "turkey-package-options-8-to-12-days",
+    "slug_es": "opciones-de-paquetes-en-turqua-de-8-a-12-das",
+    "slug_ar": "turkey-package-options-8-to-12-days-ar",
+    "slug_pt": "opces-de-pacotes-na-turquia-de-8-a-12-dias",
+    "image_alts": [
+      "Turkiye Paket Tur 13 19 Photo 1 | Turkey Package Options 8 to",
+      "Grand Turkey Turu Photo 1 | Turkey Package Options 8 to",
+      "Exciting Turkey Turu Photo 1 | Turkey Package Options 8 to"
+    ]
   },
   {
     "id": "TUR-1700000000028",
     "title": "Türkiye'nin Harikaları: Büyüleyici Bir Yolculuk",
-    "title_en": "Wonders of Turkey: A Captivating Journey",
+    "title_en": "Wonders of Turkey Tour: Istanbul, Ephesus & Pamukkale",
     "title_es": "Maravillas de Turquía: Un Viaje Cautivador",
     "title_ru": "Тур Чудеса Турции",
     "title_de": "Wunder der Türkei Tour",
@@ -4920,12 +5301,22 @@
       "assets/highlights-turkey-turu-1.webp"
     ],
     "title_pt": "Maravilhas da Turquia: Uma Viagem Cativante",
-    "description_pt": "Um impressionante passeio de 5 dias que oferece o esplendor imperial de Istambul, a antiga glória de Éfeso e os travertinos brancos de Pamukkale todos juntos."
+    "description_pt": "Um impressionante passeio de 5 dias que oferece o esplendor imperial de Istambul, a antiga glória de Éfeso e os travertinos brancos de Pamukkale todos juntos.",
+    "slug": "turkiyenin-harikalari-buyuleyici-bir-yolculuk",
+    "slug_en": "wonders-of-turkey-a-captivating-journey",
+    "slug_es": "maravillas-de-turqua-un-viaje-cautivador",
+    "slug_ar": "wonders-of-turkey-a-captivating-journey-ar",
+    "slug_pt": "maravilhas-da-turquia-uma-viagem-cativante",
+    "image_alts": [
+      "Turkey Budget Turu Photo 1 | Wonders of Turkey Tour Istanbul",
+      "Best Of Turkey Turu Photo 1 | Wonders of Turkey Tour Istanbul",
+      "Highlights Turkey Turu Photo 1 | Wonders of Turkey Tour Istanbul"
+    ]
   },
   {
     "id": "TUR-1700000000029",
     "title": "Pamukkale & Hierapolis: Beyaz Travertenler ve Antik Şehir",
-    "title_en": "Pamukkale & Hierapolis: White Travertines and an Ancient City",
+    "title_en": "Pamukkale & Hierapolis Day Tour: White Travertines",
     "title_es": "Pamukkale y Hierápolis: Travertinos Blancos y Ciudad Antigua",
     "title_ru": "Ежедневный тур в Памуккале из Стамбула",
     "title_de": "Tägliche Pamukkale-Tour von Istanbul",
@@ -5057,7 +5448,18 @@
       "assets/pamukkale-antik-1.webp"
     ],
     "title_pt": "Pamukkale e Hierápolis: Travertinos Brancos e Cidade Antiga",
-    "description_pt": "Descubra a maravilha natural mais fascinante da Turquia, os travertinos de Pamukkale, e a antiga cidade de Hierápolis, Patrimônio Mundial da UNESCO, em um único dia partindo de Istambul."
+    "description_pt": "Descubra a maravilha natural mais fascinante da Turquia, os travertinos de Pamukkale, e a antiga cidade de Hierápolis, Patrimônio Mundial da UNESCO, em um único dia partindo de Istambul.",
+    "slug": "pamukkale-hierapolis-beyaz-travertenler-ve-antik-sehir",
+    "slug_en": "pamukkale-hierapolis-white-travertines-and-an-ancient-city",
+    "slug_es": "pamukkale-y-hierpolis-travertinos-blancos-y-ciudad-antigua",
+    "slug_ar": "pamukkale-hierapolis-white-travertines-and-an-ancient-city-ar",
+    "slug_pt": "pamukkale-e-hierpolis-travertinos-brancos-e-cidade-antiga",
+    "image_alts": [
+      "Pamukkale Hierapolis Turu Photo 1 | Pamukkale Hierapolis Day Tour White",
+      "Pamukkale Traverten Dogal Photo 7 | Pamukkale Hierapolis Day Tour White",
+      "Pamukkale Traverten Dogal Photo 8 | Pamukkale Hierapolis Day Tour White",
+      "Pamukkale Antik Photo 1 | Pamukkale Hierapolis Day Tour White"
+    ]
   },
   {
     "id": "TUR-1700000000030",
@@ -5147,12 +5549,21 @@
     "images": [
       "assets/antalya-koy-gezisi-12.webp",
       "assets/istanbul-tarihi-bogaz.webp"
+    ],
+    "slug": "ist-havalimani-ozel-vip-kalkis-transferi",
+    "slug_en": "ist-airport-private-vip-departure-transfer",
+    "slug_es": "traslado-privado-de-salida-al-aeropuerto-de-estambul-ist",
+    "slug_ar": "ist-airport-private-vip-departure-transfer-ar",
+    "slug_pt": "ist-airport-private-vip-departure-transfer",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 12 | IST Airport Private VIP Departure",
+      "Istanbul Tarihi Bogaz Photo 2 | IST Airport Private VIP Departure"
     ]
   },
   {
     "id": "TUR-1700000000031",
     "title": "İstanbul Boğazı: Tekne ve Otobüsle İki Kıta",
-    "title_en": "Istanbul Bosphorus: Two Continents by Boat and Bus",
+    "title_en": "Istanbul Bosphorus Tour: Two Continents by Boat & Bus",
     "title_es": "Tour por el Bósforo en autobús y barco",
     "title_ru": "Тур по Босфору на автобусе и лодке",
     "title_de": "Bosporus-Tour mit Bus und Boot",
@@ -5270,12 +5681,23 @@
       "assets/dolmabahce-bogaz-turu-1.webp",
       "assets/istanbul-tarihi-bogaz.webp",
       "assets/prens-adalari-turu-1.webp"
+    ],
+    "slug": "istanbul-bogazi-tekne-ve-otobusle-iki-kita",
+    "slug_en": "istanbul-bosphorus-two-continents-by-boat-and-bus",
+    "slug_es": "tour-por-el-bsforo-en-autobs-y-barco",
+    "slug_ar": "istanbul-bosphorus-two-continents-by-boat-and-bus-ar",
+    "slug_pt": "istanbul-bosphorus-two-continents-by-boat-and-bus",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 13 | Istanbul Bosphorus Tour Two Continents",
+      "Dolmabahce Bogaz Turu Photo 1 | Istanbul Bosphorus Tour Two Continents",
+      "Istanbul Tarihi Bogaz Photo 3 | Istanbul Bosphorus Tour Two Continents",
+      "Prens Adalari Turu Photo 1 | Istanbul Bosphorus Tour Two Continents"
     ]
   },
   {
     "id": "TUR-1700000000032",
     "title": "Türkiye Paketleri: Her Bütçeye, Her Süreye",
-    "title_en": "Turkey Packages: For Every Budget, Every Duration",
+    "title_en": "Turkey Tour Packages: Every Budget & Duration",
     "title_es": "Paquetes Largos en Turquía: Opciones de 2 a 20 Días",
     "title_ru": "Многодневные турпакеты по Турции",
     "title_de": "Mehrtägige Türkei-Pauschalreisen",
@@ -5364,12 +5786,22 @@
       "assets/turkiye-luks-tur-4-7-1.webp"
     ],
     "title_pt": "Pacotes Longos na Turquia: Opções de 2 a 20 Dias",
-    "description_pt": "Oferecemos uma ampla gama de pacotes de passeios de vários dias cobrindo todos os principais destinos da Turquia, variando de 2 a 20 dias."
+    "description_pt": "Oferecemos uma ampla gama de pacotes de passeios de vários dias cobrindo todos os principais destinos da Turquia, variando de 2 a 20 dias.",
+    "slug": "turkiye-paketleri-her-butceye-her-sureye",
+    "slug_en": "turkey-packages-for-every-budget-every-duration",
+    "slug_es": "paquetes-largos-en-turqua-opciones-de-2-a-20-das",
+    "slug_ar": "turkey-packages-for-every-budget-every-duration-ar",
+    "slug_pt": "pacotes-longos-na-turquia-opces-de-2-a-20-dias",
+    "image_alts": [
+      "Turkish Getaway Turu Photo 1 | Turkey Tour Packages Every Budget",
+      "Turkey Budget Turu Photo 1 | Turkey Tour Packages Every Budget",
+      "Turkiye Luks Tur 4 7 Photo 1 | Turkey Tour Packages Every Budget"
+    ]
   },
   {
     "id": "TUR-1700000000033",
     "title": "Kapadokya: Dünya Değil, Başka Bir Evren",
-    "title_en": "Cappadocia: Not of This World",
+    "title_en": "Cappadocia Tour: Fairy Chimneys, Valleys & Cave Hotels",
     "title_es": "Capadocia: No de este Mundo, Sino de Otro Universo",
     "title_ru": "Каппадокия",
     "title_de": "Kappadokien",
@@ -5469,7 +5901,18 @@
       "assets/kapadokya-gezegen.webp"
     ],
     "title_pt": "Capadócia: Não Deste Mundo, Mas de Outro Universo",
-    "description_pt": "No coração da Turquia, oferece uma experiência única que desconecta as pessoas do mundo com suas chaminés de fada, cidades subterrâneas milenares, igrejas bizantinas esculpidas na rocha e balões coloridos."
+    "description_pt": "No coração da Turquia, oferece uma experiência única que desconecta as pessoas do mundo com suas chaminés de fada, cidades subterrâneas milenares, igrejas bizantinas esculpidas na rocha e balões coloridos.",
+    "slug": "kapadokya-dunya-degil-baska-bir-evren",
+    "slug_en": "cappadocia-not-of-this-world",
+    "slug_es": "capadocia-no-de-este-mundo-sino-de-otro-universo",
+    "slug_ar": "cappadocia-not-of-this-world-ar",
+    "slug_pt": "capadcia-no-deste-mundo-mas-de-outro-universo",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 12 | Cappadocia Tour Fairy Chimneys, Valleys",
+      "Kapadokya Balon Turu Photo 13 | Cappadocia Tour Fairy Chimneys, Valleys",
+      "Kapadokya Balon Turu Photo 14 | Cappadocia Tour Fairy Chimneys, Valleys",
+      "Kapadokya Gezegen Photo 4 | Cappadocia Tour Fairy Chimneys, Valleys"
+    ]
   },
   {
     "id": "TUR-1700000000034",
@@ -5573,12 +6016,22 @@
       "assets/kapadokya-2-gun-turu-1.webp",
       "assets/kapadokya-balon-turu-15.webp",
       "assets/kapadokya-balon-turu-16.webp"
+    ],
+    "slug": "kapadokya-iki-gunde-masalsi-cografya",
+    "slug_en": "cappadocia-a-fairytale-landscape-in-two-days",
+    "slug_es": "tour-de-2-das-por-capadocia",
+    "slug_ar": "cappadocia-a-fairytale-landscape-in-two-days-ar",
+    "slug_pt": "cappadocia-a-fairytale-landscape-in-two-days",
+    "image_alts": [
+      "Kapadokya 2 Gun Turu Photo 1 | Cappadocia A Fairytale Landscape in",
+      "Kapadokya Balon Turu Photo 15 | Cappadocia A Fairytale Landscape in",
+      "Kapadokya Balon Turu Photo 16 | Cappadocia A Fairytale Landscape in"
     ]
   },
   {
     "id": "TUR-1700000000035",
     "title": "Yedi Kiliseler: Vahiy'in İzinde Kutsal Yolculuk",
-    "title_en": "Seven Churches: A Sacred Journey in the Footsteps of Revelation",
+    "title_en": "Seven Churches of Revelation Tour: Ephesus to Laodicea",
     "title_es": "Ruta de las Siete Iglesias: Tras las Huellas del Libro del Apocalipsis",
     "title_ru": "Тур по семи церквям Турции",
     "title_de": "Sieben-Kirchen-Tour der Türkei",
@@ -5757,12 +6210,22 @@
       "assets/efes-gunluk-turu-1.webp"
     ],
     "title_pt": "Rota das Sete Igrejas: Nos Passos do Livro do Apocalipse",
-    "description_pt": "A rota das Sete Igrejas, uma das rotas de peregrinação mais importantes da história do cristianismo, oferece uma profundidade espiritual e arqueológica pelas antigas cidades da Anatólia."
+    "description_pt": "A rota das Sete Igrejas, uma das rotas de peregrinação mais importantes da história do cristianismo, oferece uma profundidade espiritual e arqueológica pelas antigas cidades da Anatólia.",
+    "slug": "yedi-kiliseler-vahiyin-izinde-kutsal-yolculuk",
+    "slug_en": "seven-churches-a-sacred-journey-in-the-footsteps-of-revelation",
+    "slug_es": "ruta-de-las-siete-iglesias-tras-las-huellas-del-libro-del-apocalipsis",
+    "slug_ar": "seven-churches-a-sacred-journey-in-the-footsteps-of-revelation-ar",
+    "slug_pt": "rota-das-sete-igrejas-nos-passos-do-livro-do-apocalipse",
+    "image_alts": [
+      "Yedi Kiliseler Turu Photo 1 | Seven Churches of Revelation Tour",
+      "Efes Antik Luks Photo 1 | Seven Churches of Revelation Tour",
+      "Efes Gunluk Turu Photo 1 | Seven Churches of Revelation Tour"
+    ]
   },
   {
     "id": "TUR-1700000000036",
     "title": "İstanbul: Dünyanın Tek Kıtalararası Şehri",
-    "title_en": "Istanbul: The World's Only Intercontinental City",
+    "title_en": "Istanbul City Tour: Byzantine, Ottoman & Modern Wonders",
     "title_es": "Crucero por el Bósforo: Una Noche Romántica en Estambul",
     "title_ru": "Стамбул",
     "title_de": "Istanbul",
@@ -5787,7 +6250,7 @@
       ]
     },
     "description": "Dünyanın tek iki kıtalı metropolü İstanbul, Bizans ve Osmanlı İmparatorluklarının mirasını modern hayatla buluşturan eşsiz bir şehirdir[cite: 1].",
-    "description_en": "Istanbul, the world's only transcontinental metropolis, is a unique city that brings the heritage of the Byzantine and Ottoman Empires together with modern life.",
+    "description_en": "Explore Istanbul, the world's only intercontinental city — where Byzantine and Ottoman empires meet modern life. Tours from WalkAbout Travel.",
     "description_es": "Disfrute de la silueta única de Estambul mientras navega por el Bósforo con una cena especial y espectáculos de danza tradicional.",
     "description_ru": "Стамбул — уникальный город, объединяющий наследие Византийской и Османской империй.",
     "description_de": "Istanbul ist eine einzigartige Stadt, die das Erbe des Byzantinischen und Osmanischen Reiches vereint.",
@@ -5852,12 +6315,23 @@
       "assets/prens-adalari-turu-1.webp"
     ],
     "title_pt": "Cruzeiro pelo Bósforo: Uma Noite Romântica em Istambul",
-    "description_pt": "Desfrute da silhueta única de Istambul enquanto navega pelo Bósforo com um jantar especial e espetáculos de dança tradicional."
+    "description_pt": "Desfrute da silhueta única de Istambul enquanto navega pelo Bósforo com um jantar especial e espetáculos de dança tradicional.",
+    "slug": "istanbul-dunyanin-tek-kitalararasi-sehri",
+    "slug_en": "istanbul-the-worlds-only-intercontinental-city",
+    "slug_es": "crucero-por-el-bsforo-una-noche-romntica-en-estambul",
+    "slug_ar": "istanbul-the-worlds-only-intercontinental-city-ar",
+    "slug_pt": "cruzeiro-pelo-bsforo-uma-noite-romntica-em-istambul",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 14 | Istanbul City Tour Byzantine, Ottoman",
+      "Dolmabahce Bogaz Turu Photo 1 | Istanbul City Tour Byzantine, Ottoman",
+      "Istanbul Tarihi Bogaz Photo 2 | Istanbul City Tour Byzantine, Ottoman",
+      "Prens Adalari Turu Photo 1 | Istanbul City Tour Byzantine, Ottoman"
+    ]
   },
   {
     "id": "TUR-1700000000037",
     "title": "Prens Adaları: İstanbul'un Arabasız Sığınağı",
-    "title_en": "Princes' Islands: Istanbul's Car-Free Sanctuary",
+    "title_en": "Princes' Islands Day Tour from Istanbul by Ferry",
     "title_es": "Aventura en el Mar Negro: Naturaleza y Mesetas",
     "title_ru": "Тур на Принцевы острова",
     "title_de": "Prinzeninseln-Tour",
@@ -5950,7 +6424,17 @@
       "assets/istanbul-tarihi-bogaz.webp"
     ],
     "title_pt": "Aventura no Mar Negro: Natureza e Planaltos",
-    "description_pt": "Descubra as paisagens verdes, as aldeias pitorescas e a cultura única da região do Mar Negro numa rota inesquecível."
+    "description_pt": "Descubra as paisagens verdes, as aldeias pitorescas e a cultura única da região do Mar Negro numa rota inesquecível.",
+    "slug": "prens-adalari-istanbulun-arabasiz-siginagi",
+    "slug_en": "princes-islands-istanbuls-car-free-sanctuary",
+    "slug_es": "aventura-en-el-mar-negro-naturaleza-y-mesetas",
+    "slug_ar": "princes-islands-istanbuls-car-free-sanctuary-ar",
+    "slug_pt": "aventura-no-mar-negro-natureza-e-planaltos",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 15 | Princes' Islands Day Tour from",
+      "Dolmabahce Bogaz Turu Photo 1 | Princes' Islands Day Tour from",
+      "Istanbul Tarihi Bogaz Photo 3 | Princes' Islands Day Tour from"
+    ]
   },
   {
     "id": "TUR-1700000000038",
@@ -6043,12 +6527,21 @@
       "assets/istanbul-tarihi-bogaz.webp"
     ],
     "title_pt": "Rota da Seda: O Coração da Anatólia",
-    "description_pt": "Uma viagem através da história percorrendo as antigas paradas da Rota da Seda e a arquitetura dos caravançarais."
+    "description_pt": "Uma viagem através da história percorrendo as antigas paradas da Rota da Seda e a arquitetura dos caravançarais.",
+    "slug": "saw-havalimani-ozel-vip-karsilama-transferi",
+    "slug_en": "saw-airport-private-vip-welcome-transfer",
+    "slug_es": "ruta-de-la-seda-el-corazn-de-anatolia",
+    "slug_ar": "saw-airport-private-vip-welcome-transfer-ar",
+    "slug_pt": "rota-da-seda-o-coraco-da-anatlia",
+    "image_alts": [
+      "Antalya Koy Gezisi Photo 16 | SAW Airport Private VIP Welcome",
+      "Istanbul Tarihi Bogaz Photo 2 | SAW Airport Private VIP Welcome"
+    ]
   },
   {
     "id": "TUR-1700000000039",
     "title": "Dolmabahçe & Boğaz: Osmanlı İhtişamı ve Şehir Silueti",
-    "title_en": "Dolmabahçe & Bosphorus: Ottoman Splendour and the City Skyline",
+    "title_en": "Dolmabahçe Palace & Bosphorus Cruise Tour Istanbul",
     "title_es": "Esmirna y sus Alrededores: Historia junto al Mar",
     "title_ru": "Дворец Долмабахче и тур по Босфору",
     "title_de": "Dolmabahce-Palast und Bosporus-Tour",
@@ -6072,7 +6565,7 @@
       ]
     },
     "description": "Osmanlı İmparatorluğu'nun son dönem sarayı Dolmabahçe'nin muhteşem ihtişamını keşfedin ve ardından İstanbul'un ikonik Boğaz manzarasını hem karadan hem denizden izleyin[cite: 1].",
-    "description_en": "Step into the grandeur of the Ottoman Empire with a visit to Dolmabahçe Palace, then experience Istanbul's legendary Bosphorus Strait from both land and sea. This full-day tour weaves together imperial architecture, centuries-old mosques, historic city walls, and a scenic boat cruise—offering an unforgettable portrait of one of the world's most captivating cities.",
+    "description_en": "Visit Dolmabahçe Palace and cruise the Bosphorus in one full day. Imperial Ottoman architecture and iconic Istanbul skyline, all included.",
     "description_es": "Explore las costas del Egeo, las antiguas ciudades de Esmirna y las cercanas ruinas de Pérgamo en un tour relajado.",
     "description_ru": "Откройте для себя великолепное великолепие Долмабахче.",
     "description_de": "Entdecken Sie die prachtvolle Pracht von Dolmabahçe.",
@@ -6208,12 +6701,24 @@
       "assets/prens-adalari-turu-1.webp"
     ],
     "title_pt": "Izmir e seus Arredores: História à Beira-Mar",
-    "description_pt": "Explore as costas do Egeu, as antigas cidades de Izmir e as ruínas próximas de Pérgamo num passeio relaxante."
+    "description_pt": "Explore as costas do Egeu, as antigas cidades de Izmir e as ruínas próximas de Pérgamo num passeio relaxante.",
+    "slug": "dolmabahce-bogaz-osmanli-ihtisami-ve-sehir-silueti",
+    "slug_en": "dolmabahce-bosphorus-ottoman-splendour-and-the-city-skyline",
+    "slug_es": "esmirna-y-sus-alrededores-historia-junto-al-mar",
+    "slug_ar": "dolmabahce-bosphorus-ottoman-splendour-and-the-city-skyline-ar",
+    "slug_pt": "izmir-e-seus-arredores-histria-beira-mar",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 9 | Dolmabahçe Palace Bosphorus Cruise Tour",
+      "Dolmabahce Bogaz Turu Photo 1 | Dolmabahçe Palace Bosphorus Cruise Tour",
+      "Istanbul Tarihi Bogaz Photo 3 | Dolmabahçe Palace Bosphorus Cruise Tour",
+      "Istanbul Tarihi Bogaz Photo 2 | Dolmabahçe Palace Bosphorus Cruise Tour",
+      "Prens Adalari Turu Photo 1 | Dolmabahçe Palace Bosphorus Cruise Tour"
+    ]
   },
   {
     "id": "TUR-1700000000040",
     "title": "İstanbul: Bizans'tan Osmanlı'ya İki İmparatorluk",
-    "title_en": "Istanbul: Two Empires from Byzantium to the Ottomans",
+    "title_en": "Istanbul Historical Tour: Byzantine to Ottoman Empire",
     "title_es": "Antalya y el Camino Licio: Aventura y Antigüedad",
     "title_ru": "Тур по византийским и османским следам",
     "title_de": "Tour zu byzantinischen und osmanischen Spuren",
@@ -6341,7 +6846,17 @@
       "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "title_pt": "Antália e o Caminho Lício: Aventura e Antiguidade",
-    "description_pt": "Combine a beleza da costa de Antália com caminhadas em partes do famoso Caminho Lício, rodeado de história."
+    "description_pt": "Combine a beleza da costa de Antália com caminhadas em partes do famoso Caminho Lício, rodeado de história.",
+    "slug": "istanbul-bizanstan-osmanliya-iki-imparatorluk",
+    "slug_en": "istanbul-two-empires-from-byzantium-to-the-ottomans",
+    "slug_es": "antalya-y-el-camino-licio-aventura-y-antiguedad",
+    "slug_ar": "istanbul-two-empires-from-byzantium-to-the-ottomans-ar",
+    "slug_pt": "antlia-e-o-caminho-lcio-aventura-e-antiguidade",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 10 | Istanbul Historical Tour Byzantine to",
+      "Istanbul Tarihi Bogaz Photo 2 | Istanbul Historical Tour Byzantine to",
+      "Dolmabahce Bogaz Turu Photo 1 | Istanbul Historical Tour Byzantine to"
+    ]
   },
   {
     "id": "TUR-1700000000041",
@@ -6478,7 +6993,18 @@
       "assets/istanbul-kapadokya-gunluk-1.webp"
     ],
     "title_pt": "Turquia Gastronômica: Sabores do Oriente e Ocidente",
-    "description_pt": "Um passeio especializado para amantes da gastronomia, explorando os mercados e restaurantes tradicionais de Istambul e Gaziantep."
+    "description_pt": "Um passeio especializado para amantes da gastronomia, explorando os mercados e restaurantes tradicionais de Istambul e Gaziantep.",
+    "slug": "kapadokyaya-bir-gun-istanbul-cikisli-ucuslu",
+    "slug_en": "cappadocia-in-a-day-flight-from-istanbul",
+    "slug_es": "turqua-gastronmica-sabores-de-oriente-y-occidente",
+    "slug_ar": "cappadocia-in-a-day-flight-from-istanbul-ar",
+    "slug_pt": "turquia-gastronmica-sabores-do-oriente-e-ocidente",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 17 | Cappadocia in a Day Flight",
+      "Kapadokya Balon Turu Photo 18 | Cappadocia in a Day Flight",
+      "Kapadokya Balon Turu Photo 19 | Cappadocia in a Day Flight",
+      "Istanbul Kapadokya Gunluk Photo 1 | Cappadocia in a Day Flight"
+    ]
   },
   {
     "id": "TUR-1700000000042",
@@ -6607,7 +7133,16 @@
       "assets/as-we-travel-turkey-1.webp"
     ],
     "title_pt": "Ancara e o Museu das Civilizações da Anatólia",
-    "description_pt": "Visite a capital da Turquia e aprofunde-se na vasta história da Anatólia num dos museus mais importantes do mundo."
+    "description_pt": "Visite a capital da Turquia e aprofunde-se na vasta história da Anatólia num dos museus mais importantes do mundo.",
+    "slug": "sapanca-masukiye-doganin-kucaginda-bir-gun",
+    "slug_en": "sapanca-masukiye-a-day-in-natures-embrace",
+    "slug_es": "ankara-y-el-museo-de-las-civilizaciones-de-anatolia",
+    "slug_ar": "sapanca-masukiye-a-day-in-natures-embrace-ar",
+    "slug_pt": "ancara-e-o-museu-das-civilizaces-da-anatlia",
+    "image_alts": [
+      "Sapanca Masukiye Turu Photo 1 | Sapanca Masukiye A Day in",
+      "As We Travel Turkey Photo 1 | Sapanca Masukiye A Day in"
+    ]
   },
   {
     "id": "TUR-1700000000043",
@@ -6703,12 +7238,22 @@
       "assets/dolmabahce-bogaz-turu-1.webp"
     ],
     "title_pt": "Lagoas e Montanhas: O Paraíso Escondido de Artvin",
-    "description_pt": "Descubra as paisagens alpinas e os lagos virgens de Artvin, um destino imperdível para os amantes da natureza."
+    "description_pt": "Descubra as paisagens alpinas e os lagos virgens de Artvin, um destino imperdível para os amantes da natureza.",
+    "slug": "istanbulun-tuylu-sakinleri-kedi-kulturu-turu",
+    "slug_en": "istanbuls-furry-residents-a-cat-culture-tour",
+    "slug_es": "lagunas-y-montaas-el-paraso-escondido-de-artvin",
+    "slug_ar": "istanbuls-furry-residents-a-cat-culture-tour-ar",
+    "slug_pt": "lagoas-e-montanhas-o-paraso-escondido-de-artvin",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 11 | Istanbul's Furry Residents A Cat",
+      "Prens Adalari Turu Photo 1 | Istanbul's Furry Residents A Cat",
+      "Dolmabahce Bogaz Turu Photo 1 | Istanbul's Furry Residents A Cat"
+    ]
   },
   {
     "id": "TUR-1700000000044",
     "title": "Türkiye: Heyecanın Adresi, Tarihin Kalbi",
-    "title_en": "Turkey: Where Excitement Meets History",
+    "title_en": "9-Day Turkey Tour: Istanbul, Cappadocia, Ephesus & More",
     "title_es": "Göbeklitepe: El Punto Cero de la Historia",
     "title_ru": "Увлекательный тур по Турции",
     "title_de": "Aufregende Türkei-Tour",
@@ -6734,7 +7279,7 @@
       ]
     },
     "description": "İstanbul'dan Gelibolu'ya, Truva'dan Efes'e, Pamukkale'den Kapadokya'ya uzanan bu kapsamlı tur, Türkiye'nin en etkileyici destinasyonlarını tek bir yolculukta buluşturuyor[cite: 1].",
-    "description_en": "From Istanbul's imperial skyline to the poignant battlefields of Gallipoli, from the legendary ruins of Troy and Pergamum to the turquoise terraces of Pamukkale, and from the timeless avenues of Ephesus to the dreamlike valleys of Cappadocia—this nine-day journey brings together Turkey's most remarkable destinations in a single, seamlessly organised adventure.",
+    "description_en": "9-day Turkey tour covering Istanbul, Gallipoli, Troy, Pergamum, Pamukkale, Ephesus, and Cappadocia. History and nature in one journey.",
     "description_es": "Viaje al sureste de Turquía para ver el templo más antiguo del mundo y comprender los orígenes de la civilización.",
     "description_ru": "Этот комплексный тур объединяет самые впечатляющие места Турции в одном путешествии.",
     "description_de": "Diese umfassende Tour vereint die beeindruckendsten Reiseziele der Türkei in einer einzigen Reise.",
@@ -6909,7 +7454,18 @@
       "assets/turkey-paradise-turu-1.webp"
     ],
     "title_pt": "Göbeklitepe: O Marco Zero da História",
-    "description_pt": "Viaje para o sudeste da Turquia para ver o templo mais antigo do mundo e compreender as origens da civilização."
+    "description_pt": "Viaje para o sudeste da Turquia para ver o templo mais antigo do mundo e compreender as origens da civilização.",
+    "slug": "turkiye-heyecanin-adresi-tarihin-kalbi",
+    "slug_en": "turkey-where-excitement-meets-history",
+    "slug_es": "gobeklitepe-el-punto-cero-de-la-historia",
+    "slug_ar": "turkey-where-excitement-meets-history-ar",
+    "slug_pt": "gobeklitepe-o-marco-zero-da-histria",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 12 | 9-Day Turkey Tour Istanbul, Cappadocia",
+      "Exciting Turkey Turu Photo 1 | 9-Day Turkey Tour Istanbul, Cappadocia",
+      "Best Of Turkey Turu Photo 1 | 9-Day Turkey Tour Istanbul, Cappadocia",
+      "Turkey Paradise Turu Photo 1 | 9-Day Turkey Tour Istanbul, Cappadocia"
+    ]
   },
   {
     "id": "TUR-1700000000045",
@@ -7045,12 +7601,22 @@
       "assets/yedi-kiliseler-turu-1.webp"
     ],
     "title_pt": "Bodrum: A Riviera Turca de Luxo",
-    "description_pt": "Desfrute da sofisticação, das praias azuis e da vida noturna de Bodrum, a joia do mar Egeu."
+    "description_pt": "Desfrute da sofisticação, das praias azuis e da vida noturna de Bodrum, a joia do mar Egeu.",
+    "slug": "efes-antik-dunyanin-kalbine-gunubirlik-yolculuk",
+    "slug_en": "ephesus-a-day-trip-to-the-heart-of-the-ancient-world",
+    "slug_es": "bodrum-la-riviera-turca-de-lujo",
+    "slug_ar": "ephesus-a-day-trip-to-the-heart-of-the-ancient-world-ar",
+    "slug_pt": "bodrum-a-riviera-turca-de-luxo",
+    "image_alts": [
+      "Efes Gunluk Turu Photo 1 | Ephesus A Day Trip to",
+      "Efes Antik Luks Photo 1 | Ephesus A Day Trip to",
+      "Yedi Kiliseler Turu Photo 1 | Ephesus A Day Trip to"
+    ]
   },
   {
     "id": "TUR-1700000000046",
     "title": "Kapadokya, Konya & Efes: Türkiye'nin Derinliğinde",
-    "title_en": "Cappadocia, Konya & Ephesus: Into the Depths of Turkey",
+    "title_en": "Cappadocia, Konya & Ephesus Tour: Depths of Turkey",
     "title_es": "Capadocia, Konya y Éfeso: En las Profundidades de Turquía",
     "title_ru": "Тур по Турции Insight",
     "title_de": "Türkei-Insight-Tour",
@@ -7169,12 +7735,23 @@
       "assets/yedi-kiliseler-turu-1.webp"
     ],
     "title_pt": "Capadócia, Konya e Éfeso: Nas Profundezas da Turquia",
-    "description_pt": "Exploração profunda dos vales místicos da Capadócia, a cidade de Mevlana, Konya, e as cidades antigas de Éfeso e Pamukkale."
+    "description_pt": "Exploração profunda dos vales místicos da Capadócia, a cidade de Mevlana, Konya, e as cidades antigas de Éfeso e Pamukkale.",
+    "slug": "kapadokya-konya-efes-turkiyenin-derinliginde",
+    "slug_en": "cappadocia-konya-ephesus-into-the-depths-of-turkey",
+    "slug_es": "capadocia-konya-y-feso-en-las-profundidades-de-turqua",
+    "slug_ar": "cappadocia-konya-ephesus-into-the-depths-of-turkey-ar",
+    "slug_pt": "capadcia-konya-e-feso-nas-profundezas-da-turquia",
+    "image_alts": [
+      "Kapadokya Pamukkale 3Gun Photo 1 | Cappadocia, Konya Ephesus Tour Depths",
+      "Kapadokya Balon Turu Photo 20 | Cappadocia, Konya Ephesus Tour Depths",
+      "Efes Antik Luks Photo 1 | Cappadocia, Konya Ephesus Tour Depths",
+      "Yedi Kiliseler Turu Photo 1 | Cappadocia, Konya Ephesus Tour Depths"
+    ]
   },
   {
     "id": "TUR-1700000000047",
     "title": "Türkiye'nin En Parlak Noktaları",
-    "title_en": "Turkey's Brightest Highlights",
+    "title_en": "Turkey Highlights Tour: Cappadocia, Pamukkale & Ephesus",
     "title_es": "Los Destellos de Turquía: Lo Mejor del País",
     "title_ru": "Основные достопримечательности Турции",
     "title_de": "Höhepunkte der Türkei",
@@ -7198,7 +7775,7 @@
       ]
     },
     "description": "Kapadokya'nın büyülü vadilerinden Pamukkale'nin beyaz cenneti ve Efes'in antik şehrine uzanan bu kısa tur, Türkiye'nin en parlak destinasyonlarını bir araya getiriyor[cite: 1].",
-    "description_en": "Four days, three of Turkey's most iconic destinations. Beginning in Cappadocia's valley of fairy chimneys and cave churches, the journey continues to the mineral-white terraces of Pamukkale and the atmospheric ruins of Hierapolis, before culminating in a full-day exploration of ancient Ephesus. A compact yet deeply rewarding introduction to Turkey's extraordinary heritage, beginning and ending in Istanbul.",
+    "description_en": "4-day Turkey highlights tour: Cappadocia fairy chimneys, Pamukkale travertines, and Ephesus ruins. Starts and ends in Istanbul.",
     "description_es": "Un tour que reúne los destinos más brillantes, desde las chimeneas de hadas de Capadocia hasta las antiguas ruinas de Éfeso.",
     "description_ru": "Этот короткий тур объединяет самые яркие места Турции.",
     "description_de": "Diese kurze Tour vereint die hellsten Reiseziele der Türkei.",
@@ -7321,7 +7898,18 @@
       "assets/grand-turkey-turu-1.webp"
     ],
     "title_pt": "Os Brilhos da Turquia: O Melhor do País",
-    "description_pt": "Um tour que reúne os destinos mais brilhantes, desde as chaminés de fada da Capadócia até às antigas ruínas de Éfeso."
+    "description_pt": "Um tour que reúne os destinos mais brilhantes, desde as chaminés de fada da Capadócia até às antigas ruínas de Éfeso.",
+    "slug": "turkiyenin-en-parlak-noktalari",
+    "slug_en": "turkeys-brightest-highlights",
+    "slug_es": "los-destellos-de-turqua-lo-mejor-del-pas",
+    "slug_ar": "turkeys-brightest-highlights-ar",
+    "slug_pt": "os-brilhos-da-turquia-o-melhor-do-pas",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 13 | Turkey Highlights Tour Cappadocia, Pamukkale",
+      "Best Of Turkey Turu Photo 1 | Turkey Highlights Tour Cappadocia, Pamukkale",
+      "Turkey Paradise Turu Photo 1 | Turkey Highlights Tour Cappadocia, Pamukkale",
+      "Grand Turkey Turu Photo 1 | Turkey Highlights Tour Cappadocia, Pamukkale"
+    ]
   },
   {
     "id": "TUR-1700000000048",
@@ -7449,7 +8037,16 @@
       "assets/istanbul-tarihi-bogaz.webp"
     ],
     "title_pt": "Bursa: A Histórica Capital Otomana",
-    "description_pt": "Descubra a primeira capital do Império Otomano, famosa pela sua arquitetura, mesquitas e deliciosa gastronomia local."
+    "description_pt": "Descubra a primeira capital do Império Otomano, famosa pela sua arquitetura, mesquitas e deliciosa gastronomia local.",
+    "slug": "bursa-osmanlinin-ilk-baskentine-gunubirlik",
+    "slug_en": "bursa-a-day-trip-to-the-first-ottoman-capital",
+    "slug_es": "bursa-la-histrica-capital-otomana",
+    "slug_ar": "bursa-a-day-trip-to-the-first-ottoman-capital-ar",
+    "slug_pt": "bursa-a-histrica-capital-otomana",
+    "image_alts": [
+      "Bursa Gunluk Turu Photo 1 | Bursa A Day Trip to",
+      "Istanbul Tarihi Bogaz Photo 2 | Bursa A Day Trip to"
+    ]
   },
   {
     "id": "TUR-1700000000049",
@@ -7550,12 +8147,22 @@
       "assets/grand-turkey-turu-1.webp"
     ],
     "title_pt": "Pacotes Longos na Turquia: De 13 a 19 Dias",
-    "description_pt": "Opções de roteiros completos para descobrir a Turquia de ponta a ponta em viagens de 13 a 19 dias."
+    "description_pt": "Opções de roteiros completos para descobrir a Turquia de ponta a ponta em viagens de 13 a 19 dias.",
+    "slug": "uzun-turkiye-paketleri-13-ila-19-gun",
+    "slug_en": "long-turkey-packages-13-to-19-days",
+    "slug_es": "paquetes-largos-por-turqua-de-13-a-19-das",
+    "slug_ar": "long-turkey-packages-13-to-19-days-ar",
+    "slug_pt": "pacotes-longos-na-turquia-de-13-a-19-dias",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 14 | Long Turkey Packages 13 to",
+      "Dream Turkey Turu Photo 1 | Long Turkey Packages 13 to",
+      "Grand Turkey Turu Photo 1 | Long Turkey Packages 13 to"
+    ]
   },
   {
     "id": "TUR-1700000000050",
     "title": "Türkiye Rüyası: Tarihin Kalbinde Lüks Keşif",
-    "title_en": "Turkey Dream: Luxury Exploration at the Heart of History",
+    "title_en": "Luxury Turkey Tour: Istanbul, Cappadocia & Ephesus",
     "title_es": "Sueño Turco: Lujo en el Corazón de la Historia",
     "title_ru": "Тур мечты по Турции",
     "title_de": "Traum-Türkei-Tour",
@@ -7581,7 +8188,7 @@
       ]
     },
     "description": "Hayallerinizin ötesinde bir Türkiye deneyimi için özel olarak tasarlanmış bu yedi günlük serüven, Türkiye'nin en ikonik destinasyonlarını lüks bir keşfe dönüştürüyor[cite: 1].",
-    "description_en": "Crafted for those who wish to experience Turkey's most iconic destinations without compromise, this seven-day journey takes you from the imperial splendour of Istanbul to the surreal landscapes of Cappadocia, the ancient ruins of Ephesus, and the mineral-white terraces of Pamukkale. Each day unfolds a new chapter of Turkey's extraordinary history and natural beauty.",
+    "description_en": "7-day luxury Turkey tour: Istanbul, Cappadocia, Ephesus, and Pamukkale. Premium experiences at Turkey's most iconic destinations.",
     "description_es": "Una experiencia exclusiva que combina la historia antigua con la comodidad contemporánea en los lugares más icónicos de Turquía.",
     "description_ru": "Это 7-дневное приключение превращает знаковые места Турции в роскошное исследование.",
     "description_de": "Dieses 7-tägige Abenteuer verwandelt die Wahrzeichen der Türkei in eine luxuriöse Erkundung.",
@@ -7723,12 +8330,22 @@
       "assets/efes-antik-luks-1.webp"
     ],
     "title_pt": "Sonho Turco: Luxo no Coração da História",
-    "description_pt": "Uma experiência exclusiva que combina a história antiga com o conforto contemporâneo nos lugares mais icónicos da Turquia."
+    "description_pt": "Uma experiência exclusiva que combina a história antiga com o conforto contemporâneo nos lugares mais icónicos da Turquia.",
+    "slug": "turkiye-ruyasi-tarihin-kalbinde-luks-kesif",
+    "slug_en": "turkey-dream-luxury-exploration-at-the-heart-of-history",
+    "slug_es": "sueo-turco-lujo-en-el-corazn-de-la-historia",
+    "slug_ar": "turkey-dream-luxury-exploration-at-the-heart-of-history-ar",
+    "slug_pt": "sonho-turco-luxo-no-coraco-da-histria",
+    "image_alts": [
+      "Velvet Turkey Turu Photo 1 | Luxury Turkey Tour Istanbul, Cappadocia",
+      "Turkiye Luks Tur 4 7 Photo 1 | Luxury Turkey Tour Istanbul, Cappadocia",
+      "Efes Antik Luks Photo 1 | Luxury Turkey Tour Istanbul, Cappadocia"
+    ]
   },
   {
     "id": "TUR-1700000000051",
     "title": "Bütçe Dostu Türkiye: Büyülü Miras Paketi",
-    "title_en": "Budget-Friendly Turkey: An Enchanting Heritage Package",
+    "title_en": "Budget Turkey Tour: Cappadocia, Pamukkale & Ephesus",
     "title_es": "Turquía Económica: Paquete de Herencia Encantadora",
     "title_ru": "Бюджетный турпакет по Турции",
     "title_de": "Türkei Pauschalreise mit kleinem Budget",
@@ -7847,12 +8464,22 @@
       "assets/exciting-turkey-turu-1.webp"
     ],
     "title_pt": "Turquia Econômica: Pacote de Herança Encantadora",
-    "description_pt": "Uma viagem econômica de 5 dias desde as chaminés de fada da Capadócia até às maravilhas antigas de Éfeso."
+    "description_pt": "Uma viagem econômica de 5 dias desde as chaminés de fada da Capadócia até às maravilhas antigas de Éfeso.",
+    "slug": "butce-dostu-turkiye-buyulu-miras-paketi",
+    "slug_en": "budget-friendly-turkey-an-enchanting-heritage-package",
+    "slug_es": "turqua-econmica-paquete-de-herencia-encantadora",
+    "slug_ar": "budget-friendly-turkey-an-enchanting-heritage-package-ar",
+    "slug_pt": "turquia-econmica-pacote-de-heranca-encantadora",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 15 | Budget Turkey Tour Cappadocia, Pamukkale",
+      "Turkish Getaway Turu Photo 1 | Budget Turkey Tour Cappadocia, Pamukkale",
+      "Exciting Turkey Turu Photo 1 | Budget Turkey Tour Cappadocia, Pamukkale"
+    ]
   },
   {
     "id": "TUR-1700000000052",
     "title": "Kadife Türkiye: Seçkin Bir Anadolu Yolculuğu",
-    "title_en": "Velvet Turkey: A Distinguished Anatolian Journey",
+    "title_en": "Velvet Turkey Tour: Anatolia & Blue Cruise",
     "title_es": "Turquía de Terciopelo: Un Viaje Distinguido por Anatolia",
     "title_ru": "Бархатный тур по Турции",
     "title_de": "Velvet Türkei Tour",
@@ -8108,12 +8735,22 @@
       "assets/efes-pamukkale-luks-1.webp"
     ],
     "title_pt": "Turquia de Veludo: Uma Jornada Distinta pela Anatólia",
-    "description_pt": "Uma experiência de luxo cuidadosamente projetada, onde a herança antiga encontra o conforto moderno."
+    "description_pt": "Uma experiência de luxo cuidadosamente projetada, onde a herança antiga encontra o conforto moderno.",
+    "slug": "kadife-turkiye-seckin-bir-anadolu-yolculugu",
+    "slug_en": "velvet-turkey-a-distinguished-anatolian-journey",
+    "slug_es": "turqua-de-terciopelo-un-viaje-distinguido-por-anatolia",
+    "slug_ar": "velvet-turkey-a-distinguished-anatolian-journey-ar",
+    "slug_pt": "turquia-de-veludo-uma-jornada-distinta-pela-anatlia",
+    "image_alts": [
+      "Turkiye Luks Tur 4 7 Photo 1 | Velvet Turkey Tour Anatolia Blue",
+      "Velvet Turkey Turu Photo 1 | Velvet Turkey Tour Anatolia Blue",
+      "Efes Pamukkale Luks Photo 1 | Velvet Turkey Tour Anatolia Blue"
+    ]
   },
   {
     "id": "TUR-1700000000053",
     "title": "Türk Gün Batımı: Altın Işıkta Anadolu",
-    "title_en": "Turkish Sunset: Anatolia in Golden Light",
+    "title_en": "Turkey Golden Light Tour: Cappadocia, Ephesus & Fethiye",
     "title_es": "Atardecer Turco: Anatolia bajo la Luz Dorada",
     "title_ru": "Тур Турецкий закат",
     "title_de": "Die Türkische Sonnenuntergangstour",
@@ -8344,12 +8981,22 @@
       "assets/fethiye-oludeniz-manzarasi-19.webp"
     ],
     "title_pt": "Pôr do Sol Turco: Anatólia sob Luz Dourada",
-    "description_pt": "Uma combinação perfeita de história, cultura e natureza impressionante, incluindo uma experiência de escuna de luxo."
+    "description_pt": "Uma combinação perfeita de história, cultura e natureza impressionante, incluindo uma experiência de escuna de luxo.",
+    "slug": "turk-gun-batimi-altin-isikta-anadolu",
+    "slug_en": "turkish-sunset-anatolia-in-golden-light",
+    "slug_es": "atardecer-turco-anatolia-bajo-la-luz-dorada",
+    "slug_ar": "turkish-sunset-anatolia-in-golden-light-ar",
+    "slug_pt": "pr-do-sol-turco-anatlia-sob-luz-dourada",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 4 | Turkey Golden Light Tour Cappadocia",
+      "Turkish Sunset Turu Photo 1 | Turkey Golden Light Tour Cappadocia",
+      "Fethiye Oludeniz Manzarasi Photo 19 | Turkey Golden Light Tour Cappadocia"
+    ]
   },
   {
     "id": "TUR-1700000000054",
     "title": "Türkiye'nin Gizli Cennetleri: Lüks Keşif",
-    "title_en": "Turkey's Hidden Paradises: A Luxury Exploration",
+    "title_en": "Hidden Turkey Tour: Istanbul, Çanakkale & Pamukkale",
     "title_es": "Paraísos Escondidos de Turquía: Exploración de Lujo",
     "title_ru": "Тур Рай Турции",
     "title_de": "Türkei Paradies Tour",
@@ -8503,12 +9150,22 @@
       "assets/fethiye-oludeniz-manzarasi-6.webp"
     ],
     "title_pt": "Paraísos Escondidos da Turquia: Exploração de Luxo",
-    "description_pt": "Uma viagem exclusiva de 7 dias que combina o esplendor histórico com as maravilhas naturais únicas."
+    "description_pt": "Uma viagem exclusiva de 7 dias que combina o esplendor histórico com as maravilhas naturais únicas.",
+    "slug": "turkiyenin-gizli-cennetleri-luks-kesif",
+    "slug_en": "turkeys-hidden-paradises-a-luxury-exploration",
+    "slug_es": "parasos-escondidos-de-turqua-exploracin-de-lujo",
+    "slug_ar": "turkeys-hidden-paradises-a-luxury-exploration-ar",
+    "slug_pt": "parasos-escondidos-da-turquia-exploraco-de-luxo",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 5 | Hidden Turkey Tour Istanbul, Çanakkale",
+      "Turkiye Mavi Yolculuk Photo 1 | Hidden Turkey Tour Istanbul, Çanakkale",
+      "Fethiye Oludeniz Manzarasi Photo 6 | Hidden Turkey Tour Istanbul, Çanakkale"
+    ]
   },
   {
     "id": "TUR-1700000000055",
     "title": "Pamukkale: Beyaz Travertenler ve Antik Uygarlıklar",
-    "title_en": "Pamukkale: White Travertines and Ancient Civilisations",
+    "title_en": "Pamukkale Day Tour: White Travertines & Ancient City",
     "title_es": "Pamukkale",
     "title_ru": "Памуккале",
     "title_de": "Pamukkale",
@@ -8597,6 +9254,17 @@
       "assets/pamukkale-traverten-dogal-9.webp",
       "assets/pamukkale-traverten-dogal-10.webp",
       "assets/pamukkale-traverten-dogal-11.webp"
+    ],
+    "slug": "pamukkale-beyaz-travertenler-ve-antik-uygarliklar",
+    "slug_en": "pamukkale-white-travertines-and-ancient-civilisations",
+    "slug_es": "pamukkale",
+    "slug_ar": "pamukkale-white-travertines-and-ancient-civilisations-ar",
+    "slug_pt": "pamukkale-white-travertines-and-ancient-civilisations",
+    "image_alts": [
+      "Pamukkale Antik Photo 1 | Pamukkale Day Tour White Travertines",
+      "Pamukkale Traverten Dogal Photo 9 | Pamukkale Day Tour White Travertines",
+      "Pamukkale Traverten Dogal Photo 10 | Pamukkale Day Tour White Travertines",
+      "Pamukkale Traverten Dogal Photo 11 | Pamukkale Day Tour White Travertines"
     ]
   },
   {
@@ -8723,12 +9391,23 @@
       "assets/efes-gunluk-turu-1.webp",
       "assets/pamukkale-efes-2gun-1.webp",
       "assets/pamukkale-traverten-dogal-2.webp"
+    ],
+    "slug": "efes-pamukkale-antik-cagda-iki-gun",
+    "slug_en": "ephesus-pamukkale-two-days-in-antiquity",
+    "slug_es": "tour-de-2-das-por-feso-y-pamukkale",
+    "slug_ar": "ephesus-pamukkale-two-days-in-antiquity-ar",
+    "slug_pt": "ephesus-pamukkale-two-days-in-antiquity",
+    "image_alts": [
+      "Efes Pamukkale Luks Photo 1 | Ephesus Pamukkale Two Days in",
+      "Efes Gunluk Turu Photo 1 | Ephesus Pamukkale Two Days in",
+      "Pamukkale Efes 2Gun Photo 1 | Ephesus Pamukkale Two Days in",
+      "Pamukkale Traverten Dogal Photo 2 | Ephesus Pamukkale Two Days in"
     ]
   },
   {
     "id": "TUR-1700000000057",
     "title": "Efes: Antik Çağın En Büyük Şehri",
-    "title_en": "Ephesus: The Greatest City of the Ancient World",
+    "title_en": "Ephesus Day Tour: Greatest City of the Ancient World",
     "title_es": "Éfeso",
     "title_ru": "Эфес",
     "title_de": "Ephesus",
@@ -8814,12 +9493,22 @@
       "assets/mardin-tarihi-konak-dokusu-16.webp",
       "assets/efes-antik-luks-1.webp",
       "assets/efes-pamukkale-luks-1.webp"
+    ],
+    "slug": "efes-antik-cagin-en-buyuk-sehri",
+    "slug_en": "ephesus-the-greatest-city-of-the-ancient-world",
+    "slug_es": "feso",
+    "slug_ar": "ephesus-the-greatest-city-of-the-ancient-world-ar",
+    "slug_pt": "ephesus-the-greatest-city-of-the-ancient-world",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 16 | Ephesus Day Tour Greatest City",
+      "Efes Antik Luks Photo 1 | Ephesus Day Tour Greatest City",
+      "Efes Pamukkale Luks Photo 1 | Ephesus Day Tour Greatest City"
     ]
   },
   {
     "id": "TUR-1700000000058",
     "title": "Beş Şehir, Beş Çağ: Türkiye'nin Derinliği",
-    "title_en": "Five Cities, Five Ages: The Depths of Turkey",
+    "title_en": "10-Day Turkey Tour: Five Cities, Five Ages of History",
     "title_es": "Tour de las cinco ciudades de Turquía",
     "title_ru": "Тур Пять городов Турции",
     "title_de": "Fünf-Städte-Türkei-Tour",
@@ -8845,7 +9534,7 @@
       ]
     },
     "description": "İstanbul, Kapadokya, Antalya, Pamukkale ve Efes'i kapsayan kapsamlı, 10 günlük lüks tur[cite: 1].",
-    "description_en": "Spanning ten days and five of Turkey's most captivating destinations, this comprehensive tour takes you from the imperial grandeur of Istanbul and the otherworldly formations of Cappadocia, through the ancient theatres of Antalya's hinterland, to the cotton-white terraces of Pamukkale and the majestic ruins of Ephesus. An itinerary that delivers the full breadth and depth of Turkey's historic and natural heritage.",
+    "description_en": "10-day Turkey tour across Istanbul, Cappadocia, Antalya, Pamukkale, and Ephesus. Five cities, five ages of history in one journey.",
     "description_es": "Gira de lujo de 10 días que abarca Estambul, Capadocia, Antalya, Pamukkale y Éfeso.",
     "description_ru": "Комплексный 10-дневный роскошный тур, охватывающий Стамбул, Каппадокию, Анталию, Памуккале и Эфес.",
     "description_de": "Umfassende 10-tägige Luxustour durch Istanbul, Kappadokien, Antalya, Pamukkale und Ephesus.",
@@ -9022,12 +9711,23 @@
       "assets/best-of-turkey-turu-1.webp",
       "assets/highlights-turkey-turu-1.webp",
       "assets/efes-antik-luks-1.webp"
+    ],
+    "slug": "bes-sehir-bes-cag-turkiyenin-derinligi",
+    "slug_en": "five-cities-five-ages-the-depths-of-turkey",
+    "slug_es": "tour-de-las-cinco-ciudades-de-turqua",
+    "slug_ar": "five-cities-five-ages-the-depths-of-turkey-ar",
+    "slug_pt": "five-cities-five-ages-the-depths-of-turkey",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 1 | 10-Day Turkey Tour Five Cities",
+      "Best Of Turkey Turu Photo 1 | 10-Day Turkey Tour Five Cities",
+      "Highlights Turkey Turu Photo 1 | 10-Day Turkey Tour Five Cities",
+      "Efes Antik Luks Photo 1 | 10-Day Turkey Tour Five Cities"
     ]
   },
   {
     "id": "TUR-1700000000059",
     "title": "Anadolu'da Yolculuk: Zamansız Güzellikler",
-    "title_en": "Journey Through Anatolia: Timeless Wonders",
+    "title_en": "Anatolia Tour: Istanbul, Cappadocia & Timeless Wonders",
     "title_es": "Viaje por Anatolia: Maravillas Intemporales",
     "title_ru": "Тур По Мере Того, Как Мы Путешествуем По Турции",
     "title_de": "Während Wir Durch Die Türkei Reisen",
@@ -9245,7 +9945,17 @@
       "assets/grand-turkey-turu-1.webp"
     ],
     "title_pt": "Jornada pela Anatólia: Maravilhas Atemporais",
-    "description_pt": "Um tour privado de 8 dias para ouvir os sussurros da história e sentir o espírito da Anatólia."
+    "description_pt": "Um tour privado de 8 dias para ouvir os sussurros da história e sentir o espírito da Anatólia.",
+    "slug": "anadoluda-yolculuk-zamansiz-guzellikler",
+    "slug_en": "journey-through-anatolia-timeless-wonders",
+    "slug_es": "viaje-por-anatolia-maravillas-intemporales",
+    "slug_ar": "journey-through-anatolia-timeless-wonders-ar",
+    "slug_pt": "jornada-pela-anatlia-maravilhas-atemporais",
+    "image_alts": [
+      "Antalya Koy Gezisi17 Photo 1 | Anatolia Tour Istanbul, Cappadocia Timeless",
+      "Dream Turkey Turu Photo 1 | Anatolia Tour Istanbul, Cappadocia Timeless",
+      "Grand Turkey Turu Photo 1 | Anatolia Tour Istanbul, Cappadocia Timeless"
+    ]
   },
   {
     "id": "TUR-1700000000060",
@@ -9274,7 +9984,7 @@
       ]
     },
     "description": "Pamukkale travertenleri ve Hierapolis Antik Kenti ile Efes'te Celsus Kütüphanesi, Artemis Tapınağı ve Meryem Ana Evi'ni kapsayan eşsiz yolculuk[cite: 1].",
-    "description_en": "A unique journey covering the Pamukkale travertines and Hierapolis Ancient City, along with the Celsus Library, Temple of Artemis and House of Virgin Mary in Ephesus.",
+    "description_en": "2-day Pamukkale and Ephesus tour from Istanbul: travertines, Hierapolis, Celsus Library, Temple of Artemis, and House of Virgin Mary.",
     "description_es": "Un viaje único que cubre los travertinos de Pamukkale y Éfeso.",
     "description_ru": "Уникальное путешествие, охватывающее травертины Памуккале и Эфес.",
     "description_de": "Eine einzigartige Reise zu den Sinterterrassen von Pamukkale und Ephesus.",
@@ -9371,12 +10081,23 @@
       "assets/pamukkale-traverten-dogal-3.webp",
       "assets/efes-gunluk-turu-1.webp",
       "assets/efes-pamukkale-luks-1.webp"
+    ],
+    "slug": "pamukkale-efes-antik-cagin-kalbinde-iki-gun",
+    "slug_en": "pamukkale-ephesus-two-days-at-the-heart-of-antiquity",
+    "slug_es": "tour-de-2-das-pamukkale-feso",
+    "slug_ar": "pamukkale-ephesus-two-days-at-the-heart-of-antiquity-ar",
+    "slug_pt": "pamukkale-ephesus-two-days-at-the-heart-of-antiquity",
+    "image_alts": [
+      "Pamukkale Efes 2Gun Photo 1 | Pamukkale Ephesus Two Days at",
+      "Pamukkale Traverten Dogal Photo 3 | Pamukkale Ephesus Two Days at",
+      "Efes Gunluk Turu Photo 1 | Pamukkale Ephesus Two Days at",
+      "Efes Pamukkale Luks Photo 1 | Pamukkale Ephesus Two Days at"
     ]
   },
   {
     "id": "TUR-1700000000061",
     "title": "Türkiye'nin En İyileri: Seçilmiş Rota",
-    "title_en": "The Best of Turkey: A Curated Route",
+    "title_en": "Best of Turkey Tour: Cappadocia, Ephesus & Pamukkale",
     "title_es": "Gastronomía de Estambul: Un Viaje por los Sabores",
     "title_ru": "Лучшее В Турции",
     "title_de": "Das Beste Der Türkei",
@@ -9504,12 +10225,23 @@
       "assets/highlights-turkey-turu-1.webp"
     ],
     "title_pt": "Gastronomia de Istambul: Uma Viagem pelos Sabores",
-    "description_pt": "Descubra os segredos da cozinha turca explorando mercados locais e restaurantes históricos em Istambul."
+    "description_pt": "Descubra os segredos da cozinha turca explorando mercados locais e restaurantes históricos em Istambul.",
+    "slug": "turkiyenin-en-iyileri-secilmis-rota",
+    "slug_en": "the-best-of-turkey-a-curated-route",
+    "slug_es": "gastronoma-de-estambul-un-viaje-por-los-sabores",
+    "slug_ar": "the-best-of-turkey-a-curated-route-ar",
+    "slug_pt": "gastronomia-de-istambul-uma-viagem-pelos-sabores",
+    "image_alts": [
+      "Pamukkale Traverten Dogal Photo 3 | Best of Turkey Tour Cappadocia",
+      "Grand Turkey Turu Photo 1 | Best of Turkey Tour Cappadocia",
+      "Best Of Turkey Turu Photo 1 | Best of Turkey Tour Cappadocia",
+      "Highlights Turkey Turu Photo 1 | Best of Turkey Tour Cappadocia"
+    ]
   },
   {
     "id": "TUR-1700000000062",
     "title": "Grand Türkiye: Antik İhtişamdan Ege Maviliğine",
-    "title_en": "Grand Turkey: From Ancient Splendour to the Aegean Blue",
+    "title_en": "20-Day Grand Turkey Tour: Istanbul to Aegean Coast",
     "title_es": "Expreso de Oriente: La Ruta Ferroviaria Mágica",
     "title_ru": "Гранд-Тур По Турции",
     "title_de": "Große Türkei-Tour",
@@ -9532,7 +10264,7 @@
       ]
     },
     "description": "20 günlük, Türkiye'nin tüm ikonik destinasyonlarını ve Fethiye'den Mavi Yolculuğu kapsayan benzersiz tur[cite: 1].",
-    "description_en": "The ultimate Turkish journey. Over twenty days, this comprehensive tour escorts you through every defining chapter of Turkey's history and geography—from the imperial grandeur of Istanbul and the poignant battlefields of Gallipoli, to the ancient ruins of Troy, Pergamum, and Ephesus, the spiritual heart of Konya, the travertine terraces of Pamukkale, a four-day Blue Cruise along the Turquoise Coast, and the dreamlike landscapes of Cappadocia. A journey that leaves no stone unturned.",
+    "description_en": "20-day grand Turkey tour: Istanbul, Gallipoli, Troy, Ephesus, Konya, Pamukkale, Blue Cruise, and Cappadocia. Turkey's complete story.",
     "description_es": "Un viaje inolvidable a través de paisajes nevados en el legendario tren desde Ankara hasta Kars.",
     "description_ru": "Уникальный 20-дневный тур, охватывающий знаковые места Турции.",
     "description_de": "Eine einzigartige 20-tägige Tour zu den Wahrzeichen der Türkei.",
@@ -9776,7 +10508,18 @@
       "assets/turkey-insight-turu-1.webp"
     ],
     "title_pt": "Expresso do Oriente: A Rota Ferroviária Mágica",
-    "description_pt": "Uma viagem inesquecível através de paisagens nevadas no lendário comboio de Ancara a Kars."
+    "description_pt": "Uma viagem inesquecível através de paisagens nevadas no lendário comboio de Ancara a Kars.",
+    "slug": "grand-turkiye-antik-ihtisamdan-ege-maviligine",
+    "slug_en": "grand-turkey-from-ancient-splendour-to-the-aegean-blue",
+    "slug_es": "expreso-de-oriente-la-ruta-ferroviaria-mgica",
+    "slug_ar": "grand-turkey-from-ancient-splendour-to-the-aegean-blue-ar",
+    "slug_pt": "expresso-do-oriente-a-rota-ferroviria-mgica",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 2 | 20-Day Grand Turkey Tour Istanbul",
+      "Exciting Turkey Turu Photo 1 | 20-Day Grand Turkey Tour Istanbul",
+      "Dream Turkey Turu Photo 1 | 20-Day Grand Turkey Tour Istanbul",
+      "Turkey Insight Turu Photo 1 | 20-Day Grand Turkey Tour Istanbul"
+    ]
   },
   {
     "id": "TUR-1700000000063",
@@ -9973,12 +10716,23 @@
       "assets/as-we-travel-turkey-1.webp"
     ],
     "title_pt": "Lago Van: História e Natureza no Leste",
-    "description_pt": "Explore a ilha de Akdamar, castelos antigos e a beleza azul profunda do Lago Van."
+    "description_pt": "Explore a ilha de Akdamar, castelos antigos e a beleza azul profunda do Lago Van.",
+    "slug": "dogunun-sesi-karadenizden-anadoluya-12-gun",
+    "slug_en": "voice-of-the-east-12-days-from-the-black-sea-to-anatolia",
+    "slug_es": "lago-van-historia-y-naturaleza-en-el-este",
+    "slug_ar": "voice-of-the-east-12-days-from-the-black-sea-to-anatolia-ar",
+    "slug_pt": "lago-van-histria-e-natureza-no-leste",
+    "image_alts": [
+      "Mardin Tarihi Konak Dokusu Photo 2 | Voice of the East 12",
+      "Dogu Karadeniz Anadolu Turu Photo 1 | Voice of the East 12",
+      "Dream Turkey Turu Photo 1 | Voice of the East 12",
+      "As We Travel Turkey Photo 1 | Voice of the East 12"
+    ]
   },
   {
     "id": "TUR-1700000000064",
     "title": "Mavi Rüya: Ege'nin Saklı Koylarında Yolculuk",
-    "title_en": "Blue Dream: A Journey Through the Aegean's Hidden Bays",
+    "title_en": "Blue Cruise Tour: Aegean Hidden Bays & Coves",
     "title_es": "Harrán: Las Casas Colmena Ancestrales",
     "title_ru": "Голубой Круиз По Турции",
     "title_de": "Blaue Reise Durch Die Türkei",
@@ -10111,7 +10865,18 @@
       "assets/fethiye-oludeniz-manzarasi-8.webp"
     ],
     "title_pt": "Harran: As Casas Colmeia Ancestrais",
-    "description_pt": "Visite Harran, famosa pelas suas singulares casas cónicas de adobe e pela sua rica herança bíblica."
+    "description_pt": "Visite Harran, famosa pelas suas singulares casas cónicas de adobe e pela sua rica herança bíblica.",
+    "slug": "mavi-ruya-egenin-sakli-koylarinda-yolculuk",
+    "slug_en": "blue-dream-a-journey-through-the-aegeans-hidden-bays",
+    "slug_es": "harrn-las-casas-colmena-ancestrales",
+    "slug_ar": "blue-dream-a-journey-through-the-aegeans-hidden-bays-ar",
+    "slug_pt": "harran-as-casas-colmeia-ancestrais",
+    "image_alts": [
+      "Fethiye Oludeniz Manzarasi Photo 6 | Blue Cruise Tour Aegean Hidden",
+      "Turkiye Mavi Yolculuk Photo 1 | Blue Cruise Tour Aegean Hidden",
+      "Fethiye Oludeniz Manzarasi Photo 7 | Blue Cruise Tour Aegean Hidden",
+      "Fethiye Oludeniz Manzarasi Photo 8 | Blue Cruise Tour Aegean Hidden"
+    ]
   },
   {
     "id": "TUR-1700000000065",
@@ -10208,12 +10973,23 @@
       "assets/efes-pamukkale-luks-1.webp"
     ],
     "title_pt": "Kaş: Paraíso do Mergulho e Relaxamento",
-    "description_pt": "Desfrute de águas cristalinas, mergulho de classe mundial e um ambiente encantador no coração da costa mediterrânica."
+    "description_pt": "Desfrute de águas cristalinas, mergulho de classe mundial e um ambiente encantador no coração da costa mediterrânica.",
+    "slug": "luks-turkiye-4-ila-7-gunluk-seckin-paketler",
+    "slug_en": "luxury-turkey-4-to-7-day-premium-packages",
+    "slug_es": "kas-paraso-del-buceo-y-el-relax",
+    "slug_ar": "luxury-turkey-4-to-7-day-premium-packages-ar",
+    "slug_pt": "kas-paraso-do-mergulho-e-relaxamento",
+    "image_alts": [
+      "Pamukkale Traverten Dogal Photo 5 | Luxury Turkey 4 to 7-Day",
+      "Velvet Turkey Turu Photo 1 | Luxury Turkey 4 to 7-Day",
+      "Efes Antik Luks Photo 1 | Luxury Turkey 4 to 7-Day",
+      "Efes Pamukkale Luks Photo 1 | Luxury Turkey 4 to 7-Day"
+    ]
   },
   {
     "id": "TUR-1700000000066",
     "title": "Türk Kaçamağı: Hızlı Ama Derin Bir Yolculuk",
-    "title_en": "Turkish Getaway: Fast Yet Deep",
+    "title_en": "Istanbul & Cappadocia Tour: Fast Yet Deep Turkey Escape",
     "title_es": "Monte Nemrut: Amanecer con los Dioses",
     "title_ru": "Тур Турецкий Отпуск",
     "title_de": "Der Türkische Kurzurlaub",
@@ -10387,7 +11163,17 @@
       "assets/exciting-turkey-turu-1.webp"
     ],
     "title_pt": "Monte Nemrut: Amanhecer com os Deuses",
-    "description_pt": "Contemple o nascer do sol mais espetacular junto às gigantescas cabeças de pedra no topo do Monte Nemrut."
+    "description_pt": "Contemple o nascer do sol mais espetacular junto às gigantescas cabeças de pedra no topo do Monte Nemrut.",
+    "slug": "turk-kacamagi-hizli-ama-derin-bir-yolculuk",
+    "slug_en": "turkish-getaway-fast-yet-deep",
+    "slug_es": "monte-nemrut-amanecer-con-los-dioses",
+    "slug_ar": "turkish-getaway-fast-yet-deep-ar",
+    "slug_pt": "monte-nemrut-amanhecer-com-os-deuses",
+    "image_alts": [
+      "Pamukkale Traverten Dogal Photo 6 | Istanbul Cappadocia Tour Fast Yet",
+      "Turkey Budget Turu Photo 1 | Istanbul Cappadocia Tour Fast Yet",
+      "Exciting Turkey Turu Photo 1 | Istanbul Cappadocia Tour Fast Yet"
+    ]
   },
   {
     "id": "TUR-1700000000067",
@@ -10560,12 +11346,23 @@
       "assets/pamukkale-antik-1.webp"
     ],
     "title_pt": "Yedigöller: O Festival de Cores da Natureza",
-    "description_pt": "Um paraíso natural com sete lagos interconectados rodeados por florestas densas e vibrantes."
+    "description_pt": "Um paraíso natural com sete lagos interconectados rodeados por florestas densas e vibrantes.",
+    "slug": "kapadokya-pamukkale-uc-gunde-iki-efsane",
+    "slug_en": "cappadocia-pamukkale-two-legends-in-three-days",
+    "slug_es": "yedigoller-el-festival-de-colores-de-la-naturaleza",
+    "slug_ar": "cappadocia-pamukkale-two-legends-in-three-days-ar",
+    "slug_pt": "yedigoller-o-festival-de-cores-da-natureza",
+    "image_alts": [
+      "Kapadokya Balon Turu Photo 10 | Cappadocia Pamukkale Two Legends in",
+      "Kapadokya Balon Turu Photo 5 | Cappadocia Pamukkale Two Legends in",
+      "Pamukkale Traverten Dogal Photo 4 | Cappadocia Pamukkale Two Legends in",
+      "Pamukkale Antik Photo 1 | Cappadocia Pamukkale Two Legends in"
+    ]
   },
   {
     "id": "TUR-1700000000068",
     "title": "Sema: UNESCO Mirasının Yaşayan Ritüeli",
-    "title_en": "Sema: The Living Ritual of UNESCO Heritage",
+    "title_en": "Whirling Dervishes Show: Sema Ceremony Istanbul",
     "title_es": "Safranbolu: Un Museo Viviente de Arquitectura",
     "title_ru": "Шоу и выставка кружащихся дервишей",
     "title_de": "Tanzende Derwische Show und Ausstellung",
@@ -10676,6 +11473,15 @@
       "assets/kapadokya-balon-turu-1.webp"
     ],
     "title_pt": "Safranbolu: Um Museu Vivo de Arquitetura",
-    "description_pt": "Explore as casas otomanas mais bem preservadas e as tradições centenárias de Safranbolu."
+    "description_pt": "Explore as casas otomanas mais bem preservadas e as tradições centenárias de Safranbolu.",
+    "slug": "sema-unesco-mirasinin-yasayan-ritueli",
+    "slug_en": "sema-the-living-ritual-of-unesco-heritage",
+    "slug_es": "safranbolu-un-museo-viviente-de-arquitectura",
+    "slug_ar": "sema-the-living-ritual-of-unesco-heritage-ar",
+    "slug_pt": "safranbolu-um-museu-vivo-de-arquitetura",
+    "image_alts": [
+      "Sema Govsteri Photo 1 | Whirling Dervishes Show Sema Ceremony",
+      "Kapadokya Balon Turu Photo 1 | Whirling Dervishes Show Sema Ceremony"
+    ]
   }
 ]

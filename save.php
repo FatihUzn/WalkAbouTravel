@@ -55,6 +55,41 @@ if (file_exists($filePath) && !is_writable($filePath)) {
 }
 
 // JSON olarak kaydet
+// --- Turlar kaydediliyorsa slug'ları otomatik üret ---
+if ($fileKey === 'tours' && is_array($data['data'])) {
+    $langs = ['tr', 'en', 'es', 'ar', 'pt'];
+
+    foreach ($data['data'] as &$tour) {
+        foreach ($langs as $lang) {
+            $slugKey = 'slug_' . $lang;
+
+            // Slug zaten varsa dokunma
+            if (!empty($tour[$slugKey])) continue;
+
+            // title_en, title_es... veya base title (TR) kullan
+            $titleKey = $lang === 'tr' ? 'title' : 'title_' . $lang;
+            $title = !empty($tour[$titleKey]) ? $tour[$titleKey]
+                   : (!empty($tour['title_en']) ? $tour['title_en']
+                   : ($tour['title'] ?? ''));
+
+            if (!empty($title)) {
+                $tour[$slugKey] = slugify($title);
+            }
+        }
+    }
+    unset($tour);
+}
+
+function slugify(string $text): string {
+    $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
+    $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
+    $text = str_replace($tr, $en, $text);
+    $text = strtolower($text);
+    $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
+    $text = preg_replace('/[\s-]+/', '-', trim($text));
+    return $text;
+}
+
 $json = json_encode($data['data'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 if ($json === false) {
