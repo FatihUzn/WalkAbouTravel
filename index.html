@@ -444,9 +444,16 @@
     });
 
     // Dil değiştiğinde içerikleri anında güncelle
+    // loadTours() yerine allToursData kullan — JSON yeniden fetch edilmez
     window.addEventListener('languageChanged', () => {
         loadCategories();
-        loadTours();
+        if (allToursData.length > 0) {
+            const popularTours = allToursData.filter(t => t.featured).slice(0, 3);
+            displayPopularTrips(popularTours.length > 0 ? popularTours : allToursData.slice(0, 3));
+            displayAllTours(allToursData);
+        } else {
+            loadTours();
+        }
     });
 
     // ── Slug yardımcı fonksiyonu ──────────────────────────────

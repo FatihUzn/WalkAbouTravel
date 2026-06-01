@@ -4,7 +4,7 @@
 class TourManager {
     constructor() {
         this.tours = [];
-        this.currentLang = localStorage.getItem('language') || 'tr';
+        this.currentLang = sessionStorage.getItem('language') || localStorage.getItem('language') || 'tr';
         this.filteredCategory = 'all';
         this.init();
     }
@@ -17,7 +17,7 @@ class TourManager {
         if (window.i18n && window.i18n.currentLang) {
             this.currentLang = window.i18n.currentLang;
         } else {
-            this.currentLang = localStorage.getItem('language') || 'tr';
+            this.currentLang = sessionStorage.getItem('language') || localStorage.getItem('language') || 'tr';
         }
 
         this.displayTours();
@@ -87,7 +87,7 @@ class TourManager {
             const lang = (e.detail && e.detail.lang)
                 ? e.detail.lang
                 : (typeof e.detail === 'string' && e.detail ? e.detail : null);
-            this.currentLang = lang || localStorage.getItem('language') || 'tr';
+            this.currentLang = lang || sessionStorage.getItem('language') || localStorage.getItem('language') || 'tr';
             this.displayTours();
         });
     }

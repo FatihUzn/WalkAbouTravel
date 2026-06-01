@@ -46,6 +46,32 @@ function getLangField(array $obj, string $field, string $lang) {
     return $obj[$field] ?? '';
 }
 
+// ── İtinerary günü içindeki dil alanını oku ─────────────────────────────────
+// Gün nesnesi: { title, title_en, description, description_en, ... }
+// getLangField ile aynı mantık ama liste değil tekil string döndürür
+function getDayField(array $day, string $field, string $lang): string {
+    if ($lang !== 'tr') {
+        // Önce tam dil: title_en, title_es, title_ar, title_pt
+        if (!empty($day[$field.'_'.$lang])) return $day[$field.'_'.$lang];
+        // Yoksa EN'e düş
+        if (!empty($day[$field.'_en']))     return $day[$field.'_en'];
+    }
+    // TR veya fallback
+    return $day[$field] ?? '';
+}
+
+// ── Highlights listesini dile göre oku ───────────────────────────────────────
+// highlights_en, highlights_es gibi ayrı listeler VEYA highlights (TR base)
+function getHighlights(array $tour, string $lang): array {
+    if ($lang !== 'tr') {
+        if (!empty($tour['highlights_'.$lang]) && is_array($tour['highlights_'.$lang]))
+            return $tour['highlights_'.$lang];
+        if (!empty($tour['highlights_en']) && is_array($tour['highlights_en']))
+            return $tour['highlights_en'];
+    }
+    return $tour['highlights'] ?? [];
+}
+
 $tour = null;
 foreach ($tours as $t) {
     if (tourSlug($t, $currentLang) === $slug) { $tour = $t; break; }
@@ -547,8 +573,8 @@ nav {
             <?php if(!empty($itinerary)): ?>
             <div class="itinerary-section" style="margin-bottom:50px;">
                 <?php foreach($itinerary as $di=>$day):
-                    $dayTitle = getLangField($day,'title',$currentLang) ?: ($day['title'] ?? '');
-                    $dayDesc  = getLangField($day,'description',$currentLang) ?: ($day['description'] ?? '');
+                    $dayTitle = getDayField($day,'title',$currentLang);
+                    $dayDesc  = getDayField($day,'description',$currentLang);
                     $dayNum   = $day['day'] ?? ($di+1);
                     $isFirst  = $di===0 ? ' active' : '';
                 ?>
