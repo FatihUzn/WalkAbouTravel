@@ -5,7 +5,10 @@
 //     v2 — 2025-06
 // ============================================================
 
-define('SITE_URL',  'https://www.walkabouttravel.com');
+// SITE_URL: otomatik tespit — hangi domain'de çalışıyorsa o kullanılır
+$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$_host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
+define('SITE_URL',  $_protocol . '://' . $_host);
 define('SITE_NAME', 'WalkAbout Travel');
 
 $LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
@@ -23,9 +26,31 @@ foreach (['en','es','ar','pt'] as $lc) {
 }
 if ($currentLang === 'tr') $slug = ltrim($uri, '/');
 
-$tours = json_decode(file_get_contents(__DIR__.'/data/tours.json'), true) ?? [];
+// --- Tours JSON — PHP serialize cache (685KB JSON'u her seferinde parse etme) ---
+function loadToursCached(): array {
+    $jsonFile  = __DIR__ . '/data/tours.json';
+    $cacheFile = __DIR__ . '/data/tours.cache.php';
 
-function makeSlug(string $t): string {
+    // Cache geçerliyse direkt oku
+    if (file_exists($cacheFile) && filemtime($cacheFile) >= filemtime($jsonFile)) {
+        return unserialize(file_get_contents($cacheFile));
+    }
+
+    // Cache yok veya JSON daha yeni → yeniden oluştur
+    $tours = json_decode(file_get_contents($jsonFile), true) ?? [];
+    file_put_contents($cacheFile, serialize($tours), LOCK_EX);
+    return $tours;
+}
+$tours = loadToursCached();
+
+// Görsel path'i absolute yap — /assets/... formatında olmalı
+// tours.json'da "assets/foto.webp" → "/assets/foto.webp"
+function absPath(string $path): string {
+    if (empty($path))                    return '';
+    if (str_starts_with($path, 'http'))  return $path;  // zaten URL
+    if (str_starts_with($path, '/'))     return $path;  // zaten absolute
+    return '/' . $path;                                 // relative → absolute
+}
     $t = str_replace(['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'],
                      ['s','g','u','o','i','c','s','g','u','o','i','c'], $t);
     return strtolower(preg_replace('/[\s-]+/','-',trim(preg_replace('/[^a-z0-9\s-]/','', $t))));
@@ -76,6 +101,12 @@ $tour = null;
 foreach ($tours as $t) {
     if (tourSlug($t, $currentLang) === $slug) { $tour = $t; break; }
 }
+// Fallback: eski/yanlış EN slug ile gelindi ise (örn. .com.tr/turkish-getaway-fast-yet-deep/)
+if (!$tour && $currentLang === 'tr') {
+    foreach ($tours as $t) {
+        if (!empty($t['slug_en']) && $t['slug_en'] === $slug) { $tour = $t; break; }
+    }
+}
 if (!$tour) { http_response_code(404); die('<h1>404 - Tour not found</h1><a href="/">← Home</a>'); }
 
 $title       = getLangField($tour,'title',$currentLang);
@@ -84,7 +115,7 @@ $shortDesc   = mb_substr(strip_tags($description),0,160);
 $price       = $tour['price'] ?? '';
 $duration    = $tour['duration'] ?? '';
 $location    = $tour['location'] ?? '';
-$image       = $tour['image'] ?? '';
+$image       = absPath($tour['image'] ?? '');
 $rating      = $tour['rating'] ?? '4.9';
 $reviewCount = $tour['reviewCount'] ?? '';
 
@@ -145,7 +176,8 @@ if (!$descContent && $content) { $descContent = $content; $content = ''; }
 $included    = getLangField($tour,'included',$currentLang);
 $notIncluded = getLangField($tour,'not_included',$currentLang);
 $notes       = getLangField($tour,'notes',$currentLang);
-$gallery     = $tour['gallery'] ?? ($tour['images'] ?? ($image ? [$image] : []));
+$rawGallery  = $tour['gallery'] ?? ($tour['images'] ?? ($image ? [$image] : []));
+$gallery     = array_map('absPath', $rawGallery);
 
 $waMsg    = urlencode('Merhaba, "'.$title.'" turu hakkında bilgi almak istiyorum.');
 $emailSub = urlencode($title.' Bilgi Talebi');

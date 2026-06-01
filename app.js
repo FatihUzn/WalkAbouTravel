@@ -79,7 +79,7 @@ function initNavbarScroll() {
             }
             
             lastScroll = currentScroll;
-        }, { passive: true }); // Performance optimization
+        }, { passive: true });
         
         log('✅ Navbar scroll efekti hazır');
     }
@@ -286,8 +286,6 @@ function initScrollToTop() {
             scrollBtn.style.visibility = 'hidden';
         }
     }, { passive: true });
-    
-    // Click event
     scrollBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
@@ -300,22 +298,9 @@ function initScrollToTop() {
 
 // ==================== PERFORMANCE OPTIMIZATION ====================
 function optimizePerformance() {
-    // Sitede kullanılan fontlar: Playfair Display + Inter
-    // Montserrat sitede kullanılmıyor — preload edilmez (gereksiz ağ isteği)
-    const fonts = [
-        'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
-    ];
-    
-    fonts.forEach(font => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = font;
-        document.head.appendChild(link);
-    });
-    
-    log('✅ Performance optimizasyonu yapıldı');
+    // Fontlar için preconnect/preload <head>'de statik olarak tanımlandı (tour.php, blog.php, index.html).
+    // JS defer sonrası font preload eklemenin LCP'ye faydası yoktur — bu fonksiyon artık boş.
+    log('✅ Performance optimizasyonu (no-op)');
 }
 
 // ==================== PRELOADER ====================

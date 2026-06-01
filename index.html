@@ -5,17 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WalkAbout Travel - Discover the World</title>
     
-    <meta name="description" content="WalkAbout Travel ile unutulmaz seyahatler. 1997'den beri güvenle planlanan yolculuklar.">
-    <meta name="keywords" content="tur, seyahat, tatil, gezi, walkabout travel">
+    <meta name="description" content="WalkAbout Travel ile Türkiye'nin en güzel destinasyonlarını keşfedin. Kapadokya, İstanbul, Efes ve daha fazlası için tur paketleri. 1997'den beri güvenle planlanan yolculuklar.">
+    <link rel="canonical" href="https://www.walkabouttravel.com/">
     <link rel="icon" href="assets/walkabout_travel_logo.jpg" type="image/jpeg">
+
+    <!-- Hreflang — 5 dil -->
+    <link rel="alternate" hreflang="tr" href="https://www.walkabouttravel.com/">
+    <link rel="alternate" hreflang="en" href="https://www.walkabouttravel.com/en/">
+    <link rel="alternate" hreflang="es" href="https://www.walkabouttravel.com/es/">
+    <link rel="alternate" hreflang="ar" href="https://www.walkabouttravel.com/ar/">
+    <link rel="alternate" hreflang="pt" href="https://www.walkabouttravel.com/pt/">
+    <link rel="alternate" hreflang="x-default" href="https://www.walkabouttravel.com/en/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.walkabouttravel.com/">
+    <meta property="og:title" content="WalkAbout Travel — Turkey Tours &amp; Travel Packages">
+    <meta property="og:description" content="Cappadocia balloon rides, Istanbul city tours, Ephesus day trips and more. Expert-guided Turkey tours since 1997.">
+    <meta property="og:image" content="https://www.walkabouttravel.com/assets/og-cover.jpg">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:site_name" content="WalkAbout Travel">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WalkAbout Travel — Turkey Tours &amp; Travel Packages">
+    <meta name="twitter:description" content="Cappadocia balloon rides, Istanbul city tours, Ephesus day trips and more. Expert-guided Turkey tours since 1997.">
+    <meta name="twitter:image" content="https://www.walkabouttravel.com/assets/og-cover.jpg">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome — non-render-blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
@@ -75,7 +99,7 @@
         
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
+                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" width="48" height="38" fetchpriority="high" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <span class="logo-title">WalkAbout Travel</span>
                     <span class="logo-subtitle">TOURISM & TRAVEL</span>
@@ -391,8 +415,8 @@
         });
     </script>
     
-    <script src="i18n.js"></script>
-    <script src="app.js"></script>
+    <script src="i18n.js" defer></script>
+    <script src="app.js" defer></script>
     
     <script>
     // ==================== 1. BAŞLATMA VE DİL AYARLARI ====================
@@ -580,20 +604,20 @@
         // 4. Başlığı ve Rozeti Güncelle
         const sectionTitle = document.querySelector('#tours .section-header h2');
         const sectionBadge = document.querySelector('#tours .section-badge');
-        
+        const t = key => (window.i18n && window.i18n.t) ? window.i18n.t(key) : key;
+
         if (type === 'all') {
-            sectionBadge.innerHTML = 'TÜM ROTALAR';
-            sectionTitle.innerHTML = window.i18n ? window.i18n.t('tours_title') : 'Tüm Turlar';
+            sectionBadge.innerHTML = t('filter_all_routes');
+            sectionTitle.innerHTML = t('tours_title');
         } else {
-            // Filtre aktifse kırmızı renkte şık bir "Filtreyi Temizle" butonu ekle
-            sectionBadge.innerHTML = '<span style="cursor:pointer; color:#ef4444;" onclick="filterTours(\'all\')"><i class="fas fa-times"></i> FİLTREYİ TEMİZLE</span>';
+            sectionBadge.innerHTML = `<span style="cursor:pointer; color:#ef4444;" onclick="filterTours('all')"><i class="fas fa-times"></i> ${t('filter_clear')}</span>`;
             const titles = {
-                'turkey': 'Türkiye Rotaları',
-                'international': 'Uluslararası Turlar',
-                'daily': 'Günübirlik Turlar',
-                'group': 'Grup Turları'
+                'turkey':        t('filter_turkey'),
+                'international': t('filter_international'),
+                'daily':         t('filter_daily'),
+                'group':         t('filter_group')
             };
-            sectionTitle.innerHTML = titles[type];
+            sectionTitle.innerHTML = titles[type] || '';
         }
     }
 
@@ -613,7 +637,7 @@
                     <div class="card-image-wrap">
                         <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
                         <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
-                        <div class="trip-nights-badge">${tour.duration || '1 Gün'}</div>
+                        <div class="trip-nights-badge">${tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün')}</div>
                     </div>
                     <div class="trip-card-content">
                         <h3 class="trip-card-title">${title}</h3>
@@ -653,7 +677,7 @@
             <div class="tour-card" onclick="window.location.href='${getTourSlug(tour)}'">
                 <div class="tour-image">
                     <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                    <div class="tour-badge">${tour.duration || '1 Gün'}</div>
+                    <div class="tour-badge">${tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün')}</div>
                 </div>
                 <div class="tour-content">
                     <h3>${title}</h3>
@@ -695,13 +719,13 @@
 
         const btn = document.querySelector('#contactForm .submit-btn');
         const origHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Gönderildi!';
+        btn.innerHTML = '<i class="fas fa-check"></i> ' + (window.i18n ? window.i18n.t('contact_sent') : 'Gönderildi!');
         btn.style.background = '#10b981';
         setTimeout(() => { btn.innerHTML = origHTML; btn.style.background = ''; }, 3000);
     }
 
     </script>
-    <script src="Blog.js"></script>
+    <script src="Blog.js" defer></script>
 
 <script>
 // Mobil cihazlarda hero video'yu zorla başlat

@@ -3,6 +3,62 @@
    Premium Tourism Design - Inspired by Luxury Travel Brands
    ================================================ */
 
+/* ── PERFORMANS & CLS ────────────────────────────
+   Core Web Vitals için kritik kurallar:
+   • font-display:swap → FOIT/FOUT önler
+   • img aspect-ratio  → CLS (Layout Shift) önler
+   • content-visibility → off-screen render atlar
+   • prefers-reduced-motion → erişilebilirlik
+──────────────────────────────────────────────── */
+
+/* Tüm img'ler için CLS koruması */
+img {
+    aspect-ratio: attr(width) / attr(height);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tour ve kategori kartlarındaki görseller için sabit oran */
+.tour-card img,
+.category-card img,
+.blog-card img,
+.gallery-item img {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Hero / banner görseli için oran */
+.hero img,
+.hero-banner img {
+    aspect-ratio: 21 / 9;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Ekran dışı bölümler — render maliyetini düşürür */
+.tours-section,
+.blog-section,
+.reviews-section,
+footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+}
+
+/* Animasyonları azalt — vestibüler bozukluk / epilepsi */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 :root {
     /* --- THEME: GOLDEN RIVIERA (Aydınlık & Ferah) --- */
     
@@ -300,7 +356,10 @@ nav.scrolled .nav-container {
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; }
 
 .logo img {
+    width: 48px;
     height: 38px; /* İnce logo */
+    aspect-ratio: 48 / 38; /* CLS koruması */
+    object-fit: contain;
     border-radius: 8px;
     border: 2px solid rgba(197, 160, 89, 0.5); /* Altın çerçeve korunuyor */
     box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);

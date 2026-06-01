@@ -96,11 +96,13 @@ const translations = {
         filter_international: "Uluslararası Turlar",
         filter_daily: "Günübirlik Turlar",
         filter_group: "Grup Turları",
+        filter_clear: "FİLTREYİ TEMİZLE",
         tour_detail_btn: "DETAYLARI İNCELE",
         starting_from: "Başlangıç Fiyatı",
         tour_no_desc: "Açıklama bulunmuyor.",
         tours_empty: "Bu kategoride henüz tur bulunmuyor.",
         tour_duration_default: "7 Gün",
+        contact_sent: "Gönderildi!",
 
         // Blog / Tours read more
         read_more: "Devamını Oku",
@@ -211,11 +213,13 @@ const translations = {
         filter_international: "International Tours",
         filter_daily: "Day Tours",
         filter_group: "Group Tours",
+        filter_clear: "CLEAR FILTER",
         tour_detail_btn: "VIEW DETAILS",
         starting_from: "Starting Price",
         tour_no_desc: "No description available.",
         tours_empty: "No tours found in this category.",
         tour_duration_default: "7 Days",
+        contact_sent: "Sent!",
         read_more: "Read More",
         err_404_title: "Lost Your Route?",
         err_404_desc: "The page you're looking for may have moved, been deleted, or never existed. Don't worry, you can return to the homepage to find a new route.",
@@ -313,11 +317,13 @@ const translations = {
         filter_international: "Tours Internacionales",
         filter_daily: "Tours de Un Día",
         filter_group: "Tours en Grupo",
+        filter_clear: "BORRAR FILTRO",
         tour_detail_btn: "VER DETALLES",
         starting_from: "Precio Inicial",
         tour_no_desc: "Sin descripción disponible.",
         tours_empty: "No hay tours disponibles en esta categoría.",
         tour_duration_default: "7 Días",
+        contact_sent: "¡Enviado!",
         read_more: "Leer Más",
         err_404_title: "¿Perdió su Ruta?",
         err_404_desc: "La página que busca puede haberse movido, eliminado o nunca haber existido. Puede regresar a la página de inicio.",
@@ -415,11 +421,13 @@ const translations = {
         filter_international: "Passeios Internacionais",
         filter_daily: "Passeios Diários",
         filter_group: "Passeios em Grupo",
+        filter_clear: "LIMPAR FILTRO",
         tour_detail_btn: "VER DETALHES",
         starting_from: "Preço Inicial",
         tour_no_desc: "Nenhuma descrição disponível.",
         tours_empty: "Nenhum tour encontrado nesta categoria.",
         tour_duration_default: "7 Dias",
+        contact_sent: "Enviado!",
         read_more: "Leia Mais",
         err_404_title: "Perdeu sua rota?",
         err_404_desc: "A página que você está procurando pode ter sido movida, excluída ou nunca existiu. Você pode retornar à página inicial.",
@@ -516,11 +524,13 @@ const translations = {
         filter_international: "جولات دولية",
         filter_daily: "جولات يومية",
         filter_group: "جولات جماعية",
+        filter_clear: "مسح الفلتر",
         tour_detail_btn: "عرض التفاصيل",
         starting_from: "السعر الابتدائي",
         tour_no_desc: "لا يوجد وصف.",
         tours_empty: "لا توجد جولات في هذه الفئة حتى الآن.",
         tour_duration_default: "7 أيام",
+        contact_sent: "تم الإرسال!",
         read_more: "اقرأ المزيد",
         err_404_title: "هل فقدت مسارك؟",
         err_404_desc: "ربما تم نقل الصفحة التي تبحث عنها أو حذفها أو لم تكن موجودة أبداً. يمكنك العودة إلى الصفحة الرئيسية.",
@@ -561,7 +571,8 @@ window.i18n = {
     changeLanguage(lang) {
         if (!this.translations[lang]) return;
         this.currentLang = lang;
-        localStorage.setItem('language', lang);
+        sessionStorage.setItem('language', lang); // INP: sessionStorage daha hızlı
+        localStorage.setItem('language', lang);   // Fallback: kalıcı tercih için tut
         this.applyRTL();
         this.updateDOM();
         

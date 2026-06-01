@@ -43,8 +43,15 @@ class TourManager {
     getTourSlug(tour) {
         const lang = this.currentLang;
         const prefix = { tr: '', en: '/en', es: '/es', ar: '/ar', pt: '/pt' };
-        const slugKey = lang === 'tr' ? 'slug_tr' : 'slug_' + lang;
-        let slug = tour[slugKey] || tour['slug_en'] || tour['slug'] || '';
+        let slug = '';
+
+        if (lang === 'tr') {
+            // TR için: slug_tr → slug (TR base field) → title'dan üret
+            slug = tour['slug_tr'] || tour['slug'] || '';
+        } else {
+            // Diğer diller: slug_{lang} → slug_en → slug (TR) → title'dan üret
+            slug = tour['slug_' + lang] || tour['slug_en'] || tour['slug'] || '';
+        }
 
         if (!slug) {
             const titleKey = lang === 'tr' ? 'title' : ('title_' + lang);

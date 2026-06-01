@@ -6,7 +6,10 @@
 //             RewriteRule ^(en|es|ar|pt)/blog/([^/]+)/?$ /blog-post.php [L]
 // ============================================================
 
-define('SITE_URL',  'https://www.walkabouttravel.com');
+// SITE_URL: otomatik tespit — hangi domain'de çalışıyorsa o kullanılır
+$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$_host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
+define('SITE_URL',  $_protocol . '://' . $_host);
 define('SITE_NAME', 'WalkAbout Travel');
 
 $LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
@@ -430,7 +433,7 @@ document.getElementById('menuToggle').addEventListener('click',e=>{e.stopPropaga
 document.addEventListener('click',e=>{if(e.target.closest('.lang-dropdown-btn')){e.target.closest('.lang-dropdown').classList.toggle('active');return;}document.querySelectorAll('.lang-dropdown.active').forEach(d=>d.classList.remove('active'));});
 sessionStorage.setItem('language','<?=$currentLang?>');
 </script>
-<script src="/i18n.js"></script>
-<script src="/app.js"></script>
+<script src="/i18n.js" defer></script>
+<script src="/app.js" defer></script>
 </body>
 </html>
