@@ -428,7 +428,7 @@ nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 
 <script>
 document.getElementById('menuToggle').addEventListener('click',e=>{e.stopPropagation();const l=document.getElementById('navLinks'),ic=document.getElementById('menuToggle').querySelector('i');l.classList.toggle('active');ic.classList.toggle('fa-bars');ic.classList.toggle('fa-times');});
 document.addEventListener('click',e=>{if(e.target.closest('.lang-dropdown-btn')){e.target.closest('.lang-dropdown').classList.toggle('active');return;}document.querySelectorAll('.lang-dropdown.active').forEach(d=>d.classList.remove('active'));});
-localStorage.setItem('language','<?=$currentLang?>');
+sessionStorage.setItem('language','<?=$currentLang?>');
 </script>
 <script src="/i18n.js"></script>
 <script src="/app.js"></script>

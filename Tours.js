@@ -39,6 +39,27 @@ class TourManager {
         }
     }
 
+    // Slug yardımcı — PHP tour.php ile aynı mantık
+    getTourSlug(tour) {
+        const lang = this.currentLang;
+        const prefix = { tr: '', en: '/en', es: '/es', ar: '/ar', pt: '/pt' };
+        const slugKey = lang === 'tr' ? 'slug_tr' : 'slug_' + lang;
+        let slug = tour[slugKey] || tour['slug_en'] || tour['slug'] || '';
+
+        if (!slug) {
+            const titleKey = lang === 'tr' ? 'title' : ('title_' + lang);
+            const title = tour[titleKey] || tour['title_en'] || tour['title'] || '';
+            slug = title.toLowerCase()
+                .replace(/[şŞ]/g,'s').replace(/[ğĞ]/g,'g')
+                .replace(/[üÜ]/g,'u').replace(/[öÖ]/g,'o')
+                .replace(/[ıİ]/g,'i').replace(/[çÇ]/g,'c')
+                .replace(/[^a-z0-9\s-]/g,'')
+                .replace(/[\s-]+/g,'-').trim();
+        }
+
+        return (prefix[lang] || '') + '/' + slug + '/';
+    }
+
     getField(tour, field, lang) {
         // 1. Nested obje formatı: { title: { tr: "...", en: "..." } }
         if (tour[field] && typeof tour[field] === 'object' && !Array.isArray(tour[field])) {
@@ -144,7 +165,7 @@ class TourManager {
                         <span class="tour-price-label">${priceLabel}</span>
                         <span class="tour-price-value">${tour.price || ''}</span>
                     </div>
-                    <a href="tour-detail.html?id=${tour.id}" class="tour-link" onclick="event.stopPropagation()">
+                    <a href="${this.getTourSlug(tour)}" class="tour-link" onclick="event.stopPropagation()">
                         ${linkText} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -153,7 +174,7 @@ class TourManager {
 
         card.addEventListener('click', (e) => {
             if (!e.target.closest('.tour-link')) {
-                window.location.href = `tour-detail.html?id=${tour.id}`;
+            window.location.href = this.getTourSlug(tour);
             }
         });
 

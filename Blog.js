@@ -7,7 +7,7 @@
 class BlogManager {
     constructor() {
         this.posts = [];
-        this.currentLang = localStorage.getItem('language') || 'tr';
+        this.currentLang = sessionStorage.getItem('language') || localStorage.getItem('language') || 'tr';
         this.init();
     }
 
@@ -80,7 +80,7 @@ class BlogManager {
         window.addEventListener('languageChanged', (e) => {
             this.currentLang = (e.detail && e.detail.lang)
                 ? e.detail.lang
-                : (e.detail || localStorage.getItem('language') || 'tr');
+                : (e.detail || sessionStorage.getItem('language') || localStorage.getItem('language') || 'tr');
             this.renderBlogGrid();
         });
     }

@@ -449,6 +449,32 @@
         loadTours();
     });
 
+    // ── Slug yardımcı fonksiyonu ──────────────────────────────
+    // tours.json'daki slug_tr, slug_en gibi alanları okur;
+    // yoksa title'dan üretir (PHP'deki makeSlug ile aynı mantık)
+    function getTourSlug(tour) {
+        const lang = window.i18n ? window.i18n.currentLang : 'tr';
+        const prefix = { tr: '', en: '/en', es: '/es', ar: '/ar', pt: '/pt' };
+
+        // Önce slug_[lang] alanına bak
+        const slugKey = lang === 'tr' ? 'slug_tr' : 'slug_' + lang;
+        let slug = tour[slugKey] || tour['slug_en'] || tour['slug'] || '';
+
+        // Slug yoksa title'dan üret
+        if (!slug) {
+            const titleKey = lang === 'tr' ? 'title' : ('title_' + lang);
+            const title = tour[titleKey] || tour['title_en'] || tour['title'] || '';
+            slug = title.toLowerCase()
+                .replace(/[şŞ]/g,'s').replace(/[ğĞ]/g,'g')
+                .replace(/[üÜ]/g,'u').replace(/[öÖ]/g,'o')
+                .replace(/[ıİ]/g,'i').replace(/[çÇ]/g,'c')
+                .replace(/[^a-z0-9\s-]/g,'')
+                .replace(/[\s-]+/g,'-').trim();
+        }
+
+        return (prefix[lang] || '') + '/' + slug + '/';
+    }
+
     // JSON'daki flat key yapısıyla uyumlu çevirmen
     // Öncelik: istenen dil → EN → TR (base field)
     function getLocalizedData(item, field) {
@@ -576,7 +602,7 @@
             const ratingDisplay = reviewCount ? `${rating} (${reviewCount})` : rating;
             
             return `
-                <div class="popular-trip-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
+                <div class="popular-trip-card" onclick="window.location.href='${getTourSlug(tour)}'">
                     <div class="card-image-wrap">
                         <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
                         <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
@@ -590,7 +616,7 @@
                                 <span class="trip-price-label">${window.i18n ? window.i18n.t('starting_from') || 'Starting Price' : 'Starting Price'}</span>
                                 <span class="trip-price-value">${tour.price}</span>
                             </div>
-                            <a href="tour-detail.html?id=${tour.id}" class="trip-card-button" onclick="event.stopPropagation()">
+                            <a href="${getTourSlug(tour)}" class="trip-card-button" onclick="event.stopPropagation()">
                                 ${window.i18n ? window.i18n.t('tour_detail_btn') || 'Details' : 'Details'} <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -617,7 +643,7 @@
             const rating = tour.rating || '4.9';
 
             return `
-            <div class="tour-card" onclick="window.location.href='tour-detail.html?id=${tour.id}'">
+            <div class="tour-card" onclick="window.location.href='${getTourSlug(tour)}'">
                 <div class="tour-image">
                     <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
                     <div class="tour-badge">${tour.duration || '1 Gün'}</div>
@@ -634,7 +660,7 @@
                             <span class="tour-price-label">${window.i18n ? window.i18n.t('starting_from') : 'Starting Price'}</span>
                             <span class="tour-price-value">${tour.price}</span>
                         </div>
-                        <a href="tour-detail.html?id=${tour.id}" class="tour-link" onclick="event.stopPropagation()">
+                        <a href="${getTourSlug(tour)}" class="tour-link" onclick="event.stopPropagation()">
                             ${window.i18n ? window.i18n.t('tour_detail_btn') || 'Details' : 'Details'} <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>

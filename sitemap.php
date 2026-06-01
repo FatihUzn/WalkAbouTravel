@@ -98,16 +98,28 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 <?php endforeach; ?>
 
 <?php if (!empty($blogs)): ?>
-    <!-- ===== BLOG YAZILARI ===== -->
+    <!-- ===== BLOG YAZILARI — her yazı × 5 dil ===== -->
 <?php foreach ($blogs as $blog):
     $blogSlug = $blog['slug'] ?? makeSlug($blog['title'] ?? '');
     if (empty($blogSlug)) continue;
+
+    foreach ($LANG_PREFIXES as $lang => $prefix):
+        $blogUrl = SITE_URL . $prefix . '/blog/' . $blogSlug . '/';
 ?>
     <url>
-        <loc><?= htmlspecialchars(SITE_URL . '/blog/' . $blogSlug . '/') ?></loc>
+        <loc><?= htmlspecialchars($blogUrl) ?></loc>
+<?php foreach ($LANG_PREFIXES as $altLang => $altPrefix):
+    $altBlogUrl = SITE_URL . $altPrefix . '/blog/' . $blogSlug . '/';
+?>
+        <xhtml:link rel="alternate" hreflang="<?= $altLang ?>"
+                    href="<?= htmlspecialchars($altBlogUrl) ?>"/>
+<?php endforeach; ?>
+        <xhtml:link rel="alternate" hreflang="x-default"
+                    href="<?= htmlspecialchars(SITE_URL . '/en/blog/' . $blogSlug . '/') ?>"/>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority><?= $lang === 'tr' || $lang === 'en' ? '0.7' : '0.5' ?></priority>
     </url>
+<?php endforeach; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 

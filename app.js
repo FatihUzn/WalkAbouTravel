@@ -300,10 +300,11 @@ function initScrollToTop() {
 
 // ==================== PERFORMANCE OPTIMIZATION ====================
 function optimizePerformance() {
-    // Preload kritik fontları
+    // Sitede kullanılan fontlar: Playfair Display + Inter
+    // Montserrat sitede kullanılmıyor — preload edilmez (gereksiz ağ isteği)
     const fonts = [
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap'
+        'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
     ];
     
     fonts.forEach(font => {
