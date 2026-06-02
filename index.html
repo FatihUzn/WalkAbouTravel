@@ -491,7 +491,6 @@
         const slugKey = lang === 'tr' ? 'slug_tr' : 'slug_' + lang;
         let slug = tour[slugKey] || tour['slug_en'] || tour['slug'] || '';
 
-        // Slug yoksa title'dan üret
         if (!slug) {
             const titleKey = lang === 'tr' ? 'title' : ('title_' + lang);
             const title = tour[titleKey] || tour['title_en'] || tour['title'] || '';
@@ -499,6 +498,7 @@
                 .replace(/[şŞ]/g,'s').replace(/[ğĞ]/g,'g')
                 .replace(/[üÜ]/g,'u').replace(/[öÖ]/g,'o')
                 .replace(/[ıİ]/g,'i').replace(/[çÇ]/g,'c')
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Tüm yabancı vurgu işaretlerini temizle
                 .replace(/[^a-z0-9\s-]/g,'')
                 .replace(/[\s-]+/g,'-').trim();
         }

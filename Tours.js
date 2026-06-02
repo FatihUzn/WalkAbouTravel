@@ -60,6 +60,7 @@ class TourManager {
                 .replace(/[şŞ]/g,'s').replace(/[ğĞ]/g,'g')
                 .replace(/[üÜ]/g,'u').replace(/[öÖ]/g,'o')
                 .replace(/[ıİ]/g,'i').replace(/[çÇ]/g,'c')
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Tüm yabancı vurgu işaretlerini temizle
                 .replace(/[^a-z0-9\s-]/g,'')
                 .replace(/[\s-]+/g,'-').trim();
         }
