@@ -586,9 +586,9 @@
             filtered = allToursData.filter(t => t.category && t.category !== 'Türkiye' && t.category !== 'Kategori Seçin');
         } 
         else if (type === 'daily') {
-            // Süresi günübirlik olanları al (Günübirlik, Tüm Gün, 1 Gün içerenler)
-            filtered = allToursData.filter(t => t.duration && (t.duration.toLowerCase().includes('günübirlik') || t.duration.toLowerCase().includes('tüm gün') || t.duration.toLowerCase().includes('1 gün')));
-        } 
+    // Kategori alanı doğrudan 'Günübirlik' olanları al
+    filtered = allToursData.filter(t => t.category === 'Günübirlik');
+}
         else if (type === 'group') {
             // Yolcu tipi "Grup (groups)" seçilenleri al
             filtered = allToursData.filter(t => t.categories && t.categories.traveller && t.categories.traveller.includes('groups'));
