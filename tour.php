@@ -53,9 +53,16 @@ function absPath(string $path): string {
 }
 
 function makeSlug(string $t): string {
-    $t = str_replace(['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'],
-                     ['s','g','u','o','i','c','s','g','u','o','i','c'], $t);
-    return strtolower(preg_replace('/[\s-]+/','-',trim(preg_replace('/[^a-z0-9\s-]/','', $t))));
+    // 1. Türkçe karakterleri manuel olarak değiştir (iconv bazen Türkçede sorun yapabiliyor)
+    $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
+    $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
+    $t = str_replace($tr, $en, $t);
+    
+    // 2. İspanyolca, Portekizce vb. tüm vurgulu harfleri (á, é, ñ, ã) ASCII karakterlere (a, e, n, a) çevir
+    $t = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $t);
+    
+    // 3. Küçük harfe çevir, sadece harf ve rakamları bırak, boşlukları tireye çevir
+    return strtolower(preg_replace('/[\s-]+/', '-', trim(preg_replace('/[^a-zA-Z0-9\s-]/', '', $t))));
 }
 function tourSlug(array $tour, string $lang): string {
     if (!empty($tour['slug_'.$lang])) return $tour['slug_'.$lang];
@@ -606,26 +613,42 @@ nav {
             ?>
             <?php if(!empty($itinerary)): ?>
             <div class="itinerary-section" style="margin-bottom:50px;">
-                <?php foreach($itinerary as $di=>$day):
-                    $dayTitle = getDayField($day,'title',$currentLang);
-                    $dayDesc  = getDayField($day,'description',$currentLang);
-                    $dayNum   = $day['day'] ?? ($di+1);
-                    $isFirst  = $di===0 ? ' active' : '';
-                ?>
-                <div class="itinerary-item<?=$isFirst?>">
-                    <h3 class="itinerary-day-title" onclick="toggleAccordion(this)" role="button" tabindex="0"
-                        aria-expanded="<?=$isFirst?'true':'false'?>">
-                        <div class="day-info">
-                            <span class="day-badge"><?=$L['day']?> <?=$dayNum?></span>
-                            <span><?=htmlspecialchars($dayTitle)?></span>
-                        </div>
-                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                <?php if (!empty($tour['itinerary']) && is_array($tour['itinerary'])): ?>
+    <div class="itinerary-section">
+        <?php 
+        foreach ($tour['itinerary'] as $index => $day): 
+            // Aktif dile göre başlık seçimi (TR ise ana alan, değilse dilli alan veya fallback)
+            $dayTitle = ($currentLang === 'tr') 
+                ? ($day['title'] ?? '') 
+                : ($day['title_' . $currentLang] ?? $day['title_en'] ?? $day['title'] ?? '');
+
+            // Aktif dile göre açıklama seçimi
+            $dayDesc = ($currentLang === 'tr') 
+                ? ($day['description'] ?? '') 
+                : ($day['description_' . $currentLang] ?? $day['description_en'] ?? $day['description'] ?? '');
+            
+            // Gün kelimesinin yerelleştirilmesi
+            $dayLabel = 'Gün';
+            if ($currentLang === 'en') { $dayLabel = 'Day'; }
+            else if ($currentLang === 'es' || $currentLang === 'pt') { $dayLabel = 'Día'; }
+            else if ($currentLang === 'ar') { $dayLabel = 'اليوم'; }
+        ?>
+            <div class="itinerary-day" style="contain: layout; margin-bottom: 24px;">
+                <div class="itinerary-day-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <span class="itinerary-day-number" style="font-weight: 800; color: #38bdf8; font-size: 18px; white-space: nowrap;">
+                        <?= $dayLabel ?> <?= htmlspecialchars($day['day'] ?? ($index + 1)) ?>:
+                    </span>
+                    <h3 class="itinerary-day-title" style="font-size: 18px; margin: 0; color: #0f172a; font-weight: 700;">
+                        <?= htmlspecialchars($dayTitle) ?>
                     </h3>
-                    <div class="itinerary-desc"><?=nl2br(htmlspecialchars($dayDesc))?></div>
                 </div>
-                <?php endforeach; ?>
+                <div class="itinerary-desc" style="contain: layout style; padding-left: 15px; border-left: 2px solid #e2e8f0; color: #475569; line-height: 1.8;">
+                    <p style="margin: 0; font-size: 15px;"><?= nl2br(htmlspecialchars($dayDesc)) ?></p>
+                </div>
             </div>
-            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
 
             <?php if(!empty($tour['departureReturn'])): ?>
             <table class="info-table">

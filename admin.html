@@ -514,27 +514,44 @@
         }
 
         async function translateAllTourFields() {
-            const t = document.getElementById('tourTitle').value;
-            const d = document.getElementById('tourDescription').value;
-            if (!t && !d) return showAlert('tourAlert', '⚠️ Please fill out the English Title and Description fields!', 'error');
-            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Translating...', 'info');
-            try {
-                for (const lang of langsToTranslate) {
-                    const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
-                    if (t && document.getElementById(`tourTitle${cap}`)) {
-                        document.getElementById(`tourTitle${cap}`).value = await translateText(t, lang);
-                    }
-                    if (d && document.getElementById(`tourDescription${cap}`)) {
-                        document.getElementById(`tourDescription${cap}`).value = await translateText(d, lang);
-                    }
-                }
-                // Uyarıyı gizle
-                document.getElementById('tourTitleTranslateWarning').classList.remove('show');
-                showAlert('tourAlert', '✅ Translation completed for all languages!', 'success');
-            } catch (error) {
-                showAlert('tourAlert', '❌ Translation failed!', 'error');
+    const t = document.getElementById('tourTitle').value;
+    const d = document.getElementById('tourDescription').value;
+    if (!t && !d) return showAlert('tourAlert', '⚠️ Please fill out the English Title and Description fields!', 'error');
+    showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Translating main fields and daily programs...', 'info');
+    try {
+        // Ana Başlık ve Açıklama Çevirileri
+        for (const lang of langsToTranslate) {
+            const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
+            if (t && document.getElementById(`tourTitle${cap}`)) {
+                document.getElementById(`tourTitle${cap}`).value = await translateText(t, lang);
+            }
+            if (d && document.getElementById(`tourDescription${cap}`)) {
+                document.getElementById(`tourDescription${cap}`).value = await translateText(d, lang);
             }
         }
+
+        // Günlük Programların (Itinerary) Otomatik Çevirisi
+        const dayBlocks = document.querySelectorAll('.itinerary-day');
+        for (const day of dayBlocks) {
+            const titleEn = day.querySelector('.day-title-en').value;
+            const descEn = day.querySelector('.day-desc-en').value;
+
+            for (const lang of langsToTranslate) {
+                if (titleEn) {
+                    day.querySelector(`.day-title-${lang}`).value = await translateText(titleEn, lang);
+                }
+                if (descEn) {
+                    day.querySelector(`.day-desc-${lang}`).value = await translateText(descEn, lang);
+                }
+            }
+        }
+
+        document.getElementById('tourTitleTranslateWarning').classList.remove('show');
+        showAlert('tourAlert', '✅ Translation completed for all fields and itinerary days!', 'success');
+    } catch (error) {
+        showAlert('tourAlert', '❌ Translation failed!', 'error');
+    }
+}
 
         async function translateAllBlogFields() {
             const t = document.getElementById('blogTitle').value;
@@ -585,27 +602,55 @@
                 </div>`).join('');
         }
 
-        function addItineraryDay(title = '', desc = '') {
-            dayCounter++;
-            const container = document.getElementById('itineraryList');
-            const dayHtml = `
-                <div class="itinerary-day" id="day-${dayCounter}">
-                    <div class="itinerary-day-header">
-                        <span class="itinerary-day-number">Day ${dayCounter}</span>
-                        <button type="button" class="btn-remove-day" onclick="removeItineraryDay(${dayCounter})"><i class="fas fa-trash"></i> Remove</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Day Title (e.g.: Arrival at Cappadocia)</label>
-                        <input type="text" class="day-title" value="${title}" required>
-                    </div>
-                    <div class="form-group" style="margin:0;">
-                        <label>Day Description</label>
-                        <textarea class="day-desc" required>${desc}</textarea>
-                    </div>
-                </div>`;
-            container.insertAdjacentHTML('beforeend', dayHtml);
-            recalculateDays();
-        }
+        function addItineraryDay(dayData = {}) {
+    dayCounter++;
+    const container = document.getElementById('itineraryList');
+    
+    // Eski veya eksik veriler için güvenli varsayılan değerler
+    const t_en = dayData.title_en || dayData.title || '';
+    const t_tr = dayData.title_tr || dayData.title || '';
+    const t_es = dayData.title_es || '';
+    const t_pt = dayData.title_pt || '';
+    const t_ar = dayData.title_ar || '';
+
+    const d_en = dayData.description_en || dayData.description || '';
+    const d_tr = dayData.description_tr || dayData.description || '';
+    const d_es = dayData.description_es || '';
+    const d_pt = dayData.description_pt || '';
+    const d_ar = dayData.description_ar || '';
+
+    const dayHtml = `
+        <div class="itinerary-day" id="day-${dayCounter}" style="background: #f8fafc; border: 2px solid #e2e8f0; border-left: 5px solid #3b82f6; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <div class="itinerary-day-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <span class="itinerary-day-number" style="font-weight: 800; color: #3b82f6; font-size: 18px;">Day ${dayCounter}</span>
+                <button type="button" class="btn-remove-day" onclick="removeItineraryDay(${dayCounter})" style="background: #fee2e2; color: #ef4444; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+            
+            <div style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #1e293b; display: block; margin-bottom: 10px;">🌍 Day Titles</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <div class="form-group" style="margin:0;"><label>English (EN) *</label><input type="text" class="day-title-en" value="${t_en}" required></div>
+                    <div class="form-group" style="margin:0;"><label>Türkçe (TR) *</label><input type="text" class="day-title-tr" value="${t_tr}"></div>
+                    <div class="form-group" style="margin:0;"><label>Español (ES)</label><input type="text" class="day-title-es" value="${t_es}"></div>
+                    <div class="form-group" style="margin:0;"><label>Português (PT)</label><input type="text" class="day-title-pt" value="${t_pt}"></div>
+                    <div class="form-group" style="margin:0;"><label>العربية (AR)</label><input type="text" class="day-title-ar" value="${t_ar}"></div>
+                </div>
+            </div>
+
+            <div style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <label style="font-weight: bold; color: #1e293b; display: block; margin-bottom: 10px;">🌍 Day Descriptions</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <div class="form-group" style="margin:0;"><label>English (EN) *</label><textarea class="day-desc-en" required style="min-height:80px;">${d_en}</textarea></div>
+                    <div class="form-group" style="margin:0;"><label>Türkçe (TR) *</label><textarea class="day-desc-tr" style="min-height:80px;">${d_tr}</textarea></div>
+                    <div class="form-group" style="margin:0;"><label>Español (ES)</label><textarea class="day-desc-es" style="min-height:80px;">${d_es}</textarea></div>
+                    <div class="form-group" style="margin:0;"><label>Português (PT)</label><textarea class="day-desc-pt" style="min-height:80px;">${d_pt}</textarea></div>
+                    <div class="form-group" style="margin:0;"><label>العربية (AR)</label><textarea class="day-desc-ar" style="min-height:80px;">${d_ar}</textarea></div>
+                </div>
+            </div>
+        </div>`;
+    container.insertAdjacentHTML('beforeend', dayHtml);
+    recalculateDays();
+}
 
         function removeItineraryDay(id) {
             document.getElementById(`day-${id}`).remove();
@@ -684,13 +729,22 @@
             const categoryName = document.getElementById('tourCategory').value;
 
             const itinerary = [];
-            document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
-                itinerary.push({
-                    day: index + 1,
-                    title: dayBox.querySelector('.day-title').value,
-                    description: dayBox.querySelector('.day-desc').value
-                });
-            });
+document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
+    itinerary.push({
+        day: index + 1,
+        title: dayBox.querySelector('.day-title-tr').value || dayBox.querySelector('.day-title-en').value,
+        title_en: dayBox.querySelector('.day-title-en').value,
+        title_es: dayBox.querySelector('.day-title-es').value || dayBox.querySelector('.day-title-en').value,
+        title_pt: dayBox.querySelector('.day-title-pt').value || dayBox.querySelector('.day-title-en').value,
+        title_ar: dayBox.querySelector('.day-title-ar').value || dayBox.querySelector('.day-title-en').value,
+        
+        description: dayBox.querySelector('.day-desc-tr').value || dayBox.querySelector('.day-desc-en').value,
+        description_en: dayBox.querySelector('.day-desc-en').value,
+        description_es: dayBox.querySelector('.day-desc-es').value || dayBox.querySelector('.day-desc-en').value,
+        description_pt: dayBox.querySelector('.day-desc-pt').value || dayBox.querySelector('.day-desc-en').value,
+        description_ar: dayBox.querySelector('.day-desc-ar').value || dayBox.querySelector('.day-desc-en').value
+    });
+});
 
             const tourData = {
                 id: editingTourId || 'TUR-' + Date.now(),
@@ -888,12 +942,12 @@
             document.getElementById('tourMapUrl').value = tour.mapUrl || '';
 
             document.getElementById('itineraryList').innerHTML = '';
-            dayCounter = 0;
-            if (tour.itinerary && tour.itinerary.length > 0) {
-                tour.itinerary.forEach(day => addItineraryDay(day.title, day.description));
-            } else if (tour.content) {
-                addItineraryDay('General Tour Program', tour.content);
-            }
+dayCounter = 0;
+if (tour.itinerary && tour.itinerary.length > 0) {
+    tour.itinerary.forEach(day => addItineraryDay(day)); 
+} else if (tour.content) {
+    addItineraryDay({ title: 'General Tour Program', description: tour.content });
+}
 
             switchTab('tours');
             window.scrollTo(0, 0);

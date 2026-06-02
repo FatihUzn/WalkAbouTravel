@@ -15,13 +15,15 @@ $LANG_PREFIXES = [
     'pt' => '/pt',
 ];
 
-// --- Yardımcı fonksiyonlar ---
 function makeSlug(string $text): string {
     $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
     $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
     $text = str_replace($tr, $en, $text);
+    
+    $text = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $text);
+    
     $text = strtolower($text);
-    $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
+    $text = preg_replace('/[^a-zA-Z0-9\s-]/', '', $text);
     $text = preg_replace('/[\s-]+/', '-', trim($text));
     return $text;
 }
