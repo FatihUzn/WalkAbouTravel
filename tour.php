@@ -51,6 +51,8 @@ function absPath(string $path): string {
     if (str_starts_with($path, '/'))     return $path;  // zaten absolute
     return '/' . $path;                                 // relative → absolute
 }
+
+function makeSlug(string $t): string {
     $t = str_replace(['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'],
                      ['s','g','u','o','i','c','s','g','u','o','i','c'], $t);
     return strtolower(preg_replace('/[\s-]+/','-',trim(preg_replace('/[^a-z0-9\s-]/','', $t))));

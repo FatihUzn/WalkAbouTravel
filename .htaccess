@@ -7,7 +7,7 @@ Options -Indexes
 RewriteEngine On
 
 # --- data/ klasörünü dışarıdan koru (tours.json, blog-posts.json doğrudan erişilemesin) ---
-RewriteRule ^data/ - [F,L]
+#RewriteRule ^data/ - [F,L]
 
 # --- admin.html'yi de koru (production'da IP kısıtlaması önerilir) ---
 RewriteCond %{REQUEST_URI} ^/admin\.html$
