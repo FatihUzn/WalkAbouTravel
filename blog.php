@@ -27,9 +27,16 @@ $posts = array_filter($allPosts, fn($p) => ($p['published'] ?? true) !== false);
 usort($posts, fn($a,$b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));
 
 function makeSlug(string $t): string {
-    $t = str_replace(['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'],
-                     ['s','g','u','o','i','c','s','g','u','o','i','c'], $t);
-    return strtolower(preg_replace('/[\s-]+/','-',trim(preg_replace('/[^a-z0-9\s-]/','', $t))));
+    // Türkçe karakterleri manuel çevir
+    $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
+    $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
+    $t = str_replace($tr, $en, $t);
+    
+    // Yabancı dillerdeki vurgulu karakterleri İngilizce harflere çevir
+    $t = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $t);
+    
+    // Küçük harfe çevir, boşlukları tire yap ve sembolleri temizle
+    return strtolower(preg_replace('/[\s-]+/', '-', trim(preg_replace('/[^a-zA-Z0-9\s-]/', '', $t))));
 }
 function getBlogField(array $obj, string $field, string $lang): string {
     $key = $lang !== 'tr' ? $field.'_'.$lang : $field;
