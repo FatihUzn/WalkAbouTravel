@@ -6,33 +6,3 @@ Disallow: /admin
 Disallow: /save.php
 
 Sitemap: https://www.walkabouttravel.com/sitemap.xml
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
