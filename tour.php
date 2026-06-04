@@ -905,6 +905,36 @@ document.addEventListener('click', e => {
     });
 });
 
+// ── Nav menü (mobile) ────────────────────────────────────────
+const menuToggle = document.getElementById('menuToggle');
+const navLinks   = document.getElementById('navLinks');
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = navLinks.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', open);
+        const icon = menuToggle.querySelector('i');
+        icon?.classList.toggle('fa-bars', !open);
+        icon?.classList.toggle('fa-times', open);
+    });
+}
+
+// ── Dil dropdown (event delegation) ─────────────────────────
+document.addEventListener('click', e => {
+    const btn = e.target.closest('.lang-dropdown-btn');
+    if (btn) {
+        e.stopPropagation();
+        const dd = btn.closest('.lang-dropdown');
+        const open = dd.classList.toggle('active');
+        btn.setAttribute('aria-expanded', open);
+        return;
+    }
+    document.querySelectorAll('.lang-dropdown.active').forEach(d => {
+        d.classList.remove('active');
+        d.querySelector('.lang-dropdown-btn')?.setAttribute('aria-expanded','false');
+    });
+});
+
 // ── Dil tercihi (sessionStorage — localStorage yerine) ───────
 // sessionStorage: tab başına; localStorage gibi uzun vadeli depolama gerekmiyor
 sessionStorage.setItem('language','<?=$currentLang?>');
