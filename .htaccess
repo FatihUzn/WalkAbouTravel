@@ -1,40 +1,41 @@
 # ============================================================
-#  .htaccess — WalkAbout Travel URL Yönlendirme
-#  Konum: site kök dizini (index.html ile aynı yerde)
+#  .htaccess — WalkAbout Travel URL Yönlendirme ve Performans
 # ============================================================
 
-Options -Indexes
-RewriteEngine On
+<IfModule mod_rewrite.c>
+    Options -Indexes
+    RewriteEngine On
+    RewriteBase /
 
-# --- data/ klasörünü dışarıdan koru ---
-#RewriteRule ^data/ - [F,L]
+    # 1. Gerçekte var olan dosya ve klasörleri atla (CSS, JS, Resimler bozulmasın)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
-# --- Sitemap ---
-RewriteRule ^sitemap\.xml$ sitemap.php [L]
+    # 2. Sitemap
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
-# --- Statik dosyalar, PHP ve mevcut klasörler dokunma ---
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+    # 3. Blog Yönlendirmeleri
+    RewriteRule ^blog/?$ blog.php [L,QSA]
+    RewriteRule ^(en|es|ar|pt)/blog/?$ blog.php [L,QSA]
+    RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
+    RewriteRule ^(en|es|ar|pt)/blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
 
-# --- Blog listesi: /blog/ ve /en/blog/ ---
-RewriteRule ^blog/?$ blog.php [L,QSA]
-RewriteRule ^(en|es|ar|pt)/blog/?$ blog.php [L,QSA]
+    # 4. Yabancı Dil Tur URL'leri (Örn: /en/tour-slug/)
+    RewriteRule ^(en|es|pt|ar)/([^/]+)/?$ tour.php [L,QSA]
 
-# --- Blog yazı detay: /blog/{slug}/ ve /en/blog/{slug}/ ---
-RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
-RewriteRule ^(en|es|ar|pt)/blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
+    # 5. Türkçe Tur URL'leri (Örn: /kapadokya-turu/)
+    # Admin, assets vb. sistem dosyalarını tur linki sanmasını engelliyoruz
+    RewriteCond %{REQUEST_URI} !^/(admin|data|assets|css|js|images|fonts|uploads)/
+    RewriteCond %{REQUEST_URI} !^/(index|admin|save|sitemap|tour|blog|404|robots)\.
+    RewriteRule ^([^/]+)/?$ tour.php [L,QSA]
+</IfModule>
 
-# --- Dil prefix'li tur URL'leri: /en/cappadocia-balloon-tour/ ---
-# [a-z0-9-]+ yerine daha geniş karakter seti (uzun sluglar için)
-RewriteRule ^(en|es|ar|pt)/([a-z0-9][a-z0-9-]*)/?$ tour.php [L,QSA]
+# ============================================================
+#  Performans ve Cache Ayarları (Hız Optimizasyonu)
+# ============================================================
 
-# --- Türkçe tur URL'leri: /kapadokya-balon-turu/ ---
-RewriteCond %{REQUEST_URI} !^/(admin|data|assets|css|js|images|fonts|uploads)/
-RewriteCond %{REQUEST_URI} !^/(index|admin|save|sitemap|tour|blog|404|robots)\.
-RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ tour.php [L,QSA]
-
-# --- Performans: statik dosya cache ---
+# --- Statik dosya önbellekleme (Cache) ---
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType image/jpeg   "access plus 1 year"
@@ -57,23 +58,7 @@ RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ tour.php [L,QSA]
     </FilesMatch>
 </IfModule>
 
-# --- Gzip sıkıştırma ---
+# --- Gzip Sıkıştırma (Hızlı Yüklenme) ---
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
-</IfModule>
-
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-
-# 1. Gerçekte var olan dosya ve klasörleri (CSS, JS, resimler vb.) engelleme
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# 2. İngilizce, İspanyolca vb. dil ön eki olan tur linklerini (Örn: /en/tur-adi/) tour.php'ye yönlendir
-RewriteRule ^(en|es|pt|ar)/([^/]+)/?$ tour.php [L,QSA]
-
-# 3. Türkçe (ön eksiz) tur linklerini (Örn: /tur-adi/) tour.php'ye yönlendir
-RewriteRule ^([^/]+)/?$ tour.php [L,QSA]
 </IfModule>
