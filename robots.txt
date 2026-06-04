@@ -6,4 +6,4 @@ Disallow: /admin.html
 Disallow: /save.php
 Disallow: /data/
 
-Sitemap: https://www.walkabouttravel.com/sitemap.xml
+Sitemap: https://www.walkabouttravel.com.tr/sitemap.xml
