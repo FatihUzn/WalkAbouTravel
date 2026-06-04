@@ -61,3 +61,19 @@ RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ tour.php [L,QSA]
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# 1. Gerçekte var olan dosya ve klasörleri (CSS, JS, resimler vb.) engelleme
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 2. İngilizce, İspanyolca vb. dil ön eki olan tur linklerini (Örn: /en/tur-adi/) tour.php'ye yönlendir
+RewriteRule ^(en|es|pt|ar)/([^/]+)/?$ tour.php [L,QSA]
+
+# 3. Türkçe (ön eksiz) tur linklerini (Örn: /tur-adi/) tour.php'ye yönlendir
+RewriteRule ^([^/]+)/?$ tour.php [L,QSA]
+</IfModule>
