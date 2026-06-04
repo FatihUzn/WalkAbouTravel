@@ -134,9 +134,15 @@ $dict = [
 $L       = $dict[$currentLang] ?? $dict['tr'];
 $htmlDir = $currentLang === 'ar' ? ' dir="rtl"' : '';
 
-// İlgili turlar (blog yazısına tag eşleşmesiyle)
-$toursFile = __DIR__.'/data/tours.json';
-$tours = file_exists($toursFile) ? (json_decode(file_get_contents($toursFile), true) ?? []) : [];
+// İlgili turlar (blog yazısına tag eşleşmesiyle) — serialize cache ile
+$toursFile  = __DIR__.'/data/tours.json';
+$toursCacheFile = __DIR__.'/data/tours.cache.php';
+if (file_exists($toursCacheFile) && file_exists($toursFile) && filemtime($toursCacheFile) >= filemtime($toursFile)) {
+    $tours = unserialize(file_get_contents($toursCacheFile));
+} else {
+    $tours = file_exists($toursFile) ? (json_decode(file_get_contents($toursFile), true) ?? []) : [];
+    if (!empty($tours)) file_put_contents($toursCacheFile, serialize($tours), LOCK_EX);
+}
 function tourSlug(array $t, string $lang): string {
     if (!empty($t['slug_'.$lang])) return $t['slug_'.$lang];
     if (!empty($t['slug']))        return $t['slug'];
@@ -283,7 +289,7 @@ nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 
 <nav id="navbar">
     <div class="nav-container">
         <a href="/" class="logo">
-            <img src="/assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" onerror="this.style.display='none'">
+            <img src="/assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" width="40" height="40" onerror="this.style.display='none'">
             <div class="logo-text">
                 <span class="logo-title">WalkAbout Travel</span>
                 <span class="logo-subtitle">TOURISM & TRAVEL</span>
@@ -325,7 +331,7 @@ nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 
 </div>
 
 <div class="post-hero">
-    <?php if($image): ?><img src="<?=htmlspecialchars($image)?>" alt="<?=htmlspecialchars($title)?>"><?php endif; ?>
+    <?php if($image): ?><img src="<?=htmlspecialchars($image)?>" alt="<?=htmlspecialchars($title)?>" width="1200" height="630" loading="eager" fetchpriority="high"><?php endif; ?>
     <div class="post-hero-content">
         <?php if($category): ?><span class="post-category"><?=htmlspecialchars($category)?></span><?php endif; ?>
         <h1><?=htmlspecialchars($title)?></h1>
@@ -428,7 +434,7 @@ nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 
 </section>
 <?php endif; ?>
 
-<a href="https://wa.me/902125551923" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/5491135870045" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
 document.getElementById('menuToggle').addEventListener('click',e=>{e.stopPropagation();const l=document.getElementById('navLinks'),ic=document.getElementById('menuToggle').querySelector('i');l.classList.toggle('active');ic.classList.toggle('fa-bars');ic.classList.toggle('fa-times');});

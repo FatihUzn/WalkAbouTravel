@@ -770,7 +770,7 @@ nav {
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <?=$L['emailBtn']?>
                     </a>
-                    <a href="https://wa.me/902125551923?text=<?=$waMsg?>"
+                    <a href="https://wa.me/5491135870045?text=<?=$waMsg?>"
                        class="btn btn-outline"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -800,7 +800,7 @@ nav {
     </button>
 </div>
 
-<a href="https://wa.me/902125551923?text=<?=$waMsg?>"
+<a href="https://wa.me/5491135870045?text=<?=$waMsg?>"
    class="whatsapp-float"
    target="_blank"
    rel="noopener noreferrer"

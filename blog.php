@@ -4,7 +4,10 @@
 //  ✅ Core Web Vitals Optimized (LCP · CLS · INP)  v2 — 2025-06
 // ============================================================
 
-define('SITE_URL',  'https://www.walkabouttravel.com');
+// SITE_URL: otomatik tespit — hangi domain'de çalışıyorsa o kullanılır
+$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$_host     = $_SERVER['HTTP_HOST'] ?? 'www.walkabouttravel.com';
+define('SITE_URL',  $_protocol . '://' . $_host);
 define('SITE_NAME', 'WalkAbout Travel');
 
 $LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
@@ -24,6 +27,13 @@ $allPosts  = file_exists($blogsFile)
     : [];
 
 $posts = array_filter($allPosts, fn($p) => ($p['published'] ?? true) !== false);
+
+// Tag filtresi — /blog/?tag=kapadokya
+$activeTag = isset($_GET['tag']) ? trim($_GET['tag']) : '';
+if ($activeTag) {
+    $posts = array_filter($posts, fn($p) => in_array($activeTag, $p['tags'] ?? [], true));
+}
+
 usort($posts, fn($a,$b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));
 
 function makeSlug(string $t): string {
@@ -345,7 +355,7 @@ nav {
     </div>
 </section>
 
-<a href="https://wa.me/902125551923"
+<a href="https://wa.me/5491135870045"
    class="whatsapp-float"
    target="_blank"
    rel="noopener noreferrer"

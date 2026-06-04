@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# Gereksiz dosyaları tara
 Disallow: /admin
+Disallow: /admin.html
 Disallow: /save.php
+Disallow: /data/
 
 Sitemap: https://www.walkabouttravel.com/sitemap.xml
