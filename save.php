@@ -7,19 +7,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type, X-Admin-Token');
-
-// ── Güvenlik: Gizli token kontrolü ──────────────────────────
-// admin.html'de fetch isteğine headers: { 'X-Admin-Token': 'BURAYA_TOKEN_YAZ' } ekle
-// Aşağıdaki token'ı değiştir ve admin.html'e aynısını yaz
-define('ADMIN_TOKEN', 'WAT_2025_secret_change_me');
-
-$receivedToken = $_SERVER['HTTP_X_ADMIN_TOKEN'] ?? '';
-if ($receivedToken !== ADMIN_TOKEN) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'error' => 'Yetkisiz erişim.']);
-    exit;
-}
+header('Access-Control-Allow-Headers: Content-Type');
 
 // Sadece POST isteği kabul et
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -93,3 +81,33 @@ echo json_encode([
     'count'   => count($data['data']),
     'bytes'   => $result,
 ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

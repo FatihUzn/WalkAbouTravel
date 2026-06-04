@@ -449,17 +449,6 @@
     </div>
 
     <script>
-        // ── Güvenlik: save.php token (save.php'deki ADMIN_TOKEN ile aynı olmalı) ──
-        const ADMIN_TOKEN = 'WAT_2025_secret_change_me';
-        // save.php'ye güvenli POST gönder
-        async function secureFetch(url, data) {
-            return fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_TOKEN },
-                body: JSON.stringify(data)
-            });
-        }
-
         let tours = [], blogs = [], editingTourId = null, editingBlogId = null, currentGallery = [];
         let dayCounter = 0;
         // DÜZELTME 2: Sadece 5 aktif dil
@@ -814,7 +803,10 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
 
             try {
-                const saveResp = await secureFetch('save.php', { file: 'tours', data: tours });
+                const saveResp = await fetch('save.php', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file: 'tours', data: tours })
+                });
                 const saveRes = await saveResp.json();
                 if (saveRes.success) {
                     showAlert('tourAlert', `✅ ${tours.length} tours saved to server!`, 'success');
@@ -880,7 +872,10 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
             try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
 
             try {
-                const bSaveResp = await secureFetch('save.php', { file: 'blogs', data: blogs });
+                const bSaveResp = await fetch('save.php', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file: 'blogs', data: blogs })
+                });
                 const bSaveRes = await bSaveResp.json();
                 if (!bSaveRes.success) {
                     showAlert('blogAlert', '⚠️ Server error: ' + (bSaveRes.error || 'Unknown'), 'error');
@@ -962,7 +957,7 @@ if (tour.itinerary && tour.itinerary.length > 0) {
             if (!confirm('Are you sure you want to delete this tour?')) return;
             tours = tours.filter(t => t.id !== id);
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
-            secureFetch('save.php', { file: 'tours', data: tours });
+            fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'tours', data: tours }) });
             displayTours(); updateTourStats(); updateFeaturedTours(); updateBulkCounts();
             showAlert('tourAlert', 'Tour deleted!', 'success');
         }
@@ -1019,7 +1014,7 @@ if (tour.itinerary && tour.itinerary.length > 0) {
             if (!confirm('Are you sure you want to delete this blog?')) return;
             blogs = blogs.filter(b => b.id !== id);
             try { localStorage.setItem('walkabout_blogs', JSON.stringify(blogs)); } catch(e) {}
-            secureFetch('save.php', { file: 'blogs', data: blogs });
+            fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'blogs', data: blogs }) });
             displayBlogs(); updateBlogStats(); updateBulkCounts();
             showAlert('blogAlert', 'Blog deleted!', 'success');
         }
@@ -1094,7 +1089,7 @@ if (tour.itinerary && tour.itinerary.length > 0) {
             displayTours(); updateFeaturedTours();
             showAlert('tourAlert', t.featured ? `✅ "${t.title_en || t.title}" is now featured!` : `✓ "${t.title_en || t.title}" removed from featured.`, 'success');
             try { localStorage.setItem('walkabout_tours', JSON.stringify(tours)); } catch(e) {}
-            secureFetch('save.php', { file: 'tours', data: tours })
+            fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'tours', data: tours }) })
                 .catch(() => showAlert('tourAlert', '⚠️ Featured status saved locally, server sync failed.', 'error'));
         }
 
@@ -1117,7 +1112,7 @@ if (tour.itinerary && tour.itinerary.length > 0) {
             if (tours.length === 0) return showAlert('tourAlert', '⚠️ No tours to save!', 'error');
             showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Saving to server...', 'info');
             try {
-                const resp = await secureFetch('save.php', { file: 'tours', data: tours });
+                const resp = await fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'tours', data: tours }) });
                 const res = await resp.json();
                 if (res.success) { showAlert('tourAlert', `✅ ${tours.length} tours saved to server!`, 'success'); }
                 else { showAlert('tourAlert', '❌ Error: ' + (res.error || 'Unknown'), 'error'); }
@@ -1128,7 +1123,7 @@ if (tour.itinerary && tour.itinerary.length > 0) {
             if (blogs.length === 0) return showAlert('blogAlert', '⚠️ No blogs to save!', 'error');
             showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Saving to server...', 'info');
             try {
-                const resp = await secureFetch('save.php', { file: 'blogs', data: blogs });
+                const resp = await fetch('save.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file: 'blogs', data: blogs }) });
                 const res = await resp.json();
                 if (res.success) { showAlert('blogAlert', `✅ ${blogs.length} blogs saved to server!`, 'success'); }
                 else { showAlert('blogAlert', '❌ Error: ' + (res.error || 'Unknown'), 'error'); }

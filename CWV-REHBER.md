@@ -308,3 +308,33 @@ Bu değişiklikleri uyguladıktan sonra:
 | ⭐⭐ | Critical CSS inline et (above-the-fold) | LCP –10% |
 | ⭐⭐ | tours.json'a imageWidth/imageHeight ekle | CLS tam çözüm |
 | ⭐ | Service Worker + offline cache | Tekrar ziyaret LCP ≈ 0 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

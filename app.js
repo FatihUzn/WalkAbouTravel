@@ -144,7 +144,7 @@ function initContactForm() {
             );
             
             // WhatsApp'ı aç (Türkiye numarası)
-            const whatsappURL = `https://wa.me/5491135870045?text=${whatsappMessage}`;
+            const whatsappURL = `https://wa.me/902125551923?text=${whatsappMessage}`;
             window.open(whatsappURL, '_blank');
             
             // Formu temizle
@@ -316,7 +316,7 @@ function initPreloader() {
             preloader.addEventListener('transitionend', () => {
                 preloader.remove();
             }, { once: true });
-        }, 1500);
+        }, 3200);
     });
 
     log('✅ Preloader hazır');
@@ -356,3 +356,33 @@ if (typeof window !== 'undefined') {
         initLazyLoading
     };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

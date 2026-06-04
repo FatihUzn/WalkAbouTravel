@@ -220,3 +220,33 @@ class BlogManager {
 document.addEventListener('DOMContentLoaded', () => {
     new BlogManager();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

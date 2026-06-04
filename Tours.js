@@ -201,3 +201,33 @@ if (document.readyState === 'loading') {
 }
 
 console.log('✅ Tours.js yüklendi');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

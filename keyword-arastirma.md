@@ -177,3 +177,33 @@ Bu keyword'ler için sıralanan başlıca rakipler:
 - Dil avantajı (AR pazar — rakipler az)
 - FAQ/schema zenginliği (featured snippet)
 - Kişisel deneyim anlatısı (AI içerik değil, özgün rehber)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

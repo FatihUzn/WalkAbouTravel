@@ -134,3 +134,33 @@ Her tur nesnesine aşağıdaki alanları ekleyin:
 
 ### Blog listesi (`blog.php`)
 - `BreadcrumbList` — Ana Sayfa › Blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
