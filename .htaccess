@@ -6,13 +6,8 @@
 Options -Indexes
 RewriteEngine On
 
-# --- data/ klasörünü dışarıdan koru (tours.json, blog-posts.json doğrudan erişilemesin) ---
+# --- data/ klasörünü dışarıdan koru ---
 #RewriteRule ^data/ - [F,L]
-
-# --- admin.html'yi de koru (production'da IP kısıtlaması önerilir) ---
-RewriteCond %{REQUEST_URI} ^/admin\.html$
-RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
-# Gerekirse: RewriteRule ^ - [F,L]
 
 # --- Sitemap ---
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
@@ -31,15 +26,15 @@ RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
 RewriteRule ^(en|es|ar|pt)/blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
 
 # --- Dil prefix'li tur URL'leri: /en/cappadocia-balloon-tour/ ---
-RewriteRule ^(en|es|ar|pt)/([a-z0-9-]+)/?$ tour.php [L,QSA]
+# [a-z0-9-]+ yerine daha geniş karakter seti (uzun sluglar için)
+RewriteRule ^(en|es|ar|pt)/([a-z0-9][a-z0-9-]*)/?$ tour.php [L,QSA]
 
 # --- Türkçe tur URL'leri: /kapadokya-balon-turu/ ---
-# admin.html, index.html, save.php, data/, assets/ gibi gerçek dosyalar hariç
 RewriteCond %{REQUEST_URI} !^/(admin|data|assets|css|js|images|fonts|uploads)/
 RewriteCond %{REQUEST_URI} !^/(index|admin|save|sitemap|tour|blog|404|robots)\.
-RewriteRule ^([a-z0-9-]+)/?$ tour.php [L,QSA]
+RewriteRule ^([a-z0-9][a-z0-9-]*)/?$ tour.php [L,QSA]
 
-# --- Performans: statik dosya cache (1 yıl — immutable) ---
+# --- Performans: statik dosya cache ---
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType image/jpeg   "access plus 1 year"
