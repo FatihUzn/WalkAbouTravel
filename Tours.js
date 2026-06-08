@@ -137,6 +137,49 @@ class TourManager {
         console.log(`📊 ${filtered.length} tur gösteriliyor (${this.filteredCategory})`);
     }
 
+    formatDuration(duration, lang) {
+        if (!duration || lang === 'tr') return duration || '';
+
+        const t = {
+            day:      { en: 'Day',      es: 'Día',       pt: 'Dia',      ar: 'يوم واحد'   },
+            days2:    { en: 'Days',     es: 'Días',      pt: 'Dias',     ar: 'يومان'      },
+            days:     { en: 'Days',     es: 'Días',      pt: 'Dias',     ar: 'أيام'       },
+            night:    { en: 'Night',    es: 'Noche',     pt: 'Noite',    ar: 'ليلة واحدة' },
+            nights2:  { en: 'Nights',   es: 'Noches',    pt: 'Noites',   ar: 'ليلتان'     },
+            nights:   { en: 'Nights',   es: 'Noches',    pt: 'Noites',   ar: 'ليالٍ'      },
+            half_day: { en: 'Half Day', es: 'Medio Día', pt: 'Meio Dia', ar: 'نصف يوم'   },
+            flexible: { en: 'Flexible', es: 'Flexible',  pt: 'Flexível', ar: 'مرن'        },
+        };
+
+        if (duration === 'Yarım Gün') return t.half_day[lang] || duration;
+        if (duration === 'Esnek')     return t.flexible[lang]  || duration;
+
+        // "N-M Gün"  →  "4-7 Days"
+        const rangeMatch = duration.match(/^(\d+)-(\d+)\s+Gün$/);
+        if (rangeMatch) {
+            return `${rangeMatch[1]}-${rangeMatch[2]} ${t.days[lang]}`;
+        }
+
+        // "N Gün / M Gece"  →  "3 Days / 2 Nights"
+        const dayNightMatch = duration.match(/^(\d+)\s+Gün\s*\/\s*(\d+)\s+Gece$/);
+        if (dayNightMatch) {
+            const d = parseInt(dayNightMatch[1]);
+            const n = parseInt(dayNightMatch[2]);
+            const dayStr   = d === 1 ? t.day[lang]    : (d === 2 ? t.days2[lang]   : `${d} ${t.days[lang]}`);
+            const nightStr = n === 1 ? t.night[lang]  : (n === 2 ? t.nights2[lang] : `${n} ${t.nights[lang]}`);
+            return `${dayStr} / ${nightStr}`;
+        }
+
+        // "N Gün"  →  "1 Day" / "2 Days"
+        const dayMatch = duration.match(/^(\d+)\s+Gün$/);
+        if (dayMatch) {
+            const d = parseInt(dayMatch[1]);
+            return d === 1 ? t.day[lang] : (d === 2 ? t.days2[lang] : `${d} ${t.days[lang]}`);
+        }
+
+        return duration;
+    }
+
     createTourCard(tour) {
         const card = document.createElement('div');
         card.className = 'tour-card';
@@ -159,7 +202,7 @@ class TourManager {
             <div class="tour-image">
                 <img src="${tour.image}" alt="${title}" loading="lazy"
                      onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
-                <div class="tour-badge">${tour.duration || ''}</div>
+                <div class="tour-badge">${this.formatDuration(tour.duration, lang)}</div>
             </div>
             <div class="tour-content">
                 <h3>${title}</h3>

@@ -1,0 +1,134 @@
+# ============================================================
+#  .htaccess — WalkAbout Travel URL Yönlendirme ve Performans
+# ============================================================
+
+<IfModule mod_rewrite.c>
+    Options -Indexes
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. Gerçekte var olan dosya ve klasörleri atla
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 2. Sitemap
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+    # 3. Blog Yönlendirmeleri
+    RewriteRule ^blog/?$ blog.php [L,QSA]
+    RewriteRule ^(en|es|ar|pt)/blog/?$ blog.php [L,QSA]
+    RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
+    RewriteRule ^(en|es|ar|pt)/blog/([a-z0-9-]+)/?$ blog-post.php [L,QSA]
+
+    # 4. Yabancı Dil Tur URL'leri
+    RewriteRule ^(en|es|pt|ar)/([^/]+)/?$ tour.php [L,QSA]
+
+    # 5. Türkçe Tur URL'leri
+    RewriteCond %{REQUEST_URI} !^/(admin|data|assets|css|js|images|fonts|uploads)/
+    RewriteCond %{REQUEST_URI} !^/(index|admin|save|sitemap|tour|blog|404|robots)\.
+    RewriteRule ^([^/]+)/?$ tour.php [L,QSA]
+</IfModule>
+
+# ============================================================
+#  GZIP / BROTLI Sıkıştırma
+# ============================================================
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE \
+        text/html \
+        text/css \
+        text/plain \
+        text/xml \
+        text/javascript \
+        application/javascript \
+        application/x-javascript \
+        application/json \
+        application/xml \
+        application/xhtml+xml \
+        application/rss+xml \
+        image/svg+xml \
+        font/ttf \
+        font/otf
+
+    # Bozuk proxy'ler için
+    <IfModule mod_setenvif.c>
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4\.0[678] no-gzip
+        BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+
+    # CDN'ler için Vary header
+    <IfModule mod_headers.c>
+        Header append Vary Accept-Encoding
+    </IfModule>
+</IfModule>
+
+# ============================================================
+#  Browser Cache (Tarayıcı Önbelleği)
+# ============================================================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Görseller — 1 yıl
+    ExpiresByType image/webp        "access plus 1 year"
+    ExpiresByType image/jpeg        "access plus 1 year"
+    ExpiresByType image/png         "access plus 1 year"
+    ExpiresByType image/gif         "access plus 1 year"
+    ExpiresByType image/svg+xml     "access plus 1 year"
+    ExpiresByType image/x-icon      "access plus 1 year"
+
+    # Fontlar — 1 yıl
+    ExpiresByType font/woff2        "access plus 1 year"
+    ExpiresByType font/woff         "access plus 1 year"
+    ExpiresByType font/ttf          "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+
+    # CSS & JS — 1 ay
+    ExpiresByType text/css          "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript   "access plus 1 month"
+
+    # JSON verisi — 1 gün
+    ExpiresByType application/json  "access plus 1 day"
+
+    # HTML — cache'leme, her seferinde taze
+    ExpiresByType text/html         "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Görseller ve fontlar — değişmez (immutable)
+    <FilesMatch "\.(webp|jpg|jpeg|png|gif|svg|ico|woff2|woff|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # CSS ve JS
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+    # HTML — tarayıcı cache'lemesin, her seferinde kontrol etsin
+    <FilesMatch "\.php$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+
+    # Güvenlik header'ları (bonus — zararsız)
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# ============================================================
+#  ETag — gereksiz duplicate cache doğrulamasını kapat
+# ============================================================
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# ============================================================
+#  Keep-Alive — bağlantıyı canlı tut
+# ============================================================
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
