@@ -533,6 +533,97 @@ nav {
   .gallery-grid { grid-template-columns:1fr; }
   .tour-quick-look { gap:18px; }
 }
+
+/* =======================================================
+   PELORUS İLHAMLI LÜKS TASARIM GÜNCELLEMESİ (tour.php)
+   ======================================================= */
+
+/* 1. SİNEMATİK HERO (Daha büyük ve ortalanmış zarif başlık) */
+.tour-detail-hero { min-height: 80vh; }
+.tour-hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.tour-hero-content h1 { font-size: 64px; text-transform: uppercase; letter-spacing: 4px; font-weight: 400; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.tour-badge { background: transparent; border: 1px solid #d4af37; color: #d4af37; letter-spacing: 3px; padding: 8px 24px; border-radius: 0; }
+.tour-quick-look { justify-content: center; border-top: none; margin-top: 15px; }
+
+/* 2. ZARİF BAŞLIKLAR (Kalın mavi çizgiyi silip altını çiziyoruz) */
+.tour-main h2.section-heading {
+    border-left: none; text-align: center; font-size: 34px; padding-left: 0;
+    margin-bottom: 50px; margin-top: 40px; position: relative; color: #0c4a6e;
+    font-weight: 400; letter-spacing: 1px;
+}
+.tour-main h2.section-heading::after {
+    content: ''; position: absolute; bottom: -15px; left: 50%;
+    transform: translateX(-50%); width: 50px; height: 1px; background: #d4af37;
+}
+
+/* 3. KUTUSUZ (EDİTORYAL) TUR PROGRAMI (Akordiyon gölgelerini siliyoruz) */
+.itinerary-item { border: none; border-bottom: 1px solid #e2e8f0; border-radius: 0; box-shadow: none; margin-bottom: 0; background: transparent; }
+.itinerary-item.active { border-color: #d4af37; box-shadow: none; background: transparent; }
+.itinerary-day-title { background: transparent !important; padding: 28px 0; font-family: 'Playfair Display', serif; font-size: 24px; color: #1e293b; font-weight: 400; }
+.itinerary-day-title:hover { color: #0c4a6e; background: transparent; }
+.itinerary-item.active .itinerary-day-title { color: #d4af37; background: transparent; }
+.day-badge { background: transparent !important; color: #0c4a6e !important; border: 1px solid #0c4a6e; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 2px; padding: 4px 14px; border-radius: 0; }
+.itinerary-item.active .day-badge { color: #d4af37 !important; border-color: #d4af37; }
+.itinerary-desc { padding: 0 0 24px 0; background: transparent; font-size: 16px; color: #475569; line-height: 1.9; }
+.itinerary-item.active .itinerary-desc { padding: 0 0 35px 0; border-top: none; }
+
+/* 4. MİNİMALİST DAHİL/HARİÇ LİSTESİ */
+.inc-exc-box { background: transparent; border: none; box-shadow: none; padding: 0 20px; }
+.inc-exc-box h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 25px; text-align: center; }
+
+/* 5. ASİMETRİK GALERİ (Dergi Tarzı, Keskin Hatlar) */
+.gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 60px; }
+.gallery-item { border-radius: 0; aspect-ratio: auto; height: 400px; box-shadow: none; }
+.gallery-item:nth-child(1) { grid-column: span 2; height: 600px; } /* İlk fotoğraf devasa boyutlu */
+.gallery-item:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+
+/* 6. TEMİZ REZERVASYON MODÜLÜ (Sağ Taraf) */
+.tour-booking-card { background: #fff; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 2px solid #0c4a6e; padding: 45px 35px; border-radius: 0; }
+.price-amount { color: #0f172a; font-size: 52px; font-weight: 400; letter-spacing: -1px; }
+.btn-primary { background: #0c4a6e; border-radius: 0; font-weight: 500; letter-spacing: 2px; }
+.btn-primary:hover { background: #d4af37; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212,175,55,0.2); }
+.btn-outline { border-radius: 0; border-color: #1e293b; color: #1e293b; font-weight: 500; letter-spacing: 2px; }
+.btn-outline:hover { background: #1e293b; color: #fff; }
+
+/* MOBİL UYUM */
+@media (max-width: 768px) {
+    .tour-detail-hero { min-height: 60vh; }
+    .tour-hero-content h1 { font-size: 42px; }
+    .gallery-item { height: 250px; }
+    .gallery-item:nth-child(1) { height: 350px; }
+}
+
+/* =======================================================
+   PELORUS İLHAMLI LÜKS TASARIM GÜNCELLEMESİ
+   ======================================================= */
+/* 1. Sinematik Hero (Ortalanmış ve büyük) */
+.tour-detail-hero { min-height: 75vh; }
+.tour-hero-content { text-align: center; }
+.tour-hero-content h1 { font-size: 56px; text-transform: uppercase; letter-spacing: 4px; font-weight: 400; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.tour-quick-look { justify-content: center; border-top: none; margin-top: 20px; }
+
+/* 2. Tur Programı (Akordiyonları kaldırıp editoryal metin yapıyoruz) */
+.itinerary-item { border: none; background: transparent; box-shadow: none; margin-bottom: 40px; }
+.itinerary-day-title { background: transparent !important; padding: 0 0 15px 0; font-family: 'Playfair Display', serif; font-size: 28px; color: #0f172a; cursor: default; border-bottom: 1px solid #e2e8f0; pointer-events: none; }
+.itinerary-day-title i { display: none; } /* Ok ikonunu tamamen gizliyoruz */
+.itinerary-desc { max-height: none !important; padding: 25px 0; font-size: 16.5px; color: #475569; line-height: 1.9; }
+
+/* 3. Araya Giren Dev Fotoğraflar (Dergi Hissi) */
+.editorial-image { width: 100%; height: 600px; object-fit: cover; margin: 20px 0 60px 0; border-radius: 0; }
+
+/* 4. Asimetrik (Yapboz) Galeri En Altta */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 250px; gap: 15px; margin-bottom: 60px; }
+.gallery-item { height: 100%; border-radius: 0; box-shadow: none; transition: transform 0.4s; }
+.gallery-item:hover { transform: scale(1.02); z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; } /* İlk fotoğraf devasa */
+.gallery-item:nth-child(4) { grid-column: span 2; } /* Araya giren başka bir büyük fotoğraf */
+
+/* 5. Havada Asılı (Sticky) Rezervasyon Kutusu */
+@media (min-width: 1100px) {
+    .tour-sidebar { position: sticky; top: 100px; }
+    .tour-booking-card { border-radius: 0; border-top: 3px solid #0c4a6e; }
+}
+
 </style>
 </head>
 <body>
@@ -627,42 +718,43 @@ nav {
       elseif (!empty($tour['days']))  $itinerary = $tour['days'];
       ?>
       <?php if(!empty($itinerary)): ?>
+      <?php if(!empty($itinerary)): ?>
       <div class="itinerary-section">
-        <?php if (!empty($tour['itinerary']) && is_array($tour['itinerary'])): ?>
-          <?php
-          $dayLabel = match($currentLang) {
-              'en'         => 'Day',
-              'es', 'pt'   => 'Día',
-              'ar'         => 'اليوم',
-              default      => 'Gün',
-          };
-          foreach ($tour['itinerary'] as $index => $day):
-            $dayTitle = ($currentLang === 'tr')
-                ? ($day['title'] ?? '')
-                : ($day['title_' . $currentLang] ?? $day['title_en'] ?? $day['title'] ?? '');
-            $dayDesc = ($currentLang === 'tr')
-                ? ($day['description'] ?? '')
-                : ($day['description_' . $currentLang] ?? $day['description_en'] ?? $day['description'] ?? '');
-            $dayNum  = htmlspecialchars($day['day'] ?? ($index + 1));
-            $isFirst = ($index === 0);
-          ?>
-          <div class="itinerary-item<?= $isFirst ? ' active' : '' ?>">
-            <div class="itinerary-day-title"
-                 onclick="toggleAccordion(this)"
-                 role="button" tabindex="0"
-                 aria-expanded="<?= $isFirst ? 'true' : 'false' ?>">
-              <div class="day-info">
-                <span class="day-badge"><?= $dayLabel ?> <?= $dayNum ?></span>
-                <span><?= htmlspecialchars($dayTitle) ?></span>
-              </div>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </div>
-            <div class="itinerary-desc">
-              <?= nl2br(htmlspecialchars($dayDesc)) ?>
-            </div>
+        <?php
+        $dayLabel = match($currentLang) {
+            'en' => 'Day', 'es' => 'Día', 'pt' => 'Dia', 'ar' => 'اليوم', default => 'Gün'
+        };
+        $photoIndex = 0; // Galeriden sırayla fotoğraf çekmek için sayaç
+        
+        foreach ($itinerary as $index => $day):
+          $dayTitle = ($currentLang === 'tr')
+              ? ($day['title'] ?? '')
+              : ($day['title_' . $currentLang] ?? $day['title_en'] ?? $day['title'] ?? '');
+          $dayDesc = ($currentLang === 'tr')
+              ? ($day['description'] ?? '')
+              : ($day['description_' . $currentLang] ?? $day['description_en'] ?? $day['description'] ?? '');
+          $dayNum  = htmlspecialchars($day['day'] ?? ($index + 1));
+        ?>
+        
+        <!-- Gün Açıklaması -->
+        <div class="itinerary-item active">
+          <div class="itinerary-day-title">
+            <span style="color:#d4af37; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:3px; display:block; margin-bottom:10px; font-family:'Inter', sans-serif;">
+                <?= $dayLabel ?> <?= $dayNum ?>
+            </span>
+            <?= htmlspecialchars($dayTitle) ?>
           </div>
-          <?php endforeach; ?>
-        <?php endif; ?>
+          <div class="itinerary-desc">
+            <?= nl2br(htmlspecialchars($dayDesc)) ?>
+          </div>
+        </div>
+        
+        <!-- Sihirli Dokunuş: Her 2 günde bir araya galeriden fotoğraf ekle -->
+        <?php if ($index % 2 == 0 && isset($gallery[$photoIndex])): ?>
+            <img src="<?= htmlspecialchars($gallery[$photoIndex]) ?>" class="editorial-image" alt="<?= htmlspecialchars($title) ?> Manzarası" loading="lazy">
+        <?php $photoIndex++; endif; ?>
+        
+        <?php endforeach; ?>
       </div>
       <?php endif; ?>
 

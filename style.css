@@ -356,18 +356,21 @@ nav.scrolled .nav-container {
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; }
 
 .logo img {
-    width: 48px;
-    height: 38px; /* İnce logo */
-    aspect-ratio: 48 / 38; /* CLS koruması */
-    object-fit: contain;
+    height: 42px !important;
+    width: 52px !important; /* Genişliği belirleyip dikdörtgen formunu koruyoruz */
+    aspect-ratio: auto !important; /* Performans için yazdığımız kuralı logo için iptal ediyoruz */
+    object-fit: cover !important; /* Resmi çerçevenin içine sıfıra sıfır yayar ve boşlukları yok eder */
+    object-position: center !important; /* Logoyu tam merkeze hizalar */
     border-radius: 8px;
-    border: 2px solid rgba(197, 160, 89, 0.5); /* Altın çerçeve korunuyor */
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+    border: 2px solid rgba(197, 160, 89, 0.8) !important;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
     transition: all 0.4s ease;
+    display: block;
 }
 
 nav.scrolled .logo img {
-    height: 32px;
+    height: 34px !important;
+    width: 42px !important;
 }
 
 .logo:hover img { box-shadow: 0 0 30px rgba(197, 160, 89, 0.7); transform: scale(1.05); }
@@ -875,7 +878,9 @@ section {
 
 .popular-trip-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.13);
+    /* Hafif derinlik gölgesi ve estetik altın sarısı ışıltı birleşimi */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05), 0 0 25px rgba(212, 175, 55, 0.35);
+    border-color: var(--accent); /* Çerçeveyi de sarartarak ışıltıyı destekliyoruz */
 }
 
 /* Kart görseli */
@@ -1074,8 +1079,9 @@ section {
 
 .tour-card:hover {
     transform: translateY(-7px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.11);
-    border-color: rgba(30, 64, 175, 0.2);
+    /* Hafif derinlik gölgesi ve estetik altın sarısı ışıltı birleşimi */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05), 0 0 25px rgba(212, 175, 55, 0.35);
+    border-color: var(--accent);
 }
 
 .tour-image {
@@ -2466,4 +2472,64 @@ body[dir="rtl"] .contact-form textarea {
     .recent-post-item { width:100%; }
     .featured-title { font-size: 24px; }
     .featured-content { padding: 25px 20px; }
+}
+/* =======================================================
+   3. MADDE: MOBİL OPTİMİZASYON (PREMIUM APP DENEYİMİ)
+   ======================================================= */
+
+/* ÖNCE BÜYÜK TABLETLER (992px ve altı) */
+@media (max-width: 992px) {
+    .tour-grid-layout { display: flex; flex-direction: column; }
+    .tour-sidebar { width: 100%; position: static; margin-top: 50px; }
+}
+
+/* SONRA TELEFONLAR VE KÜÇÜK TABLETLER (768px ve altı) */
+@media (max-width: 768px) {
+    /* Genel Boşluklar */
+    .section-header { margin-bottom: 30px; padding: 0 15px; }
+    .itinerary-section { margin: 40px 0; padding: 0 15px; }
+    
+    /* Sinematik Hero Başlıkları */
+    .tour-hero-content h1 { 
+        font-size: 34px !important; 
+        letter-spacing: 2px; 
+        line-height: 1.3; 
+        padding: 0 15px;
+    }
+    .tour-detail-hero { min-height: 60vh; }
+
+    /* Tur Programı (Editoryal Metinler) */
+    .itinerary-day-title { font-size: 22px; padding-bottom: 10px; }
+    .itinerary-desc { font-size: 15px; padding: 15px 0; }
+    
+    /* Araya Giren Dev Fotoğraflar */
+    .editorial-image { 
+        height: 350px !important; 
+        margin: 20px 0 40px 0 !important;
+        border-radius: 12px; 
+    }
+
+    /* Asimetrik (Yapboz) Galeriyi Mobil Akışa Çevirme */
+    .gallery-grid { 
+        grid-template-columns: 1fr !important; 
+        grid-auto-rows: 300px !important;
+        gap: 15px;
+        padding: 0 15px;
+    }
+    .gallery-item:nth-child(n) { grid-column: span 1 !important; grid-row: span 1 !important; }
+    
+    /* Havada Asılı (Sticky) Sağ Menüyü Mobil İçin Alta Alma */
+    .tour-sidebar { 
+        position: relative; 
+        top: 0; 
+        width: 100%; 
+        margin-top: 40px; 
+        padding: 0 15px;
+    }
+    .tour-booking-card { padding: 25px; border-radius: 16px; }
+    .price-amount { font-size: 40px; }
+
+    /* Navbar ve Menü İyileştirmeleri */
+    .logo img { height: 32px !important; }
+    .hero h1 { font-size: 36px; }
 }

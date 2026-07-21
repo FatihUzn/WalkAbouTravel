@@ -1,13 +1,13 @@
 <?php
 // ============================================================
-//  index.php — WalkAbout Travel Ana Sayfa (SEO & Magazine v3)
+//  index.php — WalkAbout Travel Ana Sayfa (SEO & SSR v3)
 // ============================================================
 
 $_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $_host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
 define('SITE_URL',  $_protocol . '://' . $_host);
 
-// Dil algılama ve Prefix ayarları (blog.php ile %100 uyumlu)
+// Dil algılama ve Prefix ayarları
 $LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
 $uri = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $currentLang = 'tr';
@@ -17,16 +17,30 @@ foreach (['en','es','ar','pt'] as $lc) {
     }
 }
 
-// Verileri sunucu taraflı (SSR) çekme
+// --- 1. BLOG VERİLERİNİ ÇEKME ---
 $blogsFile = __DIR__ . '/data/blog-posts.json';
 $allPosts  = file_exists($blogsFile) ? (json_decode(file_get_contents($blogsFile), true) ?? []) : [];
-
-// Sadece yayınlananları filtrele ve tarihe göre sırala
 $posts = array_filter($allPosts, fn($p) => ($p['published'] ?? true) !== false);
 $posts = array_values($posts);
 usort($posts, fn($a,$b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));
 
-// Yardımcı fonksiyonlar
+$featuredPost = $posts[0] ?? null;
+$sidebarPosts = array_slice($posts, 1, 3);
+
+// --- 2. TUR VERİLERİNİ ÇEKME (ADIM 3 - SSR) ---
+$toursFile = __DIR__ . '/data/tours.json';
+$allTours  = file_exists($toursFile) ? (json_decode(file_get_contents($toursFile), true) ?? []) : [];
+
+// Öne çıkan popüler turları ayıkla (featured == true)
+$popularTours = array_filter($allTours, fn($t) => !empty($t['featured']));
+$popularTours = array_values($popularTours);
+if (empty($popularTours)) {
+    $popularTours = array_slice($allTours, 0, 3);
+} else {
+    $popularTours = array_slice($popularTours, 0, 3);
+}
+
+// --- 3. YARDIMCI SEO VE DİL FONKSİYONLARI ---
 if (!function_exists('makeSlug')) {
     function makeSlug(string $t): string {
         $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
@@ -42,24 +56,47 @@ if (!function_exists('getBlogField')) {
         return $obj[$key] ?? $obj[$field.'_en'] ?? $obj[$field] ?? '';
     }
 }
+if (!function_exists('phpGetTourSlug')) {
+    function phpGetTourSlug(array $tour, string $lang): string {
+        $prefix = ['tr' => '', 'en' => '/en', 'es' => '/es', 'ar' => '/ar', 'pt' => '/pt'];
+        $slugKey = $lang === 'tr' ? 'slug_tr' : 'slug_' . $lang;
+        $slug = $tour[$slugKey] ?? $tour['slug_en'] ?? $tour['slug'] ?? '';
+        if (!$slug) {
+            $titleKey = $lang === 'tr' ? 'title' : 'title_' . $lang;
+            $title = $tour[$titleKey] ?? $tour['title_en'] ?? $tour['title'] ?? '';
+            $slug = makeSlug($title);
+        }
+        return ($prefix[$lang] ?? '') . '/' . $slug . '/';
+    }
+}
+if (!function_exists('phpGetLocalizedData')) {
+    function phpGetLocalizedData(array $item, string $field, string $lang): string {
+        if (isset($item[$field]) && is_array($item[$field])) {
+            return $item[$field][$lang] ?? $item[$field]['en'] ?? $item[$field]['tr'] ?? '';
+        }
+        if ($lang !== 'tr') {
+            if (!empty($item[$field . '_' . $lang])) return $item[$field . '_' . $lang];
+            if (!empty($item[$field . '_en']))     return $item[$field . '_en'];
+        }
+        return $item[$field] ?? '';
+    }
+}
 
-// İlk yazıyı öne çıkar, sonraki 3 yazıyı yan sütuna al
-$featuredPost = $posts[0] ?? null;
-$sidebarPosts = array_slice($posts, 1, 3);
-
+// Dil çeviri kelimeleri
 $readMoreText = match($currentLang) {
-    'en' => 'READ ALL POSTS',
-    'es' => 'VER TODOS LOS ARTÍCULOS',
-    'pt' => 'VER TODAS AS PUBLICAÇÕES',
-    'ar' => 'عرض جميع المقالات',
-    default => 'TÜM YAZILARI GÖR'
+    'en' => 'READ ALL POSTS', 'es' => 'VER TODOS LOS ARTÍCULOS', 'pt' => 'VER TODAS AS PUBLICAÇÕES', 'ar' => 'عرض جميع المقالات', default => 'TÜM YAZILARI GÖR'
 };
 $minReadText = match($currentLang) {
-    'en' => 'min read',
-    'es' => 'min lectura',
-    'pt' => 'min leitura',
-    'ar' => 'دقيقة قراءة',
-    default => 'dk okuma'
+    'en' => 'min read', 'es' => 'min lectura', 'pt' => 'min leitura', 'ar' => 'دقيقة قراءة', default => 'dk okuma'
+};
+$startingFromText = match($currentLang) {
+    'en' => 'Starting From', 'es' => 'Desde', 'pt' => 'A partir de', 'ar' => 'ابتداء من', default => 'Başlangıç Fiyatı'
+};
+$detailsText = match($currentLang) {
+    'en' => 'Details', 'es' => 'Detalles', 'pt' => 'Detalhes', 'ar' => 'تفاصيل', default => 'Detayları İncele'
+};
+$tourDurationDefaultText = match($currentLang) {
+    'en' => '1 Day', 'es' => '1 Día', 'pt' => '1 Dia', 'ar' => 'يوم واحد', default => '1 Gün'
 };
 ?>
 <!DOCTYPE html>
@@ -73,6 +110,7 @@ $minReadText = match($currentLang) {
     <link rel="canonical" href="https://www.walkabouttravel.com/">
     <link rel="icon" href="assets/walkabout_travel_logo.jpg" type="image/jpeg">
 
+    <!-- Hreflang — 5 dil -->
     <link rel="alternate" hreflang="tr" href="https://www.walkabouttravel.com/">
     <link rel="alternate" hreflang="en" href="https://www.walkabouttravel.com/en/">
     <link rel="alternate" hreflang="es" href="https://www.walkabouttravel.com/es/">
@@ -80,6 +118,7 @@ $minReadText = match($currentLang) {
     <link rel="alternate" hreflang="pt" href="https://www.walkabouttravel.com/pt/">
     <link rel="alternate" hreflang="x-default" href="https://www.walkabouttravel.com/en/">
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.walkabouttravel.com/">
     <meta property="og:title" content="WalkAbout Travel — Turkey Tours & Travel Packages">
@@ -88,22 +127,26 @@ $minReadText = match($currentLang) {
     <meta property="og:locale" content="tr_TR">
     <meta property="og:site_name" content="WalkAbout Travel">
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="WalkAbout Travel — Turkey Tours & Travel Packages">
     <meta name="twitter:description" content="Cappadocia balloon rides, Istanbul city tours, Ephesus day trips and more. Expert-guided Turkey tours since 1997.">
     <meta name="twitter:image" content="https://www.walkabouttravel.com/assets/og-cover.jpg">
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 
     <style>
-    /* Home Magazine Layout Stil Tamamlaması */
+    /* Home Magazine Layout Stilleri */
     .magazine-grid { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start; }
     .featured-post { position: relative; border-radius: 16px; overflow: hidden; display: block; text-decoration: none; aspect-ratio: 16/10; box-shadow: var(--shadow-md); border: 1px solid rgba(197,160,89,0.1); }
     .featured-post img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
@@ -150,6 +193,14 @@ $minReadText = match($currentLang) {
       <span class="pl-char">U</span>
       <span class="pl-char">T</span>
     </div>
+    <script>
+    // Ziyaretçi preloader'ı bu oturumda 1 kez gördüyse, bir daha bekletme!
+    if (sessionStorage.getItem('walkabout_preloader_seen')) {
+        document.getElementById('preloader').style.display = 'none';
+    } else {
+        sessionStorage.setItem('walkabout_preloader_seen', 'true');
+    }
+    </script>
 
     <div class="pl-sub-wrap">
       <span class="pl-sub-char">T</span>
@@ -166,6 +217,7 @@ $minReadText = match($currentLang) {
   </div>
 </div>
 
+    <!-- NAVBAR -->
     <nav id="navbar">
         <div class="header-top-row">
             <div class="top-bar-left">
@@ -220,8 +272,9 @@ $minReadText = match($currentLang) {
         </div>
     </nav>
 
+    <!-- HERO -->
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
+        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
             <source src="assets/hero_background.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -247,6 +300,7 @@ $minReadText = match($currentLang) {
         </div>
     </section>
 
+    <!-- HOW DO YOU TRAVEL -->
     <section id="travel-categories" class="travel-categories-section">
         <div class="travel-categories-header">
             <h2 data-i18n="categories_title">KEŞFETMEYE BAŞLAYIN</h2> 
@@ -261,6 +315,7 @@ $minReadText = match($currentLang) {
         </div>
     </section>
 
+    <!-- POPULAR TRIPS (SUNUCU TARAFLI - ADIM 3) -->
     <section id="popular-trips" class="popular-trips-section">
         <div class="popular-trips-header">
             <span class="section-badge" data-i18n="popular_badge">FEATURED TOURS</span>
@@ -268,18 +323,84 @@ $minReadText = match($currentLang) {
             <p data-i18n="popular_subtitle">The trips our travellers are booking right now</p>
         </div>
 
-        <div class="popular-trips-grid" id="popularTripsGrid"></div>
+        <div class="popular-trips-grid" id="popularTripsGrid">
+            <?php foreach($popularTours as $tour): 
+                $tTitle = phpGetLocalizedData($tour, 'title', $currentLang);
+                $tSlug  = phpGetTourSlug($tour, $currentLang);
+                $ratingDisplay = !empty($tour['reviewCount']) ? ($tour['rating'] . ' (' . $tour['reviewCount'] . ')') : ($tour['rating'] ?? '4.9');
+                $tDuration = $tour['duration'] ?? $tourDurationDefaultText;
+            ?>
+                <div class="popular-trip-card" onclick="window.location.href='<?=htmlspecialchars($tSlug)?>'">
+                    <div class="card-image-wrap">
+                        <img src="<?=htmlspecialchars($tour['image'] ?? '')?>" alt="<?=htmlspecialchars($tTitle)?>" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
+                        <div class="trip-rating-badge"><i class="fas fa-star"></i> <?=htmlspecialchars($ratingDisplay)?></div>
+                        <div class="trip-nights-badge"><?=htmlspecialchars($tDuration)?></div>
+                    </div>
+                    <div class="trip-card-content">
+                        <h3 class="trip-card-title"><?=htmlspecialchars($tTitle)?></h3>
+                        <?php if(!empty($tour['location'])): ?>
+                            <div class="trip-card-meta"><i class="fas fa-map-marker-alt"></i> <?=htmlspecialchars($tour['location'])?></div>
+                        <?php endif; ?>
+                        <div class="trip-card-footer">
+                            <div class="trip-card-price-block">
+                                <span class="trip-price-label"><?=$startingFromText?></span>
+                                <span class="trip-price-value"><?=htmlspecialchars($tour['price'] ?? '')?></span>
+                            </div>
+                            <a href="<?=htmlspecialchars($tSlug)?>" class="trip-card-button" onclick="event.stopPropagation()">
+                                <?=$detailsText?> <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </section>
 
+    <!-- TOURS (SUNUCU TARAFLI - ADIM 3) -->
     <section id="tours" class="tours-section">
         <div class="section-header">
             <span class="section-badge" data-i18n="tours_badge">ALL ROUTES</span>
             <h2 data-i18n="tours_title">Featured Tours</h2>
             <p data-i18n="tours_subtitle">Discover our most preferred destinations</p>
         </div>
-        <div class="tours-grid"></div>
+        <div class="tours-grid">
+            <?php foreach($allTours as $tour): 
+                $tTitle = phpGetLocalizedData($tour, 'title', $currentLang);
+                $tDesc  = phpGetLocalizedData($tour, 'description', $currentLang);
+                $tShortDesc = mb_substr(strip_tags($tDesc), 0, 100) . (mb_strlen(strip_tags($tDesc)) > 100 ? '...' : '');
+                $tSlug  = phpGetTourSlug($tour, $currentLang);
+                $tDuration = $tour['duration'] ?? $tourDurationDefaultText;
+            ?>
+                <div class="tour-card" onclick="window.location.href='<?=htmlspecialchars($tSlug)?>'">
+                    <div class="tour-image">
+                        <img src="<?=htmlspecialchars($tour['image'] ?? '')?>" alt="<?=htmlspecialchars($tTitle)?>" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
+                        <div class="tour-badge"><?=htmlspecialchars($tDuration)?></div>
+                    </div>
+                    <div class="tour-content">
+                        <h3><?=htmlspecialchars($tTitle)?></h3>
+                        <p><?=htmlspecialchars($tShortDesc)?></p>
+                        <div class="tour-features">
+                            <?php if(!empty($tour['location'])): ?>
+                                <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> <?=htmlspecialchars($tour['location'])?></span>
+                            <?php endif; ?>
+                            <span class="feature-tag"><i class="fas fa-star"></i> <?=htmlspecialchars($tour['rating'] ?? '4.9')?></span>
+                        </div>
+                        <div class="tour-card-footer">
+                            <div class="tour-price-block">
+                                <span class="tour-price-label"><?=$startingFromText?></span>
+                                <span class="tour-price-value"><?=htmlspecialchars($tour['price'] ?? '')?></span>
+                            </div>
+                            <a href="<?=htmlspecialchars($tSlug)?>" class="tour-link" onclick="event.stopPropagation()">
+                                <?=$detailsText?> <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </section>
 
+    <!-- WHY US -->
     <section id="why-us" class="why-us-section">
         <div class="section-header">
             <span class="section-badge" data-i18n="why_badge">WHY WalkAbout Travel?</span>
@@ -311,6 +432,7 @@ $minReadText = match($currentLang) {
         </div>
     </section>
 
+    <!-- BLOG SECTION -->
     <section id="blog" class="blog-section">
         <div class="section-header">
             <span class="section-badge" data-i18n="blog_badge">TRAVEL DIARY</span>
@@ -374,6 +496,7 @@ $minReadText = match($currentLang) {
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="contact-section">
         <div class="section-header">
             <span class="section-badge" data-i18n="contact_badge">CONTACT US</span>
@@ -424,6 +547,7 @@ $minReadText = match($currentLang) {
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -549,6 +673,9 @@ $minReadText = match($currentLang) {
     <script src="Tours.js"></script>
     
     <script>
+    // JSON verilerini JavaScript hafızasına PHP ile gömüyoruz (Böylece fetch() ihtiyacı kalmıyor)
+    let allToursData = <?= json_encode($allTours, JSON_UNESCAPED_UNICODE) ?>;
+
     document.addEventListener('DOMContentLoaded', async function() {
         const savedLang = localStorage.getItem('language') || 'tr';
         if(window.i18n) {
@@ -589,19 +716,11 @@ $minReadText = match($currentLang) {
         });
 
         loadCategories();
-        loadTours();
+        // Artık tarayıcıda loadTours() ile fetch yapmıyoruz, her şey sunucu taraflı basıldı!
     });
 
     window.addEventListener('languageChanged', () => {
         loadCategories();
-        if (allToursData.length > 0) {
-            const popularTours = allToursData.filter(t => t.featured).slice(0, 3);
-            displayPopularTrips(popularTours.length > 0 ? popularTours : allToursData.slice(0, 3));
-            displayAllTours(allToursData);
-        } else {
-            loadTours();
-        }
-        // Sunucu taraflı içerik değişimi için dil geçişlerinde sayfayı yenileyelim
         setTimeout(() => { location.reload(); }, 150);
     });
 
@@ -651,21 +770,6 @@ $minReadText = match($currentLang) {
         `).join('');
     }
 
-    let allToursData = [];
-    async function loadTours() {
-        try {
-            const response = await fetch('data/tours.json');
-            if (!response.ok) return;
-            const tours = await response.json();
-            allToursData = tours;
-            const popularTours = tours.filter(t => t.featured).slice(0, 3);
-            displayPopularTrips(popularTours.length > 0 ? popularTours : tours.slice(0, 3));
-            displayAllTours(tours);
-        } catch (error) {
-            console.error('Turlar yüklenemedi:', error);
-        }
-    }
-
     function filterTours(type) {
         document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
         let filtered = [];
@@ -707,7 +811,39 @@ $minReadText = match($currentLang) {
                     <div class="card-image-wrap">
                         <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
                         <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
-                        <div class="trip-nights-badge">${tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün')}</div>
+                        <div class="trip-nights-badge">${tour.duration || '1 Gün'}</div>
+                    </div>
+                    <div class="trip-card-content">
+                        <h3 class="trip-card-title">${title}</h3>
+                        ${tour.location ? `<div class="trip-card-meta"><i class="fas fa-map-marker-alt"></i> ${tour.location}</div>` : ''}
+                        <div class="trip-card-footer">
+                            <div class="trip-card-price-block">
+                                <span class="trip-price-label">${window.i18n ? window.i18n.t('starting_from') : 'Starting Price'}</span>
+                                <span class="trip-price-value">${tour.price}</span>
+                            </div>
+                            <a href="${getTourSlug(tour)}" class="trip-card-button" onclick="event.stopPropagation()">
+                                ${window.i18n ? window.i18n.t('tour_detail_btn') : 'Details'} <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+function displayPopularTrips(tours) {
+        const grid = document.getElementById('popularTripsGrid');
+        if (!grid) return;
+        grid.innerHTML = tours.map(tour => {
+            const title = String(getLocalizedData(tour, 'title'));
+            const ratingDisplay = tour.reviewCount ? `${tour.rating || '4.9'} (${tour.reviewCount})` : (tour.rating || '4.9');
+            // DÜZELTME: Süre çevirisi eklendi
+            const durationDisplay = tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün');
+            return `
+                <div class="popular-trip-card" onclick="window.location.href='${getTourSlug(tour)}'">
+                    <div class="card-image-wrap">
+                        <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
+                        <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
+                        <div class="trip-nights-badge">${durationDisplay}</div>
                     </div>
                     <div class="trip-card-content">
                         <h3 class="trip-card-title">${title}</h3>
@@ -736,11 +872,13 @@ $minReadText = match($currentLang) {
         grid.innerHTML = tours.map(tour => {
             const title = String(getLocalizedData(tour, 'title'));
             const description = String(getLocalizedData(tour, 'description') || '');
+            // DÜZELTME: Süre çevirisi eklendi
+            const durationDisplay = tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün');
             return `
             <div class="tour-card" onclick="window.location.href='${getTourSlug(tour)}'">
                 <div class="tour-image">
                     <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                    <div class="tour-badge">${tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün')}</div>
+                    <div class="tour-badge">${durationDisplay}</div>
                 </div>
                 <div class="tour-content">
                     <h3>${title}</h3>
