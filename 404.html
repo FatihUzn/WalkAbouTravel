@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sayfa Bulunamadı - WalkAbouTravel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sayfa Bulunamadı · WalkAbout Travel</title>
+    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -60,10 +61,31 @@
 <body>
     <div class="error-container">
         <h1>404</h1>
-        <h2>Rotanızı Mı Kaybettiniz?</h2>
-        <p>Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir. Endişelenmeyin, yeni bir rota oluşturmak için anasayfaya dönebilirsiniz.</p>
-        <a href="/" class="btn-home">Anasayfaya Dön</a>
+        <h2 data-i18n="err_404_title">Rotanızı Mı Kaybettiniz?</h2>
+        <p data-i18n="err_404_desc">Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir. Endişelenmeyin, yeni bir rota oluşturmak için anasayfaya dönebilirsiniz.</p>
+        <a href="/" class="btn-home" id="homeBtn" data-i18n="err_404_btn">Anasayfaya Dön</a>
     </div>
+
+<!-- 404 sayfası artık 5 dilde. Dili URL'den okuyor (/en/... -> İngilizce),
+     bulamazsa tarayıcı tercihine bakıyor. err_404_* çevirileri i18n.js'te zaten vardı. -->
+<script src="/i18n.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var diller = ['en','es','ar','pt'];
+  var yol = location.pathname.split('/')[1];
+  var dil = diller.indexOf(yol) > -1 ? yol : null;
+  if (!dil) { try { dil = localStorage.getItem('language'); } catch (e) {} }
+  if (!dil) {
+    var t = (navigator.language || 'tr').slice(0, 2).toLowerCase();
+    dil = (diller.indexOf(t) > -1 || t === 'tr') ? t : 'tr';
+  }
+  document.documentElement.lang = dil;
+  if (dil === 'ar') document.documentElement.setAttribute('dir', 'rtl');
+  var btn = document.getElementById('homeBtn');
+  if (btn && dil !== 'tr') btn.href = '/' + dil + '/';
+  if (window.i18n) window.i18n.init(dil);
+});
+</script>
 </body>
 </html>
 

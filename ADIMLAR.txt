@@ -1,0 +1,84 @@
+================================================================
+ YAPILACAKLAR - SIRAYLA  (20 Agustos 2026)
+================================================================
+
+DURUM: Klasordeki tum PHP/JS/CSS/JSON dosyalari en guncel haliyle
+       yazildi. Geriye 3 kucuk adim kaldi.
+
+! ONEMLI: _DUZELTILMIS klasorundeki ESKI ziplerden hicbirini
+  bir daha acma. Icindekiler temizlik oncesi surumler ve
+  yeni dosyalarin uzerine yazarlar.
+
+
+ADIM 1 - EKSIK GORSELLERI CIKAR
+-------------------------------
+Klasordeki  6-eksik-gorseller.zip  dosyasini
+Walkabouttravel klasorunun ICINE cikar.
+(Icinde assets\img yolu var, dogru yere kendiliginden gider.)
+
+
+ADIM 2 - KLASORU DUZENLE VE TEMIZLE
+-----------------------------------
+temizle-ve-duzenle.bat  dosyasina cift tikla.
+
+Ne yapiyor:
+  - assets\img klasorunu olusturuyor
+  - Yanlislikla assets\ kokune cikan 289 boyutlandirilmis
+    gorseli assets\img icine tasiyor
+  - Kullanilmayan buyuk orijinal fotograflari
+    _YEDEK-ORIJINAL klasorune tasiyor  (SAKLA - kaynak dosyalar)
+  - Kullanilmayan dosyalari _SILINECEK klasorune tasiyor
+    (Tours.js, Blog.js, style-v2.css, old-index.html, htaccess,
+     error_log, *.md rehberler, eski yedek JSON'lar, _DUZELTILMIS)
+
+HICBIR SEYI SILMIYOR, sadece tasiyor. Sonunda
+"assets\img icinde: 358 gorsel" yazmali.
+
+
+ADIM 3 - KONTROL ET
+-------------------
+baslat-onizleme.bat  ile siteyi ac. Sunlara bak:
+
+  [ ] Ana sayfa acildi mi, fotograflar geldi mi?
+  [ ] /en/  /es/  /pt/  /ar/  calisiyor mu?
+  [ ] Bir tur sayfasi ac - en altta SSS bolumu var mi?
+  [ ] Ayni turu /en/ ile ac - SSS Ingilizce mi?
+  [ ] /blog/ ac - 44 yazi ve fotograflari geldi mi?
+  [ ] Telefondan gibi dar pencerede menu (hamburger) acilip
+      kapaniyor mu?
+
+Hepsi tamam ise sunucuya yuklemeye hazirsin.
+
+
+ADIM 4 - SUNUCUYA YUKLE
+-----------------------
+0. ONCE cPanel'den sitenin YEDEGINI al.
+1. Su klasor ve dosyalari yukle:
+     assets\img\          (358 gorsel - YENI klasor)
+     data\                (3 json)
+     tum .php dosyalari
+     app.js  i18n.js  style.css  .htaccess  robots.txt  404.html
+     admin.html
+2. YUKLEME:
+     router.php ve baslat-onizleme.bat  -> YUKLEME (sadece yerel)
+     _YEDEK-ORIJINAL, _SILINECEK        -> YUKLEME
+     assets\ kokundeki eski buyuk .webp -> YUKLEME (artik kullanilmiyor)
+3. Sunucudaki eski dosyalari sil:
+     Tours.js, Blog.js, style-v2.css, old-index.html,
+     htaccess (noktasiz), error_log, *.md,
+     data\tours_backup.json, data\tours-summary.json
+     assets\ icindeki eski buyuk orijinaller (~147 MB)
+4. Izinler:  data\ ve cache\ klasorleri 755,  *.json 644
+5. Panel sifresini degistir: config.php icindeki
+   ADMIN_PASSWORD_HASH  (gecici sifre: walkabout2026)
+
+
+BU TURDA NE YAPILDI
+-------------------
++ 75 turun hepsine SSS eklendi (5 dilde, 2235 soru-cevap)
++ 44 blog yazisina icerige uygun fotograf atandi
++ 2 cift blog kaydi silindi (46 -> 44)
++ Tum dil ceviri bosluklari kapatildi (%100)
++ Tur sayfasinda kalkis/donus ve meta bilgisi artik dile duyarli
++ 23 yeni gorselin boyutlandirilmis surumleri uretildi
++ 605 sayfa test edildi: 0 hata, 0 kirik gorsel

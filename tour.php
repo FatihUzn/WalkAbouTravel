@@ -1,201 +1,171 @@
 <?php
-// ============================================================
-//  tour.php — WalkAbout Travel SEO Tur Detay Sayfası
-//  ✅ Core Web Vitals Optimized (LCP · CLS · INP)
-//     v3 — 2025-06 — Minimal Redesign
-// ============================================================
+/* ============================================================
+   tour.php — Tur detay sayfası
+   Ortak ayar/fonksiyonlar config.php + functions.php'de.
+   ============================================================ */
+require_once __DIR__ . '/functions.php';
 
-$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$_host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
-define('SITE_URL',  $_protocol . '://' . $_host);
-define('SITE_NAME', 'WalkAbout Travel');
+$currentLang = detectLang();
+$uri  = currentPath();
+$slug = ($currentLang === 'tr')
+      ? ltrim($uri, '/')
+      : substr($uri, strlen('/'.$currentLang.'/'));
 
-$LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
-$LANG_NAMES    = ['tr'=>'Türkçe','en'=>'English','es'=>'Español','ar'=>'العربية','pt'=>'Português'];
+$tours = loadTours();
 
-$uri = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-$currentLang = 'tr';
-$slug = '';
-foreach (['en','es','ar','pt'] as $lc) {
-    if (str_starts_with($uri, '/'.$lc.'/')) {
-        $currentLang = $lc;
-        $slug = substr($uri, strlen('/'.$lc.'/'));
-        break;
-    }
-}
-if ($currentLang === 'tr') $slug = ltrim($uri, '/');
-
-function loadToursCached(): array {
-    $jsonFile  = __DIR__ . '/data/tours.json';
-    $cacheFile = __DIR__ . '/cache/tours.php';
-    if (file_exists($cacheFile) && filemtime($cacheFile) >= filemtime($jsonFile)) {
-        $data = @include $cacheFile;
-        if (is_array($data)) return $data;
-    }
-    $tours = json_decode(file_get_contents($jsonFile), true) ?? [];
-    if (!is_dir(dirname($cacheFile))) mkdir(dirname($cacheFile), 0755, true);
-    file_put_contents($cacheFile, '<?php return ' . var_export($tours, true) . ';', LOCK_EX);
-    return $tours;
-}
-$tours = loadToursCached();
-
-function absPath(string $path): string {
-    if (empty($path))                    return '';
-    if (str_starts_with($path, 'http'))  return $path;
-    if (str_starts_with($path, '/'))     return $path;
-    return '/' . $path;
-}
-
-function makeSlug(string $t): string {
-    $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
-    $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
-    $t = str_replace($tr, $en, $t);
-    $t = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $t);
-    return strtolower(preg_replace('/[\s-]+/', '-', trim(preg_replace('/[^a-zA-Z0-9\s-]/', '', $t))));
-}
-function tourSlug(array $tour, string $lang): string {
-    if (!empty($tour['slug_'.$lang])) return $tour['slug_'.$lang];
-    if (!empty($tour['slug']))        return $tour['slug'];
-    $f = $lang==='tr' ? 'title' : 'title_'.$lang;
-    return makeSlug($tour[$f] ?? $tour['title_en'] ?? $tour['title'] ?? '');
-}
-function getLangField(array $obj, string $field, string $lang) {
-    if (isset($obj[$field]) && is_array($obj[$field]) && !array_is_list($obj[$field]))
-        return $obj[$field][$lang] ?? $obj[$field]['en'] ?? $obj[$field]['tr'] ?? '';
-    if ($lang!=='tr') {
-        if (isset($obj[$field.'_'.$lang])) return $obj[$field.'_'.$lang];
-        if (isset($obj[$field.'_en']))     return $obj[$field.'_en'];
-    }
-    return $obj[$field] ?? '';
-}
-function getDayField(array $day, string $field, string $lang): string {
-    if ($lang !== 'tr') {
-        if (!empty($day[$field.'_'.$lang])) return $day[$field.'_'.$lang];
-        if (!empty($day[$field.'_en']))     return $day[$field.'_en'];
-    }
-    return $day[$field] ?? '';
-}
-function getHighlights(array $tour, string $lang): array {
-    if ($lang !== 'tr') {
-        if (!empty($tour['highlights_'.$lang]) && is_array($tour['highlights_'.$lang]))
-            return $tour['highlights_'.$lang];
-        if (!empty($tour['highlights_en']) && is_array($tour['highlights_en']))
-            return $tour['highlights_en'];
-    }
-    return $tour['highlights'] ?? [];
-}
-
+// --- Turu bul: önce kendi dilinde, sonra diğer dillerin slug'larında ---
 $tour = null;
-foreach ($tours as $t) {
-    if (tourSlug($t, $currentLang) === $slug) { $tour = $t; break; }
-}
-if (!$tour && $currentLang === 'tr') {
+foreach ($tours as $t) { if (tourSlug($t, $currentLang) === $slug) { $tour = $t; break; } }
+if (!$tour) {
     foreach ($tours as $t) {
-        if (!empty($t['slug_en']) && $t['slug_en'] === $slug) { $tour = $t; break; }
+        foreach (array_keys($LANG_PREFIXES) as $lc) {
+            if (tourSlug($t, $lc) === $slug) { $tour = $t; break 2; }
+        }
     }
 }
-if (!$tour) { http_response_code(404); die('<h1>404 - Tour not found</h1><a href="/">← Home</a>'); }
+if (!$tour) send404();
+
+// --- Kanonik adres kendi dilinin slug'ı olmalı ---
+$ownSlug = tourSlug($tour, $currentLang);
+if ($ownSlug && $ownSlug !== $slug) {
+    header('Location: ' . tourUrl($tour, $currentLang), true, 301); exit;
+}
+$slug = $ownSlug;
 
 $title       = getLangField($tour,'title',$currentLang);
 $description = getLangField($tour,'description',$currentLang);
-$shortDesc   = mb_substr(strip_tags($description),0,160);
 $price       = $tour['price'] ?? '';
-$duration    = $tour['duration'] ?? '';
+$duration    = getLangField($tour,'duration',$currentLang) ?: ($tour['duration'] ?? '');
 $location    = $tour['location'] ?? '';
-$image       = absPath($tour['image'] ?? '');
-$rating      = $tour['rating'] ?? '4.9';
-$reviewCount = $tour['reviewCount'] ?? '';
+$image       = $tour['image'] ?? '';
 
-$canonicalUrl = SITE_URL.$LANG_PREFIXES[$currentLang].'/'.$slug.'/';
+$canonicalUrl = SITE_URL . $LANG_PREFIXES[$currentLang] . '/' . $slug . '/';
+
+// --- hreflang: slug'ı boş olan dil ATLANIR (eskiden /ar// üretiyordu) ---
 $hreflang = [];
-foreach ($LANG_PREFIXES as $lc=>$p) $hreflang[$lc] = SITE_URL.$p.'/'.tourSlug($tour,$lc).'/';
+foreach ($LANG_PREFIXES as $lc => $p) {
+    $s = tourSlug($tour, $lc);
+    if ($s !== '') $hreflang[$lc] = SITE_URL . $p . '/' . $s . '/';
+}
 
-$imageAbs    = str_starts_with($image,'http') ? $image : SITE_URL.'/'.ltrim($image,'/');
-$schemaPrice = preg_replace('/[^0-9.]/','', $price);
-$currency    = str_contains($price,'€') ? 'EUR' : 'USD';
-$schema = json_encode([
+$imageAbs = imgAbs($image);
+$heroImg  = imgAttrs($image, '100vw');
+
+// --- SSS ---
+$faqKey   = $currentLang === 'tr' ? 'faq' : 'faq_'.$currentLang;
+$faqItems = !empty($tour[$faqKey]) ? $tour[$faqKey]
+          : (!empty($tour['faq_en']) ? $tour['faq_en'] : ($tour['faq'] ?? []));
+
+// --- Yapılandırılmış veri ---
+// NOT: aggregateRating BİLEREK basılmıyor. Gerçek yorum verisi yok;
+//      uydurma puan Google'ın yorum işaretleme politikasını ihlal eder.
+$shortDesc = mb_substr(strip_tags($description), 0, 160);
+$schemaArr = [
     '@context'=>'https://schema.org','@type'=>'TouristTrip',
-    'name'=>$title,'description'=>$shortDesc,'url'=>$canonicalUrl,'image'=>$imageAbs,
-    'touristType'=>$tour['category']??'General','duration'=>$duration,
-    'offers'=>['@type'=>'Offer','price'=>$schemaPrice?:'0','priceCurrency'=>$currency,
-               'availability'=>'https://schema.org/InStock','url'=>$canonicalUrl],
-    'provider'=>['@type'=>'TravelAgency','name'=>SITE_NAME,'url'=>SITE_URL],
-    'aggregateRating'=>['@type'=>'AggregateRating','ratingValue'=>$rating,'bestRating'=>'5',
-                        'worstRating'=>'1','ratingCount'=>$reviewCount?:'10'],
-], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
-
-$faqKey    = $currentLang === 'tr' ? 'faq' : 'faq_'.$currentLang;
-$faqItems  = !empty($tour[$faqKey]) ? $tour[$faqKey]
-           : (!empty($tour['faq_en']) ? $tour['faq_en']
-           : ($tour['faq'] ?? []));
+    'name'=>$title,'description'=>$shortDesc,'url'=>$canonicalUrl,
+    'touristType'=>$tour['category'] ?? 'General','duration'=>$duration,
+    'provider'=>['@type'=>'TravelAgency','name'=>SITE_NAME,'url'=>SITE_URL,
+                 'telephone'=>CONTACT_PHONE,'email'=>CONTACT_EMAIL],
+];
+if ($imageAbs) $schemaArr['image'] = $imageAbs;
+$offer = priceOffer($tour, $canonicalUrl);
+if ($offer) $schemaArr['offers'] = $offer;
+$schema = json_encode($schemaArr, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
 
 $faqSchema = '';
 if (!empty($faqItems) && is_array($faqItems)) {
     $entities = [];
     foreach ($faqItems as $item) {
         if (empty($item['q']) || empty($item['a'])) continue;
-        $entities[] = [
-            '@type'          => 'Question',
-            'name'           => $item['q'],
-            'acceptedAnswer' => ['@type'=>'Answer','text'=>strip_tags($item['a'])],
-        ];
+        $entities[] = ['@type'=>'Question','name'=>$item['q'],
+                       'acceptedAnswer'=>['@type'=>'Answer','text'=>strip_tags($item['a'])]];
     }
-    if ($entities) {
-        $faqSchema = json_encode(
-            ['@context'=>'https://schema.org','@type'=>'FAQPage','mainEntity'=>$entities],
-            JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT
-        );
-    }
+    if ($entities) $faqSchema = json_encode(
+        ['@context'=>'https://schema.org','@type'=>'FAQPage','mainEntity'=>$entities],
+        JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
 }
 
 $dict = [
-    'tr'=>['home'=>'Ana Sayfa','tours'=>'Turlar','overview'=>'Tur Hakkında','day'=>'Gün','included'=>'Fiyata Dahil Olanlar','excluded'=>'Fiyata Dahil Olmayanlar','pricing'=>'Başlangıç Fiyatları','notes'=>'Önemli Notlar','map'=>'Tur Rotası','gallery'=>'Fotoğraf Galerisi','priceTitle'=>'BAŞLANGIÇ FİYATI','emailBtn'=>'Bilgi Al','waBtn'=>'WhatsApp Rezervasyon','pricingNote'=>'(*) Belirtilen fiyatlar başlangıç fiyatlarıdır.','pricingCol1'=>'Otel Sınıfı','pricingCol2'=>'Fiyat (Kişi Başı)','faqTitle'=>'Sıkça Sorulan Sorular'],
-    'en'=>['home'=>'Home','tours'=>'Tours','overview'=>'Overview','day'=>'Day','included'=>'Included','excluded'=>'Not Included','pricing'=>'Starting Prices','notes'=>'Notes','map'=>'Map','gallery'=>'Gallery','priceTitle'=>'STARTING FROM','emailBtn'=>'Inquire Now','waBtn'=>'Book via WhatsApp','pricingNote'=>'(*) Prices are starting prices. Contact us for exact pricing.','pricingCol1'=>'Hotel Class','pricingCol2'=>'Price (per person)','faqTitle'=>'Frequently Asked Questions'],
-    'es'=>['home'=>'Inicio','tours'=>'Tours','overview'=>'Visión General','day'=>'Día','included'=>'Incluido','excluded'=>'No Incluido','pricing'=>'Precios','notes'=>'Notas','map'=>'Mapa','gallery'=>'Galería','priceTitle'=>'DESDE','emailBtn'=>'Consultar','waBtn'=>'Reservar (WhatsApp)','pricingNote'=>'(*) Precios iniciales.','pricingCol1'=>'Clase de Hotel','pricingCol2'=>'Precio (por persona)','faqTitle'=>'Preguntas Frecuentes'],
-    'pt'=>['home'=>'Início','tours'=>'Passeios','overview'=>'Visão Geral','day'=>'Dia','included'=>'Incluído','excluded'=>'Não Incluído','pricing'=>'Preços Iniciais','notes'=>'Notas','map'=>'Mapa','gallery'=>'Galeria','priceTitle'=>'A PARTIR DE','emailBtn'=>'Consultar Agora','waBtn'=>'Reservar via WhatsApp','pricingNote'=>'(*) Os preços são iniciais.','pricingCol1'=>'Classe de Hotel','pricingCol2'=>'Preço (por pessoa)','faqTitle'=>'Perguntas Frequentes'],
-    'ar'=>['home'=>'الرئيسية','tours'=>'جولات','overview'=>'ملخص','day'=>'يوم','included'=>'مشمول','excluded'=>'غير مشمول','pricing'=>'الأسعار','notes'=>'ملاحظات','map'=>'خريطة','gallery'=>'صالة عرض','priceTitle'=>'يبدأ من','emailBtn'=>'استفسر الآن','waBtn'=>'WhatsApp','pricingNote'=>'(*) أسعار مبدئية.','pricingCol1'=>'فئة الفندق','pricingCol2'=>'السعر (للشخص)','faqTitle'=>'الأسئلة الشائعة'],
+    'tr'=>['highlights'=>'Öne Çıkanlar','home'=>'Ana Sayfa','tours'=>'Turlar','whyus'=>'Neden Biz','blog'=>'Blog','contact'=>'İletişim','overview'=>'Tur Hakkında','day'=>'Gün','included'=>'Fiyata Dahil Olanlar','excluded'=>'Fiyata Dahil Olmayanlar','pricing'=>'Başlangıç Fiyatları','notes'=>'Önemli Notlar','map'=>'Tur Rotası','gallery'=>'Fotoğraf Galerisi','priceTitle'=>'BAŞLANGIÇ FİYATI','emailBtn'=>'Bilgi Al','waBtn'=>'WhatsApp Rezervasyon','pricingNote'=>'(*) Belirtilen fiyatlar başlangıç fiyatlarıdır.','pricingCol1'=>'Otel Sınıfı','pricingCol2'=>'Fiyat (Kişi Başı)','faqTitle'=>'Sıkça Sorulan Sorular','seoTourWord'=>'Turu','seoFrom'=>"'dan başlayan fiyatlarla",'seoCta'=>"Hemen WhatsApp'tan bilgi al!",'askPrice'=>'Fiyat için bize ulaşın','waMsg'=>'Merhaba, "%s" turu hakkında bilgi almak istiyorum.','mailSub'=>'%s — Bilgi Talebi'],
+    'en'=>['highlights'=>'Tour Highlights','home'=>'Home','tours'=>'Tours','whyus'=>'Why Us','blog'=>'Blog','contact'=>'Contact','overview'=>'Overview','day'=>'Day','included'=>'Included','excluded'=>'Not Included','pricing'=>'Starting Prices','notes'=>'Notes','map'=>'Map','gallery'=>'Gallery','priceTitle'=>'STARTING FROM','emailBtn'=>'Inquire Now','waBtn'=>'Book via WhatsApp','pricingNote'=>'(*) Prices are starting prices. Contact us for exact pricing.','pricingCol1'=>'Hotel Class','pricingCol2'=>'Price (per person)','faqTitle'=>'Frequently Asked Questions','seoTourWord'=>'Tour','seoFrom'=>'from','seoCta'=>'Get instant info on WhatsApp!','askPrice'=>'Contact us for pricing','waMsg'=>'Hello, I would like information about the "%s" tour.','mailSub'=>'%s — Enquiry'],
+    'es'=>['highlights'=>'Lo Más Destacado','home'=>'Inicio','tours'=>'Tours','whyus'=>'Por Qué Nosotros','blog'=>'Blog','contact'=>'Contacto','overview'=>'Visión General','day'=>'Día','included'=>'Incluido','excluded'=>'No Incluido','pricing'=>'Precios','notes'=>'Notas','map'=>'Mapa','gallery'=>'Galería','priceTitle'=>'DESDE','emailBtn'=>'Consultar','waBtn'=>'Reservar (WhatsApp)','pricingNote'=>'(*) Precios iniciales.','pricingCol1'=>'Clase de Hotel','pricingCol2'=>'Precio (por persona)','faqTitle'=>'Preguntas Frecuentes','seoTourWord'=>'Tour','seoFrom'=>'desde','seoCta'=>'¡Info al instante por WhatsApp!','askPrice'=>'Consulte el precio','waMsg'=>'Hola, quisiera información sobre el tour "%s".','mailSub'=>'%s — Consulta'],
+    'pt'=>['highlights'=>'Destaques','home'=>'Início','tours'=>'Passeios','whyus'=>'Por Que Nós','blog'=>'Blog','contact'=>'Contacto','overview'=>'Visão Geral','day'=>'Dia','included'=>'Incluído','excluded'=>'Não Incluído','pricing'=>'Preços Iniciais','notes'=>'Notas','map'=>'Mapa','gallery'=>'Galeria','priceTitle'=>'A PARTIR DE','emailBtn'=>'Consultar Agora','waBtn'=>'Reservar via WhatsApp','pricingNote'=>'(*) Os preços são iniciais.','pricingCol1'=>'Classe de Hotel','pricingCol2'=>'Preço (por pessoa)','faqTitle'=>'Perguntas Frequentes','seoTourWord'=>'Passeio','seoFrom'=>'a partir de','seoCta'=>'Info instantânea pelo WhatsApp!','askPrice'=>'Consulte o preço','waMsg'=>'Olá, gostaria de informações sobre o passeio "%s".','mailSub'=>'%s — Pedido de Informação'],
+    'ar'=>['highlights'=>'أبرز المعالم','home'=>'الرئيسية','tours'=>'جولات','whyus'=>'لماذا نحن','blog'=>'مدونة','contact'=>'اتصل بنا','overview'=>'ملخص','day'=>'يوم','included'=>'مشمول','excluded'=>'غير مشمول','pricing'=>'الأسعار','notes'=>'ملاحظات','map'=>'خريطة','gallery'=>'صالة عرض','priceTitle'=>'يبدأ من','emailBtn'=>'استفسر الآن','waBtn'=>'واتساب','pricingNote'=>'(*) أسعار مبدئية.','pricingCol1'=>'فئة الفندق','pricingCol2'=>'السعر (للشخص)','faqTitle'=>'الأسئلة الشائعة','seoTourWord'=>'جولة','seoFrom'=>'ابتداءً من','seoCta'=>'احصل على معلومات فورية عبر واتساب!','askPrice'=>'اتصل بنا للسعر','waMsg'=>'مرحباً، أود الحصول على معلومات عن جولة "%s".','mailSub'=>'%s — استفسار'],
 ];
-$L = $dict[$currentLang] ?? $dict['tr'];
+$L  = $dict[$currentLang] ?? $dict['tr'];
+$LP = $LANG_PREFIXES[$currentLang];
 
-$descContent = getLangField($tour,'description',$currentLang);
+/* ─── SEO başlık & açıklama ─────────────────────────────── */
+$seoTitle = $title;
+if ($duration) $seoTitle .= ' | '.$duration.' '.$L['seoTourWord'];
+if ($price)    $seoTitle .= ' '.$L['seoFrom'].' '.$price;
+$seoTitle = mb_strimwidth($seoTitle, 0, 45, '').' | '.SITE_NAME;   // ~60 karakter sınırı
+
+$bits = [];
+if ($duration) $bits[] = $duration;
+if ($price)    $bits[] = $L['seoFrom'].' '.$price;
+$seoDesc = ($bits ? implode(' • ', $bits).' — ' : '')
+         . mb_substr(strip_tags($description), 0, 110).' '.$L['seoCta'];
+$seoDesc = mb_strimwidth($seoDesc, 0, 158, '…');
+
+$descContent = $description;
 $content     = getLangField($tour,'content',$currentLang);
-if (!$descContent && $content) { $descContent = $content; $content = ''; }
+if (!$descContent && $content) { $descContent = $content; }
 $included    = getLangField($tour,'included',$currentLang);
 $notIncluded = getLangField($tour,'not_included',$currentLang);
 $notes       = getLangField($tour,'notes',$currentLang);
-$rawGallery  = $tour['gallery'] ?? ($tour['images'] ?? ($image ? [$image] : []));
-$gallery     = array_map('absPath', $rawGallery);
+$gallery     = $tour['gallery'] ?? ($image ? [$image] : []);
+/* Öne çıkanlar: veride 5 dilde hazır duruyordu ama sayfada hiç basılmıyordu.
+   402 madde × 5 dil boşa gidiyordu — tur açıklamaları çok kısa olduğu için
+   bu bölüm sayfanın en değerli içeriği. */
+$highlights  = getLangField($tour,'highlights',$currentLang);
+if (!is_array($highlights)) $highlights = [];
 
-$waMsg    = urlencode('Merhaba, "'.$title.'" turu hakkında bilgi almak istiyorum.');
-$emailSub = urlencode($title.' Bilgi Talebi');
-$htmlDir  = $currentLang==='ar' ? ' dir="rtl"' : '';
+$waMsg    = sprintf($L['waMsg'], $title);
+$waHref   = waLink($waMsg);
+$mailHref = mailLink(sprintf($L['mailSub'], $title));
+$htmlDir  = $currentLang === 'ar' ? ' dir="rtl"' : '';
 
-$imgWidth  = $tour['imageWidth']  ?? 1920;
-$imgHeight = $tour['imageHeight'] ?? 1080;
+/* ─── Kırıntı navigasyon (breadcrumb) yapılandırılmış verisi ── */
+$breadcrumbSchema = json_encode([
+  '@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>[
+    ['@type'=>'ListItem','position'=>1,'name'=>$L['home'],  'item'=>SITE_URL.$LP.'/'],
+    ['@type'=>'ListItem','position'=>2,'name'=>$L['tours'], 'item'=>SITE_URL.$LP.'/#popular-trips'],
+    ['@type'=>'ListItem','position'=>3,'name'=>$title,      'item'=>$canonicalUrl],
+  ]], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 
-header('Link: </style.css>; rel=preload; as=style', false);
-header('Link: </assets/walkabout_travel_logo.jpg>; rel=preload; as=image', false);
+if ($heroImg) header('Link: <'.$heroImg['full'].'>; rel=preload; as=image; fetchpriority=high', false);
 ?>
 <!DOCTYPE html>
 <html lang="<?=htmlspecialchars($currentLang)?>"<?=$htmlDir?>>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?=htmlspecialchars($title)?> | <?=SITE_NAME?></title>
-<meta name="description" content="<?=htmlspecialchars($shortDesc)?>">
+<title><?=htmlspecialchars($seoTitle)?></title>
+<meta name="description" content="<?=htmlspecialchars($seoDesc)?>">
 <link rel="canonical" href="<?=htmlspecialchars($canonicalUrl)?>">
 <?php foreach($hreflang as $lc=>$u): ?>
 <link rel="alternate" hreflang="<?=$lc?>" href="<?=htmlspecialchars($u)?>">
 <?php endforeach; ?>
-<link rel="alternate" hreflang="x-default" href="<?=htmlspecialchars($hreflang['en'])?>">
+<?php if(isset($hreflang['en'])): ?>
+<link rel="alternate" hreflang="x-default" href="<?=e($hreflang['en'])?>">
+<?php endif; ?>
 <meta property="og:type" content="website">
 <meta property="og:url" content="<?=htmlspecialchars($canonicalUrl)?>">
-<meta property="og:title" content="<?=htmlspecialchars($title)?> | <?=SITE_NAME?>">
-<meta property="og:description" content="<?=htmlspecialchars($shortDesc)?>">
-<?php if($image): ?><meta property="og:image" content="<?=htmlspecialchars($imageAbs)?>"><?php endif; ?>
+<meta property="og:title" content="<?=htmlspecialchars($seoTitle)?>">
+<meta property="og:description" content="<?=htmlspecialchars($seoDesc)?>">
+<meta property="og:locale" content="<?=e($LANG_LOCALES[$currentLang] ?? 'tr_TR')?>">
+<meta property="og:site_name" content="<?=e(SITE_NAME)?>">
+<?php if($imageAbs): ?>
+<meta property="og:image" content="<?=e($imageAbs)?>">
+<meta property="og:image:width" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="<?=e($imageAbs)?>">
+<?php endif; ?>
 <script type="application/ld+json"><?=$schema?></script>
+<script type="application/ld+json"><?=$breadcrumbSchema?></script>
 <?php if($faqSchema): ?><script type="application/ld+json"><?=$faqSchema?></script><?php endif; ?>
-<link rel="icon" href="/assets/walkabout_travel_logo.jpg">
+<link rel="icon" type="image/webp" href="/assets/img/walkabout-travel-logo-400.webp">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -203,13 +173,6 @@ header('Link: </assets/walkabout_travel_logo.jpg>; rel=preload; as=image', false
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
-<?php if($image): ?>
-<link rel="preload" as="image"
-      href="<?=htmlspecialchars($image)?>"
-      fetchpriority="high"
-      imagesrcset="<?=htmlspecialchars($image)?>"
-      imagesizes="100vw">
-<?php endif; ?>
 
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -271,6 +234,10 @@ nav {
 /* ─── HERO ───────────────────────────────────────────────── */
 .tour-detail-hero {
   position:relative;
+  width:100%;            /* ← ZORUNLU: aspect-ratio + min-height birlikte
+                              genişliği yükseklikten türetiyordu (16/7 × 75vh
+                              = 1447px) ve mobilde sayfa yatay kayıyordu. */
+  max-width:100%;
   aspect-ratio:16/7; min-height:420px; max-height:70vh;
   overflow:hidden; display:flex; align-items:flex-end;
   background:#0c4a6e; contain:layout paint;
@@ -290,8 +257,15 @@ nav {
 }
 .tour-hero-content {
   position:relative; z-index:2;
-  max-width:1400px; margin:0 auto; padding:64px 48px; width:100%; color:white;
+  max-width:1400px; margin:0 auto; padding:64px 48px;
+  width:100%; min-width:0; flex:1 1 100%;
+  color:white;
 }
+/* style.css'teki genel h1 kuralı mirası eziyordu: başlık koyu renkte
+   basılıp koyu fotoğrafın üstünde görünmez oluyordu. */
+.tour-hero-content h1,
+.tour-hero-content .tour-badge,
+.tour-hero-content .quick-item span { color:#fff !important; }
 .tour-badge {
   display:inline-block; padding:5px 14px;
   background:rgba(56,189,248,0.85); backdrop-filter:blur(4px);
@@ -333,6 +307,15 @@ nav {
 }
 
 /* ─── ITINERARY ──────────────────────────────────────────── */
+/* ─── ÖNE ÇIKANLAR ───────────────────────────────────────── */
+.highlights-section { margin-bottom:64px; }
+.highlights-list { list-style:none; padding:0; margin:0;
+  display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; }
+.highlights-list li { display:flex; gap:12px; align-items:flex-start;
+  font-size:15px; line-height:1.6; color:#475569; }
+.highlights-list li i { color:#d4af37; font-size:13px; margin-top:5px; flex-shrink:0; }
+@media (max-width:820px){ .highlights-list { grid-template-columns:1fr; gap:12px; } }
+
 .itinerary-section { margin-bottom:64px; }
 .itinerary-item {
   margin-bottom:6px; border-radius:10px; overflow:hidden; background:#fff;
@@ -597,7 +580,17 @@ nav {
    PELORUS İLHAMLI LÜKS TASARIM GÜNCELLEMESİ
    ======================================================= */
 /* 1. Sinematik Hero (Ortalanmış ve büyük) */
-.tour-detail-hero { min-height: 75vh; }
+.tour-detail-hero { min-height: 75vh; width: 100%; }
+@media (max-width: 768px) {
+    .tour-detail-hero { min-height: 55vh; max-height: none; aspect-ratio: auto; }
+    .tour-hero-content { padding: 32px 20px; }
+    .tour-hero-content h1 { font-size: 26px; letter-spacing: 1.5px; }
+    .tour-grid-layout { grid-template-columns: 1fr !important; gap: 32px !important; padding: 0 20px !important; }
+    .inc-exc-container { grid-template-columns: 1fr !important; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; grid-auto-rows: 160px !important; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 2 !important; }
+    .editorial-image { height: 240px !important; margin: 12px 0 32px !important; }
+}
 .tour-hero-content { text-align: center; }
 .tour-hero-content h1 { font-size: 56px; text-transform: uppercase; letter-spacing: 4px; font-weight: 400; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
 .tour-quick-look { justify-content: center; border-top: none; margin-top: 20px; }
@@ -618,6 +611,18 @@ nav {
 .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; } /* İlk fotoğraf devasa */
 .gallery-item:nth-child(4) { grid-column: span 2; } /* Araya giren başka bir büyük fotoğraf */
 
+/* Galeri öğesi artık <button> — varsayılan buton stilini sıfırla */
+.gallery-item { display:block; padding:0; border:none; background:none; cursor:pointer; width:100%; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; display:block; }
+.gallery-item:focus-visible { outline:3px solid #38bdf8; outline-offset:2px; }
+
+/* SSS başlığı: <h3> içinde <button> — başlık semantiği korunur */
+.faq-question { margin:0; }
+.faq-toggle { width:100%; display:flex; justify-content:space-between; align-items:center;
+  gap:16px; background:none; border:none; padding:inherit; font:inherit; color:inherit;
+  text-align:left; cursor:pointer; }
+.faq-toggle:focus-visible { outline:3px solid #38bdf8; outline-offset:2px; }
+
 /* 5. Havada Asılı (Sticky) Rezervasyon Kutusu */
 @media (min-width: 1100px) {
     .tour-sidebar { position: sticky; top: 100px; }
@@ -631,20 +636,19 @@ nav {
 <nav id="navbar">
   <div class="nav-container">
     <a href="/" class="logo">
-      <img src="/assets/walkabout_travel_logo.jpg"
-           alt="WalkAbout Travel Logo" width="38" height="38"
-           onerror="this.style.display='none'">
+      <img src="/assets/img/walkabout-travel-logo-400.webp"
+           alt="<?=e(SITE_NAME)?>" width="38" height="38" fetchpriority="high" decoding="async">
       <div class="logo-text">
         <span class="logo-title">WalkAbout Travel</span>
         <span class="logo-subtitle">TOURISM & TRAVEL</span>
       </div>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/"><?=$L['home']?></a></li>
-      <li><a href="/#popular-trips"><?=$L['tours']?></a></li>
-      <li><a href="/#why-us">WHY US</a></li>
-      <li><a href="/#blog">BLOG</a></li>
-      <li><a href="/#contact">CONTACT</a></li>
+      <li><a href="<?=$LP?>/"><?=e($L['home'])?></a></li>
+      <li><a href="<?=$LP?>/#popular-trips"><?=e($L['tours'])?></a></li>
+      <li><a href="<?=$LP?>/#why-us"><?=e($L['whyus'])?></a></li>
+      <li><a href="<?=$LP?>/blog/"><?=e($L['blog'])?></a></li>
+      <li><a href="<?=$LP?>/#contact"><?=e($L['contact'])?></a></li>
     </ul>
     <div style="display:flex;align-items:center;">
       <div class="lang-dropdown">
@@ -668,35 +672,36 @@ nav {
 
 <div class="breadcrumb">
   <div class="breadcrumb-container">
-    <a href="/"><?=$L['home']?></a>
+    <a href="<?=$LP?>/"><?=e($L['home'])?></a>
     <span class="breadcrumb-separator" aria-hidden="true">›</span>
-    <a href="/#tours"><?=$L['tours']?></a>
+    <a href="<?=$LP?>/#popular-trips"><?=e($L['tours'])?></a>
     <span class="breadcrumb-separator" aria-hidden="true">›</span>
     <span class="breadcrumb-current"><?=htmlspecialchars(mb_strimwidth($title,0,55,'…'))?></span>
   </div>
 </div>
 
 <div class="tour-detail-hero">
-  <?php if($image): ?>
-  <img src="<?=htmlspecialchars($image)?>"
-       alt="<?=htmlspecialchars($title)?>"
-       width="<?=(int)$imgWidth?>" height="<?=(int)$imgHeight?>"
+  <?php if($heroImg): ?>
+  <img src="<?=e($heroImg['full'])?>"
+       srcset="<?=e($heroImg['srcset'])?>" sizes="100vw"
+       alt="<?=e($title)?>" width="1600" height="1000"
        fetchpriority="high" decoding="async">
   <?php endif; ?>
   <div class="tour-hero-content">
     <span class="tour-badge"><?=htmlspecialchars($tour['category']??'TUR')?></span>
     <h1><?=htmlspecialchars($title)?></h1>
     <div class="tour-quick-look">
-      <?php if(!empty($tour['meta'])): ?>
+      <?php $meta = getLangField($tour,'meta',$currentLang); ?>
+      <?php if(!empty($meta) && is_array($meta)): ?>
         <?php foreach(['duration'=>'fa-clock','languages'=>'fa-globe','months'=>'fa-calendar-check','availability'=>'fa-user-friends'] as $mk=>$icon): ?>
-        <?php if(!empty($tour['meta'][$mk])): ?>
-        <div class="quick-item"><i class="fas <?=$icon?>" aria-hidden="true"></i><span><?=htmlspecialchars($tour['meta'][$mk])?></span></div>
+        <?php if(!empty($meta[$mk])): ?>
+        <div class="quick-item"><i class="fas <?=$icon?>" aria-hidden="true"></i><span><?=e($meta[$mk])?></span></div>
         <?php endif; ?>
         <?php endforeach; ?>
       <?php else: ?>
         <?php if($duration): ?><div class="quick-item"><i class="fas fa-clock" aria-hidden="true"></i><span><?=htmlspecialchars($duration)?></span></div><?php endif; ?>
         <?php if($location): ?><div class="quick-item"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><?=htmlspecialchars($location)?></span></div><?php endif; ?>
-        <?php if($rating): ?><div class="quick-item"><i class="fas fa-star" aria-hidden="true"></i><span><?=htmlspecialchars($rating)?> / 5</span></div><?php endif; ?>
+        <?php if($price): ?><div class="quick-item"><i class="fas fa-tag" aria-hidden="true"></i><span><?=e($price)?></span></div><?php endif; ?>
       <?php endif; ?>
     </div>
   </div>
@@ -708,8 +713,19 @@ nav {
     <div class="tour-main">
 
       <?php if($descContent): ?>
-      <h2 class="section-heading"><?=$L['overview']?></h2>
+      <h2 class="section-heading"><?=e($L['overview'])?></h2>
       <div class="tour-overview"><?=nl2br(is_string($descContent)?htmlspecialchars($descContent):'')?></div>
+      <?php endif; ?>
+
+      <?php if($highlights): ?>
+      <div class="highlights-section">
+        <h2 class="section-heading"><?=e($L['highlights'])?></h2>
+        <ul class="highlights-list">
+          <?php foreach($highlights as $hl): if(!is_string($hl)||$hl==='') continue; ?>
+          <li><i class="fas fa-star" aria-hidden="true"></i><span><?=e($hl)?></span></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
       <?php endif; ?>
 
       <?php
@@ -717,7 +733,6 @@ nav {
       if (!empty($tour['itinerary'])) $itinerary = $tour['itinerary'];
       elseif (!empty($tour['days']))  $itinerary = $tour['days'];
       ?>
-      <?php if(!empty($itinerary)): ?>
       <?php if(!empty($itinerary)): ?>
       <div class="itinerary-section">
         <?php
@@ -751,16 +766,18 @@ nav {
         
         <!-- Sihirli Dokunuş: Her 2 günde bir araya galeriden fotoğraf ekle -->
         <?php if ($index % 2 == 0 && isset($gallery[$photoIndex])): ?>
-            <img src="<?= htmlspecialchars($gallery[$photoIndex]) ?>" class="editorial-image" alt="<?= htmlspecialchars($title) ?> Manzarası" loading="lazy">
+            <?= imgTag($gallery[$photoIndex], $title, '(max-width:900px) 100vw, 900px',
+                       ['class'=>'editorial-image','loading'=>'lazy']) ?>
         <?php $photoIndex++; endif; ?>
         
         <?php endforeach; ?>
       </div>
       <?php endif; ?>
 
-      <?php if(!empty($tour['departureReturn'])): ?>
+      <?php $depRet = getLangField($tour,'departureReturn',$currentLang); ?>
+      <?php if(!empty($depRet) && is_array($depRet)): ?>
       <table class="info-table">
-        <?php foreach($tour['departureReturn'] as $item):
+        <?php foreach($depRet as $item):
           $parts = explode(':',$item,2); ?>
         <tr>
           <?php if(count($parts)>1): ?>
@@ -836,16 +853,11 @@ nav {
         <h2 class="section-heading"><?=$L['gallery']?></h2>
         <div class="gallery-grid">
           <?php foreach($gallery as $idx=>$img): ?>
-          <div class="gallery-item"
+          <button type="button" class="gallery-item"
                onclick="openLightbox(<?=$idx?>)"
-               role="button" tabindex="0"
-               aria-label="<?=htmlspecialchars($title)?> <?=$idx+1?>">
-            <img src="<?=htmlspecialchars($img)?>"
-                 alt="<?=htmlspecialchars($title)?> <?=$idx+1?>"
-                 width="400" height="300"
-                 loading="<?=$idx<3?'eager':'lazy'?>"
-                 decoding="async">
-          </div>
+               aria-label="<?=e($title)?> <?=$idx+1?>">
+            <?= imgTag($img, $title.' '.($idx+1), '(max-width:700px) 50vw, 400px', ['loading'=>'lazy']) ?>
+          </button>
           <?php endforeach; ?>
         </div>
       </div>
@@ -857,22 +869,15 @@ nav {
         <div class="faq-list">
           <?php foreach($faqItems as $fi=>$faq):
             if(empty($faq['q'])||empty($faq['a'])) continue; ?>
-          <div class="faq-item<?=$fi===0?' active':''?>"
-               itemscope itemprop="mainEntity"
-               itemtype="https://schema.org/Question">
-            <h3 class="faq-question"
-                itemprop="name"
-                onclick="toggleFaq(this)"
-                role="button" tabindex="0"
-                aria-expanded="<?=$fi===0?'true':'false'?>">
-              <span><?=htmlspecialchars($faq['q'])?></span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          <div class="faq-item<?=$fi===0?' active':''?>">
+            <h3 class="faq-question">
+              <button type="button" class="faq-toggle" onclick="toggleFaq(this)"
+                      aria-expanded="<?=$fi===0?'true':'false'?>">
+                <span><?=e($faq['q'])?></span>
+                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+              </button>
             </h3>
-            <div class="faq-answer"
-                 itemscope itemprop="acceptedAnswer"
-                 itemtype="https://schema.org/Answer">
-              <div itemprop="text"><?=nl2br(htmlspecialchars($faq['a']))?></div>
-            </div>
+            <div class="faq-answer"><div><?=nl2p($faq['a'])?></div></div>
           </div>
           <?php endforeach; ?>
         </div>
@@ -883,21 +888,17 @@ nav {
 
     <div class="tour-sidebar">
       <div class="tour-booking-card">
-        <div class="price-label"><?=$L['priceTitle']?></div>
-        <div class="price-amount"><?=htmlspecialchars($price)?></div>
+        <div class="price-label"><?=e($L['priceTitle'])?></div>
+        <div class="price-amount"><?= $price ? e($price) : e($L['askPrice']) ?></div>
         <div class="booking-cta">
-          <a href="mailto:info@walkabouttravel.com?subject=<?=$emailSub?>"
-             class="btn btn-primary"
-             aria-label="<?=htmlspecialchars($L['emailBtn'])?>">
+          <a href="<?=e($mailHref)?>" class="btn btn-primary">
             <i class="fas fa-envelope" aria-hidden="true"></i>
-            <?=$L['emailBtn']?>
+            <?=e($L['emailBtn'])?>
           </a>
-          <a href="https://wa.me/902125551923?text=<?=$waMsg?>"
-             class="btn btn-outline"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="WhatsApp rezervasyon">
+          <a href="<?=e($waHref)?>" class="btn btn-outline"
+             target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp" aria-hidden="true"></i>
-            <?=$L['waBtn']?>
+            <?=e($L['waBtn'])?>
           </a>
         </div>
       </div>
@@ -914,99 +915,60 @@ nav {
     <i class="fas fa-chevron-left" aria-hidden="true"></i>
   </button>
   <div class="lightbox-content" onclick="event.stopPropagation()">
-    <img id="lightboxImg" src="" alt="">
+    <!-- src bilerek YOK: boş src="" tarayıcıyı sayfayı yeniden istemeye zorluyor
+         ve "kırık görsel" sayılıyor. Kaynağı openLightbox() atıyor. -->
+    <img id="lightboxImg" alt="" decoding="async">
   </div>
   <button class="lightbox-nav lightbox-next" aria-label="Sonraki" onclick="event.stopPropagation();changeImage(1)">
     <i class="fas fa-chevron-right" aria-hidden="true"></i>
   </button>
 </div>
 
-<a href="https://wa.me/902125551923?text=<?=$waMsg?>"
+<a href="<?=e($waHref)?>"
    class="whatsapp-float" target="_blank" rel="noopener noreferrer"
-   aria-label="WhatsApp ile iletişim">
+   aria-label="WhatsApp">
   <i class="fab fa-whatsapp" aria-hidden="true"></i>
 </a>
 
 <script>
-const galleryImages = <?=json_encode($gallery,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES)?>;
+/* Galeri lightbox + SSS açılır kapanır.
+   NOT: Mobil menü ve dil menüsü artık SADECE app.js'te yönetiliyor.
+   Buradaki kopya dinleyiciler kaldırıldı — iki kez bağlandığı için
+   hamburger menü hiç açılmıyordu. */
+const galleryImages = <?=json_encode(array_map('imgFull',$gallery),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_HEX_TAG)?>;
 let currentImageIndex = 0;
+const lb = () => document.getElementById('lightbox');
 
 function openLightbox(i) {
+  if (!galleryImages.length) return;
   currentImageIndex = i;
   document.getElementById('lightboxImg').src = galleryImages[i];
-  document.getElementById('lightbox').classList.add('active');
+  lb().classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
+  lb().classList.remove('active');
   document.body.style.overflow = '';
 }
 function changeImage(d) {
+  if (!galleryImages.length) return;
   currentImageIndex = (currentImageIndex + d + galleryImages.length) % galleryImages.length;
   document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
 }
-function toggleAccordion(btn) {
-  const item = btn.closest('.itinerary-item');
-  const isActive = item.classList.contains('active');
-  document.querySelectorAll('.itinerary-item.active').forEach(el => {
-    el.classList.remove('active');
-    el.querySelector('[aria-expanded]')?.setAttribute('aria-expanded','false');
-  });
-  if (!isActive) {
-    requestAnimationFrame(() => {
-      item.classList.add('active');
-      btn.setAttribute('aria-expanded','true');
-    });
-  }
-}
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
-  requestAnimationFrame(() => {
-    item.classList.toggle('active');
-    btn.setAttribute('aria-expanded', item.classList.contains('active') ? 'true' : 'false');
-  });
+  item.classList.toggle('active');
+  btn.setAttribute('aria-expanded', item.classList.contains('active') ? 'true' : 'false');
 }
 document.addEventListener('keydown', e => {
-  if (e.key === ' ' || e.key === 'Enter') {
-    const t = e.target;
-    if (t.classList.contains('itinerary-day-title')) { e.preventDefault(); toggleAccordion(t); }
-    if (t.classList.contains('faq-question'))        { e.preventDefault(); toggleFaq(t); }
-    if (t.classList.contains('gallery-item'))        { t.click(); }
-  }
-  if (e.key === 'Escape') closeLightbox();
-  const lb = document.getElementById('lightbox');
-  if (lb.classList.contains('active')) {
-    if (e.key === 'ArrowRight') changeImage(1);
-    if (e.key === 'ArrowLeft')  changeImage(-1);
-  }
+  const box = lb();
+  if (!box || !box.classList.contains('active')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowRight') changeImage(1);
+  if (e.key === 'ArrowLeft')  changeImage(-1);
 });
-const menuToggle = document.getElementById('menuToggle');
-const navLinks   = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', e => {
-    e.stopPropagation();
-    const open = navLinks.classList.toggle('active');
-    menuToggle.setAttribute('aria-expanded', open);
-    const icon = menuToggle.querySelector('i');
-    icon?.classList.toggle('fa-bars', !open);
-    icon?.classList.toggle('fa-times', open);
-  });
-}
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.lang-dropdown-btn');
-  if (btn) {
-    e.stopPropagation();
-    const dd = btn.closest('.lang-dropdown');
-    const open = dd.classList.toggle('active');
-    btn.setAttribute('aria-expanded', open);
-    return;
-  }
-  document.querySelectorAll('.lang-dropdown.active').forEach(d => {
-    d.classList.remove('active');
-    d.querySelector('.lang-dropdown-btn')?.setAttribute('aria-expanded','false');
-  });
-});
-sessionStorage.setItem('language','<?=$currentLang?>');
+sessionStorage.setItem('language','<?=e($currentLang)?>');
+localStorage.setItem('language','<?=e($currentLang)?>');
 </script>
 <script src="/i18n.js" defer></script>
 <script src="/app.js" defer></script>

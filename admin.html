@@ -495,81 +495,205 @@
             });
         }
 
-        async function translateText(text, targetLang) {
-            if (!text) return '';
-            try {
-                const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${targetLang}`;
-                const response = await fetch(url);
-                const data = await response.json();
-                if (data && data.responseData && data.responseData.translatedText) {
-                    const translated = data.responseData.translatedText;
-                    if (translated === text) console.warn('⚠️ MyMemory: çeviri başarısız olmuş olabilir:', text);
-                    return translated;
-                }
-                return text;
-            } catch (error) {
-                console.error('Translation error:', error);
-                return text;
+        // MyMemory dil kodu haritası — TR için zorunlu, diğerleri de tam formata alındı
+        const langPairMap = {
+            tr: 'en-US|tr-TR',
+            es: 'en-US|es-ES',
+            pt: 'en-US|pt-PT',
+            ar: 'en-US|ar-SA'
+        };
+
+        // Tek API çağrısı — max 450 karakter (güvenli limit)
+        async function translateChunk(chunk, targetLang) {
+            const langpair = langPairMap[targetLang] || `en|${targetLang}`;
+            const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=${langpair}`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+
+            // Quota aşıldı mı?
+            if (data.responseStatus === 429 ||
+                (data.responseData?.translatedText || '').toUpperCase().includes('MYMEMORY WARNING')) {
+                throw new Error('QUOTA_EXCEEDED');
             }
+            if (data.responseData?.translatedText) {
+                return data.responseData.translatedText;
+            }
+            return chunk; // fallback: orijinali döndür
+        }
+
+        // Uzun metni cümle sınırlarında 450 karlik parçalara böl, çevir, birleştir
+        async function translateText(text, targetLang) {
+            if (!text || !text.trim()) return '';
+
+            const MAX = 450;
+            if (text.length <= MAX) {
+                return await translateChunk(text, targetLang);
+            }
+
+            // Cümlelere böl
+            const sentences = text.match(/[^.!?\n]+[.!?\n]*/g) || [text];
+            const chunks = [];
+            let current = '';
+            for (const s of sentences) {
+                if ((current + s).length > MAX) {
+                    if (current) chunks.push(current.trim());
+                    // Tek cümle bile MAX'ı aşıyorsa kelimeye göre böl
+                    if (s.length > MAX) {
+                        const words = s.split(' ');
+                        let wordChunk = '';
+                        for (const w of words) {
+                            if ((wordChunk + ' ' + w).length > MAX) {
+                                if (wordChunk) chunks.push(wordChunk.trim());
+                                wordChunk = w;
+                            } else {
+                                wordChunk += (wordChunk ? ' ' : '') + w;
+                            }
+                        }
+                        if (wordChunk) chunks.push(wordChunk.trim());
+                        current = '';
+                    } else {
+                        current = s;
+                    }
+                } else {
+                    current += s;
+                }
+            }
+            if (current.trim()) chunks.push(current.trim());
+
+            const translated = [];
+            for (const chunk of chunks) {
+                const result = await translateChunk(chunk, targetLang);
+                translated.push(result);
+                // Rate limit koruması: istekler arası 300ms bekle
+                await new Promise(r => setTimeout(r, 300));
+            }
+            return translated.join(' ');
         }
 
         async function translateAllTourFields() {
-    const t = document.getElementById('tourTitle').value;
-    const d = document.getElementById('tourDescription').value;
-    if (!t && !d) return showAlert('tourAlert', '⚠️ Please fill out the English Title and Description fields!', 'error');
-    showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Translating main fields and daily programs...', 'info');
-    try {
-        // Ana Başlık ve Açıklama Çevirileri
-        for (const lang of langsToTranslate) {
-            const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
-            if (t && document.getElementById(`tourTitle${cap}`)) {
-                document.getElementById(`tourTitle${cap}`).value = await translateText(t, lang);
-            }
-            if (d && document.getElementById(`tourDescription${cap}`)) {
-                document.getElementById(`tourDescription${cap}`).value = await translateText(d, lang);
-            }
-        }
+            const t = document.getElementById('tourTitle').value;
+            const d = document.getElementById('tourDescription').value;
+            if (!t && !d) return showAlert('tourAlert', '⚠️ Please fill out the English Title and Description fields!', 'error');
 
-        // Günlük Programların (Itinerary) Otomatik Çevirisi
-        const dayBlocks = document.querySelectorAll('.itinerary-day');
-        for (const day of dayBlocks) {
-            const titleEn = day.querySelector('.day-title-en').value;
-            const descEn = day.querySelector('.day-desc-en').value;
+            let errors = [];
+            const langLabels = { tr: 'TR', es: 'ES', pt: 'PT', ar: 'AR' };
 
+            showAlert('tourAlert', '<i class="fas fa-spinner fa-spin"></i> Translating title and description...', 'info');
+
+            // 1. Ana başlık ve açıklama
             for (const lang of langsToTranslate) {
-                if (titleEn) {
-                    day.querySelector(`.day-title-${lang}`).value = await translateText(titleEn, lang);
+                const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
+                try {
+                    if (t) {
+                        const el = document.getElementById(`tourTitle${cap}`);
+                        if (el) el.value = await translateText(t, lang);
+                    }
+                } catch(err) {
+                    const msg = err.message === 'QUOTA_EXCEEDED'
+                        ? `${langLabels[lang]} title: daily quota exceeded`
+                        : `${langLabels[lang]} title: failed`;
+                    errors.push(msg);
                 }
-                if (descEn) {
-                    day.querySelector(`.day-desc-${lang}`).value = await translateText(descEn, lang);
+                try {
+                    if (d) {
+                        const el = document.getElementById(`tourDescription${cap}`);
+                        if (el) el.value = await translateText(d, lang);
+                    }
+                } catch(err) {
+                    const msg = err.message === 'QUOTA_EXCEEDED'
+                        ? `${langLabels[lang]} description: daily quota exceeded`
+                        : `${langLabels[lang]} description: failed`;
+                    errors.push(msg);
                 }
             }
-        }
 
-        document.getElementById('tourTitleTranslateWarning').classList.remove('show');
-        showAlert('tourAlert', '✅ Translation completed for all fields and itinerary days!', 'success');
-    } catch (error) {
-        showAlert('tourAlert', '❌ Translation failed!', 'error');
-    }
-}
+            // 2. Itinerary günleri
+            const dayBlocks = document.querySelectorAll('.itinerary-day');
+            let dayIndex = 0;
+            for (const day of dayBlocks) {
+                dayIndex++;
+                const titleEn = day.querySelector('.day-title-en').value;
+                const descEn  = day.querySelector('.day-desc-en').value;
+                showAlert('tourAlert', `<i class="fas fa-spinner fa-spin"></i> Translating Day ${dayIndex} / ${dayBlocks.length}...`, 'info');
+
+                for (const lang of langsToTranslate) {
+                    try {
+                        if (titleEn) {
+                            day.querySelector(`.day-title-${lang}`).value = await translateText(titleEn, lang);
+                        }
+                    } catch(err) {
+                        errors.push(err.message === 'QUOTA_EXCEEDED'
+                            ? `Day ${dayIndex} ${langLabels[lang]} title: quota exceeded`
+                            : `Day ${dayIndex} ${langLabels[lang]} title: failed`);
+                    }
+                    try {
+                        if (descEn) {
+                            day.querySelector(`.day-desc-${lang}`).value = await translateText(descEn, lang);
+                        }
+                    } catch(err) {
+                        errors.push(err.message === 'QUOTA_EXCEEDED'
+                            ? `Day ${dayIndex} ${langLabels[lang]} description: quota exceeded`
+                            : `Day ${dayIndex} ${langLabels[lang]} description: failed`);
+                    }
+                }
+            }
+
+            document.getElementById('tourTitleTranslateWarning').classList.remove('show');
+
+            if (errors.length === 0) {
+                showAlert('tourAlert', `✅ Translation completed! (${dayBlocks.length} days included)`, 'success');
+            } else {
+                showAlert('tourAlert',
+                    `⚠️ Partially translated. Issues:<br>• ${errors.join('<br>• ')}<br><small>Fill in the highlighted fields manually.</small>`,
+                    'error');
+            }
+        }
 
         async function translateAllBlogFields() {
             const t = document.getElementById('blogTitle').value;
             const e = document.getElementById('blogExcerpt').value;
             const c = document.getElementById('blogContent').value;
             if (!t && !e && !c) return showAlert('blogAlert', '⚠️ Please fill out the English fields!', 'error');
-            showAlert('blogAlert', '<i class="fas fa-spinner fa-spin"></i> Translating...', 'info');
-            try {
-                for (const lang of langsToTranslate) {
-                    const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
+
+            const langLabels = { tr: 'TR', es: 'ES', pt: 'PT', ar: 'AR' };
+            let errors = [];
+
+            for (const lang of langsToTranslate) {
+                const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
+                showAlert('blogAlert', `<i class="fas fa-spinner fa-spin"></i> Translating to ${langLabels[lang]}...`, 'info');
+
+                try {
                     if (t) document.getElementById(`blogTitle${cap}`).value = await translateText(t, lang);
-                    if (e) document.getElementById(`blogExcerpt${cap}`).value = await translateText(e, lang);
-                    if (c) document.getElementById(`blogContent${cap}`).value = await translateText(c, lang);
+                } catch(err) {
+                    errors.push(err.message === 'QUOTA_EXCEEDED'
+                        ? `${langLabels[lang]} title: daily quota exceeded`
+                        : `${langLabels[lang]} title: failed`);
                 }
-                document.getElementById('blogTitleTranslateWarning').classList.remove('show');
+                try {
+                    if (e) document.getElementById(`blogExcerpt${cap}`).value = await translateText(e, lang);
+                } catch(err) {
+                    errors.push(err.message === 'QUOTA_EXCEEDED'
+                        ? `${langLabels[lang]} excerpt: daily quota exceeded`
+                        : `${langLabels[lang]} excerpt: failed`);
+                }
+                try {
+                    if (c) document.getElementById(`blogContent${cap}`).value = await translateText(c, lang);
+                } catch(err) {
+                    errors.push(err.message === 'QUOTA_EXCEEDED'
+                        ? `${langLabels[lang]} content: daily quota exceeded — fill manually`
+                        : `${langLabels[lang]} content: failed`);
+                }
+            }
+
+            document.getElementById('blogTitleTranslateWarning').classList.remove('show');
+
+            if (errors.length === 0) {
                 showAlert('blogAlert', '✅ Translation completed!', 'success');
-            } catch (error) {
-                showAlert('blogAlert', '❌ Translation failed!', 'error');
+            } else {
+                showAlert('blogAlert',
+                    `⚠️ Partially translated. Issues:<br>• ${errors.join('<br>• ')}<br><small>Fill in the highlighted fields manually.</small>`,
+                    'error');
             }
         }
 
@@ -681,7 +805,7 @@
         async function loadTours() {
             try { const saved = localStorage.getItem('walkabout_tours'); if (saved) tours = JSON.parse(saved); } catch(e) {}
             try {
-                const response = await fetch('data/tours.json?t=' + Date.now());
+                const response = await fetch('admin-data.php?f=tours&t=' + Date.now());
                 if (response.ok) {
                     const data = await response.json();
                     if (data.length > 0) {
@@ -696,7 +820,7 @@
         async function loadBlogs() {
             try { const saved = localStorage.getItem('walkabout_blogs'); if (saved) blogs = JSON.parse(saved); } catch(e) {}
             try {
-                const response = await fetch('data/blog-posts.json?t=' + Date.now());
+                const response = await fetch('admin-data.php?f=blogs&t=' + Date.now());
                 if (response.ok) {
                     const data = await response.json();
                     if (data.length > 0) {
@@ -746,8 +870,30 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
     });
 });
 
+            // Slug: mevcut turu düzenliyorsak mevcut slug'ı koru, yeni tursa title_en'den üret
+            const existingTour = editingTourId ? tours.find(t => t.id === editingTourId) : null;
+            const titleEnForSlug = document.getElementById('tourTitle').value;
+            const generatedSlug = titleEnForSlug
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .trim()
+                .replace(/\s+/g, '-');
+            const tourSlug      = existingTour?.slug      || generatedSlug;
+            const tourSlugEn    = existingTour?.slug_en   || generatedSlug;
+            const tourSlugTr    = existingTour?.slug_tr   || document.getElementById('tourTitleTr').value.toLowerCase().replace(/[^a-z0-9ığüşöçİĞÜŞÖÇ\s-]/gi,'').trim().replace(/\s+/g,'-');
+            const tourSlugEs    = existingTour?.slug_es   || generatedSlug;
+            const tourSlugPt    = existingTour?.slug_pt   || generatedSlug;
+            const tourSlugAr    = existingTour?.slug_ar   || generatedSlug;
+
             const tourData = {
                 id: editingTourId || 'TUR-' + Date.now(),
+
+                slug:    tourSlug,
+                slug_en: tourSlugEn,
+                slug_tr: tourSlugTr,
+                slug_es: tourSlugEs,
+                slug_pt: tourSlugPt,
+                slug_ar: tourSlugAr,
 
                 title: document.getElementById('tourTitleTr').value,
                 title_en: document.getElementById('tourTitle').value,
@@ -768,6 +914,7 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
                 description_ar: document.getElementById('tourDescriptionAr').value || document.getElementById('tourDescription').value,
 
                 image: imagePath,
+                images: currentGallery.map(f => f.startsWith('http') ? f : `assets/${f}`),
                 gallery: currentGallery.map(f => f.startsWith('http') ? f : `assets/${f}`),
                 featured: editingTourId ? (tours.find(t => t.id === editingTourId)?.featured || false) : false,
                 source: 'admin',
@@ -780,7 +927,30 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
                 },
                 itinerary: itinerary,
                 included: textToArray(document.getElementById('tourIncluded').value),
+                not_included: textToArray(document.getElementById('tourExcluded').value),
                 excluded: textToArray(document.getElementById('tourExcluded').value),
+
+                // Çok dilli included/not_included — mevcut değerleri koru
+                included_en: existingTour?.included_en || textToArray(document.getElementById('tourIncluded').value),
+                included_es: existingTour?.included_es || [],
+                included_pt: existingTour?.included_pt || [],
+                included_ar: existingTour?.included_ar || [],
+
+                // Highlights — mevcut değerleri koru
+                highlights:    existingTour?.highlights    || [],
+                highlights_en: existingTour?.highlights_en || [],
+                highlights_es: existingTour?.highlights_es || [],
+                highlights_pt: existingTour?.highlights_pt || [],
+                highlights_ar: existingTour?.highlights_ar || [],
+
+                // area, image_alts, duration_en/es/pt/ar — mevcut değerleri koru
+                area:        existingTour?.area        || '',
+                image_alts:  existingTour?.image_alts  || [],
+                duration_en: existingTour?.duration_en || document.getElementById('tourDuration').value,
+                duration_es: existingTour?.duration_es || '',
+                duration_pt: existingTour?.duration_pt || '',
+                duration_ar: existingTour?.duration_ar || '',
+
                 pricing: {
                     economy: document.getElementById('priceEconomy').value,
                     comfort: document.getElementById('priceComfort').value,
@@ -835,8 +1005,18 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
             const imgFile = document.getElementById('blogImage').value.trim();
             const imagePath = imgFile.startsWith('http') ? imgFile : `assets/${imgFile}`;
 
+            const existingBlog = editingBlogId ? blogs.find(b => b.id === editingBlogId) : null;
+            const blogTitleEnForSlug = document.getElementById('blogTitle').value;
+            const blogGeneratedSlug = blogTitleEnForSlug
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .trim()
+                .replace(/\s+/g, '-');
+            const blogSlug = existingBlog?.slug || blogGeneratedSlug;
+
             const blogData = {
                 id: editingBlogId || 'BLOG-' + Date.now(),
+                slug: blogSlug,
                 title: document.getElementById('blogTitleTr').value || document.getElementById('blogTitle').value,
                 title_en: document.getElementById('blogTitle').value,
                 title_es: document.getElementById('blogTitleEs').value || document.getElementById('blogTitle').value,
@@ -915,7 +1095,7 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
             document.getElementById('tourDescriptionAr').value = tour.description_ar || '';
 
             document.getElementById('tourImage').value = (tour.image || '').replace('assets/', '');
-            currentGallery = (tour.gallery || []).map(p => p.replace('assets/', ''));
+            currentGallery = (tour.images || tour.gallery || []).map(p => p.replace('assets/', ''));
             updateGalleryPreview();
             document.getElementById('tourImagePreview').src = tour.image || '';
             document.getElementById('tourImagePreview').style.display = tour.image ? 'block' : 'none';
@@ -936,7 +1116,8 @@ document.querySelectorAll('.itinerary-day').forEach((dayBox, index) => {
             }
 
             document.getElementById('tourIncluded').value = arrayToText(tour.included);
-            document.getElementById('tourExcluded').value = arrayToText(tour.excluded);
+            // not_included veya excluded — hangisi doluysa onu kullan
+            document.getElementById('tourExcluded').value = arrayToText(tour.not_included || tour.excluded);
             document.getElementById('tourDepartureReturn').value = arrayToText(tour.departureReturn);
             document.getElementById('tourNotes').value = arrayToText(tour.notes);
             document.getElementById('tourMapUrl').value = tour.mapUrl || '';
@@ -1155,5 +1336,10 @@ if (tour.itinerary && tour.itinerary.length > 0) {
             loadBlogs();
         });
     </script>
+<div style="position:fixed;top:10px;right:14px;z-index:99999">
+  <a href="/admin-login.php?logout=1"
+     style="background:#0f172a;color:#fff;padding:7px 14px;border-radius:8px;
+            font:600 12.5px system-ui,sans-serif;text-decoration:none">Çıkış Yap</a>
+</div>
 </body>
 </html>

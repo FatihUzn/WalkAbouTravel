@@ -1,137 +1,134 @@
 <?php
-// ============================================================
-//  index.php — WalkAbout Travel Ana Sayfa (SEO & SSR v3)
-// ============================================================
+/* ============================================================
+   index.php — Ana sayfa (5 dil, sunucu taraflı)
+   Ortak ayarlar config.php, yardımcılar functions.php içinde.
+   ============================================================ */
+require_once __DIR__ . '/functions.php';
 
-$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$_host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
-define('SITE_URL',  $_protocol . '://' . $_host);
+$currentLang = detectLang();
+$LP          = $LANG_PREFIXES[$currentLang];
+$htmlDir     = $currentLang === 'ar' ? ' dir="rtl"' : '';
 
-// Dil algılama ve Prefix ayarları
-$LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
-$uri = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-$currentLang = 'tr';
-foreach (['en','es','ar','pt'] as $lc) {
-    if (str_starts_with($uri, '/'.$lc.'/') || $uri === '/'.$lc) {
-        $currentLang = $lc; break;
-    }
-}
-
-// --- 1. BLOG VERİLERİNİ ÇEKME ---
-$blogsFile = __DIR__ . '/data/blog-posts.json';
-$allPosts  = file_exists($blogsFile) ? (json_decode(file_get_contents($blogsFile), true) ?? []) : [];
-$posts = array_filter($allPosts, fn($p) => ($p['published'] ?? true) !== false);
-$posts = array_values($posts);
-usort($posts, fn($a,$b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));
-
+/* ─── VERİ ─────────────────────────────────────────────────── */
+$posts        = loadPosts();                        // ISO tarihe göre doğru sıralı
 $featuredPost = $posts[0] ?? null;
 $sidebarPosts = array_slice($posts, 1, 3);
 
-// --- 2. TUR VERİLERİNİ ÇEKME (ADIM 3 - SSR) ---
-$toursFile = __DIR__ . '/data/tours.json';
-$allTours  = file_exists($toursFile) ? (json_decode(file_get_contents($toursFile), true) ?? []) : [];
+$allTours     = loadTours();
+$popularTours = array_values(array_filter($allTours, fn($t) => !empty($t['featured'])));
+if (!$popularTours) $popularTours = $allTours;
+$popularTours = array_slice($popularTours, 0, 3);
 
-// Öne çıkan popüler turları ayıkla (featured == true)
-$popularTours = array_filter($allTours, fn($t) => !empty($t['featured']));
-$popularTours = array_values($popularTours);
-if (empty($popularTours)) {
-    $popularTours = array_slice($allTours, 0, 3);
-} else {
-    $popularTours = array_slice($popularTours, 0, 3);
-}
+/* ─── DİL SÖZLÜĞÜ (sunucu tarafı) ─────────────────────────── */
+$D = [
+ 'tr'=>['title'=>'Türkiye Turları — Kapadokya, İstanbul, Efes Paketleri',
+        'desc'=>'WalkAbout Travel ile Kapadokya balon turu, İstanbul şehir turları, Efes ve Pamukkale gezileri. 1997’den beri güvenle planlanan tur paketleri.',
+        'ogtitle'=>'WalkAbout Travel — Türkiye Tur Paketleri',
+        'readMore'=>'TÜM YAZILARI GÖR','minRead'=>'dk okuma','from'=>'Başlangıç Fiyatı',
+        'details'=>'Detayları İncele','dayDefault'=>'1 Gün','askPrice'=>'Fiyat için sorunuz',
+        'dirs'=>'Yol Tarifi','skip'=>'İçeriğe geç'],
+ 'en'=>['title'=>'Turkey Tours — Cappadocia, Istanbul & Ephesus Packages',
+        'desc'=>'Cappadocia balloon rides, Istanbul city tours, Ephesus and Pamukkale day trips. Expert-guided Turkey tour packages since 1997.',
+        'ogtitle'=>'WalkAbout Travel — Turkey Tours & Travel Packages',
+        'readMore'=>'READ ALL POSTS','minRead'=>'min read','from'=>'Starting From',
+        'details'=>'Details','dayDefault'=>'1 Day','askPrice'=>'Ask for price',
+        'dirs'=>'Get Directions','skip'=>'Skip to content'],
+ 'es'=>['title'=>'Tours en Turquía — Capadocia, Estambul y Éfeso',
+        'desc'=>'Vuelos en globo en Capadocia, tours por Estambul, excursiones a Éfeso y Pamukkale. Paquetes turísticos guiados desde 1997.',
+        'ogtitle'=>'WalkAbout Travel — Tours y Paquetes en Turquía',
+        'readMore'=>'VER TODOS LOS ARTÍCULOS','minRead'=>'min lectura','from'=>'Desde',
+        'details'=>'Detalles','dayDefault'=>'1 Día','askPrice'=>'Consulte el precio',
+        'dirs'=>'Cómo llegar','skip'=>'Ir al contenido'],
+ 'pt'=>['title'=>'Passeios na Turquia — Capadócia, Istambul e Éfeso',
+        'desc'=>'Balão na Capadócia, passeios por Istambul, excursões a Éfeso e Pamukkale. Pacotes turísticos guiados desde 1997.',
+        'ogtitle'=>'WalkAbout Travel — Passeios e Pacotes na Turquia',
+        'readMore'=>'VER TODAS AS PUBLICAÇÕES','minRead'=>'min leitura','from'=>'A partir de',
+        'details'=>'Detalhes','dayDefault'=>'1 Dia','askPrice'=>'Consulte o preço',
+        'dirs'=>'Como chegar','skip'=>'Ir para o conteúdo'],
+ 'ar'=>['title'=>'جولات تركيا — كابادوكيا وإسطنبول وأفسس',
+        'desc'=>'رحلات المنطاد في كابادوكيا، جولات إسطنبول، ورحلات أفسس وباموكالي. باقات سياحية منذ عام 1997.',
+        'ogtitle'=>'WalkAbout Travel — باقات جولات تركيا',
+        'readMore'=>'عرض جميع المقالات','minRead'=>'دقيقة قراءة','from'=>'ابتداء من',
+        'details'=>'تفاصيل','dayDefault'=>'يوم واحد','askPrice'=>'اتصل بنا للسعر',
+        'dirs'=>'الاتجاهات','skip'=>'تخطي إلى المحتوى'],
+];
+$T = $D[$currentLang] ?? $D['tr'];
 
-// --- 3. YARDIMCI SEO VE DİL FONKSİYONLARI ---
-if (!function_exists('makeSlug')) {
-    function makeSlug(string $t): string {
-        $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
-        $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
-        $t = str_replace($tr, $en, $t);
-        $t = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $t);
-        return strtolower(preg_replace('/[\s-]+/', '-', trim(preg_replace('/[^a-zA-Z0-9\s-]/', '', $t))));
-    }
-}
-if (!function_exists('getBlogField')) {
-    function getBlogField(array $obj, string $field, string $lang): string {
-        $key = $lang !== 'tr' ? $field.'_'.$lang : $field;
-        return $obj[$key] ?? $obj[$field.'_en'] ?? $obj[$field] ?? '';
-    }
-}
-if (!function_exists('phpGetTourSlug')) {
-    function phpGetTourSlug(array $tour, string $lang): string {
-        $prefix = ['tr' => '', 'en' => '/en', 'es' => '/es', 'ar' => '/ar', 'pt' => '/pt'];
-        $slugKey = $lang === 'tr' ? 'slug_tr' : 'slug_' . $lang;
-        $slug = $tour[$slugKey] ?? $tour['slug_en'] ?? $tour['slug'] ?? '';
-        if (!$slug) {
-            $titleKey = $lang === 'tr' ? 'title' : 'title_' . $lang;
-            $title = $tour[$titleKey] ?? $tour['title_en'] ?? $tour['title'] ?? '';
-            $slug = makeSlug($title);
-        }
-        return ($prefix[$lang] ?? '') . '/' . $slug . '/';
-    }
-}
-if (!function_exists('phpGetLocalizedData')) {
-    function phpGetLocalizedData(array $item, string $field, string $lang): string {
-        if (isset($item[$field]) && is_array($item[$field])) {
-            return $item[$field][$lang] ?? $item[$field]['en'] ?? $item[$field]['tr'] ?? '';
-        }
-        if ($lang !== 'tr') {
-            if (!empty($item[$field . '_' . $lang])) return $item[$field . '_' . $lang];
-            if (!empty($item[$field . '_en']))     return $item[$field . '_en'];
-        }
-        return $item[$field] ?? '';
-    }
-}
+/* Geriye dönük uyumluluk için eski değişken adları */
+$readMoreText = $T['readMore'];  $minReadText = $T['minRead'];
+$startingFromText = $T['from'];  $detailsText = $T['details'];
+$tourDurationDefaultText = $T['dayDefault'];
 
-// Dil çeviri kelimeleri
-$readMoreText = match($currentLang) {
-    'en' => 'READ ALL POSTS', 'es' => 'VER TODOS LOS ARTÍCULOS', 'pt' => 'VER TODAS AS PUBLICAÇÕES', 'ar' => 'عرض جميع المقالات', default => 'TÜM YAZILARI GÖR'
-};
-$minReadText = match($currentLang) {
-    'en' => 'min read', 'es' => 'min lectura', 'pt' => 'min leitura', 'ar' => 'دقيقة قراءة', default => 'dk okuma'
-};
-$startingFromText = match($currentLang) {
-    'en' => 'Starting From', 'es' => 'Desde', 'pt' => 'A partir de', 'ar' => 'ابتداء من', default => 'Başlangıç Fiyatı'
-};
-$detailsText = match($currentLang) {
-    'en' => 'Details', 'es' => 'Detalles', 'pt' => 'Detalhes', 'ar' => 'تفاصيل', default => 'Detayları İncele'
-};
-$tourDurationDefaultText = match($currentLang) {
-    'en' => '1 Day', 'es' => '1 Día', 'pt' => '1 Dia', 'ar' => 'يوم واحد', default => '1 Gün'
-};
+/* ─── SEO ──────────────────────────────────────────────────── */
+$canonicalUrl = SITE_URL . $LP . '/';
+$hreflang = [];
+foreach ($LANG_PREFIXES as $lc => $p) $hreflang[$lc] = SITE_URL . $p . '/';
+
+$heroPoster = imgAttrs('turizm-seyahat-ana-hero');
+$ogImage    = $heroPoster ? SITE_URL . $heroPoster['full'] : '';
+
+/* ─── Kurumsal yapılandırılmış veri (yerel SEO) ────────────── */
+$orgSchema = json_encode(array_filter([
+  '@context'=>'https://schema.org','@type'=>'TravelAgency',
+  '@id'=>SITE_URL.'/#organization',
+  'name'=>SITE_NAME,'url'=>SITE_URL,
+  'logo'=>SITE_URL.'/assets/img/walkabout-travel-logo-400.webp',
+  'image'=>$ogImage ?: null,
+  'description'=>$T['desc'],
+  'telephone'=>CONTACT_PHONE,'email'=>CONTACT_EMAIL,
+  'foundingDate'=>(string)FOUNDED_YEAR,
+  'address'=>['@type'=>'PostalAddress','streetAddress'=>CONTACT_ADDRESS_1,
+              'addressLocality'=>'Fatih','addressRegion'=>'İstanbul',
+              'postalCode'=>'34122','addressCountry'=>'TR'],
+  'areaServed'=>['@type'=>'Country','name'=>'Türkiye'],
+  'sameAs'=>array_values(array_filter($SOCIAL)) ?: null,
+]), JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+
+$bcSchema = json_encode([
+  '@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>[
+    ['@type'=>'ListItem','position'=>1,'name'=>SITE_NAME,'item'=>$canonicalUrl]]],
+  JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+
+if ($heroPoster) header('Link: <'.$heroPoster['full'].'>; rel=preload; as=image; fetchpriority=high', false);
 ?>
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?=e($currentLang)?>"<?=$htmlDir?>>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WalkAbout Travel - Discover the World</title>
-    
-    <meta name="description" content="WalkAbout Travel ile Türkiye'nin en güzel destinasyonlarını keşfedin. Kapadokya, İstanbul, Efes ve daha fazlası için tur paketleri. 1997'den beri güvenle planlanan yolculuklar.">
-    <link rel="canonical" href="https://www.walkabouttravel.com/">
-    <link rel="icon" href="assets/walkabout_travel_logo.jpg" type="image/jpeg">
+    <title><?=e($T['title'])?> | <?=e(SITE_NAME)?></title>
 
-    <!-- Hreflang — 5 dil -->
-    <link rel="alternate" hreflang="tr" href="https://www.walkabouttravel.com/">
-    <link rel="alternate" hreflang="en" href="https://www.walkabouttravel.com/en/">
-    <link rel="alternate" hreflang="es" href="https://www.walkabouttravel.com/es/">
-    <link rel="alternate" hreflang="ar" href="https://www.walkabouttravel.com/ar/">
-    <link rel="alternate" hreflang="pt" href="https://www.walkabouttravel.com/pt/">
-    <link rel="alternate" hreflang="x-default" href="https://www.walkabouttravel.com/en/">
+    <meta name="description" content="<?=e($T['desc'])?>">
+    <link rel="canonical" href="<?=e($canonicalUrl)?>">
+    <link rel="icon" type="image/webp" href="/assets/img/walkabout-travel-logo-400.webp">
+
+    <!-- Hreflang — 5 dil, karşılıklı -->
+<?php foreach($hreflang as $lc=>$u): ?>
+    <link rel="alternate" hreflang="<?=e($lc)?>" href="<?=e($u)?>">
+<?php endforeach; ?>
+    <link rel="alternate" hreflang="x-default" href="<?=e($hreflang['en'])?>">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.walkabouttravel.com/">
-    <meta property="og:title" content="WalkAbout Travel — Turkey Tours & Travel Packages">
-    <meta property="og:description" content="Cappadocia balloon rides, Istanbul city tours, Ephesus day trips and more. Expert-guided Turkey tours since 1997.">
-    <meta property="og:image" content="https://www.walkabouttravel.com/assets/og-cover.jpg">
-    <meta property="og:locale" content="tr_TR">
-    <meta property="og:site_name" content="WalkAbout Travel">
+    <meta property="og:url" content="<?=e($canonicalUrl)?>">
+    <meta property="og:title" content="<?=e($T['ogtitle'])?>">
+    <meta property="og:description" content="<?=e($T['desc'])?>">
+<?php if($ogImage): ?>
+    <meta property="og:image" content="<?=e($ogImage)?>">
+    <meta property="og:image:width" content="1600">
+<?php endif; ?>
+    <meta property="og:locale" content="<?=e($LANG_LOCALES[$currentLang])?>">
+    <meta property="og:site_name" content="<?=e(SITE_NAME)?>">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="WalkAbout Travel — Turkey Tours & Travel Packages">
-    <meta name="twitter:description" content="Cappadocia balloon rides, Istanbul city tours, Ephesus day trips and more. Expert-guided Turkey tours since 1997.">
-    <meta name="twitter:image" content="https://www.walkabouttravel.com/assets/og-cover.jpg">
+    <meta name="twitter:title" content="<?=e($T['ogtitle'])?>">
+    <meta name="twitter:description" content="<?=e($T['desc'])?>">
+<?php if($ogImage): ?>
+    <meta name="twitter:image" content="<?=e($ogImage)?>"><?php endif; ?>
+
+    <script type="application/ld+json"><?=$orgSchema?></script>
+    <script type="application/ld+json"><?=$bcSchema?></script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,7 +140,7 @@ $tourDurationDefaultText = match($currentLang) {
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
     <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
     <style>
     /* Home Magazine Layout Stilleri */
@@ -173,6 +170,44 @@ $tourDurationDefaultText = match($currentLang) {
         .recent-post-item { background: #ffffff; padding: 20px; border-radius: 14px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-sm); margin-bottom: 12px; }
         .recent-post-item:last-child { margin-bottom: 0; }
     }
+    /* ── Hero: poster anında görünür, video hazır olunca üstüne biner ── */
+    .hero { position: relative; overflow: hidden; }
+    /* style.css'teki ".hero img { height:auto }" kuralını yenmek için
+       özgüllüğü artırıyoruz — aksi hâlde poster hero'yu doldurmuyor. */
+    .hero img.hero-poster, .hero video.hero-video {
+        position: absolute !important; inset: 0 !important;
+        width: 100% !important; height: 100% !important;
+        max-width: none !important; max-height: none !important;
+        object-fit: cover !important; z-index: 0;
+    }
+    .hero-poster { opacity: 1; transition: opacity .6s ease; }
+    body.video-hazir .hero-poster { opacity: 0; }
+    .hero-video { opacity: 0; transition: opacity .6s ease; }
+    body.video-hazir .hero-video { opacity: 1; }
+    @media (max-width: 768px) { .hero-video { display: none; } }
+
+    /* ── Kategori kartları artık <button> ── */
+    .category-image-card {
+        position: relative; display: block; padding: 0; border: none;
+        background: none; cursor: pointer; width: 100%; overflow: hidden;
+        border-radius: 14px;
+    }
+    .category-image-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .category-image-card .category-overlay {
+        position: absolute; inset: 0; display: flex; align-items: flex-end;
+        justify-content: center; padding: 18px;
+        background: linear-gradient(to top, rgba(0,0,0,.75), transparent 60%);
+    }
+    .category-image-card.active { outline: 3px solid var(--primary, #0c4a6e); outline-offset: 2px; }
+    .category-image-card:focus-visible { outline: 3px solid #38bdf8; outline-offset: 2px; }
+
+    /* ── Kart başlıkları artık <a> içeriyor ── */
+    .tour-card h3 a, .trip-card-title a { color: inherit; text-decoration: none; }
+    .tour-card h3 a::after, .trip-card-title a::after {
+        content: ''; position: absolute; inset: 0; z-index: 1;   /* tüm kart tıklanabilir */
+    }
+    .tour-card, .popular-trip-card { position: relative; }
+    .tour-card .tour-link, .popular-trip-card .trip-card-button { position: relative; z-index: 2; }
     </style>
 </head>
 <body>
@@ -193,14 +228,6 @@ $tourDurationDefaultText = match($currentLang) {
       <span class="pl-char">U</span>
       <span class="pl-char">T</span>
     </div>
-    <script>
-    // Ziyaretçi preloader'ı bu oturumda 1 kez gördüyse, bir daha bekletme!
-    if (sessionStorage.getItem('walkabout_preloader_seen')) {
-        document.getElementById('preloader').style.display = 'none';
-    } else {
-        sessionStorage.setItem('walkabout_preloader_seen', 'true');
-    }
-    </script>
 
     <div class="pl-sub-wrap">
       <span class="pl-sub-char">T</span>
@@ -221,24 +248,23 @@ $tourDurationDefaultText = match($currentLang) {
     <nav id="navbar">
         <div class="header-top-row">
             <div class="top-bar-left">
-                <a href="tel:+">
-                    <i class="fas fa-phone"></i> <span>+54 9 11 3587-0045</span>
+                <a href="tel:<?=e(CONTACT_PHONE_LINK)?>">
+                    <i class="fas fa-phone" aria-hidden="true"></i> <span><?=e(CONTACT_PHONE)?></span>
                 </a>
-                <a href="mailto:info@walkabouttravel.com.tr?subject=Web%20Sitenizden%20Ula%C5%9F%C4%B1yorum&body=Merhaba%2C%20turlar%C4%B1n%C4%B1z%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">
-                    <i class="fas fa-envelope"></i> <span>info@walkabouttravel.com.tr</span>
+                <a href="<?=e(mailLink('Web sitenizden ulaşıyorum'))?>">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> <span><?=e(CONTACT_EMAIL)?></span>
                 </a>
             </div>
             <div class="top-bar-right">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Kad%C4%B1rga+Liman%C4%B1+Cd.+138A%2C+34122+%C4%B0stanbul%2C+Fatih%2C+T%C3%BCrkiye" 
-                   target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-map-marker-alt"></i> <span data-i18n="nav_get_directions">Get Directions</span>
+                <a href="<?=e(CONTACT_MAPS)?>" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span data-i18n="nav_get_directions"><?=e($T['dirs'])?></span>
                 </a>
             </div>
         </div>
         
         <div class="nav-container">
-            <a href="#home" class="logo">
-                <img src="assets/walkabout_travel_logo.jpg" alt="WalkAbout Travel Logo" width="48" height="38" fetchpriority="high" onerror="this.style.display='none'">
+            <a href="<?=$LP?>/" class="logo">
+                <img src="/assets/img/walkabout-travel-logo-400.webp" alt="<?=e(SITE_NAME)?>" width="48" height="38" fetchpriority="high" decoding="async">
                 <div class="logo-text">
                     <span class="logo-title">WalkAbout Travel</span>
                     <span class="logo-subtitle">TOURISM & TRAVEL</span>
@@ -246,23 +272,21 @@ $tourDurationDefaultText = match($currentLang) {
             </a>
 
             <div class="nav-links" id="navLinks">
-                <a href="#home" data-i18n="nav_home">HOME</a>
-                <a href="#popular-trips" data-i18n="nav_tours">TOURS</a>
-                <a href="#why-us" data-i18n="nav_why_us">WHY US</a>
-                <a href="#blog" data-i18n="nav_blog">BLOG</a>
-                <a href="#contact" data-i18n="nav_contact">CONTACT</a>
+                <a href="<?=$LP?>/#home" data-i18n="nav_home">HOME</a>
+                <a href="<?=$LP?>/#popular-trips" data-i18n="nav_tours">TOURS</a>
+                <a href="<?=$LP?>/#why-us" data-i18n="nav_why_us">WHY US</a>
+                <a href="<?=$LP?>/#blog" data-i18n="nav_blog">BLOG</a>
+                <a href="<?=$LP?>/#contact" data-i18n="nav_contact">CONTACT</a>
             </div>
 
             <div class="lang-dropdown">
     <button class="lang-dropdown-btn">
-        <i class="fas fa-globe"></i> <span class="current-lang-text">TR</span> <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-globe"></i> <span class="current-lang-text"><?=strtoupper($currentLang)?></span> <i class="fas fa-chevron-down"></i>
     </button>
     <div class="lang-dropdown-content">
-        <a href="#" data-lang="tr">Türkçe (TR)</a>
-        <a href="#" data-lang="en">English (EN)</a>
-        <a href="#" data-lang="es">Español (ES)</a>
-        <a href="#" data-lang="pt">Português (PT)</a>
-        <a href="#" data-lang="ar">العربية (AR)</a>
+<?php foreach($LANG_NAMES as $lc=>$nm): ?>
+        <a href="<?=e($hreflang[$lc])?>" hreflang="<?=e($lc)?>"<?=$lc===$currentLang?' aria-current="true"':''?>><?=e($nm)?> (<?=strtoupper($lc)?>)</a>
+<?php endforeach; ?>
     </div>
 </div>
 
@@ -274,9 +298,14 @@ $tourDurationDefaultText = match($currentLang) {
 
     <!-- HERO -->
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablePictureInPicture x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
-            <source src="assets/hero_background.mp4" type="video/mp4">
-        </video>
+        <!-- Poster anında görünür (LCP), video sonradan yüklenir; mobilde hiç yüklenmez. -->
+        <img class="hero-poster" src="<?=e($heroPoster['full'] ?? '')?>"
+             srcset="<?=e($heroPoster['srcset'] ?? '')?>" sizes="100vw"
+             alt="" width="1600" height="1000" fetchpriority="high" decoding="async" aria-hidden="true">
+        <video class="hero-video" muted loop playsinline webkit-playsinline
+               preload="none" disablePictureInPicture
+               data-src="/assets/hero_background.mp4"
+               x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false"></video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-badge" data-i18n="hero_badge">SINCE 1997</span>
@@ -287,13 +316,13 @@ $tourDurationDefaultText = match($currentLang) {
             <p data-i18n="hero_description">Unforgettable journeys to the world's most beautiful destinations with professional guidance.</p>
             
             <div class="hero-links-container">
-                <a href="#travel-categories" class="btn-hero-link">
+                <a href="<?=$LP?>/#travel-categories" class="btn-hero-link">
                     <i class="fas fa-compass"></i> <span data-i18n="hero_explore">Explore Tours</span>
                 </a>
-                <a href="#blog" class="btn-hero-link">
+                <a href="<?=$LP?>/#blog" class="btn-hero-link">
                     <i class="fas fa-blog"></i> <span data-i18n="hero_blog">Blog</span>
                 </a>
-                <a href="#contact" class="btn-hero-link">
+                <a href="<?=$LP?>/#contact" class="btn-hero-link">
                     <i class="fas fa-envelope"></i> <span data-i18n="hero_contact">Contact Us</span>
                 </a>
             </div>
@@ -306,10 +335,31 @@ $tourDurationDefaultText = match($currentLang) {
             <h2 data-i18n="categories_title">KEŞFETMEYE BAŞLAYIN</h2> 
         </div>
 
-        <div class="categories-grid" id="categoriesGrid"></div>
+        <?php
+        // Kategoriler artık sunucuda basılıyor: JS kapalıyken de görünür,
+        // görseller srcset ile küçük iniyor. Kategori adları tours.json ile birebir eşleşiyor.
+        $KATS = [
+          ['key'=>'Türkiye',      'img'=>'kapadokya-balon-turu-3',
+           'ad'=>['tr'=>'TÜRKİYE TURLARI','en'=>'TURKEY TOURS','es'=>'TOURS EN TURQUÍA','pt'=>'PASSEIOS NA TURQUIA','ar'=>'جولات تركيا']],
+          ['key'=>'Günübirlik',   'img'=>'pamukkale-traverten-dogal-1',
+           'ad'=>['tr'=>'GÜNÜBİRLİK','en'=>'DAY TRIPS','es'=>'EXCURSIONES DE UN DÍA','pt'=>'BATE-VOLTA','ar'=>'رحلات يومية']],
+          ['key'=>'Grup Turları', 'img'=>'antalya-koy-gezisi-1',
+           'ad'=>['tr'=>'GRUP TURLARI','en'=>'GROUP TOURS','es'=>'TOURS EN GRUPO','pt'=>'PASSEIOS EM GRUPO','ar'=>'جولات جماعية']],
+          ['key'=>'__all',        'img'=>'turizm-seyahat-ana-hero',
+           'ad'=>['tr'=>'TÜM TURLAR','en'=>'ALL TOURS','es'=>'TODOS LOS TOURS','pt'=>'TODOS OS PASSEIOS','ar'=>'كل الجولات']],
+        ];
+        ?>
+        <div class="categories-grid" id="categoriesGrid">
+        <?php foreach($KATS as $k): $ad = $k['ad'][$currentLang] ?? $k['ad']['tr']; ?>
+          <button type="button" class="category-image-card" data-category="<?=e($k['key'])?>">
+            <?= imgTag($k['img'], $ad, '(max-width:900px) 50vw, 300px', ['loading'=>'lazy']) ?>
+            <span class="category-overlay"><span class="category-name"><?=e($ad)?></span></span>
+          </button>
+        <?php endforeach; ?>
+        </div>
         
         <div class="view-more-container">
-            <a href="#popular-trips" class="view-more-btn">
+            <a href="<?=$LP?>/#popular-trips" class="view-more-btn">
                 <span data-i18n="categories_view_more">VIEW MORE</span> <i class="fas fa-arrow-down"></i>
             </a>
         </div>
@@ -324,34 +374,33 @@ $tourDurationDefaultText = match($currentLang) {
         </div>
 
         <div class="popular-trips-grid" id="popularTripsGrid">
-            <?php foreach($popularTours as $tour): 
-                $tTitle = phpGetLocalizedData($tour, 'title', $currentLang);
-                $tSlug  = phpGetTourSlug($tour, $currentLang);
-                $ratingDisplay = !empty($tour['reviewCount']) ? ($tour['rating'] . ' (' . $tour['reviewCount'] . ')') : ($tour['rating'] ?? '4.9');
-                $tDuration = $tour['duration'] ?? $tourDurationDefaultText;
+            <?php foreach($popularTours as $i => $tour):
+                $tTitle = getLangField($tour, 'title', $currentLang);
+                $tUrl   = tourUrl($tour, $currentLang);
+                $tDuration = getLangField($tour,'duration',$currentLang) ?: ($tour['duration'] ?? $T['dayDefault']);
             ?>
-                <div class="popular-trip-card" onclick="window.location.href='<?=htmlspecialchars($tSlug)?>'">
+                <article class="popular-trip-card">
                     <div class="card-image-wrap">
-                        <img src="<?=htmlspecialchars($tour['image'] ?? '')?>" alt="<?=htmlspecialchars($tTitle)?>" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                        <div class="trip-rating-badge"><i class="fas fa-star"></i> <?=htmlspecialchars($ratingDisplay)?></div>
-                        <div class="trip-nights-badge"><?=htmlspecialchars($tDuration)?></div>
+                        <?= imgTag($tour['image'] ?? '', $tTitle, '(max-width:700px) 100vw, 400px',
+                                   ['loading'=>$i===0?'eager':'lazy','fetchpriority'=>$i===0?'high':'']) ?>
+                        <div class="trip-nights-badge"><?=e($tDuration)?></div>
                     </div>
                     <div class="trip-card-content">
-                        <h3 class="trip-card-title"><?=htmlspecialchars($tTitle)?></h3>
+                        <h3 class="trip-card-title"><a href="<?=e($tUrl)?>"><?=e($tTitle)?></a></h3>
                         <?php if(!empty($tour['location'])): ?>
-                            <div class="trip-card-meta"><i class="fas fa-map-marker-alt"></i> <?=htmlspecialchars($tour['location'])?></div>
+                            <div class="trip-card-meta"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <?=e($tour['location'])?></div>
                         <?php endif; ?>
                         <div class="trip-card-footer">
                             <div class="trip-card-price-block">
-                                <span class="trip-price-label"><?=$startingFromText?></span>
-                                <span class="trip-price-value"><?=htmlspecialchars($tour['price'] ?? '')?></span>
+                                <span class="trip-price-label"><?=e($T['from'])?></span>
+                                <span class="trip-price-value"><?= !empty($tour['price']) ? e($tour['price']) : e($T['askPrice']) ?></span>
                             </div>
-                            <a href="<?=htmlspecialchars($tSlug)?>" class="trip-card-button" onclick="event.stopPropagation()">
-                                <?=$detailsText?> <i class="fas fa-arrow-right"></i>
+                            <a href="<?=e($tUrl)?>" class="trip-card-button">
+                                <?=e($T['details'])?> <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
             <?php endforeach; ?>
         </div>
     </section>
@@ -364,40 +413,50 @@ $tourDurationDefaultText = match($currentLang) {
             <p data-i18n="tours_subtitle">Discover our most preferred destinations</p>
         </div>
         <div class="tours-grid">
-            <?php foreach($allTours as $tour): 
-                $tTitle = phpGetLocalizedData($tour, 'title', $currentLang);
-                $tDesc  = phpGetLocalizedData($tour, 'description', $currentLang);
-                $tShortDesc = mb_substr(strip_tags($tDesc), 0, 100) . (mb_strlen(strip_tags($tDesc)) > 100 ? '...' : '');
-                $tSlug  = phpGetTourSlug($tour, $currentLang);
-                $tDuration = $tour['duration'] ?? $tourDurationDefaultText;
+            <?php foreach($allTours as $tour):
+                $tTitle = getLangField($tour, 'title', $currentLang);
+                $tDesc  = strip_tags(getLangField($tour, 'description', $currentLang));
+                $tShortDesc = mb_substr($tDesc, 0, 100) . (mb_strlen($tDesc) > 100 ? '…' : '');
+                $tUrl   = tourUrl($tour, $currentLang);
+                $tDuration = getLangField($tour,'duration',$currentLang) ?: ($tour['duration'] ?? $T['dayDefault']);
             ?>
-                <div class="tour-card" onclick="window.location.href='<?=htmlspecialchars($tSlug)?>'">
+                <?php
+                  $cats = $tour['categories'] ?? [];
+                  $dataAttr = ' data-cat="'.e($tour['category'] ?? '').'"';
+                  if (!empty($cats['traveller'])) $dataAttr .= ' data-trav="'.e(implode(' ', (array)$cats['traveller'])).'"';
+                ?>
+                <article class="tour-card"<?=$dataAttr?>>
                     <div class="tour-image">
-                        <img src="<?=htmlspecialchars($tour['image'] ?? '')?>" alt="<?=htmlspecialchars($tTitle)?>" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                        <div class="tour-badge"><?=htmlspecialchars($tDuration)?></div>
+                        <?= imgTag($tour['image'] ?? '', $tTitle, '(max-width:700px) 100vw, 400px', ['loading'=>'lazy']) ?>
+                        <div class="tour-badge"><?=e($tDuration)?></div>
                     </div>
                     <div class="tour-content">
-                        <h3><?=htmlspecialchars($tTitle)?></h3>
-                        <p><?=htmlspecialchars($tShortDesc)?></p>
+                        <h3><a href="<?=e($tUrl)?>"><?=e($tTitle)?></a></h3>
+                        <p><?=e($tShortDesc)?></p>
                         <div class="tour-features">
                             <?php if(!empty($tour['location'])): ?>
-                                <span class="feature-tag"><i class="fas fa-map-marker-alt"></i> <?=htmlspecialchars($tour['location'])?></span>
+                                <span class="feature-tag"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <?=e($tour['location'])?></span>
                             <?php endif; ?>
-                            <span class="feature-tag"><i class="fas fa-star"></i> <?=htmlspecialchars($tour['rating'] ?? '4.9')?></span>
+                            <?php if(!empty($tour['category'])): ?>
+                                <span class="feature-tag"><i class="fas fa-compass" aria-hidden="true"></i> <?=e($tour['category'])?></span>
+                            <?php endif; ?>
                         </div>
                         <div class="tour-card-footer">
                             <div class="tour-price-block">
-                                <span class="tour-price-label"><?=$startingFromText?></span>
-                                <span class="tour-price-value"><?=htmlspecialchars($tour['price'] ?? '')?></span>
+                                <span class="tour-price-label"><?=e($T['from'])?></span>
+                                <span class="tour-price-value"><?= !empty($tour['price']) ? e($tour['price']) : e($T['askPrice']) ?></span>
                             </div>
-                            <a href="<?=htmlspecialchars($tSlug)?>" class="tour-link" onclick="event.stopPropagation()">
-                                <?=$detailsText?> <i class="fas fa-arrow-right"></i>
+                            <a href="<?=e($tUrl)?>" class="tour-link">
+                                <?=e($T['details'])?> <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
             <?php endforeach; ?>
         </div>
+        <p id="toursEmpty" hidden style="text-align:center;color:#64748b;padding:40px 0;">
+            <?=e($currentLang==='tr'?'Bu kategoride tur bulunamadı.':'No tours found in this category.')?>
+        </p>
     </section>
 
     <!-- WHY US -->
@@ -444,41 +503,39 @@ $tourDurationDefaultText = match($currentLang) {
             <?php if($featuredPost): ?>
             <div class="magazine-grid">
                 <?php
-                $fSlug  = $featuredPost['slug'] ?? makeSlug($featuredPost['title'] ?? '');
-                $fTitle = getBlogField($featuredPost, 'title', $currentLang);
-                $fCat   = getBlogField($featuredPost, 'category', $currentLang);
-                $fDate  = isset($featuredPost['date']) ? date('d M Y', strtotime($featuredPost['date'])) : '';
-                $fRead  = $featuredPost['readTime'] ?? '5';
-                $fUrl   = SITE_URL . $LANG_PREFIXES[$currentLang] . '/blog/' . $fSlug . '/';
+                $fTitle = getLangField($featuredPost, 'title', $currentLang);
+                $fCat   = getLangField($featuredPost, 'category', $currentLang);
+                $fDate  = fmtDate($featuredPost['date'] ?? '', $currentLang);
+                $fRead  = $featuredPost['readTime'] ?? '';
+                $fUrl   = postUrl($featuredPost, $currentLang);
                 ?>
-                <a href="<?=htmlspecialchars($fUrl)?>" class="featured-post">
-                    <img src="<?=htmlspecialchars($featuredPost['image'] ?? '')?>" alt="<?=htmlspecialchars($fTitle)?>">
+                <a href="<?=e($fUrl)?>" class="featured-post">
+                    <?= imgTag($featuredPost['image'] ?? '', $fTitle, '(max-width:1100px) 100vw, 760px', ['loading'=>'lazy']) ?>
                     <div class="featured-content">
-                        <?php if($fCat): ?><span class="featured-cat"><?=htmlspecialchars($fCat)?></span><?php endif; ?>
-                        <h3 class="featured-title"><?=htmlspecialchars($fTitle)?></h3>
+                        <?php if($fCat): ?><span class="featured-cat"><?=e($fCat)?></span><?php endif; ?>
+                        <h3 class="featured-title"><?=e($fTitle)?></h3>
                         <div class="featured-meta">
-                            <span><i class="far fa-calendar-alt"></i> <?=$fDate?></span>
-                            <span><i class="far fa-clock"></i> <?=$fRead?> <?=$minReadText?></span>
+                            <?php if($fDate): ?><span><i class="far fa-calendar-alt" aria-hidden="true"></i> <?=e($fDate)?></span><?php endif; ?>
+                            <?php if($fRead): ?><span><i class="far fa-clock" aria-hidden="true"></i> <?=e($fRead)?> <?=e($T['minRead'])?></span><?php endif; ?>
                         </div>
                     </div>
                 </a>
 
                 <aside class="recent-posts-list">
-                    <?php foreach($sidebarPosts as $sp): 
-                        $spSlug  = $sp['slug'] ?? makeSlug($sp['title'] ?? '');
-                        $spTitle = getBlogField($sp, 'title', $currentLang);
-                        $spCat   = getBlogField($sp, 'category', $currentLang);
-                        $spDate  = isset($sp['date']) ? date('d M Y', strtotime($sp['date'])) : '';
-                        $spUrl   = SITE_URL . $LANG_PREFIXES[$currentLang] . '/blog/' . $spSlug . '/';
+                    <?php foreach($sidebarPosts as $sp):
+                        $spTitle = getLangField($sp, 'title', $currentLang);
+                        $spCat   = getLangField($sp, 'category', $currentLang);
+                        $spDate  = fmtDate($sp['date'] ?? '', $currentLang);
+                        $spUrl   = postUrl($sp, $currentLang);
                     ?>
-                    <a href="<?=htmlspecialchars($spUrl)?>" class="recent-post-item">
+                    <a href="<?=e($spUrl)?>" class="recent-post-item">
                         <div class="recent-thumb">
-                            <img src="<?=htmlspecialchars($sp['image'] ?? '')?>" alt="<?=htmlspecialchars($spTitle)?>">
+                            <?= imgTag($sp['image'] ?? '', $spTitle, '95px', ['loading'=>'lazy']) ?>
                         </div>
                         <div class="recent-info">
-                            <?php if($spCat): ?><div class="recent-cat"><?=htmlspecialchars($spCat)?></div><?php endif; ?>
-                            <div class="recent-title"><?=htmlspecialchars($spTitle)?></div>
-                            <div class="recent-date"><?=$spDate?></div>
+                            <?php if($spCat): ?><div class="recent-cat"><?=e($spCat)?></div><?php endif; ?>
+                            <div class="recent-title"><?=e($spTitle)?></div>
+                            <div class="recent-date"><?=e($spDate)?></div>
                         </div>
                     </a>
                     <?php endforeach; ?>
@@ -489,8 +546,8 @@ $tourDurationDefaultText = match($currentLang) {
             <?php endif; ?>
 
             <div class="view-more-container" style="margin-top: 50px;">
-                <a href="blog.php" class="view-more-btn">
-                    <?=$readMoreText?> <i class="fas fa-arrow-right"></i>
+                <a href="<?=$LP?>/blog/" class="view-more-btn">
+                    <?=e($T['readMore'])?> <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
@@ -505,25 +562,35 @@ $tourDurationDefaultText = match($currentLang) {
         </div>
 
         <div class="contact-container">
-            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+            <!-- Form artık contact.php'ye gönderiliyor: e-posta atılıyor VE data/leads.json'a kaydediliyor.
+                 JS kapalı olsa bile çalışır. -->
+            <form class="contact-form" id="contactForm" method="post" action="/contact.php">
+                <input type="hidden" name="lang" value="<?=e($currentLang)?>">
                 <div class="form-group">
                     <label for="name" data-i18n="contact_name_label">Full Name *</label>
-                    <input type="text" id="name" required data-i18n="contact_name_placeholder" placeholder="John Doe">
+                    <input type="text" id="name" name="name" required autocomplete="name" maxlength="120"
+                           data-i18n="contact_name_placeholder" placeholder="<?=e($currentLang==='tr'?'Ad Soyad':'Full Name')?>">
                 </div>
                 <div class="form-group">
                     <label for="email" data-i18n="contact_email_label">Email Address *</label>
-                    <input type="email" id="email" required data-i18n="contact_email_placeholder" placeholder="john@example.com">
+                    <input type="email" id="email" name="email" required autocomplete="email" maxlength="180"
+                           data-i18n="contact_email_placeholder" placeholder="<?=e($currentLang==='tr'?'ornek@eposta.com':'you@email.com')?>">
                 </div>
                 <div class="form-group">
                     <label for="phone" data-i18n="contact_phone_label">Phone Number</label>
-                    <input type="tel" id="phone" data-i18n="contact_phone_placeholder" placeholder="+90 555 123 45 67">
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="40"
+                           data-i18n="contact_phone_placeholder" placeholder="+90 5xx xxx xx xx">
                 </div>
                 <div class="form-group">
                     <label for="message" data-i18n="contact_message_label">Your Message *</label>
-                    <textarea id="message" required data-i18n="contact_message_placeholder" placeholder="Which tour are you interested in?"></textarea>
+                    <textarea id="message" name="message" required maxlength="4000"
+                              data-i18n="contact_message_placeholder" placeholder="<?=e($currentLang==='tr'?'Hangi turla ilgileniyorsunuz?':'Which tour are you interested in?')?>"></textarea>
+                </div>
+                <div class="gorsel-gizli" aria-hidden="true">
+                    <label>Web sitesi<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
                 </div>
                 <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> <span data-i18n="contact_send_button">Send</span>
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i> <span data-i18n="contact_send_button">Send</span>
                 </button>
             </form>
 
@@ -531,17 +598,17 @@ $tourDurationDefaultText = match($currentLang) {
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <h4 data-i18n="contact_info_address_title">Our Address</h4>
-                    <p data-i18n="contact_info_address_text">Kadırga Limanı Cd. 138A<br>34122 Fatih, İstanbul / Türkiye</p>
+                    <p><?=e(CONTACT_ADDRESS_1)?><br><?=e(CONTACT_ADDRESS_2)?></p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
                     <h4 data-i18n="contact_info_phone_title">Phone</h4>
-                    <p>+54 9 11 3587-0045</p>
+                    <p><a href="tel:<?=e(CONTACT_PHONE_LINK)?>"><?=e(CONTACT_PHONE)?></a></p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
                     <h4 data-i18n="contact_info_email_title">Email</h4>
-                    <p>info@walkabouttravel.com.tr</p>
+                    <p><a href="<?=e(mailLink())?>"><?=e(CONTACT_EMAIL)?></a></p>
                 </div>
             </div>
         </div>
@@ -552,50 +619,61 @@ $tourDurationDefaultText = match($currentLang) {
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="assets/walkabout_travel_logo.jpg" alt="Logo" onerror="this.style.display='none'">
+                    <img src="/assets/img/walkabout-travel-logo-400.webp" alt="<?=e(SITE_NAME)?>" width="48" height="38" loading="lazy" decoding="async">
                     <div class="logo-text">
                         <span class="logo-title">WalkAbout Travel</span>
                         <span class="logo-subtitle">Tourism & Travel</span>
                     </div>
                 </div>
                 <p data-i18n="footer_tagline">Journeys planned with confidence since 1997.</p>
+                <?php
+                // Boş bırakılan hesaplar hiç gösterilmez — "#" giden ölü ikon kalmasın.
+                $iconMap = ['facebook'=>'fa-facebook-f','instagram'=>'fa-instagram',
+                            'twitter'=>'fa-x-twitter','linkedin'=>'fa-linkedin-in'];
+                $aktif = array_filter($SOCIAL);
+                ?>
+                <?php if($aktif): ?>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <?php foreach($aktif as $k=>$url): ?>
+                    <a href="<?=e($url)?>" target="_blank" rel="noopener noreferrer" aria-label="<?=e(ucfirst($k))?>">
+                        <i class="fab <?=e($iconMap[$k] ?? 'fa-link')?>" aria-hidden="true"></i>
+                    </a>
+                    <?php endforeach; ?>
                 </div>
+                <?php endif; ?>
             </div>
 
             <div class="footer-column">
                 <h4 data-i18n="footer_quick_links">Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
-                    <li><a href="#popular-trips" data-i18n="nav_tours">Tours</a></li>
-                    <li><a href="#why-us" data-i18n="nav_why_us">Why Us</a></li>
-                    <li><a href="#blog" data-i18n="nav_blog">Blog</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                    <li><a href="<?=$LP?>/#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="<?=$LP?>/#popular-trips" data-i18n="nav_tours">Tours</a></li>
+                    <li><a href="<?=$LP?>/#why-us" data-i18n="nav_why_us">Why Us</a></li>
+                    <li><a href="<?=$LP?>/#blog" data-i18n="nav_blog">Blog</a></li>
+                    <li><a href="<?=$LP?>/#contact" data-i18n="nav_contact">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
                 <h4 data-i18n="footer_categories">Categories</h4>
                 <ul class="footer-links">
-                    <li><a href="family.html" data-i18n="footer_cat_family">Family Tours</a></li>
-                    <li><a href="couples.html" data-i18n="footer_cat_couples">Couples Tours</a></li>
-                    <li><a href="groups.html" data-i18n="footer_cat_groups">Group Tours</a></li>
-                    <li><a href="honeymoon.html" data-i18n="footer_cat_honeymoon">Honeymoon Tours</a></li>
-                    <li><a href="solo.html" data-i18n="footer_cat_solo">Solo Tours</a></li>
+                    <!-- Bu 5 bağlantı daha önce sunucuda olmayan .html dosyalarına gidiyordu
+                         (ölü link). Var olan tur bölümüne yönlendirildi. -->
+                    <li><a href="<?=$LP?>/#tours" data-i18n="footer_cat_family">Family Tours</a></li>
+                    <li><a href="<?=$LP?>/#tours" data-i18n="footer_cat_couples">Couples Tours</a></li>
+                    <li><a href="<?=$LP?>/#tours" data-i18n="footer_cat_groups">Group Tours</a></li>
+                    <li><a href="<?=$LP?>/#tours" data-i18n="footer_cat_honeymoon">Honeymoon Tours</a></li>
+                    <li><a href="<?=$LP?>/#tours" data-i18n="footer_cat_solo">Solo Tours</a></li>
                 </ul>
             </div>
 
             <div class="footer-column">
                 <h4 data-i18n="footer_services">Services</h4>
                 <ul class="footer-links">
-                    <li><a href="#why-us" data-i18n="footer_service_visa">Visa Consultancy</a></li>
-                    <li><a href="#contact" data-i18n="footer_service_hotel">Hotel Reservation</a></li>
-                    <li><a href="#contact" data-i18n="footer_service_flight">Flight Ticket</a></li>
-                    <li><a href="#contact" data-i18n="footer_service_transfer">Transfer Service</a></li>
+                    <li><a href="<?=$LP?>/#why-us" data-i18n="footer_service_visa">Visa Consultancy</a></li>
+                    <li><a href="<?=$LP?>/#contact" data-i18n="footer_service_hotel">Hotel Reservation</a></li>
+                    <li><a href="<?=$LP?>/#contact" data-i18n="footer_service_flight">Flight Ticket</a></li>
+                    <li><a href="<?=$LP?>/#contact" data-i18n="footer_service_transfer">Transfer Service</a></li>
                 </ul>
             </div>
         </div>
@@ -605,328 +683,76 @@ $tourDurationDefaultText = match($currentLang) {
         </div>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        if (!menuToggle || !navLinks) return;
-        
-        if (window.innerWidth <= 992) {
-            const langDropdown = document.querySelector('.lang-dropdown');
-            if (langDropdown && navLinks) {
-                const clone = langDropdown.cloneNode(true);
-                navLinks.appendChild(clone);
-            }
-        }
-        
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navLinks.classList.toggle('active');
-            const icon = this.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-        
-        navLinks.querySelectorAll('a:not(.lang-dropdown-content a)').forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        });
-    });
-    </script>
-    <a href="https://wa.me/902125551923?text=Merhaba%2C%20WalkAbout%20Travel%20web%20sitenizden%20ula%C5%9F%C4%B1yorum.%20Turlar%C4%B1n%C4%B1z%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <a href="<?=e(waLink('Merhaba, '.SITE_NAME.' web sitenizden ulaşıyorum. Turlarınız hakkında bilgi almak istiyorum.'))?>"
+       class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
     </a>
-    
+
+    <script src="/i18n.js" defer></script>
+    <script src="/app.js" defer></script>
     <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+    /* ============================================================
+       Ana sayfa betiği — sadeleştirildi.
+       KALDIRILANLAR ve nedenleri:
+       · Tours.js               → PHP'nin bastığı 75 kartı silip 1,2 MB JSON'u
+                                  tekrar indiriyordu. Artık sunucu çıktısı kullanılıyor.
+       · allToursData (1,2 MB)  → HTML'e gömülüydü ama hiç kullanılmıyordu.
+       · Inline mobil menü      → app.js'teki ile çakışıp menüyü hiç açtırmıyordu.
+       · Inline navbar scroll   → app.js'te zaten var (passive dinleyiciyle).
+       · handleContactSubmit    → form artık contact.php'ye gerçekten POST ediyor.
+       · Dil menüsü JS'i        → menü artık gerçek /en/ /es/ ... bağlantıları kullanıyor.
+       ============================================================ */
+    (function () {
+      'use strict';
+
+      /* ── Kategori filtresi: kartları yeniden çizmeden göster/gizle ── */
+      const grid  = document.getElementById('categoriesGrid');
+      const cards = Array.from(document.querySelectorAll('.tours-grid .tour-card'));
+      if (grid && cards.length) {
+        grid.addEventListener('click', function (ev) {
+          const btn = ev.target.closest('.category-image-card');
+          if (!btn) return;
+          const key = btn.dataset.category;
+          let gorunen = 0;
+          cards.forEach(c => {
+            const ok = key === '__all' || c.dataset.cat === key;
+            c.hidden = !ok;
+            if (ok) gorunen++;
+          });
+          grid.querySelectorAll('.category-image-card')
+              .forEach(b => b.classList.toggle('active', b === btn));
+          const bos = document.getElementById('toursEmpty');
+          if (bos) bos.hidden = gorunen > 0;
+          const hedef = document.getElementById('tours');
+          if (hedef) hedef.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-    </script>
-    
-    <script src="i18n.js" defer></script>
-    <script src="app.js" defer></script>
-    <script src="Tours.js"></script>
-    
-    <script>
-    // JSON verilerini JavaScript hafızasına PHP ile gömüyoruz (Böylece fetch() ihtiyacı kalmıyor)
-    let allToursData = <?= json_encode($allTours, JSON_UNESCAPED_UNICODE) ?>;
+      }
 
-    document.addEventListener('DOMContentLoaded', async function() {
-        const savedLang = localStorage.getItem('language') || 'tr';
-        if(window.i18n) {
-            await window.i18n.init(savedLang);
-        }
-
-        const updateDropdownText = (lang) => {
-            const langNames = {'tr': 'TR', 'en': 'EN', 'es': 'ES', 'pt': 'PT', 'ar': 'AR'};
-            document.querySelectorAll('.current-lang-text').forEach(el => {
-                el.textContent = langNames[lang] || lang.toUpperCase();
-            });
+      /* ── Hero videosu: boşta kalınca ve sadece masaüstünde yükle ── */
+      const video = document.querySelector('.hero-video');
+      if (video && window.matchMedia('(min-width: 769px)').matches
+                && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const basla = () => {
+          if (video.dataset.src && !video.src) {
+            video.src = video.dataset.src;
+            video.load();
+            const p = video.play();
+            if (p) p.catch(() => {});                 // engellenirse poster görünmeye devam eder
+            video.addEventListener('playing',
+              () => document.body.classList.add('video-hazir'), { once: true });
+          }
         };
-        updateDropdownText(savedLang);
+        if ('requestIdleCallback' in window) requestIdleCallback(basla, { timeout: 2500 });
+        else setTimeout(basla, 1200);
+      }
 
-        document.addEventListener('click', function(e) {
-            const dropdownBtn = e.target.closest('.lang-dropdown-btn');
-            if (dropdownBtn) {
-                e.preventDefault();
-                dropdownBtn.closest('.lang-dropdown').classList.toggle('active');
-                return;
-            }
-
-            const langOption = e.target.closest('.lang-dropdown-content a');
-            if (langOption) {
-                e.preventDefault();
-                const selectedLang = langOption.getAttribute('data-lang');
-                if(window.i18n) {
-                    window.i18n.changeLanguage(selectedLang);
-                    updateDropdownText(selectedLang);
-                }
-                langOption.closest('.lang-dropdown').classList.remove('active');
-                return;
-            }
-
-            document.querySelectorAll('.lang-dropdown.active').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        });
-
-        loadCategories();
-        // Artık tarayıcıda loadTours() ile fetch yapmıyoruz, her şey sunucu taraflı basıldı!
-    });
-
-    window.addEventListener('languageChanged', () => {
-        loadCategories();
-        setTimeout(() => { location.reload(); }, 150);
-    });
-
-    function getTourSlug(tour) {
-        const lang = window.i18n ? window.i18n.currentLang : 'tr';
-        const prefix = { tr: '', en: '/en', es: '/es', ar: '/ar', pt: '/pt' };
-        let slug = tour[lang === 'tr' ? 'slug_tr' : 'slug_' + lang] || tour['slug_en'] || tour['slug'] || '';
-
-        if (!slug) {
-            const title = tour[lang === 'tr' ? 'title' : ('title_' + lang)] || tour['title_en'] || tour['title'] || '';
-            slug = title.toLowerCase().replace(/[şŞ]/g,'s').replace(/[ğĞ]/g,'g').replace(/[üÜ]/g,'u').replace(/[öÖ]/g,'o').replace(/[ıİ]/g,'i').replace(/[çÇ]/g,'c').normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s-]/g,'').replace(/[\s-]+/g,'-').trim();
-        }
-        return (prefix[lang] || '') + '/' + slug + '/';
-    }
-
-    function getLocalizedData(item, field) {
-        if (!item) return '';
-        const lang = window.i18n ? window.i18n.currentLang : 'tr';
-        if (item[field] && typeof item[field] === 'object' && !Array.isArray(item[field])) {
-            return item[field][lang] || item[field]['en'] || item[field]['tr'] || '';
-        }
-        if (lang !== 'tr') {
-            if (item[`${field}_${lang}`]) return item[`${field}_${lang}`];
-            if (item[`${field}_en`])      return item[`${field}_en`];
-        }
-        return item[field] || '';
-    }
-
-    const mainCategories = [
-        { name: 'TÜRKİYE TURU', image: 'assets/kapadokya-balon-turu-3.webp', category: 'turkey' },
-        { name: 'ULUSLARARASI', image: 'assets/spain-1.webp', category: 'international' },
-        { name: 'GÜNÜBİRLİK', image: 'assets/pamukkale-traverten-dogal-1.webp', category: 'daily' },
-        { name: 'GRUP TURLARI', image: 'assets/antalya-koy-gezisi-1.webp', category: 'group' }
-    ];
-
-    function loadCategories() {
-        const grid = document.getElementById('categoriesGrid');
-        if (!grid) return;
-        const t = (key, fallback) => (window.i18n && window.i18n.t) ? window.i18n.t(key) : fallback;
-        grid.innerHTML = mainCategories.map(cat => `
-            <div class="category-image-card" data-category="${cat.category}" onclick="filterTours('${cat.category}')">
-                <img src="${cat.image}" alt="${cat.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600'">
-                <div class="category-overlay">
-                    <div class="category-name">${t('cat_' + cat.category, cat.name)}</div>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function filterTours(type) {
-        document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
-        let filtered = [];
-        if (type === 'turkey') {
-            filtered = allToursData.filter(t => t.category === 'Türkiye' || (t.categories && t.categories.destination && t.categories.destination.includes('turkiye')));
-        } else if (type === 'international') {
-            filtered = allToursData.filter(t => t.category && t.category !== 'Türkiye' && t.category !== 'Kategori Seçin');
-        } else if (type === 'daily') {
-            filtered = allToursData.filter(t => t.category === 'Günübirlik');
-        } else if (type === 'group') {
-            filtered = allToursData.filter(t => t.categories && t.categories.traveller && t.categories.traveller.includes('groups'));
-        } else if (type === 'all') {
-            filtered = allToursData;
-        }
-        displayAllTours(filtered);
-
-        const sectionTitle = document.querySelector('#tours .section-header h2');
-        const sectionBadge = document.querySelector('#tours .section-badge');
-        const t = key => (window.i18n && window.i18n.t) ? window.i18n.t(key) : key;
-
-        if (type === 'all') {
-            sectionBadge.innerHTML = t('filter_all_routes');
-            sectionTitle.innerHTML = t('tours_title');
-        } else {
-            sectionBadge.innerHTML = `<span style="cursor:pointer; color:#ef4444;" onclick="filterTours('all')"><i class="fas fa-times"></i> ${t('filter_clear')}</span>`;
-            const titles = { 'turkey': t('filter_turkey'), 'international': t('filter_international'), 'daily': t('filter_daily'), 'group': t('filter_group') };
-            sectionTitle.innerHTML = titles[type] || '';
-        }
-    }
-
-    function displayPopularTrips(tours) {
-        const grid = document.getElementById('popularTripsGrid');
-        if (!grid) return;
-        grid.innerHTML = tours.map(tour => {
-            const title = String(getLocalizedData(tour, 'title'));
-            const ratingDisplay = tour.reviewCount ? `${tour.rating || '4.9'} (${tour.reviewCount})` : (tour.rating || '4.9');
-            return `
-                <div class="popular-trip-card" onclick="window.location.href='${getTourSlug(tour)}'">
-                    <div class="card-image-wrap">
-                        <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                        <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
-                        <div class="trip-nights-badge">${tour.duration || '1 Gün'}</div>
-                    </div>
-                    <div class="trip-card-content">
-                        <h3 class="trip-card-title">${title}</h3>
-                        ${tour.location ? `<div class="trip-card-meta"><i class="fas fa-map-marker-alt"></i> ${tour.location}</div>` : ''}
-                        <div class="trip-card-footer">
-                            <div class="trip-card-price-block">
-                                <span class="trip-price-label">${window.i18n ? window.i18n.t('starting_from') : 'Starting Price'}</span>
-                                <span class="trip-price-value">${tour.price}</span>
-                            </div>
-                            <a href="${getTourSlug(tour)}" class="trip-card-button" onclick="event.stopPropagation()">
-                                ${window.i18n ? window.i18n.t('tour_detail_btn') : 'Details'} <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
-        }).join('');
-    }
-
-function displayPopularTrips(tours) {
-        const grid = document.getElementById('popularTripsGrid');
-        if (!grid) return;
-        grid.innerHTML = tours.map(tour => {
-            const title = String(getLocalizedData(tour, 'title'));
-            const ratingDisplay = tour.reviewCount ? `${tour.rating || '4.9'} (${tour.reviewCount})` : (tour.rating || '4.9');
-            // DÜZELTME: Süre çevirisi eklendi
-            const durationDisplay = tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün');
-            return `
-                <div class="popular-trip-card" onclick="window.location.href='${getTourSlug(tour)}'">
-                    <div class="card-image-wrap">
-                        <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                        <div class="trip-rating-badge"><i class="fas fa-star"></i> ${ratingDisplay}</div>
-                        <div class="trip-nights-badge">${durationDisplay}</div>
-                    </div>
-                    <div class="trip-card-content">
-                        <h3 class="trip-card-title">${title}</h3>
-                        ${tour.location ? `<div class="trip-card-meta"><i class="fas fa-map-marker-alt"></i> ${tour.location}</div>` : ''}
-                        <div class="trip-card-footer">
-                            <div class="trip-card-price-block">
-                                <span class="trip-price-label">${window.i18n ? window.i18n.t('starting_from') : 'Starting Price'}</span>
-                                <span class="trip-price-value">${tour.price}</span>
-                            </div>
-                            <a href="${getTourSlug(tour)}" class="trip-card-button" onclick="event.stopPropagation()">
-                                ${window.i18n ? window.i18n.t('tour_detail_btn') : 'Details'} <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
-        }).join('');
-    }
-
-    function displayAllTours(tours) {
-        const grid = document.querySelector('.tours-grid');
-        if (!grid) return;
-        if (tours.length === 0) {
-            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px; font-size: 18px; color: #94a3b8;"><i class="fas fa-search" style="font-size: 40px; margin-bottom: 15px; display:block;"></i> ${window.i18n ? window.i18n.t('tours_empty') : 'Tur bulunmuyor.'}</div>`;
-            return;
-        }
-        grid.innerHTML = tours.map(tour => {
-            const title = String(getLocalizedData(tour, 'title'));
-            const description = String(getLocalizedData(tour, 'description') || '');
-            // DÜZELTME: Süre çevirisi eklendi
-            const durationDisplay = tour.duration || (window.i18n ? window.i18n.t('tour_duration_default') : '1 Gün');
-            return `
-            <div class="tour-card" onclick="window.location.href='${getTourSlug(tour)}'">
-                <div class="tour-image">
-                    <img src="${tour.image}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600'">
-                    <div class="tour-badge">${durationDisplay}</div>
-                </div>
-                <div class="tour-content">
-                    <h3>${title}</h3>
-                    <p>${description.substring(0, 100) + (description.length > 100 ? '...' : '')}</p>
-                    <div class="tour-features">
-                        ${tour.location ? `<span class="feature-tag"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>` : ''}
-                        <span class="feature-tag"><i class="fas fa-star"></i> ${tour.rating || '4.9'}</span>
-                    </div>
-                    <div class="tour-card-footer">
-                        <div class="tour-price-block">
-                            <span class="tour-price-label">${window.i18n ? window.i18n.t('starting_from') : 'Starting Price'}</span>
-                            <span class="tour-price-value">${tour.price}</span>
-                        </div>
-                        <a href="${getTourSlug(tour)}" class="tour-link" onclick="event.stopPropagation()">
-                            ${window.i18n ? window.i18n.t('tour_detail_btn') : 'Details'} <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>`;
-        }).join('');
-    }
-
-    function handleContactSubmit(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const message = document.getElementById('message').value.trim();
-        window.location.href = 'mailto:info@walkabouttravel.com.tr?subject=' + encodeURIComponent('Web Sitesi İletişim Formu - ' + name) + '&body=' + encodeURIComponent('Ad Soyad: ' + name + '\nE-posta: ' + email + '\nTelefon: ' + (phone || '-') + '\n\nMesaj:\n' + message);
-        const btn = document.querySelector('#contactForm .submit-btn');
-        const origHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> ' + (window.i18n ? window.i18n.t('contact_sent') : 'Gönderildi!');
-        btn.style.background = '#10b981';
-        setTimeout(() => { btn.innerHTML = origHTML; btn.style.background = ''; }, 3000);
-    }
+      /* ── Dil: sunucu hangi dili sunduysa tarayıcı deposunu ona eşitle ── */
+      const LANG = '<?=e($currentLang)?>';
+      try { localStorage.setItem('language', LANG); sessionStorage.setItem('language', LANG); } catch (e) {}
+      const initI18n = () => { if (window.i18n) window.i18n.init(LANG); };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initI18n);
+      else initI18n();
+    })();
     </script>
-
-<script>
-(function() {
-    var video = document.querySelector('.hero-video');
-    if (!video) return;
-    video.muted = true; video.playsInline = true;
-    function tryPlay() {
-        var p = video.play();
-        if (p !== undefined) { p.catch(function() { document.addEventListener('touchstart', function handler() { video.play(); document.removeEventListener('touchstart', handler); }, { once: true }); }); }
-    }
-    if (video.readyState >= 2) { tryPlay(); } else { video.addEventListener('loadeddata', tryPlay, { once: true }); }
-})();
-</script>
 </body>
 </html>

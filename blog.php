@@ -1,81 +1,50 @@
 <?php
-// ============================================================
-//  blog.php — WalkAbout Travel Blog Listesi
-//  v3 — 2025-06 — Magazine Layout + Category Filter
-// ============================================================
+/* ============================================================
+   blog.php — Blog listesi (5 dil)
+   ============================================================ */
+require_once __DIR__ . '/functions.php';
 
-$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$_host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
-define('SITE_URL',  $_protocol . '://' . $_host);
-define('SITE_NAME', 'WalkAbout Travel');
+$currentLang = detectLang();
+$LP          = $LANG_PREFIXES[$currentLang];
+$htmlDir     = $currentLang === 'ar' ? ' dir="rtl"' : '';
 
-$LANG_PREFIXES = ['tr'=>'','en'=>'/en','es'=>'/es','ar'=>'/ar','pt'=>'/pt'];
-$LANG_NAMES    = ['tr'=>'Türkçe','en'=>'English','es'=>'Español','ar'=>'العربية','pt'=>'Português'];
-
-$uri = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-$currentLang = 'tr';
-foreach (['en','es','ar','pt'] as $lc) {
-    if (str_starts_with($uri, '/'.$lc.'/') || $uri === '/'.$lc) {
-        $currentLang = $lc; break;
-    }
-}
-
-$blogsFile = __DIR__ . '/data/blog-posts.json';
-$allPosts  = file_exists($blogsFile)
-    ? (json_decode(file_get_contents($blogsFile), true) ?? [])
-    : [];
-
-$posts = array_filter($allPosts, fn($p) => ($p['published'] ?? true) !== false);
-$posts = array_values($posts);
-usort($posts, fn($a,$b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));
-
-function makeSlug(string $t): string {
-    $tr = ['ş','ğ','ü','ö','ı','ç','Ş','Ğ','Ü','Ö','İ','Ç'];
-    $en = ['s','g','u','o','i','c','s','g','u','o','i','c'];
-    $t = str_replace($tr, $en, $t);
-    $t = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $t);
-    return strtolower(preg_replace('/[\s-]+/', '-', trim(preg_replace('/[^a-zA-Z0-9\s-]/', '', $t))));
-}
-function getBlogField(array $obj, string $field, string $lang): string {
-    $key = $lang !== 'tr' ? $field.'_'.$lang : $field;
-    return $obj[$key] ?? $obj[$field.'_en'] ?? $obj[$field] ?? '';
-}
-
-// Featured = ilk (en yeni) post; grid = tümü (featured dahil, filtrelenebilir)
+$posts        = loadPosts();               // ISO tarihe göre doğru sıralı
 $featuredPost = $posts[0] ?? null;
 $sidebarPosts = array_slice($posts, 1, 3);
 
-// Tüm kategoriler (filtre için)
+// Kategoriler artık dile göre (category_en / _es / _pt / _ar alanları eklendi)
 $categories = [];
 foreach ($posts as $p) {
-    $cat = getBlogField($p, 'category', $currentLang);
-    if ($cat && !in_array($cat, $categories)) $categories[] = $cat;
+    $c = getLangField($p, 'category', $currentLang);
+    if ($c && !in_array($c, $categories, true)) $categories[] = $c;
 }
 
-$canonicalBase = SITE_URL . $LANG_PREFIXES[$currentLang] . '/blog/';
+$canonicalBase = SITE_URL . $LP . '/blog/';
 $hreflangBlog  = [];
-foreach ($LANG_PREFIXES as $lc => $p) $hreflangBlog[$lc] = SITE_URL.$p.'/blog/';
-
-$breadcrumbSchema = json_encode([
-    '@context' => 'https://schema.org',
-    '@type'    => 'BreadcrumbList',
-    'itemListElement' => [
-        ['@type'=>'ListItem','position'=>1,'name'=>'Home','item'=>SITE_URL.'/'],
-        ['@type'=>'ListItem','position'=>2,'name'=>'Blog','item'=>$canonicalBase],
-    ]
-], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+foreach ($LANG_PREFIXES as $lc => $p) $hreflangBlog[$lc] = SITE_URL . $p . '/blog/';
 
 $dict = [
-    'tr' => ['home'=>'Ana Sayfa','tours'=>'Turlar','blog'=>'Blog','readMore'=>'Devamını Oku','minRead'=>'dk okuma','blogTitle'=>'Seyahat Blogu','blogDesc'=>'Gezi rehberleri, ipuçları ve ilham verici hikayeler','all'=>'Tümü','featured'=>'Öne Çıkan Yazı','latest'=>'Son Yazılar'],
-    'en' => ['home'=>'Home','tours'=>'Tours','blog'=>'Blog','readMore'=>'Read More','minRead'=>'min read','blogTitle'=>'Travel Blog','blogDesc'=>'Travel guides, tips and inspiring stories','all'=>'All','featured'=>'Featured Post','latest'=>'Latest Posts'],
-    'es' => ['home'=>'Inicio','tours'=>'Tours','blog'=>'Blog','readMore'=>'Leer Más','minRead'=>'min lectura','blogTitle'=>'Blog de Viajes','blogDesc'=>'Guías de viaje, consejos e historias inspiradoras','all'=>'Todo','featured'=>'Artículo Destacado','latest'=>'Últimos Artículos'],
-    'pt' => ['home'=>'Início','tours'=>'Passeios','blog'=>'Blog','readMore'=>'Ler Mais','minRead'=>'min leitura','blogTitle'=>'Blog de Viagens','blogDesc'=>'Guias de viagem, dicas e histórias inspiradoras','all'=>'Tudo','featured'=>'Destaque','latest'=>'Últimas Publicações'],
-    'ar' => ['home'=>'الرئيسية','tours'=>'جولات','blog'=>'مدونة','readMore'=>'اقرأ المزيد','minRead'=>'دقيقة قراءة','blogTitle'=>'مدونة السفر','blogDesc'=>'أدلة السفر والنصائح والقصص الملهمة','all'=>'الكل','featured'=>'المقال المميز','latest'=>'أحدث المقالات'],
+ 'tr'=>['home'=>'Ana Sayfa','tours'=>'Turlar','blog'=>'Blog','readMore'=>'Devamını Oku','minRead'=>'dk okuma','blogTitle'=>'Seyahat Blogu','blogDesc'=>'Gezi rehberleri, ipuçları ve ilham verici hikayeler','all'=>'Tümü','featured'=>'Öne Çıkan Yazı','latest'=>'Son Yazılar','none'=>'Sonuç bulunamadı.','soon'=>'Yakında içerik gelecek.'],
+ 'en'=>['home'=>'Home','tours'=>'Tours','blog'=>'Blog','readMore'=>'Read More','minRead'=>'min read','blogTitle'=>'Travel Blog','blogDesc'=>'Travel guides, tips and inspiring stories','all'=>'All','featured'=>'Featured Post','latest'=>'Latest Posts','none'=>'No results found.','soon'=>'Content coming soon.'],
+ 'es'=>['home'=>'Inicio','tours'=>'Tours','blog'=>'Blog','readMore'=>'Leer Más','minRead'=>'min lectura','blogTitle'=>'Blog de Viajes','blogDesc'=>'Guías de viaje, consejos e historias inspiradoras','all'=>'Todo','featured'=>'Artículo Destacado','latest'=>'Últimos Artículos','none'=>'No se encontraron resultados.','soon'=>'Contenido próximamente.'],
+ 'pt'=>['home'=>'Início','tours'=>'Passeios','blog'=>'Blog','readMore'=>'Ler Mais','minRead'=>'min leitura','blogTitle'=>'Blog de Viagens','blogDesc'=>'Guias de viagem, dicas e histórias inspiradoras','all'=>'Tudo','featured'=>'Destaque','latest'=>'Últimas Publicações','none'=>'Nenhum resultado.','soon'=>'Conteúdo em breve.'],
+ 'ar'=>['home'=>'الرئيسية','tours'=>'جولات','blog'=>'مدونة','readMore'=>'اقرأ المزيد','minRead'=>'دقيقة قراءة','blogTitle'=>'مدونة السفر','blogDesc'=>'أدلة السفر والنصائح والقصص الملهمة','all'=>'الكل','featured'=>'المقال المميز','latest'=>'أحدث المقالات','none'=>'لا توجد نتائج.','soon'=>'المحتوى قريباً.'],
 ];
-$L       = $dict[$currentLang] ?? $dict['tr'];
-$htmlDir = $currentLang === 'ar' ? ' dir="rtl"' : '';
+$L = $dict[$currentLang] ?? $dict['tr'];
 
-header('Link: </style.css>; rel=preload; as=style', false);
+$breadcrumbSchema = json_encode([
+  '@context'=>'https://schema.org','@type'=>'BreadcrumbList','itemListElement'=>[
+    ['@type'=>'ListItem','position'=>1,'name'=>$L['home'],'item'=>SITE_URL.$LP.'/'],
+    ['@type'=>'ListItem','position'=>2,'name'=>$L['blog'],'item'=>$canonicalBase],
+  ]], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+
+// Blog listesi yapılandırılmış verisi
+$listSchema = json_encode([
+  '@context'=>'https://schema.org','@type'=>'Blog',
+  'name'=>$L['blogTitle'].' | '.SITE_NAME,'url'=>$canonicalBase,
+  'description'=>$L['blogDesc'],
+  'publisher'=>['@type'=>'Organization','name'=>SITE_NAME,'url'=>SITE_URL],
+], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 ?>
 <!DOCTYPE html>
 <html lang="<?=htmlspecialchars($currentLang)?>"<?=$htmlDir?>>
@@ -94,7 +63,10 @@ header('Link: </style.css>; rel=preload; as=style', false);
 <meta property="og:title" content="<?=$L['blogTitle']?> | <?=SITE_NAME?>">
 <meta property="og:description" content="<?=htmlspecialchars($L['blogDesc'])?>">
 <script type="application/ld+json"><?=$breadcrumbSchema?></script>
-<link rel="icon" href="/assets/walkabout_travel_logo.jpg">
+<link rel="icon" type="image/webp" href="/assets/img/walkabout-travel-logo-400.webp">
+<script type="application/ld+json"><?=$listSchema?></script>
+<meta property="og:site_name" content="<?=e(SITE_NAME)?>">
+<meta property="og:locale" content="<?=e($LANG_LOCALES[$currentLang])?>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -349,8 +321,8 @@ nav {
       </div>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/"><?=$L['home']?></a></li>
-      <li><a href="/#popular-trips"><?=$L['tours']?></a></li>
+      <li><a href="<?=$LP?>/"><?=e($L['home'])?></a></li>
+      <li><a href="<?=$LP?>/#popular-trips"><?=e($L['tours'])?></a></li>
       <li><a href="/#why-us">WHY US</a></li>
       <li><a href="<?=SITE_URL.$LANG_PREFIXES[$currentLang]?>/blog/"><?=$L['blog']?></a></li>
       <li><a href="/#contact">CONTACT</a></li>
@@ -364,7 +336,7 @@ nav {
         </button>
         <div class="lang-dropdown-content">
           <?php foreach($hreflangBlog as $lc=>$u): ?>
-          <a href="<?=htmlspecialchars($u)?>"><?=$LANG_NAMES[$lc]?></a>
+          <a href="<?=e($u)?>" hreflang="<?=e($lc)?>"<?=$lc===$currentLang?' aria-current="true"':''?>><?=e($LANG_NAMES[$lc])?></a>
           <?php endforeach; ?>
         </div>
       </div>
@@ -377,7 +349,7 @@ nav {
 
 <div class="breadcrumb">
   <div class="breadcrumb-container">
-    <a href="/"><?=$L['home']?></a>
+    <a href="<?=$LP?>/"><?=e($L['home'])?></a>
     <span class="breadcrumb-separator" aria-hidden="true">›</span>
     <span class="breadcrumb-current"><?=$L['blog']?></span>
   </div>
@@ -393,14 +365,13 @@ nav {
 
 <?php if($featuredPost): ?>
 <?php
-$fSlug    = $featuredPost['slug'] ?? makeSlug($featuredPost['title'] ?? '');
-$fTitle   = getBlogField($featuredPost,'title',$currentLang);
-$fExcerpt = getBlogField($featuredPost,'excerpt',$currentLang);
+$fTitle   = getLangField($featuredPost,'title',$currentLang);
+$fExcerpt = getLangField($featuredPost,'excerpt',$currentLang);
 $fImg     = $featuredPost['image'] ?? '';
-$fCat     = getBlogField($featuredPost,'category',$currentLang);
-$fDate    = isset($featuredPost['date']) ? date('d M Y', strtotime($featuredPost['date'])) : '';
+$fCat     = getLangField($featuredPost,'category',$currentLang);
+$fDate    = isset($featuredPost['date']) ? fmtDate($featuredPost['date'] ?? '', $currentLang) : '';
 $fRead    = $featuredPost['readTime'] ?? '';
-$fUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$fSlug.'/';
+$fUrl     = postUrl($featuredPost, $currentLang);
 ?>
 <!-- MAGAZINE SECTION -->
 <section class="magazine-section">
@@ -410,10 +381,8 @@ $fUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$fSlug.'/';
 
       <!-- Big featured card -->
       <a href="<?=htmlspecialchars($fUrl)?>" class="featured-post">
-        <?php if($fImg): ?>
-        <img src="<?=htmlspecialchars($fImg)?>" alt="<?=htmlspecialchars($fTitle)?>"
-             width="800" height="500" loading="eager" fetchpriority="high" decoding="async">
-        <?php endif; ?>
+        <?= imgTag($fImg, $fTitle, '(max-width:1100px) 100vw, 800px',
+                   ['loading'=>'eager','fetchpriority'=>'high']) ?>
         <div class="featured-content">
           <?php if($fCat): ?><span class="featured-cat"><?=htmlspecialchars($fCat)?></span><?php endif; ?>
           <h2 class="featured-title"><?=htmlspecialchars($fTitle)?></h2>
@@ -428,20 +397,16 @@ $fUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$fSlug.'/';
       <?php if(!empty($sidebarPosts)): ?>
       <aside class="recent-posts-list">
         <?php foreach($sidebarPosts as $sp):
-          $spSlug  = $sp['slug'] ?? makeSlug($sp['title'] ?? '');
-          $spTitle = getBlogField($sp,'title',$currentLang);
+          $spTitle = getLangField($sp,'title',$currentLang);
           $spImg   = $sp['image'] ?? '';
-          $spCat   = getBlogField($sp,'category',$currentLang);
-          $spDate  = isset($sp['date']) ? date('d M Y', strtotime($sp['date'])) : '';
-          $spUrl   = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$spSlug.'/';
-          if(!$spTitle||!$spSlug) continue;
+          $spCat   = getLangField($sp,'category',$currentLang);
+          $spDate  = isset($sp['date']) ? fmtDate($sp['date'] ?? '', $currentLang) : '';
+          $spUrl   = postUrl($sp, $currentLang);
+          if(!$spTitle || !$spUrl) continue;
         ?>
         <a href="<?=htmlspecialchars($spUrl)?>" class="recent-post-item">
           <div class="recent-thumb">
-            <?php if($spImg): ?>
-            <img src="<?=htmlspecialchars($spImg)?>" alt="<?=htmlspecialchars($spTitle)?>"
-                 width="76" height="60" loading="lazy" decoding="async">
-            <?php endif; ?>
+            <?= imgTag($spImg, $spTitle, '76px', ['loading'=>'lazy']) ?>
           </div>
           <div class="recent-info">
             <?php if($spCat): ?><div class="recent-cat"><?=htmlspecialchars($spCat)?></div><?php endif; ?>
@@ -478,16 +443,15 @@ $fUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$fSlug.'/';
       <?php
       $postIndex = 0;
       foreach($posts as $post):
-        $postSlug    = $post['slug'] ?? makeSlug($post['title'] ?? '');
-        $postTitle   = getBlogField($post,'title',$currentLang);
-        $postExcerpt = getBlogField($post,'excerpt',$currentLang);
-        if(!$postExcerpt) $postExcerpt = mb_substr(strip_tags(getBlogField($post,'content',$currentLang)),0,140);
+        $postTitle   = getLangField($post,'title',$currentLang);
+        $postExcerpt = getLangField($post,'excerpt',$currentLang);
+        if(!$postExcerpt) $postExcerpt = mb_substr(strip_tags(getLangField($post,'content',$currentLang)),0,140);
         $postImg     = $post['image'] ?? '';
-        $postCat     = getBlogField($post,'category',$currentLang);
-        $postDate    = isset($post['date']) ? date('d M Y', strtotime($post['date'])) : '';
+        $postCat     = getLangField($post,'category',$currentLang);
+        $postDate    = fmtDate($post['date'] ?? '', $currentLang);
         $postRead    = $post['readTime'] ?? '';
-        $postUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$postSlug.'/';
-        if(!$postTitle||!$postSlug) continue;
+        $postUrl     = postUrl($post, $currentLang);
+        if(!$postTitle || !$postUrl) continue;
         $imgLoading  = $postIndex < 3 ? 'eager' : 'lazy';
         $postIndex++;
       ?>
@@ -495,14 +459,8 @@ $fUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$fSlug.'/';
                data-category="<?=htmlspecialchars($postCat)?>"
                itemscope itemtype="https://schema.org/BlogPosting">
         <a href="<?=htmlspecialchars($postUrl)?>" class="blog-card-img-wrap" tabindex="-1" aria-hidden="true">
-          <?php if($postImg): ?>
-          <img class="blog-card-img"
-               src="<?=htmlspecialchars($postImg)?>"
-               alt="<?=htmlspecialchars($postTitle)?>"
-               width="400" height="250"
-               loading="<?=$imgLoading?>" decoding="async"
-               itemprop="image">
-          <?php endif; ?>
+          <?= imgTag($postImg, $postTitle, '(max-width:700px) 100vw, 400px',
+                     ['class'=>'blog-card-img','loading'=>$imgLoading,'itemprop'=>'image']) ?>
         </a>
         <div class="blog-card-body">
           <div class="blog-card-meta">
@@ -520,79 +478,58 @@ $fUrl     = SITE_URL.$LANG_PREFIXES[$currentLang].'/blog/'.$fSlug.'/';
         </div>
       </article>
       <?php endforeach; ?>
-      <p class="no-results" id="noResults">Sonuç bulunamadı.</p>
+      <p class="no-results" id="noResults"><?=e($L['none'])?></p>
     </div>
 
     <?php else: ?>
     <p class="blog-empty">
       <i class="fas fa-pen-nib" style="font-size:36px;display:block;margin-bottom:14px;" aria-hidden="true"></i>
-      Yakında içerik gelecek.
+      <?=e($L['soon'])?>
     </p>
     <?php endif; ?>
 
   </div>
 </section>
 
-<a href="https://wa.me/902125551923" class="whatsapp-float"
+<a href="<?=e(waLink())?>" class="whatsapp-float"
    target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
   <i class="fab fa-whatsapp" aria-hidden="true"></i>
 </a>
 
-<script>
-// ─── Category filter ─────────────────────────────────────
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards      = document.querySelectorAll('.blog-card');
-const noResults  = document.getElementById('noResults');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const cat = btn.dataset.cat;
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    let visible = 0;
-    cards.forEach(card => {
-      const cardCat = card.dataset.category || '';
-      if (cat === 'all' || cardCat === cat) {
-        card.classList.remove('hidden');
-        visible++;
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-    if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
-  });
-});
-
-// ─── Nav ─────────────────────────────────────────────────
-const menuToggle = document.getElementById('menuToggle');
-const navLinks   = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', e => {
-    e.stopPropagation();
-    const open = navLinks.classList.toggle('active');
-    menuToggle.setAttribute('aria-expanded', open);
-    const icon = menuToggle.querySelector('i');
-    icon?.classList.toggle('fa-bars', !open);
-    icon?.classList.toggle('fa-times', open);
-  });
-}
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.lang-dropdown-btn');
-  if (btn) {
-    e.stopPropagation();
-    const dd = btn.closest('.lang-dropdown');
-    const open = dd.classList.toggle('active');
-    btn.setAttribute('aria-expanded', open);
-    return;
-  }
-  document.querySelectorAll('.lang-dropdown.active').forEach(d => {
-    d.classList.remove('active');
-    d.querySelector('.lang-dropdown-btn')?.setAttribute('aria-expanded','false');
-  });
-});
-sessionStorage.setItem('language','<?=$currentLang?>');
-</script>
+<!-- Mobil menü + dil menüsü app.js tarafından yönetiliyor (çift dinleyici kaldırıldı) -->
 <script src="/i18n.js" defer></script>
 <script src="/app.js" defer></script>
+<script>
+/* Kategori filtresi — kartları yeniden çizmeden göster/gizle */
+(function () {
+  var filtreler = document.getElementById('categoryFilters');
+  var grid      = document.getElementById('blogGrid');
+  if (!filtreler || !grid) return;
+  var kartlar = Array.prototype.slice.call(grid.querySelectorAll('.blog-card'));
+  var bos     = document.getElementById('noResults');
+  if (bos) bos.hidden = true;
+
+  filtreler.addEventListener('click', function (e) {
+    var b = e.target.closest('.filter-btn');
+    if (!b) return;
+    var kat = b.dataset.cat;
+    var say = 0;
+    kartlar.forEach(function (k) {
+      var ok = kat === 'all' || k.dataset.category === kat;
+      k.hidden = !ok;
+      if (ok) say++;
+    });
+    filtreler.querySelectorAll('.filter-btn').forEach(function (x) {
+      x.classList.toggle('active', x === b);
+    });
+    if (bos) bos.hidden = say > 0;
+  });
+
+  try {
+    localStorage.setItem('language', '<?=e($currentLang)?>');
+    sessionStorage.setItem('language', '<?=e($currentLang)?>');
+  } catch (err) {}
+})();
+</script>
 </body>
 </html>
